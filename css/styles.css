@@ -511,6 +511,10 @@
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .freedom-sub{position:relative;z-index:1;margin-top:14px;max-width:42ch;font-size:14.5px;line-height:1.9;color:var(--muted)}
   .freedom-chips{position:relative;z-index:1;margin-top:20px;display:flex;gap:11px;flex-wrap:wrap}
+  /* small-print responsible-use / liability notice */
+  .disclaimer{position:relative;z-index:1;margin-top:34px;max-width:64ch;
+    font-size:11.5px;line-height:1.9;color:var(--muted);opacity:.82;
+    padding-top:18px;border-top:1px solid var(--line)}
 
   /* 01 — the still-unformed film drifting in your mind */
   .thoughts{position:relative;margin:46px auto 0;height:clamp(210px,30vh,290px);max-width:660px}
