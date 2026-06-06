@@ -218,14 +218,44 @@
     font-weight:500;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent)}
   .frame.active .cell{border-color:rgba(159,232,255,.65);
     box-shadow:0 34px 90px -16px rgba(70,150,255,.55),0 0 0 1px rgba(159,232,255,.35)}
-  .s0{background:linear-gradient(135deg,#0b1030,#3a2170,#6f3a8f)}
-  .s1{background:linear-gradient(135deg,#2a0f3a,#7a2e6e,#c25a86)}
-  .s2{background:linear-gradient(135deg,#10131f,#37204f,#5b4a8f)}
-  .s3{background:linear-gradient(135deg,#102a45,#1f5a7a,#37a0b6)}
-  .s4{background:linear-gradient(135deg,#161a3a,#3a2f8f,#5a6ad0)}
-  .s5{background:linear-gradient(135deg,#3a1430,#a23a6e,#ff6a9c)}
-  .s6{background:linear-gradient(135deg,#0f2233,#245a6a,#3aa0a0)}
-  .s7{background:linear-gradient(135deg,#243a73,#5a86d0,#9fe8ff)}
+  /* 雰囲気 — neon night */
+  .s0{background:
+    linear-gradient(118deg,transparent 12%,rgba(143,227,255,.5) 13%,transparent 15.5%),
+    linear-gradient(118deg,transparent 33%,rgba(181,123,255,.45) 34.5%,transparent 37%),
+    radial-gradient(65% 55% at 76% 16%,rgba(143,227,255,.4),transparent 60%),
+    linear-gradient(160deg,#0b1030,#241a5a 55%,#46237a)}
+  /* 顔 — portrait spotlight */
+  .s1{background:
+    radial-gradient(34% 44% at 50% 40%,rgba(255,224,206,.62),rgba(190,120,140,.22) 56%,transparent 72%),
+    radial-gradient(120% 90% at 50% 125%,rgba(0,0,0,.5),transparent 58%),
+    linear-gradient(160deg,#2a0f3a,#5a2a55 60%,#7a3a66)}
+  /* 衣装 — sheer fabric folds */
+  .s2{background:
+    repeating-linear-gradient(104deg,rgba(255,255,255,.07) 0 7px,transparent 7px 22px),
+    linear-gradient(160deg,#10131f,#33284f 60%,#20203a)}
+  /* スタイル — figure light column */
+  .s3{background:
+    radial-gradient(20% 62% at 50% 56%,rgba(255,255,255,.2),transparent 62%),
+    linear-gradient(160deg,#102a45,#1f5a7a 60%,#37a0b6)}
+  /* 音楽 — equaliser bars */
+  .s4{background:
+    repeating-linear-gradient(90deg,transparent 0 9px,rgba(160,190,255,.4) 9px 12px,transparent 12px 21px),
+    linear-gradient(160deg,#161a3a,#3a2f8f 60%,#5a6ad0)}
+  /* ダンス — motion streaks */
+  .s5{background:
+    linear-gradient(118deg,transparent 38%,rgba(255,157,219,.42) 50%,transparent 60%),
+    linear-gradient(128deg,transparent 56%,rgba(143,227,255,.34) 66%,transparent 73%),
+    linear-gradient(160deg,#3a1430,#a23a6e 60%,#ff6a9c)}
+  /* 絵コンテ — storyboard grid */
+  .s6{background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.09) 0 1px,transparent 1px 28px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.09) 0 1px,transparent 1px 44px),
+    linear-gradient(160deg,#0f2233,#245a6a 60%,#3aa0a0)}
+  /* 完成 — finale burst */
+  .s7{background:
+    radial-gradient(38% 40% at 50% 44%,rgba(255,255,255,.85),rgba(159,232,255,.35) 42%,transparent 70%),
+    conic-gradient(from 0deg at 50% 44%,transparent,rgba(255,255,255,.18),transparent 25%,rgba(255,255,255,.18),transparent 50%,rgba(255,255,255,.18),transparent 75%,rgba(255,255,255,.18),transparent),
+    linear-gradient(160deg,#243a73,#5a86d0 60%,#9fe8ff)}
   .reel-foot{position:absolute;bottom:9vh;left:0;right:0;z-index:4;text-align:center;
     display:flex;gap:11px;align-items:center;justify-content:center;
     font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500;font-size:17px;color:var(--ink)}
@@ -659,11 +689,31 @@
   .scene .say{font-size:clamp(15px,1.5vw,18px);color:var(--ink);font-weight:500;line-height:1.6;margin-bottom:10px}
   .scene .say .qq{color:#3aa6c8}
   .scene .act{font-size:13.5px;color:var(--muted);line-height:1.8}
-  .sc1{background:linear-gradient(135deg,#1b1d4a,#2e2170,#4a3a8f)}
-  .sc2{background:linear-gradient(135deg,#3a1f44,#7a3a6a,#b85a86)}
-  .sc3{background:linear-gradient(135deg,#161826,#33284f,#4a3a6a)}
-  .sc4{background:linear-gradient(135deg,#1f2a6a,#5a2a8a,#b03a8a)}
-  .sc5{background:linear-gradient(135deg,#1d5a7a,#3aa0c0,#9fe6ec)}
+  /* SCENE 01 雰囲気 — neon night, blue */
+  .sc1{background:
+    linear-gradient(118deg,transparent 14%,rgba(143,227,255,.5) 15%,transparent 17.5%),
+    linear-gradient(118deg,transparent 36%,rgba(120,160,255,.4) 37.5%,transparent 40%),
+    radial-gradient(60% 50% at 74% 18%,rgba(120,180,255,.4),transparent 60%),
+    linear-gradient(160deg,#10163a,#22306e 60%,#3a4a9a)}
+  /* SCENE 02 顔 — portrait spotlight */
+  .sc2{background:
+    radial-gradient(34% 44% at 50% 42%,rgba(255,224,206,.6),rgba(190,120,150,.22) 56%,transparent 72%),
+    radial-gradient(120% 90% at 50% 125%,rgba(0,0,0,.5),transparent 58%),
+    linear-gradient(160deg,#3a1f44,#7a3a6a 60%,#9a5578)}
+  /* SCENE 03 衣装 — sheer fabric folds */
+  .sc3{background:
+    repeating-linear-gradient(104deg,rgba(255,255,255,.06) 0 7px,transparent 7px 22px),
+    linear-gradient(160deg,#0f1018,#262640 60%,#15151f)}
+  /* SCENE 04 ダンス — motion streaks */
+  .sc4{background:
+    linear-gradient(118deg,transparent 38%,rgba(255,157,219,.4) 50%,transparent 60%),
+    linear-gradient(128deg,transparent 56%,rgba(143,227,255,.32) 66%,transparent 73%),
+    linear-gradient(160deg,#1f2a6a,#5a2a8a 60%,#b03a8a)}
+  /* SCENE 05 完成MV — finale burst */
+  .sc5{background:
+    radial-gradient(40% 42% at 50% 45%,rgba(255,255,255,.85),rgba(159,232,255,.4) 42%,transparent 70%),
+    conic-gradient(from 0deg at 50% 45%,transparent,rgba(255,255,255,.16),transparent 25%,rgba(255,255,255,.16),transparent 50%,rgba(255,255,255,.16),transparent 75%,rgba(255,255,255,.16),transparent),
+    linear-gradient(160deg,#1d5a7a,#3aa0c0 60%,#9fe6ec)}
   .scene.fin .thumb::after{content:"▶";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     font-size:34px;color:rgba(255,255,255,.92);text-shadow:0 4px 24px rgba(0,60,90,.6)}
   .hreel-foot{position:absolute;bottom:8.5vh;left:0;right:0;z-index:4;display:flex;gap:9px;
