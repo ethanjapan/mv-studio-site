@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MV Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="sky"></div>
+  <canvas id="aurora"></canvas>
+  <div id="bloom"></div>
+  <div id="flash"></div>
+  <div class="vignette"></div>
+  <div class="scrim"></div>
+  <div class="grain"></div>
+
+  <header>
+    <div class="brand">MV&nbsp;Studio</div>
+    <div class="head-right">
+      <span class="navlink">An AI Film Director</span>
+      <nav class="lang-switch" id="langSwitch" aria-label="Language">
+        <button class="ls-btn on" data-lang="ja">日本語</button>
+        <button class="ls-btn tc" data-lang="zh">繁中</button>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="dots-nav" id="dotsNav" aria-label="章ナビ"></nav>
+
+  <section class="hero">
+    <div class="eyebrow"><span class="dot"></span>声で、映像をつくる</div>
+    <h1>
+      <span class="l"><span>話すだけで、</span></span>
+      <span class="l"><span class="grad">MVができる。</span></span>
+    </h1>
+    <p class="sub">頭の中にある一本の映像を、声で相談しながら——<br>雰囲気から完成まで、ともに描くAIディレクター。</p>
+
+    <div class="caps">
+      <span class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9fe8ff" stroke-width="1.4">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/>
+        </svg>
+        <span>日本語 ・ <span class="tc">繁體中文（台灣）</span></span>
+        <em>ネイティブ発音</em>
+      </span>
+      <span class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ffb3e6" stroke-width="1.4">
+          <rect x="9" y="3" width="6" height="11" rx="3"/>
+          <path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>
+        </svg>
+        <span>好きな声を選べる</span>
+        <span class="dots"><i style="color:#b59bff;background:#b59bff"></i><i style="color:#ff9ddb;background:#ff9ddb"></i><i style="color:#8fe3ff;background:#8fe3ff"></i></span>
+      </span>
+    </div>
+
+    <div class="wave" id="wave"></div>
+
+    <div class="cta">
+      <button class="btn primary"><span class="vico"></span>声で、はじめる</button>
+      <button class="btn ghost">世界観を見る</button>
+    </div>
+
+    <div class="scroll"><div class="txt">Scroll</div><div class="line"></div></div>
+  </section>
+
+  <!-- 01 はじまりの問い -->
+  <section class="panel" data-ch="01" data-build>
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">01 — はじまりの問い</div>
+      <h2 class="ch-title reveal d1">頭の中で再生される、<br>あの<span class="em">一本</span>を。</h2>
+      <p class="ch-sub reveal d2">うまく言葉にできなくていい。「こんな雰囲気」と話しかけるだけ。<br>まだ言葉にならない断片を、ディレクターが像に変えていく。</p>
+      <div class="thoughts reveal d2">
+        <div class="mind-glow"></div>
+        <span class="thought th1">夜の色</span>
+        <span class="thought th2">ネオンの反射</span>
+        <span class="thought th3">切なさ</span>
+        <span class="thought th4">あの曲</span>
+        <span class="thought th5">視線</span>
+        <span class="thought th6">青い光</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 声で相談する -->
+  <section class="panel" data-ch="02">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">02 — 声で、相談する</div>
+      <h2 class="ch-title reveal d1">作るのではなく、<span class="em">相談する</span>。</h2>
+      <p class="ch-sub reveal d2">ボタンを探す制作ではなく、プロと言葉を交わす制作へ。あなたの“なんとなく”を、映像の言葉に翻訳する。</p>
+      <div class="chat" id="chat">
+        <div class="bubble ai"><span class="who">Director</span>どんな雰囲気にする？ イメージを聞かせて。</div>
+        <div class="bubble me"><span class="who">You</span>もっと色っぽくて、夜っぽい感じに。</div>
+        <div class="bubble ai proposal"><span class="who">Director</span>
+          <div class="prop-lead">いいね。プロ目線で、この3案がおすすめ。</div>
+          <div class="prop-opts">
+            <span class="prop-opt rec">ネオンの反射<em>おすすめ</em></span>
+            <span class="prop-opt">雨に濡れた夜</span>
+            <span class="prop-opt">月光</span>
+          </div>
+        </div>
+        <div class="bubble me"><span class="who">You</span>ネオンで。肌の質感もリアルに。</div>
+        <div class="bubble ai"><span class="who">Director</span>了解。視線を外す表情で艶を出すね。今から顔を出す。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 渡すだけで伝わる — reference attach (photo / costume / video URL) -->
+  <section class="panel" data-ch="02b">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">03 — 渡すだけで、伝わる</div>
+      <h2 class="ch-title reveal d1">声だけじゃない。<br><span class="em">渡すだけ</span>でいい。</h2>
+      <p class="ch-sub reveal d2">写真を添付、動画のURLを貼る——参考をそのまま渡せば、AIはその通りに受け取る。</p>
+      <div class="cards3">
+        <div class="info-card reveal d1">
+          <div class="ra-thumb face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 20c1.6-4.2 11.4-4.2 13 0"/></svg></div>
+          <div class="ra-tag">顔の参考写真</div>
+          <div class="ra-say">「この顔に似た、20代前半の日本人女性に」</div>
+        </div>
+        <div class="info-card reveal d2">
+          <div class="ra-thumb wear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5l2 1.6 2-1.6M8 8.5l-2.4 4 3.4 1.2V21h6v-7.3l3.4-1.2-2.4-4-4 2.2-4-2.2z"/></svg></div>
+          <div class="ra-tag">衣装の参考写真</div>
+          <div class="ra-say">「この衣装で」</div>
+        </div>
+        <div class="info-card reveal d3">
+          <div class="ra-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6M10.5 6.5l1-1a4 4 0 0 1 6 6l-1 1M13.5 17.5l-1 1a4 4 0 0 1-6-6l1-1"/></svg>youtube.com&nbsp;/&nbsp;tiktok.com</div>
+          <div class="ra-tag">動画のURL</div>
+          <div class="ra-say">「この振り付けを真似して踊らせて」</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 制作の旅 — fly THROUGH the film reel (3D) -->
+  <section class="reel" data-ch="03">
+    <div class="reel-stage">
+      <div class="reel-head">
+        <div class="ch-eyebrow">04 — 制作の旅</div>
+        <h2 class="reel-title">雰囲気から完成まで、<span class="em">ひとつながり</span>で。</h2>
+      </div>
+      <div class="reel-view">
+        <div class="reel-track">
+          <div class="frame"><div class="cell s0"><span class="fn">01</span><span class="fl">雰囲気</span></div></div>
+          <div class="frame"><div class="cell s1"><span class="fn">02</span><span class="fl">顔</span></div></div>
+          <div class="frame"><div class="cell s2"><span class="fn">03</span><span class="fl">衣装</span></div></div>
+          <div class="frame"><div class="cell s3"><span class="fn">04</span><span class="fl">スタイル</span></div></div>
+          <div class="frame"><div class="cell s4"><span class="fn">05</span><span class="fl">音楽</span></div></div>
+          <div class="frame"><div class="cell s5"><span class="fn">06</span><span class="fl">ダンス</span></div></div>
+          <div class="frame"><div class="cell s6"><span class="fn">07</span><span class="fl">絵コンテ</span></div></div>
+          <div class="frame"><div class="cell s7"><span class="fn">08</span><span class="fl">完成</span></div></div>
+        </div>
+      </div>
+      <div class="reel-foot"><span class="reel-dot"></span><span class="reel-now">雰囲気</span></div>
+    </div>
+  </section>
+
+  <!-- 04 本物の人間 — THE IMPACT (daybreak tears open) + living detail lenses -->
+  <section class="panel" data-ch="04" data-build style="min-height:185svh">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">05 — 本物の人間</div>
+      <h2 class="ch-title reveal d1">「AIっぽさ」を、<span class="em">消す</span>。</h2>
+      <p class="ch-sub reveal d2">本物に見える理由は、細部への執着。光が割れた瞬間、すべてが“本物”に焦点を結ぶ。</p>
+      <div class="lenses">
+        <div class="lens reveal d1">
+          <div class="lv skin"></div>
+          <div class="lt">超リアルな肌</div><div class="ld">毛穴・うぶ毛、光の乗り方まで。</div>
+        </div>
+        <div class="lens reveal d2">
+          <div class="lv eye">
+            <svg class="eye-svg" viewBox="0 0 120 70" preserveAspectRatio="xMidYMid meet">
+              <path class="ol" d="M14,35 Q60,8 106,35 Q60,62 14,35 Z"/>
+              <g class="iris"><circle class="iris-c" cx="60" cy="35" r="15"/><circle class="pupil" cx="60" cy="35" r="6.5"/><circle class="catch" cx="55" cy="30" r="2.6"/></g>
+            </svg>
+          </div>
+          <div class="lt">視線の制御</div><div class="ld">寄りは目線、引きは外す。語る視線。</div>
+        </div>
+        <div class="lens reveal d3">
+          <div class="lv micro">
+            <svg class="micro-svg" viewBox="0 0 120 70" preserveAspectRatio="xMidYMid meet">
+              <path d="M28,42 Q60,54 92,42"/>
+              <path d="M34,26 Q44,21 54,25" opacity="0.7"/>
+              <path d="M66,25 Q76,21 86,26" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="lt">自然な微表情</div><div class="ld">感情を、生理反応の積み重ねで。</div>
+        </div>
+        <div class="lens reveal d4">
+          <div class="lv consist">
+            <span class="face-g"></span><span class="face-g"></span><span class="face-g"></span>
+          </div>
+          <div class="lt">顔の一貫性</div><div class="ld">どのカットでも、同じ“その人”。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 使うほど あなた色に -->
+  <section class="panel" data-ch="05" data-build>
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">06 — 使うほど、あなた色に</div>
+      <h2 class="ch-title reveal d1">渡すほど、あなた専属になる。</h2>
+      <p class="ch-sub reveal d2">好きな世界観や参考を渡すたび、あなたの“好み”を覚えていく。<br>渡すほど、色が深まる——あなただけのディレクターへ。</p>
+      <div class="orb-wrap reveal d2">
+        <span class="ref-chip r1">世界観</span>
+        <span class="ref-chip r2">参考のMV</span>
+        <span class="ref-chip r3">ムード</span>
+        <span class="ref-chip r4">色づかい</span>
+        <span class="ref-chip r5">テンポ</span>
+        <div class="orb">
+          <div class="orb-ring"></div>
+          <div class="orb-scale"><div class="orb-core"></div></div>
+        </div>
+        <div class="orb-cap">あなたの色</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 言語と声 -->
+  <section class="panel" data-ch="06">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">07 — 言語と、声</div>
+      <h2 class="ch-title reveal d1">日本語でも、<br>繁體中文（台灣）でも。</h2>
+      <p class="ch-sub reveal d2">どちらも<strong>ネイティブの発音</strong>で。そして、相棒の声はあなたが選ぶ。世界と、あなたの耳に寄り添う。</p>
+      <div class="voice-ui reveal d2">
+        <div class="lang-toggle" id="langToggle">
+          <button class="lt-btn on" data-lang="ja">日本語</button>
+          <button class="lt-btn tc" data-lang="zh">繁體中文（台灣）</button>
+        </div>
+        <div class="voice-sample" id="voiceSample" data-noi18n><span class="q">「</span>こんにちは。あなたの一本、いっしょに作っていこう。<span class="q">」</span></div>
+        <div class="voice-row">
+          <div class="vcard">
+            <div class="vc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>好きな声を選ぶ</div>
+            <div class="vdrop" id="vdrop">
+              <button class="vdrop-head" id="vdropHead" aria-haspopup="listbox">
+                <span class="vd-label" id="vdLabel">声 A ・ クリア</span>
+                <span class="vwave-mini" data-bars="6"></span>
+                <span class="vd-caret">▾</span>
+              </button>
+              <div class="vdrop-list" id="vdropList" role="listbox">
+                <button class="vd-opt sel" data-name="声 A ・ クリア"><span class="vn">声 A ・ クリア</span><span class="vwave-mini" data-bars="6"></span></button>
+                <button class="vd-opt" data-name="声 B ・ やわらか"><span class="vn">声 B ・ やわらか</span><span class="vwave-mini" data-bars="6"></span></button>
+                <button class="vd-opt" data-name="声 C ・ りりしい"><span class="vn">声 C ・ りりしい</span><span class="vwave-mini" data-bars="6"></span></button>
+                <button class="vd-opt" data-name="声 D ・ おちつき"><span class="vn">声 D ・ おちつき</span><span class="vwave-mini" data-bars="6"></span></button>
+                <button class="vd-opt" data-name="ナレーション向き"><span class="vn">ナレーション向き</span><span class="vwave-mini" data-bars="6"></span></button>
+              </div>
+            </div>
+          </div>
+          <div class="clone">
+            <span class="clone-badge">もう一つの目玉</span>
+            <div class="clone-title">実際の声を、コピーする。</div>
+            <div class="clone-flow">
+              <div class="clone-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>実際の声<span class="vwave-mini" data-bars="7"></span></div>
+              <span class="clone-arrow">→</span>
+              <div class="clone-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg>その声で話す<span class="vwave-mini" data-bars="7"></span></div>
+            </div>
+            <div class="clone-desc">好きな声を取り込めば、ディレクターは“その声”であなたと話す。世界に一つの相棒に。</div>
+          </div>
+        </div>
+        <div class="voice-note">日本語・繁體中文（台灣）ともにネイティブ発音　／　声はプルダウンで選択、または実際の声をコピー</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 あなただけのスタジオ -->
+  <section class="panel" data-ch="07" data-build>
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">08 — あなただけのスタジオ</div>
+      <h2 class="ch-title reveal d1">すべてが、あなたの手の中に。</h2>
+      <p class="ch-sub reveal d2">誰にも気兼ねなく、のびのびと。あなたのアイデアは、最後まであなただけのもの。</p>
+      <div class="studio reveal d2">
+        <div class="st-frame">
+          <div class="st-glow"></div>
+          <div class="st-tag">Your Private Studio</div>
+          <div class="st-label">あなたのスタジオ</div>
+        </div>
+        <div class="freedom reveal d3">
+          <div class="freedom-glow"></div>
+          <div class="freedom-main">制限のない、<span class="free-word">自由</span>。</div>
+          <div class="freedom-sub">誰にも気兼ねなく、外に送られることもない。表現したいものを、ためらわず、そのまま。</div>
+          <div class="freedom-chips">
+            <span class="st-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.4-2"/></svg>完全プライベート</span>
+            <span class="st-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l4 4 4-6 4 6 4-4v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/></svg>すべてあなたのもの</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 実例 — horizontal scrub: a single MV being born -->
+  <section class="hreel" data-ch="08">
+    <div class="hreel-stage">
+      <div class="hreel-head">
+        <div class="ch-eyebrow">09 — 実例：話すだけで、ここまで</div>
+        <h2 class="hreel-title">一本のMVが、<span class="em">生まれる</span>まで。</h2>
+      </div>
+      <div class="htrack" id="htrack">
+        <div class="scene"><div class="thumb sc1"><span class="sn">SCENE 01</span><span class="stepname">雰囲気</span></div><div class="body"><div class="say"><span class="qq">「</span>切ない夜のMV、青っぽい雰囲気で<span class="qq">」</span></div><div class="act">ネオン／雨／月光——雰囲気を3案から選ぶ。</div></div></div>
+        <div class="scene"><div class="thumb sc2"><span class="sn">SCENE 02</span><span class="stepname">顔</span></div><div class="body"><div class="say"><span class="qq">「</span>韓国アイドル風の、涼しげな子<span class="qq">」</span></div><div class="act">超リアルな顔を見比べて、相談して決める。</div></div></div>
+        <div class="scene"><div class="thumb sc3"><span class="sn">SCENE 03</span><span class="stepname">衣装</span></div><div class="body"><div class="say"><span class="qq">「</span>黒のシースルー衣装で<span class="qq">」</span></div><div class="act">衣装・体型・スタイルまで反映する。</div></div></div>
+        <div class="scene"><div class="thumb sc4"><span class="sn">SCENE 04</span><span class="stepname">ダンス</span></div><div class="body"><div class="say">（曲を添付）<span class="qq">「</span>この曲で踊らせて<span class="qq">」</span></div><div class="act">曲に合わせて、ビートでカット割り。</div></div></div>
+        <div class="scene fin"><div class="thumb sc5"><span class="sn">SCENE 05</span><span class="stepname">完成MV</span></div><div class="body"><div class="say"><span class="qq">「</span>絵コンテOK、仕上げて<span class="qq">」</span></div><div class="act">高画質で仕上げ——一本のMVが完成。</div></div></div>
+      </div>
+      <div class="hreel-foot" id="hdots"></div>
+    </div>
+  </section>
+
+  <!-- 09 プロの精度で操る -->
+  <section class="panel" data-ch="09">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">10 — プロの精度で、操る</div>
+      <h2 class="ch-title reveal d1">細部まで、あなたの指先で。</h2>
+      <p class="ch-sub reveal d2">監督でありながら、撮影者でもあるあなたへ。仕上がりの細部まで、思いのまま。</p>
+      <div class="cards3">
+        <div class="info-card reveal d1">
+          <div class="pc-vis pc-strip"><span class="pc-cell"></span><span class="pc-cell edit">✎</span><span class="pc-cell"></span><span class="pc-cell"></span></div>
+          <div class="it">絵コンテ単位で編集</div><div class="id">気になるカットだけ、何度でも作り直す。</div>
+        </div>
+        <div class="info-card pro reveal d2">
+          <span class="pro-badge">PRO ・ PC版</span>
+          <div class="pc-vis pc-bokeh">
+            <span class="bk b1"></span><span class="bk b2"></span><span class="bk b3"></span><span class="bk b4"></span>
+            <span class="bk-subject"></span><span class="fstop">絞り　F1.4 → F8</span>
+          </div>
+          <div class="it">レンズと絞りで、ボケまで</div><div class="id">焦点距離とF値で、被写界深度＝ボケの量まで操る。<span class="pc-note">※ PRO機能・PC版のみ</span></div>
+        </div>
+        <div class="info-card reveal d3">
+          <div class="pc-vis pc-dance">
+            <svg class="dancer" viewBox="0 0 40 64" fill="none" stroke="#3a6a90" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="8" r="5" fill="#3a6a90" stroke="none"/><path d="M22 13L18 33"/><path d="M18.5 18L30 12"/><path d="M18.5 20L8 26"/><path d="M18 33L25 47L22 60"/><path d="M18 33L10 45L13 59"/></svg>
+            <span class="beat" style="left:32%;animation-delay:0s"></span><span class="beat" style="left:42%;animation-delay:.15s"></span><span class="beat" style="left:58%;animation-delay:.3s"></span><span class="beat" style="left:68%;animation-delay:.45s"></span>
+          </div>
+          <div class="it">プロの振り付け</div><div class="id">プロのダンサーの振り付けで、本格的に踊らせる。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 対応環境 (devices / install / resolution) -->
+  <section class="panel" data-ch="10b">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">11 — 対応環境</div>
+      <h2 class="ch-title reveal d1">どこでも、あなたの手元で。</h2>
+      <p class="ch-sub reveal d2">PC（Mac / Windows）にインストールして使う。iPhone・iPad・Android からも、そのまま。</p>
+      <div class="devices reveal d2">
+        <span class="dev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 20h20"/></svg>Mac</span>
+        <span class="dev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4.5" width="16" height="15" rx="1.5"/><path d="M12 4.5v15M4 12h16"/></svg>Windows</span>
+        <span class="dev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>iPhone</span>
+        <span class="dev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="2.5" width="15" height="19" rx="2"/><circle cx="12" cy="18.6" r="0.7" fill="currentColor" stroke="none"/></svg>iPad</span>
+        <span class="dev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M9 5.2h6"/></svg>Android</span>
+      </div>
+      <div class="res-wrap reveal d3">
+        <div class="res-tiers">
+          <span class="res-tier">720P</span><span class="res-arrow">→</span><span class="res-tier">1080P</span><span class="res-arrow">→</span><span class="res-tier hi">4K</span>
+        </div>
+        <div class="res-note">画質はPCの性能に応じて（720P 〜 4K）。ご利用にはPCへのインストールが必要です。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 closing -->
+  <section class="closing" data-ch="10">
+    <div class="finale" id="finale" aria-hidden="true"></div>
+    <h2 class="reveal">さあ、<br class="brm">話しかけてみよう。</h2>
+    <p class="reveal d1">頭の中のあの一本を、声に出すところから。</p>
+    <div class="cta reveal d2" style="margin-top:40px">
+      <button class="btn primary"><span class="vico"></span>声で、はじめる</button>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <span class="foot-brand">MV&nbsp;STUDIO</span>
+    <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+      Created by&nbsp;<strong>@made_linlin</strong>
+    </a>
+    <span class="foot-copy">© 2026 made_linlin</span>
+  </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
