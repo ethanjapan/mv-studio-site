@@ -122,7 +122,8 @@
     letter-spacing:.08em;padding:15px 30px;border-radius:100px;cursor:pointer;
     border:1px solid rgba(255,255,255,.16);color:#fff;
     background:rgba(255,255,255,.04);backdrop-filter:blur(14px);
-    transition:.45s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden}
+    transition:.45s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden;
+    display:inline-block;text-decoration:none}
   .btn.primary{border:none;color:#0a0420;font-weight:700;
     background:linear-gradient(96deg,#c5b3ff,#ff b3e6 40%,#9fe8ff);
     background:linear-gradient(96deg,#c5b3ff,#ffb3e6 40%,#9fe8ff);
@@ -131,6 +132,10 @@
   .btn.ghost:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.3)}
   .btn .vico{display:inline-block;width:8px;height:8px;border-radius:50%;
     background:#0a0420;margin-right:10px;vertical-align:middle}
+  .btn .btn-ig{width:17px;height:17px;margin-right:9px;vertical-align:-4px}
+  /* closing — contact invitation note */
+  .contact-note{margin-top:22px;font-size:13px;line-height:2;color:var(--muted);text-align:center}
+  .contact-note .ig-handle{font-family:"Inter",sans-serif;letter-spacing:.04em;color:var(--ink);opacity:.9;font-weight:500}
 
   /* scroll hint */
   .scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
