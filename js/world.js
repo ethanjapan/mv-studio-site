@@ -107,6 +107,24 @@ float shaftI(vec3 dir,vec3 L,float tt){
         *(0.35+0.65*clamp(cos(az),0.0,1.0));
 }
 `;
+/* The god-ray footage is projected as an ENVIRONMENT around the sun's direction
+   (an angular window: view azimuth/elevation -> footage UV). Both the underwater
+   dome AND the water ceiling sample the same mapping, so it is continuous across
+   the horizon with true parallax — no billboard geometry, no visible edges. */
+const UW_ENV_GLSL=`
+vec3 uwEnv(vec3 dirv,vec3 Lv,vec3 base,sampler2D mp,float mixv){
+  if(mixv<0.004)return base;
+  float azV=atan(dirv.x,dirv.z);
+  float azS=atan(Lv.x,Lv.z);
+  float dAz=mod(azV-azS+3.14159265,6.2831853)-3.14159265;
+  vec2 vuv=vec2(0.5+dAz*0.36,0.40+dirv.y*0.80);
+  vec2 db=abs(vuv-vec2(0.5));
+  float m=(1.0-smoothstep(0.30,0.5,db.x))*(1.0-smoothstep(0.30,0.5,db.y));
+  vec3 vcol=texture2D(mp,clamp(vuv,vec2(0.001),vec2(0.999))).rgb;
+  ${HDR?'vcol=pow(vcol,vec3(2.2));':''}
+  return mix(base,vcol,m*mixv);
+}`;
+
 const GRADE_UNIFORMS_GLSL=`
 uniform vec3 uLift,uInvG,uGain,uShTint,uHiTint;
 uniform float uSat,uVig;
@@ -196,6 +214,8 @@ const skyUniforms={
   u_sunScreen:{value:new THREE.Vector2(0.5,0.7)},
   u_sunVis:{value:0},
   u_vidMix:{value:0},
+  u_uwMap:{value:null},
+  u_uwVid:{value:0},
   ...gradeUniforms
 };
 const skyMat=new THREE.ShaderMaterial({
@@ -212,11 +232,13 @@ const skyMat=new THREE.ShaderMaterial({
   fragmentShader:`
     precision highp float;
     varying vec3 vWorldPos;
-    uniform float u_time,u_progress,u_camY,u_sunVis,u_vidMix;
+    uniform float u_time,u_progress,u_camY,u_sunVis,u_vidMix,u_uwVid;
+    uniform sampler2D u_uwMap;
     uniform vec3 u_top,u_bottom,u_fogColor;
     uniform vec2 u_sunScreen;
     ${GRADE_UNIFORMS_GLSL}
     ${COMMON_GLSL}
+    ${UW_ENV_GLSL}
     void main(){
       vec3 dir=normalize(vWorldPos-cameraPosition);
       float t=u_time*0.06;
@@ -309,6 +331,8 @@ const skyMat=new THREE.ShaderMaterial({
       /* diagonal light shafts from the sun azimuth (visible even with the sun off-screen) */
       uwCol+=(vec3(1.0,0.97,0.9)*day+vec3(0.5,0.75,1.0)*night)*shaftI(dir,L,u_time)*0.30
             *exp(-vec3(0.10,0.020,0.007)*max(0.0,-u_camY)*0.6);
+      /* real god-ray footage projected around the sun's direction */
+      uwCol=uwEnv(dir,L,uwCol,u_uwMap,u_uwVid);
       /* converge to the shared fog colour at the underwater horizon (kills the seam) */
       uwCol=mix(u_fogColor,uwCol,smoothstep(0.02,0.35,-dir.y));
       col=mix(col,uwCol,uw);
@@ -383,6 +407,8 @@ const waterUniforms={
   u_fogDensity:{value:0.0016},
   u_camY:{value:70},
   u_vidMix:{value:0},
+  u_uwMap:{value:null},
+  u_uwVid:{value:0},
   ...gradeUniforms
 };
 function makeWaterMat(displace){return new THREE.ShaderMaterial({
@@ -412,10 +438,12 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
   fragmentShader:`
     precision highp float;
     varying vec3 vWorldPos;
-    uniform float u_time,u_progress,u_fogDensity,u_camY,u_vidMix;
+    uniform float u_time,u_progress,u_fogDensity,u_camY,u_vidMix,u_uwVid;
+    uniform sampler2D u_uwMap;
     uniform vec3 u_top,u_bottom,u_fogColor;
     ${GRADE_UNIFORMS_GLSL}
     ${COMMON_GLSL}
+    ${UW_ENV_GLSL}
     /* multi-layer slope field: accumulate SLOPES with per-layer distance fade;
        the faded (lost) variance is dumped into the glitter sigma (LEAN idea) */
     void slopes(vec2 p,float t,float dist,out vec2 slope,out float chop,out float sigmaBoost){
@@ -561,6 +589,9 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         vec3 tirCol=u_fogColor*0.55+vec3(0.004,0.016,0.024);
         tirCol+=caust*vec3(0.75,0.92,1.00)*0.07;
         col=mix(tirCol,winCol,inWin);
+        /* real god-ray footage projected onto the ceiling (same mapping as the dome
+           below the horizon -> continuous across it) */
+        col=uwEnv(Dn,L,col,u_uwMap,u_uwVid*0.9);
         /* path absorption to the ceiling */
         vec3 T=exp(-vec3(0.075,0.016,0.006)*dist);
         col=col*T+u_fogColor*(1.0-T);
@@ -803,6 +834,23 @@ matte.position.set(0,58+(0.5-0.38)*1800,-1250);
 matte.renderOrder=1;
 scene.add(matte);
 
+/* UNDERWATER matte: real god-ray footage as staged theatre backdrops.
+   Two tilted panels along the dive route — the camera passes under them
+   with true parallax; each fades with its chapters. */
+const uwVideo=document.createElement('video');
+uwVideo.src='assets/bg_underwater.mp4';
+uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
+uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
+const _kick0=kickVideo;
+function kickAll(){_kick0();uwVideo.play().catch(()=>{});}
+window.addEventListener('pointerdown',kickAll,{once:true});
+window.addEventListener('scroll',kickAll,{once:true,passive:true});
+uwVideo.play().catch(()=>{});
+const uwTex=new THREE.VideoTexture(uwVideo);
+uwTex.minFilter=THREE.LinearFilter;
+skyUniforms.u_uwMap.value=uwTex;
+waterUniforms.u_uwMap.value=uwTex;
+
 /* =====================================================================
    HDR PIPELINE (desktop): render -> real bloom -> lens pass
    (chromatic aberration, sun ghosts, exposure, PBR-Neutral, sRGB, dither)
@@ -973,8 +1021,8 @@ function makeSonar(cA,cB,size){
 const sonarA=makeSonar([0.72,0.5,1.0],[0.45,0.9,1.0],150);
 sonarA.position.set(0,25,105);
 piece(sonarA,0.255,0.375,null);
-const sonarB=makeSonar([0.35,0.95,0.85],[1.0,0.5,0.85],120);
-sonarB.position.set(0,-26,-96);
+const sonarB=makeSonar([0.35,0.95,0.85],[1.0,0.5,0.85],64);
+sonarB.position.set(0,-25,-128);
 piece(sonarB,0.69,0.785,null);
 
 /* ch05 — your colours: glass orbs breathing light in the deep */
@@ -1352,6 +1400,13 @@ function frame(now){
   matteU.u_op.value=vmix;
   skyUniforms.u_vidMix.value=vmix;
   waterUniforms.u_vidMix.value=vmix;
+  /* underwater footage environment: on through the deep chapters, off before the
+     ascent (our procedural Snell window takes the finale of the rise) */
+  const rmp=(a,b)=>Math.min(1,Math.max(0,(p-a)/(b-a)));
+  const uwready=uwVideo.readyState>=2?1:0;
+  const uwv=uwready*rmp(0.545,0.60)*(1-rmp(0.90,0.94));
+  skyUniforms.u_uwVid.value=uwv;
+  waterUniforms.u_uwVid.value=uwv;
 
   /* lens-pass extras: sun screen position for the ghosts */
   if(finalPass){
