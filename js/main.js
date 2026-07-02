@@ -239,7 +239,10 @@ buildAnchors();updateColor();
 })();
 
 // reveal sections as they enter
-const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:0.16,rootMargin:'0px 0px -8% 0px'});
+const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){
+  en.target.classList.add('in');
+  const pn=en.target.closest('.panel');if(pn)pn.classList.add('copy-in');   // wakes the standing text scrim
+  io.unobserve(en.target)}})},{threshold:0.16,rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 // 02 — the consultation plays itself out (typing -> bubble), replays each time it enters view

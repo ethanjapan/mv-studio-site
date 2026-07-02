@@ -94,7 +94,8 @@
     font-weight:400}
 
   .sub{margin-top:24px;max-width:560px;font-size:clamp(14px,1.5vw,17px);
-    font-weight:400;line-height:1.9;color:var(--muted);letter-spacing:.04em;
+    font-weight:400;line-height:1.9;color:rgba(234,236,255,.78);letter-spacing:.04em;
+    text-shadow:0 1px 2px rgba(3,8,20,.5),0 2px 16px rgba(3,8,20,.35);
     opacity:0;transform:translateY(16px);animation:rise 1.2s 1.05s cubic-bezier(.2,.7,.2,1) forwards}
 
   /* language + voice capability chips */
@@ -163,15 +164,38 @@
   .panel-inner::before{content:"";position:absolute;z-index:-1;
     left:-6%;right:-6%;top:-8%;bottom:-8%;opacity:var(--veil);transition:opacity .15s linear;
     background:radial-gradient(70% 80% at 28% 46%,rgba(8,16,32,.82),rgba(8,16,32,.4) 46%,transparent 72%)}
+  /* standing legibility scrim: a soft pool of shade that hugs ONLY the copy block,
+     breathes in with the text reveal and leaves the footage clear everywhere else */
+  .panel-inner::after{content:"";position:absolute;z-index:-1;pointer-events:none;
+    left:-7%;right:-7%;top:-9%;bottom:-9%;opacity:0;
+    transition:opacity 1.1s cubic-bezier(.2,.7,.2,1);
+    background:radial-gradient(58% 66% at 30% 42%,rgba(5,10,24,.60),rgba(5,10,24,.28) 46%,transparent 72%)}
+  .panel.copy-in .panel-inner::after{opacity:1}
+  /* bright chapters: copy flips to ink-on-light, the scrim becomes a white haze */
+  body.lit .panel-inner::after{
+    background:radial-gradient(58% 66% at 30% 42%,rgba(240,248,255,.60),rgba(240,248,255,.30) 46%,transparent 72%)}
+  .ch-title,.ch-sub,.ch-eyebrow{transition:color .45s ease,text-shadow .45s ease}
+  body.lit .ch-title{color:#0f2038;
+    text-shadow:0 1px 2px rgba(255,255,255,.45),0 2px 18px rgba(255,255,255,.3)}
+  body.lit .ch-sub{color:rgba(16,32,58,.88);
+    text-shadow:0 1px 2px rgba(255,255,255,.5),0 2px 14px rgba(255,255,255,.32)}
+  body.lit .ch-eyebrow{color:rgba(20,40,70,.78);text-shadow:0 1px 2px rgba(255,255,255,.5)}
+  /* ch04 keeps its hand-tuned white-on-impact treatment */
+  body.lit [data-ch="04"] .ch-title{color:#fff;text-shadow:0 2px 20px rgba(0,28,52,.5)}
+  body.lit [data-ch="04"] .ch-sub{color:rgba(228,232,255,.82);text-shadow:0 2px 20px rgba(0,28,52,.5)}
   .ch-eyebrow{font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.34em;
-    text-transform:uppercase;color:var(--muted);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+    text-transform:uppercase;color:rgba(230,232,255,.72);margin-bottom:22px;display:flex;align-items:center;gap:14px;
+    text-shadow:0 1px 2px rgba(3,8,20,.5)}
   .ch-eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.5}
   .ch-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:300;
-    font-size:clamp(30px,5.1vw,66px);line-height:1.2;letter-spacing:.01em;color:var(--ink)}
+    font-size:clamp(30px,5.1vw,66px);line-height:1.2;letter-spacing:.01em;color:var(--ink);
+    text-shadow:0 1px 3px rgba(3,8,20,.35),0 2px 22px rgba(3,8,20,.45)}
   .ch-title .em{background:linear-gradient(96deg,#b59bff,#ff9ddb 42%,#8fe3ff);
-    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:400}
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:400;
+    text-shadow:none}  /* gradient glyphs are transparent-filled: an inherited shadow bleeds through as mud */
   .ch-sub{margin-top:26px;max-width:48ch;font-size:clamp(14px,1.35vw,18px);line-height:1.95;
-    color:var(--muted);letter-spacing:.03em}
+    color:rgba(236,238,255,.80);letter-spacing:.03em;
+    text-shadow:0 1px 2px rgba(3,8,20,.5),0 2px 16px rgba(3,8,20,.35)}
   .reveal{opacity:0;transform:translateY(42px);
     transition:opacity 1.1s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
