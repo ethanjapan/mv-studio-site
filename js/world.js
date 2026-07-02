@@ -1,12 +1,18 @@
 /* =====================================================================
-   MV Studio — the DIVE world (stage 1: skeleton)
-   One real 3D scene: night sky -> descent -> water impact -> underwater
-   -> ascent -> bright summer pool. The camera travels a keyframed path
-   driven by the page's colour progress (window.__worldState.p, written
-   by main.js's anchor engine). All copy/UI stays in the DOM above.
-   Realism layer: AgX filmic tone mapping + fresnel water + depth fog.
-   iOS-safe: the renderer is opaque (alpha:false) — never rely on canvas
-   alpha compositing.
+   MV Studio — the DIVE world (stage 1.5: realism pass)
+   One real 3D scene: night aurora sky -> descent -> water impact ->
+   underwater -> ascent -> bright summer pool.
+   Realism recipes (researched):
+   - water: Cox-Munk slope-space sun glitter, absorption-based body colour,
+     crest SSS, shared aerial haze (sea and sky merge), procedural cumulus
+   - bubbles: TIR silver rim, fake-refraction interior, twin glints,
+     log-normal sizes, Strouhal wobble, near-camera defocus
+   - underwater: marine snow, Beer-Lambert 3-channel absorption, real
+     refract() Snell window with wavy rim + TIR darkness, radial god rays,
+     Henyey-Greenstein backscatter halo
+   - finish: IGN dither (banding), scene exposure curve, LGG+split-tone
+     grade, analytic sun/star bloom
+   iOS-safe: opaque renderer; no render targets; no textures.
    ===================================================================== */
 import * as THREE from 'three';
 
@@ -16,8 +22,8 @@ const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:false,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,MOBILE?1:1.5));
-renderer.toneMapping=THREE.NeutralToneMapping;   // keeps the pale-aqua finale saturated (AgX greys it out)
-renderer.toneMappingExposure=1.06;
+renderer.toneMapping=THREE.NeutralToneMapping;   // keeps saturation below 0.76, rolls highlights to white
+renderer.toneMappingExposure=1.0;
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 
 const scene=new THREE.Scene();
@@ -28,9 +34,14 @@ scene.add(camera);
 window.__worldState=window.__worldState||{p:0,top:[0.016,0.020,0.039],bottom:[0.027,0.035,0.078]};
 const S=window.__worldState;
 
+const OCT=MOBILE?3:4;          // fbm octaves
+const CLOUD_OCC=MOBILE?0:1;    // cloud self-shadow taps on desktop only
+
 /* ---------- shared GLSL ---------- */
-const NOISE_GLSL=`
+const COMMON_GLSL=`
+#define OCT ${OCT}
 vec2 hash(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return -1.0+2.0*fract(sin(p)*43758.5453123);}
+float hash12(vec2 p){vec3 p3=fract(vec3(p.xyx)*0.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}
 float noise(vec2 p){
   const float K1=0.366025404,K2=0.211324865;
   vec2 i=floor(p+(p.x+p.y)*K1);
@@ -42,20 +53,20 @@ float noise(vec2 p){
   vec3 n=h*h*h*h*vec3(dot(a,hash(i)),dot(b,hash(i+o)),dot(c,hash(i+1.0)));
   return dot(n,vec3(70.0));
 }
-float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<4;i++){v+=a*noise(p);p*=2.0;a*=0.5;}return v;}
-float fbm3(vec2 p){float v=0.0,a=0.5;for(int i=0;i<3;i++){v+=a*noise(p);p*=2.0;a*=0.5;}return v;}
-/* aurora curtains, shared by the sky dome and the water reflection.
-   Sampled over the horizontal unit circle (seam-free, no atan wrap). */
+float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<OCT;i++){v+=a*noise(p);p*=2.03;a*=0.5;}return v;}
+float fbm3(vec2 p){float v=0.0,a=0.5;for(int i=0;i<3;i++){v+=a*noise(p);p*=2.03;a*=0.5;}return v;}
+float fbm2(vec2 p){float v=0.0,a=0.5;for(int i=0;i<2;i++){v+=a*noise(p);p*=2.03;a*=0.5;}return v;}
+/* aurora curtains, shared by the sky dome and the water reflection (seam-free) */
 float aurI(vec3 dir,float t){
   float h=dir.y;
   vec2 hd=normalize(dir.xz+vec2(1e-4,0.0));
-  float w1=fbm(vec2(hd.x*0.9,hd.y*0.9)+t*0.05)*1.2;
-  float st=fbm(vec2(hd.x*2.6+w1,hd.y*2.6-w1*0.6)+vec2(0.0,h*0.35));
+  float w1=fbm3(vec2(hd.x*0.9,hd.y*0.9)+t*0.05)*1.2;
+  float st=fbm3(vec2(hd.x*2.6+w1,hd.y*2.6-w1*0.6)+vec2(0.0,h*0.35));
   float rid=pow(clamp(1.0-abs(st)*3.0,0.0,1.0),1.8);
-  float mask=smoothstep(0.05,0.60,fbm(vec2(hd.x*1.3+3.7,hd.y*1.3-1.3)+t*0.02)+0.18);
-  float base=0.02+0.11*fbm(vec2(hd.x*1.8+9.1,hd.y*1.8+4.2));       // ragged lower hem
+  float mask=smoothstep(0.05,0.60,fbm3(vec2(hd.x*1.3+3.7,hd.y*1.3-1.3)+t*0.02)+0.18);
+  float base=0.02+0.11*fbm3(vec2(hd.x*1.8+9.1,hd.y*1.8+4.2));
   float prof=smoothstep(base,base+0.09,h)*(1.0-smoothstep(0.30,0.62,h));
-  prof*=1.0+1.4*smoothstep(base+0.22,base,h);                       // hem glows brightest
+  prof*=1.0+1.4*smoothstep(base+0.22,base,h);
   return rid*mask*prof;
 }
 vec3 aurC(float h){
@@ -63,27 +74,85 @@ vec3 aurC(float h){
              mix(vec3(0.55,0.30,1.00),vec3(1.00,0.45,0.85),smoothstep(0.28,0.62,h)),
              smoothstep(0.09,0.40,h));
 }
-vec3 auroraRamp(float p){
-  p=fract(p);
-  vec3 indigo =vec3(0.12,0.07,0.34);
-  vec3 violet =vec3(0.46,0.22,0.98);
-  vec3 magenta=vec3(0.86,0.30,1.00);
-  vec3 pink   =vec3(1.00,0.47,0.82);
-  vec3 cyan   =vec3(0.30,0.86,1.00);
-  vec3 teal   =vec3(0.42,1.00,0.90);
-  float s=p*6.0;
-  vec3 c=indigo;
-  c=mix(c,violet ,smoothstep(0.0,1.0,clamp(s-0.0,0.0,1.0)));
-  c=mix(c,magenta,smoothstep(0.0,1.0,clamp(s-1.0,0.0,1.0)));
-  c=mix(c,pink   ,smoothstep(0.0,1.0,clamp(s-2.0,0.0,1.0)));
-  c=mix(c,cyan   ,smoothstep(0.0,1.0,clamp(s-3.0,0.0,1.0)));
-  c=mix(c,teal   ,smoothstep(0.0,1.0,clamp(s-4.0,0.0,1.0)));
-  c=mix(c,indigo ,smoothstep(0.0,1.0,clamp(s-5.0,0.0,1.0)));
-  return c;
-}`;
+/* shared sun-tinted horizon haze: the sea and the sky MERGE into this colour */
+vec3 hazeColor(vec3 rd,vec3 L){
+  float sunAmt=pow(clamp(dot(rd,L),0.0,1.0),8.0);
+  return mix(vec3(0.60,0.70,0.80),vec3(1.00,0.92,0.78),sunAmt)*1.05;
+}
+/* filmic grade: lift/gamma/gain + split tone, driven by scroll-lerped uniforms */
+vec3 grade(vec3 c,vec3 uLift,vec3 uInvG,vec3 uGain,vec3 uShTint,vec3 uHiTint,float uSat){
+  c=pow(max(vec3(0.0),c*(1.0+uGain-uLift)+uLift),uInvG);
+  float l=dot(c,vec3(0.2126,0.7152,0.0722));
+  c*=mix(uShTint,uHiTint,smoothstep(0.15,0.75,l));
+  return mix(vec3(l),c,uSat);
+}
+/* Interleaved Gradient Noise: banding killer, applied AFTER sRGB conversion */
+float ign(vec2 p){return fract(52.9829189*fract(dot(p,vec2(0.06711056,0.00583715))));}
+/* diagonal underwater light shafts around the sun azimuth (world-space, no RT) */
+float shaftI(vec3 dir,vec3 L,float tt){
+  vec2 hd=normalize(dir.xz+vec2(1e-4,0.0));
+  float az=atan(hd.y,hd.x)-atan(L.z,L.x);
+  float st=fbm2(vec2(az*3.2,dir.y*1.3-tt*0.045));
+  return pow(clamp(1.0-abs(st)*2.4,0.0,1.0),2.0)
+        *smoothstep(-0.15,0.45,dir.y)
+        *(0.35+0.65*clamp(cos(az),0.0,1.0));
+}
+`;
+const GRADE_UNIFORMS_GLSL=`
+uniform vec3 uLift,uInvG,uGain,uShTint,uHiTint;
+uniform float uSat,uVig;
+uniform vec2 uRes;
+`;
+const FINISH_GLSL=`
+  col=grade(col,uLift,uInvG,uGain,uShTint,uHiTint,uSat);
+  vec2 ndc=(gl_FragCoord.xy/uRes)*2.0-1.0;
+  ndc.x*=uRes.x/uRes.y*0.75;
+  col*=clamp(1.0-uVig*pow(dot(ndc,ndc)*0.5,1.4),0.0,1.0);
+  gl_FragColor=vec4(col,1.0);
+  #include <tonemapping_fragment>
+  #include <colorspace_fragment>
+  gl_FragColor.rgb+=(ign(gl_FragCoord.xy)-0.5)*(1.4/255.0);
+`;
+
+/* grade presets: night / underwater / pool (lerped on scroll) */
+const GRADES={
+  night:{lift:[0.000,0.004,0.010],invG:[1.00,0.99,0.96],gain:[0.98,1.00,1.04],sh:[0.90,0.98,1.08],hi:[0.97,1.00,1.03],sat:1.05,vig:0.16,exp:1.00},
+  uw:   {lift:[0.000,0.006,0.012],invG:[1.02,0.98,0.94],gain:[0.90,1.00,1.06],sh:[0.85,1.00,1.10],hi:[0.92,1.00,1.05],sat:0.88,vig:0.40,exp:0.90},
+  pool: {lift:[0.004,0.002,0.000],invG:[0.97,1.00,1.02],gain:[1.06,1.00,0.94],sh:[0.92,1.00,1.06],hi:[1.08,0.98,0.90],sat:1.12,vig:0.18,exp:1.28},
+};
+const gradeUniforms={
+  uLift:{value:new THREE.Vector3()},uInvG:{value:new THREE.Vector3()},uGain:{value:new THREE.Vector3()},
+  uShTint:{value:new THREE.Vector3()},uHiTint:{value:new THREE.Vector3()},uSat:{value:1},uVig:{value:0.2},
+  uRes:{value:new THREE.Vector2(1,1)},
+};
+function lerpArr(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]}
+function applyGrade(p,camY){
+  // night -> (0.46..0.56) -> uw -> pool (pool only once the camera nears the surface)
+  let A=GRADES.night,B=GRADES.uw,t=0;
+  if(p<0.46){A=GRADES.night;B=GRADES.night;t=0;}
+  else if(p<0.56){A=GRADES.night;B=GRADES.uw;t=(p-0.46)/0.10;}
+  else if(p<0.90){A=GRADES.uw;B=GRADES.uw;t=0;}
+  else {A=GRADES.uw;B=GRADES.pool;
+    t=Math.min(1,(p-0.90)/0.07);
+    const rise=Math.min(1,Math.max(0,(camY+6)/5.5));   // stay cool while submerged
+    t=Math.min(t,rise);}
+  t=t*t*(3-2*t);
+  gradeUniforms.uLift.value.fromArray(lerpArr(A.lift,B.lift,t));
+  gradeUniforms.uInvG.value.fromArray(lerpArr(A.invG,B.invG,t));
+  gradeUniforms.uGain.value.fromArray(lerpArr(A.gain,B.gain,t));
+  gradeUniforms.uShTint.value.fromArray(lerpArr(A.sh,B.sh,t));
+  gradeUniforms.uHiTint.value.fromArray(lerpArr(A.hi,B.hi,t));
+  gradeUniforms.uSat.value=A.sat+(B.sat-A.sat)*t;
+  gradeUniforms.uVig.value=A.vig+(B.vig-A.vig)*t;
+  renderer.toneMappingExposure=A.exp+(B.exp-A.exp)*t;
+}
+
+/* light directions (world) */
+const SUN_DIR=new THREE.Vector3(-0.25,0.62,-0.55).normalize();
+const MOON_DIR=new THREE.Vector3(0.42,0.40,-0.60).normalize();
 
 /* =====================================================================
-   SKY DOME — night aurora sky above water / luminous gradient below
+   SKY DOME
    ===================================================================== */
 const skyUniforms={
   u_time:{value:0},
@@ -91,7 +160,10 @@ const skyUniforms={
   u_top:{value:new THREE.Vector3(0.016,0.020,0.039)},
   u_bottom:{value:new THREE.Vector3(0.027,0.035,0.078)},
   u_camY:{value:70},
-  u_fogColor:{value:new THREE.Vector3(0.02,0.03,0.06)}   // shared with the water: far things converge here
+  u_fogColor:{value:new THREE.Vector3(0.02,0.03,0.06)},
+  u_sunScreen:{value:new THREE.Vector2(0.5,0.7)},
+  u_sunVis:{value:0},
+  ...gradeUniforms
 };
 const skyMat=new THREE.ShaderMaterial({
   side:THREE.BackSide,
@@ -107,113 +179,163 @@ const skyMat=new THREE.ShaderMaterial({
   fragmentShader:`
     precision highp float;
     varying vec3 vWorldPos;
-    uniform float u_time,u_progress,u_camY;
+    uniform float u_time,u_progress,u_camY,u_sunVis;
     uniform vec3 u_top,u_bottom,u_fogColor;
-    ${NOISE_GLSL}
+    uniform vec2 u_sunScreen;
+    ${GRADE_UNIFORMS_GLSL}
+    ${COMMON_GLSL}
     void main(){
       vec3 dir=normalize(vWorldPos-cameraPosition);
       float t=u_time*0.06;
       float night=1.0-smoothstep(0.42,0.56,u_progress);
-      float uw=clamp(-u_camY/8.0,0.0,1.0);           // underwater factor
+      float day=1.0-night;
+      float uw=clamp(-u_camY/3.5,0.0,1.0);
+      vec3 L=normalize(mix(vec3(-0.25,0.62,-0.55),vec3(0.42,0.40,-0.60),night));
 
       /* base sky gradient (driven by the page's colour journey) */
       vec3 sky=mix(u_bottom,u_top,smoothstep(-0.08,0.72,dir.y));
-      float night0=1.0-smoothstep(0.42,0.56,u_progress);
-      sky+=vec3(0.012,0.016,0.034)*night0*smoothstep(0.0,0.55,dir.y);   // faint zenith airglow
+      sky+=vec3(0.012,0.016,0.034)*night*smoothstep(0.0,0.55,dir.y);   // airglow
 
-      /* aurora: thin vertical curtains, SPARSE over a dark starry sky */
+      /* daylight: real summer zenith blue above, then the shared haze at the horizon */
+      sky=mix(sky,vec3(0.16,0.34,0.62),smoothstep(0.12,0.65,dir.y)*day*(1.0-uw)*0.55);
+      vec3 hz=hazeColor(dir,L);
+      sky=mix(sky,hz,pow(1.0-clamp(dir.y,0.0,1.0),8.0)*day*(1.0-uw));
+
+      /* procedural cumulus on a flat plane at altitude (day, above horizon) */
+      if(day>0.02&&dir.y>0.02&&uw<0.99){
+        vec2 cuv=(cameraPosition.xz+dir.xz*(600.0-cameraPosition.y)/max(dir.y,0.05))*9.0e-4;
+        cuv+=vec2(t*0.10,t*0.03);
+        float den=0.5*noise(cuv)+0.25*noise(cuv*2.03+vec2(3.1))+0.125*noise(cuv*4.01+vec2(7.7))
+                 +0.0625*noise(cuv*8.10+vec2(11.3))+0.5;
+        float cov=0.55,sh=0.13;
+        float d=smoothstep(cov,cov+sh,den);
+        d=d*d*(3.0-2.0*d);
+        float occ=0.0;
+        #if ${CLOUD_OCC}
+          vec2 sunStep=normalize(L.xz+vec2(1e-4))*0.014;
+          for(int i=1;i<=3;i++)occ+=smoothstep(cov,cov+sh,0.5+fbm2(cuv+float(i)*sunStep));
+          occ/=3.0;
+        #endif
+        vec3 ccol=mix(vec3(1.02,1.02,1.02)*1.25,vec3(0.60,0.65,0.75)*0.9,occ*0.75);
+        ccol+=vec3(1.0,0.97,0.90)*pow(clamp(dot(dir,L),0.0,1.0),24.0)*(1.0-d)*0.8;
+        float hmask=smoothstep(0.02,0.15,dir.y);
+        ccol=mix(hz,ccol,hmask);                        // distant clouds sink into the haze
+        sky=mix(sky,ccol,d*0.85*day*smoothstep(0.02,0.06,dir.y));
+      }
+
+      /* aurora curtains over the dark sky */
       float inten=aurI(dir,t);
       vec3 aur=aurC(dir.y)*inten;
 
-      /* moon (night) */
+      /* moon: tight disc + k/d halo */
       vec3 moonDir=normalize(vec3(0.42,0.40,-0.60));
-      float md=max(dot(dir,moonDir),0.0);
-      float moon=smoothstep(0.99988,0.99996,md)*1.6+pow(md,900.0)*0.5+pow(md,90.0)*0.10;
-      vec3 moonCol=vec3(0.93,0.96,1.05);
+      float mang=acos(clamp(dot(dir,moonDir),-1.0,1.0));
+      float moon=smoothstep(0.012,0.008,mang)*3.5+0.0006/max(mang,0.0009)+pow(max(0.0,1.0-mang*1.8),7.0)*0.10;
 
-      /* sun (after the impact) */
-      float day=smoothstep(0.52,0.66,u_progress);
+      /* sun: HDR disc + 1/d halo + wide skirt — Neutral rolls it to white (analytic bloom) */
       vec3 sunDir=normalize(vec3(-0.25,0.62,-0.55));
-      float sd=max(dot(dir,sunDir),0.0);
-      float sun=smoothstep(0.9995,0.9999,sd)*2.6+pow(sd,24.0)*0.9;
-      vec3 sunCol=vec3(1.05,1.0,0.92);
+      float sang=acos(clamp(dot(dir,sunDir),-1.0,1.0));
+      float sun=smoothstep(0.013,0.009,sang)*8.0+0.0011/max(sang,0.0011)+pow(max(0.0,1.0-sang*1.8),7.0)*0.30;
 
       vec3 col=sky
         +aur*night*1.9
-        +moonCol*moon*night
-        +sunCol*sun*day;
+        +vec3(0.93,0.96,1.05)*moon*night
+        +vec3(1.05,1.00,0.92)*sun*day*(1.0-uw*0.9);
 
-      /* underwater: luminous toward the surface, deep teal below, god rays from above */
+      /* ---------- underwater: luminous ceiling above, teal depths below ---------- */
       vec3 uwDeep=u_top*0.10+vec3(0.001,0.004,0.008);
       vec3 uwSurf=u_bottom*1.15+vec3(0.05);
       float upf=pow(smoothstep(-0.55,0.85,dir.y),1.6);
       vec3 uwCol=mix(uwDeep,uwSurf,upf);
-      vec2 hd2=normalize(dir.xz+vec2(1e-4,0.0));
-      float rays=pow(max(dir.y,0.0),2.4)
-                *(0.35+0.65*fbm3(vec2(hd2.x*3.1+t*0.12,hd2.y*3.1-t*0.05)));
-      uwCol+=(sunCol*day+vec3(0.45,0.75,1.0)*night)*rays*0.55;   // light shafts
-      /* underwater horizon: converge to the SAME fog colour the water surface
-         fades into, so the ceiling/dome join line disappears */
+      /* god rays: radial shafts anchored at the on-screen refracted sun */
+      if(uw>0.01&&u_sunVis>0.01){
+        vec2 suv=gl_FragCoord.xy/uRes;
+        vec2 dv=(suv-u_sunScreen)*vec2(uRes.x/uRes.y,1.0);
+        float r=length(dv);
+        float ang2=atan(dv.y,dv.x);
+        float streak=0.5+0.5*sin(ang2*${MOBILE?'22.0':'40.0'}+u_time*0.5);
+        streak*=0.5+fbm2(vec2(ang2*6.0,r*3.0-u_time*0.3));
+        streak*=exp(-r*2.5);
+        streak=pow(max(streak,0.0),2.0)*0.85*u_sunVis;
+        vec3 shaft=(vec3(1.05,1.0,0.92)*day+vec3(0.45,0.75,1.0)*night)*streak;
+        shaft*=exp(-vec3(0.10,0.020,0.007)*max(0.0,-u_camY));   // daylight dims with depth
+        uwCol+=shaft;
+      }
+      /* Henyey-Greenstein forward-scatter halo toward the light (veiling glow) */
+      float cosT=dot(dir,L);
+      float g=mix(0.5,0.72,clamp(-u_camY/25.0,0.0,1.0));
+      float hg=(1.0-g*g)/pow(1.0+g*g-2.0*g*cosT,1.5)*0.0796;
+      uwCol+=(vec3(1.0,0.97,0.9)*day+vec3(0.6,0.8,1.0)*night)*hg*0.35;
+      /* large-scale murk patches: slow drifting density variation = depth cue */
+      uwCol*=0.82+0.36*fbm2(dir.xz/(0.4+abs(dir.y))*1.6+vec2(u_time*0.008,0.0));
+      uwCol*=0.92+0.16*fbm2(dir.xz/(0.3+abs(dir.y))*4.5-vec2(u_time*0.010,0.0));
+      /* diagonal light shafts from the sun azimuth (visible even with the sun off-screen) */
+      uwCol+=(vec3(1.0,0.97,0.9)*day+vec3(0.5,0.75,1.0)*night)*shaftI(dir,L,u_time)*0.30
+            *exp(-vec3(0.10,0.020,0.007)*max(0.0,-u_camY)*0.6);
+      /* converge to the shared fog colour at the underwater horizon (kills the seam) */
       uwCol=mix(u_fogColor,uwCol,smoothstep(0.02,0.35,-dir.y));
       col=mix(col,uwCol,uw);
 
-      gl_FragColor=vec4(col,1.0);
-      #include <tonemapping_fragment>
-      #include <colorspace_fragment>
+      ${FINISH_GLSL}
     }`
 });
 const skyDome=new THREE.Mesh(new THREE.SphereGeometry(2200,48,32),skyMat);
 scene.add(skyDome);
 
 /* =====================================================================
-   STARS — upper shell, twinkling, fade out as day breaks
+   STARS — twinkle, analytic halo, cross flares on the brightest few
    ===================================================================== */
 const STAR_N=MOBILE?1200:3200;
 const starGeo=new THREE.BufferGeometry();
 {
-  const pos=new Float32Array(STAR_N*3),sz=new Float32Array(STAR_N),ph=new Float32Array(STAR_N);
+  const pos=new Float32Array(STAR_N*3),sz=new Float32Array(STAR_N),ph=new Float32Array(STAR_N),fl=new Float32Array(STAR_N);
   for(let i=0;i<STAR_N;i++){
     const r=1100+Math.random()*800;
     const th=Math.random()*Math.PI*2;
-    const y=0.06+Math.pow(Math.random(),0.7)*0.94;      // bias toward zenith
+    const y=0.06+Math.pow(Math.random(),0.7)*0.94;
     const rr=r*Math.sqrt(1-y*y);
     pos[i*3]=Math.cos(th)*rr; pos[i*3+1]=y*r; pos[i*3+2]=Math.sin(th)*rr;
     sz[i]=1.0+Math.random()*2.4; ph[i]=Math.random()*10;
+    fl[i]=Math.random()<0.05?1:0;                       // 5% get a cross flare
+    if(fl[i]>0)sz[i]*=1.6;
   }
   starGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
   starGeo.setAttribute('aSize',new THREE.BufferAttribute(sz,1));
   starGeo.setAttribute('aPhase',new THREE.BufferAttribute(ph,1));
+  starGeo.setAttribute('aFlare',new THREE.BufferAttribute(fl,1));
 }
 const starUniforms={u_time:{value:0},u_night:{value:1}};
 const starMat=new THREE.ShaderMaterial({
   transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
   uniforms:starUniforms,
   vertexShader:`
-    attribute float aSize,aPhase;
-    varying float vPh;
+    attribute float aSize,aPhase,aFlare;
+    varying float vPh,vFl;
     void main(){
-      vPh=aPhase;
+      vPh=aPhase;vFl=aFlare;
       vec4 mv=modelViewMatrix*vec4(position,1.0);
       gl_PointSize=aSize*(900.0/-mv.z)*${MOBILE?'1.0':'1.4'};
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader:`
-    precision mediump float;
-    varying float vPh;
+    precision highp float;
+    varying float vPh,vFl;
     uniform float u_time,u_night;
     void main(){
-      float d=length(gl_PointCoord-0.5);
-      float a=smoothstep(0.5,0.12,d);
+      vec2 q=gl_PointCoord-0.5;
+      float d=length(q)*2.0;
+      float core=exp(-d*d*18.0);
+      float halo=exp(-d*4.0)*0.35;
+      float cross=(exp(-abs(q.x)*30.0)*exp(-abs(q.y)*6.0)+exp(-abs(q.y)*30.0)*exp(-abs(q.x)*6.0))*0.25*vFl;
       float tw=0.55+0.45*sin(u_time*(1.1+fract(vPh)*1.6)+vPh*7.0);
-      gl_FragColor=vec4(vec3(0.92,0.95,1.0),a*tw*u_night*1.3);
+      gl_FragColor=vec4(vec3(0.92,0.95,1.0),(core+halo+cross)*tw*u_night*1.3);
     }`
 });
 scene.add(new THREE.Points(starGeo,starMat));
 
 /* =====================================================================
-   WATER — one infinite-feeling plane at y=0.
-   Above: fresnel sky reflection + moon/sun glints on procedural waves.
-   Below: Snell-window transmission + caustic filaments on the underside.
+   WATER — Cox-Munk glitter, absorption body colour, crest SSS,
+   aerial haze, aurora mirror at night; real Snell window from below.
    ===================================================================== */
 const waterUniforms={
   u_time:{value:0},
@@ -221,7 +343,9 @@ const waterUniforms={
   u_top:{value:skyUniforms.u_top.value},
   u_bottom:{value:skyUniforms.u_bottom.value},
   u_fogColor:{value:new THREE.Vector3(0.02,0.03,0.06)},
-  u_fogDensity:{value:0.0016}
+  u_fogDensity:{value:0.0016},
+  u_camY:{value:70},
+  ...gradeUniforms
 };
 const waterMat=new THREE.ShaderMaterial({
   side:THREE.DoubleSide,
@@ -236,82 +360,148 @@ const waterMat=new THREE.ShaderMaterial({
   fragmentShader:`
     precision highp float;
     varying vec3 vWorldPos;
-    uniform float u_time,u_progress,u_fogDensity;
+    uniform float u_time,u_progress,u_fogDensity,u_camY;
     uniform vec3 u_top,u_bottom,u_fogColor;
-    ${NOISE_GLSL}
-    float wheight(vec2 p,float t){
-      float h=fbm3(p*0.020+vec2(t*0.04,t*0.026))*1.00;   // broad swell
-      h+=fbm3(p*0.085+vec2(-t*0.07,t*0.05))*0.35;        // mid chop
-      h+=noise(p*0.30+vec2(t*0.13,-t*0.09))*0.10;        // fine ripple
-      return h;
-    }
-    vec3 wnormal(vec2 p,float t,float amp){
-      float e=0.9;
-      float h0=wheight(p,t);
-      float hx=wheight(p+vec2(e,0.0),t);
-      float hz=wheight(p+vec2(0.0,e),t);
-      return normalize(vec3(-(hx-h0)*amp/e,1.0,-(hz-h0)*amp/e));
+    ${GRADE_UNIFORMS_GLSL}
+    ${COMMON_GLSL}
+    /* multi-layer slope field: accumulate SLOPES with per-layer distance fade;
+       the faded (lost) variance is dumped into the glitter sigma (LEAN idea) */
+    void slopes(vec2 p,float t,float dist,out vec2 slope,out float chop,out float sigmaBoost){
+      slope=vec2(0.0);sigmaBoost=0.0;
+      float e=0.55;
+      /* L0 swell */
+      float w0=exp2(-dist/400.0);
+      {vec2 uv=p*0.020+vec2(t*0.040,t*0.026);
+       float h0=fbm3(uv),hx=fbm3(uv+vec2(e*0.020,0.0)),hz=fbm3(uv+vec2(0.0,e*0.020));
+       slope+=w0*vec2(hx-h0,hz-h0)*(1.4/e);sigmaBoost+=(1.0-w0*w0)*0.0016;}
+      /* L1 wind sea */
+      float w1=exp2(-dist/140.0);
+      {vec2 uv=p*0.085+vec2(-t*0.070,t*0.050);
+       float h0=fbm3(uv),hx=fbm3(uv+vec2(e*0.085,0.0)),hz=fbm3(uv+vec2(0.0,e*0.085));
+       slope+=w1*vec2(hx-h0,hz-h0)*(0.55/e);sigmaBoost+=(1.0-w1*w1)*0.0022;}
+      /* L2 chop (ridged) — also drives foam/SSS crest mask */
+      float w2=exp2(-dist/60.0);
+      {vec2 uv=p*0.30+vec2(t*0.13,-t*0.09);
+       float n0=noise(uv);chop=1.0-abs(n0)*2.0;
+       float hx=noise(uv+vec2(e*0.30,0.0)),hz=noise(uv+vec2(0.0,e*0.30));
+       slope+=w2*vec2(hx-n0,hz-n0)*(0.30/e);sigmaBoost+=(1.0-w2*w2)*0.0030;}
+      /* L3 capillary ripple, near camera only */
+      float w3=exp2(-dist/22.0);
+      {vec2 uv=p*0.95+vec2(t*0.21,t*0.17);
+       float h0=noise(uv),hx=noise(uv+vec2(e*0.95,0.0)),hz=noise(uv+vec2(0.0,e*0.95));
+       slope+=w3*vec2(hx-h0,hz-h0)*(0.22/e);sigmaBoost+=(1.0-w3*w3)*0.0026;}
+      chop=clamp(chop,0.0,1.0);
     }
     void main(){
       float t=u_time;
       float night=1.0-smoothstep(0.42,0.56,u_progress);
       float day=1.0-night;
-      vec3 lightDir=normalize(mix(vec3(-0.25,0.62,-0.55),vec3(0.42,0.40,-0.60),night));
-      vec3 lightCol=mix(vec3(1.06,1.0,0.90),vec3(0.72,0.82,1.02),night);
+      vec3 L=normalize(mix(vec3(-0.25,0.62,-0.55),vec3(0.42,0.40,-0.60),night));
+      vec3 lightCol=mix(vec3(1.06,1.00,0.90),vec3(0.72,0.82,1.02),night);
+      float dist=length(vWorldPos-cameraPosition);
       vec3 col;
 
       if(gl_FrontFacing){
-        /* seen from above */
+        /* ---------------- seen from above ---------------- */
         vec3 V=normalize(cameraPosition-vWorldPos);
-        vec3 N=wnormal(vWorldPos.xz,t,3.2);
+        vec2 slope;float chop,sigB;
+        slopes(vWorldPos.xz,t,dist,slope,chop,sigB);
+        vec3 N=normalize(vec3(-slope.x,1.0,-slope.y));
         float ndv=max(dot(N,V),0.03);
-        float fres=0.05+0.93*pow(1.0-ndv,5.0);
-        vec3 R=reflect(-V,N); R.y=abs(R.y);
+        float F=0.02+0.98*pow(1.0-ndv,5.0);
+
+        /* reflected sky (page palette) + aerial haze at grazing + aurora sheen */
+        vec3 R=reflect(-V,N);R.y=abs(R.y);
         vec3 skyRef=mix(u_bottom,u_top,smoothstep(0.0,0.62,R.y));
-        float rl=max(dot(R,lightDir),0.0);
-        float glint=pow(rl,520.0)*2.6+pow(rl,48.0)*0.35; // sparkle + soft light path
-        /* the aurora MIRRORS in the waves: same curtain field along a flattened R
-           (flattening pulls the curtains down into view at steep angles) */
+        skyRef=mix(skyRef,hazeColor(R,L),(1.0-smoothstep(0.0,0.35,R.y))*day*0.85);
+
+        /* Cox-Munk slope-space sun/moon glitter: band elongates along the light azimuth */
+        vec3 H=normalize(L+V);
+        vec2 sf=-H.xz/max(H.y,1e-3);
+        vec2 sm=-N.xz/max(N.y,1e-3);
+        vec2 s=sf-sm;
+        vec2 wd=normalize(L.xz+vec2(1e-4));
+        vec2 sr=vec2(dot(s,wd),s.x*wd.y-s.y*wd.x);
+        float U=mix(2.5,5.0,day);                       // calmer moonlit night
+        float s2a=3.16e-3*U,s2c=0.003+1.92e-3*U;
+        float kk=1.0+2.0*smoothstep(20.0,400.0,dist);
+        s2a=s2a*kk+sigB;s2c=s2c*kk+sigB;
+        float Pd=exp(-0.5*(sr.x*sr.x/s2a+sr.y*sr.y/s2c))/(6.2831853*sqrt(s2a*s2c));
+        float D=Pd/max(H.y*H.y*H.y*H.y,1e-4);
+        float Fh=0.02+0.98*pow(1.0-clamp(dot(V,H),0.0,1.0),5.0);
+        float glint=mix(20.0,80.0,day)*D*Fh/(4.0*ndv)*1.0e-2;
+        /* discrete sparkle flecks: organic noise flicker (grid cells read as squares) */
+        float fleck=noise(vWorldPos.xz*5.0+vec2(t*1.3,-t*0.9));
+        glint*=0.55+1.4*smoothstep(0.30,0.85,fleck);
+
+        /* body colour from absorption (dark! brightness must come from glint+sky) */
+        vec3 upwell=vec3(1.0)*0.12*exp(-vec3(0.35,0.07,0.03)*8.0);
+        /* crest SSS: turquoise glow through wave flanks (the tropical cue) */
+        vec3 hDir=normalize(vec3(-L.x,0.0,-L.z)+vec3(1e-4));
+        float fwd=pow(clamp(dot(-V,hDir),0.0,1.0),3.0);
+        float crestH=smoothstep(0.15,0.85,chop);
+        float flank=clamp((1.0-N.y)*6.0,0.0,1.0);
+        upwell+=(0.25+2.5*fwd)*crestH*(0.3+0.7*flank)*vec3(0.10,0.75,0.65)*0.20;
+        vec3 nightBody=u_top*0.30+vec3(0.002,0.005,0.012);
+        vec3 body=mix(nightBody,upwell,day);
+
+        col=mix(body,skyRef,F)+lightCol*glint;
+
+        /* the aurora MIRRORS in the waves (flattened R pulls curtains into view) */
         vec3 Rf=normalize(vec3(R.x,R.y*0.35+0.02,R.z));
-        float ai=aurI(Rf,t);
-        vec3 aref=aurC(Rf.y)*ai;
-        float rlf=max(dot(normalize(vec3(R.x,R.y*0.45,R.z)),lightDir),0.0);
-        float glitter=pow(rlf,180.0)*0.9;                 // moonlight path on the swell
-        /* daylight sparkle field: thousands of sun glints dancing on the pool */
-        float sg=noise(vWorldPos.xz*1.7+vec2(t*0.9,-t*0.7))
-                +noise(vWorldPos.xz*3.3-vec2(t*0.6,t*1.1));
-        float sparkle=pow(clamp(sg*0.9,0.0,1.0),9.0)*(0.25+pow(rlf,2.0))*day*2.6;
-        /* the pool itself stays saturated turquoise even as the page sky goes white */
-        vec3 pool=vec3(0.055,0.42,0.52);
-        vec3 body=mix(u_top*0.30+vec3(0.002,0.005,0.012),
-                      mix(u_bottom*0.55,pool,0.72),day);
-        col=mix(body,skyRef,fres)
-           +lightCol*(glint+glitter*night+sparkle)
-           +aref*night*0.9;
+        col+=aurC(Rf.y)*aurI(Rf,t*0.06)*night*0.9;
+
+        /* atmosphere: night fog to the page colour; day aerial haze with desaturation */
+        float under=clamp(-u_camY/8.0,0.0,1.0);
+        if(under>0.5){
+          vec3 T=exp(-vec3(0.10,0.020,0.007)*dist);     // Beer-Lambert path through water
+          col=col*T+u_fogColor*(1.0-T);
+        }else{
+          float fogA=1.0-exp(-dist*mix(9.0e-4,7.5e-4,day));
+          vec3 fogC=mix(u_fogColor,hazeColor(normalize(vWorldPos-cameraPosition),L),day);
+          col=mix(col,vec3(dot(col,vec3(0.333))),0.3*fogA*day);
+          col=mix(col,fogC,fogA);
+        }
       }else{
-        /* seen from below: the luminous ceiling */
-        vec3 D=normalize(vWorldPos-cameraPosition);
-        float win=smoothstep(0.30,0.75,D.y);             // Snell window
+        /* ---------------- seen from below: the real Snell window ---------------- */
+        vec3 Dn=normalize(vWorldPos-cameraPosition);     // toward the surface, Dn.y>0
+        vec2 rc=vWorldPos.xz*0.06+t*vec2(0.13,0.11);
+        vec3 Nr=normalize(vec3(fbm3(rc)*0.10,-1.0,fbm3(rc+vec2(3.7,8.1))*0.10));
+        vec3 tr=refract(Dn,Nr,1.333);
+        float inWin=step(1e-4,dot(tr,tr));
+        /* inside: the compressed sky above + the sun blob riding in the window */
+        vec3 skyDir=inWin>0.5?normalize(tr):vec3(0.0,1.0,0.0);
+        vec3 sky=mix(u_bottom*1.35+vec3(0.10),u_top*1.05,clamp(skyDir.y,0.0,1.0));
+        float sunb=pow(max(dot(skyDir,L),0.0),600.0)*6.0+0.4*pow(max(dot(skyDir,L),0.0),60.0);
+        vec3 winCol=sky+lightCol*sunb;
+        /* bright refractive rim at the critical angle */
+        float mu=Dn.y;
+        float rim=smoothstep(0.72,0.6613,mu)*smoothstep(0.58,0.6613,mu);
+        winCol+=lightCol*rim*0.8;
+        /* caustic filaments dance on the ceiling */
         vec2 cp=vWorldPos.xz*0.11;
         vec2 cw=cp+0.75*vec2(fbm3(cp*0.9+vec2(0.0,t*0.13)),fbm3(cp*0.9+vec2(4.3,-t*0.10)));
         float ca=fbm3(cw*1.3+t*0.065);
         float cb=fbm3(cw*2.6-t*0.078);
         float caust=clamp(pow(1.0-abs(ca*2.0-1.0),7.0)*0.9+pow(1.0-abs(cb*2.0-1.0),9.0)*0.6,0.0,1.0);
-        vec3 ceilDark=u_bottom*0.30;
-        vec3 ceilBright=u_bottom*1.65+vec3(0.14);
-        col=mix(ceilDark,ceilBright,win);
-        col+=lightCol*caust*(0.25+win*1.05);
-        col+=lightCol*pow(max(dot(D,lightDir),0.0),24.0)*0.8*win;
+        winCol+=lightCol*caust*(0.30+inWin*0.9);
+        /* outside: total internal reflection — DARK aqua mirror of the deep
+           (never keyed to the page's near-white palette) */
+        vec3 tirCol=u_fogColor*0.55+vec3(0.004,0.016,0.024);
+        tirCol+=caust*vec3(0.75,0.92,1.00)*0.07;
+        col=mix(tirCol,winCol,inWin);
+        /* path absorption to the ceiling */
+        vec3 T=exp(-vec3(0.075,0.016,0.006)*dist);
+        col=col*T+u_fogColor*(1.0-T);
+        /* light shafts IN-SCATTER along the path (they live in the water column);
+           MUST fade to zero at grazing or they re-draw the horizon join line */
+        col+=(vec3(1.0,0.97,0.9)*day+vec3(0.5,0.75,1.0)*night)
+            *shaftI(Dn,L,u_time)*0.35*clamp(1.0-T.g,0.15,1.0)
+            *smoothstep(0.02,0.16,Dn.y)
+            *exp(-vec3(0.10,0.020,0.007)*max(0.0,-u_camY)*0.6);
       }
 
-      /* per-fragment distance — a varying would interpolate the FAR corner
-         distances of this huge quad and fog out the whole surface */
-      float dist=length(vWorldPos-cameraPosition);
-      float fog=1.0-exp(-u_fogDensity*u_fogDensity*dist*dist);
-      col=mix(col,u_fogColor,clamp(fog,0.0,1.0));
-      gl_FragColor=vec4(col,1.0);
-      #include <tonemapping_fragment>
-      #include <colorspace_fragment>
+      ${FINISH_GLSL}
     }`
 });
 const water=new THREE.Mesh(new THREE.PlaneGeometry(9000,9000),waterMat);
@@ -319,43 +509,89 @@ water.rotation.x=-Math.PI/2;
 scene.add(water);
 
 /* =====================================================================
-   BUBBLES — the burst as we break the surface (p ~ 0.515)
+   BUBBLES — the burst as we break the surface.
+   Real look: transparent centre, silver TIR rim, twin glints, inverted
+   fake-refraction interior, log-normal sizes, Strouhal wobble, defocus.
    ===================================================================== */
-const BUB_N=MOBILE?220:460;
+const BUB_N=MOBILE?260:520;
 const bubGeo=new THREE.BufferGeometry();
-const bubSeed=new Float32Array(BUB_N*4);
+const bubSeed=new Float32Array(BUB_N*6);   // sx,riseV,sz,phase,wobF,wobA
 {
   const pos=new Float32Array(BUB_N*3),sz=new Float32Array(BUB_N);
+  function gauss(){return (Math.random()+Math.random()+Math.random()+Math.random()-2)/2;}
   for(let i=0;i<BUB_N;i++){
-    bubSeed[i*4]= (Math.random()*2-1);        // lateral x
-    bubSeed[i*4+1]=Math.random();             // rise speed
-    bubSeed[i*4+2]=(Math.random()*2-1);       // lateral z
-    bubSeed[i*4+3]=Math.random();             // phase
+    const D=Math.min(8,Math.max(0.8,Math.exp(Math.log(2.2)+0.9*gauss())));   // log-normal diameters
+    const big=Math.random()<0.03;
+    const Dm=big?8+Math.random()*7:D;
+    bubSeed[i*6]=(Math.random()*2-1);                       // lateral seed x
+    bubSeed[i*6+1]=Dm<1.8?2.0+1.4*Dm:Math.min(8.5,6.5+0.5*(Dm-2));  // rise speed (world u/s)
+    bubSeed[i*6+2]=(Math.random()*2-1);                     // lateral seed z
+    bubSeed[i*6+3]=Math.random()*6.283;                     // phase
+    bubSeed[i*6+4]=Dm>1.85?(1.6+2.8*Math.random()):0.0;     // wobble freq Hz
+    bubSeed[i*6+5]=Dm*0.16;                                 // wobble amplitude ~ 1 diameter
     pos[i*3]=0;pos[i*3+1]=-999;pos[i*3+2]=0;
-    sz[i]=1.2+Math.random()*3.2;
+    sz[i]=Dm*0.55;                                          // point size scale
   }
   bubGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
   bubGeo.setAttribute('aSize',new THREE.BufferAttribute(sz,1));
 }
+const bubUniforms={
+  u_op:{value:0},
+  u_light:{value:new THREE.Vector3(0,1,0)},
+  u_deep:{value:new THREE.Vector3(0.02,0.08,0.14)},
+  u_surf:{value:new THREE.Vector3(0.20,0.45,0.50)},
+};
 const bubMat=new THREE.ShaderMaterial({
-  transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
-  uniforms:{u_op:{value:0}},
+  transparent:true,depthWrite:false,
+  blending:THREE.CustomBlending,
+  blendEquation:THREE.AddEquation,
+  blendSrc:THREE.OneFactor,
+  blendDst:THREE.OneMinusSrcAlphaFactor,   // premultiplied: additive rim + tinted interior in one pass
+  uniforms:bubUniforms,
   vertexShader:`
     attribute float aSize;
+    varying float vBlur;
     void main(){
       vec4 mv=modelViewMatrix*vec4(position,1.0);
-      gl_PointSize=min(aSize*(240.0/-mv.z),34.0);
+      float viewZ=max(0.5,-mv.z);
+      vBlur=clamp(1.2*abs(1.0/viewZ-1.0/9.0)*4.0,0.0,1.0);   // CoC defocus, focus ~9u
+      gl_PointSize=min(aSize*(300.0/viewZ)*(1.0+1.2*vBlur),${MOBILE?'110.0':'190.0'});
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader:`
-    precision mediump float;
+    precision highp float;
     uniform float u_op;
+    uniform vec3 u_light,u_deep,u_surf;
+    varying float vBlur;
     void main(){
-      vec2 q=gl_PointCoord-0.5;
-      float d=length(q);
-      float ring=smoothstep(0.5,0.40,d)-smoothstep(0.36,0.16,d)*0.7;
-      float hi=smoothstep(0.13,0.0,length(q-vec2(-0.12,-0.12)))*0.6;
-      gl_FragColor=vec4(vec3(0.92,1.0,1.0),(ring+hi)*u_op*0.55);
+      vec2 p=gl_PointCoord*2.0-1.0;p.y=-p.y;
+      float r2=dot(p,p);
+      if(r2>1.0)discard;
+      float r=sqrt(r2);
+      vec3 n=vec3(p,sqrt(max(1.0-r2,0.0)));
+      /* transparent centre, silver ring: that is how bubbles photograph */
+      float interiorA=0.16+0.22*r2;
+      float rimBand=smoothstep(0.60,0.97,r);
+      float rim=rimBand*(0.75+0.5*dot(n,normalize(u_light)));
+      /* fake refraction: inverted, magnified background gradient inside the shell */
+      float g=clamp(0.5-0.62*p.y/max(0.001,1.0-0.45*r2),0.0,1.0);
+      vec3 interior=mix(u_deep,u_surf,g)*interiorA;
+      /* twin glints: main offset toward the light, faint antipodal counterpart */
+      vec2 gp=normalize(u_light.xy+vec2(1e-4))*0.55;
+      float glint=exp(-dot(p-gp,p-gp)*90.0)*2.6;
+      float glint2=exp(-dot(p+gp*0.9,p+gp*0.9)*140.0)*0.30;
+      /* bright spot at the lower pole: the compressed image of the surface window */
+      vec2 bp=p-vec2(0.0,-0.55);
+      float windowSpot=exp(-dot(bp,bp)*22.0)*0.35;
+      float deblur=1.0-0.7*vBlur;                        // defocus melts the structure
+      vec3 col=interior
+        +vec3(0.85,0.95,1.0)*rim*0.9*deblur
+        +vec3(1.0)*(glint+glint2)*deblur
+        +u_surf*windowSpot;
+      float alpha=clamp(interiorA+rim+glint*deblur+windowSpot,0.0,1.0);
+      float edge=smoothstep(1.0,1.0-mix(0.06,0.55,vBlur),r);
+      float energy=edge/(1.0+2.2*vBlur);                 // defocus must DIM, not glow
+      gl_FragColor=vec4(col,alpha)*energy*u_op;
     }`
 });
 const bubbles=new THREE.Points(bubGeo,bubMat);
@@ -363,10 +599,80 @@ bubbles.frustumCulled=false;
 scene.add(bubbles);
 
 /* =====================================================================
+   MARINE SNOW — drifting particulates in a camera-following box.
+   The single strongest "this is real underwater" cue.
+   ===================================================================== */
+const SNOW_N=MOBILE?320:800;
+const snowGeo=new THREE.BufferGeometry();
+{
+  const seed=new Float32Array(SNOW_N*3),sz=new Float32Array(SNOW_N);
+  const pos=new Float32Array(SNOW_N*3);
+  for(let i=0;i<SNOW_N;i++){
+    seed[i*3]=Math.random();seed[i*3+1]=Math.random();seed[i*3+2]=Math.random();
+    sz[i]=(Math.random()<0.15)?(6+Math.random()*6):(2+Math.random()*4);   // few big aggregates
+    pos[i*3]=0;pos[i*3+1]=0;pos[i*3+2]=0;
+  }
+  snowGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  snowGeo.setAttribute('aSeed',new THREE.BufferAttribute(seed,3));
+  snowGeo.setAttribute('aSize',new THREE.BufferAttribute(sz,1));
+}
+const snowUniforms={
+  u_time:{value:0},
+  u_camPos:{value:new THREE.Vector3()},
+  u_op:{value:0},
+  u_light:{value:new THREE.Vector3(0,1,0)},
+};
+const snowMat=new THREE.ShaderMaterial({
+  transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+  uniforms:snowUniforms,
+  vertexShader:`
+    uniform float u_time;
+    uniform vec3 u_camPos,u_light;
+    attribute vec3 aSeed;
+    attribute float aSize;
+    varying float vA;
+    void main(){
+      float BOX=34.0;
+      vec3 p=aSeed*BOX;
+      float t=u_time;
+      p.y-=t*(0.14+aSeed.x*0.22);                       // slow sink
+      p.x+=0.7*sin(t*0.30+aSeed.y*6.2831);
+      p.z+=0.6*cos(t*0.24+aSeed.z*6.2831);
+      vec3 rel=mod(p-u_camPos+0.5*BOX,BOX)-0.5*BOX;     // toroidal wrap around the camera
+      vec3 world=u_camPos+rel;
+      vec4 mv=modelViewMatrix*vec4(world,1.0);
+      float dist=max(0.3,-mv.z);
+      gl_PointSize=clamp(aSize*(140.0/dist),0.0,${MOBILE?'5.0':'7.0'});
+      /* per-fleck response to the light direction (HG-ish): flecks near the sun blaze */
+      vec3 vd=normalize(world-u_camPos);
+      float cosT=dot(vd,normalize(u_light));
+      float g=0.6;
+      float hg=(1.0-g*g)/pow(1.0+g*g-2.0*g*cosT,1.5)*0.0796;
+      vA=(0.5+0.5*aSeed.y)*(1.0+4.0*hg)
+        *smoothstep(0.4,2.2,dist)*(1.0-smoothstep(19.0,32.0,dist));
+      gl_Position=projectionMatrix*mv;
+    }`,
+  fragmentShader:`
+    precision mediump float;
+    varying float vA;
+    uniform float u_op;
+    void main(){
+      vec2 q=gl_PointCoord-0.5;
+      float d=dot(q,q);
+      if(d>0.25)discard;
+      float a=smoothstep(0.25,0.04,d)*vA*u_op;
+      gl_FragColor=vec4(vec3(0.85,0.90,0.92),a*0.65);
+    }`
+});
+const snow=new THREE.Points(snowGeo,snowMat);
+snow.frustumCulled=false;
+scene.add(snow);
+
+/* =====================================================================
    CAMERA PATH — the dive, keyframed on the page's colour progress
    ===================================================================== */
 const KEYS=[
-  {p:0.00, pos:[0,58,300],   look:[0,108,-60]},  // hero: gaze lifted to the aurora, horizon low
+  {p:0.00, pos:[0,58,300],   look:[0,108,-60]},
   {p:0.12, pos:[10,50,244],  look:[2,46,-20]},
   {p:0.30, pos:[-12,36,184], look:[-2,14,-30]},
   {p:0.36, pos:[12,27,146],  look:[2,9,-60]},
@@ -390,7 +696,7 @@ function sampleKeys(p){
   const a=KEYS[i],b=KEYS[i+1];
   let t=(p-a.p)/Math.max(1e-5,b.p-a.p);
   t=Math.min(1,Math.max(0,t));
-  t=t*t*(3-2*t);                                   // smooth each leg
+  t=t*t*(3-2*t);
   _pos.set(a.pos[0]+(b.pos[0]-a.pos[0])*t,a.pos[1]+(b.pos[1]-a.pos[1])*t,a.pos[2]+(b.pos[2]-a.pos[2])*t);
   _look.set(a.look[0]+(b.look[0]-a.look[0])*t,a.look[1]+(b.look[1]-a.look[1])*t,a.look[2]+(b.look[2]-a.look[2])*t);
 }
@@ -399,19 +705,24 @@ function sampleKeys(p){
    FRAME LOOP
    ===================================================================== */
 const F_TOP=new THREE.Vector3(),F_BOT=new THREE.Vector3();
+const _sunP=new THREE.Vector3(),_lightW=new THREE.Vector3(),_uwFog=new THREE.Vector3();
+
 function updateBubbles(p,time){
-  const inw=Math.min(1,Math.max(0,(p-0.518)/0.012));     // only AFTER we break the surface
+  const inw=Math.min(1,Math.max(0,(p-0.518)/0.012));
   const outw=1-Math.min(1,Math.max(0,(p-0.565)/0.035));
   const w=Math.min(inw,outw);
   bubMat.uniforms.u_op.value=w;
   if(w<=0)return;
   const arr=bubGeo.attributes.position.array;
-  const k=(p-0.515)*22;                            // burst expansion with scroll
+  const k=(p-0.515)*22;
   for(let i=0;i<BUB_N;i++){
-    const sx=bubSeed[i*4],sv=bubSeed[i*4+1],sz2=bubSeed[i*4+2],sp=bubSeed[i*4+3];
-    arr[i*3]  =camera.position.x+sx*(6+k*14)+Math.sin(time*2+sp*9)*0.6;
-    arr[i*3+1]=camera.position.y-6+((sv*18+6)*(0.2+Math.max(0,k)))+Math.sin(time*3+sp*7)*0.4;
-    arr[i*3+2]=camera.position.z-14-sz2*(8+k*10)-k*6;
+    const sx=bubSeed[i*6],rv=bubSeed[i*6+1],sz2=bubSeed[i*6+2],ph=bubSeed[i*6+3],
+          wf=bubSeed[i*6+4],wa=bubSeed[i*6+5];
+    const wob=6.2832*wf*time+ph;
+    arr[i*3]  =camera.position.x+sx*(6+k*14)+Math.sin(wob)*wa;
+    arr[i*3+1]=camera.position.y-6+((Math.abs(sz2)*18+6)*(0.2+Math.max(0,k)))
+              +rv*0.15*Math.sin(12.566*wf*time+ph);           // ±10% rise pulsing
+    arr[i*3+2]=camera.position.z-14-sz2*(8+k*10)-k*6+Math.cos(wob)*wa*0.7;
   }
   bubGeo.attributes.position.needsUpdate=true;
 }
@@ -419,9 +730,9 @@ function updateBubbles(p,time){
 function frame(now){
   const time=now*0.001;
   const p=Math.min(1,Math.max(0,S.p||0));
+  const night=1-Math.min(1,Math.max(0,(p-0.42)/0.14));
 
-  /* colours from the page's journey — the DOM values are display-space,
-     convert to linear so the AgX pipeline reproduces the same darkness */
+  /* colours from the page's journey (display -> linear for the tone-mapped pipeline) */
   F_TOP.set(Math.pow(S.top[0],2.2),Math.pow(S.top[1],2.2),Math.pow(S.top[2],2.2));
   F_BOT.set(Math.pow(S.bottom[0],2.2),Math.pow(S.bottom[1],2.2),Math.pow(S.bottom[2],2.2));
   skyUniforms.u_top.value.copy(F_TOP);
@@ -429,7 +740,7 @@ function frame(now){
   skyUniforms.u_progress.value=p;
   skyUniforms.u_time.value=time;
   starUniforms.u_time.value=time;
-  starUniforms.u_night.value=1-Math.min(1,Math.max(0,(p-0.42)/0.10));
+  starUniforms.u_night.value=night;
   waterUniforms.u_time.value=time;
   waterUniforms.u_progress.value=p;
 
@@ -437,21 +748,45 @@ function frame(now){
   sampleKeys(p);
   camera.position.copy(_pos);
   camera.lookAt(_look);
-  skyUniforms.u_camY.value=camera.position.y;   // AFTER positioning (underwater switch)
-  const kick=Math.exp(-Math.pow((p-0.518)/0.02,2));  // FOV impact kick
+  skyUniforms.u_camY.value=camera.position.y;
+  waterUniforms.u_camY.value=camera.position.y;
+  const kick=Math.exp(-Math.pow((p-0.518)/0.02,2));
   const fov=52+26*kick;
   if(Math.abs(camera.fov-fov)>0.05){camera.fov=fov;camera.updateProjectionMatrix();}
 
-  /* fog: above water it must MATCH the sky at the horizon (no hard join line);
-     below water it thickens into a DEEP water tone (F_TOP-based, darker) */
-  const under=Math.min(1,Math.max(0,-camera.position.y/8));
-  waterUniforms.u_fogColor.value.copy(F_BOT).lerp(F_TOP,under*0.75).multiplyScalar(1.0-under*0.55);
+  /* light dir + refracted sun screen position (for god rays) */
+  _lightW.copy(SUN_DIR).lerp(MOON_DIR,night).normalize();
+  bubUniforms.u_light.value.copy(_lightW);
+  snowUniforms.u_light.value.copy(_lightW);
+  _sunP.copy(camera.position).addScaledVector(_lightW,300);
+  _sunP.project(camera);
+  const vis=(_sunP.z<1&&_sunP.x>-1.4&&_sunP.x<1.4&&_sunP.y>-1.4&&_sunP.y<1.4)?1:0;
+  skyUniforms.u_sunScreen.value.set(_sunP.x*0.5+0.5,_sunP.y*0.5+0.5);
+  skyUniforms.u_sunVis.value=vis;
+
+  /* fog: above water it matches the sky horizon; below it is ALWAYS a saturated
+     deep-aqua (never the page's near-white), scaled by the journey brightness */
+  const under=Math.min(1,Math.max(0,-camera.position.y/3.5));
+  const lum=0.3*F_BOT.x+0.5*F_BOT.y+0.2*F_BOT.z;
+  _uwFog.set(0.055,0.26,0.38).multiplyScalar(Math.min(1,0.22+lum*1.15));
+  waterUniforms.u_fogColor.value.copy(F_BOT).lerp(_uwFog,under);
   waterUniforms.u_fogDensity.value=0.0009+under*0.0045;
   skyUniforms.u_fogColor.value.copy(waterUniforms.u_fogColor.value);
 
-  /* dome follows the camera laterally so we never near its wall */
-  skyDome.position.set(camera.position.x,0,camera.position.z);
+  /* bubble interior colours follow the journey palette */
+  bubUniforms.u_deep.value.copy(F_TOP).multiplyScalar(0.4);
+  bubUniforms.u_surf.value.copy(F_BOT).multiplyScalar(1.1).addScalar(0.05);
 
+  /* marine snow only lives underwater */
+  snowUniforms.u_time.value=time;
+  snowUniforms.u_camPos.value.copy(camera.position);
+  snowUniforms.u_op.value=Math.min(1,Math.max(0,(p-0.525)/0.02))*(1-Math.min(1,Math.max(0,(p-0.955)/0.02)));
+
+  /* scene exposure + colour grade */
+  applyGrade(p,camera.position.y);
+  gradeUniforms.uRes.value.set(renderer.domElement.width,renderer.domElement.height);
+
+  skyDome.position.set(camera.position.x,0,camera.position.z);
   updateBubbles(p,time);
   renderer.render(scene,camera);
 }
@@ -461,7 +796,7 @@ const FRAME_MS=MOBILE?24:16;
 function loop(now){
   requestAnimationFrame(loop);
   if(document.hidden||now-_last<FRAME_MS)return;
-  if(REDUCE&&Math.abs((S.p||0)-_lastP)<1e-4&&_lastP>=0)return;  // reduced motion: render on change only
+  if(REDUCE&&Math.abs((S.p||0)-_lastP)<1e-4&&_lastP>=0)return;
   _last=now;_lastP=S.p||0;
   frame(now);
 }
