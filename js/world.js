@@ -1555,8 +1555,13 @@ function frame(now){
   const uwv=uwready*rmp(0.545,0.60)*(1-rmp(0.90,0.94));
   skyUniforms.u_uwVid.value=uwv;
   waterUniforms.u_uwVid.value=uwv;
+  /* matte horizons LOCK to the viewer's eye height every frame (a fixed height
+     drifts as the camera moves and draws a hard band across the frame) */
+  matte.position.y=camera.position.y+(0.5-0.38)*1800.0;
+  poolMatte.position.y=camera.position.y+(0.5-0.70)*1800.0;
   const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
-  poolU.u_op.value=poolReady*rmp(0.952,0.985);
+  const surfaced=Math.min(1,Math.max(0,(camera.position.y-0.2)/2.3));   // only once we break the surface
+  poolU.u_op.value=poolReady*rmp(0.983,0.997)*surfaced;
 
   /* lens-pass extras: sun screen position for the ghosts */
   if(finalPass){
