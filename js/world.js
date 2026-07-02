@@ -90,7 +90,8 @@ const skyUniforms={
   u_progress:{value:0},
   u_top:{value:new THREE.Vector3(0.016,0.020,0.039)},
   u_bottom:{value:new THREE.Vector3(0.027,0.035,0.078)},
-  u_camY:{value:70}
+  u_camY:{value:70},
+  u_fogColor:{value:new THREE.Vector3(0.02,0.03,0.06)}   // shared with the water: far things converge here
 };
 const skyMat=new THREE.ShaderMaterial({
   side:THREE.BackSide,
@@ -107,7 +108,7 @@ const skyMat=new THREE.ShaderMaterial({
     precision highp float;
     varying vec3 vWorldPos;
     uniform float u_time,u_progress,u_camY;
-    uniform vec3 u_top,u_bottom;
+    uniform vec3 u_top,u_bottom,u_fogColor;
     ${NOISE_GLSL}
     void main(){
       vec3 dir=normalize(vWorldPos-cameraPosition);
@@ -151,6 +152,9 @@ const skyMat=new THREE.ShaderMaterial({
       float rays=pow(max(dir.y,0.0),2.4)
                 *(0.35+0.65*fbm3(vec2(hd2.x*3.1+t*0.12,hd2.y*3.1-t*0.05)));
       uwCol+=(sunCol*day+vec3(0.45,0.75,1.0)*night)*rays*0.55;   // light shafts
+      /* underwater horizon: converge to the SAME fog colour the water surface
+         fades into, so the ceiling/dome join line disappears */
+      uwCol=mix(u_fogColor,uwCol,smoothstep(0.02,0.35,-dir.y));
       col=mix(col,uwCol,uw);
 
       gl_FragColor=vec4(col,1.0);
@@ -443,6 +447,7 @@ function frame(now){
   const under=Math.min(1,Math.max(0,-camera.position.y/8));
   waterUniforms.u_fogColor.value.copy(F_BOT).lerp(F_TOP,under*0.75).multiplyScalar(1.0-under*0.55);
   waterUniforms.u_fogDensity.value=0.0009+under*0.0045;
+  skyUniforms.u_fogColor.value.copy(waterUniforms.u_fogColor.value);
 
   /* dome follows the camera laterally so we never near its wall */
   skyDome.position.set(camera.position.x,0,camera.position.z);
