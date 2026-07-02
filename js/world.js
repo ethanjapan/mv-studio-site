@@ -1673,7 +1673,7 @@ function frame(now){
      defocused footage at a line can never match textures) */
   const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
   const surfaced=Math.min(1,Math.max(0,(camera.position.y+1.2)/2.4));
-  poolU.u_op.value=poolReady*rmp(0.972,0.988)*surfaced;
+  poolU.u_op.value=poolReady*rmp(0.974,0.984);   // completes under the surfacing whiteout
   waterUniforms.u_poolVid.value=poolReady*rmp(0.918,0.945);
   if(poolU.u_op.value>0.001){
     camera.getWorldDirection(_pmDir);

@@ -81,7 +81,9 @@ function applyProgress(p){
   // --- daybreak bloom: rises into the impact, melts into full daylight ---
   bloom.style.opacity=Math.min(ramp(p,0.42,0.52),1-ramp(p,0.58,0.84)).toFixed(3);
   // --- burst of first light at the apex (~0.515): a swelling flash, not a strobe ---
-  flash.style.opacity=(Math.max(0,1-Math.abs(p-0.515)/0.055)*0.5).toFixed(3);
+  const fImpact=Math.max(0,1-Math.abs(p-0.515)/0.055)*0.5;
+  const fSurface=Math.max(0,1-Math.abs(p-0.981)/0.013)*0.96;   // breaking the surface floods the lens
+  flash.style.opacity=Math.max(fImpact,fSurface).toFixed(3);
   // --- overlays fade as the sky brightens ---
   scrimEl.style.opacity=Math.max(0,1-p/0.30).toFixed(3);
   vigEl.style.opacity=Math.max(0,1-p/0.46).toFixed(3);
