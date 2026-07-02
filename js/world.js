@@ -591,7 +591,7 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         /* ---------------- seen from below: the real Snell window ---------------- */
         vec3 Dn=normalize(vWorldPos-cameraPosition);     // toward the surface, Dn.y>0
         vec2 rc=vWorldPos.xz*0.06+t*vec2(0.13,0.11);
-        vec3 Nr=normalize(vec3(fbm3(rc)*0.10,-1.0,fbm3(rc+vec2(3.7,8.1))*0.10));
+        vec3 Nr=normalize(vec3(fbm3(rc)*0.17,-1.0,fbm3(rc+vec2(3.7,8.1))*0.17));
         vec3 tr=refract(Dn,Nr,1.333);
         float inWin=step(1e-4,dot(tr,tr));
         /* inside: the compressed sky above + the sun blob riding in the window */
@@ -605,7 +605,7 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
           vec2 puv=clamp(vec2(0.5+skyDir.x*0.5,0.18+clamp(skyDir.y,0.0,1.0)*0.72),vec2(0.02),vec2(0.98));
           vec3 pc=texture2D(u_poolMap,puv).rgb;
           ${HDR?'pc=pow(pc,vec3(2.2));':''}
-          winCol=mix(winCol,pc*1.05,u_poolVid*0.9);
+          winCol=mix(winCol,pc*1.05,u_poolVid);
         }
         /* bright refractive rim at the critical angle */
         float mu=Dn.y;
@@ -1441,7 +1441,10 @@ function updateSetPieces(p,time){
   ideaTrails.userData.u.u_op.value=ideaOp;
   wisps.userData.u.u_time.value=time;
   wisps.userData.u.u_op.value=pieceOp(p,0.30,0.505);
-  wisps.children.forEach(w=>w.lookAt(camera.position));
+  wisps.children.forEach(w=>{
+    w.lookAt(camera.position);
+    w.visible=Math.abs(camera.position.z-w.position.z)>7;   // never slice the lens
+  });
   sonarB.material._u.u_time.value=time;
   sonarB.material._u.u_op.value=pieceOp(p,0.69,0.785);
   sonarB.lookAt(camera.position);
@@ -1453,7 +1456,11 @@ function updateSetPieces(p,time){
     o.position.y=o.userData.base.y+Math.sin(time*0.35+o.userData.ph)*1.8;
   }
   dome7.userData.u.u_time.value=time;
-  dome7.userData.u.u_op.value=pieceOp(p,0.775,0.865);
+  {
+    const dC=camera.position.distanceTo(dome7.position);
+    const memb=Math.min(1,Math.max(0,(Math.abs(dC-30)-1.5)/5.5));   // 0 at the membrane
+    dome7.userData.u.u_op.value=pieceOp(p,0.775,0.865)*memb;
+  }
   bokeh.userData.u.u_time.value=time;
   bokeh.userData.u.u_op.value=pieceOp(p,0.90,0.972);
   impactRing.userData.u.u_prog.value=Math.min(1,Math.max(0,(p-0.512)/0.028));
@@ -1651,7 +1658,7 @@ function frame(now){
   const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
   const surfaced=Math.min(1,Math.max(0,(camera.position.y+1.2)/2.4));
   poolU.u_op.value=poolReady*rmp(0.972,0.988)*surfaced;
-  waterUniforms.u_poolVid.value=poolReady*rmp(0.925,0.955);
+  waterUniforms.u_poolVid.value=poolReady*rmp(0.918,0.945);
   if(poolU.u_op.value>0.001){
     camera.getWorldDirection(_pmDir);
     poolMatte.position.copy(camera.position).addScaledVector(_pmDir,60);
