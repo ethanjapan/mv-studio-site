@@ -658,7 +658,7 @@ if(HDR){
    ===================================================================== */
 const BUB_N=MOBILE?260:520;
 const bubGeo=new THREE.BufferGeometry();
-const bubSeed=new Float32Array(BUB_N*6);   // sx,riseV,sz,phase,wobF,wobA
+const bubSeed=new Float32Array(BUB_N*6);   // bx,bz,by0,riseV,wobF,wobA
 {
   const pos=new Float32Array(BUB_N*3),sz=new Float32Array(BUB_N);
   function gauss(){return (Math.random()+Math.random()+Math.random()+Math.random()-2)/2;}
@@ -666,14 +666,15 @@ const bubSeed=new Float32Array(BUB_N*6);   // sx,riseV,sz,phase,wobF,wobA
     const D=Math.min(8,Math.max(0.8,Math.exp(Math.log(2.2)+0.9*gauss())));   // log-normal diameters
     const big=Math.random()<0.03;
     const Dm=big?8+Math.random()*7:D;
-    bubSeed[i*6]=(Math.random()*2-1);                       // lateral seed x
-    bubSeed[i*6+1]=Dm<1.8?2.0+1.4*Dm:Math.min(8.5,6.5+0.5*(Dm-2));  // rise speed (world u/s)
-    bubSeed[i*6+2]=(Math.random()*2-1);                     // lateral seed z
-    bubSeed[i*6+3]=Math.random()*6.283;                     // phase
-    bubSeed[i*6+4]=Dm>1.85?(1.6+2.8*Math.random()):0.0;     // wobble freq Hz
-    bubSeed[i*6+5]=Dm*0.16;                                 // wobble amplitude ~ 1 diameter
+    const r=Dm*0.055;                                       // WORLD radius 0.04-0.68u
+    bubSeed[i*6]=gauss()*3.4;                               // plume offset x
+    bubSeed[i*6+1]=gauss()*3.4;                             // plume offset z
+    bubSeed[i*6+2]=Math.random()*23;                        // vertical cycle offset
+    bubSeed[i*6+3]=0.9+0.14*Dm;                             // rise speed ~1-3 u/s
+    bubSeed[i*6+4]=Dm>1.85?(1.2+1.6*Math.random()):0.0;     // wobble freq Hz (real: 2-5Hz scaled calm)
+    bubSeed[i*6+5]=r*2.0;                                   // wobble amplitude = ONE diameter
     pos[i*3]=0;pos[i*3+1]=-999;pos[i*3+2]=0;
-    sz[i]=Dm*0.55;                                          // point size scale
+    sz[i]=r;                                                // world radius in the attribute
   }
   bubGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
   bubGeo.setAttribute('aSize',new THREE.BufferAttribute(sz,1));
@@ -698,7 +699,7 @@ const bubMat=new THREE.ShaderMaterial({
       vec4 mv=modelViewMatrix*vec4(position,1.0);
       float viewZ=max(0.5,-mv.z);
       vBlur=clamp(1.2*abs(1.0/viewZ-1.0/9.0)*4.0,0.0,1.0);   // CoC defocus, focus ~9u
-      gl_PointSize=min(aSize*(300.0/viewZ)*(1.0+1.2*vBlur),${MOBILE?'110.0':'190.0'});
+      gl_PointSize=clamp(aSize*(760.0/viewZ)*(1.0+1.2*vBlur),2.5,${MOBILE?'52.0':'74.0'});
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader:`
@@ -1432,20 +1433,23 @@ const _sunP=new THREE.Vector3(),_lightW=new THREE.Vector3(),_uwFog=new THREE.Vec
 
 function updateBubbles(p,time){
   const inw=Math.min(1,Math.max(0,(p-0.518)/0.012));
-  const outw=1-Math.min(1,Math.max(0,(p-0.565)/0.035));
-  const w=Math.min(inw,outw);
+  const outw=1-Math.min(1,Math.max(0,(p-0.60)/0.05));
+  const w=Math.min(inw,outw)*0.85;
   bubMat.uniforms.u_op.value=w;
   if(w<=0)return;
+  /* a rising plume ANCHORED IN THE WORLD at the dive entry point: the camera
+     swims past it (parallax), bubbles rise in world time, wobble = one diameter */
+  const EX=0,EZ=8;   // ahead of the dive leg: we swim THROUGH the plume
   const arr=bubGeo.attributes.position.array;
-  const k=(p-0.515)*22;
   for(let i=0;i<BUB_N;i++){
-    const sx=bubSeed[i*6],rv=bubSeed[i*6+1],sz2=bubSeed[i*6+2],ph=bubSeed[i*6+3],
+    const bx=bubSeed[i*6],bz=bubSeed[i*6+1],by0=bubSeed[i*6+2],rv=bubSeed[i*6+3],
           wf=bubSeed[i*6+4],wa=bubSeed[i*6+5];
-    const wob=6.2832*wf*time+ph;
-    arr[i*3]  =camera.position.x+sx*(6+k*14)+Math.sin(wob)*wa;
-    arr[i*3+1]=camera.position.y-6+((Math.abs(sz2)*18+6)*(0.2+Math.max(0,k)))
-              +rv*0.15*Math.sin(12.566*wf*time+ph);           // ±10% rise pulsing
-    arr[i*3+2]=camera.position.z-14-sz2*(8+k*10)-k*6+Math.cos(wob)*wa*0.7;
+    const y=-24+((by0+rv*time)%23.4);
+    const spread=1.0+((y+24)/24)*1.5;                       // the plume cones out as it rises
+    const wob=6.2832*wf*time+by0*2.7;
+    arr[i*3]  =EX+bx*spread+Math.sin(wob)*wa;
+    arr[i*3+1]=y;
+    arr[i*3+2]=EZ+bz*spread+Math.cos(wob)*wa*0.7;
   }
   bubGeo.attributes.position.needsUpdate=true;
 }
@@ -1550,7 +1554,7 @@ function frame(now){
      ascent (our procedural Snell window takes the finale of the rise) */
   const rmp=(a,b)=>Math.min(1,Math.max(0,(p-a)/(b-a)));
   const uwready=(uwVideo.readyState>=2&&(!uwVideo.paused||uwVideo.currentTime>0.05))?1:0;
-  const uwv=uwready*rmp(0.545,0.60)*(1-rmp(0.90,0.94));
+  const uwv=uwready*rmp(0.528,0.575)*(1-rmp(0.90,0.94));
   skyUniforms.u_uwVid.value=uwv;
   waterUniforms.u_uwVid.value=uwv;
   /* aurora matte horizon LOCKS to the viewer's eye height every frame */
