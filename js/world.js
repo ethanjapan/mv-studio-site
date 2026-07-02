@@ -1200,25 +1200,54 @@ piece(sonarB,0.69,0.785,null);
 /* ch05 — your colours: glass orbs breathing light in the deep */
 const ORB_DEFS=[[0.72,0.42,1.0],[1.0,0.5,0.82],[0.42,0.9,1.0],[0.4,1.0,0.85],[1.0,0.82,0.5],[0.6,0.6,1.0],[0.9,0.95,1.0]];
 const orbs=ORB_DEFS.map((c,i)=>{
-  const u={u_time:{value:0},u_op:{value:0},u_col:{value:new THREE.Color(...c)}};
+  const u={
+    u_time:{value:0},u_op:{value:0},
+    u_col:{value:new THREE.Color(...c)},
+    u_light:{value:bubUniforms.u_light.value},   // shared, updated each frame
+    u_deep:{value:bubUniforms.u_deep.value},
+    u_surf:{value:bubUniforms.u_surf.value},
+  };
   const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.NormalBlending,
     uniforms:u,
-    vertexShader:`varying vec3 vN,vV;void main(){vec4 wp=modelMatrix*vec4(position,1.0);vN=normalize(mat3(modelMatrix)*normal);vV=normalize(cameraPosition-wp.xyz);gl_Position=projectionMatrix*viewMatrix*wp;}`,
+    vertexShader:`
+      varying vec3 vN,vW;
+      void main(){
+        vec4 wp=modelMatrix*vec4(position,1.0);
+        vW=wp.xyz;
+        vN=normalize(mat3(modelMatrix)*normal);
+        gl_Position=projectionMatrix*viewMatrix*wp;
+      }`,
     fragmentShader:`
       precision highp float;
-      varying vec3 vN,vV;
+      varying vec3 vN,vW;
       uniform float u_time,u_op;
-      uniform vec3 u_col;
+      uniform vec3 u_col,u_light,u_deep,u_surf;
       void main(){
-        /* coloured glass: normal blending so the hue holds on a bright background */
-        float ndv=clamp(dot(normalize(vN),normalize(vV)),0.0,1.0);
-        float rim=pow(1.0-ndv,2.6);
-        float heart=pow(ndv,2.2)*(0.55+0.20*sin(u_time*1.7));
-        vec3 col=u_col*u_col*(0.35+rim*1.1+heart*0.8);   // squared colour = deeper hue
-        float a=(0.30+rim*0.75+heart*0.45)*u_op;
-        gl_FragColor=vec4(col,min(a,0.92));
+        /* REAL glass optics: fake-refraction interior + thin-film iridescence
+           + TIR rim + HDR sun glint (the recipe that made the bubbles work) */
+        vec3 n=normalize(vN);
+        vec3 V=normalize(cameraPosition-vW);
+        float ndv=clamp(dot(n,V),0.0,1.0);
+        float fres=pow(1.0-ndv,2.5);
+        /* inverted, lens-magnified environment inside the ball */
+        float gl=clamp(0.5-0.62*n.y*(1.0-0.35*ndv),0.0,1.0);
+        vec3 interior=mix(u_deep,u_surf,gl)*(0.5+0.5*ndv);
+        vec3 body=mix(interior,u_col*u_col*(0.45+0.55*ndv),0.55);
+        /* soap-film iridescence flowing at the grazing angles */
+        vec3 irid=0.5+0.5*cos(6.2831*(pow(1.0-ndv,1.5)*2.2+u_time*0.06)+vec3(0.0,2.09,4.19));
+        body+=irid*fres*0.52;
+        /* coloured TIR rim + white sparkle at the very edge */
+        body+=u_col*fres*0.85+vec3(1.0)*pow(fres,3.5)*1.15;
+        /* breathing heart of their colour */
+        body+=u_col*pow(ndv,2.6)*(0.28+0.14*sin(u_time*1.5));
+        /* the sun bites a hot glint that blooms */
+        vec3 R=reflect(-V,n);
+        float sp=pow(max(dot(R,normalize(u_light)),0.0),240.0)*3.2;
+        body+=vec3(1.0)*sp;
+        float alpha=clamp(0.30+fres*0.75+sp*0.5,0.0,0.94);
+        gl_FragColor=vec4(body,alpha*u_op);
       }`});
-  const mesh=new THREE.Mesh(new THREE.SphereGeometry(1.4+(i%3)*0.55,32,24),m);
+  const mesh=new THREE.Mesh(new THREE.SphereGeometry(2.0+(i%3)*0.7,48,32),m);
   const a=i/ORB_DEFS.length*Math.PI*2;
   mesh.position.set(7+Math.cos(a)*21,-26+Math.sin(a*1.7)*8,-16+Math.sin(a)*24);
   mesh.userData={u,ph:Math.random()*7,base:mesh.position.clone()};
