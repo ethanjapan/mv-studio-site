@@ -819,6 +819,286 @@ if(HDR){
 }
 
 /* =====================================================================
+   SET PIECES — one 3D event per chapter (the storyboard's luxury layer)
+   ===================================================================== */
+const setPieces=[];
+function piece(obj,p0,p1,opUniform){setPieces.push({obj,p0,p1,op:opUniform});scene.add(obj);return obj;}
+function pieceOp(p,p0,p1){
+  const inw=Math.min(1,Math.max(0,(p-p0)/0.035));
+  const outw=1-Math.min(1,Math.max(0,(p-(p1-0.035))/0.035));
+  return Math.min(inw,outw);
+}
+
+/* ch01 — fragments of unspoken ideas: luminous streaks sliding past the descent */
+const streaks=(()=>{
+  const N=MOBILE?70:150;
+  const pos=new Float32Array(N*6),col=new Float32Array(N*6);
+  for(let i=0;i<N;i++){
+    const x=(Math.random()*2-1)*46,y=14+Math.random()*52,z=150+Math.random()*130;
+    const L=2.2+Math.random()*4.5;
+    pos.set([x,y,z,x,y+L,z],i*6);
+    const c=Math.random()<0.5?[0.72,0.55,1.0]:[0.55,0.9,1.0];
+    col.set([...c,...c],i*6);
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const m=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0,
+    blending:THREE.AdditiveBlending,depthWrite:false});
+  return piece(new THREE.LineSegments(g,m),0.05,0.27,m);
+})();
+
+/* ch02 / ch06 — the voice: expanding iridescent ripple rings (sonar planes) */
+function makeSonar(cA,cB,size){
+  const u={u_time:{value:0},u_op:{value:0},u_a:{value:new THREE.Color(...cA)},u_b:{value:new THREE.Color(...cB)}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide,
+    uniforms:u,
+    vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+    fragmentShader:`
+      precision highp float;
+      varying vec2 vUv;
+      uniform float u_time,u_op;
+      uniform vec3 u_a,u_b;
+      void main(){
+        float r=length(vUv-0.5)*2.0;
+        float a=0.0;
+        for(int k=0;k<3;k++){
+          float rr=fract(u_time*0.22+float(k)/3.0);
+          a+=exp(-pow((r-rr)*13.0,2.0))*pow(1.0-rr,1.6);
+        }
+        a*=1.35;
+        vec3 col=mix(u_a,u_b,r)*1.5;
+        float edge=1.0-smoothstep(0.86,1.0,r);
+        float core=exp(-r*r*26.0)*0.22;
+        gl_FragColor=vec4(col*(a+core),(a+core)*edge*u_op);
+      }`});
+  const mesh=new THREE.Mesh(new THREE.PlaneGeometry(size,size),m);
+  mesh.material._u=u;
+  return mesh;
+}
+const sonarA=makeSonar([0.72,0.5,1.0],[0.45,0.9,1.0],150);
+sonarA.position.set(0,25,105);
+piece(sonarA,0.255,0.375,null);
+const sonarB=makeSonar([0.35,0.95,0.85],[1.0,0.5,0.85],120);
+sonarB.position.set(0,-26,-96);
+piece(sonarB,0.69,0.785,null);
+
+/* ch05 — your colours: glass orbs breathing light in the deep */
+const ORB_DEFS=[[0.72,0.42,1.0],[1.0,0.5,0.82],[0.42,0.9,1.0],[0.4,1.0,0.85],[1.0,0.82,0.5],[0.6,0.6,1.0],[0.9,0.95,1.0]];
+const orbs=ORB_DEFS.map((c,i)=>{
+  const u={u_time:{value:0},u_op:{value:0},u_col:{value:new THREE.Color(...c)}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.NormalBlending,
+    uniforms:u,
+    vertexShader:`varying vec3 vN,vV;void main(){vec4 wp=modelMatrix*vec4(position,1.0);vN=normalize(mat3(modelMatrix)*normal);vV=normalize(cameraPosition-wp.xyz);gl_Position=projectionMatrix*viewMatrix*wp;}`,
+    fragmentShader:`
+      precision highp float;
+      varying vec3 vN,vV;
+      uniform float u_time,u_op;
+      uniform vec3 u_col;
+      void main(){
+        /* coloured glass: normal blending so the hue holds on a bright background */
+        float ndv=clamp(dot(normalize(vN),normalize(vV)),0.0,1.0);
+        float rim=pow(1.0-ndv,2.6);
+        float heart=pow(ndv,2.2)*(0.55+0.20*sin(u_time*1.7));
+        vec3 col=u_col*u_col*(0.35+rim*1.1+heart*0.8);   // squared colour = deeper hue
+        float a=(0.30+rim*0.75+heart*0.45)*u_op;
+        gl_FragColor=vec4(col,min(a,0.92));
+      }`});
+  const mesh=new THREE.Mesh(new THREE.SphereGeometry(1.4+(i%3)*0.55,32,24),m);
+  const a=i/ORB_DEFS.length*Math.PI*2;
+  mesh.position.set(7+Math.cos(a)*21,-26+Math.sin(a*1.7)*8,-16+Math.sin(a)*24);
+  mesh.userData={u,ph:Math.random()*7,base:mesh.position.clone()};
+  return piece(mesh,0.565,0.705,null);
+});
+
+/* ch07 — the private studio: a soft dome of light the camera passes through */
+const dome7=(()=>{
+  const u={u_time:{value:0},u_op:{value:0}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide,
+    uniforms:u,
+    vertexShader:`varying vec3 vN,vW;void main(){vec4 wp=modelMatrix*vec4(position,1.0);vW=wp.xyz;vN=normalize(mat3(modelMatrix)*normal);gl_Position=projectionMatrix*viewMatrix*wp;}`,
+    fragmentShader:`
+      precision highp float;
+      varying vec3 vN,vW;
+      uniform float u_time,u_op;
+      void main(){
+        /* luminous COCOON: glows as a veil from inside too (a fresnel rim is
+           mathematically invisible when the camera sits at the centre) */
+        vec3 V=normalize(cameraPosition-vW);
+        float rim=pow(1.0-abs(dot(normalize(vN),V)),2.2);
+        float az=atan(vW.x,vW.z-(-102.0));
+        float curt=0.55+0.45*sin(az*9.0+u_time*0.35)*sin(vW.y*0.35-u_time*0.5);
+        float veil=0.30+rim*1.1;
+        gl_FragColor=vec4(vec3(0.55,0.9,1.0)*veil*curt,veil*curt*0.5*u_op);
+      }`});
+  const mesh=new THREE.Mesh(new THREE.SphereGeometry(30,48,32),m);
+  mesh.position.set(0,-28,-102);
+  mesh.userData={u};
+  return piece(mesh,0.775,0.865,null);
+})();
+
+/* ch09 — the lens: floating bokeh balls with breathing focus */
+const bokeh=(()=>{
+  const N=MOBILE?14:26;
+  const g=new THREE.BufferGeometry();
+  const pos=new Float32Array(N*3),sz=new Float32Array(N),ph=new Float32Array(N),cl=new Float32Array(N*3);
+  const PAL=[[0.75,0.55,1.0],[1.0,0.55,0.85],[0.55,0.9,1.0],[1.0,0.9,0.6],[0.95,0.98,1.0]];
+  for(let i=0;i<N;i++){
+    pos[i*3]=(Math.random()*2-1)*30;
+    pos[i*3+1]=-9-Math.random()*11;
+    pos[i*3+2]=-156-Math.random()*60;
+    sz[i]=10+Math.random()*18;
+    ph[i]=Math.random()*7;
+    const c=PAL[(Math.random()*PAL.length)|0];
+    cl.set(c,i*3);
+  }
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.setAttribute('aSize',new THREE.BufferAttribute(sz,1));
+  g.setAttribute('aPhase',new THREE.BufferAttribute(ph,1));
+  g.setAttribute('aCol',new THREE.BufferAttribute(cl,3));
+  const u={u_time:{value:0},u_op:{value:0}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    uniforms:u,
+    vertexShader:`
+      attribute float aSize,aPhase;
+      attribute vec3 aCol;
+      varying float vPh;varying vec3 vC;
+      uniform float u_time;
+      void main(){
+        vPh=aPhase;vC=aCol;
+        vec3 p=position;
+        p.x+=sin(u_time*0.14+aPhase*3.1)*3.0;
+        p.y+=cos(u_time*0.11+aPhase*5.3)*2.0;
+        vec4 mv=modelViewMatrix*vec4(p,1.0);
+        float breathe=1.0+0.35*sin(u_time*0.55+aPhase*2.0);   // focus breathing
+        gl_PointSize=min(aSize*(430.0/max(1.0,-mv.z))*breathe,180.0);
+        gl_Position=projectionMatrix*mv;
+      }`,
+    fragmentShader:`
+      precision highp float;
+      varying float vPh;varying vec3 vC;
+      uniform float u_time,u_op;
+      void main(){
+        vec2 q=gl_PointCoord*2.0-1.0;
+        float r=length(q);
+        if(r>1.0)discard;
+        float disk=smoothstep(1.0,0.90,r)*(0.55+0.12*sin(u_time*0.8+vPh*4.0));
+        float ring=(smoothstep(0.98,0.90,r)-smoothstep(0.86,0.70,r))*0.35;  // soft bokeh edge
+        gl_FragColor=vec4(vC*vC*(disk+ring)*1.15,(disk+ring)*u_op);
+      }`});
+  const pts=new THREE.Points(g,m);
+  pts.frustumCulled=false;
+  pts.userData={u};
+  return piece(pts,0.90,0.972,null);
+})();
+
+/* impact — a white shockwave ring racing across the surface as we break it */
+const impactRing=(()=>{
+  const u={u_prog:{value:0},u_op:{value:0}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide,
+    uniforms:u,
+    vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+    fragmentShader:`
+      precision highp float;
+      varying vec2 vUv;
+      uniform float u_prog,u_op;
+      void main(){
+        float r=length(vUv-0.5)*2.0;
+        float rr=u_prog;
+        float band=exp(-pow((r-rr)*17.0,2.0));
+        float trail=exp(-pow((r-rr*0.72)*9.0,2.0))*0.4;
+        gl_FragColor=vec4(vec3(1.0,0.99,0.95)*2.2*(band+trail),(band+trail)*u_op*(1.0-rr*0.6));
+      }`});
+  const mesh=new THREE.Mesh(new THREE.PlaneGeometry(320,320),m);
+  mesh.rotation.x=-Math.PI/2;
+  mesh.position.set(0,0.35,40);
+  mesh.userData={u};
+  return piece(mesh,0.512,0.56,null);
+})();
+
+/* finale — a slow snowfall of iridescent light motes over the pool */
+const motes=(()=>{
+  const N=MOBILE?40:80;
+  const g=new THREE.BufferGeometry();
+  const pos=new Float32Array(N*3),ph=new Float32Array(N),cl=new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    pos[i*3]=(Math.random()*2-1)*55;
+    pos[i*3+1]=6+Math.random()*30;
+    pos[i*3+2]=-250-Math.random()*90;
+    ph[i]=Math.random()*7;
+    const hue=Math.random();
+    cl[i*3]=0.75+0.25*Math.sin(hue*6.28);
+    cl[i*3+1]=0.75+0.25*Math.sin(hue*6.28+2.1);
+    cl[i*3+2]=0.75+0.25*Math.sin(hue*6.28+4.2);
+  }
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.setAttribute('aPhase',new THREE.BufferAttribute(ph,1));
+  g.setAttribute('aCol',new THREE.BufferAttribute(cl,3));
+  const u={u_time:{value:0},u_op:{value:0}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    uniforms:u,
+    vertexShader:`
+      attribute float aPhase;attribute vec3 aCol;
+      varying float vPh;varying vec3 vC;
+      uniform float u_time;
+      void main(){
+        vPh=aPhase;vC=aCol;
+        vec3 p=position;
+        p.y+=sin(u_time*0.20+aPhase*2.0)*2.4;
+        p.x+=sin(u_time*0.13+aPhase*4.7)*2.0;
+        vec4 mv=modelViewMatrix*vec4(p,1.0);
+        gl_PointSize=min((2.6+2.2*fract(aPhase))*(430.0/max(1.0,-mv.z)),26.0);
+        gl_Position=projectionMatrix*mv;
+      }`,
+    fragmentShader:`
+      precision highp float;
+      varying float vPh;varying vec3 vC;
+      uniform float u_time,u_op;
+      void main(){
+        vec2 q=gl_PointCoord-0.5;
+        float d=length(q)*2.0;
+        float a=exp(-d*d*7.0)*(0.55+0.45*sin(u_time*1.6+vPh*9.0));
+        gl_FragColor=vec4(vC*1.7*a,a*u_op);
+      }`});
+  const pts=new THREE.Points(g,m);
+  pts.frustumCulled=false;
+  pts.userData={u};
+  return piece(pts,0.955,1.001,null);
+})();
+
+function updateSetPieces(p,time){
+  /* fades */
+  streaks.material.opacity=pieceOp(p,0.05,0.27)*0.75;
+  for(const s of [sonarA,sonarB]){
+    s.material._u.u_time.value=time;
+    s.material._u.u_op.value=pieceOp(p,s===sonarA?0.255:0.69,s===sonarA?0.375:0.785);
+    s.lookAt(camera.position);
+  }
+  for(const o of orbs){
+    o.userData.u.u_time.value=time+o.userData.ph;
+    o.userData.u.u_op.value=pieceOp(p,0.565,0.705);
+    o.position.y=o.userData.base.y+Math.sin(time*0.35+o.userData.ph)*1.8;
+  }
+  dome7.userData.u.u_time.value=time;
+  dome7.userData.u.u_op.value=pieceOp(p,0.775,0.865);
+  bokeh.userData.u.u_time.value=time;
+  bokeh.userData.u.u_op.value=pieceOp(p,0.90,0.972);
+  impactRing.userData.u.u_prog.value=Math.min(1,Math.max(0,(p-0.512)/0.028));
+  impactRing.userData.u.u_op.value=pieceOp(p,0.510,0.538);   // gone before the eye crosses its plane
+  motes.userData.u.u_time.value=time;
+  motes.userData.u.u_op.value=Math.min(1,Math.max(0,(p-0.955)/0.02));   // stays through the very end
+}
+
+/* mouse parallax: the world answers the cursor (desktop, premium feel) */
+const mouse={x:0,y:0,tx:0,ty:0};
+if(!MOBILE&&!REDUCE){
+  window.addEventListener('pointermove',e=>{
+    mouse.tx=(e.clientX/window.innerWidth-0.5)*2;
+    mouse.ty=(e.clientY/window.innerHeight-0.5)*2;
+  },{passive:true});
+}
+
+/* =====================================================================
    CAMERA PATH — the dive, keyframed on the page's colour progress
    ===================================================================== */
 const KEYS=[
@@ -902,6 +1182,11 @@ function frame(now){
     _pos.y+=sw(0.53,4.1)*0.32+Math.sin(time*1.35)*0.04;   // slow drift + breathing
     _look.x+=sw(0.31,2.2)*1.1;
     _look.y+=sw(0.37,6.3)*0.7;
+    /* mouse parallax (eased): the world leans toward the cursor */
+    mouse.x+=(mouse.tx-mouse.x)*0.045;
+    mouse.y+=(mouse.ty-mouse.y)*0.045;
+    _pos.x+=mouse.x*1.3;_pos.y-=mouse.y*0.7;
+    _look.x+=mouse.x*3.2;_look.y-=mouse.y*1.8;
   }
   camera.position.copy(_pos);
   camera.lookAt(_look);
@@ -960,6 +1245,7 @@ function frame(now){
 
   skyDome.position.set(camera.position.x,0,camera.position.z);
   updateBubbles(p,time);
+  updateSetPieces(p,time);
   if(composer)composer.render();
   else renderer.render(scene,camera);
 }
