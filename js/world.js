@@ -15,14 +15,21 @@
    iOS-safe: opaque renderer; no render targets; no textures.
    ===================================================================== */
 import * as THREE from 'three';
+import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
+import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
+import {ShaderPass} from 'three/addons/postprocessing/ShaderPass.js';
 
 const canvas=document.getElementById('aurora');
 const MOBILE=window.innerWidth<900;
 const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const HDR=!MOBILE;   // desktop: full HDR pipeline (bloom + lens pass); mobile: in-shader finish
 
 const renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:false,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,MOBILE?1:1.5));
-renderer.toneMapping=THREE.NeutralToneMapping;   // keeps saturation below 0.76, rolls highlights to white
+/* HDR path: materials output LINEAR, the final pass does tonemap+sRGB+dither.
+   Mobile path: materials finish themselves via the tonemapping chunks. */
+renderer.toneMapping=HDR?THREE.NoToneMapping:THREE.NeutralToneMapping;
 renderer.toneMappingExposure=1.0;
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 
@@ -103,7 +110,29 @@ uniform vec3 uLift,uInvG,uGain,uShTint,uHiTint;
 uniform float uSat,uVig;
 uniform vec2 uRes;
 `;
-const FINISH_GLSL=`
+/* minimal noise for the water VERTEX shader (real displaced waves near camera) */
+const WVERT_NOISE=`
+vec2 hash(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return -1.0+2.0*fract(sin(p)*43758.5453123);}
+float noise(vec2 p){
+  const float K1=0.366025404,K2=0.211324865;
+  vec2 i=floor(p+(p.x+p.y)*K1);
+  vec2 a=p-i+(i.x+i.y)*K2;
+  float m=step(a.y,a.x);
+  vec2 o=vec2(m,1.0-m);
+  vec2 b=a-o+K2; vec2 c=a-1.0+2.0*K2;
+  vec3 h=max(0.5-vec3(dot(a,a),dot(b,b),dot(c,c)),0.0);
+  vec3 n=h*h*h*h*vec3(dot(a,hash(i)),dot(b,hash(i+o)),dot(c,hash(i+1.0)));
+  return dot(n,vec3(70.0));
+}
+float fbm3(vec2 p){float v=0.0,a=0.5;for(int i=0;i<3;i++){v+=a*noise(p);p*=2.03;a*=0.5;}return v;}
+`;
+const FINISH_GLSL=HDR?`
+  col=grade(col,uLift,uInvG,uGain,uShTint,uHiTint,uSat);
+  vec2 ndc=(gl_FragCoord.xy/uRes)*2.0-1.0;
+  ndc.x*=uRes.x/uRes.y*0.75;
+  col*=clamp(1.0-uVig*pow(dot(ndc,ndc)*0.5,1.4),0.0,1.0);
+  gl_FragColor=vec4(col,1.0);   // LINEAR out: bloom + final lens pass take it from here
+`:`
   col=grade(col,uLift,uInvG,uGain,uShTint,uHiTint,uSat);
   vec2 ndc=(gl_FragCoord.xy/uRes)*2.0-1.0;
   ndc.x*=uRes.x/uRes.y*0.75;
@@ -144,7 +173,9 @@ function applyGrade(p,camY){
   gradeUniforms.uHiTint.value.fromArray(lerpArr(A.hi,B.hi,t));
   gradeUniforms.uSat.value=A.sat+(B.sat-A.sat)*t;
   gradeUniforms.uVig.value=A.vig+(B.vig-A.vig)*t;
-  renderer.toneMappingExposure=A.exp+(B.exp-A.exp)*t;
+  const ex=A.exp+(B.exp-A.exp)*t;
+  if(finalPass)finalPass.uniforms.uExposure.value=ex;
+  else renderer.toneMappingExposure=ex;
 }
 
 /* light directions (world) */
@@ -347,13 +378,27 @@ const waterUniforms={
   u_camY:{value:70},
   ...gradeUniforms
 };
-const waterMat=new THREE.ShaderMaterial({
+function makeWaterMat(displace){return new THREE.ShaderMaterial({
+  defines:displace?{DISPLACE:1}:{},
   side:THREE.DoubleSide,
   uniforms:waterUniforms,
   vertexShader:`
     varying vec3 vWorldPos;
+    uniform float u_time;
+    ${displace?WVERT_NOISE:''}
     void main(){
       vec4 wp=modelMatrix*vec4(position,1.0);
+      #ifdef DISPLACE
+        /* real swell displacement near the camera; fades before the patch edge
+           so it meets the flat far ring seamlessly (matches fragment layers L0/L1) */
+        float t=u_time;
+        float fadeE=1.0-smoothstep(235.0,330.0,max(abs(position.x),abs(position.y)));
+        float dcam=distance(wp.xz,cameraPosition.xz);
+        float fade=fadeE*exp(-dcam/240.0);
+        float h=fbm3(wp.xz*0.020+vec2(t*0.040,t*0.026))*1.5
+               +fbm3(wp.xz*0.085+vec2(-t*0.070,t*0.050))*0.45;
+        wp.y+=h*fade;
+      #endif
       vWorldPos=wp.xyz;
       gl_Position=projectionMatrix*viewMatrix*wp;
     }`,
@@ -414,6 +459,14 @@ const waterMat=new THREE.ShaderMaterial({
         vec3 R=reflect(-V,N);R.y=abs(R.y);
         vec3 skyRef=mix(u_bottom,u_top,smoothstep(0.0,0.62,R.y));
         skyRef=mix(skyRef,hazeColor(R,L),(1.0-smoothstep(0.0,0.35,R.y))*day*0.85);
+        /* the cumulus MIRROR in the water (cheap 2-octave estimate of the sky clouds) */
+        if(day>0.02&&R.y>0.04){
+          vec2 cuv=(vWorldPos.xz+R.xz*(600.0-vWorldPos.y)/max(R.y,0.06))*9.0e-4
+                  +vec2(u_time*0.006,u_time*0.002);
+          float den=0.5*noise(cuv)+0.25*noise(cuv*2.03+vec2(3.1))+0.5;
+          float cd=smoothstep(0.55,0.70,den);
+          skyRef=mix(skyRef,vec3(1.02)*1.12,cd*0.5*day);
+        }
 
         /* Cox-Munk slope-space sun/moon glitter: band elongates along the light azimuth */
         vec3 H=normalize(L+V);
@@ -445,7 +498,16 @@ const waterMat=new THREE.ShaderMaterial({
         vec3 nightBody=u_top*0.30+vec3(0.002,0.005,0.012);
         vec3 body=mix(nightBody,upwell,day);
 
-        col=mix(body,skyRef,F)+lightCol*glint;
+        /* sparse whitecap flecks near the camera (a summer breeze sea is ~foam-free;
+           too much foam is the #1 CG tell, so coverage stays well under 1%) */
+        float crest2=smoothstep(0.60,0.78,chop)*smoothstep(0.10,0.22,length(slope));
+        vec2 fuv=vWorldPos.xz*vec2(0.45,0.16);
+        float fleckF=smoothstep(0.55,0.85,fbm3(fuv-vec2(t*0.5,0.0)))
+                    *smoothstep(0.30,0.75,fbm3(fuv*0.37+vec2(0.0,t*0.13)));
+        float foam=clamp(crest2*fleckF,0.0,1.0)*day*exp(-dist/140.0);
+
+        col=mix(body,skyRef,F*(1.0-foam))+lightCol*glint*(1.0-foam);
+        col=mix(col,vec3(0.92)*(0.55+0.45*max(dot(N,L),0.0)),foam*0.85);
 
         /* the aurora MIRRORS in the waves (flattened R pulls curtains into view) */
         vec3 Rf=normalize(vec3(R.x,R.y*0.35+0.02,R.z));
@@ -503,10 +565,30 @@ const waterMat=new THREE.ShaderMaterial({
 
       ${FINISH_GLSL}
     }`
-});
-const water=new THREE.Mesh(new THREE.PlaneGeometry(9000,9000),waterMat);
-water.rotation.x=-Math.PI/2;
-scene.add(water);
+});}
+let waterHi=null,waterFar=null;
+if(HDR){
+  /* near field: densely tessellated, vertex-displaced patch that follows the camera;
+     far field: flat ring with a hole under the patch (no z-fighting, clean horizon) */
+  waterHi=new THREE.Mesh(new THREE.PlaneGeometry(700,700,192,192),makeWaterMat(true));
+  waterHi.rotation.x=-Math.PI/2;
+  waterHi.frustumCulled=false;
+  scene.add(waterHi);
+  const half=4500,hole=330;
+  const shp=new THREE.Shape();
+  shp.moveTo(-half,-half);shp.lineTo(half,-half);shp.lineTo(half,half);shp.lineTo(-half,half);shp.closePath();
+  const hp=new THREE.Path();
+  hp.moveTo(-hole,-hole);hp.lineTo(hole,-hole);hp.lineTo(hole,hole);hp.lineTo(-hole,hole);hp.closePath();
+  shp.holes.push(hp);
+  waterFar=new THREE.Mesh(new THREE.ShapeGeometry(shp),makeWaterMat(false));
+  waterFar.rotation.x=-Math.PI/2;
+  waterFar.position.y=-0.02;
+  scene.add(waterFar);
+}else{
+  const water=new THREE.Mesh(new THREE.PlaneGeometry(9000,9000),makeWaterMat(false));
+  water.rotation.x=-Math.PI/2;
+  scene.add(water);
+}
 
 /* =====================================================================
    BUBBLES — the burst as we break the surface.
@@ -669,6 +751,74 @@ snow.frustumCulled=false;
 scene.add(snow);
 
 /* =====================================================================
+   HDR PIPELINE (desktop): render -> real bloom -> lens pass
+   (chromatic aberration, sun ghosts, exposure, PBR-Neutral, sRGB, dither)
+   ===================================================================== */
+let composer=null,finalPass=null;
+if(HDR){
+  composer=new EffectComposer(renderer);            // HalfFloat HDR buffers by default
+  composer.addPass(new RenderPass(scene,camera));
+  composer.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),0.33,0.55,1.0));
+  finalPass=new ShaderPass({
+    uniforms:{
+      tDiffuse:{value:null},
+      uExposure:{value:1},
+      uCA:{value:0.0028},
+      uSunScreen:{value:new THREE.Vector2(0.5,0.8)},
+      uGhost:{value:0},
+      uResF:{value:new THREE.Vector2(1,1)},
+    },
+    vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}`,
+    fragmentShader:`
+      precision highp float;
+      varying vec2 vUv;
+      uniform sampler2D tDiffuse;
+      uniform float uExposure,uCA,uGhost;
+      uniform vec2 uSunScreen,uResF;
+      float ign(vec2 p){return fract(52.9829189*fract(dot(p,vec2(0.06711056,0.00583715))));}
+      vec3 neutral(vec3 c){                      // Khronos PBR Neutral (three's NeutralToneMapping)
+        const float sc=0.76,de=0.15;
+        float x=min(c.r,min(c.g,c.b));
+        float off=x<0.08?x-6.25*x*x:0.04;
+        c-=off;
+        float peak=max(c.r,max(c.g,c.b));
+        if(peak<sc)return c;
+        float d=1.0-sc;
+        float np=1.0-d*d/(peak+d-sc);
+        c*=np/peak;
+        float g=1.0/(de*(peak-np)+1.0);
+        return mix(np*vec3(1.0),c,g);
+      }
+      vec3 toSRGB(vec3 c){return mix(1.055*pow(max(c,vec3(0.0)),vec3(1.0/2.4))-0.055,c*12.92,step(c,vec3(0.0031308)));}
+      void main(){
+        /* analytic lens chromatic aberration: zero in the centre, r^4 at the corners */
+        vec2 dv=vUv-0.5;
+        float r2=dot(dv,dv);
+        vec2 off=dv*r2*r2*uCA*4.0;
+        vec3 col;
+        col.r=texture2D(tDiffuse,vUv+off).r;
+        col.g=texture2D(tDiffuse,vUv).g;
+        col.b=texture2D(tDiffuse,vUv-off).b;
+        /* faint lens ghosts marching through the centre away from the sun */
+        if(uGhost>0.001){
+          vec2 gv=vec2(0.5)-uSunScreen;
+          for(int i=1;i<=3;i++){
+            vec2 gp=uSunScreen+gv*(0.7*float(i));
+            vec2 dgp=(vUv-gp)*vec2(uResF.x/uResF.y,1.0);
+            col+=vec3(0.55,0.75,0.60)*exp(-dot(dgp,dgp)*(160.0+90.0*float(i)))*uGhost*(0.10/float(i));
+          }
+        }
+        col*=uExposure;
+        col=neutral(col);
+        col=clamp(toSRGB(col),0.0,1.0);
+        col+=(ign(gl_FragCoord.xy)-0.5)*(1.4/255.0);
+        gl_FragColor=vec4(col,1.0);
+      }`
+  });
+  composer.addPass(finalPass);
+}
+
+/* =====================================================================
    CAMERA PATH — the dive, keyframed on the page's colour progress
    ===================================================================== */
 const KEYS=[
@@ -744,12 +894,27 @@ function frame(now){
   waterUniforms.u_time.value=time;
   waterUniforms.u_progress.value=p;
 
-  /* camera along the dive */
+  /* camera along the dive + handheld micro-sway (a locked-off camera reads as CG) */
   sampleKeys(p);
+  if(!REDUCE){
+    const sw=(a,b)=>Math.sin(time*a+b)*0.6+Math.sin(time*a*2.17+b*1.7)*0.4;
+    _pos.x+=sw(0.43,1.3)*0.45;
+    _pos.y+=sw(0.53,4.1)*0.32+Math.sin(time*1.35)*0.04;   // slow drift + breathing
+    _look.x+=sw(0.31,2.2)*1.1;
+    _look.y+=sw(0.37,6.3)*0.7;
+  }
   camera.position.copy(_pos);
   camera.lookAt(_look);
   skyUniforms.u_camY.value=camera.position.y;
   waterUniforms.u_camY.value=camera.position.y;
+  /* the displaced near-field water patch follows the camera (snapped to its grid) */
+  if(waterHi){
+    const st2=700/192;
+    waterHi.position.x=Math.round(camera.position.x/st2)*st2;
+    waterHi.position.z=Math.round(camera.position.z/st2)*st2;
+    waterFar.position.x=waterHi.position.x;
+    waterFar.position.z=waterHi.position.z;
+  }
   const kick=Math.exp(-Math.pow((p-0.518)/0.02,2));
   const fov=52+26*kick;
   if(Math.abs(camera.fov-fov)>0.05){camera.fov=fov;camera.updateProjectionMatrix();}
@@ -786,9 +951,17 @@ function frame(now){
   applyGrade(p,camera.position.y);
   gradeUniforms.uRes.value.set(renderer.domElement.width,renderer.domElement.height);
 
+  /* lens-pass extras: sun screen position for the ghosts */
+  if(finalPass){
+    finalPass.uniforms.uSunScreen.value.set(_sunP.x*0.5+0.5,_sunP.y*0.5+0.5);
+    finalPass.uniforms.uGhost.value=vis*(1-night)*(1-under)*0.8;
+    finalPass.uniforms.uResF.value.set(renderer.domElement.width,renderer.domElement.height);
+  }
+
   skyDome.position.set(camera.position.x,0,camera.position.z);
   updateBubbles(p,time);
-  renderer.render(scene,camera);
+  if(composer)composer.render();
+  else renderer.render(scene,camera);
 }
 
 let _last=0,_lastP=-1;
@@ -804,6 +977,7 @@ function loop(now){
 function resize(){
   const w=window.innerWidth,h=window.innerHeight;
   renderer.setSize(w,h,false);
+  if(composer){composer.setPixelRatio(renderer.getPixelRatio());composer.setSize(w,h);}
   camera.aspect=w/h;
   camera.updateProjectionMatrix();
 }
@@ -812,4 +986,4 @@ resize();
 requestAnimationFrame(loop);
 
 /* debug hooks: renderAt(p) draws one frame at a given progress (preview verification) */
-window.__world={scene,camera,renderer,sampleKeys,renderAt:(p)=>{S.p=p;frame(performance.now());}};
+window.__world={scene,camera,renderer,composer,sampleKeys,renderAt:(p)=>{S.p=p;frame(performance.now());}};
