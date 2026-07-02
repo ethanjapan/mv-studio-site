@@ -29,6 +29,11 @@
   #flash{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0;mix-blend-mode:screen;
     background:radial-gradient(120% 80% at 50% 66%, rgba(228,252,255,.96), rgba(184,244,246,.5) 42%, transparent 74%)}
 
+  /* ---- cinemascope letterbox bars: ease in for the dive sequence + finale ---- */
+  .cine-bar{position:fixed;left:0;right:0;height:0;background:#000;z-index:14;pointer-events:none}
+  .cine-bar.top{top:0}
+  .cine-bar.bottom{bottom:0}
+
   /* grain + vignette */
   .grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.05;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");

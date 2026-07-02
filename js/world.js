@@ -21,7 +21,9 @@ import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
 import {ShaderPass} from 'three/addons/postprocessing/ShaderPass.js';
 
 const canvas=document.getElementById('aurora');
-const MOBILE=window.innerWidth<900;
+/* ?hdr=1 / ?hdr=0 forces the tier (verification + A/B); innerWidth 0 (headless) => desktop */
+const _hdrQ=new URLSearchParams(location.search).get('hdr');
+const MOBILE=_hdrQ!=null?_hdrQ!=='1':(window.innerWidth||1280)<900;
 const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const HDR=!MOBILE;   // desktop: full HDR pipeline (bloom + lens pass); mobile: in-shader finish
 
@@ -145,9 +147,9 @@ const FINISH_GLSL=HDR?`
 
 /* grade presets: night / underwater / pool (lerped on scroll) */
 const GRADES={
-  night:{lift:[0.000,0.004,0.010],invG:[1.00,0.99,0.96],gain:[0.98,1.00,1.04],sh:[0.90,0.98,1.08],hi:[0.97,1.00,1.03],sat:1.05,vig:0.16,exp:1.00},
-  uw:   {lift:[0.000,0.006,0.012],invG:[1.02,0.98,0.94],gain:[0.90,1.00,1.06],sh:[0.85,1.00,1.10],hi:[0.92,1.00,1.05],sat:0.88,vig:0.40,exp:0.90},
-  pool: {lift:[0.004,0.002,0.000],invG:[0.97,1.00,1.02],gain:[1.06,1.00,0.94],sh:[0.92,1.00,1.06],hi:[1.08,0.98,0.90],sat:1.12,vig:0.18,exp:1.28},
+  night:{lift:[0.000,0.004,0.010],invG:[1.00,0.99,0.96],gain:[0.98,1.00,1.04],sh:[0.90,0.98,1.08],hi:[0.97,1.00,1.03],sat:1.05,vig:0.16,exp:1.00,hexp:0.98},
+  uw:   {lift:[0.000,0.006,0.012],invG:[1.02,0.98,0.94],gain:[0.90,1.00,1.06],sh:[0.85,1.00,1.10],hi:[0.92,1.00,1.05],sat:0.88,vig:0.40,exp:0.90,hexp:0.86},
+  pool: {lift:[0.004,0.002,0.000],invG:[0.97,1.00,1.02],gain:[1.06,1.00,0.94],sh:[0.92,1.00,1.06],hi:[1.08,0.98,0.90],sat:1.12,vig:0.18,exp:1.28,hexp:1.06},
 };
 const gradeUniforms={
   uLift:{value:new THREE.Vector3()},uInvG:{value:new THREE.Vector3()},uGain:{value:new THREE.Vector3()},
@@ -173,9 +175,8 @@ function applyGrade(p,camY){
   gradeUniforms.uHiTint.value.fromArray(lerpArr(A.hi,B.hi,t));
   gradeUniforms.uSat.value=A.sat+(B.sat-A.sat)*t;
   gradeUniforms.uVig.value=A.vig+(B.vig-A.vig)*t;
-  const ex=A.exp+(B.exp-A.exp)*t;
-  if(finalPass)finalPass.uniforms.uExposure.value=ex;
-  else renderer.toneMappingExposure=ex;
+  if(finalPass)finalPass.uniforms.uExposure.value=A.hexp+(B.hexp-A.hexp)*t;
+  else renderer.toneMappingExposure=A.exp+(B.exp-A.exp)*t;
 }
 
 /* light directions (world) */
@@ -251,7 +252,7 @@ const skyMat=new THREE.ShaderMaterial({
         ccol+=vec3(1.0,0.97,0.90)*pow(clamp(dot(dir,L),0.0,1.0),24.0)*(1.0-d)*0.8;
         float hmask=smoothstep(0.02,0.15,dir.y);
         ccol=mix(hz,ccol,hmask);                        // distant clouds sink into the haze
-        sky=mix(sky,ccol,d*0.85*day*smoothstep(0.02,0.06,dir.y));
+        sky=mix(sky,ccol,d*0.85*day*smoothstep(0.035,0.13,dir.y));
       }
 
       /* aurora curtains over the dark sky */
@@ -754,11 +755,12 @@ scene.add(snow);
    HDR PIPELINE (desktop): render -> real bloom -> lens pass
    (chromatic aberration, sun ghosts, exposure, PBR-Neutral, sRGB, dither)
    ===================================================================== */
-let composer=null,finalPass=null;
+let composer=null,finalPass=null,bloomPass=null;
 if(HDR){
   composer=new EffectComposer(renderer);            // HalfFloat HDR buffers by default
   composer.addPass(new RenderPass(scene,camera));
-  composer.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),0.33,0.55,1.0));
+  bloomPass=new UnrealBloomPass(new THREE.Vector2(1,1),0.22,0.55,1.1);
+  composer.addPass(bloomPass);
   finalPass=new ShaderPass({
     uniforms:{
       tDiffuse:{value:null},
@@ -766,6 +768,7 @@ if(HDR){
       uCA:{value:0.0028},
       uSunScreen:{value:new THREE.Vector2(0.5,0.8)},
       uGhost:{value:0},
+      uFlare:{value:0},
       uResF:{value:new THREE.Vector2(1,1)},
     },
     vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}`,
@@ -773,7 +776,7 @@ if(HDR){
       precision highp float;
       varying vec2 vUv;
       uniform sampler2D tDiffuse;
-      uniform float uExposure,uCA,uGhost;
+      uniform float uExposure,uCA,uGhost,uFlare;
       uniform vec2 uSunScreen,uResF;
       float ign(vec2 p){return fract(52.9829189*fract(dot(p,vec2(0.06711056,0.00583715))));}
       vec3 neutral(vec3 c){                      // Khronos PBR Neutral (three's NeutralToneMapping)
@@ -799,6 +802,16 @@ if(HDR){
         col.r=texture2D(tDiffuse,vUv+off).r;
         col.g=texture2D(tDiffuse,vUv).g;
         col.b=texture2D(tDiffuse,vUv-off).b;
+        /* ANAMORPHIC streak: the horizontal blue flare of cinema glass,
+           anchored at the light's screen position */
+        if(uFlare>0.001){
+          float sy=(vUv.y-uSunScreen.y)*(uResF.y/uResF.x)*6.0;
+          float sx=1.0-abs(vUv.x-uSunScreen.x)*1.05;
+          float streakF=exp(-sy*sy*720.0)*pow(max(sx,0.0),2.4);
+          float core=exp(-sy*sy*2200.0)*pow(max(sx,0.0),6.0);
+          col+=vec3(0.30,0.52,1.0)*streakF*uFlare;
+          col+=vec3(0.75,0.85,1.0)*core*uFlare*0.8;
+        }
         /* faint lens ghosts marching through the centre away from the sun */
         if(uGhost>0.001){
           vec2 gv=vec2(0.5)-uSunScreen;
@@ -846,6 +859,35 @@ const streaks=(()=>{
   const m=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0,
     blending:THREE.AdditiveBlending,depthWrite:false});
   return piece(new THREE.LineSegments(g,m),0.05,0.27,m);
+})();
+
+/* descent — thin cloud wisps whipping past the lens (Hollywood speed cue) */
+const wisps=(()=>{
+  const group=new THREE.Group();
+  const u={u_time:{value:0},u_op:{value:0}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide,
+    uniforms:u,
+    vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+    fragmentShader:`
+      precision highp float;
+      varying vec2 vUv;
+      uniform float u_time,u_op;
+      float h2(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return fract(sin(p.x+p.y)*43758.5453123);}
+      void main(){
+        vec2 q=vUv-0.5;
+        float r=length(q*vec2(1.0,2.6));
+        float wob=0.85+0.3*sin(vUv.x*9.0+u_time*0.4)*sin(vUv.y*7.0-u_time*0.3);
+        float a=exp(-r*r*10.0)*wob;
+        gl_FragColor=vec4(vec3(0.75,0.82,1.0)*a*0.5,a*0.16*u_op);
+      }`});
+  for(let i=0;i<8;i++){
+    const mesh=new THREE.Mesh(new THREE.PlaneGeometry(95,38),m);
+    mesh.position.set((Math.random()*2-1)*30,16+Math.random()*32,70+i*16+Math.random()*8);
+    mesh.userData.ph=Math.random()*7;
+    group.add(mesh);
+  }
+  group.userData={u};
+  return piece(group,0.30,0.505,null);
 })();
 
 /* ch02 / ch06 — the voice: expanding iridescent ripple rings (sonar planes) */
@@ -1069,6 +1111,9 @@ const motes=(()=>{
 function updateSetPieces(p,time){
   /* fades */
   streaks.material.opacity=pieceOp(p,0.05,0.27)*0.75;
+  wisps.userData.u.u_time.value=time;
+  wisps.userData.u.u_op.value=pieceOp(p,0.30,0.505);
+  wisps.children.forEach(w=>w.lookAt(camera.position));
   for(const s of [sonarA,sonarB]){
     s.material._u.u_time.value=time;
     s.material._u.u_op.value=pieceOp(p,s===sonarA?0.255:0.69,s===sonarA?0.375:0.785);
@@ -1102,24 +1147,25 @@ if(!MOBILE&&!REDUCE){
    CAMERA PATH — the dive, keyframed on the page's colour progress
    ===================================================================== */
 const KEYS=[
-  {p:0.00, pos:[0,58,300],   look:[0,108,-60]},
-  {p:0.12, pos:[10,50,244],  look:[2,46,-20]},
-  {p:0.30, pos:[-12,36,184], look:[-2,14,-30]},
-  {p:0.36, pos:[12,27,146],  look:[2,9,-60]},
-  {p:0.43, pos:[-10,17,104], look:[0,3,-80]},
-  {p:0.49, pos:[0,7,64],     look:[0,-4,-70]},
-  {p:0.515,pos:[0,0.6,44],   look:[0,-8,-70]},
-  {p:0.545,pos:[0,-9,32],    look:[0,-13,-70]},
-  {p:0.63, pos:[14,-26,-2],  look:[0,-22,-80]},
-  {p:0.73, pos:[-14,-30,-46],look:[0,-25,-120]},
-  {p:0.81, pos:[0,-28,-92],  look:[0,-22,-160]},
-  {p:0.86, pos:[-26,-21,-138],look:[6,-18,-190]},
-  {p:0.92, pos:[26,-19,-152],look:[-6,-15,-200]},
-  {p:0.95, pos:[0,-12,-192], look:[0,2,-240]},
-  {p:0.975,pos:[0,-4,-222],  look:[0,18,-260]},
-  {p:1.00, pos:[0,8,-252],   look:[0,5,-330]},
+  {p:0.00, pos:[0,58,300],   look:[0,108,-60], roll:0},
+  {p:0.12, pos:[10,50,244],  look:[2,46,-20],  roll:0.02},
+  {p:0.30, pos:[-12,36,184], look:[-2,14,-30], roll:-0.04},
+  {p:0.36, pos:[12,27,146],  look:[2,9,-60],   roll:0.05},
+  {p:0.43, pos:[-10,17,104], look:[0,3,-80],   roll:-0.07},
+  {p:0.49, pos:[0,7,64],     look:[0,-4,-70],  roll:-0.10},   // banking into the dive
+  {p:0.515,pos:[0,0.6,44],   look:[0,-8,-70],  roll:-0.12},
+  {p:0.545,pos:[0,-9,32],    look:[0,-13,-70], roll:-0.05},
+  {p:0.63, pos:[14,-26,-2],  look:[0,-22,-80], roll:0.04},
+  {p:0.73, pos:[-14,-30,-46],look:[0,-25,-120],roll:-0.03},
+  {p:0.81, pos:[0,-28,-92],  look:[0,-22,-160],roll:0},
+  {p:0.86, pos:[-26,-21,-138],look:[6,-18,-190],roll:-0.04},
+  {p:0.92, pos:[26,-19,-152],look:[-6,-15,-200],roll:0.04},
+  {p:0.95, pos:[0,-12,-192], look:[0,2,-240],  roll:0},
+  {p:0.975,pos:[0,-4,-222],  look:[0,18,-260], roll:0},
+  {p:1.00, pos:[0,8,-252],   look:[0,5,-330],  roll:0},
 ];
 const _pos=new THREE.Vector3(),_look=new THREE.Vector3();
+let _roll=0;
 function sampleKeys(p){
   let i=0;
   while(i<KEYS.length-2&&p>KEYS[i+1].p)i++;
@@ -1129,6 +1175,7 @@ function sampleKeys(p){
   t=t*t*(3-2*t);
   _pos.set(a.pos[0]+(b.pos[0]-a.pos[0])*t,a.pos[1]+(b.pos[1]-a.pos[1])*t,a.pos[2]+(b.pos[2]-a.pos[2])*t);
   _look.set(a.look[0]+(b.look[0]-a.look[0])*t,a.look[1]+(b.look[1]-a.look[1])*t,a.look[2]+(b.look[2]-a.look[2])*t);
+  _roll=(a.roll||0)+((b.roll||0)-(a.roll||0))*t;
 }
 
 /* =====================================================================
@@ -1157,9 +1204,16 @@ function updateBubbles(p,time){
   bubGeo.attributes.position.needsUpdate=true;
 }
 
+let _wt=0,_wtLast=-1;
 function frame(now){
-  const time=now*0.001;
   const p=Math.min(1,Math.max(0,S.p||0));
+  /* WORLD TIME with dramatic dilation: right after the plunge the world runs
+     at one-third speed (the muffled slow-motion beat), then breathes back */
+  if(_wtLast<0)_wtLast=now;
+  const dt=Math.min(0.1,(now-_wtLast)/1000);_wtLast=now;
+  const slowWin=Math.min(1,Math.max(0,(p-0.518)/0.012))*(1-Math.min(1,Math.max(0,(p-0.575)/0.055)));
+  _wt+=dt*(1-0.67*slowWin);
+  const time=_wt;
   const night=1-Math.min(1,Math.max(0,(p-0.42)/0.14));
 
   /* colours from the page's journey (display -> linear for the tone-mapped pipeline) */
@@ -1189,6 +1243,7 @@ function frame(now){
     _look.x+=mouse.x*3.2;_look.y-=mouse.y*1.8;
   }
   camera.position.copy(_pos);
+  camera.up.set(Math.sin(_roll),Math.cos(_roll),0);   // cinematic bank / dutch tilt
   camera.lookAt(_look);
   skyUniforms.u_camY.value=camera.position.y;
   waterUniforms.u_camY.value=camera.position.y;
@@ -1200,8 +1255,11 @@ function frame(now){
     waterFar.position.x=waterHi.position.x;
     waterFar.position.z=waterHi.position.z;
   }
+  /* film grammar: the lens TIGHTENS as we commit to the dive (held breath),
+     then kicks wide open at the impact (the release) */
+  const tension=Math.min(1,Math.max(0,(p-0.462)/0.043))*(1-Math.min(1,Math.max(0,(p-0.507)/0.008)));
   const kick=Math.exp(-Math.pow((p-0.518)/0.02,2));
-  const fov=52+26*kick;
+  const fov=52-7*tension+26*kick;
   if(Math.abs(camera.fov-fov)>0.05){camera.fov=fov;camera.updateProjectionMatrix();}
 
   /* light dir + refracted sun screen position (for god rays) */
@@ -1238,9 +1296,18 @@ function frame(now){
 
   /* lens-pass extras: sun screen position for the ghosts */
   if(finalPass){
-    finalPass.uniforms.uSunScreen.value.set(_sunP.x*0.5+0.5,_sunP.y*0.5+0.5);
+    /* anamorphic flare: moon at night, sun at day, EXPLODES at the impact flash
+       (during the flash the streak anchors to the screen centre — the light IS the surface) */
+    const flashW=Math.max(0,1-Math.abs(p-0.517)/0.028);
+    const flashK=Math.min(1,flashW*1.6);
+    const sx=_sunP.x*0.5+0.5,sy=_sunP.y*0.5+0.5;
+    finalPass.uniforms.uSunScreen.value.set(sx+(0.5-sx)*flashK,sy+(0.52-sy)*flashK);
     finalPass.uniforms.uGhost.value=vis*(1-night)*(1-under)*0.8;
+    finalPass.uniforms.uFlare.value=vis*(0.16+0.10*(1-night))*(1-under*0.75)+flashW*flashW*2.6;
     finalPass.uniforms.uResF.value.set(renderer.domElement.width,renderer.domElement.height);
+    /* bloom breathes with the scene: heavy in the dark, restrained in daylight,
+       and slams open at the impact flash */
+    bloomPass.strength=0.13+0.19*night+Math.min(0.55,0.6*flashW);
   }
 
   skyDome.position.set(camera.position.x,0,camera.position.z);

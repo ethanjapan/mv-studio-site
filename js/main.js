@@ -19,6 +19,11 @@
 window.__worldState={p:0,top:[0.016,0.020,0.039],bottom:[0.027,0.035,0.078]};
 
 
+/* ===== cinemascope letterbox bars (film grammar for the dive + finale) ===== */
+const _barT=document.createElement('div'),_barB=document.createElement('div');
+_barT.className='cine-bar top';_barB.className='cine-bar bottom';
+document.body.appendChild(_barT);document.body.appendChild(_barB);
+
 /* ===== scroll engine: deepest night -> bright morning sky ===== */
 const sky=document.getElementById('sky');
 const bloom=document.getElementById('bloom');
@@ -80,6 +85,12 @@ function applyProgress(p){
   // --- overlays fade as the sky brightens ---
   scrimEl.style.opacity=Math.max(0,1-p/0.30).toFixed(3);
   vigEl.style.opacity=Math.max(0,1-p/0.46).toFixed(3);
+  // --- cinemascope bars: in for the dive sequence, softly for the finale ---
+  const cine=Math.max(
+    Math.min(ramp(p,0.415,0.468),1-ramp(p,0.585,0.65)),
+    ramp(p,0.958,0.995)*0.8);
+  const bh=(cine*7).toFixed(2)+'vh';
+  _barT.style.height=bh;_barB.style.height=bh;
   // --- hand progress to the 3D world (camera position along the dive) ---
   window.__worldState.p=p;
 }
