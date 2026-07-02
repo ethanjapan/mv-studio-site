@@ -841,7 +841,7 @@ scene.add(snow);
    stars/particles/flare layers keep moving in front of it.
    ===================================================================== */
 const matteVideo=document.createElement('video');
-matteVideo.src='assets/bg_aurora.mp4?v=20260703d';
+matteVideo.src='assets/bg_aurora.mp4?v=20260703e';
 matteVideo.muted=true;matteVideo.loop=true;matteVideo.playsInline=true;
 matteVideo.setAttribute('playsinline','');matteVideo.preload='auto';
 let _vidKick=false;
@@ -881,7 +881,7 @@ scene.add(matte);
 /* DAY-SKY matte: photographic cumulus sky for the descent-to-impact leg
    (the last remaining procedural sky). Static photo — clouds barely move
    over an 8-second scroll. Horizon at uv.y=0.12 locks to eye height. */
-const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703d');
+const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703e');
 dayTex.minFilter=THREE.LinearFilter;
 const dayU={u_map:{value:dayTex},u_op:{value:0}};
 const dayMat=new THREE.ShaderMaterial({
@@ -910,7 +910,7 @@ scene.add(dayMatte);
    Same horizon-aligned far-plane trick as the aurora matte (its horizon at
    uv.y=0.70 sits at eye height; everything below is occluded by our water). */
 const poolVideo=document.createElement('video');
-poolVideo.src='assets/bg_pool.mp4?v=20260703d';
+poolVideo.src='assets/bg_pool.mp4?v=20260703e';
 poolVideo.muted=true;poolVideo.loop=true;poolVideo.playsInline=true;
 poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
 poolVideo.play().catch(()=>{});
@@ -942,7 +942,7 @@ const _pmDir=new THREE.Vector3();
    Two tilted panels along the dive route — the camera passes under them
    with true parallax; each fades with its chapters. */
 const uwVideo=document.createElement('video');
-uwVideo.src='assets/bg_underwater.mp4?v=20260703d';
+uwVideo.src='assets/bg_underwater.mp4?v=20260703e';
 uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
 uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
 const _kick0=kickVideo;
@@ -1760,8 +1760,9 @@ requestAnimationFrame(loop);
    Must sample INSIDE the render call: with preserveDrawingBuffer:false the GL
    buffer is undefined once the rAF callback returns, so a setInterval reader
    only ever sees black (lum=0.0, count stuck at 0). Canvas sampling also can't
-   see DOM overlays (#flash etc.) — those are tracked separately. */
-if(new URLSearchParams(location.search).has('diag')){
+   see DOM overlays (#flash etc.) — those are tracked separately.
+   LOCALHOST ONLY: never renders on the published site, even with ?diag=1. */
+if(new URLSearchParams(location.search).has('diag')&&/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)){
   const dg=document.createElement('div');
   dg.style.cssText='position:fixed;left:8px;top:8px;z-index:9999;background:rgba(0,0,0,.75);color:#0f0;font:11px monospace;padding:6px 9px;border-radius:6px;pointer-events:none;white-space:pre';
   document.body.appendChild(dg);
