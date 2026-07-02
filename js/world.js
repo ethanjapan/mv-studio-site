@@ -868,7 +868,7 @@ const poolTex=new THREE.VideoTexture(poolVideo);
 poolTex.minFilter=THREE.LinearFilter;
 const poolU={u_map:{value:poolTex},u_op:{value:0}};
 const poolMat=new THREE.ShaderMaterial({
-  transparent:true,depthWrite:false,
+  transparent:true,depthWrite:false,depthTest:false,
   uniforms:poolU,
   vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
   fragmentShader:`
@@ -882,7 +882,7 @@ const poolMat=new THREE.ShaderMaterial({
       gl_FragColor=vec4(col,u_op);   // full-frame crossfade: the film takes over
     }`});
 const poolMatte=new THREE.Mesh(new THREE.PlaneGeometry(1,1),poolMat);
-poolMatte.renderOrder=10;
+poolMatte.renderOrder=990;   // painted over everything (the film takes over)
 poolMatte.frustumCulled=false;
 scene.add(poolMatte);
 const _pmDir=new THREE.Vector3();
@@ -1347,6 +1347,8 @@ const motes=(()=>{
       }`});
   const pts=new THREE.Points(g,m);
   pts.frustumCulled=false;
+  pts.renderOrder=995;
+  pts.material.depthTest=false;
   pts.userData={u};
   return piece(pts,0.955,1.001,null);
 })();
