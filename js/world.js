@@ -101,7 +101,7 @@ float ign(vec2 p){return fract(52.9829189*fract(dot(p,vec2(0.06711056,0.00583715
 /* diagonal underwater light shafts around the sun azimuth (world-space, no RT) */
 float shaftI(vec3 dir,vec3 L,float tt){
   vec2 hd=dir.xz;hd/=(length(hd)+1e-4);
-  float az=atan(hd.y,hd.x)-atan(L.z,L.x);
+  float az=atan(hd.y,hd.x+step(abs(hd.x)+abs(hd.y),1e-5))-atan(L.z,L.x);
   float st=fbm2(vec2(az*3.2,dir.y*1.3-tt*0.045));
   return pow(clamp(1.0-abs(st)*2.4,0.0,1.0),2.0)
         *smoothstep(-0.15,0.45,dir.y)
@@ -115,7 +115,7 @@ float shaftI(vec3 dir,vec3 L,float tt){
 const UW_ENV_GLSL=`
 vec3 uwEnv(vec3 dirv,vec3 Lv,vec3 base,sampler2D mp,float mixv){
   if(mixv<0.004)return base;
-  float azV=atan(dirv.x,dirv.z);
+  float azV=atan(dirv.x,dirv.z+step(abs(dirv.x)+abs(dirv.z),1e-5));
   float azS=atan(Lv.x,Lv.z);
   float dAz=mod(azV-azS+3.14159265,6.2831853)-3.14159265;
   vec2 vuv=vec2(0.5+dAz*0.24,0.40+dirv.y*0.80);
@@ -315,7 +315,7 @@ const skyMat=new THREE.ShaderMaterial({
         vec2 suv=gl_FragCoord.xy/uRes;
         vec2 dv=(suv-u_sunScreen)*vec2(uRes.x/uRes.y,1.0);
         float r=length(dv);
-        float ang2=atan(dv.y,dv.x);
+        float ang2=atan(dv.y,dv.x+step(abs(dv.x)+abs(dv.y),1e-6));
         float streak=0.5+0.5*sin(ang2*${MOBILE?'22.0':'40.0'}+u_time*0.5);
         streak*=0.5+fbm2(vec2(ang2*6.0,r*3.0-u_time*0.3));
         streak*=exp(-r*2.5);
@@ -506,7 +506,7 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         vec2 slope;float chop,sigB;
         slopes(vWorldPos.xz,t,dist,slope,chop,sigB);
         vec3 N=normalize(vec3(-slope.x,1.0,-slope.y));
-        float ndv=max(dot(N,V),0.03);
+        float ndv=clamp(dot(N,V),0.03,1.0);
         float F=0.02+0.98*pow(1.0-ndv,5.0);
 
         /* reflected sky (page palette) + aerial haze at grazing + aurora sheen */
@@ -1295,8 +1295,10 @@ const dome7=(()=>{
         /* luminous COCOON: glows as a veil from inside too (a fresnel rim is
            mathematically invisible when the camera sits at the centre) */
         vec3 V=normalize(cameraPosition-vW);
-        float rim=pow(1.0-abs(dot(normalize(vN),V)),2.2);
-        float az=atan(vW.x,vW.z-(-102.0));
+        /* clamp: interpolation error can push |dot|>1 and pow(negative,x)=NaN,
+           which detonates the bloom mip chain into a fullscreen strobe */
+        float rim=pow(clamp(1.0-abs(dot(normalize(vN),V)),0.0,1.0),2.2);
+        float az=atan(vW.x,vW.z-(-102.0)+step(abs(vW.x)+abs(vW.z+102.0),1e-5));
         float curt=0.55+0.45*sin(az*9.0+u_time*0.35)*sin(vW.y*0.35-u_time*0.5);
         float veil=0.30+rim*1.1;
         gl_FragColor=vec4(vec3(0.55,0.9,1.0)*veil*curt,veil*curt*0.5*u_op);
