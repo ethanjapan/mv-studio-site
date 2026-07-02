@@ -224,6 +224,7 @@ const skyUniforms={
   u_dayMix:{value:0},
   u_uwMap:{value:null},
   u_uwVid:{value:0},
+  u_procAur:{value:0},   // procedural aurora reveal: held off until the real footage plays (or fails)
   ...gradeUniforms
 };
 const skyMat=new THREE.ShaderMaterial({
@@ -240,7 +241,7 @@ const skyMat=new THREE.ShaderMaterial({
   fragmentShader:`
     precision highp float;
     varying vec3 vWorldPos;
-    uniform float u_time,u_progress,u_camY,u_sunVis,u_vidMix,u_dayMix,u_uwVid;
+    uniform float u_time,u_progress,u_camY,u_sunVis,u_vidMix,u_dayMix,u_uwVid,u_procAur;
     uniform sampler2D u_uwMap;
     uniform vec3 u_top,u_bottom,u_fogColor;
     uniform vec2 u_sunScreen;
@@ -305,7 +306,7 @@ const skyMat=new THREE.ShaderMaterial({
          aurora and moon step back (avoid double aurora / two moons) */
       float pk=(1.0-u_vidMix*0.97)*(1.0-u_dayMix*0.85);
       vec3 col=sky
-        +aur*night*1.9*pk
+        +aur*night*1.9*pk*u_procAur
         +vec3(0.93,0.96,1.05)*moon*night*(1.0-u_vidMix*0.9)
         +vec3(1.05,1.00,0.92)*sun*day*(1.0-uw*0.9);
 
@@ -845,7 +846,7 @@ scene.add(snow);
    stars/particles/flare layers keep moving in front of it.
    ===================================================================== */
 const matteVideo=document.createElement('video');
-matteVideo.src='assets/bg_aurora.mp4?v=20260703f';
+matteVideo.src='assets/bg_aurora.mp4?v=20260703h';
 matteVideo.muted=true;matteVideo.loop=true;matteVideo.playsInline=true;
 matteVideo.setAttribute('playsinline','');matteVideo.preload='auto';
 let _vidKick=false;
@@ -885,7 +886,7 @@ scene.add(matte);
 /* DAY-SKY matte: photographic cumulus sky for the descent-to-impact leg
    (the last remaining procedural sky). Static photo — clouds barely move
    over an 8-second scroll. Horizon at uv.y=0.12 locks to eye height. */
-const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703f');
+const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703h');
 dayTex.minFilter=THREE.LinearFilter;
 const dayU={u_map:{value:dayTex},u_op:{value:0}};
 const dayMat=new THREE.ShaderMaterial({
@@ -914,7 +915,7 @@ scene.add(dayMatte);
    Same horizon-aligned far-plane trick as the aurora matte (its horizon at
    uv.y=0.70 sits at eye height; everything below is occluded by our water). */
 const poolVideo=document.createElement('video');
-poolVideo.src='assets/bg_pool.mp4?v=20260703f';
+poolVideo.src='assets/bg_pool.mp4?v=20260703h';
 poolVideo.muted=true;poolVideo.loop=true;poolVideo.playsInline=true;
 poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
 poolVideo.play().catch(()=>{});
@@ -946,7 +947,7 @@ const _pmDir=new THREE.Vector3();
    Two tilted panels along the dive route — the camera passes under them
    with true parallax; each fades with its chapters. */
 const uwVideo=document.createElement('video');
-uwVideo.src='assets/bg_underwater.mp4?v=20260703f';
+uwVideo.src='assets/bg_underwater.mp4?v=20260703h';
 uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
 uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
 const _kick0=kickVideo;
@@ -1559,6 +1560,7 @@ function updateBubbles(p,time){
 }
 
 let _wt=0,_wtLast=-1;
+let _everVid=false,_procT0=-1;   // procedural-aurora reveal gate (see u_procAur)
 function frame(now){
   const p=Math.min(1,Math.max(0,S.p||0));
   /* WORLD TIME with dramatic dilation: right after the plunge the world runs
@@ -1665,6 +1667,13 @@ function frame(now){
   matteU.u_op.value=vmix;
   skyUniforms.u_vidMix.value=vmix;
   waterUniforms.u_vidMix.value=vmix;
+  /* keep the procedural (CG) aurora OUT of the first paint: reveal it only once
+     the real footage has run a frame — or, if autoplay is blocked, fade it in
+     after a short grace so the night sky is never left bare (no "old CG aurora
+     flash" before the video kicks in, which is most visible on mobile) */
+  if(vready)_everVid=true;
+  if(_procT0<0)_procT0=now;
+  skyUniforms.u_procAur.value=_everVid?1:Math.min(1,Math.max(0,((now-_procT0)/1000-1.8)/1.2));
   /* underwater footage environment: on through the deep chapters, off before the
      ascent (our procedural Snell window takes the finale of the rise) */
   const rmp=(a,b)=>Math.min(1,Math.max(0,(p-a)/(b-a)));
