@@ -409,6 +409,7 @@ const waterUniforms={
   u_vidMix:{value:0},
   u_uwMap:{value:null},
   u_uwVid:{value:0},
+  u_rip:{value:new THREE.Vector4(0,105,0,0)},   // voice ripple: x,z source / w amplitude
   ...gradeUniforms
 };
 function makeWaterMat(displace){return new THREE.ShaderMaterial({
@@ -439,6 +440,7 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
     precision highp float;
     varying vec3 vWorldPos;
     uniform float u_time,u_progress,u_fogDensity,u_camY,u_vidMix,u_uwVid;
+    uniform vec4 u_rip;
     uniform sampler2D u_uwMap;
     uniform vec3 u_top,u_bottom,u_fogColor;
     ${GRADE_UNIFORMS_GLSL}
@@ -470,6 +472,15 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
       {vec2 uv=p*0.95+vec2(t*0.21,t*0.17);
        float h0=noise(uv),hx=noise(uv+vec2(e*0.95,0.0)),hz=noise(uv+vec2(0.0,e*0.95));
        slope+=w3*vec2(hx-h0,hz-h0)*(0.22/e);sigmaBoost+=(1.0-w3*w3)*0.0026;}
+      /* the VOICE makes real rings on the water: a dampened radial wavetrain
+         (industry-standard raindrop model) that bends the actual normals */
+      if(u_rip.w>0.002){
+        vec2 dvr=p-u_rip.xy;
+        float rr=length(dvr)+1e-3;
+        float phr=rr*1.15-u_time*6.5;
+        float envr=exp(-rr*0.030)*smoothstep(2.0,10.0,rr)*u_rip.w;
+        slope+=(dvr/rr)*cos(phr)*envr;
+      }
       chop=clamp(chop,0.0,1.0);
     }
     void main(){
@@ -549,6 +560,16 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         vec3 Rf=normalize(vec3(R.x,R.y*0.35+0.02,R.z));
         vec3 refC=mix(aurC(Rf.y),vec3(0.38,0.95,0.50),u_vidMix*0.55);
         col+=refC*aurI(Rf,t*0.06)*night*0.9;
+
+        /* the ripple crests carry a faint iridescent glow (the voice made light) */
+        if(u_rip.w>0.002){
+          vec2 dvr=vWorldPos.xz-u_rip.xy;
+          float rr=length(dvr)+1e-3;
+          float phr=rr*1.15-t*6.5;
+          float envr=exp(-rr*0.030)*smoothstep(2.0,10.0,rr)*u_rip.w;
+          vec3 gcol=mix(vec3(0.72,0.50,1.00),vec3(0.45,0.90,1.00),0.5+0.5*sin(rr*0.35+t*0.3));
+          col+=gcol*pow(max(cos(phr),0.0),3.0)*envr*0.7;
+        }
 
         /* atmosphere: night fog to the page colour; day aerial haze with desaturation */
         float under=clamp(-u_camY/8.0,0.0,1.0);
@@ -834,6 +855,39 @@ matte.position.set(0,58+(0.5-0.38)*1800,-1250);
 matte.renderOrder=1;
 scene.add(matte);
 
+/* POOL matte: photographic summer-pool footage behind the finale.
+   Same horizon-aligned far-plane trick as the aurora matte (its horizon at
+   uv.y=0.70 sits at eye height; everything below is occluded by our water). */
+const poolVideo=document.createElement('video');
+poolVideo.src='assets/bg_pool.mp4';
+poolVideo.muted=true;poolVideo.loop=true;poolVideo.playsInline=true;
+poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
+poolVideo.play().catch(()=>{});
+const poolTex=new THREE.VideoTexture(poolVideo);
+poolTex.minFilter=THREE.LinearFilter;
+const poolU={u_map:{value:poolTex},u_op:{value:0}};
+const poolMat=new THREE.ShaderMaterial({
+  transparent:true,depthWrite:false,
+  uniforms:poolU,
+  vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+  fragmentShader:`
+    precision highp float;
+    varying vec2 vUv;
+    uniform sampler2D u_map;
+    uniform float u_op;
+    void main(){
+      vec3 col=texture2D(u_map,vUv).rgb;
+      ${HDR?'col=pow(col,vec3(2.2));':''}
+      float bottom=smoothstep(0.635,0.705,vUv.y);
+      float top=smoothstep(0.0,0.12,1.0-vUv.y);
+      float sides=smoothstep(0.0,0.10,vUv.x)*smoothstep(0.0,0.10,1.0-vUv.x);
+      gl_FragColor=vec4(col,bottom*top*sides*u_op);
+    }`});
+const poolMatte=new THREE.Mesh(new THREE.PlaneGeometry(3200,1800),poolMat);
+poolMatte.position.set(0,8+(0.5-0.70)*1800,-1500);
+poolMatte.renderOrder=1;
+scene.add(poolMatte);
+
 /* UNDERWATER matte: real god-ray footage as staged theatre backdrops.
    Two tilted panels along the dive route — the camera passes under them
    with true parallax; each fades with its chapters. */
@@ -842,7 +896,7 @@ uwVideo.src='assets/bg_underwater.mp4';
 uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
 uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
 const _kick0=kickVideo;
-function kickAll(){_kick0();uwVideo.play().catch(()=>{});}
+function kickAll(){_kick0();uwVideo.play().catch(()=>{});poolVideo.play().catch(()=>{});}
 window.addEventListener('pointerdown',kickAll,{once:true});
 window.addEventListener('scroll',kickAll,{once:true,passive:true});
 uwVideo.play().catch(()=>{});
@@ -942,23 +996,116 @@ function pieceOp(p,p0,p1){
   return Math.min(inw,outw);
 }
 
-/* ch01 — fragments of unspoken ideas: luminous streaks sliding past the descent */
-const streaks=(()=>{
-  const N=MOBILE?70:150;
-  const pos=new Float32Array(N*6),col=new Float32Array(N*6);
+/* ch01 — fragments of unspoken ideas: bokeh light-dust + rising light trails
+   (plain 1px lines read as cheap against photographic backdrops) */
+const ideaMotes=(()=>{
+  const N=MOBILE?60:110;
+  const g=new THREE.BufferGeometry();
+  const pos=new Float32Array(N*3),sz=new Float32Array(N),ph=new Float32Array(N),cl=new Float32Array(N*3);
+  const PAL=[[0.72,0.50,1.00],[0.45,0.90,1.00],[1.00,0.62,0.88],[0.92,0.95,1.00]];
   for(let i=0;i<N;i++){
-    const x=(Math.random()*2-1)*46,y=14+Math.random()*52,z=150+Math.random()*130;
-    const L=2.2+Math.random()*4.5;
-    pos.set([x,y,z,x,y+L,z],i*6);
-    const c=Math.random()<0.5?[0.72,0.55,1.0]:[0.55,0.9,1.0];
-    col.set([...c,...c],i*6);
+    pos[i*3]=(Math.random()*2-1)*48;
+    pos[i*3+1]=12+Math.random()*56;
+    pos[i*3+2]=150+Math.random()*130;
+    sz[i]=2.2+Math.random()*7.5;
+    ph[i]=Math.random()*7;
+    cl.set(PAL[(Math.random()*PAL.length)|0],i*3);
+  }
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.setAttribute('aSize',new THREE.BufferAttribute(sz,1));
+  g.setAttribute('aPhase',new THREE.BufferAttribute(ph,1));
+  g.setAttribute('aCol',new THREE.BufferAttribute(cl,3));
+  const u={u_time:{value:0},u_op:{value:0}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    uniforms:u,
+    vertexShader:`
+      attribute float aSize,aPhase;
+      attribute vec3 aCol;
+      varying float vPh,vB;varying vec3 vC;
+      uniform float u_time;
+      void main(){
+        vPh=aPhase;vC=aCol;
+        vec3 p=position;
+        p.y+=u_time*0.55+sin(u_time*0.23+aPhase*4.1)*1.6;
+        p.y=12.0+mod(p.y-12.0,56.0);                      // wrap inside the band
+        p.x+=sin(u_time*0.17+aPhase*6.3)*2.2;
+        vec4 mv=modelViewMatrix*vec4(p,1.0);
+        float dist=max(1.0,-mv.z);
+        gl_PointSize=min(aSize*(300.0/dist),30.0);
+        vB=clamp(aSize/9.7,0.25,1.0);                     // big motes = soft bokeh
+        gl_Position=projectionMatrix*mv;
+      }`,
+    fragmentShader:`
+      precision highp float;
+      varying float vPh,vB;varying vec3 vC;
+      uniform float u_time,u_op;
+      void main(){
+        vec2 q=gl_PointCoord*2.0-1.0;
+        float r=length(q);
+        if(r>1.0)discard;
+        float core=exp(-r*r*mix(9.0,3.5,vB));             // soft disc
+        float ring=(smoothstep(0.9,0.72,r)-smoothstep(0.62,0.40,r))*0.35*vB;  // bokeh edge
+        float tw=0.6+0.4*sin(u_time*1.3+vPh*8.0);
+        vec3 col=vC*(core+ring)*1.45*tw;
+        gl_FragColor=vec4(col,(core+ring)*0.85*tw*u_op);
+      }`});
+  const pts=new THREE.Points(g,m);
+  pts.frustumCulled=false;
+  pts.userData={u};
+  return piece(pts,0.05,0.27,null);
+})();
+const ideaTrails=(()=>{
+  const N=MOBILE?12:22;
+  const pos=new Float32Array(N*12),uvA=new Float32Array(N*8),cl=new Float32Array(N*12),phA=new Float32Array(N*4);
+  const idx=[];
+  const PAL=[[0.72,0.50,1.00],[0.45,0.90,1.00],[1.00,0.60,0.85]];
+  for(let i=0;i<N;i++){
+    const x=(Math.random()*2-1)*46,y=14+Math.random()*50,z=150+Math.random()*125;
+    const h=3.5+Math.random()*5.5,w=0.16+Math.random()*0.24;
+    const c=PAL[(Math.random()*PAL.length)|0],ph=Math.random()*7;
+    // 4 verts: bottom-left/right (tail), top-left/right (head)
+    pos.set([x-w,y,z, x+w,y,z, x-w,y+h,z, x+w,y+h,z],i*12);
+    uvA.set([0,1, 1,1, 0,0, 1,0],i*8);                   // uv.y=0 at the HEAD (top)
+    cl.set([...c,...c,...c,...c],i*12);
+    phA.set([ph,ph,ph,ph],i*4);
+    const b=i*4;idx.push(b,b+1,b+2, b+2,b+1,b+3);
   }
   const g=new THREE.BufferGeometry();
   g.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  g.setAttribute('color',new THREE.BufferAttribute(col,3));
-  const m=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0,
-    blending:THREE.AdditiveBlending,depthWrite:false});
-  return piece(new THREE.LineSegments(g,m),0.05,0.27,m);
+  g.setAttribute('aUv',new THREE.BufferAttribute(uvA,2));
+  g.setAttribute('aCol',new THREE.BufferAttribute(cl,3));
+  g.setAttribute('aPh',new THREE.BufferAttribute(phA,1));
+  g.setIndex(idx);
+  const u={u_time:{value:0},u_op:{value:0}};
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide,
+    uniforms:u,
+    vertexShader:`
+      attribute vec2 aUv;attribute vec3 aCol;attribute float aPh;
+      varying vec2 vUv;varying vec3 vC;
+      uniform float u_time;
+      void main(){
+        vUv=aUv;vC=aCol;
+        vec3 p=position;
+        p.y+=u_time*0.9+sin(u_time*0.21+aPh*5.0)*1.2;
+        p.y=14.0+mod(p.y-14.0,52.0);
+        p.x+=sin(u_time*0.15+aPh*7.1)*1.8;
+        gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0);
+      }`,
+    fragmentShader:`
+      precision highp float;
+      varying vec2 vUv;varying vec3 vC;
+      uniform float u_op;
+      void main(){
+        float edge=pow(1.0-abs(vUv.x*2.0-1.0),1.8);       // soft sides
+        float tail=pow(1.0-vUv.y,1.35);                    // melts toward the tail
+        float head=pow(1.0-vUv.y,3.0);
+        vec3 col=vC*(0.7+1.8*head);                        // bright head blooms
+        gl_FragColor=vec4(col,edge*tail*0.9*u_op);
+      }`});
+  const mesh=new THREE.Mesh(g,m);
+  mesh.frustumCulled=false;
+  mesh.userData={u};
+  return piece(mesh,0.05,0.27,null);
 })();
 
 /* descent — thin cloud wisps whipping past the lens (Hollywood speed cue) */
@@ -1018,9 +1165,6 @@ function makeSonar(cA,cB,size){
   mesh.material._u=u;
   return mesh;
 }
-const sonarA=makeSonar([0.72,0.5,1.0],[0.45,0.9,1.0],150);
-sonarA.position.set(0,25,105);
-piece(sonarA,0.255,0.375,null);
 const sonarB=makeSonar([0.35,0.95,0.85],[1.0,0.5,0.85],64);
 sonarB.position.set(0,-25,-128);
 piece(sonarB,0.69,0.785,null);
@@ -1210,15 +1354,19 @@ const motes=(()=>{
 
 function updateSetPieces(p,time){
   /* fades */
-  streaks.material.opacity=pieceOp(p,0.05,0.27)*0.75;
+  const ideaOp=pieceOp(p,0.05,0.27);
+  ideaMotes.userData.u.u_time.value=time;
+  ideaMotes.userData.u.u_op.value=ideaOp;
+  ideaTrails.userData.u.u_time.value=time;
+  ideaTrails.userData.u.u_op.value=ideaOp;
   wisps.userData.u.u_time.value=time;
   wisps.userData.u.u_op.value=pieceOp(p,0.30,0.505);
   wisps.children.forEach(w=>w.lookAt(camera.position));
-  for(const s of [sonarA,sonarB]){
-    s.material._u.u_time.value=time;
-    s.material._u.u_op.value=pieceOp(p,s===sonarA?0.255:0.69,s===sonarA?0.375:0.785);
-    s.lookAt(camera.position);
-  }
+  sonarB.material._u.u_time.value=time;
+  sonarB.material._u.u_op.value=pieceOp(p,0.69,0.785);
+  sonarB.lookAt(camera.position);
+  /* the voice ripple lives IN the water shader */
+  waterUniforms.u_rip.value.w=pieceOp(p,0.245,0.395);
   for(const o of orbs){
     o.userData.u.u_time.value=time+o.userData.ph;
     o.userData.u.u_op.value=pieceOp(p,0.565,0.705);
@@ -1395,7 +1543,7 @@ function frame(now){
   gradeUniforms.uRes.value.set(renderer.domElement.width,renderer.domElement.height);
 
   /* matte painting footage: full through the night, dissolves before dawn */
-  const vready=matteVideo.readyState>=2?1:0;
+  const vready=(matteVideo.readyState>=2&&(!matteVideo.paused||matteVideo.currentTime>0.05))?1:0;
   const vmix=vready*(1-Math.min(1,Math.max(0,(p-0.30)/0.12)));
   matteU.u_op.value=vmix;
   skyUniforms.u_vidMix.value=vmix;
@@ -1403,10 +1551,12 @@ function frame(now){
   /* underwater footage environment: on through the deep chapters, off before the
      ascent (our procedural Snell window takes the finale of the rise) */
   const rmp=(a,b)=>Math.min(1,Math.max(0,(p-a)/(b-a)));
-  const uwready=uwVideo.readyState>=2?1:0;
+  const uwready=(uwVideo.readyState>=2&&(!uwVideo.paused||uwVideo.currentTime>0.05))?1:0;
   const uwv=uwready*rmp(0.545,0.60)*(1-rmp(0.90,0.94));
   skyUniforms.u_uwVid.value=uwv;
   waterUniforms.u_uwVid.value=uwv;
+  const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
+  poolU.u_op.value=poolReady*rmp(0.952,0.985);
 
   /* lens-pass extras: sun screen position for the ghosts */
   if(finalPass){
