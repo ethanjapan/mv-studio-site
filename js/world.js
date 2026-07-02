@@ -117,7 +117,7 @@ vec3 uwEnv(vec3 dirv,vec3 Lv,vec3 base,sampler2D mp,float mixv){
   float azV=atan(dirv.x,dirv.z);
   float azS=atan(Lv.x,Lv.z);
   float dAz=mod(azV-azS+3.14159265,6.2831853)-3.14159265;
-  vec2 vuv=vec2(0.5+dAz*0.36,0.40+dirv.y*0.80);
+  vec2 vuv=vec2(0.5+dAz*0.24,0.40+dirv.y*0.80);
   vec2 db=abs(vuv-vec2(0.5));
   float m=(1.0-smoothstep(0.30,0.5,db.x))*(1.0-smoothstep(0.30,0.5,db.y));
   vec3 vcol=texture2D(mp,clamp(vuv,vec2(0.001),vec2(0.999))).rgb;
@@ -331,6 +331,7 @@ const skyMat=new THREE.ShaderMaterial({
       uwCol*=0.92+0.16*fbm2(dir.xz/(0.3+abs(dir.y))*4.5-vec2(u_time*0.010,0.0));
       /* diagonal light shafts from the sun azimuth (visible even with the sun off-screen) */
       uwCol+=(vec3(1.0,0.97,0.9)*day+vec3(0.5,0.75,1.0)*night)*shaftI(dir,L,u_time)*0.30
+            *(1.0-u_uwVid*0.78)
             *exp(-vec3(0.10,0.020,0.007)*max(0.0,-u_camY)*0.6);
       /* real god-ray footage projected around the sun's direction */
       uwCol=uwEnv(dir,L,uwCol,u_uwMap,u_uwVid);
@@ -633,6 +634,7 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
            MUST fade to zero at grazing or they re-draw the horizon join line */
         col+=(vec3(1.0,0.97,0.9)*day+vec3(0.5,0.75,1.0)*night)
             *shaftI(Dn,L,u_time)*0.35*clamp(1.0-T.g,0.15,1.0)
+            *(1.0-u_uwVid*0.78)
             *smoothstep(0.02,0.16,Dn.y)
             *exp(-vec3(0.10,0.020,0.007)*max(0.0,-u_camY)*0.6);
       }
