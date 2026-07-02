@@ -28,7 +28,11 @@ const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const HDR=!MOBILE;   // desktop: full HDR pipeline (bloom + lens pass); mobile: in-shader finish
 
 const renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:false,powerPreference:'high-performance'});
-const _budgetPR=Math.min(window.devicePixelRatio,MOBILE?1:1.5,1920/Math.max(640,window.innerWidth||1280));
+/* render at the display's native density (industry standard: cap DPR at 2) so
+   Retina / 1440p screens look crisp — the old 1920px buffer cap dropped wide
+   displays to ~0.75-1.1x and softened the whole scene, aurora included.
+   A generous 3200px buffer ceiling still protects 5K/ultrawide GPUs. */
+const _budgetPR=Math.min(window.devicePixelRatio,MOBILE?1:2,3200/Math.max(640,window.innerWidth||1280));
 renderer.setPixelRatio(_budgetPR);
 /* HDR path: materials output LINEAR, the final pass does tonemap+sRGB+dither.
    Mobile path: materials finish themselves via the tonemapping chunks. */
@@ -841,7 +845,7 @@ scene.add(snow);
    stars/particles/flare layers keep moving in front of it.
    ===================================================================== */
 const matteVideo=document.createElement('video');
-matteVideo.src='assets/bg_aurora.mp4?v=20260703e';
+matteVideo.src='assets/bg_aurora.mp4?v=20260703f';
 matteVideo.muted=true;matteVideo.loop=true;matteVideo.playsInline=true;
 matteVideo.setAttribute('playsinline','');matteVideo.preload='auto';
 let _vidKick=false;
@@ -881,7 +885,7 @@ scene.add(matte);
 /* DAY-SKY matte: photographic cumulus sky for the descent-to-impact leg
    (the last remaining procedural sky). Static photo — clouds barely move
    over an 8-second scroll. Horizon at uv.y=0.12 locks to eye height. */
-const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703e');
+const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703f');
 dayTex.minFilter=THREE.LinearFilter;
 const dayU={u_map:{value:dayTex},u_op:{value:0}};
 const dayMat=new THREE.ShaderMaterial({
@@ -910,7 +914,7 @@ scene.add(dayMatte);
    Same horizon-aligned far-plane trick as the aurora matte (its horizon at
    uv.y=0.70 sits at eye height; everything below is occluded by our water). */
 const poolVideo=document.createElement('video');
-poolVideo.src='assets/bg_pool.mp4?v=20260703e';
+poolVideo.src='assets/bg_pool.mp4?v=20260703f';
 poolVideo.muted=true;poolVideo.loop=true;poolVideo.playsInline=true;
 poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
 poolVideo.play().catch(()=>{});
@@ -942,7 +946,7 @@ const _pmDir=new THREE.Vector3();
    Two tilted panels along the dive route — the camera passes under them
    with true parallax; each fades with its chapters. */
 const uwVideo=document.createElement('video');
-uwVideo.src='assets/bg_underwater.mp4?v=20260703e';
+uwVideo.src='assets/bg_underwater.mp4?v=20260703f';
 uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
 uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
 const _kick0=kickVideo;
