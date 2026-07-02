@@ -195,6 +195,7 @@ const skyUniforms={
   u_fogColor:{value:new THREE.Vector3(0.02,0.03,0.06)},
   u_sunScreen:{value:new THREE.Vector2(0.5,0.7)},
   u_sunVis:{value:0},
+  u_vidMix:{value:0},
   ...gradeUniforms
 };
 const skyMat=new THREE.ShaderMaterial({
@@ -211,7 +212,7 @@ const skyMat=new THREE.ShaderMaterial({
   fragmentShader:`
     precision highp float;
     varying vec3 vWorldPos;
-    uniform float u_time,u_progress,u_camY,u_sunVis;
+    uniform float u_time,u_progress,u_camY,u_sunVis,u_vidMix;
     uniform vec3 u_top,u_bottom,u_fogColor;
     uniform vec2 u_sunScreen;
     ${GRADE_UNIFORMS_GLSL}
@@ -255,9 +256,10 @@ const skyMat=new THREE.ShaderMaterial({
         sky=mix(sky,ccol,d*0.85*day*smoothstep(0.035,0.13,dir.y));
       }
 
-      /* aurora curtains over the dark sky */
+      /* aurora curtains over the dark sky; while the matte footage is on,
+         our curtains lean toward its green palette so the two worlds fuse */
       float inten=aurI(dir,t);
-      vec3 aur=aurC(dir.y)*inten;
+      vec3 aur=mix(aurC(dir.y),vec3(0.35,0.95,0.55),u_vidMix*0.45)*inten;
 
       /* moon: tight disc + k/d halo */
       vec3 moonDir=normalize(vec3(0.42,0.40,-0.60));
@@ -269,9 +271,12 @@ const skyMat=new THREE.ShaderMaterial({
       float sang=acos(clamp(dot(dir,sunDir),-1.0,1.0));
       float sun=smoothstep(0.013,0.009,sang)*8.0+0.0011/max(sang,0.0011)+pow(max(0.0,1.0-sang*1.8),7.0)*0.30;
 
+      /* when the matte-painting footage covers the frontal sky, the procedural
+         aurora and moon step back (avoid double aurora / two moons) */
+      float pk=1.0-u_vidMix*0.85;
       vec3 col=sky
-        +aur*night*1.9
-        +vec3(0.93,0.96,1.05)*moon*night
+        +aur*night*1.9*pk
+        +vec3(0.93,0.96,1.05)*moon*night*(1.0-u_vidMix*0.9)
         +vec3(1.05,1.00,0.92)*sun*day*(1.0-uw*0.9);
 
       /* ---------- underwater: luminous ceiling above, teal depths below ---------- */
@@ -377,6 +382,7 @@ const waterUniforms={
   u_fogColor:{value:new THREE.Vector3(0.02,0.03,0.06)},
   u_fogDensity:{value:0.0016},
   u_camY:{value:70},
+  u_vidMix:{value:0},
   ...gradeUniforms
 };
 function makeWaterMat(displace){return new THREE.ShaderMaterial({
@@ -406,7 +412,7 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
   fragmentShader:`
     precision highp float;
     varying vec3 vWorldPos;
-    uniform float u_time,u_progress,u_fogDensity,u_camY;
+    uniform float u_time,u_progress,u_fogDensity,u_camY,u_vidMix;
     uniform vec3 u_top,u_bottom,u_fogColor;
     ${GRADE_UNIFORMS_GLSL}
     ${COMMON_GLSL}
@@ -510,9 +516,11 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         col=mix(body,skyRef,F*(1.0-foam))+lightCol*glint*(1.0-foam);
         col=mix(col,vec3(0.92)*(0.55+0.45*max(dot(N,L),0.0)),foam*0.85);
 
-        /* the aurora MIRRORS in the waves (flattened R pulls curtains into view) */
+        /* the aurora MIRRORS in the waves (flattened R pulls curtains into view);
+           its hue follows the matte footage's green when that is on screen */
         vec3 Rf=normalize(vec3(R.x,R.y*0.35+0.02,R.z));
-        col+=aurC(Rf.y)*aurI(Rf,t*0.06)*night*0.9;
+        vec3 refC=mix(aurC(Rf.y),vec3(0.38,0.95,0.50),u_vidMix*0.55);
+        col+=refC*aurI(Rf,t*0.06)*night*0.9;
 
         /* atmosphere: night fog to the page colour; day aerial haze with desaturation */
         float under=clamp(-u_camY/8.0,0.0,1.0);
@@ -750,6 +758,50 @@ const snowMat=new THREE.ShaderMaterial({
 const snow=new THREE.Points(snowGeo,snowMat);
 snow.frustumCulled=false;
 scene.add(snow);
+
+/* =====================================================================
+   MATTE PAINTING — real generated footage as the night-sky backdrop.
+   The classic Hollywood trick, in WebGL: photographic aurora video plays
+   far behind the scene; the real-time water occludes its lower half, our
+   stars/particles/flare layers keep moving in front of it.
+   ===================================================================== */
+const matteVideo=document.createElement('video');
+matteVideo.src='assets/bg_aurora.mp4';
+matteVideo.muted=true;matteVideo.loop=true;matteVideo.playsInline=true;
+matteVideo.setAttribute('playsinline','');matteVideo.preload='auto';
+let _vidKick=false;
+function kickVideo(){if(!_vidKick)matteVideo.play().then(()=>{_vidKick=true;}).catch(()=>{});}
+kickVideo();
+window.addEventListener('pointerdown',kickVideo,{once:true});
+window.addEventListener('scroll',kickVideo,{once:true,passive:true});
+const matteTex=new THREE.VideoTexture(matteVideo);
+matteTex.minFilter=THREE.LinearFilter;
+const matteU={u_map:{value:matteTex},u_op:{value:0}};
+const matteMat=new THREE.ShaderMaterial({
+  transparent:true,depthWrite:false,
+  uniforms:matteU,
+  vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+  fragmentShader:`
+    precision highp float;
+    varying vec2 vUv;
+    uniform sampler2D u_map;
+    uniform float u_op;
+    void main(){
+      vec3 col=texture2D(u_map,vUv).rgb;
+      ${HDR?'col=pow(col,vec3(2.2));':''}   // HDR path is linear; mobile stays display-space
+      /* the footage's own sea band (below its horizon at uv.y~0.38) is masked out —
+         the real-time water takes over exactly at the shared horizon line */
+      float bottom=smoothstep(0.315,0.415,vUv.y);
+      float top=smoothstep(0.0,0.12,1.0-vUv.y);
+      float sides=smoothstep(0.0,0.10,vUv.x)*smoothstep(0.0,0.10,1.0-vUv.x);
+      gl_FragColor=vec4(col,bottom*top*sides*u_op);
+    }`});
+/* horizon alignment: the video horizon (uv.y=0.38) must sit at the camera's eye
+   height so it fuses with the real water horizon -> centerY = eye + (0.5-0.38)*H */
+const matte=new THREE.Mesh(new THREE.PlaneGeometry(3200,1800),matteMat);
+matte.position.set(0,58+(0.5-0.38)*1800,-1250);
+matte.renderOrder=1;
+scene.add(matte);
 
 /* =====================================================================
    HDR PIPELINE (desktop): render -> real bloom -> lens pass
@@ -1294,6 +1346,13 @@ function frame(now){
   applyGrade(p,camera.position.y);
   gradeUniforms.uRes.value.set(renderer.domElement.width,renderer.domElement.height);
 
+  /* matte painting footage: full through the night, dissolves before dawn */
+  const vready=matteVideo.readyState>=2?1:0;
+  const vmix=vready*(1-Math.min(1,Math.max(0,(p-0.30)/0.12)));
+  matteU.u_op.value=vmix;
+  skyUniforms.u_vidMix.value=vmix;
+  waterUniforms.u_vidMix.value=vmix;
+
   /* lens-pass extras: sun screen position for the ghosts */
   if(finalPass){
     /* anamorphic flare: moon at night, sun at day, EXPLODES at the impact flash
@@ -1339,4 +1398,4 @@ resize();
 requestAnimationFrame(loop);
 
 /* debug hooks: renderAt(p) draws one frame at a given progress (preview verification) */
-window.__world={scene,camera,renderer,composer,sampleKeys,renderAt:(p)=>{S.p=p;frame(performance.now());}};
+window.__world={scene,camera,renderer,composer,matteVideo,sampleKeys,renderAt:(p)=>{S.p=p;frame(performance.now());}};
