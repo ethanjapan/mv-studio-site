@@ -13,150 +13,11 @@
   }
 })();
 
-/* ===== aurora shader ===== */
-const canvas=document.getElementById('aurora');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:false,powerPreference:'low-power'});
-// cap resolution hard for performance (mobile 1.0, desktop 1.5) — the aurora is soft so this is invisible
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth<900?1:1.5));
-const scene=new THREE.Scene();
-const camera=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+/* ===== 3D world bridge (the scene itself lives in js/world.js, an ES module) =====
+   main.js keeps the scroll/colour engine and hands progress + sky colours to the
+   world through this shared state object, read once per rendered frame. */
+window.__worldState={p:0,top:[0.016,0.020,0.039],bottom:[0.027,0.035,0.078]};
 
-const uniforms={
-  u_time:{value:0},
-  u_res:{value:new THREE.Vector2()},
-  u_progress:{value:0},
-  u_skyTop:{value:new THREE.Vector3(0.016,0.020,0.039)},
-  u_skyBottom:{value:new THREE.Vector3(0.027,0.035,0.078)}
-};
-
-const frag=`
-precision highp float;
-uniform float u_time;
-uniform vec2 u_res;
-uniform float u_progress;
-uniform vec3 u_skyTop;
-uniform vec3 u_skyBottom;
-
-// --- noise ---
-vec2 hash(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return -1.0+2.0*fract(sin(p)*43758.5453123);}
-float noise(vec2 p){
-  const float K1=0.366025404,K2=0.211324865;
-  vec2 i=floor(p+(p.x+p.y)*K1);
-  vec2 a=p-i+(i.x+i.y)*K2;
-  float m=step(a.y,a.x);
-  vec2 o=vec2(m,1.0-m);
-  vec2 b=a-o+K2; vec2 c=a-1.0+2.0*K2;
-  vec3 h=max(0.5-vec3(dot(a,a),dot(b,b),dot(c,c)),0.0);
-  vec3 n=h*h*h*h*vec3(dot(a,hash(i)),dot(b,hash(i+o)),dot(c,hash(i+1.0)));
-  return dot(n,vec3(70.0));
-}
-float fbm(vec2 p){
-  float v=0.0,a=0.5;
-  for(int i=0;i<4;i++){v+=a*noise(p);p*=2.0;a*=0.5;}
-  return v;
-}
-float fbm3(vec2 p){
-  float v=0.0,a=0.5;
-  for(int i=0;i<3;i++){v+=a*noise(p);p*=2.0;a*=0.5;}
-  return v;
-}
-
-// iridescent aurora ramp: indigo -> violet -> magenta -> pink -> cyan -> teal
-vec3 auroraRamp(float p){
-  p=fract(p);
-  vec3 indigo =vec3(0.12,0.07,0.34);
-  vec3 violet =vec3(0.46,0.22,0.98);
-  vec3 magenta=vec3(0.86,0.30,1.00);
-  vec3 pink   =vec3(1.00,0.47,0.82);
-  vec3 cyan   =vec3(0.30,0.86,1.00);
-  vec3 teal   =vec3(0.42,1.00,0.90);
-  float s=p*6.0;
-  vec3 c=indigo;
-  c=mix(c,violet ,smoothstep(0.0,1.0,clamp(s-0.0,0.0,1.0)));
-  c=mix(c,magenta,smoothstep(0.0,1.0,clamp(s-1.0,0.0,1.0)));
-  c=mix(c,pink   ,smoothstep(0.0,1.0,clamp(s-2.0,0.0,1.0)));
-  c=mix(c,cyan   ,smoothstep(0.0,1.0,clamp(s-3.0,0.0,1.0)));
-  c=mix(c,teal   ,smoothstep(0.0,1.0,clamp(s-4.0,0.0,1.0)));
-  c=mix(c,indigo ,smoothstep(0.0,1.0,clamp(s-5.0,0.0,1.0)));
-  return c;
-}
-
-void main(){
-  vec2 uv=gl_FragCoord.xy/u_res.xy;
-  vec2 p=uv;
-  p.x*=u_res.x/u_res.y;
-  float t=u_time*0.06;
-
-  // domain-warp for flowing ribbons
-  vec2 q=vec2(fbm(p*1.6+vec2(0.0,t)),fbm(p*1.6+vec2(5.2,-t*0.8)));
-  vec2 r=vec2(fbm(p*1.8+q*1.4+vec2(1.7,9.2)+t*0.5),fbm(p*1.8+q*1.4+vec2(8.3,2.8)-t*0.4));
-  float f=fbm(p*1.4+r*1.6);
-
-  // two stacked aurora bands, kept off-centre so the middle stays darker for text
-  float band1=smoothstep(0.0,1.0,1.0-abs(uv.y-0.64)*1.7);
-  float band2=smoothstep(0.0,1.0,1.0-abs(uv.y-0.24)*2.4)*0.55;
-  float band=max(band1,band2);
-  float a=clamp(f*0.9+r.x*0.5,0.0,1.0);
-
-  // hue varies across the screen (uv.x) + flow + slow drift => multi-colour iridescence
-  float phase=uv.x*0.62 + f*0.55 + r.y*0.35 + t*0.35;
-  vec3 col=auroraRamp(phase);
-  col*=0.5+0.8*a;             // peaks glow, troughs stay deep
-  col+=auroraRamp(phase+0.20)*pow(a,2.0)*0.18;  // iridescent shimmer at peaks
-
-  // ---- AURORA (night) presence ----
-  float lum=clamp(a*band*1.12,0.0,1.0);
-  float cover=smoothstep(0.05,0.62,lum);
-  vec3 auroraCol=col;
-
-  // ---- SUMMER-POOL CAUSTICS (the rippling reflections of sunlit water) ----
-  float tc=u_time*0.13;
-  vec2 cp=vec2(uv.x*(u_res.x/u_res.y),uv.y)*3.4;
-  vec2 cw=cp+0.75*vec2(fbm3(cp*0.9+vec2(0.0,tc)),fbm3(cp*0.9+vec2(4.3,-tc*0.8)));
-  float ca=fbm3(cw*1.3+tc*0.5);
-  float cb=fbm3(cw*2.6-tc*0.6);
-  float caust=clamp(pow(1.0-abs(ca*2.0-1.0),7.0)*0.9 + pow(1.0-abs(cb*2.0-1.0),9.0)*0.6, 0.0, 1.0);
-  vec3 caustCol=mix(vec3(0.46,0.93,0.96), vec3(1.0,1.0,0.97), caust); // aqua -> white sparkle
-  float calm=1.0-0.45*smoothstep(0.86,1.0,u_progress);   // settle to still water at the close
-
-  // ---- crossfade: ribbons of night -> reflections of a summer pool ----
-  float cm=smoothstep(0.40,0.60,u_progress);
-  vec3 outCol=mix(auroraCol, caustCol, cm);
-  float outA=mix(cover*(1.0-u_progress*0.45), caust*calm, cm);
-
-  // THE TEAR: a white corona flares once at the impact (~0.515)
-  float flare=smoothstep(0.40,0.515,u_progress)*(1.0-smoothstep(0.515,0.66,u_progress));
-  outCol=mix(outCol, vec3(1.0), clamp(flare*max(pow(a,0.9),caust)*1.15,0.0,1.0));
-  outA=max(outA, max(cover,caust)*flare);
-
-  // composite the aurora/caustics over the sky gradient INSIDE the shader (opaque output:
-  // device-independent — no reliance on canvas alpha-compositing, which iOS Safari mishandles)
-  vec3 skyBase=mix(u_skyBottom,u_skyTop,uv.y);
-  vec3 finalCol=mix(skyBase, outCol, clamp(outA,0.0,1.0));
-  gl_FragColor=vec4(finalCol, 1.0);
-}
-`;
-const vert=`void main(){gl_Position=vec4(position.xy,0.0,1.0);}`;
-
-const mat=new THREE.ShaderMaterial({uniforms,vertexShader:vert,fragmentShader:frag});
-scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
-
-function resize(){
-  const w=window.innerWidth,h=window.innerHeight;
-  renderer.setSize(w,h,false);
-  uniforms.u_res.value.set(w*renderer.getPixelRatio(),h*renderer.getPixelRatio());
-}
-window.addEventListener('resize',resize);resize();
-
-let _last=0;
-function loop(now){
-  requestAnimationFrame(loop);
-  if(document.hidden||now-_last<24)return;   // ~40fps cap + pause when tab hidden
-  _last=now;
-  uniforms.u_time.value=now*0.001;
-  renderer.render(scene,camera);
-}
-requestAnimationFrame(loop);
 
 /* ===== scroll engine: deepest night -> bright morning sky ===== */
 const sky=document.getElementById('sky');
@@ -200,8 +61,8 @@ function applyProgress(p){
   const top=mix3(hx(sg[0].t),hx(sg[1].t),sg[2]);
   const bot=mix3(hx(sg[0].b),hx(sg[1].b),sg[2]);
   sky.style.background=`linear-gradient(180deg,rgb(${top.join(',')}),rgb(${bot.join(',')}))`;
-  uniforms.u_skyTop.value.set(top[0]/255,top[1]/255,top[2]/255);
-  uniforms.u_skyBottom.value.set(bot[0]/255,bot[1]/255,bot[2]/255);
+  window.__worldState.top=[top[0]/255,top[1]/255,top[2]/255];
+  window.__worldState.bottom=[bot[0]/255,bot[1]/255,bot[2]/255];
   // --- text colour (smooth single flip) ---
   const tg=seg(TEXT,p),ts=tg[0],te=tg[1],tt=tg[2];
   const ink=mix3(ts.ink,te.ink,tt);
@@ -219,9 +80,8 @@ function applyProgress(p){
   // --- overlays fade as the sky brightens ---
   scrimEl.style.opacity=Math.max(0,1-p/0.30).toFixed(3);
   vigEl.style.opacity=Math.max(0,1-p/0.46).toFixed(3);
-  // --- aurora ribbons become pool caustics; keep the canvas fully visible for the reflections ---
-  uniforms.u_progress.value=p;
-  canvas.style.opacity='1';
+  // --- hand progress to the 3D world (camera position along the dive) ---
+  window.__worldState.p=p;
 }
 
 /* ===== colour progress is ANCHORED TO SECTIONS (robust to tall reels / pins) ===== */
