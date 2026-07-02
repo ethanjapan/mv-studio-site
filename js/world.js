@@ -841,7 +841,7 @@ scene.add(snow);
    stars/particles/flare layers keep moving in front of it.
    ===================================================================== */
 const matteVideo=document.createElement('video');
-matteVideo.src='assets/bg_aurora.mp4?v=20260703b';
+matteVideo.src='assets/bg_aurora.mp4?v=20260703d';
 matteVideo.muted=true;matteVideo.loop=true;matteVideo.playsInline=true;
 matteVideo.setAttribute('playsinline','');matteVideo.preload='auto';
 let _vidKick=false;
@@ -881,7 +881,7 @@ scene.add(matte);
 /* DAY-SKY matte: photographic cumulus sky for the descent-to-impact leg
    (the last remaining procedural sky). Static photo — clouds barely move
    over an 8-second scroll. Horizon at uv.y=0.12 locks to eye height. */
-const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703b');
+const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703d');
 dayTex.minFilter=THREE.LinearFilter;
 const dayU={u_map:{value:dayTex},u_op:{value:0}};
 const dayMat=new THREE.ShaderMaterial({
@@ -910,7 +910,7 @@ scene.add(dayMatte);
    Same horizon-aligned far-plane trick as the aurora matte (its horizon at
    uv.y=0.70 sits at eye height; everything below is occluded by our water). */
 const poolVideo=document.createElement('video');
-poolVideo.src='assets/bg_pool.mp4?v=20260703b';
+poolVideo.src='assets/bg_pool.mp4?v=20260703d';
 poolVideo.muted=true;poolVideo.loop=true;poolVideo.playsInline=true;
 poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
 poolVideo.play().catch(()=>{});
@@ -942,7 +942,7 @@ const _pmDir=new THREE.Vector3();
    Two tilted panels along the dive route — the camera passes under them
    with true parallax; each fades with its chapters. */
 const uwVideo=document.createElement('video');
-uwVideo.src='assets/bg_underwater.mp4?v=20260703b';
+uwVideo.src='assets/bg_underwater.mp4?v=20260703d';
 uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
 uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
 const _kick0=kickVideo;
@@ -963,7 +963,7 @@ let composer=null,finalPass=null,bloomPass=null;
 if(HDR){
   composer=new EffectComposer(renderer);            // HalfFloat HDR buffers by default
   composer.addPass(new RenderPass(scene,camera));
-  bloomPass=new UnrealBloomPass(new THREE.Vector2(1,1),0.22,0.55,1.22);
+  bloomPass=new UnrealBloomPass(new THREE.Vector2(1,1),0.30,0.55,1.15);
   composer.addPass(bloomPass);
   finalPass=new ShaderPass({
     uniforms:{
@@ -1704,7 +1704,7 @@ function frame(now){
     finalPass.uniforms.uResF.value.set(renderer.domElement.width,renderer.domElement.height);
     /* bloom breathes with the scene: heavy in the dark, restrained in daylight,
        and slams open at the impact flash */
-    bloomPass.strength=0.12+0.13*night+Math.min(0.55,0.6*flashW);
+    bloomPass.strength=0.13+0.19*night+Math.min(0.55,0.6*flashW);
   }
 
   skyDome.position.set(camera.position.x,0,camera.position.z);
