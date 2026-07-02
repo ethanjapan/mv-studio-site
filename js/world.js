@@ -296,7 +296,7 @@ const skyMat=new THREE.ShaderMaterial({
 
       /* when the matte-painting footage covers the frontal sky, the procedural
          aurora and moon step back (avoid double aurora / two moons) */
-      float pk=(1.0-u_vidMix*0.85)*(1.0-u_dayMix*0.85);
+      float pk=(1.0-u_vidMix*0.97)*(1.0-u_dayMix*0.85);
       vec3 col=sky
         +aur*night*1.9*pk
         +vec3(0.93,0.96,1.05)*moon*night*(1.0-u_vidMix*0.9)
@@ -1619,7 +1619,7 @@ function frame(now){
 
   /* matte painting footage: full through the night, dissolves before dawn */
   const vready=(matteVideo.readyState>=2&&(!matteVideo.paused||matteVideo.currentTime>0.05))?1:0;
-  const vmix=vready*(1-Math.min(1,Math.max(0,(p-0.30)/0.12)));
+  const vmix=vready*(1-Math.min(1,Math.max(0,(p-0.38)/0.07)));
   matteU.u_op.value=vmix;
   skyUniforms.u_vidMix.value=vmix;
   waterUniforms.u_vidMix.value=vmix;
@@ -1640,8 +1640,8 @@ function frame(now){
      crossfade once we break the surface (stitching sharp realtime water to
      defocused footage at a line can never match textures) */
   const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
-  const surfaced=Math.min(1,Math.max(0,(camera.position.y-0.2)/2.3));
-  poolU.u_op.value=poolReady*rmp(0.984,0.999)*surfaced;
+  const surfaced=Math.min(1,Math.max(0,(camera.position.y+1.2)/2.4));
+  poolU.u_op.value=poolReady*rmp(0.972,0.988)*surfaced;
   waterUniforms.u_poolVid.value=poolReady*rmp(0.925,0.955);
   if(poolU.u_op.value>0.001){
     camera.getWorldDirection(_pmDir);
