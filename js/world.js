@@ -1704,8 +1704,10 @@ function frame(now){
   updateSetPieces(p,time);
   if(composer)composer.render();
   else renderer.render(scene,camera);
+  if(_diagFn)_diagFn();
 }
 
+let _diagFn=null;
 let _last=0,_lastP=-1;
 const FRAME_MS=MOBILE?24:16;
 function loop(now){
@@ -1727,31 +1729,39 @@ window.addEventListener('resize',resize);
 resize();
 requestAnimationFrame(loop);
 
-/* ---- flash diagnostics (?diag=1): catches strobes ON THE USER'S MACHINE ---- */
+/* ---- flash diagnostics (?diag=1): catches strobes ON THE USER'S MACHINE ----
+   Must sample INSIDE the render call: with preserveDrawingBuffer:false the GL
+   buffer is undefined once the rAF callback returns, so a setInterval reader
+   only ever sees black (lum=0.0, count stuck at 0). Canvas sampling also can't
+   see DOM overlays (#flash etc.) — those are tracked separately. */
 if(new URLSearchParams(location.search).has('diag')){
   const dg=document.createElement('div');
   dg.style.cssText='position:fixed;left:8px;top:8px;z-index:9999;background:rgba(0,0,0,.75);color:#0f0;font:11px monospace;padding:6px 9px;border-radius:6px;pointer-events:none;white-space:pre';
   document.body.appendChild(dg);
   const c2=document.createElement('canvas');c2.width=64;c2.height=40;
   const x2=c2.getContext('2d',{willReadFrequently:true});
-  let prevL=-1,flashes=0,last='';
-  setInterval(()=>{
+  const flashEl=document.getElementById('flash');
+  let prevL=-1,prevF=0,flashes=0,domFlashes=0,last='',tick=0;
+  _diagFn=()=>{
+    if(++tick%5)return;                     /* ~12Hz at 60fps */
     try{
       x2.drawImage(renderer.domElement,0,0,64,40);
       const d=x2.getImageData(0,0,64,40).data;
       let s=0;for(let i=0;i<d.length;i+=16)s+=d[i]*0.3+d[i+1]*0.5+d[i+2]*0.2;
       const L=s/(d.length/16);
+      const F=flashEl?parseFloat(flashEl.style.opacity)||0:0;
       if(prevL>=0&&Math.abs(L-prevL)>14){
         flashes++;
-        last='p='+(S.p||0).toFixed(3)+' dL='+(L-prevL).toFixed(0)
+        last='p='+(S.p||0).toFixed(3)+' dL='+(L-prevL).toFixed(0)+' flash='+F.toFixed(2)
             +' vids['+[matteVideo,uwVideo,poolVideo].map(v=>v.paused?0:1).join('')+']'
             +' bloom='+(bloomPass?bloomPass.strength.toFixed(2):'-');
       }
-      prevL=L;
-      dg.textContent='FLASH DIAG  count='+flashes+'\n'+(last||'(no flash yet)')
-        +'\nlum='+L.toFixed(1)+' p='+(S.p||0).toFixed(3)+' pr='+renderer.getPixelRatio().toFixed(2);
+      if(Math.abs(F-prevF)>0.25)domFlashes++;  /* DOM overlay jumped between samples */
+      prevL=L;prevF=F;
+      dg.textContent='FLASH DIAG  gl='+flashes+' dom='+domFlashes+'\n'+(last||'(no flash yet)')
+        +'\nlum='+L.toFixed(1)+' flash='+F.toFixed(2)+' p='+(S.p||0).toFixed(3)+' pr='+renderer.getPixelRatio().toFixed(2);
     }catch(e){dg.textContent='diag err '+e.message;}
-  },80);
+  };
 }
 
 /* debug hooks: renderAt(p) draws one frame at a given progress (preview verification) */
