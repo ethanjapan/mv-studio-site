@@ -534,8 +534,8 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         float Fh=0.02+0.98*pow(1.0-clamp(dot(V,H),0.0,1.0),5.0);
         float glint=mix(20.0,80.0,day)*D*Fh/(4.0*ndv)*1.0e-2;
         /* discrete sparkle flecks: organic noise flicker (grid cells read as squares) */
-        float fleck=noise(vWorldPos.xz*5.0+vec2(t*1.3,-t*0.9));
-        glint*=0.55+1.4*smoothstep(0.30,0.85,fleck);
+        float fleck=noise(vWorldPos.xz*5.0+vec2(t*0.45,-t*0.3));
+        glint*=0.72+0.85*smoothstep(0.30,0.85,fleck);
 
         /* body colour from absorption (dark! brightness must come from glint+sky) */
         vec3 upwell=vec3(1.0)*0.12*exp(-vec3(0.35,0.07,0.03)*8.0);
@@ -707,19 +707,22 @@ const bubMat=new THREE.ShaderMaterial({
   uniforms:bubUniforms,
   vertexShader:`
     attribute float aSize;
-    varying float vBlur;
+    varying float vBlur,vYF;
     void main(){
       vec4 mv=modelViewMatrix*vec4(position,1.0);
       float viewZ=max(0.5,-mv.z);
       vBlur=clamp(1.2*abs(1.0/viewZ-1.0/9.0)*4.0,0.0,1.0);   // CoC defocus, focus ~9u
-      gl_PointSize=clamp(aSize*(760.0/viewZ)*(1.0+1.2*vBlur),2.5,${MOBILE?'52.0':'74.0'});
+      /* fade at both ends of the rise cycle: bubbles are born small in the deep
+         and dissolve into the surface (the wrap teleport used to pop) */
+      vYF=smoothstep(-23.8,-20.0,position.y)*(1.0-smoothstep(-3.5,-0.9,position.y));
+      gl_PointSize=clamp(aSize*(760.0/viewZ)*(1.0+1.2*vBlur)*(0.35+0.65*vYF),2.0,${MOBILE?'52.0':'74.0'});
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader:`
     precision highp float;
     uniform float u_op;
     uniform vec3 u_light,u_deep,u_surf;
-    varying float vBlur;
+    varying float vBlur,vYF;
     void main(){
       vec2 p=gl_PointCoord*2.0-1.0;p.y=-p.y;
       float r2=dot(p,p);
@@ -748,7 +751,7 @@ const bubMat=new THREE.ShaderMaterial({
       float alpha=clamp(interiorA+rim+glint*deblur+windowSpot,0.0,1.0);
       float edge=smoothstep(1.0,1.0-mix(0.06,0.55,vBlur),r);
       float energy=edge/(1.0+2.2*vBlur);                 // defocus must DIM, not glow
-      gl_FragColor=vec4(col,alpha)*energy*u_op;
+      gl_FragColor=vec4(col,alpha)*energy*u_op*vYF;
     }`
 });
 const bubbles=new THREE.Points(bubGeo,bubMat);
@@ -806,7 +809,7 @@ const snowMat=new THREE.ShaderMaterial({
       float g=0.6;
       float hg=(1.0-g*g)/pow(1.0+g*g-2.0*g*cosT,1.5)*0.0796;
       vA=(0.5+0.5*aSeed.y)*(1.0+4.0*hg)
-        *smoothstep(0.4,2.2,dist)*(1.0-smoothstep(19.0,32.0,dist));
+        *smoothstep(0.4,2.2,dist)*(1.0-smoothstep(11.5,16.2,dist));
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader:`
@@ -954,7 +957,7 @@ let composer=null,finalPass=null,bloomPass=null;
 if(HDR){
   composer=new EffectComposer(renderer);            // HalfFloat HDR buffers by default
   composer.addPass(new RenderPass(scene,camera));
-  bloomPass=new UnrealBloomPass(new THREE.Vector2(1,1),0.22,0.55,1.1);
+  bloomPass=new UnrealBloomPass(new THREE.Vector2(1,1),0.22,0.55,1.22);
   composer.addPass(bloomPass);
   finalPass=new ShaderPass({
     uniforms:{
@@ -1070,9 +1073,10 @@ const ideaMotes=(()=>{
         p.y+=u_time*0.55+sin(u_time*0.23+aPhase*4.1)*1.6;
         p.y=12.0+mod(p.y-12.0,56.0);                      // wrap inside the band
         p.x+=sin(u_time*0.17+aPhase*6.3)*2.2;
+        float yf=smoothstep(12.0,17.0,p.y)*(1.0-smoothstep(61.0,68.0,p.y));
         vec4 mv=modelViewMatrix*vec4(p,1.0);
         float dist=max(1.0,-mv.z);
-        gl_PointSize=min(aSize*(300.0/dist),30.0);
+        gl_PointSize=min(aSize*(300.0/dist),30.0)*(0.3+0.7*yf);
         vB=clamp(aSize/9.7,0.25,1.0);                     // big motes = soft bokeh
         gl_Position=projectionMatrix*mv;
       }`,
@@ -1122,26 +1126,28 @@ const ideaTrails=(()=>{
     uniforms:u,
     vertexShader:`
       attribute vec2 aUv;attribute vec3 aCol;attribute float aPh;
-      varying vec2 vUv;varying vec3 vC;
+      varying vec2 vUv;varying vec3 vC;varying float vYF;
       uniform float u_time;
       void main(){
         vUv=aUv;vC=aCol;
         vec3 p=position;
-        p.y+=u_time*0.9+sin(u_time*0.21+aPh*5.0)*1.2;
-        p.y=14.0+mod(p.y-14.0,52.0);
+        float yshift=u_time*0.9+sin(u_time*0.21+aPh*5.0)*1.2;
+        float ywrap=mod(position.y-14.0+yshift,52.0);
+        p.y=14.0+ywrap;
+        vYF=smoothstep(0.0,5.0,ywrap)*(1.0-smoothstep(45.0,52.0,ywrap));
         p.x+=sin(u_time*0.15+aPh*7.1)*1.8;
         gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0);
       }`,
     fragmentShader:`
       precision highp float;
-      varying vec2 vUv;varying vec3 vC;
+      varying vec2 vUv;varying vec3 vC;varying float vYF;
       uniform float u_op;
       void main(){
         float edge=pow(1.0-abs(vUv.x*2.0-1.0),1.8);       // soft sides
         float tail=pow(1.0-vUv.y,1.35);                    // melts toward the tail
         float head=pow(1.0-vUv.y,3.0);
         vec3 col=vC*(0.7+1.8*head);                        // bright head blooms
-        gl_FragColor=vec4(col,edge*tail*0.9*u_op);
+        gl_FragColor=vec4(col,edge*tail*0.9*u_op*vYF);
       }`});
   const mesh=new THREE.Mesh(g,m);
   mesh.frustumCulled=false;
@@ -1591,7 +1597,8 @@ function frame(now){
   snowUniforms.u_light.value.copy(_lightW);
   _sunP.copy(camera.position).addScaledVector(_lightW,300);
   _sunP.project(camera);
-  const vis=(_sunP.z<1&&_sunP.x>-1.4&&_sunP.x<1.4&&_sunP.y>-1.4&&_sunP.y<1.4)?1:0;
+  const _edge=Math.max(Math.abs(_sunP.x),Math.abs(_sunP.y));
+  const vis=(_sunP.z<1?1:0)*Math.min(1,Math.max(0,(1.4-_edge)/0.35));   // SMOOTH: hard flips strobe
   skyUniforms.u_sunScreen.value.set(_sunP.x*0.5+0.5,_sunP.y*0.5+0.5);
   skyUniforms.u_sunVis.value=vis;
 
@@ -1664,7 +1671,7 @@ function frame(now){
     finalPass.uniforms.uResF.value.set(renderer.domElement.width,renderer.domElement.height);
     /* bloom breathes with the scene: heavy in the dark, restrained in daylight,
        and slams open at the impact flash */
-    bloomPass.strength=0.13+0.19*night+Math.min(0.55,0.6*flashW);
+    bloomPass.strength=0.12+0.13*night+Math.min(0.55,0.6*flashW);
   }
 
   skyDome.position.set(camera.position.x,0,camera.position.z);
