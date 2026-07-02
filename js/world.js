@@ -628,7 +628,7 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         /* real god-ray footage projected onto the ceiling AFTER the fog, so it
            stays crisp across the whole span (same mapping as the dome below
            the horizon -> continuous across it) */
-        col=uwEnv(Dn,L,col,u_uwMap,u_uwVid);
+        col=uwEnv(Dn,L,col,u_uwMap,u_uwVid*smoothstep(0.035,0.15,Dn.y));
         /* light shafts IN-SCATTER along the path (they live in the water column);
            MUST fade to zero at grazing or they re-draw the horizon join line */
         col+=(vec3(1.0,0.97,0.9)*day+vec3(0.5,0.75,1.0)*night)
