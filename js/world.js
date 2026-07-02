@@ -411,6 +411,8 @@ const waterUniforms={
   u_uwMap:{value:null},
   u_uwVid:{value:0},
   u_rip:{value:new THREE.Vector4(0,105,0,0)},   // voice ripple: x,z source / w amplitude
+  u_poolMap:{value:null},
+  u_poolVid:{value:0},
   ...gradeUniforms
 };
 function makeWaterMat(displace){return new THREE.ShaderMaterial({
@@ -442,7 +444,8 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
     varying vec3 vWorldPos;
     uniform float u_time,u_progress,u_fogDensity,u_camY,u_vidMix,u_uwVid;
     uniform vec4 u_rip;
-    uniform sampler2D u_uwMap;
+    uniform sampler2D u_uwMap,u_poolMap;
+    uniform float u_poolVid;
     uniform vec3 u_top,u_bottom,u_fogColor;
     ${GRADE_UNIFORMS_GLSL}
     ${COMMON_GLSL}
@@ -595,6 +598,14 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         vec3 sky=mix(u_bottom*1.35+vec3(0.10),u_top*1.05,clamp(skyDir.y,0.0,1.0));
         float sunb=pow(max(dot(skyDir,L),0.0),600.0)*6.0+0.4*pow(max(dot(skyDir,L),0.0),60.0);
         vec3 winCol=sky+lightCol*sunb;
+        /* during the ascent, the REAL pool footage shines through the window,
+           bent by the same refract() — looking up at the actual sky */
+        if(u_poolVid>0.003){
+          vec2 puv=clamp(vec2(0.5+skyDir.x*0.5,0.18+clamp(skyDir.y,0.0,1.0)*0.72),vec2(0.02),vec2(0.98));
+          vec3 pc=texture2D(u_poolMap,puv).rgb;
+          ${HDR?'pc=pow(pc,vec3(2.2));':''}
+          winCol=mix(winCol,pc*1.05,u_poolVid*0.9);
+        }
         /* bright refractive rim at the critical angle */
         float mu=Dn.y;
         float rim=smoothstep(0.72,0.6613,mu)*smoothstep(0.58,0.6613,mu);
@@ -895,6 +906,7 @@ poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
 poolVideo.play().catch(()=>{});
 const poolTex=new THREE.VideoTexture(poolVideo);
 poolTex.minFilter=THREE.LinearFilter;
+waterUniforms.u_poolMap.value=poolTex;
 const poolU={u_map:{value:poolTex},u_op:{value:0}};
 const poolMat=new THREE.ShaderMaterial({
   transparent:true,depthWrite:false,depthTest:false,
@@ -1614,7 +1626,7 @@ function frame(now){
      ascent (our procedural Snell window takes the finale of the rise) */
   const rmp=(a,b)=>Math.min(1,Math.max(0,(p-a)/(b-a)));
   const uwready=(uwVideo.readyState>=2&&(!uwVideo.paused||uwVideo.currentTime>0.05))?1:0;
-  const uwv=uwready*rmp(0.528,0.575)*(1-rmp(0.90,0.94));
+  const uwv=uwready*rmp(0.528,0.575)*(1-rmp(0.955,0.98));
   skyUniforms.u_uwVid.value=uwv;
   waterUniforms.u_uwVid.value=uwv;
   /* aurora matte horizon LOCKS to the viewer's eye height every frame */
@@ -1629,6 +1641,7 @@ function frame(now){
   const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
   const surfaced=Math.min(1,Math.max(0,(camera.position.y-0.2)/2.3));
   poolU.u_op.value=poolReady*rmp(0.984,0.999)*surfaced;
+  waterUniforms.u_poolVid.value=poolReady*rmp(0.925,0.955);
   if(poolU.u_op.value>0.001){
     camera.getWorldDirection(_pmDir);
     poolMatte.position.copy(camera.position).addScaledVector(_pmDir,60);
