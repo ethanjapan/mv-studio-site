@@ -214,6 +214,7 @@ const skyUniforms={
   u_sunScreen:{value:new THREE.Vector2(0.5,0.7)},
   u_sunVis:{value:0},
   u_vidMix:{value:0},
+  u_dayMix:{value:0},
   u_uwMap:{value:null},
   u_uwVid:{value:0},
   ...gradeUniforms
@@ -232,7 +233,7 @@ const skyMat=new THREE.ShaderMaterial({
   fragmentShader:`
     precision highp float;
     varying vec3 vWorldPos;
-    uniform float u_time,u_progress,u_camY,u_sunVis,u_vidMix,u_uwVid;
+    uniform float u_time,u_progress,u_camY,u_sunVis,u_vidMix,u_dayMix,u_uwVid;
     uniform sampler2D u_uwMap;
     uniform vec3 u_top,u_bottom,u_fogColor;
     uniform vec2 u_sunScreen;
@@ -275,7 +276,7 @@ const skyMat=new THREE.ShaderMaterial({
         ccol+=vec3(1.0,0.97,0.90)*pow(clamp(dot(dir,L),0.0,1.0),24.0)*(1.0-d)*0.8;
         float hmask=smoothstep(0.02,0.15,dir.y);
         ccol=mix(hz,ccol,hmask);                        // distant clouds sink into the haze
-        sky=mix(sky,ccol,d*0.85*day*smoothstep(0.035,0.13,dir.y));
+        sky=mix(sky,ccol,d*0.85*day*smoothstep(0.035,0.13,dir.y)*(1.0-u_dayMix*0.92));
       }
 
       /* aurora curtains over the dark sky; while the matte footage is on,
@@ -295,7 +296,7 @@ const skyMat=new THREE.ShaderMaterial({
 
       /* when the matte-painting footage covers the frontal sky, the procedural
          aurora and moon step back (avoid double aurora / two moons) */
-      float pk=1.0-u_vidMix*0.85;
+      float pk=(1.0-u_vidMix*0.85)*(1.0-u_dayMix*0.85);
       vec3 col=sky
         +aur*night*1.9*pk
         +vec3(0.93,0.96,1.05)*moon*night*(1.0-u_vidMix*0.9)
@@ -855,6 +856,34 @@ const matte=new THREE.Mesh(new THREE.PlaneGeometry(3200,1800),matteMat);
 matte.position.set(0,58+(0.5-0.38)*1800,-1250);
 matte.renderOrder=1;
 scene.add(matte);
+
+/* DAY-SKY matte: photographic cumulus sky for the descent-to-impact leg
+   (the last remaining procedural sky). Static photo — clouds barely move
+   over an 8-second scroll. Horizon at uv.y=0.12 locks to eye height. */
+const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg');
+dayTex.minFilter=THREE.LinearFilter;
+const dayU={u_map:{value:dayTex},u_op:{value:0}};
+const dayMat=new THREE.ShaderMaterial({
+  transparent:true,depthWrite:false,
+  uniforms:dayU,
+  vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+  fragmentShader:`
+    precision highp float;
+    varying vec2 vUv;
+    uniform sampler2D u_map;
+    uniform float u_op;
+    void main(){
+      vec3 col=texture2D(u_map,vUv).rgb;
+      ${HDR?'col=pow(col,vec3(2.2));':''}
+      float bottom=smoothstep(0.075,0.125,vUv.y);
+      float top=smoothstep(0.0,0.10,1.0-vUv.y);
+      float sides=smoothstep(0.0,0.09,vUv.x)*smoothstep(0.0,0.09,1.0-vUv.x);
+      gl_FragColor=vec4(col,bottom*top*sides*u_op);
+    }`});
+const dayMatte=new THREE.Mesh(new THREE.PlaneGeometry(3200,1800),dayMat);
+dayMatte.position.set(0,0,-1100);
+dayMatte.renderOrder=1;
+scene.add(dayMatte);
 
 /* POOL matte: photographic summer-pool footage behind the finale.
    Same horizon-aligned far-plane trick as the aurora matte (its horizon at
@@ -1561,6 +1590,10 @@ function frame(now){
   waterUniforms.u_uwVid.value=uwv;
   /* aurora matte horizon LOCKS to the viewer's eye height every frame */
   matte.position.y=camera.position.y+(0.5-0.38)*1800.0;
+  dayMatte.position.y=camera.position.y+(0.5-0.12)*1800.0;
+  const dayv=rmp(0.40,0.47)*(1-rmp(0.503,0.522));
+  dayU.u_op.value=dayv;
+  skyUniforms.u_dayMix.value=dayv;
   /* finale: the photographic pool takes the WHOLE frame in a film-style
      crossfade once we break the surface (stitching sharp realtime water to
      defocused footage at a line can never match textures) */
