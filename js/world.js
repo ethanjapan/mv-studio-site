@@ -28,7 +28,8 @@ const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const HDR=!MOBILE;   // desktop: full HDR pipeline (bloom + lens pass); mobile: in-shader finish
 
 const renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:false,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,MOBILE?1:1.5));
+const _budgetPR=Math.min(window.devicePixelRatio,MOBILE?1:1.5,1920/Math.max(640,window.innerWidth||1280));
+renderer.setPixelRatio(_budgetPR);
 /* HDR path: materials output LINEAR, the final pass does tonemap+sRGB+dither.
    Mobile path: materials finish themselves via the tonemapping chunks. */
 renderer.toneMapping=HDR?THREE.NoToneMapping:THREE.NeutralToneMapping;
@@ -68,7 +69,7 @@ float fbm2(vec2 p){float v=0.0,a=0.5;for(int i=0;i<2;i++){v+=a*noise(p);p*=2.03;
 /* aurora curtains, shared by the sky dome and the water reflection (seam-free) */
 float aurI(vec3 dir,float t){
   float h=dir.y;
-  vec2 hd=normalize(dir.xz+vec2(1e-4,0.0));
+  vec2 hd=dir.xz;hd/=(length(hd)+1e-4);
   float w1=fbm3(vec2(hd.x*0.9,hd.y*0.9)+t*0.05)*1.2;
   float st=fbm3(vec2(hd.x*2.6+w1,hd.y*2.6-w1*0.6)+vec2(0.0,h*0.35));
   float rid=pow(clamp(1.0-abs(st)*3.0,0.0,1.0),1.8);
@@ -99,7 +100,7 @@ vec3 grade(vec3 c,vec3 uLift,vec3 uInvG,vec3 uGain,vec3 uShTint,vec3 uHiTint,flo
 float ign(vec2 p){return fract(52.9829189*fract(dot(p,vec2(0.06711056,0.00583715))));}
 /* diagonal underwater light shafts around the sun azimuth (world-space, no RT) */
 float shaftI(vec3 dir,vec3 L,float tt){
-  vec2 hd=normalize(dir.xz+vec2(1e-4,0.0));
+  vec2 hd=dir.xz;hd/=(length(hd)+1e-4);
   float az=atan(hd.y,hd.x)-atan(L.z,L.x);
   float st=fbm2(vec2(az*3.2,dir.y*1.3-tt*0.045));
   return pow(clamp(1.0-abs(st)*2.4,0.0,1.0),2.0)
@@ -147,12 +148,14 @@ float noise(vec2 p){
 float fbm3(vec2 p){float v=0.0,a=0.5;for(int i=0;i<3;i++){v+=a*noise(p);p*=2.03;a*=0.5;}return v;}
 `;
 const FINISH_GLSL=HDR?`
+  if(any(isnan(col))||any(isinf(col)))col=vec3(0.0);   // one NaN pixel detonates the bloom mip chain
   col=grade(col,uLift,uInvG,uGain,uShTint,uHiTint,uSat);
   vec2 ndc=(gl_FragCoord.xy/uRes)*2.0-1.0;
   ndc.x*=uRes.x/uRes.y*0.75;
   col*=clamp(1.0-uVig*pow(dot(ndc,ndc)*0.5,1.4),0.0,1.0);
   gl_FragColor=vec4(col,1.0);   // LINEAR out: bloom + final lens pass take it from here
 `:`
+  if(any(isnan(col))||any(isinf(col)))col=vec3(0.0);
   col=grade(col,uLift,uInvG,uGain,uShTint,uHiTint,uSat);
   vec2 ndc=(gl_FragCoord.xy/uRes)*2.0-1.0;
   ndc.x*=uRes.x/uRes.y*0.75;
@@ -520,7 +523,8 @@ function makeWaterMat(displace){return new THREE.ShaderMaterial({
         }
 
         /* Cox-Munk slope-space sun/moon glitter: band elongates along the light azimuth */
-        vec3 H=normalize(L+V);
+        vec3 Hu=L+V;
+        vec3 H=Hu/max(length(Hu),1e-3);                  // L~=-V pixels must not NaN
         vec2 sf=-H.xz/max(H.y,1e-3);
         vec2 sm=-N.xz/max(N.y,1e-3);
         vec2 s=sf-sm;
@@ -1177,7 +1181,9 @@ const wisps=(()=>{
         gl_FragColor=vec4(vec3(0.75,0.82,1.0)*a*0.5,a*0.16*u_op);
       }`});
   for(let i=0;i<8;i++){
-    const mesh=new THREE.Mesh(new THREE.PlaneGeometry(95,38),m);
+    const mi=m.clone();                                  // own uniforms per panel
+    mi.uniforms={u_time:{value:0},u_op:{value:0}};
+    const mesh=new THREE.Mesh(new THREE.PlaneGeometry(95,38),mi);
     mesh.position.set((Math.random()*2-1)*30,16+Math.random()*32,70+i*16+Math.random()*8);
     mesh.userData.ph=Math.random()*7;
     group.add(mesh);
@@ -1439,12 +1445,16 @@ function updateSetPieces(p,time){
   ideaMotes.userData.u.u_op.value=ideaOp;
   ideaTrails.userData.u.u_time.value=time;
   ideaTrails.userData.u.u_op.value=ideaOp;
-  wisps.userData.u.u_time.value=time;
-  wisps.userData.u.u_op.value=pieceOp(p,0.30,0.505);
-  wisps.children.forEach(w=>{
-    w.lookAt(camera.position);
-    w.visible=Math.abs(camera.position.z-w.position.z)>7;   // never slice the lens
-  });
+  {
+    const wop=pieceOp(p,0.30,0.505);
+    wisps.children.forEach(w=>{
+      w.lookAt(camera.position);
+      const dz=Math.abs(camera.position.z-w.position.z);
+      const prox=Math.min(1,Math.max(0,(dz-6)/8));        // SMOOTH fade before fly-through
+      w.material.uniforms.u_time.value=time;
+      w.material.uniforms.u_op.value=wop*prox;
+    });
+  }
   sonarB.material._u.u_time.value=time;
   sonarB.material._u.u_op.value=pieceOp(p,0.69,0.785);
   sonarB.lookAt(camera.position);
@@ -1633,6 +1643,12 @@ function frame(now){
   applyGrade(p,camera.position.y);
   gradeUniforms.uRes.value.set(renderer.domElement.width,renderer.domElement.height);
 
+  /* video windowing: decode only near each video's active range */
+  function _vgate(v,on){if(!v)return;if(on){if(v.paused)v.play().catch(()=>{});}else if(!v.paused)v.pause();}
+  _vgate(matteVideo,p<0.50);
+  _vgate(uwVideo,p>0.46&&p<0.995);
+  _vgate(poolVideo,p>0.88);
+
   /* matte painting footage: full through the night, dissolves before dawn */
   const vready=(matteVideo.readyState>=2&&(!matteVideo.paused||matteVideo.currentTime>0.05))?1:0;
   const vmix=vready*(1-Math.min(1,Math.max(0,(p-0.38)/0.07)));
@@ -1710,6 +1726,33 @@ function resize(){
 window.addEventListener('resize',resize);
 resize();
 requestAnimationFrame(loop);
+
+/* ---- flash diagnostics (?diag=1): catches strobes ON THE USER'S MACHINE ---- */
+if(new URLSearchParams(location.search).has('diag')){
+  const dg=document.createElement('div');
+  dg.style.cssText='position:fixed;left:8px;top:8px;z-index:9999;background:rgba(0,0,0,.75);color:#0f0;font:11px monospace;padding:6px 9px;border-radius:6px;pointer-events:none;white-space:pre';
+  document.body.appendChild(dg);
+  const c2=document.createElement('canvas');c2.width=64;c2.height=40;
+  const x2=c2.getContext('2d',{willReadFrequently:true});
+  let prevL=-1,flashes=0,last='';
+  setInterval(()=>{
+    try{
+      x2.drawImage(renderer.domElement,0,0,64,40);
+      const d=x2.getImageData(0,0,64,40).data;
+      let s=0;for(let i=0;i<d.length;i+=16)s+=d[i]*0.3+d[i+1]*0.5+d[i+2]*0.2;
+      const L=s/(d.length/16);
+      if(prevL>=0&&Math.abs(L-prevL)>14){
+        flashes++;
+        last='p='+(S.p||0).toFixed(3)+' dL='+(L-prevL).toFixed(0)
+            +' vids['+[matteVideo,uwVideo,poolVideo].map(v=>v.paused?0:1).join('')+']'
+            +' bloom='+(bloomPass?bloomPass.strength.toFixed(2):'-');
+      }
+      prevL=L;
+      dg.textContent='FLASH DIAG  count='+flashes+'\n'+(last||'(no flash yet)')
+        +'\nlum='+L.toFixed(1)+' p='+(S.p||0).toFixed(3)+' pr='+renderer.getPixelRatio().toFixed(2);
+    }catch(e){dg.textContent='diag err '+e.message;}
+  },80);
+}
 
 /* debug hooks: renderAt(p) draws one frame at a given progress (preview verification) */
 window.__world={scene,camera,renderer,composer,matteVideo,uwVideo,poolVideo,sampleKeys,renderAt:(p)=>{S.p=p;frame(performance.now());}};
