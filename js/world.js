@@ -841,7 +841,7 @@ scene.add(snow);
    stars/particles/flare layers keep moving in front of it.
    ===================================================================== */
 const matteVideo=document.createElement('video');
-matteVideo.src='assets/bg_aurora.mp4?v=20260702d';
+matteVideo.src='assets/bg_aurora.mp4?v=20260703b';
 matteVideo.muted=true;matteVideo.loop=true;matteVideo.playsInline=true;
 matteVideo.setAttribute('playsinline','');matteVideo.preload='auto';
 let _vidKick=false;
@@ -881,7 +881,7 @@ scene.add(matte);
 /* DAY-SKY matte: photographic cumulus sky for the descent-to-impact leg
    (the last remaining procedural sky). Static photo — clouds barely move
    over an 8-second scroll. Horizon at uv.y=0.12 locks to eye height. */
-const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260702d');
+const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260703b');
 dayTex.minFilter=THREE.LinearFilter;
 const dayU={u_map:{value:dayTex},u_op:{value:0}};
 const dayMat=new THREE.ShaderMaterial({
@@ -910,7 +910,7 @@ scene.add(dayMatte);
    Same horizon-aligned far-plane trick as the aurora matte (its horizon at
    uv.y=0.70 sits at eye height; everything below is occluded by our water). */
 const poolVideo=document.createElement('video');
-poolVideo.src='assets/bg_pool.mp4?v=20260702d';
+poolVideo.src='assets/bg_pool.mp4?v=20260703b';
 poolVideo.muted=true;poolVideo.loop=true;poolVideo.playsInline=true;
 poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
 poolVideo.play().catch(()=>{});
@@ -942,7 +942,7 @@ const _pmDir=new THREE.Vector3();
    Two tilted panels along the dive route — the camera passes under them
    with true parallax; each fades with its chapters. */
 const uwVideo=document.createElement('video');
-uwVideo.src='assets/bg_underwater.mp4?v=20260702d';
+uwVideo.src='assets/bg_underwater.mp4?v=20260703b';
 uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
 uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
 const _kick0=kickVideo;
@@ -1580,16 +1580,20 @@ function frame(now){
 
   /* camera along the dive + handheld micro-sway (a locked-off camera reads as CG) */
   sampleKeys(p);
+  /* freeze VERTICAL bob near the water plane: when the path grazes y=0 (the
+     surfacing leg), sway/parallax would dunk the eye across the surface every
+     cycle — a fullscreen above/below strobe while the page rests there */
+  const surfG=Math.min(1,Math.max(0,(Math.abs(_pos.y)-0.4)/1.2));
   if(!REDUCE){
     const sw=(a,b)=>Math.sin(time*a+b)*0.6+Math.sin(time*a*2.17+b*1.7)*0.4;
     _pos.x+=sw(0.43,1.3)*0.45;
-    _pos.y+=sw(0.53,4.1)*0.32+Math.sin(time*1.35)*0.04;   // slow drift + breathing
+    _pos.y+=(sw(0.53,4.1)*0.32+Math.sin(time*1.35)*0.04)*surfG;   // slow drift + breathing
     _look.x+=sw(0.31,2.2)*1.1;
     _look.y+=sw(0.37,6.3)*0.7;
     /* mouse parallax (eased): the world leans toward the cursor */
     mouse.x+=(mouse.tx-mouse.x)*0.045;
     mouse.y+=(mouse.ty-mouse.y)*0.045;
-    _pos.x+=mouse.x*1.3;_pos.y-=mouse.y*0.7;
+    _pos.x+=mouse.x*1.3;_pos.y-=mouse.y*0.7*surfG;
     _look.x+=mouse.x*3.2;_look.y-=mouse.y*1.8;
   }
   camera.position.copy(_pos);
@@ -1675,8 +1679,10 @@ function frame(now){
      defocused footage at a line can never match textures) */
   const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
   const surfaced=Math.min(1,Math.max(0,(camera.position.y+1.2)/2.4));
-  poolU.u_op.value=poolReady*rmp(0.974,0.984);   // completes under the surfacing whiteout
-  waterUniforms.u_poolVid.value=poolReady*rmp(0.918,0.945);
+  /* long, gentle dissolve into the pool footage — begins as the Snell-window
+     refraction completes, so no white flash is needed to hide a seam */
+  poolU.u_op.value=poolReady*rmp(0.944,0.986);
+  waterUniforms.u_poolVid.value=poolReady*rmp(0.905,0.945);
   if(poolU.u_op.value>0.001){
     camera.getWorldDirection(_pmDir);
     poolMatte.position.copy(camera.position).addScaledVector(_pmDir,60);
@@ -1729,6 +1735,25 @@ function resize(){
 }
 window.addEventListener('resize',resize);
 resize();
+
+/* ---- NaN firewall: EVERY custom shader scrubs its own output ----
+   One NaN pixel from ANY material detonates the bloom mip chain into a
+   fullscreen black flash (live-caught on real hardware: isolated NaN pixels
+   over the water, all four channels NaN — from a transparent set piece drawn
+   at u_op=0, since NaN*0=NaN). The finish-pass scrub runs AFTER bloom, so
+   the guard must live in each material, before the HDR buffer is written. */
+{
+  const SCRUB='\n  if(any(isnan(gl_FragColor))||any(isinf(gl_FragColor)))gl_FragColor=vec4(0.0);\n';
+  scene.traverse(o=>{
+    const m=o.material;
+    if(m&&m.isShaderMaterial&&!m.userData._scrubbed){
+      const i=m.fragmentShader.lastIndexOf('}');
+      m.fragmentShader=m.fragmentShader.slice(0,i)+SCRUB+'}';
+      m.userData._scrubbed=true;
+      m.needsUpdate=true;
+    }
+  });
+}
 requestAnimationFrame(loop);
 
 /* ---- flash diagnostics (?diag=1): catches strobes ON THE USER'S MACHINE ----
