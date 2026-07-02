@@ -878,15 +878,13 @@ const poolMat=new THREE.ShaderMaterial({
     void main(){
       vec3 col=texture2D(u_map,vUv).rgb;
       ${HDR?'col=pow(col,vec3(2.2));':''}
-      float bottom=smoothstep(0.635,0.705,vUv.y);
-      float top=smoothstep(0.0,0.12,1.0-vUv.y);
-      float sides=smoothstep(0.0,0.10,vUv.x)*smoothstep(0.0,0.10,1.0-vUv.x);
-      gl_FragColor=vec4(col,bottom*top*sides*u_op);
+      gl_FragColor=vec4(col,u_op);   // full-frame crossfade: the film takes over
     }`});
-const poolMatte=new THREE.Mesh(new THREE.PlaneGeometry(3200,1800),poolMat);
-poolMatte.position.set(0,8+(0.5-0.70)*1800,-1500);
-poolMatte.renderOrder=1;
+const poolMatte=new THREE.Mesh(new THREE.PlaneGeometry(1,1),poolMat);
+poolMatte.renderOrder=10;
+poolMatte.frustumCulled=false;
 scene.add(poolMatte);
+const _pmDir=new THREE.Vector3();
 
 /* UNDERWATER matte: real god-ray footage as staged theatre backdrops.
    Two tilted panels along the dive route — the camera passes under them
@@ -1555,13 +1553,21 @@ function frame(now){
   const uwv=uwready*rmp(0.545,0.60)*(1-rmp(0.90,0.94));
   skyUniforms.u_uwVid.value=uwv;
   waterUniforms.u_uwVid.value=uwv;
-  /* matte horizons LOCK to the viewer's eye height every frame (a fixed height
-     drifts as the camera moves and draws a hard band across the frame) */
+  /* aurora matte horizon LOCKS to the viewer's eye height every frame */
   matte.position.y=camera.position.y+(0.5-0.38)*1800.0;
-  poolMatte.position.y=camera.position.y+(0.5-0.70)*1800.0;
+  /* finale: the photographic pool takes the WHOLE frame in a film-style
+     crossfade once we break the surface (stitching sharp realtime water to
+     defocused footage at a line can never match textures) */
   const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
-  const surfaced=Math.min(1,Math.max(0,(camera.position.y-0.2)/2.3));   // only once we break the surface
-  poolU.u_op.value=poolReady*rmp(0.983,0.997)*surfaced;
+  const surfaced=Math.min(1,Math.max(0,(camera.position.y-0.2)/2.3));
+  poolU.u_op.value=poolReady*rmp(0.984,0.999)*surfaced;
+  if(poolU.u_op.value>0.001){
+    camera.getWorldDirection(_pmDir);
+    poolMatte.position.copy(camera.position).addScaledVector(_pmDir,60);
+    poolMatte.quaternion.copy(camera.quaternion);
+    const hh=2*60*Math.tan(camera.fov*Math.PI/360)*1.15;
+    poolMatte.scale.set(hh*camera.aspect,hh,1);
+  }
 
   /* lens-pass extras: sun screen position for the ghosts */
   if(finalPass){
@@ -1608,4 +1614,4 @@ resize();
 requestAnimationFrame(loop);
 
 /* debug hooks: renderAt(p) draws one frame at a given progress (preview verification) */
-window.__world={scene,camera,renderer,composer,matteVideo,sampleKeys,renderAt:(p)=>{S.p=p;frame(performance.now());}};
+window.__world={scene,camera,renderer,composer,matteVideo,uwVideo,poolVideo,sampleKeys,renderAt:(p)=>{S.p=p;frame(performance.now());}};
