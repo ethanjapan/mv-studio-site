@@ -748,8 +748,14 @@
     radial-gradient(40% 42% at 50% 45%,rgba(255,255,255,.85),rgba(159,232,255,.4) 42%,transparent 70%),
     conic-gradient(from 0deg at 50% 45%,transparent,rgba(255,255,255,.16),transparent 25%,rgba(255,255,255,.16),transparent 50%,rgba(255,255,255,.16),transparent 75%,rgba(255,255,255,.16),transparent),
     linear-gradient(160deg,#1d5a7a,#3aa0c0 60%,#9fe6ec)}
-  .scene.fin .thumb::after{content:"▶";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    font-size:34px;color:rgba(255,255,255,.92);text-shadow:0 4px 24px rgba(0,60,90,.6)}
+  /* real footage from a finished MV fills the scene thumbs (vertical, like the MV itself) */
+  .scene .thumb{aspect-ratio:3/4;height:auto}
+  .scene .thumb .ex{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0}
+  .scene .sn{z-index:2}
+  .scene.fin .thumb::after{content:"● 実写生成";position:absolute;top:14px;right:16px;z-index:2;
+    font-family:"Inter",sans-serif;font-size:11px;letter-spacing:.12em;color:#fff;
+    background:rgba(10,20,36,.5);padding:5px 9px;border-radius:20px;backdrop-filter:blur(6px);
+    box-shadow:0 2px 12px rgba(0,40,70,.4)}
   .hreel-foot{position:absolute;bottom:8.5vh;left:0;right:0;z-index:4;display:flex;gap:9px;
     justify-content:center;align-items:center}
   .hdot{width:8px;height:8px;border-radius:50%;background:var(--ink);opacity:.25;transition:.3s}
