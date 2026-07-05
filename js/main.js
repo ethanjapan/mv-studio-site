@@ -238,6 +238,15 @@ buildAnchors();updateColor();
   render(0);
 })();
 
+// showcase clip decodes ONLY while its card is on screen (it used to run for the
+// whole page life, stealing decode bandwidth from the background footage)
+(function(){
+  const v=document.querySelector('.scene video.ex');if(!v)return;
+  new IntersectionObserver(es=>es.forEach(en=>{
+    if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
+  }),{threshold:0.05}).observe(v);
+})();
+
 // reveal sections as they enter
 const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){
   en.target.classList.add('in');

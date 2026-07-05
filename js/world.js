@@ -846,7 +846,7 @@ scene.add(snow);
    stars/particles/flare layers keep moving in front of it.
    ===================================================================== */
 const matteVideo=document.createElement('video');
-matteVideo.src='assets/bg_aurora.mp4?v=20260704f';
+matteVideo.src='assets/bg_aurora.mp4?v=20260704h';
 matteVideo.muted=true;matteVideo.loop=true;matteVideo.playsInline=true;
 matteVideo.setAttribute('playsinline','');matteVideo.preload='auto';
 let _vidKick=false;
@@ -886,7 +886,7 @@ scene.add(matte);
 /* DAY-SKY matte: photographic cumulus sky for the descent-to-impact leg
    (the last remaining procedural sky). Static photo — clouds barely move
    over an 8-second scroll. Horizon at uv.y=0.12 locks to eye height. */
-const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260704f');
+const dayTex=new THREE.TextureLoader().load('assets/bg_daysky.jpg?v=20260704h');
 dayTex.minFilter=THREE.LinearFilter;
 const dayU={u_map:{value:dayTex},u_op:{value:0}};
 const dayMat=new THREE.ShaderMaterial({
@@ -915,7 +915,7 @@ scene.add(dayMatte);
    Same horizon-aligned far-plane trick as the aurora matte (its horizon at
    uv.y=0.70 sits at eye height; everything below is occluded by our water). */
 const poolVideo=document.createElement('video');
-poolVideo.src='assets/bg_pool.mp4?v=20260704f';
+poolVideo.src='assets/bg_pool.mp4?v=20260704h';
 poolVideo.muted=true;poolVideo.loop=true;poolVideo.playsInline=true;
 poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
 poolVideo.play().catch(()=>{});
@@ -947,7 +947,7 @@ const _pmDir=new THREE.Vector3();
    Two tilted panels along the dive route — the camera passes under them
    with true parallax; each fades with its chapters. */
 const uwVideo=document.createElement('video');
-uwVideo.src='assets/bg_underwater.mp4?v=20260704f';
+uwVideo.src='assets/bg_underwater.mp4?v=20260704h';
 uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
 uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
 const _kick0=kickVideo;
@@ -1662,7 +1662,13 @@ function frame(now){
   _vgate(poolVideo,p>0.88);
 
   /* matte painting footage: full through the night, dissolves before dawn */
-  const vready=(matteVideo.readyState>=2&&(!matteVideo.paused||matteVideo.currentTime>0.05))?1:0;
+  /* LATCHED readiness: at every loop wrap Chrome's seek drops readyState below 2
+     for a single frame, which used to zero this gate -> the footage plane vanished
+     for one frame and the procedural sky flashed through (the 9.5s-periodic strobe).
+     Once a video has ever been ready+playing its texture always holds a real frame,
+     so ready-ness is one-way. */
+  function _ready(v){if(!v._everReady&&v.readyState>=2&&(!v.paused||v.currentTime>0.05))v._everReady=true;return v._everReady?1:0;}
+  const vready=_ready(matteVideo);
   const vmix=vready*(1-Math.min(1,Math.max(0,(p-0.38)/0.07)));
   matteU.u_op.value=vmix;
   skyUniforms.u_vidMix.value=vmix;
@@ -1677,7 +1683,7 @@ function frame(now){
   /* underwater footage environment: on through the deep chapters, off before the
      ascent (our procedural Snell window takes the finale of the rise) */
   const rmp=(a,b)=>Math.min(1,Math.max(0,(p-a)/(b-a)));
-  const uwready=(uwVideo.readyState>=2&&(!uwVideo.paused||uwVideo.currentTime>0.05))?1:0;
+  const uwready=_ready(uwVideo);
   const uwv=uwready*rmp(0.528,0.575)*(1-rmp(0.955,0.98));
   skyUniforms.u_uwVid.value=uwv;
   waterUniforms.u_uwVid.value=uwv;
@@ -1690,7 +1696,7 @@ function frame(now){
   /* finale: the photographic pool takes the WHOLE frame in a film-style
      crossfade once we break the surface (stitching sharp realtime water to
      defocused footage at a line can never match textures) */
-  const poolReady=(poolVideo.readyState>=2&&(!poolVideo.paused||poolVideo.currentTime>0.05))?1:0;
+  const poolReady=_ready(poolVideo);
   const surfaced=Math.min(1,Math.max(0,(camera.position.y+1.2)/2.4));
   /* long, gentle dissolve into the pool footage — begins as the Snell-window
      refraction completes, so no white flash is needed to hide a seam */
