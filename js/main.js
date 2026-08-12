@@ -141,7 +141,21 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 //   Lenis が横取りすると指の動きと内部の目標値がずれて**画面が飛ぶ**。
 //   darkroomengineering/lenis #288 が同症状。デスクトップのホイールだけ Lenis の利がある。
 const coarse=matchMedia('(pointer: coarse)').matches;
-if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
+if(window.gsap&&window.ScrollTrigger){
+  gsap.registerPlugin(ScrollTrigger);
+  // ★★ここが「上スクロールで画面が飛ぶ」の本体(2026-08-12 実測)。
+  //   スマホはアドレスバーが伸縮するたびに resize が飛び、ScrollTrigger は既定で
+  //   **毎回 refresh() して位置を測り直し、その過程でスクロール位置を保存・復元する**。
+  //   その復元がブラウザには「スクロールされた」と映るのでバーがまた動き、
+  //   resize → refresh → 復元 → resize … と**発振する**。
+  //   実測(Instagramアプリ内ブラウザの画面収録・120fps): 2.9秒から 8.7秒まで
+  //   0.6〜1.0秒おきに **±520〜540 実px(≒177 CSS px = バーの高さ)** の
+  //   1フレームのワープが交互に10回。間の動きは±10〜70pxの普通のスクロール。
+  //   ignoreMobileResize はまさにこの用途の公式スイッチ(GSAP 3.10+)。
+  //   ※下の window resize ガードだけでは塞げない。ScrollTrigger は**自前の**
+  //     resize ハンドラを持っていて、そちらから refresh が走るため。
+  ScrollTrigger.config({ignoreMobileResize:true});
+}
 let lenis=null;
 if(window.Lenis&&!reduce&&!coarse&&!location.hash.includes('static')){
   lenis=new Lenis({lerp:0.1,wheelMultiplier:1,smoothWheel:true});
