@@ -231,6 +231,25 @@ footer .sig{
   font-size:12px;letter-spacing:.18em;color:var(--sub);
 }
 
+/* ---------- 言語トグル(本体サイトと同じ右上・pill) ---------- */
+.langsw{
+  position:fixed;top:14px;right:14px;z-index:10;
+  display:flex;gap:2px;padding:3px;border-radius:999px;
+  background:rgba(10,18,38,.55);border:1px solid rgba(148,178,238,.22);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.langsw button{
+  appearance:none;border:0;background:transparent;color:var(--sub);
+  font:inherit;font-size:11.5px;letter-spacing:.06em;
+  padding:5px 12px;border-radius:999px;cursor:pointer;
+}
+.langsw button.on{
+  color:#0a1224;font-weight:600;
+  background:linear-gradient(96deg,var(--a1),#cfe0ff);
+}
+body.lang-zh{font-family:"PingFang TC","Noto Sans TC","Hiragino Sans",sans-serif}
+body.lang-zh .lead .zh{display:none}
+
 /* ---------- モーション設定 ---------- */
 @media (prefers-reduced-motion:reduce){
   .aurora{animation:none}
@@ -250,6 +269,11 @@ footer .sig{
 <div class="aurora b"></div>
 <div class="aurora c"></div>
 <div class="horizon"></div>
+
+<div class="langsw" role="group" aria-label="Language">
+  <button id="lj" class="on" type="button">日本語</button>
+  <button id="lz" type="button">中文</button>
+</div>
 
 <div class="wrap">
 
@@ -443,6 +467,48 @@ document.querySelectorAll('.thumb img').forEach(img=>{
     }
   });
 });
+
+/* ---------- i18n: 日本語⇔繁體中文(台灣語彙)。本体サイトと同じテキストノード置換 ---------- */
+(function(){
+  const M={
+    "自宅のGPU 1台で、ミュージックビデオを作っています。":"用家裡的一張顯卡，做音樂錄影帶。",
+    "最新作":"最新作品","作品":"作品","作り方":"製作方法","その他":"其他",
+    "最後だから、一番でかい音でいこう。三年分の音を最後にぜんぶ鳴らした、放課後のフルMV。":"因為是最後一次，就用最大的聲音吧。把三年份的聲音，在最後全部鳴響的放學後完整MV。",
+    "光ってすぐに消える。それでも掴みたくて。":"一閃，就消失了。即使如此，還是想抓住。",
+    "夏祭りの一夜を描いたショートフィルム。":"描繪夏日祭典一夜的短片。",
+    "すべて見る":"全部觀看","YouTube チャンネル":"YouTube 頻道",
+    "ローカルAIでフルMVを作る全工程":"用本地AI製作完整MV的全部流程",
+    "無料記事。曲づくりから編集まで、1本を通しで。":"免費文章。從作曲到剪輯，完整走一遍。",
+    "ローカルAI MVスタジオの教科書":"本地AI MV工作室教科書",
+    "62ページの体系教材。工程設計と、失敗パターン19項目。":"62頁的體系化教材。工程設計，與19項失敗模式。",
+    "MV STUDIO について":"關於 MV STUDIO",
+    "話すだけで、MVができる。アプリの紹介サイト。":"只要開口說，MV就完成。應用程式介紹網站。",
+    "制作者に連絡する":"聯絡製作者","Instagram のDMへ。":"前往 Instagram 私訊。",
+    "映像・楽曲・キャラクターはすべてオリジナルの創作物です。":"影像、樂曲、角色，皆為原創作品。",
+    "制作に生成AIを使用しています。":"製作過程使用生成式AI。"
+  };
+  const R={};for(const k in M)R[M[k]]=k;
+  function walk(map){
+    const it=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    let n;while(n=it.nextNode()){
+      const t=n.nodeValue.trim();
+      if(map[t])n.nodeValue=n.nodeValue.replace(t,map[t]);
+    }
+  }
+  const bj=document.getElementById('lj'),bz=document.getElementById('lz');
+  function apply(zh,save){
+    document.body.classList.toggle('lang-zh',zh);
+    walk(zh?M:R);
+    bj.classList.toggle('on',!zh);bz.classList.toggle('on',zh);
+    document.documentElement.lang=zh?'zh-Hant-TW':'ja';
+    if(save)try{localStorage.setItem('ml_lang',zh?'zh':'ja')}catch(e){}
+  }
+  bj.addEventListener('click',()=>apply(false,true));
+  bz.addEventListener('click',()=>apply(true,true));
+  let pref=null;try{pref=localStorage.getItem('ml_lang')}catch(e){}
+  if(pref==='zh')apply(true,false);
+  else if(!pref&&/^zh/i.test(navigator.language||''))apply(true,false);
+})();
 </script>
 </body>
 </html>
