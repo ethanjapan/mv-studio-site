@@ -206,7 +206,12 @@
     backdrop-filter:blur(14px);border-radius:18px}
 
   /* 02 chat */
-  .chat{margin-top:48px;display:flex;flex-direction:column;gap:14px;max-width:620px}
+  /* position:relative = 打鍵インジケータ(.typing)の絶対配置の基準。
+     ★.typing を通常フローに入れると出し入れのたびに **チャット欄が55px伸び縮みし、
+       ドキュメント全体の高さが動く**(2026-08-12 実測 635⇄690 / scrollHeight 17577⇄17632)。
+       iOS/WebKit は scroll anchoring を持たないので、これが起きると
+       いま見ている位置より上で高さが変わった分だけ画面が飛ぶ。 */
+  .chat{margin-top:48px;display:flex;flex-direction:column;gap:14px;max-width:620px;position:relative}
   .bubble{padding:15px 20px;border-radius:18px;font-size:15px;line-height:1.7;max-width:80%;
     border:1px solid var(--line);backdrop-filter:blur(12px)}
   .bubble.ai{align-self:flex-start;background:var(--card);border-top-left-radius:6px;color:var(--ink)}
@@ -628,7 +633,9 @@
   .chat .bubble{opacity:0;transform:translateY(14px);
     transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1)}
   .chat .bubble.show{opacity:1;transform:none}
-  .typing{align-self:flex-start;display:inline-flex;gap:5px;padding:16px 18px;border-radius:18px;border-top-left-radius:6px;
+  /* ★フローから外す(高さを動かさない)。位置は「次に出るAI吹き出し」の offsetTop をJSで入れる。
+     吹き出しは opacity:0 のまま場所を確保しているので、真上に重ねると見た目は同じ。 */
+  .typing{position:absolute;left:0;display:inline-flex;gap:5px;padding:16px 18px;border-radius:18px;border-top-left-radius:6px;
     border:1px solid var(--line);background:var(--card);backdrop-filter:blur(12px);
     opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s}
   .typing.show{opacity:1;transform:none}

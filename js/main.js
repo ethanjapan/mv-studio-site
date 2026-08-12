@@ -105,11 +105,18 @@ function buildAnchors(){
   document.querySelectorAll('[data-ch]').forEach(s=>{
     const ch=s.getAttribute('data-ch');const cp=CH_P[ch];if(cp==null)return;
     const top=s.getBoundingClientRect().top+window.scrollY;
-    if(ch==='03'){
+    const tail=top+s.offsetHeight-window.innerHeight;   // 巻きの「抜けきる」位置
+    // ★ch03 の2点アンカーは **セクションが画面より高い時だけ**成立する。
+    //   モバイルでは .reel が height:auto の横スワイプに変わり(CSS @media max-width:860px)、
+    //   高さ489px < 画面812px → tail < top で **アンカーが逆順**になる。
+    //   sort 後の単調クランプが p を 0.46 で平らに潰し、手前で 0.36→0.46 の段差が出て
+    //   背景が跳ねる(2026-08-12 実測: y=3726〜4049 が p=0.46 で固定)。
+    //   逆順になる時は通常の「中央で cp」に落とす。
+    if(ch==='03'&&tail>top){
       // film reel: hold the cool-dawn band across the WHOLE fly-through, so the
       // light only bursts AFTER the reel has scrolled away (no overlap on tall mobile)
       a.push({y:Math.max(0,top),p:0.37});
-      a.push({y:Math.max(0,top+s.offsetHeight-window.innerHeight),p:0.46});
+      a.push({y:Math.max(0,tail),p:0.46});
     }else{
       a.push({y:Math.max(0,top+s.offsetHeight/2-window.innerHeight/2),p:cp});
     }
@@ -129,9 +136,14 @@ function colorP(y){
 function updateColor(){applyProgress(colorP(window.scrollY));if(window.__setActiveDot)window.__setActiveDot();}
 
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// ★タッチ端末では Lenis を起動しない(2026 の定石)。
+//   iOS/WKWebView(Instagram等のアプリ内ブラウザ含む)はネイティブの慣性スクロールを持ち、
+//   Lenis が横取りすると指の動きと内部の目標値がずれて**画面が飛ぶ**。
+//   darkroomengineering/lenis #288 が同症状。デスクトップのホイールだけ Lenis の利がある。
+const coarse=matchMedia('(pointer: coarse)').matches;
 if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
 let lenis=null;
-if(window.Lenis&&!reduce&&!location.hash.includes('static')){
+if(window.Lenis&&!reduce&&!coarse&&!location.hash.includes('static')){
   lenis=new Lenis({lerp:0.1,wheelMultiplier:1,smoothWheel:true});
   lenis.on('scroll',()=>{if(window.ScrollTrigger)ScrollTrigger.update();updateColor();});
   if(window.gsap){gsap.ticker.add((t)=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);}
@@ -140,7 +152,17 @@ if(window.Lenis&&!reduce&&!location.hash.includes('static')){
   window.addEventListener('scroll',updateColor,{passive:true});
 }
 function refreshAll(){buildAnchors();updateColor();}
-window.addEventListener('resize',refreshAll);
+// ★モバイルは**スクロール中にアドレスバーが伸縮して resize が連発する**。
+//   アンカーの y は window.innerHeight から作っているので、そのたびに全アンカーが
+//   数十px ずれ、進行度 p が不連続に動いて空・3D背景が跳ねる。
+//   幅が変わらない小さな高さ変化(=バーの伸縮)では組み直さない。
+//   精度より**安定**を取る: ずれても連続していれば視覚的に破綻しない。
+let _vw=window.innerWidth,_vh=window.innerHeight;
+window.addEventListener('resize',()=>{
+  const dw=Math.abs(window.innerWidth-_vw),dh=Math.abs(window.innerHeight-_vh);
+  if(coarse&&dw===0&&dh<160){_vh=window.innerHeight;return;}
+  _vw=window.innerWidth;_vh=window.innerHeight;refreshAll();
+});
 window.addEventListener('load',refreshAll);
 if(window.ScrollTrigger)ScrollTrigger.addEventListener('refresh',buildAnchors);
 buildAnchors();updateColor();
@@ -268,7 +290,10 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       if(i>=bubbles.length)return;
       const b=bubbles[i],isAI=b.classList.contains('ai');
       if(isAI){
-        chat.insertBefore(typing,b);
+        // ★フローに差し込まない(高さが動くとiOSで画面が飛ぶ)。
+        //   吹き出しは opacity:0 で場所を確保済みなので、その真上に絶対配置で重ねる。
+        chat.appendChild(typing);
+        typing.style.top=b.offsetTop+'px';
         timers.push(setTimeout(()=>typing.classList.add('show'),20));
         timers.push(setTimeout(()=>{typing.classList.remove('show');if(typing.parentNode)typing.parentNode.removeChild(typing);b.classList.add('show');i++;timers.push(setTimeout(step,600));},880));
       }else{
