@@ -29,15 +29,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=20260813d">
+<link rel="stylesheet" href="css/styles.css?v=20260814a">
 </head>
 <body>
-  <div id="sky"></div>
-  <canvas id="aurora"></canvas>
-  <div id="bloom"></div>
-  <div id="flash"></div>
-  <div class="vignette"></div>
-  <div class="scrim"></div>
   <div class="grain"></div>
 
   <header>
@@ -55,7 +49,7 @@
 
   <section class="hero">
     <div class="hero-film" aria-hidden="true">
-      <video id="heroFilm" muted loop playsinline autoplay preload="auto" poster="assets/hero_poster.jpg?v=20260813a"></video>
+      <video id="heroFilm" muted loop playsinline autoplay preload="auto" poster="assets/hero_yakusoku.jpg?v=20260814a"></video>
       <div class="hero-film-veil"></div>
     </div>
     <div class="eyebrow"><span class="dot"></span>声で、映像をつくる</div>
@@ -161,26 +155,21 @@
     </div>
   </section>
 
-  <!-- 03 制作の旅 — fly THROUGH the film reel (3D) -->
-  <section class="reel" data-ch="03">
-    <div class="reel-stage">
-      <div class="reel-head">
-        <div class="ch-eyebrow">04 — 制作の旅</div>
-        <h2 class="reel-title">雰囲気から完成まで、<span class="em">ひとつながり</span>で。</h2>
+  <!-- 04 制作の旅 — filmstrip (native horizontal scroll) -->
+  <section class="panel" data-ch="03">
+    <div class="panel-inner wide">
+      <div class="ch-eyebrow reveal">04 — 制作の旅</div>
+      <h2 class="ch-title reveal d1">雰囲気から完成まで、<span class="em">ひとつながり</span>で。</h2>
+      <div class="strip reelstrip reveal d2">
+          <figure class="stripcard"><img src="assets/reel_0.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">01</span><figcaption>雰囲気</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_1.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">02</span><figcaption>顔</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_2.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">03</span><figcaption>衣装</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_3.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">04</span><figcaption>スタイル</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_4.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">05</span><figcaption>音楽</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_5.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">06</span><figcaption>ダンス</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_6.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">07</span><figcaption>絵コンテ</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_7.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">08</span><figcaption>完成</figcaption></figure>
       </div>
-      <div class="reel-view">
-        <div class="reel-track">
-          <div class="frame"><div class="cell s0"><img class="cellimg" src="assets/reel_0.jpg?v=20260812a" alt="" loading="lazy"><span class="fn">01</span><span class="fl">雰囲気</span></div></div>
-          <div class="frame"><div class="cell s1"><img class="cellimg" src="assets/reel_1.jpg?v=20260812a" alt="" loading="lazy"><span class="fn">02</span><span class="fl">顔</span></div></div>
-          <div class="frame"><div class="cell s2"><img class="cellimg" src="assets/reel_2.jpg?v=20260812a" alt="" loading="lazy"><span class="fn">03</span><span class="fl">衣装</span></div></div>
-          <div class="frame"><div class="cell s3"><img class="cellimg" src="assets/reel_3.jpg?v=20260812a" alt="" loading="lazy"><span class="fn">04</span><span class="fl">スタイル</span></div></div>
-          <div class="frame"><div class="cell s4"><img class="cellimg" src="assets/reel_4.jpg?v=20260812a" alt="" loading="lazy"><span class="fn">05</span><span class="fl">音楽</span></div></div>
-          <div class="frame"><div class="cell s5"><img class="cellimg" src="assets/reel_5.jpg?v=20260812a" alt="" loading="lazy"><span class="fn">06</span><span class="fl">ダンス</span></div></div>
-          <div class="frame"><div class="cell s6"><img class="cellimg" src="assets/reel_6.jpg?v=20260812a" alt="" loading="lazy"><span class="fn">07</span><span class="fl">絵コンテ</span></div></div>
-          <div class="frame"><div class="cell s7"><img class="cellimg" src="assets/reel_7.jpg?v=20260812a" alt="" loading="lazy"><span class="fn">08</span><span class="fl">完成</span></div></div>
-        </div>
-      </div>
-      <div class="reel-foot"><span class="reel-dot"></span><span class="reel-now">雰囲気</span></div>
     </div>
   </section>
 
@@ -250,7 +239,7 @@
   </section>
 
   <!-- 07 スタイリング — the fashion director's closet -->
-  <section class="panel" data-ch="04c">
+  <section class="panel wall" data-ch="04c">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">07 — スタイリング</div>
       <h2 class="ch-title reveal d1">衣装も、髪も、メイクも。<br><span class="em">専属スタイリスト</span>がいる。</h2>
@@ -368,21 +357,33 @@
     </div>
   </section>
 
-  <!-- 08 実例 — horizontal scrub: a single MV being born -->
-  <section class="hreel" data-ch="08">
-    <div class="hreel-stage">
-      <div class="hreel-head">
-        <div class="ch-eyebrow">11 — 実例：話すだけで、ここまで</div>
-        <h2 class="hreel-title">一本のMVが、<span class="em">生まれる</span>まで。</h2>
+  <!-- 11 実例 — the making of one MV (native horizontal scroll) -->
+  <section class="panel" data-ch="08">
+    <div class="panel-inner wide">
+      <div class="ch-eyebrow reveal">11 — 実例：話すだけで、ここまで</div>
+      <h2 class="ch-title reveal d1">一本のMVが、<span class="em">生まれる</span>まで。</h2>
+      <div class="strip exstrip reveal d2">
+          <figure class="stripcard">
+            <div class="sc-thumb"><img src="assets/ex_moodm.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 01</span><span class="sc-step">雰囲気</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>夕暮れの部室で、青春バンドMVに<span class="qq">」</span></div><div class="act">金色の光と舞う埃——雰囲気を3案から選ぶ。</div></figcaption>
+          </figure>
+          <figure class="stripcard">
+            <div class="sc-thumb"><img src="assets/ex_facem.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 02</span><span class="sc-step">顔</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>まっすぐな目の、あどけなさの残る子<span class="qq">」</span></div><div class="act">超リアルな顔を見比べて、相談して決める。</div></figcaption>
+          </figure>
+          <figure class="stripcard">
+            <div class="sc-thumb"><img src="assets/ex_dressm.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 03</span><span class="sc-step">衣装</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>白シャツに、紺のプリーツスカートで<span class="qq">」</span></div><div class="act">衣装・体型・スタイルまで反映する。</div></figcaption>
+          </figure>
+          <figure class="stripcard">
+            <div class="sc-thumb"><img src="assets/ex_face.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 04</span><span class="sc-step">歌唱・表情</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>ラスサビは、想いを解き放つように<span class="qq">」</span></div><div class="act">声と口元・表情を、曲に合わせて演出する。</div></figcaption>
+          </figure>
+          <figure class="stripcard">
+            <div class="sc-thumb"><video class="ex" src="assets/ex_final.mp4?v=20260812a" poster="assets/ex_final.jpg?v=20260812a" muted loop playsinline preload="metadata"></video><span class="sc-n">SCENE 05</span><span class="sc-step">完成MV</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>絵コンテOK、仕上げて<span class="qq">」</span></div><div class="act">高画質で仕上げ——実際に生成された一本のMV。</div></figcaption>
+          </figure>
       </div>
-      <div class="htrack" id="htrack">
-        <div class="scene"><div class="thumb sc1"><img class="ex" src="assets/ex_moodm.jpg?v=20260812a" alt="夕暮れの部室の雰囲気カット" loading="lazy"><span class="sn">SCENE 01</span><span class="stepname">雰囲気</span></div><div class="body"><div class="say"><span class="qq">「</span>夕暮れの部室で、青春バンドMVに<span class="qq">」</span></div><div class="act">金色の光と舞う埃——雰囲気を3案から選ぶ。</div></div></div>
-        <div class="scene"><div class="thumb sc2"><img class="ex" src="assets/ex_facem.jpg?v=20260812a" alt="生成された人物の顔アップ" loading="lazy"><span class="sn">SCENE 02</span><span class="stepname">顔</span></div><div class="body"><div class="say"><span class="qq">「</span>まっすぐな目の、あどけなさの残る子<span class="qq">」</span></div><div class="act">超リアルな顔を見比べて、相談して決める。</div></div></div>
-        <div class="scene"><div class="thumb sc3"><img class="ex" src="assets/ex_dressm.jpg?v=20260812a" alt="白シャツと紺のプリーツスカート" loading="lazy"><span class="sn">SCENE 03</span><span class="stepname">衣装</span></div><div class="body"><div class="say"><span class="qq">「</span>白シャツに、紺のプリーツスカートで<span class="qq">」</span></div><div class="act">衣装・体型・スタイルまで反映する。</div></div></div>
-        <div class="scene"><div class="thumb sc4"><img class="ex" src="assets/ex_face.jpg?v=20260812a" alt="サビを歌う表情のカット" loading="lazy"><span class="sn">SCENE 04</span><span class="stepname">歌唱・表情</span></div><div class="body"><div class="say"><span class="qq">「</span>ラスサビは、想いを解き放つように<span class="qq">」</span></div><div class="act">声と口元・表情を、曲に合わせて演出する。</div></div></div>
-        <div class="scene fin"><div class="thumb sc5"><video class="ex" src="assets/ex_final.mp4?v=20260812a" poster="assets/ex_final.jpg?v=20260812a" muted loop playsinline preload="metadata"></video><span class="sn">SCENE 05</span><span class="stepname">完成MV</span></div><div class="body"><div class="say"><span class="qq">「</span>絵コンテOK、仕上げて<span class="qq">」</span></div><div class="act">高画質で仕上げ——実際に生成された一本のMV。</div></div></div>
-      </div>
-      <div class="hreel-foot" id="hdots"></div>
     </div>
   </section>
 
@@ -567,13 +568,7 @@
     <span class="foot-copy">© 2026 made_linlin</span>
   </footer>
 
-<script type="importmap">
-{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"}}
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/main.js?v=20260813d"></script>
-<script type="module" src="js/world.js?v=20260812n"></script>
+
+<script src="js/main.js?v=20260814a"></script>
 </body>
 </html>

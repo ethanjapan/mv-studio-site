@@ -10,13 +10,13 @@
     const m=portrait?'p':'l';
     if(m===mode)return;mode=m;
     if(portrait){
-      v.poster='assets/ex_final.jpg?v=20260812a';
-      v.src='assets/ex_final.mp4?v=20260812a';
-      v.style.objectPosition='center 28%';
+      v.poster='assets/hero_yakusoku_v.jpg?v=20260814a';
+      v.src='assets/hero_yakusoku_v.mp4?v=20260814a';
+      v.style.objectPosition='center 30%';
     }else{
-      v.poster='assets/hero_poster.jpg?v=20260813a';
-      v.src='assets/hero_hanabi.mp4?v=20260813a';
-      v.style.objectPosition='38% 40%';
+      v.poster='assets/hero_yakusoku.jpg?v=20260814a';
+      v.src='assets/hero_yakusoku.mp4?v=20260814a';
+      v.style.objectPosition='center 35%';
     }
     v.play().catch(()=>{});
   }
@@ -30,7 +30,6 @@
     if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
   }),{threshold:0.05}).observe(v);
 })();
-
 
 /* 06/07 — drifting walls: duplicate each sequence once so translateX(-100%) loops seamlessly */
 (function walls(){
@@ -64,216 +63,6 @@
   }
 })();
 
-/* ===== 3D world bridge (the scene itself lives in js/world.js, an ES module) =====
-   main.js keeps the scroll/colour engine and hands progress + sky colours to the
-   world through this shared state object, read once per rendered frame. */
-window.__worldState={p:0,top:[0.016,0.020,0.039],bottom:[0.027,0.035,0.078]};
-
-
-/* ===== cinemascope letterbox bars (film grammar for the dive + finale) ===== */
-const _barT=document.createElement('div'),_barB=document.createElement('div');
-_barT.className='cine-bar top';_barB.className='cine-bar bottom';
-document.body.appendChild(_barT);document.body.appendChild(_barB);
-
-/* ===== scroll engine: deepest night -> bright morning sky ===== */
-const sky=document.getElementById('sky');
-const bloom=document.getElementById('bloom');
-const flash=document.getElementById('flash');
-const scrimEl=document.querySelector('.scrim');
-const vigEl=document.querySelector('.vignette');
-
-// colour journey (verified spec, with the verifier's fixes applied)
-const SKY=[
-  {p:0.00,t:'#04050a',b:'#070914'},
-  {p:0.16,t:'#070a16',b:'#0c1124'},
-  {p:0.30,t:'#0d1530',b:'#15234a'},
-  {p:0.43,t:'#16294f',b:'#244e6e'},   // dawn shifting toward deep water
-  {p:0.48,t:'#1f5573',b:'#5aa0b6'},   // intermediate stop (anti-banding) — water surfacing
-  {p:0.53,t:'#1d5675',b:'#a6e2ec'},   // IMPACT — surface breaks into pale pool water (top deep enough for white text)
-  {p:0.63,t:'#5cb4cf',b:'#c6edf2'},   // pale, cool summer pool
-  {p:0.74,t:'#8bd2df',b:'#dcf6f8'},
-  {p:0.87,t:'#b6e8ef',b:'#eefbfb'},
-  {p:1.00,t:'#d8f5f8',b:'#f9fefe'},   // very pale aqua, near-white surface
-];
-// text: hold WHITE through the dark runway + impact, then a FAST flip to slate-navy
-// (never park on a muddy mid-grey; navy already clears AA on the brightening blue)
-const TEXT=[
-  {p:0.00, ink:[255,255,255],mut:[228,226,255,.62]},
-  {p:0.40, ink:[236,242,255],mut:[216,222,250,.62]},
-  {p:0.55, ink:[238,244,255],mut:[222,230,252,.66]},
-  {p:0.585,ink:[15,29,51],   mut:[26,40,72,.78]},
-  {p:1.00, ink:[22,38,63],   mut:[30,44,78,.80]},
-];
-
-function lerp(a,b,t){return a+(b-a)*t}
-function hx(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
-function mix3(a,b,t){return [Math.round(lerp(a[0],b[0],t)),Math.round(lerp(a[1],b[1],t)),Math.round(lerp(a[2],b[2],t))]}
-function seg(st,p){let i=0;while(i<st.length-1&&p>st[i+1].p)i++;const s=st[i],e=st[Math.min(i+1,st.length-1)];const d=e.p-s.p;const t=d>0?Math.min(1,Math.max(0,(p-s.p)/d)):0;return [s,e,t]}
-function ramp(p,a,b){return Math.min(1,Math.max(0,(p-a)/(b-a)))}
-
-function applyProgress(p){
-  // --- sky gradient ---
-  const sg=seg(SKY,p);
-  const top=mix3(hx(sg[0].t),hx(sg[1].t),sg[2]);
-  const bot=mix3(hx(sg[0].b),hx(sg[1].b),sg[2]);
-  sky.style.background=`linear-gradient(180deg,rgb(${top.join(',')}),rgb(${bot.join(',')}))`;
-  window.__worldState.top=[top[0]/255,top[1]/255,top[2]/255];
-  window.__worldState.bottom=[bot[0]/255,bot[1]/255,bot[2]/255];
-  // --- text colour (smooth single flip) ---
-  const tg=seg(TEXT,p),ts=tg[0],te=tg[1],tt=tg[2];
-  const ink=mix3(ts.ink,te.ink,tt);
-  const mr=mix3([ts.mut[0],ts.mut[1],ts.mut[2]],[te.mut[0],te.mut[1],te.mut[2]],tt);
-  const ma=lerp(ts.mut[3],te.mut[3],tt);
-  document.body.style.setProperty('--ink',`rgb(${ink.join(',')})`);
-  document.body.style.setProperty('--muted',`rgba(${mr.join(',')},${ma.toFixed(3)})`);
-  // --- text scrim: only across the impact, gone before the navy-on-blue zone (no ugly blob) ---
-  document.body.style.setProperty('--veil',Math.min(ramp(p,0.44,0.49),1-ramp(p,0.52,0.57)).toFixed(3));
-  document.body.classList.toggle('lit',p>0.57);
-  // --- daybreak bloom: rises into the impact, melts into full daylight ---
-  bloom.style.opacity=Math.min(ramp(p,0.42,0.52),1-ramp(p,0.58,0.84)).toFixed(3);
-  // --- burst of first light at the apex (~0.515): a swelling flash, not a strobe ---
-  // the pool footage already IS the water surface — no white flash needed on surfacing
-  const fImpact=Math.max(0,1-Math.abs(p-0.515)/0.055)*0.5;
-  flash.style.opacity=fImpact.toFixed(3);
-  // --- overlays fade as the sky brightens ---
-  scrimEl.style.opacity=Math.max(0,1-p/0.30).toFixed(3);
-  vigEl.style.opacity=Math.max(0,1-p/0.46).toFixed(3);
-  // --- cinemascope bars: in for the dive sequence, softly for the finale ---
-  const cine=Math.max(
-    Math.min(ramp(p,0.415,0.468),1-ramp(p,0.585,0.65)),
-    ramp(p,0.958,0.995)*0.8);
-  const bh=(cine*7).toFixed(2)+'vh';
-  _barT.style.height=bh;_barB.style.height=bh;
-  // --- hand progress to the 3D world (camera position along the dive) ---
-  window.__worldState.p=p;
-}
-
-/* ===== colour progress is ANCHORED TO SECTIONS (robust to tall reels / pins) ===== */
-const CH_P={'01':0.12,'02':0.30,'02b':0.36,'03':0.43,'04':0.53,'04b':0.57,'04c':0.605,'05':0.63,'06':0.73,'07':0.81,'08':0.89,'08b':0.925,'09':0.95,'10b':0.975,'12a':0.982,'13a':0.987,'14a':0.991,'15a':0.995,'10':1.00};
-let ANCH=[];
-function buildAnchors(){
-  const a=[{y:0,p:0}];
-  document.querySelectorAll('[data-ch]').forEach(s=>{
-    const ch=s.getAttribute('data-ch');const cp=CH_P[ch];if(cp==null)return;
-    const top=s.getBoundingClientRect().top+window.scrollY;
-    const tail=top+s.offsetHeight-window.innerHeight;   // 巻きの「抜けきる」位置
-    // ★ch03 の2点アンカーは **セクションが画面より高い時だけ**成立する。
-    //   モバイルでは .reel が height:auto の横スワイプに変わり(CSS @media max-width:860px)、
-    //   高さ489px < 画面812px → tail < top で **アンカーが逆順**になる。
-    //   sort 後の単調クランプが p を 0.46 で平らに潰し、手前で 0.36→0.46 の段差が出て
-    //   背景が跳ねる(2026-08-12 実測: y=3726〜4049 が p=0.46 で固定)。
-    //   逆順になる時は通常の「中央で cp」に落とす。
-    if(ch==='03'&&tail>top){
-      // film reel: hold the cool-dawn band across the WHOLE fly-through, so the
-      // light only bursts AFTER the reel has scrolled away (no overlap on tall mobile)
-      a.push({y:Math.max(0,top),p:0.37});
-      a.push({y:Math.max(0,tail),p:0.46});
-    }else{
-      a.push({y:Math.max(0,top+s.offsetHeight/2-window.innerHeight/2),p:cp});
-    }
-  });
-  const lim=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
-  a.push({y:lim,p:1});
-  a.sort((x,y)=>x.y-y.y);
-  for(let i=1;i<a.length;i++){if(a[i].p<a[i-1].p)a[i].p=a[i-1].p;}
-  ANCH=a;
-}
-function colorP(y){
-  if(!ANCH.length)return 0;
-  let i=0;while(i<ANCH.length-1&&y>ANCH[i+1].y)i++;
-  const s=ANCH[i],e=ANCH[Math.min(i+1,ANCH.length-1)],d=e.y-s.y;
-  return Math.min(1,Math.max(0,s.p+(e.p-s.p)*(d>0?Math.min(1,Math.max(0,(y-s.y)/d)):0)));
-}
-function updateColor(){applyProgress(colorP(window.scrollY));if(window.__setActiveDot)window.__setActiveDot();}
-
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-// ★タッチ端末では Lenis を起動しない(2026 の定石)。
-//   iOS/WKWebView(Instagram等のアプリ内ブラウザ含む)はネイティブの慣性スクロールを持ち、
-//   Lenis が横取りすると指の動きと内部の目標値がずれて**画面が飛ぶ**。
-//   darkroomengineering/lenis #288 が同症状。デスクトップのホイールだけ Lenis の利がある。
-const coarse=matchMedia('(pointer: coarse)').matches;
-if(window.gsap&&window.ScrollTrigger){
-  gsap.registerPlugin(ScrollTrigger);
-  // ★★ここが「上スクロールで画面が飛ぶ」の本体(2026-08-12 実測)。
-  //   スマホはアドレスバーが伸縮するたびに resize が飛び、ScrollTrigger は既定で
-  //   **毎回 refresh() して位置を測り直し、その過程でスクロール位置を保存・復元する**。
-  //   その復元がブラウザには「スクロールされた」と映るのでバーがまた動き、
-  //   resize → refresh → 復元 → resize … と**発振する**。
-  //   実測(Instagramアプリ内ブラウザの画面収録・120fps): 2.9秒から 8.7秒まで
-  //   0.6〜1.0秒おきに **±520〜540 実px(≒177 CSS px = バーの高さ)** の
-  //   1フレームのワープが交互に10回。間の動きは±10〜70pxの普通のスクロール。
-  //   ignoreMobileResize はまさにこの用途の公式スイッチ(GSAP 3.10+)。
-  //   ※下の window resize ガードだけでは塞げない。ScrollTrigger は**自前の**
-  //     resize ハンドラを持っていて、そちらから refresh が走るため。
-  ScrollTrigger.config({ignoreMobileResize:true});
-}
-let lenis=null;
-if(window.Lenis&&!reduce&&!coarse&&!location.hash.includes('static')){
-  lenis=new Lenis({lerp:0.1,wheelMultiplier:1,smoothWheel:true});
-  lenis.on('scroll',()=>{if(window.ScrollTrigger)ScrollTrigger.update();updateColor();});
-  if(window.gsap){gsap.ticker.add((t)=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);}
-  else{const lr=(t)=>{lenis.raf(t);requestAnimationFrame(lr)};requestAnimationFrame(lr);}
-}else{
-  window.addEventListener('scroll',updateColor,{passive:true});
-}
-function refreshAll(){buildAnchors();updateColor();}
-// ★モバイルは**スクロール中にアドレスバーが伸縮して resize が連発する**。
-//   アンカーの y は window.innerHeight から作っているので、そのたびに全アンカーが
-//   数十px ずれ、進行度 p が不連続に動いて空・3D背景が跳ねる。
-//   幅が変わらない小さな高さ変化(=バーの伸縮)では組み直さない。
-//   精度より**安定**を取る: ずれても連続していれば視覚的に破綻しない。
-let _vw=window.innerWidth,_vh=window.innerHeight;
-window.addEventListener('resize',()=>{
-  const dw=Math.abs(window.innerWidth-_vw),dh=Math.abs(window.innerHeight-_vh);
-  if(coarse&&dw===0&&dh<160){_vh=window.innerHeight;return;}
-  _vw=window.innerWidth;_vh=window.innerHeight;refreshAll();
-});
-window.addEventListener('load',refreshAll);
-if(window.ScrollTrigger)ScrollTrigger.addEventListener('refresh',buildAnchors);
-buildAnchors();updateColor();
-
-/* ===== 03 制作の旅 — fly THROUGH the film reel (3D, sticky stage) ===== */
-(function reelSetup(){
-  const reel=document.querySelector('.reel');
-  if(!reel||!window.gsap||!window.ScrollTrigger)return;
-  if(window.matchMedia('(max-width:860px)').matches)return; // mobile: native swipe carousel (CSS)
-  const track=reel.querySelector('.reel-track');
-  const frames=[...reel.querySelectorAll('.frame')];
-  const cap=reel.querySelector('.reel-now');
-  const names=['雰囲気','顔','衣装','スタイル','音楽','ダンス','絵コンテ','完成'];
-  const N=frames.length,GAP=430;
-  frames.forEach((f,i)=>f.style.setProperty('--z',(-i*GAP)+'px'));
-  function render(p){
-    const cam=p*((N-1)*GAP);
-    track.style.transform=`translateZ(${cam}px)`;
-    let idx=0,best=1e9;
-    frames.forEach((f,i)=>{
-      const wz=cam-i*GAP;               // world Z of this frame (≈0 = at the lens)
-      const ad=Math.abs(wz);
-      if(ad<best){best=ad;idx=i;}
-      let op=1;
-      if(wz>70)op=Math.max(0,1-(wz-70)/240);          // fade as it slips past the lens
-      else if(wz<-1700)op=Math.max(0,1-(-wz-1700)/700); // fade into the far dark
-      f.style.opacity=op.toFixed(3);
-      f.style.filter=ad<90?'none':`blur(${Math.min(3,ad/600).toFixed(2)}px)`;
-    });
-    frames.forEach((f,i)=>f.classList.toggle('active',i===idx));
-    const fl=frames[idx]&&frames[idx].querySelector('.fl');
-    if(cap)cap.textContent=fl?fl.textContent.trim():names[idx];
-  }
-  ScrollTrigger.create({trigger:reel,start:'top top',end:'bottom bottom',onUpdate:(self)=>render(self.progress),onRefresh:(self)=>render(self.progress)});
-  render(0);
-})();
-
-/* pool sections: expose scroll progress as CSS var --p for scrubbed, scroll-linked visuals */
-(function poolScrub(){
-  if(!window.gsap||!window.ScrollTrigger)return;
-  document.querySelectorAll('[data-build]').forEach(sec=>{
-    const set=s=>sec.style.setProperty('--p',Math.min(1,Math.max(0,s.progress)).toFixed(3));
-    ScrollTrigger.create({trigger:sec,start:'top 86%',end:'center 54%',onUpdate:set,onRefresh:set});
-  });
-})();
-
 /* 06 — voice: pull-down selector, voice-clone highlight, language toggle */
 (function voiceUI(){
   document.querySelectorAll('.vwave-mini').forEach((w,wi)=>{
@@ -301,34 +90,10 @@ buildAnchors();updateColor();
       smp.innerHTML='<span class="q">「</span>'+TXT[l]+'<span class="q">」</span>';smp.style.opacity='1';},200);});
 })();
 
-/* 08 — horizontal scrub: travel sideways through the 5 scenes of an MV being born */
-(function hreelSetup(){
-  const sec=document.querySelector('.hreel');
-  if(!sec||!window.gsap||!window.ScrollTrigger)return;
-  if(window.matchMedia('(max-width:860px)').matches)return; // mobile: native swipe carousel (CSS)
-  const track=document.getElementById('htrack');
-  const scenes=[...sec.querySelectorAll('.scene')];
-  const dotsHost=document.getElementById('hdots');
-  scenes.forEach(()=>{const d=document.createElement('span');d.className='hdot';dotsHost.appendChild(d);});
-  const dots=[...dotsHost.children];
-  const n=scenes.length;
-  function render(p){
-    p=Math.min(1,Math.max(0,p));
-    const first=scenes[0],last=scenes[n-1];
-    const travel=(last.offsetLeft+last.offsetWidth/2)-(first.offsetLeft+first.offsetWidth/2);
-    track.style.transform='translateX('+(-p*travel).toFixed(1)+'px)';
-    const idx=Math.min(n-1,Math.round(p*(n-1)));
-    scenes.forEach((s,i)=>s.classList.toggle('on',i===idx));
-    dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
-  }
-  ScrollTrigger.create({trigger:sec,start:'top top',end:'bottom bottom',onUpdate:s=>render(s.progress),onRefresh:s=>render(s.progress)});
-  render(0);
-})();
-
 // showcase clip decodes ONLY while its card is on screen (it used to run for the
 // whole page life, stealing decode bandwidth from the background footage)
 (function(){
-  const v=document.querySelector('.scene video.ex');if(!v)return;
+  const v=document.querySelector('.exstrip video.ex');if(!v)return;
   new IntersectionObserver(es=>es.forEach(en=>{
     if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
   }),{threshold:0.05}).observe(v);
@@ -383,33 +148,34 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
 })();
 
-// chapter dots navigation (current-position indicator + click to jump)
+// chapter dots navigation — native smooth scroll, engine-free active state
 (function dotsNav(){
   const host=document.getElementById('dotsNav');if(!host)return;
   const NAV=[['00','はじめに','.hero'],['01','問い','[data-ch="01"]'],['02','相談','[data-ch="02"]'],
     ['02b','渡すだけ','[data-ch="02b"]'],
-    ['03','制作の旅','[data-ch="03"]'],['04','本物の人間','[data-ch="04"]'],['04b','世界観','[data-ch="04b"]'],['04c','スタイリング','[data-ch="04c"]'],['05','あなた色','[data-ch="05"]'],
+    ['03','制作の旅','[data-ch="03"]'],['04','本物の人間','[data-ch="04"]'],
+    ['04b','世界観','[data-ch="04b"]'],['04c','スタイリング','[data-ch="04c"]'],
+    ['05','あなた色','[data-ch="05"]'],
     ['06','言語と声','[data-ch="06"]'],['07','スタジオ','[data-ch="07"]'],['08','実例','[data-ch="08"]'],
-    ['08b','作品','[data-ch="08b"]'],['09','プロの制御','[data-ch="09"]'],['10b','対応環境','[data-ch="10b"]'],
+    ['08b','作品','[data-ch="08b"]'],
+    ['09','プロの制御','[data-ch="09"]'],['10b','対応環境','[data-ch="10b"]'],
     ['12a','こんな人に','[data-ch="12a"]'],['13a','広げ方','[data-ch="13a"]'],
     ['14a','三人の専門家','[data-ch="14a"]'],['15a','導入','[data-ch="15a"]'],['10','はじめる','.closing']];
   const items=NAV.map(([id,label,sel])=>{
     const el=document.querySelector(sel);if(!el)return null;
     const b=document.createElement('button');b.className='dot-i';b.setAttribute('aria-label',label);
     b.innerHTML='<span class="lbl">'+label+'</span>';
-    b.addEventListener('click',()=>{const y=el.getBoundingClientRect().top+window.scrollY;
-      if(window.__lenis){window.__lenis.scrollTo(y,{duration:1.2})}else{window.scrollTo({top:y,behavior:'smooth'})}});
+    b.addEventListener('click',()=>el.scrollIntoView({behavior:'smooth',block:'start'}));
     host.appendChild(b);return{el,btn:b};
   }).filter(Boolean);
-  window.__setActiveDot=()=>{const cy=window.innerHeight/2;let best=1e9,bi=0;
+  let tick=false;
+  function setActive(){tick=false;const cy=innerHeight/2;let best=1e9,bi=0;
     items.forEach((it,i)=>{const r=it.el.getBoundingClientRect();const c=r.top+r.height/2;const d=Math.abs(c-cy);if(d<best){best=d;bi=i;}});
-    items.forEach((it,i)=>it.btn.classList.toggle('on',i===bi));};
-  window.__setActiveDot();
+    items.forEach((it,i)=>it.btn.classList.toggle('on',i===bi));}
+  addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(setActive)}},{passive:true});
+  setActive();
 })();
 
-// debug hooks (preview verification): __goto takes a COLOUR progress 0..1
-window.__lenis=lenis;window.__apply=applyProgress;window.__anchors=()=>ANCH;
-window.__goto=(prog)=>{let y=0;for(let i=0;i<ANCH.length-1;i++){if(prog>=ANCH[i].p&&prog<=ANCH[i+1].p){const dp=ANCH[i+1].p-ANCH[i].p;y=ANCH[i].y+(ANCH[i+1].y-ANCH[i].y)*(dp>0?(prog-ANCH[i].p)/dp:0);break;}}window.scrollTo(0,y);if(lenis)lenis.scrollTo(y,{immediate:true});updateColor();if(window.ScrollTrigger)ScrollTrigger.update();};
 
 /* ===== site language switch: 日本語 / 繁體中文（台灣） — native translation ===== */
 (function i18n(){

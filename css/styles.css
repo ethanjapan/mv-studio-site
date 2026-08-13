@@ -82,16 +82,16 @@
   /* veil: keeps the header + headline legible, and lands on --bg at the bottom so the
      hand-off to the dark scroll-world below is seamless */
   .hero-film-veil{position:absolute;inset:0;
-    background:linear-gradient(180deg,
-      rgba(4,5,10,.60) 0%, rgba(4,5,10,.22) 24%,
-      rgba(4,5,10,.10) 46%, rgba(4,5,10,.34) 72%,
-      rgba(4,5,10,.88) 92%, #04050a 100%)}
+    background:
+      linear-gradient(90deg, rgba(4,5,10,.52) 0%, rgba(4,5,10,.24) 34%, transparent 58%),
+      linear-gradient(180deg, rgba(4,5,10,.55) 0%, rgba(4,5,10,.16) 24%,
+        rgba(4,5,10,.12) 55%, rgba(4,5,10,.55) 80%, #04050a 100%)}
   /* content paints above the film */
   .hero>*:not(.hero-film){position:relative;z-index:1}
   /* desktop: subject stands in the left third, fireworks upper-right —
      the copy column moves right, over the calm dark quarter (editorial placement) */
   @media (min-width:861px) and (orientation:landscape){
-    .hero{padding-left:41vw}
+    .hero{padding-right:46vw}
   }
   .eyebrow{font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.5em;
     text-transform:uppercase;color:var(--muted);margin-bottom:22px;padding-left:.5em;
@@ -287,6 +287,43 @@
   .workcard span{font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-size:10.5px;
     letter-spacing:.14em;color:rgba(255,255,255,.72)}
   @media (max-width:860px){.works{grid-template-columns:1fr;gap:14px}}
+
+
+  /* ===== THEATER redesign: permanent night, engine-free ===== */
+  body{background:radial-gradient(130% 100% at 50% -12%, #0d1020 0%, #06070e 52%, #030408 100%) fixed}
+  /* filmstrips — native horizontal scroll, snap, no JS */
+  .strip{display:flex;gap:16px;overflow-x:auto;padding:10px 4px 20px;
+    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;margin-top:44px}
+  .strip::-webkit-scrollbar{height:6px}
+  .strip::-webkit-scrollbar-track{background:transparent}
+  .strip::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:3px}
+  .stripcard{position:relative;flex:none;scroll-snap-align:center;margin:0}
+  .reelstrip .stripcard{width:clamp(220px,24vw,330px)}
+  .reelstrip img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;display:block;
+    border:1px solid rgba(255,255,255,.10);box-shadow:0 16px 44px -18px rgba(0,0,0,.6)}
+  .reelstrip .sc-n{position:absolute;top:10px;left:12px;font-family:"Inter",sans-serif;
+    font-size:10px;letter-spacing:.22em;color:rgba(255,255,255,.75)}
+  .reelstrip figcaption{padding:10px 4px 0;font-size:13px;letter-spacing:.1em;color:var(--muted);text-align:center}
+  .exstrip .stripcard{width:clamp(230px,26vw,340px)}
+  .exstrip .sc-thumb{position:relative;border-radius:14px;overflow:hidden;
+    border:1px solid rgba(255,255,255,.10);box-shadow:0 16px 44px -18px rgba(0,0,0,.6)}
+  .exstrip .sc-thumb img,.exstrip .sc-thumb video{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+  .exstrip .sc-n{position:absolute;top:10px;left:12px;font-family:"Inter",sans-serif;
+    font-size:10px;letter-spacing:.22em;color:rgba(255,255,255,.85);text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  .exstrip .sc-step{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;
+    font-size:12px;letter-spacing:.12em;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(3,4,10,.72))}
+  .exstrip figcaption{padding:12px 4px 0}
+  .exstrip .say{font-family:"Shippori Mincho",serif;font-size:14.5px;line-height:1.7;color:var(--ink)}
+  body.lang-zh .exstrip .say{font-family:"Noto Serif TC",serif}
+  .exstrip .say .qq{color:rgba(255,255,255,.45)}
+  .exstrip .act{margin-top:5px;font-size:12px;line-height:1.8;color:var(--muted);letter-spacing:.04em}
+  @media (max-width:860px){
+    .strip{margin-top:34px;gap:12px}
+    .reelstrip .stripcard{width:min(62vw,250px)}
+    .exstrip .stripcard{width:min(66vw,260px)}
+  }
 
   /* glass surface that adapts to light/dark via currentColor-ish tints */
   .glass{border:1px solid var(--line);background:var(--card);
