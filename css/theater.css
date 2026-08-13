@@ -376,7 +376,8 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .wallrow{display:flex;width:max-content}
 .wallseq{display:flex;gap:18px;padding-right:18px;animation:drift 64s linear infinite}
 .wr2 .wallseq{animation-direction:reverse;animation-duration:76s}
-.wcard{position:relative;flex:none;width:clamp(240px,26vw,420px);aspect-ratio:16/9;
+.wr3 .wallseq{animation-duration:88s}
+.wcard{position:relative;flex:none;width:clamp(200px,21vw,340px);aspect-ratio:16/9;
   border-radius:14px;overflow:hidden;border:1px solid rgba(242,236,220,.1);
   box-shadow:0 18px 50px -18px rgba(0,0,0,.6);margin:0}
 .wcard img{width:100%;height:100%;object-fit:cover;display:block}
@@ -386,9 +387,11 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .rackwrap{margin-top:50px;overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.rackrow{display:flex;width:max-content}
+.rackrow{display:flex;width:max-content;margin-bottom:14px}
+.rr2 .rackseq{animation-direction:reverse;animation-duration:70s}
+.rr3 .rackseq{animation-duration:80s}
 .rackseq{display:flex;gap:16px;padding-right:16px;animation:drift 58s linear infinite}
-.rcard{flex:none;width:clamp(128px,14vw,196px);border-radius:12px;overflow:hidden;
+.rcard{flex:none;width:clamp(108px,11.5vw,168px);border-radius:12px;overflow:hidden;
   background:#f3f2f0;border:1px solid rgba(242,236,220,.14);margin:0;
   box-shadow:0 14px 40px -16px rgba(0,0,0,.55)}
 .rcard img{width:100%;aspect-ratio:482/780;object-fit:cover;object-position:center top;display:block}
@@ -481,7 +484,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .studio{margin-top:52px;display:flex;flex-direction:column;gap:26px}
 .st-frame{position:relative;height:clamp(220px,30vw,300px);border-radius:20px;overflow:hidden;
   border:1px solid rgba(230,180,118,.25);
-  background:url("../assets/bd_theater.jpg?v=20260814b") center 35%/cover;
+  background:url("../assets/bd_theater.jpg?v=20260814f") center 35%/cover;
   box-shadow:0 24px 70px -24px rgba(0,0,0,.7)}
 .st-frame::before{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(4,5,12,.2),rgba(4,5,12,.68))}
@@ -609,6 +612,19 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .foot-cred:hover{color:var(--ink)}
 .foot-cred svg{width:15px;height:15px;stroke:var(--gold)}
 .foot-copy{font-family:var(--en);font-size:11px;letter-spacing:.08em;color:rgba(235,229,214,.4)}
+
+
+  /* 13 実画像ミニビジュアル */
+  .pc-photo{padding:0;overflow:hidden}
+  .pc-photo img{width:100%;height:100%;object-fit:cover}
+  .pc-photo .fstop{position:absolute;right:10px;bottom:8px;font-family:var(--en);
+    font-size:10px;letter-spacing:.1em;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+  .pc-sbstrip{padding:8px;gap:6px}
+  .pc-sbstrip img{height:100%;flex:1;min-width:0;object-fit:cover;border-radius:6px;opacity:.55}
+  .pc-sbstrip img.edit{opacity:1;outline:1.5px solid var(--gold);box-shadow:0 0 16px -2px rgba(230,180,118,.6)}
+  .pc-sbstrip .pen{position:absolute;color:var(--gold);font-size:15px;
+    left:calc(8px + (100% - 16px)*0.375);top:50%;transform:translate(-50%,-50%);
+    text-shadow:0 1px 8px rgba(0,0,0,.8)}
 
 /* ---- keyframes ---- */
 @keyframes rise{to{opacity:1;transform:none}}
