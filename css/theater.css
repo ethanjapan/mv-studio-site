@@ -626,6 +626,20 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
     left:calc(8px + (100% - 16px)*0.375);top:50%;transform:translate(-50%,-50%);
     text-shadow:0 1px 8px rgba(0,0,0,.8)}
 
+
+  /* YouTube導線 */
+  .hero-yt{margin-top:20px;display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--sans);font-size:12.5px;letter-spacing:.16em;color:var(--gold);
+    text-decoration:none;border-bottom:1px solid rgba(230,180,118,.45);padding-bottom:4px;
+    opacity:0;animation:fade 1.4s 1.7s forwards;transition:.3s}
+  .hero-yt svg{width:13px;height:13px}
+  .hero-yt:hover{color:#fff;border-color:rgba(255,255,255,.6)}
+  .worklink{display:block;text-decoration:none;color:inherit}
+  .yt-badge{position:absolute;top:12px;right:12px;z-index:2;
+    font-family:var(--en);font-size:9.5px;letter-spacing:.16em;font-weight:700;
+    padding:5px 11px;border-radius:100px;color:#241608;
+    background:linear-gradient(96deg,#f2cf9a,#eeb0c4)}
+
 /* ---- keyframes ---- */
 @keyframes rise{to{opacity:1;transform:none}}
 @keyframes fade{to{opacity:1}}
