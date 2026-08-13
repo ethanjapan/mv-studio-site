@@ -640,6 +640,12 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
     padding:5px 11px;border-radius:100px;color:#241608;
     background:linear-gradient(96deg,#f2cf9a,#eeb0c4)}
 
+
+  /* 17 三人の専門家 — 実物の一瞥 */
+  .dir-strip{display:flex;gap:7px;margin-bottom:16px}
+  .dir-strip img{width:calc((100% - 14px)/3);aspect-ratio:1/1;object-fit:cover;
+    border-radius:9px;border:1px solid rgba(242,236,220,.12)}
+
 /* ---- keyframes ---- */
 @keyframes rise{to{opacity:1;transform:none}}
 @keyframes fade{to{opacity:1}}
