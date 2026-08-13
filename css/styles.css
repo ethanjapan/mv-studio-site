@@ -74,6 +74,25 @@
   .hero{position:relative;z-index:5;min-height:100svh;
     display:flex;flex-direction:column;justify-content:center;align-items:center;
     text-align:center;padding:0 24px}
+  /* full-bleed cinematic footage — the product's own output IS the opening frame.
+     absolute inside .hero so it scrolls away naturally and the WebGL world takes over. */
+  .hero-film{position:absolute;inset:0;overflow:hidden;z-index:0}
+  .hero-film video{width:100%;height:100%;object-fit:cover;object-position:38% 40%;
+    filter:saturate(1.04)}
+  /* veil: keeps the header + headline legible, and lands on --bg at the bottom so the
+     hand-off to the dark scroll-world below is seamless */
+  .hero-film-veil{position:absolute;inset:0;
+    background:linear-gradient(180deg,
+      rgba(4,5,10,.60) 0%, rgba(4,5,10,.22) 24%,
+      rgba(4,5,10,.10) 46%, rgba(4,5,10,.34) 72%,
+      rgba(4,5,10,.88) 92%, #04050a 100%)}
+  /* content paints above the film */
+  .hero>*:not(.hero-film){position:relative;z-index:1}
+  /* desktop: subject stands in the left third, fireworks upper-right —
+     the copy column moves right, over the calm dark quarter (editorial placement) */
+  @media (min-width:861px) and (orientation:landscape){
+    .hero{padding-left:41vw}
+  }
   .eyebrow{font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.5em;
     text-transform:uppercase;color:var(--muted);margin-bottom:22px;padding-left:.5em;
     opacity:0;transform:translateY(14px);animation:rise 1.1s .25s cubic-bezier(.2,.7,.2,1) forwards}
@@ -81,17 +100,18 @@
     background:#9b7bff;margin-right:14px;vertical-align:middle;
     box-shadow:0 0 14px 3px rgba(155,123,255,.9)}
 
-  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:300;
-    font-size:clamp(38px,7.6vw,100px);line-height:1.05;letter-spacing:.01em;
-    color:#fff}
+  h1{font-family:"Shippori Mincho",serif;font-weight:500;
+    font-size:clamp(38px,7vw,92px);line-height:1.14;letter-spacing:.02em;
+    color:#fff;text-shadow:0 2px 26px rgba(3,6,16,.65),0 1px 3px rgba(3,6,16,.5)}
+  body.lang-zh h1{font-family:"Noto Serif TC",serif !important;font-weight:600}
   h1 .l{display:block;overflow:hidden}
   h1 .l span{display:block;transform:translateY(110%);
     animation:reveal 1.25s cubic-bezier(.16,1,.3,1) forwards}
   h1 .l:nth-child(1) span{animation-delay:.45s}
   h1 .l:nth-child(2) span{animation-delay:.62s}
-  .grad{background:linear-gradient(96deg,#b59bff 0%,#ff9ddb 38%,#8fe3ff 72%,#7afce0 100%);
+  .grad{background:linear-gradient(96deg,#c9b6ff 0%,#ffb3e6 38%,#a5ecff 72%,#8ffde6 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-    font-weight:400}
+    font-weight:600;text-shadow:none}
 
   .sub{margin-top:24px;max-width:560px;font-size:clamp(14px,1.5vw,17px);
     font-weight:400;line-height:1.9;color:rgba(234,236,255,.78);letter-spacing:.04em;
@@ -187,9 +207,11 @@
     text-transform:uppercase;color:rgba(230,232,255,.72);margin-bottom:22px;display:flex;align-items:center;gap:14px;
     text-shadow:0 1px 2px rgba(3,8,20,.5)}
   .ch-eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.5}
-  .ch-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:300;
-    font-size:clamp(30px,5.1vw,66px);line-height:1.2;letter-spacing:.01em;color:var(--ink);
+  .ch-title{font-family:"Shippori Mincho",serif;font-weight:500;
+    font-size:clamp(30px,4.9vw,62px);line-height:1.3;letter-spacing:.02em;color:var(--ink);
     text-shadow:0 1px 3px rgba(3,8,20,.35),0 2px 22px rgba(3,8,20,.45)}
+  body.lang-zh .ch-title{font-family:"Noto Serif TC",serif !important;font-weight:600}
+  body.lang-zh .reel-title,body.lang-zh .hreel-title,body.lang-zh .closing h2{font-family:"Noto Serif TC",serif !important;font-weight:600}
   .ch-title .em{background:linear-gradient(96deg,#b59bff,#ff9ddb 42%,#8fe3ff);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:400;
     text-shadow:none}  /* gradient glyphs are transparent-filled: an inherited shadow bleeds through as mud */
@@ -200,6 +222,71 @@
     transition:opacity 1.1s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ============================================================
+   追加CSS: 世界観ライブラリ(film wall) + スタイリング(closet rack)
+   挿入位置: styles.css の .reveal ブロックの後あたり(セクション共通の後)
+   ============================================================ */
+
+  /* ---- 06 world wall: two slow drifting film rows ---- */
+  .panel.wall{display:block;padding-left:0;padding-right:0}
+  .panel.wall .panel-inner{padding:0 clamp(22px,6vw,96px)}
+  .panel-inner.wide{max-width:1120px}
+  .wallwrap{margin-top:54px;display:grid;gap:18px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .wallrow{display:flex;width:max-content}
+  .wallseq{display:flex;gap:18px;padding-right:18px;animation:drift 64s linear infinite}
+  .wr2 .wallseq{animation-direction:reverse;animation-duration:76s}
+  @keyframes drift{to{transform:translateX(-100%)}}
+  .wcard{position:relative;flex:none;width:clamp(240px,26vw,420px);aspect-ratio:16/9;
+    border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 18px 50px -18px rgba(0,0,0,.6)}
+  .wcard img{width:100%;height:100%;object-fit:cover;display:block}
+  .wcard figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;
+    font-size:11.5px;letter-spacing:.08em;color:rgba(255,255,255,.88);
+    background:linear-gradient(180deg,transparent,rgba(3,4,10,.72));
+    font-family:"Zen Kaku Gothic New",sans-serif}
+  body.lit .wcard{border-color:rgba(20,32,62,.16)}
+  @media (prefers-reduced-motion: reduce){.wallseq{animation:none}}
+
+  /* ---- 07 styling rack: wardrobe cards on a rail ---- */
+  .rackwrap{margin-top:50px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .rackrow{display:flex;width:max-content}
+  .rackseq{display:flex;gap:16px;padding-right:16px;animation:drift 58s linear infinite}
+  .rcard{flex:none;width:clamp(128px,14vw,196px);border-radius:12px;overflow:hidden;
+    background:#f3f2f0;border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 14px 40px -16px rgba(0,0,0,.55)}
+  .rcard img{width:100%;aspect-ratio:482/780;object-fit:cover;object-position:center top;display:block}
+  .rcard figcaption{padding:9px 10px;font-size:11px;letter-spacing:.1em;color:#37405c;
+    background:#fff;font-family:"Zen Kaku Gothic New",sans-serif;text-align:center}
+  .rack-note{margin-top:22px;text-align:center;font-size:11.5px;letter-spacing:.12em;
+    color:var(--muted);font-family:"Inter","Zen Kaku Gothic New",sans-serif}
+  body.lit .rcard{border-color:rgba(20,32,62,.14)}
+  @media (prefers-reduced-motion: reduce){.rackseq{animation:none}}
+  @media (max-width:860px){
+    .wallwrap{margin-top:38px;gap:12px}
+    .wallseq{gap:12px;padding-right:12px}
+    .rackwrap{margin-top:36px}
+  }
+
+  /* ---- 12 works: finished films, playing quietly ---- */
+  .works{margin-top:46px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .workcard{position:relative;border-radius:16px;overflow:hidden;margin:0;
+    border:1px solid var(--line);background:#060810;
+    box-shadow:0 22px 60px -22px rgba(0,0,0,.6)}
+  .workcard video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+  .workcard figcaption{position:absolute;left:0;right:0;bottom:0;
+    padding:34px 16px 12px;display:flex;flex-direction:column;gap:2px;
+    background:linear-gradient(180deg,transparent,rgba(3,4,10,.78))}
+  .workcard strong{font-family:"Shippori Mincho",serif;font-weight:500;font-size:16.5px;
+    letter-spacing:.04em;color:#fff}
+  body.lang-zh .workcard strong{font-family:"Noto Serif TC",serif}
+  .workcard span{font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-size:10.5px;
+    letter-spacing:.14em;color:rgba(255,255,255,.72)}
+  @media (max-width:860px){.works{grid-template-columns:1fr;gap:14px}}
 
   /* glass surface that adapts to light/dark via currentColor-ish tints */
   .glass{border:1px solid var(--line);background:var(--card);
@@ -233,7 +320,7 @@
   .reel-stage{position:sticky;top:0;height:100svh;overflow:hidden}
   .reel-head{position:absolute;top:11vh;left:0;right:0;z-index:4;text-align:center;padding:0 24px}
   .reel-head .ch-eyebrow{justify-content:center;margin-bottom:14px}
-  .reel-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:300;
+  .reel-title{font-family:"Shippori Mincho",serif;font-weight:500;
     font-size:clamp(22px,3.2vw,42px);line-height:1.3;color:var(--ink)}
   .reel-view{position:absolute;inset:0;z-index:2;perspective:1150px;perspective-origin:50% 47%}
   .reel-track{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
@@ -407,7 +494,7 @@
   /* 09 closing */
   .closing{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;position:relative;z-index:5;padding:0 24px}
-  .closing h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:300;
+  .closing h2{font-family:"Shippori Mincho",serif;font-weight:500;
     font-size:clamp(32px,6.2vw,86px);line-height:1.2;color:var(--ink);text-wrap:balance}
   .brm{display:none}
   .closing p{margin-top:24px;font-size:clamp(14px,1.5vw,18px);color:var(--muted);letter-spacing:.04em}
@@ -736,7 +823,7 @@
     display:flex;flex-direction:column;justify-content:center}
   .hreel-head{position:absolute;top:10vh;left:0;right:0;z-index:4;text-align:center;padding:0 24px}
   .hreel-head .ch-eyebrow{justify-content:center;margin-bottom:12px}
-  .hreel-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:300;
+  .hreel-title{font-family:"Shippori Mincho",serif;font-weight:500;
     font-size:clamp(22px,3.2vw,42px);line-height:1.3;color:var(--ink)}
   .htrack{display:flex;gap:30px;padding:0 calc(50vw - clamp(140px,20vw,230px));will-change:transform}
   .scene{flex:0 0 clamp(280px,40vw,460px);border-radius:20px;overflow:hidden;
