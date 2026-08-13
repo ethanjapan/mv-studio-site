@@ -1,3 +1,19 @@
+/* ===== viewport lock: Metaアプリ内ブラウザ対策 =====
+   IG/FBのin-app browserは svh が動的(dvh的)に振る舞い、ツールバー伸縮のたびに
+   全セクションの min-height が再計算されて文書全体が伸縮→スクロール位置が跳ぶ。
+   高さは load 時に1回だけ実測して px で固定し、バー伸縮(幅不変・高さ<160px)では更新しない。 */
+(function vhLock(){
+  const set=()=>document.documentElement.style.setProperty('--vhpx', window.innerHeight+'px');
+  let w=innerWidth,h=innerHeight;
+  set();
+  addEventListener('resize',()=>{
+    const dw=Math.abs(innerWidth-w), dh=Math.abs(innerHeight-h);
+    if(dw===0&&dh<160)return;      // アプリ内ブラウザのバー伸縮は無視
+    w=innerWidth;h=innerHeight;set();
+  });
+  addEventListener('orientationchange',()=>{setTimeout(()=>{w=innerWidth;h=innerHeight;set();},350)});
+})();
+
 /* ===== hero film: full-bleed footage of the product's own output =====
    landscape screens: RINKA yukata + fireworks (1920x1088 ping-pong loop, seamless).
    portrait phones: the vertical singing MV cut (already shipped as ex_final.mp4).

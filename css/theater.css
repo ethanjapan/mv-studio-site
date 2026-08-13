@@ -82,7 +82,7 @@ body.lang-zh .freedom-main{font-family:"Noto Serif TC",serif !important}
 /* ============================================================
    HERO — 約束 #16 全画面
    ============================================================ */
-.hero{position:relative;z-index:5;min-height:100svh;
+.hero{position:relative;z-index:5;min-height:var(--vhpx,100svh);
   display:flex;flex-direction:column;justify-content:center;align-items:center;
   text-align:center;padding:0 24px}
 .hero-film{position:absolute;inset:0;overflow:hidden;z-index:0}
@@ -173,7 +173,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 /* ============================================================
    CHAPTER SCAFFOLD — 章 = 幕
    ============================================================ */
-.panel{position:relative;z-index:5;min-height:92svh;display:flex;align-items:center;
+.panel{position:relative;z-index:5;min-height:calc(var(--vhpx,100svh)*.92);display:flex;align-items:center;
   padding:16vh clamp(22px,6vw,96px);isolation:isolate}
 .panel-inner{max-width:1120px;margin:0 auto;width:100%;position:relative;z-index:2}
 .panel.wall{display:block;padding-left:0;padding-right:0}
@@ -589,7 +589,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 /* ============================================================
    closing
    ============================================================ */
-.closing{position:relative;z-index:5;min-height:92svh;display:flex;flex-direction:column;
+.closing{position:relative;z-index:5;min-height:calc(var(--vhpx,100svh)*.92);display:flex;flex-direction:column;
   justify-content:center;align-items:center;text-align:center;
   padding:20vh 24px;isolation:isolate}
 .closing>*{position:relative;z-index:2}
