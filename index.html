@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=20260814a">
+<link rel="stylesheet" href="css/theater.css?v=20260814d">
 </head>
 <body>
   <div class="grain"></div>
@@ -89,7 +89,7 @@
   </section>
 
   <!-- 01 はじまりの問い -->
-  <section class="panel" data-ch="01" data-build>
+  <section class="panel cine" data-ch="01" data-num="01" style="--bd:url(assets/bd_room.jpg?v=20260814b)">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">01 — はじまりの問い</div>
       <h2 class="ch-title reveal d1">頭の中で再生される、<br>あの<span class="em">一本</span>を。</h2>
@@ -107,7 +107,7 @@
   </section>
 
   <!-- 02 声で相談する -->
-  <section class="panel" data-ch="02">
+  <section class="panel" data-ch="02" data-num="02">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">02 — 声で、相談する</div>
       <h2 class="ch-title reveal d1">作るのではなく、<span class="em">相談する</span>。</h2>
@@ -130,7 +130,7 @@
   </section>
 
   <!-- 03 渡すだけで伝わる — reference attach (photo / costume / video URL) -->
-  <section class="panel" data-ch="02b">
+  <section class="panel cine" data-ch="02b" data-num="03" style="--bd:url(assets/bd_goldfish.jpg?v=20260814b)">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">03 — 渡すだけで、伝わる</div>
       <h2 class="ch-title reveal d1">声だけじゃない。<br><span class="em">渡すだけ</span>でいい。</h2>
@@ -156,7 +156,7 @@
   </section>
 
   <!-- 04 制作の旅 — filmstrip (native horizontal scroll) -->
-  <section class="panel" data-ch="03">
+  <section class="panel" data-ch="03" data-num="04">
     <div class="panel-inner wide">
       <div class="ch-eyebrow reveal">04 — 制作の旅</div>
       <h2 class="ch-title reveal d1">雰囲気から完成まで、<span class="em">ひとつながり</span>で。</h2>
@@ -173,31 +173,21 @@
     </div>
   </section>
 
-  <!-- 04 本物の人間 — THE IMPACT (daybreak tears open) + living detail lenses -->
-  <section class="panel" data-ch="04" data-build style="min-height:185svh">
+  <!-- 05 本物の人間 — 4K等倍の証拠 -->
+  <section class="panel" data-ch="04" data-num="05">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">05 — 本物の人間</div>
       <h2 class="ch-title reveal d1">「AIっぽさ」を、<span class="em">消す</span>。</h2>
       <p class="ch-sub reveal d2">本物に見える理由は、細部への執着。光が割れた瞬間、すべてが“本物”に焦点を結ぶ。</p>
-      <div class="lenses">
-        <div class="lens reveal d1">
-          <div class="lv skin"><img class="lvimg" src="assets/lv_skin2.jpg?v=20260812a" alt="" loading="lazy"></div>
-          <div class="lt">超リアルな肌</div><div class="ld">毛穴・うぶ毛、光の乗り方まで。</div>
-        </div>
-        <div class="lens reveal d2">
-          <div class="lv eye"><img class="lvimg" src="assets/lv_eye2.jpg?v=20260812a" alt="" loading="lazy"></div>
-          <div class="lt">視線の制御</div><div class="ld">寄りは目線、引きは外す。語る視線。</div>
-        </div>
-        <div class="lens reveal d3">
-          <div class="lv micro"><img class="lvimg" src="assets/lv_micro2.jpg?v=20260812a" alt="" loading="lazy"></div>
-          <div class="lt">自然な微表情</div><div class="ld">感情を、生理反応の積み重ねで。</div>
-        </div>
-        <div class="lens reveal d4">
-          <div class="lv consist">
-            <div class="cgrid"><img src="assets/reel_1.jpg?v=20260812a" alt="" loading="lazy"><img src="assets/reel_4.jpg?v=20260812a" alt="" loading="lazy"><img src="assets/reel_7.jpg?v=20260812a" alt="" loading="lazy"></div>
-          </div>
-          <div class="lt">顔の一貫性</div><div class="ld">どのカットでも、同じ“その人”。</div>
-        </div>
+      <div class="bento reveal d2">
+        <figure class="b-skin"><img src="assets/lv4_skin.jpg?v=20260814b" alt="" loading="lazy">
+          <figcaption><strong>超リアルな肌</strong><span>毛穴・うぶ毛、光の乗り方まで。</span></figcaption></figure>
+        <figure class="b-eyes"><img src="assets/lv4_eyes.jpg?v=20260814b" alt="" loading="lazy">
+          <figcaption><strong>視線の制御</strong><span>寄りは目線、引きは外す。語る視線。</span></figcaption></figure>
+        <figure class="b-mouth"><img src="assets/lv4_mouth.jpg?v=20260814b" alt="" loading="lazy">
+          <figcaption><strong>自然な微表情</strong><span>感情を、生理反応の積み重ねで。</span></figcaption></figure>
+        <figure class="b-cons"><div class="cg3"><img src="assets/cg3_yks.jpg?v=20260814b" alt="" loading="lazy"><img src="assets/cg3_rok.jpg?v=20260814b" alt="" loading="lazy"><img src="assets/cg3_utk.jpg?v=20260814b" alt="" loading="lazy"></div>
+          <figcaption><strong>顔の一貫性</strong><span>どのカットでも、同じ“その人”。</span></figcaption></figure>
       </div>
     </div>
   </section>
@@ -208,7 +198,7 @@
      ============================================================ -->
 
   <!-- 06 世界観のライブラリ — the sea of worlds (drifting film wall) -->
-  <section class="panel wall" data-ch="04b">
+  <section class="panel wall" data-ch="04b" data-num="06">
     <div class="panel-inner wide">
       <div class="ch-eyebrow reveal">06 — 世界観のライブラリ</div>
       <h2 class="ch-title reveal d1">どんな世界も、<span class="em">すでにそこに</span>。</h2>
@@ -239,7 +229,7 @@
   </section>
 
   <!-- 07 スタイリング — the fashion director's closet -->
-  <section class="panel wall" data-ch="04c">
+  <section class="panel wall" data-ch="04c" data-num="07">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">07 — スタイリング</div>
       <h2 class="ch-title reveal d1">衣装も、髪も、メイクも。<br><span class="em">専属スタイリスト</span>がいる。</h2>
@@ -265,7 +255,7 @@
   </section>
 
   <!-- 05 使うほど あなた色に -->
-  <section class="panel" data-ch="05" data-build>
+  <section class="panel cine" data-ch="05" data-num="08" style="--bd:url(assets/bd_river.jpg?v=20260814b)">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">08 — 使うほど、あなた色に</div>
       <h2 class="ch-title reveal d1">渡すほど、あなた専属になる。</h2>
@@ -286,7 +276,7 @@
   </section>
 
   <!-- 06 言語と声 -->
-  <section class="panel" data-ch="06">
+  <section class="panel" data-ch="06" data-num="09">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">09 — 言語と、声</div>
       <h2 class="ch-title reveal d1">日本語でも、<br>繁體中文（台灣）でも。</h2>
@@ -332,7 +322,7 @@
   </section>
 
   <!-- 07 あなただけのスタジオ -->
-  <section class="panel" data-ch="07" data-build>
+  <section class="panel" data-ch="07" data-num="10">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">10 — あなただけのスタジオ</div>
       <h2 class="ch-title reveal d1">すべてが、あなたの手の中に。</h2>
@@ -358,7 +348,7 @@
   </section>
 
   <!-- 11 実例 — the making of one MV (native horizontal scroll) -->
-  <section class="panel" data-ch="08">
+  <section class="panel" data-ch="08" data-num="11">
     <div class="panel-inner wide">
       <div class="ch-eyebrow reveal">11 — 実例：話すだけで、ここまで</div>
       <h2 class="ch-title reveal d1">一本のMVが、<span class="em">生まれる</span>まで。</h2>
@@ -388,7 +378,7 @@
   </section>
 
   <!-- 12 作品 — finished films born from this studio -->
-  <section class="panel" data-ch="08b">
+  <section class="panel" data-ch="08b" data-num="12">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">12 — 作品</div>
       <h2 class="ch-title reveal d1">すでに生まれた、<span class="em">一本たち</span>。</h2>
@@ -415,7 +405,7 @@
   </section>
 
   <!-- 09 プロの精度で操る -->
-  <section class="panel" data-ch="09">
+  <section class="panel" data-ch="09" data-num="13">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">13 — プロの精度で、操る</div>
       <h2 class="ch-title reveal d1">細部まで、あなたの指先で。</h2>
@@ -456,7 +446,7 @@
   </section>
 
   <!-- 11 対応環境 (devices / install / resolution) -->
-  <section class="panel" data-ch="10b">
+  <section class="panel cine" data-ch="10b" data-num="14" style="--bd:url(assets/bd_lantern.jpg?v=20260814b)">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">14 — 対応環境</div>
       <h2 class="ch-title reveal d1">どこでも、あなたの手元で。</h2>
@@ -478,7 +468,7 @@
   </section>
 
   <!-- 12 こんな人に -->
-  <section class="panel" data-ch="12a">
+  <section class="panel cine" data-ch="12a" data-num="15" style="--bd:url(assets/bd_club.jpg?v=20260814b)">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">15 — こんな人に、届く</div>
       <h2 class="ch-title reveal d1"><span class="em">あなたの一本</span>を、話すだけで。</h2>
@@ -493,7 +483,7 @@
   </section>
 
   <!-- 13 届けて、広げる -->
-  <section class="panel" data-ch="13a">
+  <section class="panel cine" data-ch="13a" data-num="16" style="--bd:url(assets/bd_sparkler.jpg?v=20260814b)">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">16 — 届けて、広げる</div>
       <h2 class="ch-title reveal d1">作った一本を、<span class="em">世界へ</span>。</h2>
@@ -508,7 +498,7 @@
   </section>
 
   <!-- 14 三つのスタジオ -->
-  <section class="panel" data-ch="14a">
+  <section class="panel" data-ch="14a" data-num="17">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">17 — 三人の専門家</div>
       <h2 class="ch-title reveal d1">ひとつのスタジオに、<span class="em">三人の専門家</span>。</h2>
@@ -534,7 +524,7 @@
   </section>
 
   <!-- 15 導入のかたち -->
-  <section class="panel" data-ch="15a">
+  <section class="panel" data-ch="15a" data-num="18">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">18 — 導入のかたち</div>
       <h2 class="ch-title reveal d1">作る力を、<span class="em">あなたの手元に</span>。</h2>
@@ -549,7 +539,7 @@
   </section>
 
   <!-- 10 closing -->
-  <section class="closing" data-ch="10">
+  <section class="closing cine" data-ch="10" style="--bd:url(assets/bd_finale.jpg?v=20260814b)">
     <div class="finale" id="finale" aria-hidden="true"></div>
     <h2 class="reveal">さあ、<br class="brm">話しかけてみよう。</h2>
     <p class="reveal d1">頭の中のあの一本を、声に出すところから。</p>
