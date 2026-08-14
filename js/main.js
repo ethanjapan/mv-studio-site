@@ -207,6 +207,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 "17 — 三人の専門家":"17 — 三位專家","ひとつのスタジオに、":"一間工作室裡，","三人の専門家":"三位專家","。":"。","MV Studioは、あなたのスタジオ。その中で、三人のディレクターが働く——":"MV Studio，是你的工作室。裡面，有三位導演在工作——","MVも、写真も、音楽も、ひとつの対話から。":"MV、照片、音樂，都從同一場對話開始。","監督。一本のMVを、対話で設計する。物語、絵コンテ、カット割り、人物、カメラの動き、全体の風格まで——迷いなく、完成へ向かう。":"導演。透過對話與諮詢，一步一步規劃一支MV——劇情、分鏡、鏡頭、角色、運鏡與整體風格，讓製作不再迷惘，直向完成。","撮影監督。一枚の写真を、本物の撮影の流れで仕上げる。テーマ、光、構図、カメラ位置、ポーズ、衣装、メイクまで。":"攝影指導。以真實的攝影工作流程，完成一張作品——主題、燈光、構圖、鏡位、姿勢、服裝、妝容，一應俱全。","音楽監督。曲づくりに寄り添う。作詞・作曲・編曲の方向づくりから、歌い方の設計まで——頭の中の曲が、かたちになる。":"音樂總監。陪伴曲子的誕生。從作詞、作曲、編曲的方向規劃，到歌唱風格設計——讓腦海中的曲子成形。",
 "18 — 導入のかたち":"18 — 導入的方式","作る力を、":"把創作的力量，","あなたの手元に":"放進你的手中","個人にも、チームにも。あなたの環境に導入して、あとは作るだけ——":"個人也好、團隊也好。導入到你的環境，接下來只管創作——","詳しくは、お気軽にご相談ください。":"詳情歡迎隨時洽詢。","買い切りの導入":"買斷式導入","一度導入すれば、追加の生成費用なし。月々を気にせず、思うぞんぶん作れる。":"導入一次，就沒有額外的生成費用。不必在意月費，盡情地創作。","あなたの環境で完結":"在你的環境中完結","作品も素材も、外に出ない。ぜんぶ手元に残り、あなただけのもの。":"作品與素材，都不外流。全部留在手邊，只屬於你。","入れて、すぐ作れる":"安裝好，馬上就能做","御社のPCにインストーラを入れるだけ。難しい構築はいりません。":"只要在貴公司的電腦執行安裝程式，不需要複雜的建置。","導入も、その後も":"導入前後，都在","設置から使いこなしまで伴走。困ったときは、いつでも相談できる。":"從安裝到上手，一路陪跑。有困難時，隨時可以商量。",
 "こんな人に":"這樣的你","広げ方":"擴散方式","導入":"導入",
+"完成した作品":"完成的作品","スタイリング資産":"造型資產","対応言語":"支援語言","仕上げ画質":"成片畫質",
 "夕暮れの部室で、青春バンドMVに":"在黃昏的社辦，做一支青春樂團MV","金色の光と舞う埃——雰囲気を3案から選ぶ。":"金色的光與飛舞的灰塵——從3個方案中挑選氛圍。","まっすぐな目の、あどけなさの残る子":"眼神率直、還帶點稚氣的女孩","白シャツに、紺のプリーツスカートで":"白襯衫，配上深藍色的百褶裙","ラスサビは、想いを解き放つように":"最後的副歌，讓情感盡情釋放",
 "STORYBOARD — 実際の絵コンテから":"STORYBOARD — 來自實際的分鏡","引き・雰囲気":"遠景・氛圍","寄り・表情":"特寫・表情","バストアップ":"半身特寫","動きのカット":"動態鏡頭","ひざ上":"膝上景","絵コンテそのままに、一コマずつ演出する。気になるカットだけ、納得いくまで何度でも——他のカットはそのまま。":"照著分鏡，一格一格導戲。只挑在意的那一格，重做到滿意為止——其他鏡頭原封不動。"
   };
@@ -237,4 +238,36 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   if(sw)sw.addEventListener('click',e=>{const b=e.target.closest('.ls-btn');if(b)setLang(b.getAttribute('data-lang'));});
   let saved='ja';try{saved=localStorage.getItem('mvlang')||'ja'}catch(e){}
   setLang(saved);
+})();
+
+/* ===== hero video-typo: 見出しglyphsの中を流れる花火 (デスクトップのみ) =====
+   モバイルはCSS側でグラデ文字にフォールバック済=映像をロードしない */
+(function vtFilm(){
+  const v=document.querySelector('.vt-film');if(!v)return;
+  if(!matchMedia('(min-width:861px)').matches)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  v.src='assets/hero_hanabi.mp4?v=20260815a';
+  new IntersectionObserver(es=>es.forEach(en=>{
+    if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
+  }),{threshold:0.05}).observe(v);
+})();
+
+/* ===== 12 作品 — 物量カウンタ (画面に入ったら1.4sで立ち上がる) ===== */
+(function statCount(){
+  const host=document.getElementById('stats');if(!host)return;
+  const nums=[...host.querySelectorAll('.st-num[data-count]')];
+  if(!nums.length)return;
+  const fmt=n=>n.toLocaleString('ja-JP');
+  const fin=el=>{el.textContent=fmt(+el.dataset.count)+(el.dataset.plus?'+':'')};
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){nums.forEach(fin);return;}
+  let done=false;
+  new IntersectionObserver((es,obs)=>es.forEach(en=>{
+    if(!en.isIntersecting||done)return;done=true;obs.disconnect();
+    const t0=performance.now(),DUR=1400;
+    (function tick(t){
+      const p=Math.min(1,(t-t0)/DUR),e=1-Math.pow(1-p,3);   // ease-out cubic
+      nums.forEach(el=>{el.textContent=fmt(Math.round(+el.dataset.count*e))+(el.dataset.plus&&p===1?'+':'')});
+      if(p<1)requestAnimationFrame(tick);else nums.forEach(fin);
+    })(t0);
+  }),{threshold:0.4}).observe(host);
 })();
