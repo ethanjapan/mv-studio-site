@@ -97,13 +97,28 @@
       const vn=o.querySelector('.vn');label.textContent=vn?vn.textContent:o.getAttribute('data-name');drop.classList.remove('open');});
     document.addEventListener('click',()=>drop.classList.remove('open'));
   }
+  /* 実音声: RINKA紹介ボイス(YouTube公開済カット)の原音。lang切替で音声も切替 */
   const tog=document.getElementById('langToggle'),smp=document.getElementById('voiceSample');
-  const TXT={ja:'こんにちは。あなたの一本、いっしょに作っていこう。',zh:'你好。你的那一支作品，我們一起來完成吧。'};
+  const TXT={ja:'あ、……こんにちは。RINKAです。',zh:'嗨，大家好，我是 RINKA。'};
+  const NOTE={ja:'RINKA ・ 実際に生成された声 ・ タップで再生',zh:'RINKA ・ 實際生成的聲音 ・ 點擊播放'};
+  const AUD={ja:'assets/voice/rinka_ja.m4a?v=20260816f',zh:'assets/voice/rinka_zh.m4a?v=20260816f'};
+  const play=document.getElementById('vsPlay'),note=document.getElementById('vsNote');
+  let vlang='ja',player=null;
+  function stopVoice(){if(player){player.pause();player.currentTime=0;}if(play)play.classList.remove('playing');}
+  if(play)play.addEventListener('click',()=>{
+    if(!player){player=new Audio();player.preload='none';
+      player.addEventListener('ended',()=>play.classList.remove('playing'));}
+    if(!player.paused){stopVoice();return;}
+    const want=AUD[vlang];
+    if(player.src.indexOf(want)<0)player.src=want;
+    player.play().then(()=>play.classList.add('playing')).catch(()=>{});
+  });
   if(tog&&smp)tog.addEventListener('click',e=>{const b=e.target.closest('.lt-btn');if(!b)return;
     tog.querySelectorAll('.lt-btn').forEach(x=>x.classList.toggle('on',x===b));
-    const l=b.getAttribute('data-lang');smp.style.opacity='0';
+    const l=b.getAttribute('data-lang');vlang=l;stopVoice();smp.style.opacity='0';
     setTimeout(()=>{smp.classList.toggle('tc',l==='zh');
-      smp.innerHTML='<span class="q">「</span>'+TXT[l]+'<span class="q">」</span>';smp.style.opacity='1';},200);});
+      smp.innerHTML='<span class="q">「</span>'+TXT[l]+'<span class="q">」</span>';
+      if(note)note.textContent=NOTE[l];smp.style.opacity='1';},200);});
 })();
 
 // showcase clip decodes ONLY while its card is on screen (it used to run for the
@@ -208,6 +223,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 "18 — 導入のかたち":"18 — 導入的方式","作る力を、":"把創作的力量，","あなたの手元に":"放進你的手中","個人にも、チームにも。あなたの環境に導入して、あとは作るだけ——":"個人也好、團隊也好。導入到你的環境，接下來只管創作——","詳しくは、お気軽にご相談ください。":"詳情歡迎隨時洽詢。","買い切りの導入":"買斷式導入","一度導入すれば、追加の生成費用なし。月々を気にせず、思うぞんぶん作れる。":"導入一次，就沒有額外的生成費用。不必在意月費，盡情地創作。","あなたの環境で完結":"在你的環境中完結","作品も素材も、外に出ない。ぜんぶ手元に残り、あなただけのもの。":"作品與素材，都不外流。全部留在手邊，只屬於你。","入れて、すぐ作れる":"安裝好，馬上就能做","御社のPCにインストーラを入れるだけ。難しい構築はいりません。":"只要在貴公司的電腦執行安裝程式，不需要複雜的建置。","導入も、その後も":"導入前後，都在","設置から使いこなしまで伴走。困ったときは、いつでも相談できる。":"從安裝到上手，一路陪跑。有困難時，隨時可以商量。",
 "こんな人に":"這樣的你","広げ方":"擴散方式","導入":"導入",
 "完成した作品":"完成的作品","スタイリング資産":"造型資產","対応言語":"支援語言","仕上げ画質":"成片畫質",
+"顔、出したよ。表情はこの3つから選ぼう。":"臉孔生成好了。表情就從這三個裡挑吧。","横顔・見上げ":"仰望的側臉","瞑目・願い":"閉眼許願","りんご飴":"蘋果糖","この目を閉じてる表情、最高。これで。":"這個閉眼的表情，太棒了。就用這個。",
 "夕暮れの部室で、青春バンドMVに":"在黃昏的社辦，做一支青春樂團MV","金色の光と舞う埃——雰囲気を3案から選ぶ。":"金色的光與飛舞的灰塵——從3個方案中挑選氛圍。","まっすぐな目の、あどけなさの残る子":"眼神率直、還帶點稚氣的女孩","白シャツに、紺のプリーツスカートで":"白襯衫，配上深藍色的百褶裙","ラスサビは、想いを解き放つように":"最後的副歌，讓情感盡情釋放",
 "STORYBOARD — 実際の絵コンテから":"STORYBOARD — 來自實際的分鏡","引き・雰囲気":"遠景・氛圍","寄り・表情":"特寫・表情","バストアップ":"半身特寫","動きのカット":"動態鏡頭","ひざ上":"膝上景","絵コンテそのままに、一コマずつ演出する。気になるカットだけ、納得いくまで何度でも——他のカットはそのまま。":"照著分鏡，一格一格導戲。只挑在意的那一格，重做到滿意為止——其他鏡頭原封不動。"
   };

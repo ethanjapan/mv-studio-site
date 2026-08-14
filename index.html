@@ -29,10 +29,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/theater.css?v=20260816b">
+<link rel="stylesheet" href="css/theater.css?v=20260816f">
 </head>
 <body>
   <div class="grain"></div>
+  <div class="reel-progress" aria-hidden="true"></div>
 
   <header>
     <div class="brand">MV&nbsp;Studio</div>
@@ -127,6 +128,15 @@
         </div>
         <div class="bubble me"><span class="who">You</span>ネオンで。肌の質感もリアルに。</div>
         <div class="bubble ai"><span class="who">Director</span>了解。視線を外す表情で艶を出すね。今から顔を出す。</div>
+        <div class="bubble ai facecand"><span class="who">Director</span>
+          <div class="prop-lead">顔、出したよ。表情はこの3つから選ぼう。</div>
+          <div class="face-opts">
+            <figure class="fo"><img src="assets/fc_profile.jpg?v=20260816f" alt="" loading="lazy"><figcaption>横顔・見上げ</figcaption></figure>
+            <figure class="fo sel"><img src="assets/fc_wish.jpg?v=20260816f" alt="" loading="lazy"><figcaption>瞑目・願い</figcaption></figure>
+            <figure class="fo"><img src="assets/fc_candy.jpg?v=20260816f" alt="" loading="lazy"><figcaption>りんご飴</figcaption></figure>
+          </div>
+        </div>
+        <div class="bubble me"><span class="who">You</span>この目を閉じてる表情、最高。これで。</div>
       </div>
     </div>
   </section>
@@ -349,7 +359,14 @@
           <button class="lt-btn on" data-lang="ja">日本語</button>
           <button class="lt-btn tc" data-lang="zh">繁體中文（台灣）</button>
         </div>
-        <div class="voice-sample" id="voiceSample" data-noi18n><span class="q">「</span>こんにちは。あなたの一本、いっしょに作っていこう。<span class="q">」</span></div>
+        <div class="voice-live">
+          <button class="vs-play" id="vsPlay" aria-label="実際の声を再生">
+            <svg class="vp-i" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+            <svg class="vp-p" viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 5.5h3.4v13H7.5zM13.1 5.5h3.4v13h-3.4z"/></svg>
+          </button>
+          <div class="voice-sample" id="voiceSample" data-noi18n><span class="q">「</span>あ、……こんにちは。RINKAです。<span class="q">」</span></div>
+        </div>
+        <div class="vs-note" id="vsNote" data-noi18n>RINKA ・ 実際に生成された声 ・ タップで再生</div>
         <div class="voice-row">
           <div class="vcard">
             <div class="vc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>好きな声を選ぶ</div>
@@ -448,32 +465,32 @@
       <p class="ch-sub reveal d2">夏の海のまぶしさ、軽音部の放課後、真夏のきらめき、雨の剣戟、語りかける彼女——<br>どれも、このスタジオの対話から実際に生まれた作品。</p>
       <div class="works reveal d2">
         <a class="worklink" href="https://youtu.be/5y02Xjvpbhg" target="_blank" rel="noopener noreferrer"><figure class="workcard">
-          <video src="assets/wk_natsuumi.mp4?v=20260814a" poster="assets/wk_natsuumi.jpg?v=20260814a" muted loop playsinline preload="none"></video>
+          <video src="assets/wk_natsuumi.mp4?v=20260816f" poster="assets/wk_natsuumi.jpg?v=20260816f" muted loop playsinline preload="none"></video>
           <span class="yt-badge">YouTube</span>
           <figcaption><strong>まぶしい方へ</strong><span>海のMV ・ 3分29秒</span></figcaption>
         </figure></a>
         <a class="worklink" href="https://youtu.be/c5VEfcGqnIo" target="_blank" rel="noopener noreferrer"><figure class="workcard">
-          <video src="assets/wk_rok09.mp4?v=20260813a" poster="assets/wk_rok09.jpg?v=20260813a" muted loop playsinline preload="none"></video>
+          <video src="assets/wk_rok09.mp4?v=20260816f" poster="assets/wk_rok09.jpg?v=20260816f" muted loop playsinline preload="none"></video>
           <span class="yt-badge">YouTube</span>
           <figcaption><strong>軽音部、最後の放課後</strong><span>バンドMV ・ 3分12秒</span></figcaption>
         </figure></a>
         <a class="worklink" href="https://youtu.be/tocAiUy0hVc" target="_blank" rel="noopener noreferrer"><figure class="workcard">
-          <video src="assets/wk_utakata.mp4?v=20260813a" poster="assets/wk_utakata.jpg?v=20260813a" muted loop playsinline preload="none"></video>
+          <video src="assets/wk_utakata.mp4?v=20260816f" poster="assets/wk_utakata.jpg?v=20260816f" muted loop playsinline preload="none"></video>
           <span class="yt-badge">YouTube</span>
           <figcaption><strong>泡沫の夏</strong><span>サマーMV ・ 3分07秒</span></figcaption>
         </figure></a>
         <a class="worklink" href="https://youtu.be/RGkFilRKopQ" target="_blank" rel="noopener noreferrer"><figure class="workcard">
-          <video src="assets/wk_engawa.mp4?v=20260815b" poster="assets/wk_engawa.jpg?v=20260815b" muted loop playsinline preload="none"></video>
+          <video src="assets/wk_engawa.mp4?v=20260816f" poster="assets/wk_engawa.jpg?v=20260816f" muted loop playsinline preload="none"></video>
           <span class="yt-badge">YouTube</span>
           <figcaption><strong>雨の縁側</strong><span>和装MV ・ 3分18秒</span></figcaption>
         </figure></a>
         <a class="worklink" href="https://youtu.be/JfcypRzaTZ4" target="_blank" rel="noopener noreferrer"><figure class="workcard">
-          <video src="assets/wk_pastel.mp4?v=20260815b" poster="assets/wk_pastel.jpg?v=20260815b" muted loop playsinline preload="none"></video>
+          <video src="assets/wk_pastel.mp4?v=20260816f" poster="assets/wk_pastel.jpg?v=20260816f" muted loop playsinline preload="none"></video>
           <span class="yt-badge">YouTube</span>
           <figcaption><strong>パステルルーム</strong><span>ポップMV ・ 3分01秒</span></figcaption>
         </figure></a>
         <figure class="workcard">
-          <video src="assets/wk_saber.mp4?v=20260813a" poster="assets/wk_saber.jpg?v=20260813a" muted loop playsinline preload="none"></video>
+          <video src="assets/wk_saber.mp4?v=20260816f" poster="assets/wk_saber.jpg?v=20260816f" muted loop playsinline preload="none"></video>
           <figcaption><strong>暁の誓剣</strong><span>アクション短編 ・ 42秒</span></figcaption>
         </figure>
         <a class="worklink" href="https://youtu.be/IF1T04jc3ak" target="_blank" rel="noopener noreferrer"><figure class="workcard">
@@ -643,6 +660,6 @@
   </footer>
 
 
-<script src="js/main.js?v=20260816b"></script>
+<script src="js/main.js?v=20260816f"></script>
 </body>
 </html>

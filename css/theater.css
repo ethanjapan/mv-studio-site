@@ -760,8 +760,87 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 @keyframes rowShiftR{from{transform:translateX(-3vw)}to{transform:translateX(3vw)}}
 @keyframes srReveal{from{opacity:0;transform:translateY(38px)}to{opacity:1;transform:none}}
 
+/* ============================================================
+   THEATER DEPTH (2026-08-14 第2弾)
+   進捗リール / ストリップ中央スポットライト / 章番号の奥行き /
+   世界観ウォールの遠近 / 作品ポスターのチルト+シーン / RINKA実音声
+   ============================================================ */
+
+/* --- フィルム進捗バー: ページ全体をひと巻きのリールとして --- */
+.reel-progress{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:21;
+  pointer-events:none;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,#f2cf9a,#eeb0c4 70%,#b7e2ee);
+  box-shadow:0 0 12px rgba(230,180,118,.5)}
+
+/* --- 世界観ウォール: わずかな遠近(フィルムの峡谷) --- */
+.wallwrap{transform:perspective(1200px) rotateX(4deg) scale(1.02)}
+
+/* --- 作品ポスター: チルト+光のシーン(デスクトップhover) --- */
+@media (pointer:fine){
+  .worklink .workcard{will-change:transform}
+  .worklink:hover .workcard{
+    transform:perspective(900px) rotateX(2deg) translateY(-5px);
+    border-color:rgba(230,180,118,.55);
+    box-shadow:0 28px 74px -22px rgba(0,0,0,.78),0 0 36px -12px rgba(230,180,118,.35)}
+  .workcard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(115deg,transparent 42%,rgba(244,240,230,.13) 50%,transparent 58%);
+    transform:translateX(-160%)}
+  .worklink:hover .workcard::after{animation:sheen .95s cubic-bezier(.3,.6,.3,1) forwards}
+}
+@keyframes sheen{to{transform:translateX(160%)}}
+
+/* --- 02 相談: 本物の顔候補が届く --- */
+.face-opts{display:flex;gap:10px;margin-top:4px}
+.fo{margin:0;flex:1;min-width:0}
+.fo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 20%;
+  border-radius:10px;border:1px solid rgba(242,236,220,.18);display:block}
+.fo.sel img{border-color:rgba(230,180,118,.75);
+  box-shadow:0 0 18px -4px rgba(230,180,118,.55)}
+.fo figcaption{font-size:10.5px;letter-spacing:.06em;color:var(--muted);
+  margin-top:6px;text-align:center}
+.fo.sel figcaption{color:var(--gold)}
+
+/* --- RINKA実音声プレーヤー --- */
+.voice-live{display:flex;align-items:center;gap:16px}
+.vs-play{flex:none;width:46px;height:46px;border-radius:50%;cursor:pointer;
+  border:1px solid rgba(230,180,118,.5);background:rgba(8,10,22,.6);color:var(--gold);
+  display:inline-flex;align-items:center;justify-content:center;transition:.35s;position:relative}
+.vs-play svg{width:17px;height:17px}
+.vs-play .vp-p{display:none}
+.vs-play:hover{border-color:var(--gold);box-shadow:0 0 22px -6px rgba(230,180,118,.55)}
+.vs-play.playing{border:none;color:#241608;
+  background:linear-gradient(96deg,#f2cf9a,#eeb0c4)}
+.vs-play.playing .vp-i{display:none}
+.vs-play.playing .vp-p{display:block}
+.vs-play.playing::before{content:"";position:absolute;inset:-7px;border-radius:50%;
+  border:1px solid rgba(230,180,118,.45);animation:vsPulse 1.6s ease-out infinite}
+@keyframes vsPulse{0%{transform:scale(.86);opacity:.9}100%{transform:scale(1.22);opacity:0}}
+.vs-note{margin-top:12px;font-family:var(--en);font-size:10.5px;letter-spacing:.18em;
+  color:var(--gold-dim)}
+
+/* --- スクロール駆動 第2弾 --- */
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    /* 進捗リール */
+    .reel-progress{animation:reelFill linear both;animation-timeline:scroll(root)}
+    /* 制作の旅/実例ストリップ: 横スクロールの中央でカードが立つスポットライト */
+    .strip .stripcard{animation:stripFocus linear both;animation-timeline:view(inline)}
+    /* ゴースト章番号: 本文よりゆっくり流れる奥行き */
+    .panel[data-num]::before{animation:ghostDrift linear both;animation-timeline:view()}
+  }
+}
+@keyframes reelFill{to{transform:scaleX(1)}}
+@keyframes stripFocus{
+  0%{transform:scale(.93);filter:brightness(.68)}
+  42%{transform:scale(1);filter:brightness(1)}
+  58%{transform:scale(1);filter:brightness(1)}
+  100%{transform:scale(.93);filter:brightness(.68)}}
+@keyframes ghostDrift{from{transform:translateY(6vh)}to{transform:translateY(-6vh)}}
+
 @media (prefers-reduced-motion: reduce){
   .wallseq,.rackseq,.orb-core,.orb-ring,.orb-scale,.mote,.mind-glow{animation:none!important}
   .reveal{transition:none;opacity:1;transform:none}
+  .reel-progress,.strip .stripcard,.panel[data-num]::before,
+  .vs-play.playing::before,.workcard::after{animation:none!important}
   html{scroll-behavior:auto}
 }
