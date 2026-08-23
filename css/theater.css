@@ -844,3 +844,26 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   .vs-play.playing::before,.workcard::after{animation:none!important}
   html{scroll-behavior:auto}
 }
+
+/* --- 14 裏番組: 番組表 --- */
+.shows{margin-top:46px;display:grid;gap:16px}
+.showlink{display:block;text-decoration:none;color:inherit}
+.showcard{display:grid;grid-template-columns:minmax(260px,340px) 1fr;margin:0;
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  background:rgba(12,14,28,.55);transition:border-color .3s,transform .3s}
+.showlink:hover .showcard{border-color:rgba(230,180,118,.4);transform:translateY(-2px)}
+.show-thumb{position:relative;min-height:100%}
+.show-thumb video{width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.showcard figcaption{padding:20px 26px;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.show-genre{align-self:flex-start;font-size:10.5px;letter-spacing:.22em;color:var(--gold);
+  border:1px solid rgba(230,180,118,.45);border-radius:999px;padding:3px 11px}
+.showcard strong{font-family:var(--serif);font-weight:600;font-size:clamp(17px,1.9vw,22px);color:var(--ink)}
+.show-desc{font-size:12.5px;line-height:1.9;color:var(--muted);max-width:60ch}
+.show-meta{font-family:var(--en);font-size:10.5px;letter-spacing:.18em;color:rgba(240,235,222,.55)}
+.show-note{margin-top:28px;font-size:12.5px;letter-spacing:.04em;color:var(--muted)}
+.show-note a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(230,180,118,.45);padding-bottom:2px}
+.show-note a:hover{color:#fff;border-color:rgba(255,255,255,.6)}
+@media (max-width:860px){
+  .showcard{grid-template-columns:1fr}
+  .showcard figcaption{padding:16px 16px 18px}
+}
