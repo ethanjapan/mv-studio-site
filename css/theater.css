@@ -227,11 +227,37 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .mind-glow{position:absolute;left:50%;top:50%;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;
   background:radial-gradient(circle,rgba(230,180,118,.16),rgba(242,178,198,.07) 46%,transparent 70%);
   filter:blur(6px);animation:breathe 5.5s ease-in-out infinite}
-.thought{position:absolute;white-space:nowrap;font-weight:400;
+.thought{position:absolute;white-space:nowrap;font-weight:400;z-index:1;
   font-size:clamp(13px,1.4vw,16.5px);letter-spacing:.16em;color:rgba(244,240,230,.9);
   padding:10px 20px;border-radius:100px;border:1px solid rgba(230,180,118,.26);
   background:rgba(14,14,26,.5);box-shadow:0 0 24px -6px rgba(230,180,118,.25);
   animation:poolFloatSm 6s ease-in-out infinite}
+/* 想いチップに付く、実作品からの記憶フラグメント */
+.tmem{position:absolute;right:-16px;top:-36px;width:62px;height:40px;border-radius:8px;
+  background-size:cover;background-position:center;pointer-events:none;
+  border:1px solid rgba(242,236,220,.28);box-shadow:0 8px 20px -8px rgba(0,0,0,.65);
+  transform:rotate(5deg);opacity:.88}
+.tmem.alt{right:auto;left:-18px;transform:rotate(-6deg)}
+/* 中央 — 断片が像を結ぶ(スクロールでピントが合う) */
+.mind-frame{position:absolute;left:50%;top:50%;width:clamp(230px,30vw,340px);aspect-ratio:16/10;
+  transform:translate(-50%,-50%);margin:0;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(242,236,220,.18);
+  box-shadow:0 18px 60px -18px rgba(0,0,0,.7),0 0 70px -10px rgba(230,180,118,.3)}
+.mind-frame img{width:100%;height:100%;object-fit:cover;display:block;
+  filter:blur(3px) saturate(.9);opacity:.85;transform:scale(1.04)}
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    .mind-frame img{animation:mindform both ease-out;animation-timeline:view();
+      animation-range:entry 30% cover 60%}
+  }
+}
+@keyframes mindform{
+  from{filter:blur(20px) saturate(.6) brightness(.8);opacity:.3;transform:scale(1.14)}
+  to{filter:blur(0) saturate(1) brightness(1);opacity:.95;transform:scale(1)}}
+@media (max-width:640px){
+  .tmem{width:48px;height:32px;top:-30px}
+  .mind-frame{width:min(72vw,280px)}
+}
 .thought.th1{top:4%;left:16%;animation-delay:.1s}
 .thought.th2{top:16%;right:10%;animation-delay:.7s;color:var(--pink);border-color:rgba(242,178,198,.35)}
 .thought.th3{top:44%;left:4%;animation-delay:1.2s}
@@ -411,13 +437,24 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .orb{position:absolute;left:50%;top:50%;width:230px;height:230px;margin:-115px 0 0 -115px}
 .orb-scale{position:absolute;inset:0;animation:breathe 6s ease-in-out infinite}
 .orb-core{position:absolute;inset:0;border-radius:50%;
-  background:conic-gradient(from 0deg,#f6dcab,#f2b2c6,#b48ce0,#b7e2ee,#f6dcab);
-  animation:spin 14s linear infinite;
+  /* 顔料テクスチャ(gpt-image-2)。読めない環境では下の conic が面を保つ */
+  background:url(../assets/orb_pigment.jpg?v=20260824b) center/135% 135% no-repeat,
+    conic-gradient(from 0deg,#f6dcab,#f2b2c6,#b48ce0,#b7e2ee,#f6dcab);
+  animation:spin 70s linear infinite;
   box-shadow:0 0 90px -8px rgba(238,176,196,.55),0 0 40px -4px rgba(230,180,118,.5)}
-.orb-core::after{content:"";position:absolute;inset:12%;border-radius:50%;
-  background:radial-gradient(circle at 40% 32%,rgba(255,255,255,.9),rgba(255,255,255,.06) 58%),
-    rgba(10,12,26,.25);
-  backdrop-filter:blur(2px)}
+.orb-core::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 40% 32%,rgba(255,255,255,.28),transparent 55%),
+    radial-gradient(circle at 50% 115%,rgba(10,12,26,.5),transparent 60%)}
+/* 渡すほど、色が深まる — スクロールで彩度が上がる */
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    .orb{animation:orbdeepen both linear;animation-timeline:view();
+      animation-range:entry 0% cover 65%}
+  }
+}
+@keyframes orbdeepen{
+  from{filter:saturate(.4) brightness(.82)}
+  to{filter:saturate(1.22) brightness(1.06)}}
 .orb-ring{position:absolute;inset:-26px;border-radius:50%;
   border:1px dashed rgba(230,180,118,.4);animation:spin 40s linear infinite reverse}
 .orb-cap{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);
