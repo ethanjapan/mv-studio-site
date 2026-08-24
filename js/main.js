@@ -55,9 +55,9 @@
   });
 })();
 
-/* 13 作品 / 14 裏番組: each film decodes only while its card is on screen */
+/* 13 作品 / 14 裏番組 / 08 orb: each film decodes only while on screen */
 (function worksObs(){
-  document.querySelectorAll('.works video,.shows video').forEach(v=>{
+  document.querySelectorAll('.works video,.shows video,.orb-core video').forEach(v=>{
     new IntersectionObserver(es=>es.forEach(en=>{
       if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
     }),{threshold:0.05}).observe(v);
