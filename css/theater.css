@@ -889,10 +889,11 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 /* --- 14 裏番組: 番組表 --- */
 .shows{margin-top:46px;display:grid;gap:16px}
 .showlink{display:block;text-decoration:none;color:inherit}
+a.show-thumb{text-decoration:none;color:inherit}
 .showcard{display:grid;grid-template-columns:minmax(260px,340px) 1fr;margin:0;
   border:1px solid var(--line);border-radius:16px;overflow:hidden;
   background:rgba(12,14,28,.55);transition:border-color .3s,transform .3s}
-.showlink:hover .showcard{border-color:rgba(230,180,118,.4);transform:translateY(-2px)}
+.showlink:hover .showcard,.showcard:hover{border-color:rgba(230,180,118,.4);transform:translateY(-2px)}
 .show-thumb{position:relative;min-height:100%}
 .show-thumb video{width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .showcard figcaption{padding:20px 26px;display:flex;flex-direction:column;gap:8px;justify-content:center}
@@ -918,3 +919,15 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .ch-cta:hover{color:#fff;border-color:rgba(255,255,255,.55);background:rgba(20,22,40,.7)}
 @media (max-width:640px){.ch-cta{font-size:11.5px;padding:10px 15px;align-items:flex-start}
   .ch-cta svg{margin-top:3px}}
+
+/* 番組カードの言語ボタン(日本語版と繁中版を同列に出す) */
+.show-langs{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
+.lang-pill{display:inline-flex;align-items:baseline;gap:9px;text-decoration:none;
+  border:1px solid rgba(230,180,118,.3);border-radius:100px;padding:7px 15px;
+  background:rgba(12,14,28,.5);transition:.25s}
+.lang-pill .lp-l{font-size:11.5px;letter-spacing:.08em;color:var(--gold)}
+.lang-pill .lp-d{font-family:var(--en);font-size:10.5px;letter-spacing:.12em;color:rgba(240,235,222,.6)}
+.lang-pill:hover{border-color:rgba(255,255,255,.5);background:rgba(230,180,118,.12)}
+.lang-pill:hover .lp-l{color:#fff}
+.lang-pill.soon{border-style:dashed;border-color:rgba(242,236,220,.18);background:transparent}
+.lang-pill.soon .lp-l,.lang-pill.soon .lp-d{color:rgba(240,235,222,.38)}
