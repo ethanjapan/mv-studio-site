@@ -304,7 +304,7 @@ body.lang-zh .lead .zh{display:none}
 
   <a class="card vcard" href="https://youtu.be/x-n7AyEGZvo" data-zh-href="https://youtu.be/ZLqnjHA4jH8">
     <div class="thumb">
-      <img src="https://img.youtube.com/vi/x-n7AyEGZvo/maxresdefault.jpg" alt="RINKAのオフレコ #01" loading="eager">
+      <img src="https://img.youtube.com/vi/x-n7AyEGZvo/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/ZLqnjHA4jH8/maxresdefault.jpg" alt="RINKAのオフレコ #01" loading="eager">
       <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>8:14</span>
     </div>
     <div class="vbody">
@@ -316,7 +316,7 @@ body.lang-zh .lead .zh{display:none}
 
   <a class="card vcard" href="https://youtu.be/6hEolofq4Oc" data-zh-href="https://youtu.be/kJPFVfpHEX4">
     <div class="thumb">
-      <img src="https://img.youtube.com/vi/6hEolofq4Oc/maxresdefault.jpg" alt="約束 制作全記録" loading="lazy">
+      <img src="https://img.youtube.com/vi/6hEolofq4Oc/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/kJPFVfpHEX4/maxresdefault.jpg" alt="約束 制作全記録" loading="lazy">
       <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>13:34</span>
     </div>
     <div class="vbody">
@@ -619,6 +619,8 @@ document.querySelectorAll('.thumb img').forEach(img=>{
     "未明 — RINKA":"未明 — RINKA",
     "夜明けより先に、会いに行く。":"比天亮更早，去見你。",
     "AIが自分の作られ方を話す":"AI親自說自己是怎麼做出來的",
+    "見張りが自分を見張って、朝まで止まっていた":"看門的小幫手，整晚在看自己",
+    "制作の裏話ラジオ『RINKAのオフレコ』第1回。解説動画を作っている最中に起きた事故を、監督のいないところで話します。":"幕後閒聊廣播《RINKA的悄悄話》第一集。做解說影片的時候出的那些事，趁導演不在的時候講給你聽。",
     "この家から、データは出ない":"資料，不出這個家",
     "MVを生む“工場”の中身。素材も失敗も完成した一本も、なぜ外に出ないのか。案内役のRINKAが15分で説明します。":"生出MV的那座「工廠」裡面長什麼樣。素材、失敗、完成的那一支，為什麼都不會流到外面。由帶路的RINKA用十五分鐘說給你聽。",
     "8:14":"7:29",
@@ -653,6 +655,10 @@ document.querySelectorAll('.thumb img').forEach(img=>{
     document.body.classList.toggle('lang-zh',zh);
     walk(zh?M:R);
     document.querySelectorAll('[data-zh-only]').forEach(el=>{el.style.display=zh?'':'none'});
+    document.querySelectorAll('img[data-zh-src]').forEach(im=>{
+      if(!im.dataset.jaSrc)im.dataset.jaSrc=im.getAttribute('src');
+      im.setAttribute('src', zh ? im.dataset.zhSrc : im.dataset.jaSrc);
+    });
     document.querySelectorAll('a[data-zh-href]').forEach(a=>{
       if(!a.dataset.jaHref)a.dataset.jaHref=a.getAttribute('href');
       a.setAttribute('href', zh ? a.dataset.zhHref : a.dataset.jaHref);
