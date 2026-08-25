@@ -289,10 +289,10 @@ body.lang-zh .lead .zh{display:none}
 
   <div class="sec"><b>最新作</b> Latest</div>
 
-  <a class="card vcard" href="https://youtu.be/ge2S7PQAxZI" data-zh-href="https://youtu.be/Etnjj5HnuWg">
+  <a class="card vcard" data-zh-only href="https://youtu.be/Etnjj5HnuWg" data-zh-href="https://youtu.be/Etnjj5HnuWg">
     <div class="thumb">
       <img src="https://img.youtube.com/vi/ge2S7PQAxZI/maxresdefault.jpg" alt="この家から、データは出ない" loading="eager">
-      <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>15:42</span>
+      <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>13:47</span>
     </div>
     <div class="vbody">
       <span class="badge">NEW</span>
@@ -621,7 +621,6 @@ document.querySelectorAll('.thumb img').forEach(img=>{
     "AIが自分の作られ方を話す":"AI親自說自己是怎麼做出來的",
     "この家から、データは出ない":"資料，不出這個家",
     "MVを生む“工場”の中身。素材も失敗も完成した一本も、なぜ外に出ないのか。案内役のRINKAが15分で説明します。":"生出MV的那座「工廠」裡面長什麼樣。素材、失敗、完成的那一支，為什麼都不會流到外面。由帶路的RINKA用十五分鐘說給你聽。",
-    "15:42":"13:47",
     "8:14":"7:29",
     "13:34":"13:16",
     "10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。":"10分鐘的解說影片。六支MV，全部在自家電腦本地生成。",
@@ -653,6 +652,7 @@ document.querySelectorAll('.thumb img').forEach(img=>{
   function apply(zh,save){
     document.body.classList.toggle('lang-zh',zh);
     walk(zh?M:R);
+    document.querySelectorAll('[data-zh-only]').forEach(el=>{el.style.display=zh?'':'none'});
     document.querySelectorAll('a[data-zh-href]').forEach(a=>{
       if(!a.dataset.jaHref)a.dataset.jaHref=a.getAttribute('href');
       a.setAttribute('href', zh ? a.dataset.zhHref : a.dataset.jaHref);
