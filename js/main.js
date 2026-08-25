@@ -59,6 +59,7 @@
 (function worksObs(){
   document.querySelectorAll('.works video,.shows video,.orb-core video').forEach(v=>{
     new IntersectionObserver(es=>es.forEach(en=>{
+      v.dataset.inview=en.isIntersecting?'1':'0';   // 言語切替時に再生を継ぐため
       if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
     }),{threshold:0.05}).observe(v);
   });
@@ -253,6 +254,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 "夜明けのMV ・ 3分01秒":"黎明MV ・ 3分01秒",
 "ローカル生成":"本地生成","裏番組":"幕後節目",
 "工場見学":"工廠參觀","技術デモ":"技術示範","近日公開":"即將公開",
+"まぶしい方へ":"往最亮的那邊","海のMV ・ 3分29秒":"海的MV ・ 3分29秒","未明":"未明",
+"日本語 ・":"日語 ・",
 "AIキャラが、自然に話す":"AI角色，自然地說話",
 "口の動きも、間の取り方も。喋る映像がどこまで自然になるかを、手元のGPUだけで試した記録。":"嘴型、停頓，全都算在內。會說話的影像可以自然到什麼程度，只用手邊的顯卡跑出來的實測紀錄。",
 "この家から、データは出ない":"資料，不出這個家",
@@ -287,6 +290,15 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     document.querySelectorAll('a[data-zh-href]').forEach(a=>{
       if(a.__jahref==null)a.__jahref=a.getAttribute('href');
       a.setAttribute('href',lang==='zh'?a.getAttribute('data-zh-href'):a.__jahref);
+    });
+    // 番組カードのループ映像も版ごとに差し替える(台湾版は衣装も収録場所も別撮り)
+    document.querySelectorAll('video[data-zh-src]').forEach(v=>{
+      if(v.__jasrc==null){v.__jasrc=v.getAttribute('src');v.__japoster=v.getAttribute('poster');}
+      const zh=lang==='zh';
+      const src=zh?v.dataset.zhSrc:v.__jasrc, poster=zh?v.dataset.zhPoster:v.__japoster;
+      if(v.getAttribute('src')===src)return;
+      v.setAttribute('poster',poster);v.setAttribute('src',src);v.load();
+      if(v.dataset.inview==='1')v.play().catch(()=>{});
     });
     document.querySelectorAll('#langSwitch .ls-btn').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lang')===lang));
     try{localStorage.setItem('mvlang',lang)}catch(e){}
