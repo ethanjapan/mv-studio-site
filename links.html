@@ -254,6 +254,24 @@ a.card.tcard{display:flex;align-items:center;gap:15px;padding:16px 18px}
 }
 a.card:hover .arrow{transform:translateX(4px);color:var(--a1)}
 
+/* ---------- サムネ付きリンクカード(各セクションの先頭1枚だけ) ----------
+   全部のリンクにサムネを付けると「動画=大きい / リンク=行」の階層が壊れ、
+   スマホの全長が約6割伸びる。節の中で最初に見てほしい1枚にだけ絵を持たせる。 */
+a.card.tcard.fcard{display:block;padding:0}
+.fcard .fthumb{
+  position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#0a1020;
+}
+.fcard .fthumb img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.02);transition:transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.fcard:hover .fthumb img{transform:scale(1.065)}
+.fcard .fthumb::after{ /* 下端を沈めて、下の文字行へ繋ぐ */
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,8,18,.05) 58%,rgba(4,8,18,.55) 94%);
+}
+.fcard .frow{display:flex;align-items:center;gap:15px;padding:14px 18px 15px}
+
 /* ---------- フッター ---------- */
 footer{
   margin-top:44px;text-align:center;
@@ -487,13 +505,16 @@ body.lang-zh .lead .zh{display:none}
 
   <div class="sec"><b>作り方</b> How it's made</div>
 
-  <a class="card tcard" href="https://youtu.be/KAT8w5_e1Js" data-zh-href="https://youtu.be/Sekow7dcEog">
-    <span class="ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="3.5"/><path d="M10.5 9.6l5 2.4-5 2.4z"/></svg></span>
-    <span class="tx">
-      <span class="t">AIが自分の作られ方を話す</span>
-      <span class="d">10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。</span>
+  <a class="card tcard fcard" href="https://youtu.be/KAT8w5_e1Js" data-zh-href="https://youtu.be/Sekow7dcEog">
+    <span class="fthumb"><img src="https://img.youtube.com/vi/KAT8w5_e1Js/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/Sekow7dcEog/maxresdefault.jpg" alt="" loading="lazy"></span>
+    <span class="frow">
+      <span class="ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="3.5"/><path d="M10.5 9.6l5 2.4-5 2.4z"/></svg></span>
+      <span class="tx">
+        <span class="t">AIが自分の作られ方を話す</span>
+        <span class="d">10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。</span>
+      </span>
+      <span class="arrow">→</span>
     </span>
-    <span class="arrow">→</span>
     <span class="sheen"></span>
   </a>
 
@@ -519,13 +540,16 @@ body.lang-zh .lead .zh{display:none}
 
   <div class="sec"><b>その他</b> More</div>
 
-  <a class="card tcard" href="https://ethanjapan.github.io/made-linlin/">
-    <span class="ico"><svg viewBox="0 0 24 24"><path d="M3.5 8.5h3l1.6-2.4h7.8l1.6 2.4h3v10h-17z"/><circle cx="12" cy="13" r="3.8"/></svg></span>
-    <span class="tx">
-      <span class="t">写真作品集</span>
-      <span class="d">風景と光。森の入口から入る、3Dスクロールの写真集。</span>
+  <a class="card tcard fcard" href="https://ethanjapan.github.io/made-linlin/">
+    <span class="fthumb"><img src="https://ethanjapan.github.io/made-linlin/public/img/asagiri-valley/asagiri_01-1280.jpg" alt="" loading="lazy"></span>
+    <span class="frow">
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M3.5 8.5h3l1.6-2.4h7.8l1.6 2.4h3v10h-17z"/><circle cx="12" cy="13" r="3.8"/></svg></span>
+      <span class="tx">
+        <span class="t">写真作品集</span>
+        <span class="d">風景と光。森の入口から入る、3Dスクロールの写真集。</span>
+      </span>
+      <span class="arrow">→</span>
     </span>
-    <span class="arrow">→</span>
     <span class="sheen"></span>
   </a>
 
@@ -664,7 +688,7 @@ body.lang-zh .lead .zh{display:none}
 })();
 
 /* ---------- サムネのフォールバック(maxres→hqdefault) ---------- */
-document.querySelectorAll('.thumb img').forEach(img=>{
+document.querySelectorAll('.thumb img, .fthumb img').forEach(img=>{
   img.addEventListener('error',()=>{
     if(!img.dataset.fb){img.dataset.fb=1;img.src=img.src.replace('maxresdefault','hqdefault');}
   });
