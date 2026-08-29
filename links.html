@@ -27,6 +27,7 @@
   --card:rgba(230,180,118,.05);
   --card-hi:rgba(230,180,118,.10);
   --r:18px;
+  --film-h:clamp(300px,46vh,420px);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -101,6 +102,27 @@ h1{
 .lead{font-size:14.5px;line-height:1.9;color:var(--sub);margin:0}
 .lead .zh{display:block;margin-top:3px;opacity:.72;font-size:13px}
 
+/* ---------- ヒーロー: 実作品のループ映像を1枚目に置く ----------
+   静止画(poster)を背景に敷き、動画は読めたら上へフェードイン。
+   動画が来なくても・自動再生が拒否されても、見た目は静止画で成立する。 */
+.hero{margin:-56px -22px 36px}
+.hero__film{
+  position:relative;height:var(--film-h);overflow:hidden;pointer-events:none;
+  background:#080b16 center 12%/cover no-repeat;
+}
+.hero__film video{
+  width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;
+  opacity:0;transition:opacity 1.1s ease;
+}
+.hero__film video.on{opacity:1}
+.hero__film::after{ /* 下端をページ背景へ溶かす(文字は帯の外に置くので顔と競合しない) */
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(5,6,13,.34) 0%, rgba(5,6,13,0) 22%,
+    rgba(5,6,13,.30) 58%, rgba(5,6,13,.86) 84%, var(--bg) 100%);
+}
+.hero header{position:relative;z-index:1;margin:-52px 0 0;padding:0 22px}
+
 /* ---------- セクション見出し ---------- */
 .sec{
   display:flex;align-items:center;gap:14px;
@@ -152,6 +174,12 @@ a.card:hover .sheen{transition:transform .9s cubic-bezier(.25,.6,.2,1);transform
   filter:saturate(1.04);
 }
 .vcard:hover .thumb img{transform:scale(1.065)}
+/* サムネの上に載る作品ループ。静止画→映像へフェード(読めなければ静止画のまま) */
+.thumb video.loop{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  opacity:0;transition:opacity .55s ease;
+}
+.thumb video.loop.on{opacity:1}
 .vcard .thumb::after{ /* 下部スクリム */
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(4,8,18,.06) 55%,rgba(4,8,18,.62) 92%);
@@ -278,20 +306,26 @@ body.lang-zh .lead .zh{display:none}
 
 <div class="wrap">
 
-  <header>
-    <div class="mark">MV Studio</div>
-    <h1>made_linlin</h1>
-    <p class="lead">
-      自宅のGPU 1台で、ミュージックビデオを作っています。
-      <span class="zh">用家裡的一張顯卡，做音樂錄影帶。</span>
-    </p>
-  </header>
+  <section class="hero">
+    <div class="hero__film" style="background-image:url(assets/hero_yakusoku_v.jpg?v=20260829a)" aria-hidden="true">
+      <video class="loop" src="assets/hero_yakusoku_v.mp4?v=20260829a" muted loop playsinline preload="none"></video>
+    </div>
+    <header>
+      <div class="mark">MV Studio</div>
+      <h1>made_linlin</h1>
+      <p class="lead">
+        自宅のGPU 1台で、ミュージックビデオを作っています。
+        <span class="zh" data-i18n-skip>用家裡的一張顯卡，做音樂錄影帶。</span>
+      </p>
+    </header>
+  </section>
 
   <div class="sec"><b>最新作</b> Latest</div>
 
   <a class="card vcard" href="https://youtu.be/ge2S7PQAxZI" data-zh-href="https://youtu.be/Etnjj5HnuWg">
     <div class="thumb">
       <img src="https://img.youtube.com/vi/ge2S7PQAxZI/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/Etnjj5HnuWg/maxresdefault.jpg" alt="この家から、データは出ない" loading="eager">
+        <video class="loop" src="assets/bb_k03.mp4?v=20260829a" data-zh-src="assets/bb_k03_zh.mp4?v=20260829a" muted loop playsinline preload="none"></video>
       <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>15:42</span>
     </div>
     <div class="vbody">
@@ -305,6 +339,7 @@ body.lang-zh .lead .zh{display:none}
   <a class="card vcard" href="https://youtu.be/x-n7AyEGZvo" data-zh-href="https://youtu.be/ZLqnjHA4jH8">
     <div class="thumb">
       <img src="https://img.youtube.com/vi/x-n7AyEGZvo/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/ZLqnjHA4jH8/maxresdefault.jpg" alt="RINKAのオフレコ #01" loading="eager">
+        <video class="loop" src="assets/bb_radio.mp4?v=20260829a" data-zh-src="assets/bb_radio_zh.mp4?v=20260829a" muted loop playsinline preload="none"></video>
       <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>8:14</span>
     </div>
     <div class="vbody">
@@ -317,6 +352,7 @@ body.lang-zh .lead .zh{display:none}
   <a class="card vcard" href="https://youtu.be/6hEolofq4Oc" data-zh-href="https://youtu.be/kJPFVfpHEX4">
     <div class="thumb">
       <img src="https://img.youtube.com/vi/6hEolofq4Oc/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/kJPFVfpHEX4/maxresdefault.jpg" alt="約束 制作全記録" loading="lazy">
+        <video class="loop" src="assets/bb_k02.mp4?v=20260829a" data-zh-src="assets/bb_k02_zh.mp4?v=20260829a" muted loop playsinline preload="none"></video>
       <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>13:34</span>
     </div>
     <div class="vbody">
@@ -333,6 +369,7 @@ body.lang-zh .lead .zh{display:none}
     <a class="card vcard" href="https://youtu.be/5y02Xjvpbhg">
       <div class="thumb">
         <img src="https://img.youtube.com/vi/5y02Xjvpbhg/maxresdefault.jpg" alt="まぶしい方へ" loading="lazy">
+        <video class="loop" src="assets/wk_natsuumi.mp4?v=20260829a" muted loop playsinline preload="none"></video>
         <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:29</span>
       </div>
       <div class="vbody">
@@ -345,6 +382,7 @@ body.lang-zh .lead .zh{display:none}
     <a class="card vcard" href="https://youtu.be/GcyCD2BFMDk">
       <div class="thumb">
         <img src="https://img.youtube.com/vi/GcyCD2BFMDk/maxresdefault.jpg" alt="未明" loading="lazy">
+        <video class="loop" src="assets/wk_mimei.mp4?v=20260829a" muted loop playsinline preload="none"></video>
         <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:01</span>
       </div>
       <div class="vbody">
@@ -357,6 +395,7 @@ body.lang-zh .lead .zh{display:none}
     <a class="card vcard" href="https://youtu.be/c5VEfcGqnIo">
       <div class="thumb">
         <img src="https://img.youtube.com/vi/c5VEfcGqnIo/maxresdefault.jpg" alt="軽音部最後の放課後" loading="lazy">
+        <video class="loop" src="assets/wk_rok09.mp4?v=20260829a" muted loop playsinline preload="none"></video>
         <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:12</span>
       </div>
       <div class="vbody">
@@ -369,6 +408,7 @@ body.lang-zh .lead .zh{display:none}
     <a class="card vcard" href="https://youtu.be/tocAiUy0hVc">
       <div class="thumb">
         <img src="https://img.youtube.com/vi/tocAiUy0hVc/maxresdefault.jpg" alt="泡沫の夏" loading="lazy">
+        <video class="loop" src="assets/wk_utakata.mp4?v=20260829a" muted loop playsinline preload="none"></video>
         <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:07</span>
       </div>
       <div class="vbody">
@@ -381,6 +421,7 @@ body.lang-zh .lead .zh{display:none}
     <a class="card vcard" href="https://youtu.be/R0uR2UpWyK4">
       <div class="thumb">
         <img src="https://img.youtube.com/vi/R0uR2UpWyK4/maxresdefault.jpg" alt="約束" loading="lazy">
+        <video class="loop" src="assets/hero_yakusoku.mp4?v=20260829a" muted loop playsinline preload="none"></video>
         <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:04</span>
       </div>
       <div class="vbody">
@@ -394,6 +435,7 @@ body.lang-zh .lead .zh{display:none}
     <a class="card vcard" href="https://youtu.be/RGkFilRKopQ">
       <div class="thumb">
         <img src="https://img.youtube.com/vi/RGkFilRKopQ/maxresdefault.jpg" alt="雨の縁側" loading="lazy">
+        <video class="loop" src="assets/wk_engawa.mp4?v=20260829a" muted loop playsinline preload="none"></video>
         <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:18</span>
       </div>
       <div class="vbody">
@@ -406,6 +448,7 @@ body.lang-zh .lead .zh{display:none}
     <a class="card vcard" href="https://youtu.be/JfcypRzaTZ4">
       <div class="thumb">
         <img src="https://img.youtube.com/vi/JfcypRzaTZ4/maxresdefault.jpg" alt="パステルルーム" loading="lazy">
+        <video class="loop" src="assets/wk_pastel.mp4?v=20260829a" muted loop playsinline preload="none"></video>
         <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:01</span>
       </div>
       <div class="vbody">
@@ -583,6 +626,55 @@ body.lang-zh .lead .zh{display:none}
   cards.forEach(c=>io.observe(c));
 })();
 
+/* ---------- ヒーローの素材は帯の形で選ぶ ----------
+   既定(HTML)は縦素材=スマホ。帯が横長になる幅では縦動画だと顔が強く切れるので
+   横素材へ差し替える。JSが動かない場合はスマホ向けの縦のままで成立する。 */
+(function(){
+  const box=document.querySelector('.hero__film'); if(!box) return;
+  const v=box.querySelector('video');
+  const V='20260829a';
+  const WIDE={mp4:'assets/hero_yakusoku.mp4?v='+V,   jpg:'assets/hero_yakusoku.jpg?v='+V,   pos:'32%'};
+  const TALL={mp4:'assets/hero_yakusoku_v.mp4?v='+V, jpg:'assets/hero_yakusoku_v.jpg?v='+V, pos:'12%'};
+  const mq=matchMedia('(min-width:480px)');
+  function pick(){                       /* 回転・リサイズにも追従させる(1回きりの判定にしない) */
+    if(!innerWidth) return;              /* 幅0の一過性の状態で読み込み直さない */
+    const s=mq.matches?WIDE:TALL;
+    box.style.backgroundImage='url('+s.jpg+')';
+    box.style.backgroundPosition='center '+s.pos;
+    if(!v) return;
+    v.style.objectPosition='50% '+s.pos;
+    if(v.getAttribute('src')===s.mp4) return;
+    const wasOn=v.classList.contains('on');
+    v.setAttribute('src',s.mp4); v.load();
+    if(wasOn) v.play().catch(()=>{});
+  }
+  pick();
+  mq.addEventListener('change',pick);
+})();
+
+/* ---------- 作品ループの再生制御 ----------
+   正本= 本体サイト js/main.js の works/shows 動画(preload="none" + IntersectionObserver
+   で画面内だけ再生)。差分= ①静止画の上へフェードインさせる .on ②省データ/低モーション
+   設定では動画を一切読まない(静止画のまま=見た目は成立する)。 */
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let saveData=false;
+  try{ saveData = !!(navigator.connection && navigator.connection.saveData); }catch(e){}
+  if(reduced || saveData) return;                 // 静止画のまま(動画は1バイトも取りに行かない)
+
+  const vids=[...document.querySelectorAll('video.loop')];
+  if(!vids.length) return;
+  const io=new IntersectionObserver(es=>es.forEach(en=>{
+    const v=en.target;
+    if(en.isIntersecting){
+      v.play().then(()=>v.classList.add('on')).catch(()=>{});   // 拒否されたら静止画のまま
+    }else{
+      v.pause(); v.classList.remove('on');
+    }
+  }),{threshold:.25});
+  vids.forEach(v=>io.observe(v));
+})();
+
 /* ---------- サムネのフォールバック(maxres→hqdefault) ---------- */
 document.querySelectorAll('.thumb img').forEach(img=>{
   img.addEventListener('error',()=>{
@@ -644,8 +736,16 @@ document.querySelectorAll('.thumb img').forEach(img=>{
     "制作に生成AIを使用しています。":"製作過程使用生成式AI。"
   };
   const R={};for(const k in M)R[M[k]]=k;
+  /* 日本語モードでも中国語のまま見せる併記行(.lead .zh)は置換の対象外にする。
+     除外しないと 中文→日本語 に戻した時に逆引きが効いて、併記行が日本語に化けて
+     同じ文が2行並ぶ(2026-08-29 に公開ページで実測・再現手順= 中文→日本語)。 */
   function walk(map){
-    const it=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    const it=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode(n){
+        return n.parentElement && n.parentElement.closest('[data-i18n-skip]')
+          ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
     let n;while(n=it.nextNode()){
       const t=n.nodeValue.trim();
       if(map[t])n.nodeValue=n.nodeValue.replace(t,map[t]);
@@ -659,6 +759,14 @@ document.querySelectorAll('.thumb img').forEach(img=>{
     document.querySelectorAll('img[data-zh-src]').forEach(im=>{
       if(!im.dataset.jaSrc)im.dataset.jaSrc=im.getAttribute('src');
       im.setAttribute('src', zh ? im.dataset.zhSrc : im.dataset.jaSrc);
+    });
+    document.querySelectorAll('video[data-zh-src]').forEach(v=>{
+      if(!v.dataset.jaSrc)v.dataset.jaSrc=v.getAttribute('src');
+      const next = zh ? v.dataset.zhSrc : v.dataset.jaSrc;
+      if(v.getAttribute('src')===next) return;
+      const wasOn=v.classList.contains('on');
+      v.setAttribute('src',next); v.load();
+      if(wasOn) v.play().catch(()=>{});          // 再生中だった枠は切替後もそのまま流す
     });
     document.querySelectorAll('a[data-zh-href]').forEach(a=>{
       if(!a.dataset.jaHref)a.dataset.jaHref=a.getAttribute('href');
