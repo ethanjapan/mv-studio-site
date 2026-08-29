@@ -108,10 +108,19 @@ h1{
 .hero{margin:-56px -22px 36px}
 .hero__film{
   position:relative;height:var(--film-h);overflow:hidden;pointer-events:none;
-  background:#080b16 center 12%/cover no-repeat;
+  background:#080b16 center 5%/cover no-repeat;
+}
+/* ★スマホの帯の高さは vh でなく「幅」で決める。
+   vh基準だとアプリ内ブラウザ(上下バーぶん高さが小さい)で帯が横長になり、
+   縦素材が45%しか見えず頭が切れた(2026-08-30 実機Instagramで発生・実測)。
+   幅基準なら帯の形が固定されるので、どのブラウザでも切り取り量が変わらない。 */
+@media (max-width:479px){
+  .hero__film{height:min(calc(100vw * 1.0), 440px)}
+  .hero{margin-bottom:20px}                 /* 帯が縦に伸びるぶん、下の間を詰めて1枚目のカードを引き上げる */
+  .hero + .sec{margin-top:24px}
 }
 .hero__film video{
-  width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;
+  width:100%;height:100%;object-fit:cover;object-position:50% 5%;display:block;
   opacity:0;transition:opacity 1.1s ease;
 }
 .hero__film video.on{opacity:1}
@@ -644,7 +653,7 @@ body.lang-zh .lead .zh{display:none}
   const v=box.querySelector('video');
   const V='20260829a';
   const WIDE={mp4:'assets/hero_yakusoku.mp4?v='+V,   jpg:'assets/hero_yakusoku.jpg?v='+V,   pos:'32%'};
-  const TALL={mp4:'assets/hero_yakusoku_v.mp4?v='+V, jpg:'assets/hero_yakusoku_v.jpg?v='+V, pos:'12%'};
+  const TALL={mp4:'assets/hero_yakusoku_v.mp4?v='+V, jpg:'assets/hero_yakusoku_v.jpg?v='+V, pos:'5%'};
   const mq=matchMedia('(min-width:480px)');
   let cur=null;
   function pick(){                       /* 回転・リサイズにも追従させる(1回きりの判定にしない) */
