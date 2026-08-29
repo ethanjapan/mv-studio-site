@@ -636,14 +636,17 @@ body.lang-zh .lead .zh{display:none}
   const WIDE={mp4:'assets/hero_yakusoku.mp4?v='+V,   jpg:'assets/hero_yakusoku.jpg?v='+V,   pos:'32%'};
   const TALL={mp4:'assets/hero_yakusoku_v.mp4?v='+V, jpg:'assets/hero_yakusoku_v.jpg?v='+V, pos:'12%'};
   const mq=matchMedia('(min-width:480px)');
+  let cur=null;
   function pick(){                       /* 回転・リサイズにも追従させる(1回きりの判定にしない) */
     if(!innerWidth) return;              /* 幅0の一過性の状態で読み込み直さない */
-    const s=mq.matches?WIDE:TALL;
+    const wide=mq.matches;
+    if(cur===wide) return;               /* 判定が変わった時だけ触る=同じ素材を取り直さない */
+    cur=wide;
+    const s=wide?WIDE:TALL;
     box.style.backgroundImage='url('+s.jpg+')';
     box.style.backgroundPosition='center '+s.pos;
     if(!v) return;
     v.style.objectPosition='50% '+s.pos;
-    if(v.getAttribute('src')===s.mp4) return;
     const wasOn=v.classList.contains('on');
     v.setAttribute('src',s.mp4); v.load();
     if(wasOn) v.play().catch(()=>{});
