@@ -28,10 +28,10 @@
   }catch(e){}
   var h=document.documentElement;
   h.lang = lang==='zh' ? 'zh-Hant-TW' : lang==='en' ? 'en' : 'ja';
-  h.className += ' js' + (lang==='ja' ? '' : ' '+lang);
+  h.className += ' js t-'+lang + (lang==='ja' ? '' : ' '+lang);
   window.__LK_FONTS = {
-    ja:'family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400',
-    zh:'family=Noto+Serif+TC:wght@600&family=Noto+Sans+TC:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400',
+    ja:'family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Yuji+Syuku',
+    zh:'family=Noto+Serif+TC:wght@600&family=Noto+Sans+TC:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=LXGW+WenKai+TC',
     en:'family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Zen+Kaku+Gothic+New:wght@400;500&family=Shippori+Mincho+B1:wght@600'
   };
   var l=document.createElement('link'); l.rel='stylesheet'; l.id='lk-fonts-'+lang;
@@ -148,7 +148,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .plate img{width:100%;height:100%;object-fit:cover;object-position:center top}
 .plate::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(9,14,22,.30) 0%,rgba(9,14,22,0) 26%,rgba(9,14,22,.10) 58%,rgba(23,35,46,.92) 88%,var(--n1) 100%)}
-.hero{position:relative;z-index:1;padding-top:0;padding-bottom:40px}   /* 左右は .wrap の余白を保つ */
+.hero{position:relative;z-index:1;padding-top:0;padding-bottom:40px}
+.t-ja .film,.t-zh .film{z-index:1}   /* 左右は .wrap の余白を保つ */
 /* 映像窓(全幅・素材比率のまま)。中に I 深夜 / 縦組みの題 / NEW / 尺 */
 .film{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:#10171f;transition:transform .16s var(--ease)}
 .film img{width:100%;height:100%;object-fit:cover}
@@ -544,6 +545,158 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
   .glass,.top,.tile .tx{-webkit-backdrop-filter:none;backdrop-filter:none}
   .glass{background:rgba(9,14,22,.82)} .tile .tx{background:rgba(243,239,230,.96)}
 }
+
+/* ============================================================
+   言語で世界観が変わる: English=夜の海(既定) / 日本語=墨彩画 / 繁體中文=台湾の老屋
+   (GPT アートディレクション 2026-09-05 反映: 日本語=紙82/墨15/彩3・墨5段階・金属罫なし。
+    台湾=素材の分業: 石灰壁が地、磨石子は II/III の外側、鐵窗花は線(I/IV)、花磚は III 末の小面、紅磚は CTA と写真)
+   ============================================================ */
+/* ---- 日本語: 墨彩画 ---- */
+.t-ja{
+  --n0:#F3EFE6; --n1:#F3EFE6; --d0:#EFEBE1; --d1:#E6E2D8; --m0:#F3EFE6;
+  --ink:#252724; --sub:#686B63; --ink-m:#252724; --sub-m:#686B63;
+  --gold:#A43C32; --gold-m:#A43C32; --mizu:#405B70; --mizu-m:#405B70;
+  --line:#D9D9D2; --line-m:#D9D9D2;
+  --gold-metal:linear-gradient(#454842,#454842); --gold-metal-v:linear-gradient(#454842,#454842);
+}
+.t-ja body{background:var(--n0) url("assets/lk_washi.jpg?v=20260905b") repeat center / 512px auto}
+.t-ja body::after{opacity:.04}
+.t-ja .top{background:rgba(243,239,230,.92);border-bottom-color:#D9D9D2}
+.t-ja .top::after{display:none}
+.t-ja .brand i{background:#454842}
+.t-ja .lang button{color:var(--sub)} .t-ja .lang button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.t-ja .act-1{background:transparent}
+.t-ja .plate img{object-position:center 0}
+.t-ja .plate::after{background:linear-gradient(180deg,rgba(243,239,230,0) 0%,rgba(243,239,230,0) 34%,rgba(243,239,230,.55) 48%,rgba(243,239,230,.86) 62%,var(--n0) 100%)}
+.t-ja .plate::before{display:none}
+.t-ja .film{box-shadow:none;outline:1px solid #D9D9D2;outline-offset:-1px}
+.t-ja .film::after{background:linear-gradient(180deg,rgba(37,39,36,.18) 0%,rgba(37,39,36,0) 30%,rgba(37,39,36,0) 58%,rgba(37,39,36,.72) 100%)}
+.t-ja .film .vt i{background:#F3EFE6;opacity:.85}
+.t-ja .film .vt b{font-family:"Yuji Syuku","Shippori Mincho B1",serif;font-weight:400;font-size:clamp(38px,11vw,46px);letter-spacing:.06em;color:#F3EFE6}
+.t-ja .film .mini .nm{font-family:"Yuji Syuku",serif;font-weight:400;font-size:14px}
+.t-ja .film .mini .rn,.t-ja .tag{color:#F3EFE6}
+.t-ja .wordmark{color:var(--ink);text-shadow:0 0 2px rgba(243,239,230,.95),0 0 22px rgba(243,239,230,.9),0 0 44px rgba(243,239,230,.8)}
+.t-ja .statement{font-size:clamp(19px,5vw,22px);letter-spacing:0;line-height:1.7}
+/* 乳白ガラス: 紙色92%・淡墨の罫・角丸4px・影なし・上辺の反射1本 */
+.t-ja .glass{background:rgba(243,239,230,.92);border:1px solid #B5B8AE;border-radius:4px;box-shadow:inset 0 1px 0 #FFFFFF;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.t-ja .glass::before{display:none}
+.t-ja .slab .cta-main{border-top:2px solid var(--gold);border-bottom-color:#D9D9D2}
+.t-ja .slab .cta-row{border-bottom-color:#D9D9D2}
+.t-ja .cta-sub + .cta-sub{border-left-color:#D9D9D2}
+.t-ja .cta-main::after,.t-ja .cta-sub::after,.t-ja .row .go,.t-ja .wmore .arrow,.t-ja .pair-links a::after{background:none;-webkit-background-clip:initial;background-clip:initial;color:#454842}
+.t-ja .chips a + a::before{background:#D9D9D2}
+.t-ja .act-2{background:var(--n0);--kvbg:var(--n0)}
+.t-ja .act-3{background:var(--d0);--kvbg:var(--d0)}
+.t-ja .act-3 .kv,.t-ja .kv-4{display:none}
+.t-ja .act-head::after{background:#454842;width:36px}
+.t-ja .act-head::before{display:none}
+.t-ja .act-num .rn{color:#686B63}
+.t-ja .act-num .nm{font-family:"Yuji Syuku","Shippori Mincho B1",serif;font-weight:400;font-size:34px;letter-spacing:.04em;color:#454842}
+.t-ja .ghost{color:#252724;opacity:.045}
+.t-ja .wcard .vt{font-family:"Yuji Syuku",serif;font-weight:400;font-size:30px}
+.t-ja .strip-ctl .bar i{background:#454842}
+/* 転換帯= 淡墨の山水(青磁)。対画は筆跡の形で */
+.t-ja .dawn{background:var(--d0) url("assets/lk_ja_landscape.jpg?v=20260905c") no-repeat center bottom / cover;padding:64px 0 40px}
+.t-ja .dawn::before{background:linear-gradient(var(--d0),transparent)}
+.t-ja .pair::before{display:none}
+.t-ja .pair a:first-child{-webkit-mask:url("assets/lk_ja_stroke_h.png?v=20260905c") center / 100% 100% no-repeat;mask:url("assets/lk_ja_stroke_h.png?v=20260905c") center / 100% 100% no-repeat;border-radius:0;box-shadow:none}
+.t-ja .pair a:last-child{-webkit-mask:url("assets/lk_ja_stroke_d.png?v=20260905c") center / 100% 100% no-repeat;mask:url("assets/lk_ja_stroke_d.png?v=20260905c") center / 100% 100% no-repeat;border-radius:0;box-shadow:none}
+.t-ja .dawn .dawn-cap{background:rgba(243,239,230,.94);border:1px solid #B5B8AE;border-radius:4px;box-shadow:inset 0 1px 0 #fff;color:var(--ink);-webkit-backdrop-filter:none;backdrop-filter:none}
+.t-ja .dawn .dawn-cap .cap{color:var(--ink);font-family:"Yuji Syuku",serif;font-weight:400;font-size:22px;letter-spacing:.02em}
+.t-ja .dawn .pair-links,.t-ja .dawn .pair-links a,.t-ja .dawn .pair-links a + a{border-color:#D9D9D2}
+.t-ja .dawn .pair-links a{color:var(--ink)}
+.t-ja .act-4{background:transparent}
+.t-ja .tile .tx{background:rgba(243,239,230,.94);-webkit-backdrop-filter:none;backdrop-filter:none;border-top:1px solid #D9D9D2;box-shadow:none}
+.t-ja .act-4 .row .go{color:#454842}
+/* 椿は署名の近くに小さく1点 */
+.t-ja .deco-camellia{display:block}
+.deco-camellia{display:none;width:104px;height:104px;margin:0 auto 6px;pointer-events:none;mix-blend-mode:multiply;position:static}
+.t-ja .socials{border-top-color:#D9D9D2} .t-ja .socials a + a{border-left-color:#D9D9D2}
+
+/* ---- 繁體中文: 台湾の老屋 ---- */
+.t-zh{
+  --n0:#F1EBDD; --n1:#F1EBDD; --d0:#E4DED1; --d1:#DDD6C7; --m0:#F1EBDD;
+  --ink:#303C37; --sub:#59645B; --ink-m:#303C37; --sub-m:#59645B;
+  --gold:#984B3C; --gold-m:#984B3C; --mizu:#55705D; --mizu-m:#55705D;
+  --line:rgba(48,60,55,.18); --line-m:rgba(48,60,55,.18);
+  --gold-metal:linear-gradient(#303C37,#303C37); --gold-metal-v:linear-gradient(#303C37,#303C37);
+}
+.t-zh body{background:var(--n0)}
+.t-zh body::after{opacity:.035}
+.t-zh{--sans:"Noto Serif TC","PingFang TC","Songti TC",serif}
+.t-zh .top{background:rgba(241,235,221,.94);border-bottom-color:rgba(48,60,55,.18)}
+.t-zh .top::after{display:none}
+.t-zh .brand i{background:#303C37}
+.t-zh .lang button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.t-zh .act-1{background:transparent}
+.t-zh .plate{top:110px}
+.t-zh .plate img{object-position:center 0}
+.t-zh .plate::after{background:linear-gradient(180deg,rgba(241,235,221,0) 0%,rgba(241,235,221,0) 30%,rgba(241,235,221,.5) 46%,rgba(241,235,221,.88) 60%,var(--n0) 100%)}
+.t-zh .plate::before{display:none}
+.t-zh .film{box-shadow:none;outline:1px solid rgba(48,60,55,.22);outline-offset:-1px}
+.t-zh .film::after{background:linear-gradient(180deg,rgba(48,60,55,.18) 0%,rgba(48,60,55,0) 30%,rgba(48,60,55,0) 58%,rgba(48,60,55,.72) 100%)}
+.t-zh .film .vt i{background:#F1EBDD;opacity:.85}
+.t-zh .film .vt b{font-family:"LXGW WenKai TC","Noto Serif TC",serif;font-weight:400;color:#F1EBDD}
+.t-zh .film .mini .nm{font-family:"LXGW WenKai TC",serif;font-weight:400;font-size:14px}
+.t-zh .film .mini .rn,.t-zh .tag{color:#F1EBDD}
+.t-zh .wordmark{color:var(--ink);text-shadow:0 0 2px rgba(241,235,221,.95),0 0 22px rgba(241,235,221,.9),0 0 44px rgba(241,235,221,.8)}
+.t-zh .statement,.t-zh .subline{display:inline;padding:2px 10px 2px 0;background:linear-gradient(90deg,rgba(241,235,221,.90) 0%,rgba(241,235,221,.82) 60%,rgba(241,235,221,0) 100%);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.t-zh .statement{line-height:1.9}
+.t-zh .subline{margin-top:10px}
+.t-zh .hero .statement,.t-zh .hero .subline{display:block;background:none}
+.t-zh .hero .statement,.t-zh .hero .subline{position:relative}
+.t-zh .hero .statement::before,.t-zh .hero .subline::before{content:"";position:absolute;inset:-6px -12px -6px -14px;z-index:-1;border-radius:3px;background:linear-gradient(90deg,rgba(241,235,221,.92) 0%,rgba(241,235,221,.86) 62%,rgba(241,235,221,.2) 100%)}
+.t-zh .statement{font-family:"LXGW WenKai TC","Noto Serif TC",serif;font-weight:400;font-size:21px;line-height:1.65;letter-spacing:0;white-space:pre-line;text-wrap:initial}
+.t-zh .subline{font-size:14px}
+/* 鐵窗花の線: ガラス板の上に高さ36pxの一部分 */
+.tw-grille-band{display:none;height:36px;margin:26px 0 -8px;background:url("assets/lk_tw_grille_geo.png?v=20260905c") repeat-x left center / auto 36px;opacity:.85;pointer-events:none}
+.t-zh .tw-grille-band{display:block}
+.t-zh .slab{margin-top:14px}
+.t-zh .glass{background:rgba(241,235,221,.94);border:1px solid rgba(48,60,55,.28);border-radius:3px;box-shadow:inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.t-zh .glass::before{display:none}
+.t-zh .slab .cta-main{border-top:2px solid var(--gold);border-bottom-color:rgba(48,60,55,.18)}
+.t-zh .slab .cta-row{border-bottom-color:rgba(48,60,55,.18)}
+.t-zh .cta-main::after,.t-zh .cta-sub::after,.t-zh .row .go,.t-zh .wmore .arrow,.t-zh .pair-links a::after{background:none;-webkit-background-clip:initial;background-clip:initial;color:#303C37}
+.t-zh .chips a + a::before{background:rgba(48,60,55,.18)}
+/* II・III の外側は磨石子。文字欄は石灰壁色の不透明面 */
+.t-zh .act-2,.t-zh .act-3{background:#E4DED1 url("assets/lk_tw_terrazzo.jpg?v=20260905c") repeat center / 480px auto;--kvbg:#E4DED1}
+.t-zh .act-2 .kv,.t-zh .act-3 .kv,.t-zh .kv-4{display:none}
+.t-zh .wbody,.t-zh .act-2 .rows,.t-zh .act-3 .card .cbody,.t-zh .act-3 .rows{background:#F1EBDD}
+.t-zh .wbody{padding:12px 14px 14px;margin-top:0;border-top:0}
+.t-zh .act-2 .rows,.t-zh .act-3 .rows{padding:0 14px;border:1px solid rgba(48,60,55,.14);border-radius:3px}
+.t-zh .act-3 .card .cbody{padding:12px 14px 14px}
+.t-zh .act-head::before{display:none}
+.t-zh .act-4 .act-head::before{content:"";display:block;position:absolute;right:0;top:56px;width:180px;height:180px;pointer-events:none;opacity:.14;
+  background:url("assets/lk_tw_grille.png?v=20260905c") no-repeat right top / contain}
+.t-zh .act-head::after{background:#303C37;width:36px}
+.t-zh .act-num .rn{color:#59645B}
+.t-zh .act-num .nm{font-family:"LXGW WenKai TC","Noto Serif TC",serif;font-weight:400;font-size:34px;letter-spacing:.02em;color:#303C37}
+.t-zh .ghost{color:#303C37;opacity:.05}
+.t-zh .wcard .vt{font-family:"LXGW WenKai TC",serif;font-weight:400}
+.t-zh .strip-ctl .bar i{background:#303C37}
+/* 花磚: III の終端に 64px 角を 2 枚 */
+.tw-tiles{display:none;justify-content:flex-end;gap:12px;margin:26px 0 0}
+.tw-tiles i{display:block;width:64px;height:64px;background:url("assets/lk_tw_tiles.jpg?v=20260905c") no-repeat 0 0 / 192px 192px;box-shadow:inset 0 0 0 1px rgba(48,60,55,.18)}
+.tw-tiles i + i{background-position:-64px -64px}
+.t-zh .tw-tiles{display:flex}
+/* 転換帯: 磨石子の地。対画の直下は石灰壁の不透明面 */
+.t-zh .dawn{background:#E4DED1 url("assets/lk_tw_terrazzo.jpg?v=20260905c") repeat center / 480px auto;padding:56px 0 40px}
+.t-zh .dawn::before{background:linear-gradient(var(--d0),transparent)}
+.t-zh .pair::before{display:none}
+.t-zh .pair a{box-shadow:none;outline:1px solid rgba(48,60,55,.22);outline-offset:-1px}
+.t-zh .dawn .dawn-cap{background:#F1EBDD;border:1px solid rgba(48,60,55,.22);border-radius:3px;box-shadow:inset 0 1px 0 #fff;color:var(--ink);-webkit-backdrop-filter:none;backdrop-filter:none}
+.t-zh .dawn .dawn-cap .cap{color:var(--ink);font-family:"LXGW WenKai TC",serif;font-weight:400;font-size:22px}
+.t-zh .dawn .pair-links,.t-zh .dawn .pair-links a,.t-zh .dawn .pair-links a + a{border-color:rgba(48,60,55,.18)}
+.t-zh .dawn .pair-links a{color:var(--ink)}
+.t-zh .act-4{background:transparent}
+.t-zh .tile .tx{background:rgba(241,235,221,.96);-webkit-backdrop-filter:none;backdrop-filter:none;border-top:1px solid rgba(48,60,55,.18);box-shadow:none}
+.t-zh .act-4 .row .go{color:#303C37}
+.t-zh .sig{font-family:"LXGW WenKai TC","Cormorant Garamond",serif;font-style:normal;font-size:19px}
+/* ---- 明るいテーマ共通 ---- */
+.t-ja :focus-visible{outline-color:#405B70} .t-zh :focus-visible{outline-color:#55705D}
+.t-ja ::selection{background:rgba(64,91,112,.20)} .t-zh ::selection{background:rgba(85,112,93,.20)}
 </style>
 </head>
 <body>
@@ -563,7 +716,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 
 <!-- ===== I 深夜: タイトルバック ===== -->
 <section class="act act-1 anchor" id="top">
-  <div class="plate" aria-hidden="true"><img src="assets/lk_hero_plate.jpg?v=20260905b" width="780" height="1170" alt="" fetchpriority="high" decoding="async"></div>
+  <div class="plate" aria-hidden="true"><img src="assets/lk_hero_plate.jpg?v=20260905b" data-t-en="assets/lk_hero_plate.jpg?v=20260905b" data-t-ja="assets/lk_ja_plate.jpg?v=20260905c" data-t-zh="assets/lk_tw_plate.jpg?v=20260905c" width="780" height="1170" alt="" fetchpriority="high" decoding="async"></div>
   <div class="wrap hero" id="hero">
 
     <a class="film bleed" href="https://youtu.be/t9NJumW8D1Q" data-vunit aria-label="海煙 — 3:42">
@@ -579,6 +732,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
     <p class="statement" data-i18n="hero.statement">夜と光を、音楽のある物語に。</p>
     <p class="subline" data-i18n="hero.sub">自宅から届ける、オリジナルMV。</p>
 
+    <div class="tw-grille-band" aria-hidden="true"></div>
     <div class="slab glass">
     <a class="cta cta-main" href="https://youtu.be/t9NJumW8D1Q">
       <span data-i18n="cta.latest">最新作『海煙』を観る</span><span class="num" data-i18n="dur.umk">3:42</span>
@@ -601,7 +755,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <!-- ===== II 薄明 ===== -->
 <section class="act act-2 anchor" id="works">
   <div class="wrap">
-    <div class="kv bleed" aria-hidden="true"><img src="assets/lk_kv2.jpg?v=20260905b" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
+    <div class="kv bleed" aria-hidden="true"><img src="assets/lk_kv2.jpg?v=20260905b" data-t-en="assets/lk_kv2.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv2.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv2.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
     <header class="act-head">
       <span class="ghost" aria-hidden="true">II</span>
       <p class="act-num"><span class="rn" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span></p>
@@ -762,7 +916,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <!-- ===== III 曙 ===== -->
 <section class="act act-3 anchor" id="howto">
   <div class="wrap">
-    <div class="kv bleed" aria-hidden="true"><img src="assets/lk_sky.jpg?v=20260905a" width="1800" height="600" alt="" loading="lazy" decoding="async" style="object-position:center 12%"></div>
+    <div class="kv bleed" aria-hidden="true"><img src="assets/lk_sky.jpg?v=20260905a" data-t-en="assets/lk_sky.jpg?v=20260905a" data-t-ja="assets/lk_ja_kv3.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv3.jpg?v=20260905c" width="1800" height="600" alt="" loading="lazy" decoding="async" style="object-position:center 12%"></div>
     <header class="act-head">
       <span class="ghost" aria-hidden="true">III</span>
       <p class="act-num"><span class="rn" aria-hidden="true">III</span><span class="nm" data-i18n="act3.name">曙</span></p>
@@ -799,6 +953,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
         <span class="go" aria-hidden="true">→</span>
       </a>
     </div>
+    <div class="tw-tiles" aria-hidden="true"><i></i><i></i></div>
   </div>
 </section>
 
@@ -828,7 +983,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <!-- ===== IV 朝 ===== -->
 <section class="act act-4 anchor" id="more">
   <div class="wrap">
-    <div class="kv bleed" aria-hidden="true" style="margin-top:28px"><img src="assets/lk_kv4.jpg?v=20260905b" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
+    <div class="kv bleed kv-4" aria-hidden="true" style="margin-top:28px"><img src="assets/lk_kv4.jpg?v=20260905b" data-t-en="assets/lk_kv4.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv4.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv4.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
     <header class="act-head">
       <span class="ghost" aria-hidden="true">IV</span>
       <p class="act-num"><span class="rn" aria-hidden="true">IV</span><span class="nm" data-i18n="act4.name">朝</span></p>
@@ -874,6 +1029,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
       <a href="https://note.com/made_linlin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5h12v15H6z"/><path d="M6 4.5c-1.4 0-2 .8-2 2v11c0 1.2.6 2 2 2"/><path d="M9.5 9h5M9.5 12.5h5"/></svg>note</a>
       <a href="https://zenn.dev/made_linlin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg>Zenn</a>
     </nav>
+    <img class="deco-camellia" src="assets/lk_ja_camellia.png?v=20260905c" width="600" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
     <p class="sig">Created by @made_linlin</p>
     <p class="disc"><span data-i18n="f.d1">映像・楽曲・キャラクターはすべてオリジナルの創作物です。</span><br><span data-i18n="f.d2">制作に生成AIを使用しています。</span></p>
     <p class="copy num">© <span id="year">2026</span> made_linlin</p>
@@ -899,7 +1055,7 @@ var T={
   "act1.name":["深夜","深夜","Midnight"],"act2.name":["薄明","薄明","Twilight"],"act3.name":["曙","破曉","Daybreak"],"act4.name":["朝","清晨","Morning"],
   "act2.label":["作品","作品","Works"],"act3.label":["作り方","製作方法","How it's made"],"act4.label":["その他","其他","More"],
   "nav.latest":["最新作","最新作品","Latest"],"nav.works":["作品","作品","Works"],"nav.howto":["作り方","製作方法","Making"],"nav.more":["その他","其他","More"],
-  "hero.statement":["夜と光を、音楽のある物語に。","把夜色與光，寫成有音樂的故事。","Night and light, told as stories with music."],
+  "hero.statement":["夜と光を、音楽のある物語に。","把夜色與光，\n寫成有音樂的故事。","Night and light, told as stories with music."],
   "hero.sub":["自宅から届ける、オリジナルMV。","在家創作，與你分享原創音樂錄影帶。","Original music videos, made at home."],
   "cta.latest":["最新作『海煙』を観る","觀看最新作品《海煙》","Watch the latest, Sea Smoke"],
   "cta.works":["作品一覧","作品一覽","All works"],"cta.howto":["作り方","製作方法","How it's made"],
@@ -1008,13 +1164,14 @@ var LKV=(function(){
     var ch=document.querySelector('.chips'); if(ch) ch.setAttribute('aria-label',A.chips[i]);
     h.lang = zh?'zh-Hant-TW':(lang==='en'?'en':'ja');
     h.classList.toggle('zh',zh); h.classList.toggle('en',lang==='en');
+    ['ja','zh','en'].forEach(function(t){ h.classList.toggle('t-'+t, t===lang); });
+    document.querySelectorAll('img[data-t-en]').forEach(function(im){ var u=im.getAttribute('data-t-'+lang)||im.getAttribute('data-t-en'); if(im.getAttribute('src')!==u) im.setAttribute('src',u); });
     btns.forEach(function(b){ b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===lang)); });
     ensureFonts(lang); LKV.setLang(zh);
     if(save){ try{ localStorage.setItem('ml_lang',lang); }catch(e){} }
   }
   btns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-lang'),true); }); });
-  if(h.classList.contains('zh')) apply('zh',false);
-  else if(h.classList.contains('en')) apply('en',false);
+  apply(h.classList.contains('zh')?'zh':h.classList.contains('en')?'en':'ja',false);
 })();
 
 /* ============================================================
