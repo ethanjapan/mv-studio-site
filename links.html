@@ -696,6 +696,27 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 .t-zh .tile .tx{background:rgba(241,235,221,.96);-webkit-backdrop-filter:none;backdrop-filter:none;border-top:1px solid rgba(48,60,55,.18);box-shadow:none}
 .t-zh .act-4 .row .go{color:#303C37}
 .t-zh .sig{font-family:"LXGW WenKai TC","Cormorant Garamond",serif;font-style:normal;font-size:19px}
+
+/* ---- 幕番号を書の漢数字に(日本語=行書の飛白 / 繁中=隸書)。色は背景色でテーマに追従、文字は読み上げ用に残す ---- */
+.t-ja .rn[data-n],.t-zh .rn[data-n],.t-ja .ghost[data-n],.t-zh .ghost[data-n]{
+  color:transparent!important;display:inline-block;overflow:hidden;text-indent:-9999px;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
+.t-ja .act-num .rn[data-n],.t-zh .act-num .rn[data-n]{width:44px;height:44px;vertical-align:-8px;margin-right:4px}
+.t-ja .film .mini .rn[data-n],.t-zh .film .mini .rn[data-n]{width:18px;height:18px;vertical-align:-3px}
+.t-ja .ghost[data-n],.t-zh .ghost[data-n]{width:240px;height:240px;right:-10px;top:-30px;opacity:.10}
+@media (min-width:640px){ .t-ja .ghost[data-n],.t-zh .ghost[data-n]{width:300px;height:300px;right:-24px} }
+.t-ja .rn[data-n],.t-ja .ghost[data-n]{background:#252724}
+.t-ja .film .mini .rn[data-n]{background:#F3EFE6}
+.t-zh .rn[data-n],.t-zh .ghost[data-n]{background:#303C37}
+.t-zh .film .mini .rn[data-n]{background:#F1EBDD}
+.t-ja [data-n="1"]{-webkit-mask-image:url("assets/lk_ja_num1.png?v=20260905d");mask-image:url("assets/lk_ja_num1.png?v=20260905d")}
+.t-ja [data-n="2"]{-webkit-mask-image:url("assets/lk_ja_num2.png?v=20260905d");mask-image:url("assets/lk_ja_num2.png?v=20260905d")}
+.t-ja [data-n="3"]{-webkit-mask-image:url("assets/lk_ja_num3.png?v=20260905d");mask-image:url("assets/lk_ja_num3.png?v=20260905d")}
+.t-ja [data-n="4"]{-webkit-mask-image:url("assets/lk_ja_num4.png?v=20260905d");mask-image:url("assets/lk_ja_num4.png?v=20260905d")}
+.t-zh [data-n="1"]{-webkit-mask-image:url("assets/lk_tw_num1.png?v=20260905d");mask-image:url("assets/lk_tw_num1.png?v=20260905d")}
+.t-zh [data-n="2"]{-webkit-mask-image:url("assets/lk_tw_num2.png?v=20260905d");mask-image:url("assets/lk_tw_num2.png?v=20260905d")}
+.t-zh [data-n="3"]{-webkit-mask-image:url("assets/lk_tw_num3.png?v=20260905d");mask-image:url("assets/lk_tw_num3.png?v=20260905d")}
+.t-zh [data-n="4"]{-webkit-mask-image:url("assets/lk_tw_num4.png?v=20260905d");mask-image:url("assets/lk_tw_num4.png?v=20260905d")}
 /* ---- 明るいテーマ共通 ---- */
 .t-ja :focus-visible{outline-color:#405B70} .t-zh :focus-visible{outline-color:#55705D}
 .t-ja ::selection{background:rgba(64,91,112,.20)} .t-zh ::selection{background:rgba(85,112,93,.20)}
@@ -724,7 +745,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
     <a class="film bleed" href="https://youtu.be/t9NJumW8D1Q" data-vunit aria-label="海煙 — 3:42">
       <img src="assets/lk_poster_umikemuri.jpg?v=20260905a" width="1280" height="720" alt="" decoding="async">
       <video data-src-ja="assets/lk_loop_umikemuri.mp4?v=20260905a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
-      <span class="mini"><span class="rn" aria-hidden="true">I</span><span class="nm" data-i18n="act1.name">深夜</span><i aria-hidden="true"></i></span>
+      <span class="mini"><span class="rn" data-n="1" aria-hidden="true">I</span><span class="nm" data-i18n="act1.name">深夜</span><i aria-hidden="true"></i></span>
       <span class="vt" aria-hidden="true"><i></i><b>海煙</b></span>
       <span class="tag">NEW</span>
       <span class="dur num" data-i18n="dur.umk">3:42</span>
@@ -759,8 +780,8 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
   <div class="wrap">
     <div class="kv bleed" aria-hidden="true"><img src="assets/lk_kv2.jpg?v=20260905b" data-t-en="assets/lk_kv2.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv2.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv2.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
     <header class="act-head">
-      <span class="ghost" aria-hidden="true">II</span>
-      <p class="act-num"><span class="rn" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span></p>
+      <span class="ghost" data-n="2" aria-hidden="true">II</span>
+      <p class="act-num"><span class="rn" data-n="2" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span></p>
       <h2><span data-i18n="act2.label">作品</span><i aria-hidden="true">Works</i></h2>
     </header>
 
@@ -920,8 +941,8 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
   <div class="wrap">
     <div class="kv bleed" aria-hidden="true"><img src="assets/lk_sky.jpg?v=20260905a" data-t-en="assets/lk_sky.jpg?v=20260905a" data-t-ja="assets/lk_ja_kv3.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv3.jpg?v=20260905c" width="1800" height="600" alt="" loading="lazy" decoding="async" style="object-position:center 12%"></div>
     <header class="act-head">
-      <span class="ghost" aria-hidden="true">III</span>
-      <p class="act-num"><span class="rn" aria-hidden="true">III</span><span class="nm" data-i18n="act3.name">曙</span></p>
+      <span class="ghost" data-n="3" aria-hidden="true">III</span>
+      <p class="act-num"><span class="rn" data-n="3" aria-hidden="true">III</span><span class="nm" data-i18n="act3.name">曙</span></p>
       <h2><span data-i18n="act3.label">作り方</span><i aria-hidden="true">How it's made</i></h2>
       <p class="lead" data-i18n="howto.lead">自宅のGPU 1台で、曲づくりから編集まで。工程と失敗を、動画と記事で公開しています。</p>
     </header>
@@ -987,8 +1008,8 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
   <div class="wrap">
     <div class="kv bleed kv-4" aria-hidden="true" style="margin-top:28px"><img src="assets/lk_kv4.jpg?v=20260905b" data-t-en="assets/lk_kv4.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv4.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv4.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
     <header class="act-head">
-      <span class="ghost" aria-hidden="true">IV</span>
-      <p class="act-num"><span class="rn" aria-hidden="true">IV</span><span class="nm" data-i18n="act4.name">朝</span></p>
+      <span class="ghost" data-n="4" aria-hidden="true">IV</span>
+      <p class="act-num"><span class="rn" data-n="4" aria-hidden="true">IV</span><span class="nm" data-i18n="act4.name">朝</span></p>
       <h2><span data-i18n="act4.label">その他</span><i aria-hidden="true">More</i></h2>
     </header>
 
