@@ -15,27 +15,39 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="assets/lk_poster_umikemuri.jpg?v=20260905a" fetchpriority="high">
+<link rel="preload" as="image" href="assets/lk_hero_plate.jpg?v=20260905b" fetchpriority="high">
+<link rel="preload" as="image" href="assets/lk_poster_umikemuri.jpg?v=20260905a">
 <script>
 /* 言語を先に決めて、表示言語の書体だけ読み込む(日本語と繁中を両方は読まない) */
 (function(){
-  var zh=false;
-  try{ var p=localStorage.getItem('ml_lang'); zh = p ? p==='zh' : /^zh/i.test(navigator.language||''); }catch(e){}
+  var lang='ja';
+  try{
+    var p=localStorage.getItem('ml_lang');
+    if(p==='ja'||p==='zh'||p==='en') lang=p;
+    else { var n=(navigator.language||'').toLowerCase(); lang = /^zh/.test(n) ? 'zh' : /^ja/.test(n) ? 'ja' : 'en'; }
+  }catch(e){}
   var h=document.documentElement;
-  h.lang = zh ? 'zh-Hant-TW' : 'ja';
-  h.className += ' js' + (zh ? ' zh' : '');
-  var fam = zh ? 'family=Noto+Serif+TC:wght@600&family=Noto+Sans+TC:wght@400;500'
-               : 'family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500';
-  var l=document.createElement('link'); l.rel='stylesheet'; l.id='lk-fonts-'+(zh?'zh':'ja');
-  l.href='https://fonts.googleapis.com/css2?'+fam+'&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Mono:wght@400&display=swap';
+  h.lang = lang==='zh' ? 'zh-Hant-TW' : lang==='en' ? 'en' : 'ja';
+  h.className += ' js' + (lang==='ja' ? '' : ' '+lang);
+  window.__LK_FONTS = {
+    ja:'family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400',
+    zh:'family=Noto+Serif+TC:wght@600&family=Noto+Sans+TC:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400',
+    en:'family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Zen+Kaku+Gothic+New:wght@400;500&family=Shippori+Mincho+B1:wght@600'
+  };
+  var l=document.createElement('link'); l.rel='stylesheet'; l.id='lk-fonts-'+lang;
+  l.href='https://fonts.googleapis.com/css2?'+window.__LK_FONTS[lang]+'&family=DM+Mono:wght@400&display=swap';
   document.head.appendChild(l);
 })();
 </script>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Mono:wght@400&display=swap"></noscript>
 <style>
+/* ワードマークと章番号だけの極小サブセット(Cormorant Garamond 400・8KB)。最初の描画から本物の書体で出す */
+@font-face{font-family:"CG Wordmark";font-style:normal;font-weight:400;font-display:block;
+  src:url(data:font/woff2;base64,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) format("woff2")}
 /* ============================================================
-   made_linlin links — 「夜明けまで」
+   made_linlin links — 「夜明けまで」 v3
    1ページを一夜に見立て、深夜(I)→薄明(II)→曙(III)→朝(IV)へ。
+   初画面はタイトルバック(夜の海のプレート × 海煙の映像窓 × ワードマーク)。
    文字色は幕ごとに固定。夜→朝の転換は文字を置かない帯で行う。
    ============================================================ */
 :root{
@@ -44,7 +56,7 @@
   --gold:#D7B887; --gold-m:#7B572C; --mizu:#A9CDD1; --mizu-m:#356A78; --sakura:#D9B2BE;
   --line:rgba(243,239,230,.16); --line-m:rgba(24,37,44,.16);
   --serif-jp:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
-  --serif-la:"Cormorant Garamond","Times New Roman",serif;
+  --serif-la:"CG Wordmark","Cormorant Garamond","Times New Roman",serif;
   --sans:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",-apple-system,BlinkMacSystemFont,sans-serif;
   --mono:"DM Mono",ui-monospace,Menlo,monospace;
   --pad:20px; --max:600px; --r:12px; --r-s:8px;
@@ -54,6 +66,14 @@ html:lang(zh-Hant){
   --serif-jp:"Noto Serif TC","PingFang TC","Songti TC",serif;
   --sans:"Noto Sans TC","PingFang TC","Heiti TC",-apple-system,sans-serif;
 }
+/* 英語: 見出しは Cormorant Garamond 600(x-height が低いので一段大きく)。縦組みの題は日本語のまま */
+html:lang(en){ --serif-jp:"Cormorant Garamond","Times New Roman",serif; }
+html:lang(en) .statement{font-size:clamp(24px,6.6vw,28px);letter-spacing:0;line-height:1.35}
+html:lang(en) .act-num .nm{font-size:32px;letter-spacing:.01em}
+html:lang(en) .wtitle,html:lang(en) .ctitle,html:lang(en) .tile .t{font-size:20px;letter-spacing:0}
+html:lang(en) .row .t.s{font-size:17px}
+html:lang(en) .dawn-cap .cap{font-size:19px;letter-spacing:0}
+.vt,.vt b,.wcard .vt{font-family:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif !important}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -70,15 +90,17 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
 .act-4 :focus-visible, .dawn-cap :focus-visible, .foot :focus-visible{outline-color:var(--gold-m)}
 .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.bleed{margin-left:calc(-1 * var(--pad));margin-right:calc(-1 * var(--pad))}
+@media (min-width:640px){ .bleed{margin-left:0;margin-right:0;border-radius:var(--r);overflow:hidden} }
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- 書体トークン ---------- */
 .t-serif{font-family:var(--serif-jp);font-weight:600;font-feature-settings:normal}
-.wordmark{font-family:var(--serif-la);font-weight:400;font-size:clamp(48px,13.33vw,56px);line-height:1.08;letter-spacing:0;font-kerning:normal;margin:0;color:var(--ink)}
-.statement{font-family:var(--serif-jp);font-weight:600;font-size:20px;line-height:1.55;letter-spacing:.015em;margin:14px 0 0;max-inline-size:30em}
+.statement{font-family:var(--serif-jp);font-weight:600;font-size:clamp(20px,5.6vw,24px);line-height:1.5;letter-spacing:.015em;margin:18px 0 0;max-inline-size:30em;hanging-punctuation:allow-end}
 .subline{font-size:13px;line-height:1.65;letter-spacing:.01em;color:var(--sub);margin:8px 0 0}
 .num{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:0;font-variant-numeric:tabular-nums}
 .label{font-weight:500;font-size:12px;letter-spacing:.10em;line-height:1.4;text-transform:uppercase}
+.rn{font-family:var(--serif-la);font-weight:400}
 
 /* ---------- トップバー(通常フロー・sticky・不透明) ---------- */
 .top{
@@ -90,9 +112,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .brand{display:flex;align-items:center;gap:10px;color:var(--sub)}
 .brand .label{color:var(--sub)}
 .brand i{display:block;width:22px;height:1px;background:var(--gold)}
-.lang{display:flex;gap:4px}
+.lang{display:flex;gap:2px}
+@media (max-width:359px){ .brand .label{display:none} }
 .lang button{
-  min-width:72px;height:44px;padding:0 10px;border-radius:999px;
+  min-width:56px;height:44px;padding:0 10px;border-radius:999px;white-space:nowrap;
   font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--sub);
   border:1px solid transparent;transition:color .16s,background .16s,border-color .16s;
 }
@@ -100,29 +123,55 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .lang button:not([aria-pressed="true"]):hover{border-color:var(--line);color:var(--ink)}
 
 /* ---------- 幕(共通) ---------- */
-.act{position:relative}
-.act-head{padding:56px 0 20px}
-.act-num{display:flex;align-items:baseline;gap:12px;margin:0}
-.act-num .rn{font-family:var(--serif-la);font-weight:400;font-size:28px;line-height:1.4;color:var(--gold)}
+.act{position:relative;overflow:hidden}
+.act-head{position:relative;padding:40px 0 20px}
+.ghost{position:absolute;right:-8px;top:-34px;font-family:var(--serif-la);font-size:200px;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);opacity:.05;pointer-events:none;user-select:none;-webkit-user-select:none}
+.act-4 .ghost{color:var(--ink-m);opacity:.06}
+.act-num{display:flex;align-items:baseline;gap:12px;margin:0;position:relative}
+.act-num .rn{font-size:30px;line-height:1.3;color:var(--gold)}
 .act-num .nm{font-family:var(--serif-jp);font-weight:600;font-size:28px;line-height:1.4;letter-spacing:.025em}
-.act-head h2{margin:2px 0 0;font-weight:500;font-size:14px;letter-spacing:.10em;color:var(--sub)}
-.act-head .lead{margin:14px 0 0;font-size:15px;line-height:1.8;color:var(--ink);max-inline-size:30em}
+.act-head h2{margin:2px 0 0;font-weight:500;font-size:14px;letter-spacing:.10em;color:var(--sub);position:relative}
+.act-head .lead{margin:14px 0 0;font-size:15px;line-height:1.8;color:var(--ink);max-inline-size:30em;position:relative}
 .act-4 .act-num .rn{color:var(--gold-m)}
 .act-4 .act-head h2{color:var(--sub-m)}
 .anchor{scroll-margin-top:calc(72px + env(safe-area-inset-top))}
+/* 幕のキービジュアル(gpt-image-2・文字なし)。上下を幕の地色へ溶かす */
+.kv{position:relative;aspect-ratio:3/1;overflow:hidden;background:var(--kvbg,var(--n1))}
+.kv img{width:100%;height:100%;object-fit:cover}
+.kv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--kvbg,var(--n1)) 0%,transparent 28%,transparent 70%,var(--kvbg,var(--n1)) 100%)}
+.kv + .act-head{padding-top:8px}
 
-/* ---------- I 深夜 ---------- */
-.act-1{
-  color:var(--ink);
-  background:
-    url("assets/lk_stars.png?v=20260905a") no-repeat top center / 100% auto,
-    linear-gradient(180deg,var(--n0) 0%,var(--n0) 45%,var(--n1) 100%);
-}
-.hero{padding:18px 0 0}
-.hero .mini{display:flex;align-items:center;gap:10px;color:var(--sub);margin:0 0 14px}
-.hero .mini .rn{font-family:var(--serif-la);font-size:14px;line-height:1;color:var(--gold)}
-.hero .mini .nm{font-family:var(--serif-jp);font-weight:600;font-size:12px;letter-spacing:.06em}
-.hero .mini i{display:block;width:28px;height:1px;background:var(--line)}
+/* ---------- I 深夜: タイトルバック ---------- */
+.act-1{color:var(--ink);background:var(--n0) url("assets/lk_stars.png?v=20260905a") no-repeat top center / 100% auto}
+.plate{position:absolute;inset:0;z-index:0;pointer-events:none}
+.plate img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.plate::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(9,14,22,.30) 0%,rgba(9,14,22,0) 26%,rgba(9,14,22,.10) 58%,rgba(23,35,46,.92) 88%,var(--n1) 100%)}
+.hero{position:relative;z-index:1;padding-top:0;padding-bottom:40px}   /* 左右は .wrap の余白を保つ */
+/* 映像窓(全幅・素材比率のまま)。中に I 深夜 / 縦組みの題 / NEW / 尺 */
+.film{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:#10171f;transition:transform .16s var(--ease)}
+.film img{width:100%;height:100%;object-fit:cover}
+.film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
+.film video.on{opacity:1}
+.film::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(9,14,22,.28) 0%,rgba(9,14,22,0) 30%,rgba(9,14,22,0) 55%,rgba(9,14,22,.82) 100%)}
+.film .mini{position:absolute;left:var(--pad);top:14px;z-index:2;display:flex;align-items:center;gap:10px;color:var(--ink);margin:0}
+.film .mini .rn{font-size:15px;line-height:1;color:var(--gold)}
+.film .mini .nm{font-family:var(--serif-jp);font-weight:600;font-size:12px;letter-spacing:.08em}
+.film .mini i{display:block;width:28px;height:1px;background:rgba(243,239,230,.45)}
+.film .vt{position:absolute;right:var(--pad);top:14px;z-index:2;display:flex;gap:10px;align-items:flex-start;margin:0}
+.film .vt b{writing-mode:vertical-rl;text-orientation:mixed;font-family:var(--serif-jp);font-weight:600;font-size:clamp(34px,10vw,44px);line-height:1;letter-spacing:.10em;color:var(--ink);
+  text-shadow:0 2px 22px rgba(0,0,0,.75),0 0 3px rgba(0,0,0,.5)}
+.film .vt i{display:block;width:1px;height:calc(clamp(34px,10vw,44px) * 2.6);background:var(--gold);opacity:.85;margin-top:4px}
+.film .tag{position:absolute;left:var(--pad);bottom:16px;z-index:2}
+.film .dur{position:absolute;right:var(--pad);bottom:14px;z-index:2;color:var(--ink);background:rgba(9,14,22,.72);border:1px solid rgba(243,239,230,.18);padding:5px 10px;border-radius:999px}
+.film .dur::before{content:"";display:inline-block;width:0;height:0;border-left:6px solid var(--ink);border-top:4px solid transparent;border-bottom:4px solid transparent;margin-right:7px;vertical-align:1px}
+@media (min-width:640px){ .film .mini,.film .tag{left:18px} .film .vt,.film .dur{right:18px} }
+.tag{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-weight:500;font-size:11px;letter-spacing:.10em;background:rgba(9,14,22,.45)}
+/* ワードマークは映像窓の下端に重ねる */
+.wordmark{position:relative;z-index:2;margin:-.40em 0 0;font-family:var(--serif-la);font-weight:400;font-size:clamp(56px,17vw,72px);line-height:1;letter-spacing:0;font-kerning:normal;color:var(--ink);
+  text-shadow:0 2px 26px rgba(9,14,22,.65)}
 .cta{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 18px;border-radius:999px;
   font-weight:500;font-size:14px;line-height:1.3;letter-spacing:.01em;text-align:center;
   transition:transform .16s var(--ease),background .16s,border-color .16s}
@@ -130,61 +179,57 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .cta-main .num{color:var(--n0);opacity:.78}
 .cta-main .num::before{content:"·";margin-right:8px}
 .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.cta-sub{min-height:44px;border:1px solid var(--line);color:var(--ink)}
+.cta-sub{min-height:44px;border:1px solid rgba(243,239,230,.28);color:var(--ink);background:rgba(9,14,22,.35)}
 .cta-sub svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
 @media (hover:hover) and (pointer:fine){
   .cta-main:hover{transform:translateY(-2px)}
   .cta-sub:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .film:hover{transform:translateY(-2px)}
 }
-.cta:active{transform:scale(.99);transition-duration:90ms}
+.cta:active,.film:active{transform:scale(.99);transition-duration:90ms}
+/* 章チップ(固定しない) */
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:28px 0 0}
+.chips a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 6px;border-radius:999px;border:1px solid rgba(243,239,230,.22);
+  font-weight:500;font-size:13px;letter-spacing:.01em;color:var(--sub);text-align:center;line-height:1.2;transition:color .16s,border-color .16s;background:rgba(9,14,22,.30)}
+.chips a:hover{color:var(--ink);border-color:var(--gold)}
+/* 一度だけの結像(JS があり、低モーションでない時だけ) */
+.js .rv .film{opacity:0}
+.js .rv .wordmark{clip-path:inset(0 100% 0 0)}
+.js .rv .statement,.js .rv .subline,.js .rv .cta-main,.js .rv .cta-row,.js .rv .chips{opacity:0;transform:translateY(8px)}
+.js .rv.ready .film{opacity:1;transition:opacity .6s ease}
+.js .rv.ready .wordmark{clip-path:inset(0 0 0 0);transition:clip-path .8s var(--ease) .2s}
+.js .rv.ready .statement{opacity:1;transform:none;transition:opacity .3s ease .55s,transform .3s var(--ease) .55s}
+.js .rv.ready .subline{opacity:1;transform:none;transition:opacity .3s ease .65s,transform .3s var(--ease) .65s}
+.js .rv.ready .cta-main{opacity:1;transform:none;transition:opacity .3s ease .75s,transform .3s var(--ease) .75s}
+.js .rv.ready .cta-row{opacity:1;transform:none;transition:opacity .3s ease .85s,transform .3s var(--ease) .85s}
+.js .rv.ready .chips{opacity:1;transform:none;transition:opacity .3s ease .95s,transform .3s var(--ease) .95s}
 
-/* 最新作ポスター */
-.poster{display:block;margin-top:40px;border-radius:var(--r);overflow:hidden;background:var(--n1);border:1px solid var(--line);transition:transform .16s var(--ease)}
-.win{position:relative;aspect-ratio:16/9;overflow:hidden;background:#10171f}
+/* ---------- II 薄明 ---------- */
+.act-2{color:var(--ink);background:linear-gradient(180deg,var(--n1) 0%,var(--d0) 100%);--kvbg:var(--n1)}
+.strip-wrap{position:relative;margin:0 calc(-1 * var(--pad))}
+.strip{
+  display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;scroll-padding-left:var(--pad);
+  padding:2px var(--pad) 6px;scrollbar-width:none;counter-reset:card;
+}
+.strip::-webkit-scrollbar{display:none}
+.wcard{flex:0 0 82%;max-width:320px;scroll-snap-align:start;display:flex;flex-direction:column;counter-increment:card;
+  border-radius:var(--r);overflow:hidden;background:rgba(9,14,22,.35);border:1px solid var(--line);transition:transform .16s var(--ease)}
+.win{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#10171f}
 .win img{width:100%;height:100%;object-fit:cover}
 .win video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
 .win video.on{opacity:1}
 .win .dur{position:absolute;right:12px;bottom:12px;color:var(--ink);background:rgba(9,14,22,.72);border:1px solid rgba(243,239,230,.18);padding:5px 10px;border-radius:999px}
 .win .dur::before{content:"";display:inline-block;width:0;height:0;border-left:6px solid var(--ink);border-top:4px solid transparent;border-bottom:4px solid transparent;margin-right:7px;vertical-align:1px}
-.poster-body{display:block;padding:18px 20px 20px}
-/* <a> の中の題・説明は span なので block を明示(題と説明が一行に流れる事故を防ぐ) */
-.poster-title,.poster-desc,.wbody,.wtitle,.wsub,.ctitle,.cdesc,.cbody,.win,.tile .img{display:block}
-/* 見出し類は2行に割れる時に行長を均す(1文字だけの折返しを避ける) */
-.statement,.poster-title,.wtitle,.ctitle,.row .t,.tile .t,.dawn-cap .cap,.disc span{text-wrap:balance}
-.disc span{display:inline-block;max-inline-size:100%}
-.poster-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.tag{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-weight:500;font-size:11px;letter-spacing:.10em}
-.poster-head .meta{color:var(--sub);font-size:12px;letter-spacing:.04em}
-.poster-title{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:20px;line-height:1.5;letter-spacing:.015em}
-.poster-desc{margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--sub)}
-@media (hover:hover) and (pointer:fine){ .poster:hover{transform:translateY(-2px)} }
-.poster:active{transform:scale(.99);transition-duration:90ms}
-
-/* 章チップ(固定しない) */
-.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:28px 0 0;padding-bottom:40px}
-.chips a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 6px;border-radius:999px;border:1px solid var(--line);
-  font-weight:500;font-size:13px;letter-spacing:.01em;color:var(--sub);text-align:center;line-height:1.2;transition:color .16s,border-color .16s}
-.chips a:hover{color:var(--ink);border-color:var(--gold)}
-
-/* ---------- II 薄明 ---------- */
-.act-2{color:var(--ink);background:linear-gradient(180deg,var(--n1) 0%,var(--d0) 100%)}
-.strip-wrap{position:relative;margin:0 calc(-1 * var(--pad))}
-.strip{
-  display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x proximity;scroll-padding-left:var(--pad);
-  padding:2px var(--pad) 6px;scrollbar-width:none;
-}
-.strip::-webkit-scrollbar{display:none}
-.wcard{flex:0 0 82%;max-width:320px;scroll-snap-align:start;display:flex;flex-direction:column;
-  border-radius:var(--r);overflow:hidden;background:rgba(9,14,22,.35);border:1px solid var(--line);transition:transform .16s var(--ease)}
-.wcard .win{border-radius:0}
-.wcard .vt{position:absolute;right:14px;top:14px;writing-mode:vertical-rl;text-orientation:mixed;
-  font-family:var(--serif-jp);font-weight:600;font-size:24px;line-height:1.35;letter-spacing:.06em;color:var(--ink);
+.wcard .win::before{content:counter(card,decimal-leading-zero);position:absolute;left:14px;top:12px;z-index:2;
+  font-family:var(--serif-la);font-size:15px;letter-spacing:.12em;color:var(--gold);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.wcard .vt{position:absolute;right:14px;top:14px;z-index:2;writing-mode:vertical-rl;text-orientation:mixed;
+  font-family:var(--serif-jp);font-weight:600;font-size:28px;line-height:1.3;letter-spacing:.08em;color:var(--ink);
   text-shadow:0 1px 18px rgba(0,0,0,.7),0 0 3px rgba(0,0,0,.5);margin:0}
-.wbody{padding:14px 16px 16px}
-.wtitle{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:18px;line-height:1.5;letter-spacing:.015em}
-.wsub{margin:2px 0 0;font-size:12px;letter-spacing:.06em;color:var(--sub)}
-.wdesc{margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wbody{display:block;padding:14px 16px 16px}
+.wtitle{display:block;margin:0;font-family:var(--serif-jp);font-weight:600;font-size:18px;line-height:1.5;letter-spacing:.015em}
+.wsub{display:block;margin:2px 0 0;font-size:12px;letter-spacing:.06em;color:var(--sub)}
+.wdesc{margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;hanging-punctuation:allow-end}
 .wmore{flex:0 0 52%;max-width:200px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
   min-height:180px;text-align:center;border-radius:var(--r);border:1px solid var(--line);color:var(--ink)}
 .wmore .arrow{font-family:var(--serif-la);font-size:28px;line-height:1;color:var(--gold)}
@@ -210,66 +255,60 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .row .th{width:112px;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#10171f}
 .row .th img{width:100%;height:100%;object-fit:cover}
 .row .tx{display:grid;gap:6px;min-width:0}
-.row .t{margin:0;font-weight:500;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.row .t{margin:0;font-weight:500;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-wrap:balance}
 .row .m{display:flex;align-items:center;gap:10px;color:var(--sub);font-size:12px;letter-spacing:.04em}
 @media (hover:hover) and (pointer:fine){ .row:hover{transform:translateY(-2px)} }
 .row:active{transform:scale(.99);transition-duration:90ms}
 
 /* ---------- III 曙 ---------- */
-.act-3{color:var(--ink);background:var(--d0);padding-bottom:56px}
+.act-3{color:var(--ink);background:var(--d0);--kvbg:var(--d0);padding-bottom:56px}
 .card{display:block;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:rgba(9,14,22,.30);transition:transform .16s var(--ease)}
-.card .cbody{padding:16px 18px 18px}
-.ctitle{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:18px;line-height:1.5;letter-spacing:.015em}
-.cdesc{margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--sub)}
+.card .cbody{display:block;padding:16px 18px 18px}
+.ctitle{display:block;margin:0;font-family:var(--serif-jp);font-weight:600;font-size:18px;line-height:1.5;letter-spacing:.015em;text-wrap:balance}
+.cdesc{display:block;margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--sub);hanging-punctuation:allow-end}
 @media (hover:hover) and (pointer:fine){ .card:hover{transform:translateY(-2px)} }
 .card:active{transform:scale(.99);transition-duration:90ms}
 .row.txt{grid-template-columns:44px 1fr auto;min-height:72px}
 .row .ico{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
 .row .ico svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .row .t.s{font-family:var(--serif-jp);font-weight:600;font-size:15px}
-.row .d{margin:0;font-size:13px;line-height:1.6;color:var(--sub)}
+.row .d{margin:0;font-size:13px;line-height:1.6;color:var(--sub);hanging-punctuation:allow-end}
 .row .go{font-family:var(--serif-la);font-size:22px;line-height:1;color:var(--gold);padding-left:6px}
 
 /* ---------- 転換帯: 夜→朝(文字を置かない) + 対画 ---------- */
-.dawn{
-  position:relative;
-  background:var(--d0) url("assets/lk_sky.jpg?v=20260905a") no-repeat center / cover;
-  padding:44px 0 44px;
-}
+.dawn{position:relative;overflow:hidden;background:var(--d0) url("assets/lk_sky.jpg?v=20260905a") no-repeat center / cover;padding:56px 0}
 .dawn::before,.dawn::after{content:"";position:absolute;left:0;right:0;height:24px;pointer-events:none}
 .dawn::before{top:0;background:linear-gradient(var(--d0),transparent)}
 .dawn::after{bottom:0;background:linear-gradient(transparent,var(--m0))}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-.pair a{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:#10171f}
+.pair{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.pair::before{content:"";position:absolute;left:-40vw;right:-40vw;top:50%;height:1px;background:rgba(215,184,135,.45);pointer-events:none}
+.pair a{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:#10171f;box-shadow:0 18px 50px rgba(9,14,22,.35)}
 .pair a:first-child{border-radius:var(--r-s) 0 0 var(--r-s)}
 .pair a:last-child{border-radius:0 var(--r-s) var(--r-s) 0}
 .pair img{width:100%;height:100%;object-fit:cover}
 .pair video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
 .pair video.on{opacity:1}
 .dawn-cap{background:var(--m0);color:var(--ink-m);padding:18px 0 0}
-.dawn-cap .cap{margin:0 0 12px;font-family:var(--serif-jp);font-weight:600;font-size:16px;line-height:1.6;letter-spacing:.015em;text-align:center}
+.dawn-cap .cap{margin:0 0 12px;font-family:var(--serif-jp);font-weight:600;font-size:17px;line-height:1.6;letter-spacing:.015em;text-align:center;text-wrap:balance}
 .pair-links{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pair-links a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:8px 10px;border-radius:999px;border:1px solid var(--line-m);
   font-weight:500;font-size:13px;line-height:1.3;text-align:center;color:var(--ink-m);transition:border-color .16s,transform .16s var(--ease)}
 .pair-links a:hover{border-color:var(--gold-m)}
 .pair-links a:active{transform:scale(.99)}
 
-/* ---------- IV 朝 ---------- */
-.act-4{position:relative;color:var(--ink-m);background:var(--m0);padding-bottom:40px}
-.act-4::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.act-4 .wrap{position:relative}
-.act-4 .act-head{padding-top:40px}
+/* ---------- IV 朝(和紙) ---------- */
+.act-4{color:var(--ink-m);background:var(--m0) url("assets/lk_washi.jpg?v=20260905b") repeat center / 512px auto;--kvbg:var(--m0);padding-bottom:40px}
+.act-4 .kv::after{background:linear-gradient(180deg,var(--m0) 0%,rgba(243,239,230,0) 30%,rgba(243,239,230,0) 68%,var(--m0) 100%)}
 .bento{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tile{display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line-m);
   box-shadow:0 10px 30px rgba(24,37,44,.08);color:var(--ink-m);transition:transform .16s var(--ease),box-shadow .16s}
 .tile.wide{grid-column:1/-1}
-.tile .img{position:relative;overflow:hidden;background:#dfe3e2}
+.tile .img{position:relative;display:block;overflow:hidden;background:#dfe3e2}
 .tile.wide .img{aspect-ratio:2/1}
 .tile:not(.wide) .img{aspect-ratio:4/3}
 .tile .img img{width:100%;height:100%;object-fit:cover}
 .tile .tx{padding:14px 16px 16px;display:grid;gap:4px}
-.tile .t{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:17px;line-height:1.45;letter-spacing:.015em}
+.tile .t{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:17px;line-height:1.45;letter-spacing:.015em;text-wrap:balance}
 .tile:not(.wide) .t{font-size:15px}
 .tile .d{margin:0;font-size:13px;line-height:1.6;color:var(--sub-m)}
 .tile:not(.wide) .d{font-size:12px}
@@ -289,8 +328,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   font-size:12px;letter-spacing:0;color:var(--ink-m);transition:background .16s}
 .socials a svg{width:22px;height:22px;stroke:var(--gold-m);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .socials a:hover{background:rgba(24,37,44,.05)}
-.sig{margin:28px 0 0;text-align:center;font-family:var(--serif-la);font-style:italic;font-size:17px;line-height:1.4;color:var(--ink-m)}
+.sig{margin:28px 0 0;text-align:center;font-family:"Cormorant Garamond",var(--serif-la);font-style:italic;font-size:20px;line-height:1.4;color:var(--ink-m)}
 .disc{margin:10px 0 0;text-align:center;font-size:13px;line-height:1.65;color:var(--sub-m)}
+.disc span{display:inline-block;max-inline-size:100%;text-wrap:balance}
 .copy{margin:14px 0 0;text-align:center;color:var(--sub-m)}
 
 /* ---------- 入場(JSがある時だけ。無ければ最初から見える) ---------- */
@@ -301,19 +341,208 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .js .rise{opacity:1;transform:none}
+  .js .rise,.js .rv .film,.js .rv .statement,.js .rv .subline,.js .rv .cta-main,.js .rv .cta-row,.js .rv .chips{opacity:1;transform:none}
+  .js .rv .wordmark{clip-path:none}
 }
 /* ---------- 大画面での微調整 ---------- */
 @media (min-width:640px){
   .wcard{flex-basis:320px}
   .row .t{font-size:15px}
+  .ghost{right:-20px;font-size:240px}
 }
 /* ---------- 200%拡大などで狭い時 ---------- */
 @media (max-width:359px){
   .bento{grid-template-columns:1fr}
   .tile.wide{grid-column:auto}
-  .chips{grid-template-columns:1fr 1fr}
   .lang button{min-width:64px}
+}
+
+/* ============================================================
+   編集(エディトリアル)の語彙へ:
+   箱・角丸・ピル・枠線・アイコン・バッジを捨て、罫(1px)と余白と文字組みで組む。
+   写真は全幅、見出しは明朝、番号と矢印は Cormorant、数字は等幅。
+   ============================================================ */
+:root{--r:0;--r-s:0}
+.top{border-bottom:1px solid var(--line)}
+.brand i{width:28px}
+.lang{gap:0}
+.lang button{min-width:0;height:44px;padding:0 10px;border-radius:0;border:0;border-bottom:2px solid transparent;color:var(--sub);font-size:13px;letter-spacing:.02em}
+.lang button[aria-pressed="true"]{color:var(--ink);background:none;border-bottom-color:var(--gold)}
+.lang button:not([aria-pressed="true"]):hover{border-color:transparent;border-bottom-color:var(--line);color:var(--ink)}
+@media (min-width:640px){ .bleed{border-radius:0} }
+/* 映像窓の上の札は文字だけ */
+.tag{border:0;background:none;padding:0;height:auto;font-family:var(--serif-la);font-size:15px;letter-spacing:.20em;color:var(--gold);text-shadow:0 1px 10px rgba(0,0,0,.7)}
+.film .dur,.win .dur{background:none;border:0;padding:0;font-size:13px;color:var(--ink);text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.film .dur::before,.win .dur::before{display:none}
+/* 行動: 主CTAだけ面(角なし)。副リンクは罫で区切った文字 */
+.cta{border-radius:0}
+.cta-main{min-height:52px;font-family:var(--serif-jp);font-weight:600;font-size:16px;letter-spacing:.03em}
+.cta-row{gap:0;margin-top:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cta-sub{border:0;background:none;min-height:50px;justify-content:space-between;padding:0 14px 0 0;color:var(--ink);font-family:var(--serif-jp);font-weight:600;font-size:15px;letter-spacing:.02em}
+.cta-sub + .cta-sub{border-left:1px solid var(--line);padding-left:16px}
+.cta-sub svg{display:none}
+.cta-sub::after{content:"↓";font-family:var(--serif-la);font-size:18px;line-height:1;color:var(--gold)}
+@media (hover:hover) and (pointer:fine){ .cta-sub:hover{border-color:var(--line);transform:none;color:var(--gold)} }
+/* 目次(章チップ)は罫で区切った一行 */
+.chips{display:flex;gap:0;margin-top:22px;border-bottom:1px solid var(--line)}
+.chips a{flex:1;border:0;border-radius:0;background:none;min-height:46px;font-size:13px;color:var(--sub);position:relative;letter-spacing:.04em}
+.chips a + a::before{content:"";position:absolute;left:0;top:15px;bottom:15px;width:1px;background:var(--line)}
+.chips a:hover{border-color:transparent;color:var(--ink)}
+/* 作品: 箱をやめ、写真と字幕。写真の下に罫 */
+.wcard{border:0;background:none;border-radius:0}
+.wbody{padding:12px 0 0;margin-top:10px;border-top:1px solid var(--line)}
+.wmore{border:0;border-radius:0;border-left:1px solid var(--line);align-items:flex-start;text-align:left;padding-left:16px;min-height:0;justify-content:flex-start;padding-top:8px}
+.wmore .arrow{font-size:32px}
+.strip-ctl{margin-top:18px}
+.strip-ctl button{border:0;border-radius:0;width:44px;height:44px;font-family:var(--serif-la);font-size:26px;line-height:1;color:var(--ink)}
+.strip-ctl button:hover{color:var(--gold)}
+.strip-ctl button svg{display:none}
+#sprev::before{content:"←"} #snext::before{content:"→"}
+.strip-ctl .bar{background:var(--line)}
+.sub-head{margin:44px 0 0;padding:14px 0 0;border-top:1px solid var(--line)}
+.sub-head i{display:none}
+/* 一覧行: 罫で区切る。アイコンの箱は無し */
+.rows{gap:0;border-bottom:1px solid var(--line)}
+.row{border:0;border-top:1px solid var(--line);border-radius:0;background:none;padding:14px 0}
+.row .th{border-radius:0}
+.row .ico{display:none}
+.row.txt{grid-template-columns:1fr auto;min-height:0;padding:16px 0}
+.row .go{font-size:24px;padding-left:12px}
+.row .t{font-weight:500}
+.row .m{gap:14px}
+@media (hover:hover) and (pointer:fine){ .row:hover{transform:none;color:var(--gold)} .row:hover .go{transform:translateX(4px)} }
+.card{border:0;background:none;border-radius:0}
+.card .cbody{padding:12px 0 6px}
+.act-3 .rows{margin-top:12px!important}
+/* 転換帯・対画 */
+.pair a{box-shadow:0 18px 50px rgba(9,14,22,.35);border-radius:0}
+.pair a:first-child,.pair a:last-child{border-radius:0}
+.pair-links{gap:0;border-top:1px solid var(--line-m);border-bottom:1px solid var(--line-m)}
+.pair-links a{border:0;border-radius:0;justify-content:space-between;padding:0 12px 0 0;min-height:50px;font-family:var(--serif-jp);font-weight:600;font-size:14px}
+.pair-links a + a{border-left:1px solid var(--line-m);padding-left:14px}
+.pair-links a::after{content:"→";font-family:var(--serif-la);font-size:18px;color:var(--gold-m)}
+.pair-links a:hover{border-color:var(--line-m);color:var(--gold-m)}
+/* 朝: 白箱をやめ、写真と字幕。行は罫 */
+.tile{border:0;background:none;box-shadow:none;border-radius:0}
+.tile .img{border-radius:0}
+.tile .tx{padding:12px 0 0;gap:2px}
+.tile .t{font-size:18px}
+.tile:not(.wide) .t{font-size:16px}
+.bento{gap:26px 16px}
+.act-4 .rows{margin-top:26px;border-bottom-color:var(--line-m)}
+.act-4 .row{background:none;border-color:var(--line-m);box-shadow:none}
+@media (hover:hover) and (pointer:fine){ .tile:hover{transform:none;box-shadow:none} .tile:hover .t{color:var(--gold-m)} .act-4 .row:hover{color:var(--gold-m)} }
+/* フッター: 文字だけの一行 */
+.socials{display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-top:1px solid var(--line-m)}
+.socials a{flex-direction:row;min-height:48px;padding:0 14px;border-radius:0;font-family:var(--serif-la);font-size:17px;letter-spacing:.02em;color:var(--ink-m)}
+.socials a svg{display:none}
+.socials a + a{border-left:1px solid var(--line-m)}
+.socials a:hover{background:none;color:var(--gold-m)}
+.sig{margin-top:26px}
+
+/* ---- さらに引き算: 塗りボタンをやめ文字と罫で。番組は文字だけの目録。見出しは大きく、署名の金罫 ---- */
+.cta-main{background:none;color:var(--ink);justify-content:space-between;padding:0;min-height:56px;margin-top:26px;
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--line);font-size:18px;letter-spacing:.02em;position:relative}
+.cta-main .num{color:var(--sub);opacity:1;font-size:12px;margin-left:auto;margin-right:14px}
+.cta-main .num::before{content:"";margin:0}
+.cta-main::after{content:"→";font-family:var(--serif-la);font-size:20px;line-height:1;color:var(--gold)}
+@media (hover:hover) and (pointer:fine){ .cta-main:hover{transform:none;color:var(--gold)} }
+.cta-row{border-top:0;margin-top:0}
+.cta-sub{font-size:14px;font-weight:600;min-height:48px}
+/* 番組: サムネイルを捨て、題名と尺だけ */
+.act-2 .rows .row{grid-template-columns:1fr auto;align-items:baseline;min-height:0;padding:16px 0}
+.act-2 .rows .row .th{display:none}
+.act-2 .rows .row .tx{display:contents}
+.act-2 .rows .row .t{font-family:var(--serif-jp);font-weight:600;font-size:16px;line-height:1.5;-webkit-line-clamp:unset;display:block;grid-column:1}
+.act-2 .rows .row .m{grid-column:1/-1;margin-top:6px}
+.act-2 .rows .row .m .num{margin-left:auto}
+/* 幕見出し: 大きく・和英併記・金の短い罫 */
+.act-head{padding:56px 0 26px}
+.kv + .act-head{padding-top:12px}
+.act-num .nm{font-size:34px}
+.act-num .rn{font-size:32px}
+.act-head h2{display:flex;align-items:baseline;gap:12px;margin-top:6px}
+.act-head h2 i{font-family:var(--serif-la);font-style:italic;font-weight:400;font-size:16px;letter-spacing:.01em;text-transform:none;color:var(--sub)}
+.act-4 .act-head h2 i{color:var(--sub-m)}
+html:lang(en) .act-head h2 i{display:none}
+.act-head::after{content:"";display:block;width:28px;height:1px;background:var(--gold);margin-top:18px;position:relative}
+.act-4 .act-head::after{background:var(--gold-m)}
+/* 作品字幕: 題は大きく、説明は小さく */
+.wtitle{font-size:20px}
+.wdesc{font-size:12.5px}
+.wsub{font-family:var(--serif-la);font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.film .mini .nm{font-size:13px}
+
+/* ============================================================
+   素材: ガラス(光が透ける場所だけ)・金属の金・フィルムグレイン
+   ============================================================ */
+:root{
+  --gold-metal:linear-gradient(90deg,#9A7A48 0%,#E9D2A4 42%,#C39A5C 68%,#F0DCAE 100%);
+  --gold-metal-v:linear-gradient(180deg,#F0DCAE 0%,#C39A5C 45%,#9A7A48 100%);
+}
+/* 静止フィルムグレイン(全面・3.5%) */
+body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+/* ガラス */
+.glass{position:relative;isolation:isolate;
+  background:linear-gradient(160deg,rgba(243,239,230,.11),rgba(243,239,230,.04) 55%,rgba(243,239,230,.07));
+  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid rgba(243,239,230,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(255,255,255,.05),0 30px 70px rgba(9,14,22,.45)}
+.glass::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(112deg,transparent 38%,rgba(255,255,255,.07) 49%,rgba(255,255,255,.10) 51%,transparent 63%)}
+.glass > *{position:relative;z-index:1}
+.glass-dark{background:linear-gradient(160deg,rgba(9,14,22,.42),rgba(9,14,22,.28) 60%,rgba(9,14,22,.40));border-color:rgba(243,239,230,.22)}
+/* トップバー: 磨りガラス */
+.top{background:rgba(9,14,22,.58);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid rgba(243,239,230,.10)}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);pointer-events:none}
+/* ヒーローの行動列: 夜の海の上に浮く板 */
+.slab{margin-top:26px;padding:0 18px 6px}
+.slab .cta-main{margin-top:0;border-top:0}
+.slab .cta-main::before{display:none}
+.slab .chips{margin-top:0;border-bottom:0}
+.slab .cta-row{border-bottom:1px solid rgba(243,239,230,.14)}
+.slab .cta-main{border-bottom:1px solid rgba(243,239,230,.14)}
+/* 映像窓: ガラスの縁と上端のハイライト */
+.film{box-shadow:inset 0 0 0 1px rgba(243,239,230,.10),0 24px 60px rgba(9,14,22,.55)}
+.film .vt i{background:var(--gold-metal-v);opacity:1}
+/* 金は金属に */
+.brand i{background:var(--gold-metal)}
+.act-head::after{background:var(--gold-metal)}
+.strip-ctl .bar i{background:var(--gold-metal)}
+.pair::before{background:linear-gradient(90deg,transparent 0%,rgba(233,210,164,.75) 30%,rgba(240,220,174,.9) 50%,rgba(233,210,164,.75) 70%,transparent 100%)}
+.cta-main::after,.pair-links a::after,.row .go,.wmore .arrow{background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.act-4 .row .go,.act-4 .pair-links a::after{background:linear-gradient(90deg,#6B4A22,#A67C3D,#7B572C);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* 光もれ(静止) */
+.plate::before{content:"";position:absolute;right:-12%;top:-8%;width:70%;height:42%;z-index:1;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(233,210,164,.16),rgba(233,210,164,0) 72%)}
+/* 転換帯: 空の上の色ガラス(文字は白・4.5:1以上を暗い着色で担保) */
+.dawn{padding:56px 0 48px}
+.dawn-cap{margin-top:18px;padding:18px 18px 0;color:var(--ink)}
+.dawn-cap .cap{color:var(--ink)}
+.dawn .pair-links{border-color:rgba(243,239,230,.18)}
+.dawn .pair-links a{color:var(--ink);border-color:rgba(243,239,230,.18)}
+.dawn .pair-links a + a{border-left-color:rgba(243,239,230,.18)}
+.dawn .pair-links a::after{background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.dawn .pair-links a:hover{color:var(--gold)}
+.dawn::after{display:none}
+/* 朝: 写真の上に乗る白ガラスの字幕 */
+.tile{position:relative}
+.tile.wide .img{aspect-ratio:16/9}
+.tile:not(.wide) .img{aspect-ratio:4/5}
+.tile .tx{position:absolute;left:0;right:0;bottom:0;padding:12px 14px 13px;
+  background:linear-gradient(160deg,rgba(243,239,230,.78),rgba(243,239,230,.66));
+  -webkit-backdrop-filter:blur(14px) saturate(120%);backdrop-filter:blur(14px) saturate(120%);
+  border-top:1px solid rgba(255,255,255,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+.tile .t{font-size:17px}
+.tile:not(.wide) .t{font-size:15px}
+.tile .d{font-size:12px}
+.act-4 .kv{box-shadow:inset 0 0 0 1px rgba(24,37,44,.06)}
+/* ガラスの中のフォーカス */
+.glass :focus-visible{outline-color:var(--gold)}
+@media (prefers-reduced-transparency:reduce){
+  .glass,.top,.tile .tx{-webkit-backdrop-filter:none;backdrop-filter:none}
+  .glass{background:rgba(9,14,22,.82)} .tile .tx{background:rgba(243,239,230,.96)}
 }
 </style>
 </head>
@@ -323,44 +552,41 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   <div class="wrap">
     <a class="brand" href="#top" aria-label="made_linlin"><i aria-hidden="true"></i><span class="label">MV Studio</span></a>
     <div class="lang" role="group" aria-label="Language / 語言">
-      <button id="lj" type="button" aria-pressed="true" lang="ja">日本語</button>
-      <button id="lz" type="button" aria-pressed="false" lang="zh-Hant-TW">繁體中文</button>
+      <button id="lj" type="button" data-lang="ja" aria-pressed="true" lang="ja">日本語</button>
+      <button id="lz" type="button" data-lang="zh" aria-pressed="false" lang="zh-Hant-TW">繁體中文</button>
+      <button id="le" type="button" data-lang="en" aria-pressed="false" lang="en">English</button>
     </div>
   </div>
 </header>
 
 <main>
 
-<!-- ===== I 深夜 ===== -->
+<!-- ===== I 深夜: タイトルバック ===== -->
 <section class="act act-1 anchor" id="top">
-  <div class="wrap">
-    <div class="hero">
-      <p class="mini"><span class="rn" aria-hidden="true">I</span><span class="nm t-serif" data-i18n="act1.name">深夜</span><i aria-hidden="true"></i></p>
-      <h1 class="wordmark">made_linlin</h1>
-      <p class="statement" data-i18n="hero.statement">夜と光を、音楽のある物語に。</p>
-      <p class="subline" data-i18n="hero.sub">自宅から届ける、オリジナルMV。</p>
+  <div class="plate" aria-hidden="true"><img src="assets/lk_hero_plate.jpg?v=20260905b" width="780" height="1170" alt="" fetchpriority="high" decoding="async"></div>
+  <div class="wrap hero" id="hero">
 
-      <a class="cta cta-main" href="https://youtu.be/t9NJumW8D1Q">
-        <span data-i18n="cta.latest">最新作『海煙』を観る</span><span class="num" data-i18n="dur.umk">3:42</span>
-      </a>
-      <div class="cta-row">
-        <a class="cta cta-sub" href="#works"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="M10.5 9.6l5 2.4-5 2.4z"/></svg><span data-i18n="cta.works">作品一覧</span></a>
-        <a class="cta cta-sub" href="#howto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg><span data-i18n="cta.howto">作り方</span></a>
-      </div>
-    </div>
-
-    <a class="poster rise" href="https://youtu.be/t9NJumW8D1Q" data-vunit style="--i:0">
-      <span class="win">
-        <img src="assets/lk_poster_umikemuri.jpg?v=20260905a" width="1280" height="720" alt="" fetchpriority="high" decoding="async">
-        <video data-src-ja="assets/lk_loop_umikemuri.mp4?v=20260905a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
-        <span class="dur num" data-i18n="dur.umk">3:42</span>
-      </span>
-      <span class="poster-body">
-        <span class="poster-head"><span class="tag">NEW</span><span class="meta" data-i18n="meta.fullmv">フルMV</span></span>
-        <span class="poster-title t-serif" data-i18n="w.umk.title">海煙</span>
-        <span class="poster-desc" data-i18n="w.umk.desc">夜明けの海に立つ白い霧。置いてきた言葉と歩く、ひと朝の物語。新しい顔をひとつ作るところから始めた、フルMV。</span>
-      </span>
+    <a class="film bleed" href="https://youtu.be/t9NJumW8D1Q" data-vunit aria-label="海煙 — 3:42">
+      <img src="assets/lk_poster_umikemuri.jpg?v=20260905a" width="1280" height="720" alt="" decoding="async">
+      <video data-src-ja="assets/lk_loop_umikemuri.mp4?v=20260905a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+      <span class="mini"><span class="rn" aria-hidden="true">I</span><span class="nm" data-i18n="act1.name">深夜</span><i aria-hidden="true"></i></span>
+      <span class="vt" aria-hidden="true"><i></i><b>海煙</b></span>
+      <span class="tag">NEW</span>
+      <span class="dur num" data-i18n="dur.umk">3:42</span>
     </a>
+
+    <h1 class="wordmark">made_linlin</h1>
+    <p class="statement" data-i18n="hero.statement">夜と光を、音楽のある物語に。</p>
+    <p class="subline" data-i18n="hero.sub">自宅から届ける、オリジナルMV。</p>
+
+    <div class="slab glass">
+    <a class="cta cta-main" href="https://youtu.be/t9NJumW8D1Q">
+      <span data-i18n="cta.latest">最新作『海煙』を観る</span><span class="num" data-i18n="dur.umk">3:42</span>
+    </a>
+    <div class="cta-row">
+      <a class="cta cta-sub" href="#works"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="M10.5 9.6l5 2.4-5 2.4z"/></svg><span data-i18n="cta.works">作品一覧</span></a>
+      <a class="cta cta-sub" href="#howto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg><span data-i18n="cta.howto">作り方</span></a>
+    </div>
 
     <nav class="chips" aria-label="ページ内の移動">
       <a href="#top" data-i18n="nav.latest">最新作</a>
@@ -368,15 +594,18 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       <a href="#howto" data-i18n="nav.howto">作り方</a>
       <a href="#more" data-i18n="nav.more">その他</a>
     </nav>
+    </div>
   </div>
 </section>
 
 <!-- ===== II 薄明 ===== -->
 <section class="act act-2 anchor" id="works">
   <div class="wrap">
+    <div class="kv bleed" aria-hidden="true"><img src="assets/lk_kv2.jpg?v=20260905b" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
     <header class="act-head">
+      <span class="ghost" aria-hidden="true">II</span>
       <p class="act-num"><span class="rn" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span></p>
-      <h2 data-i18n="act2.label">作品</h2>
+      <h2><span data-i18n="act2.label">作品</span><i aria-hidden="true">Works</i></h2>
     </header>
 
     <div class="strip-wrap">
@@ -439,7 +668,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
           <span class="win">
             <img src="https://img.youtube.com/vi/R0uR2UpWyK4/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
             <video data-src-ja="assets/hero_yakusoku.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
-            <span class="vt" aria-hidden="true" data-i18n="w.yks.title">約束</span>
+            <span class="vt" aria-hidden="true">約束</span>
             <span class="dur num">3:04</span>
           </span>
           <span class="wbody">
@@ -533,9 +762,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 <!-- ===== III 曙 ===== -->
 <section class="act act-3 anchor" id="howto">
   <div class="wrap">
+    <div class="kv bleed" aria-hidden="true"><img src="assets/lk_sky.jpg?v=20260905a" width="1800" height="600" alt="" loading="lazy" decoding="async" style="object-position:center 12%"></div>
     <header class="act-head">
+      <span class="ghost" aria-hidden="true">III</span>
       <p class="act-num"><span class="rn" aria-hidden="true">III</span><span class="nm" data-i18n="act3.name">曙</span></p>
-      <h2 data-i18n="act3.label">作り方</h2>
+      <h2><span data-i18n="act3.label">作り方</span><i aria-hidden="true">How it's made</i></h2>
       <p class="lead" data-i18n="howto.lead">自宅のGPU 1台で、曲づくりから編集まで。工程と失敗を、動画と記事で公開しています。</p>
     </header>
 
@@ -584,24 +815,24 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <video data-src-ja="assets/lk_pair_umikemuri.mp4?v=20260905a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
       </a>
     </div>
-  </div>
-</section>
-<div class="dawn-cap">
-  <div class="wrap">
-    <p class="cap" data-i18n="pair.cap">祭りの夜から、海の朝へ。</p>
-    <div class="pair-links">
-      <a href="https://youtu.be/R0uR2UpWyK4" data-i18n="pair.yks">約束 — 夏祭りの夜</a>
-      <a href="https://youtu.be/t9NJumW8D1Q" data-i18n="pair.umk">海煙 — 夜明けの海</a>
+    <div class="dawn-cap glass glass-dark">
+      <p class="cap" data-i18n="pair.cap">祭りの夜から、海の朝へ。</p>
+      <div class="pair-links">
+        <a href="https://youtu.be/R0uR2UpWyK4" data-i18n="pair.yks">約束 — 夏祭りの夜</a>
+        <a href="https://youtu.be/t9NJumW8D1Q" data-i18n="pair.umk">海煙 — 夜明けの海</a>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ===== IV 朝 ===== -->
 <section class="act act-4 anchor" id="more">
   <div class="wrap">
+    <div class="kv bleed" aria-hidden="true" style="margin-top:28px"><img src="assets/lk_kv4.jpg?v=20260905b" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
     <header class="act-head">
+      <span class="ghost" aria-hidden="true">IV</span>
       <p class="act-num"><span class="rn" aria-hidden="true">IV</span><span class="nm" data-i18n="act4.name">朝</span></p>
-      <h2 data-i18n="act4.label">その他</h2>
+      <h2><span data-i18n="act4.label">その他</span><i aria-hidden="true">More</i></h2>
     </header>
 
     <div class="bento">
@@ -651,53 +882,60 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 <script>
 /* ============================================================
+   0) 初画面の結像(一度だけ)。JSが無ければこの処理が無いので最初から見える。
+   ============================================================ */
+(function(){
+  var h=document.getElementById('hero'); if(!h) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  h.classList.add('rv');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ h.classList.add('ready'); }); });
+  setTimeout(function(){ h.classList.add('ready'); },1200);   /* 保険 */
+})();
+
+/* ============================================================
    1) 文言(日本語 / 繁體中文・台灣)。要素キー方式。
    ============================================================ */
 var T={
-  "act1.name":["深夜","深夜"],"act2.name":["薄明","薄明"],"act3.name":["曙","破曉"],"act4.name":["朝","清晨"],
-  "act2.label":["作品","作品"],"act3.label":["作り方","製作方法"],"act4.label":["その他","其他"],
-  "nav.latest":["最新作","最新作品"],"nav.works":["作品","作品"],"nav.howto":["作り方","製作方法"],"nav.more":["その他","其他"],
-  "hero.statement":["夜と光を、音楽のある物語に。","把夜色與光，寫成有音樂的故事。"],
-  "hero.sub":["自宅から届ける、オリジナルMV。","在家創作，與你分享原創音樂錄影帶。"],
-  "cta.latest":["最新作『海煙』を観る","觀看最新作品《海煙》"],
-  "cta.works":["作品一覧","作品一覽"],"cta.howto":["作り方","製作方法"],
-  "meta.fullmv":["フルMV","完整MV"],
-  "dur.umk":["3:42","3:42"],
-  "w.umk.title":["海煙","海煙"],
-  "w.umk.desc":["夜明けの海に立つ白い霧。置いてきた言葉と歩く、ひと朝の物語。新しい顔をひとつ作るところから始めた、フルMV。","黎明海面上升起的白霧。與留下的話語一起走過的，一個早晨的故事。從做出一張新的臉開始的完整MV。"],
-  "w.natsuumi.title":["まぶしい方へ","往最亮的那邊"],"w.natsuumi.desc":["日本の海で遊ぶ、ひと夏の一日。","在日本的海邊玩耍的，一整個夏天的一日。"],
-  "w.mimei.title":["未明","未明"],"w.mimei.desc":["夜明けより先に、会いに行く。","比天亮更早，去見你。"],
-  "w.rok09.title":["軽音部最後の放課後","輕音部最後的放學後"],"w.rok09.desc":["最後だから、一番でかい音でいこう。","因為是最後一次，就用最大的聲音吧。"],
-  "w.utakata.title":["泡沫の夏","泡沫之夏"],"w.utakata.desc":["光ってすぐに消える。それでも掴みたくて。","一閃，就消失了。即使如此，還是想抓住。"],
-  "w.yks.title":["約束","約定"],"w.yks.desc":["夏祭りの一夜を描いたショートフィルム。","描繪夏日祭典一夜的短片。"],
-  "w.engawa.title":["雨の縁側","雨的簷廊"],"w.engawa.desc":["雨音だけが続く縁側で、和装のRINKAと過ごす午後。","只有雨聲的簷廊上，和穿著和服的RINKA一起度過的午後。"],
-  "w.pastel.title":["パステルルーム","粉彩房間"],"w.pastel.desc":["好きなものだけで、できてる部屋から。","從一個只用喜歡的東西堆起來的房間開始。"],
-  "w.hb.desc":["日本語と中国語、2つの言語で歌うMV。","用日文和中文兩種語言演唱的MV。"],
-  "w.more":["すべて見る","全部觀看"],"w.more.d":["YouTube チャンネル","YouTube 頻道"],
-  "prog.head":["番組","節目"],
-  "p.k03.title":["この家から、データは出ない","資料，不出這個家"],"p.k03.kind":["解説","解說"],"p.k03.dur":["15:42","13:47"],
-  "p.radio.title":["データは出ないのに、わたしの失敗は出ていく","資料不出門，我的失誤天天出門"],"p.radio.kind":["RINKAのオフレコ #02","RINKA的悄悄話 #02"],"p.radio.dur":["9:45","9:45"],
-  "p.k02.title":["AIが作ったMV、と言われます。半分は、その通りです。","有人說這是AI做的MV。有一半，確實如此。"],"p.k02.kind":["『約束』制作全記録","《約定》完整製作記錄"],"p.k02.dur":["13:34","13:16"],
-  "howto.lead":["自宅のGPU 1台で、曲づくりから編集まで。工程と失敗を、動画と記事で公開しています。","用家裡的一張顯卡，從作曲到剪輯。把過程與失敗，用影片和文章公開。"],
-  "h.video.title":["AIが自分の作られ方を話す","AI親自說自己是怎麼做出來的"],"h.video.desc":["10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。","10分鐘的解說影片。六支MV，全部在自家電腦本地生成。"],
-  "h.zenn.title":["ローカルAIでフルMVを作る全工程","用本地AI製作完整MV的全部流程"],"h.zenn.desc":["無料記事。曲づくりから編集まで、1本を通しで。","免費文章。從作曲到剪輯，完整走一遍。"],
-  "h.note.title":["ローカルAI MVスタジオの教科書","本地AI MV工作室教科書"],"h.note.desc":["76ページの体系教材。工程設計と、失敗パターン19項目。","76頁的體系化教材。工程設計，與19項失敗模式。"],
-  "pair.cap":["祭りの夜から、海の朝へ。","從祭典的夜，到海的早晨。"],
-  "pair.yks":["約束 — 夏祭りの夜","約定 — 夏日祭典的夜"],"pair.umk":["海煙 — 夜明けの海","海煙 — 黎明的海"],
-  "b.photo":["写真作品集","攝影作品集"],"b.photo.d":["風景と光の記録。","風景與光的紀錄。"],
-  "b.jp":["日本を旅する","走訪日本"],"b.tw":["台湾を旅する","走訪台灣"],"b.guide":["3D観光ガイド","3D觀光導覽"],
-  "b.mvs":["MV STUDIO について","關於 MV STUDIO"],"b.mvs.d":["話すだけで、MVができる。アプリの紹介サイト。","只要開口說，MV就完成。應用程式介紹網站。"],
-  "b.contact":["制作者に連絡する","聯絡製作者"],"b.contact.d":["Instagram のDMへ。","前往 Instagram 私訊。"],
-  "f.d1":["映像・楽曲・キャラクターはすべてオリジナルの創作物です。","影像、樂曲、角色，皆為原創作品。"],
-  "f.d2":["制作に生成AIを使用しています。","製作過程使用生成式AI。"]
+  "act1.name":["深夜","深夜","Midnight"],"act2.name":["薄明","薄明","Twilight"],"act3.name":["曙","破曉","Daybreak"],"act4.name":["朝","清晨","Morning"],
+  "act2.label":["作品","作品","Works"],"act3.label":["作り方","製作方法","How it's made"],"act4.label":["その他","其他","More"],
+  "nav.latest":["最新作","最新作品","Latest"],"nav.works":["作品","作品","Works"],"nav.howto":["作り方","製作方法","Making"],"nav.more":["その他","其他","More"],
+  "hero.statement":["夜と光を、音楽のある物語に。","把夜色與光，寫成有音樂的故事。","Night and light, told as stories with music."],
+  "hero.sub":["自宅から届ける、オリジナルMV。","在家創作，與你分享原創音樂錄影帶。","Original music videos, made at home."],
+  "cta.latest":["最新作『海煙』を観る","觀看最新作品《海煙》","Watch the latest, Sea Smoke"],
+  "cta.works":["作品一覧","作品一覽","All works"],"cta.howto":["作り方","製作方法","How it's made"],
+  "dur.umk":["3:42","3:42","3:42"],
+  "w.umk.title":["海煙","海煙","Sea Smoke"],
+  "w.natsuumi.title":["まぶしい方へ","往最亮的那邊","Toward the Dazzling Light"],"w.natsuumi.desc":["日本の海で遊ぶ、ひと夏の一日。","在日本的海邊玩耍的，一整個夏天的一日。","One summer day, playing in the Japanese sea."],
+  "w.mimei.title":["未明","未明","Before Dawn"],"w.mimei.desc":["夜明けより先に、会いに行く。","比天亮更早，去見你。","Going to see you, before the day breaks."],
+  "w.rok09.title":["軽音部最後の放課後","輕音部最後的放學後","The Last After School"],"w.rok09.desc":["最後だから、一番でかい音でいこう。","因為是最後一次，就用最大的聲音吧。","It's the last time, so let's play it loud."],
+  "w.utakata.title":["泡沫の夏","泡沫之夏","Summer of Bubbles"],"w.utakata.desc":["光ってすぐに消える。それでも掴みたくて。","一閃，就消失了。即使如此，還是想抓住。","It shines and is gone. Still, I want to hold it."],
+  "w.yks.title":["約束","約定","The Promise"],"w.yks.desc":["夏祭りの一夜を描いたショートフィルム。","描繪夏日祭典一夜的短片。","A short film about one summer festival night."],
+  "w.engawa.title":["雨の縁側","雨的簷廊","Rainy Veranda"],"w.engawa.desc":["雨音だけが続く縁側で、和装のRINKAと過ごす午後。","只有雨聲的簷廊上，和穿著和服的RINKA一起度過的午後。","An afternoon with RINKA in kimono, on a veranda where only the rain is heard."],
+  "w.pastel.title":["パステルルーム","粉彩房間","Pastel Room"],"w.pastel.desc":["好きなものだけで、できてる部屋から。","從一個只用喜歡的東西堆起來的房間開始。","From a room made only of favorite things."],
+  "w.hb.desc":["日本語と中国語、2つの言語で歌うMV。","用日文和中文兩種語言演唱的MV。","A music video sung in Japanese and Chinese."],
+  "w.more":["すべて見る","全部觀看","See all"],"w.more.d":["YouTube チャンネル","YouTube 頻道","YouTube channel"],
+  "prog.head":["番組","節目","Programs"],
+  "p.k03.title":["この家から、データは出ない","資料，不出這個家","The data never leaves this house"],"p.k03.kind":["解説","解說","Explainer"],"p.k03.dur":["15:42","13:47","15:42"],
+  "p.radio.title":["データは出ないのに、わたしの失敗は出ていく","資料不出門，我的失誤天天出門","The data stays in, but my failures get out"],"p.radio.kind":["RINKAのオフレコ #02","RINKA的悄悄話 #02","RINKA Off the Record #02"],"p.radio.dur":["9:45","9:45","9:45"],
+  "p.k02.title":["AIが作ったMV、と言われます。半分は、その通りです。","有人說這是AI做的MV。有一半，確實如此。","They call it an AI-made music video. Half of that is true."],"p.k02.kind":["『約束』制作全記録","《約定》完整製作記錄","Making of The Promise"],"p.k02.dur":["13:34","13:16","13:34"],
+  "howto.lead":["自宅のGPU 1台で、曲づくりから編集まで。工程と失敗を、動画と記事で公開しています。","用家裡的一張顯卡，從作曲到剪輯。把過程與失敗，用影片和文章公開。","One GPU at home, from songwriting to the final edit. The process and the failures, shared in videos and articles."],
+  "h.video.title":["AIが自分の作られ方を話す","AI親自說自己是怎麼做出來的","The AI explains how it was made"],"h.video.desc":["10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。","10分鐘的解說影片。六支MV，全部在自家電腦本地生成。","A 10-minute explainer. Six music videos, all generated locally on a home PC."],
+  "h.zenn.title":["ローカルAIでフルMVを作る全工程","用本地AI製作完整MV的全部流程","The full workflow of a local-AI music video"],"h.zenn.desc":["無料記事。曲づくりから編集まで、1本を通しで。","免費文章。從作曲到剪輯，完整走一遍。","Free article. From the song to the edit, start to finish."],
+  "h.note.title":["ローカルAI MVスタジオの教科書","本地AI MV工作室教科書","The Local-AI MV Studio Textbook"],"h.note.desc":["76ページの体系教材。工程設計と、失敗パターン19項目。","76頁的體系化教材。工程設計，與19項失敗模式。","76 pages. Process design and 19 failure patterns."],
+  "pair.cap":["祭りの夜から、海の朝へ。","從祭典的夜，到海的早晨。","From a festival night to a morning at sea."],
+  "pair.yks":["約束 — 夏祭りの夜","約定 — 夏日祭典的夜","The Promise — festival night"],"pair.umk":["海煙 — 夜明けの海","海煙 — 黎明的海","Sea Smoke — sea at dawn"],
+  "b.photo":["写真作品集","攝影作品集","Photography"],"b.photo.d":["風景と光の記録。","風景與光的紀錄。","A record of landscapes and light."],
+  "b.jp":["日本を旅する","走訪日本","Travel Japan"],"b.tw":["台湾を旅する","走訪台灣","Travel Taiwan"],"b.guide":["3D観光ガイド","3D觀光導覽","3D travel guide"],
+  "b.mvs":["MV STUDIO について","關於 MV STUDIO","About MV STUDIO"],"b.mvs.d":["話すだけで、MVができる。アプリの紹介サイト。","只要開口說，MV就完成。應用程式介紹網站。","Just talk, and a music video is made. The app's site."],
+  "b.contact":["制作者に連絡する","聯絡製作者","Contact"],"b.contact.d":["Instagram のDMへ。","前往 Instagram 私訊。","Instagram DM."],
+  "f.d1":["映像・楽曲・キャラクターはすべてオリジナルの創作物です。","影像、樂曲、角色，皆為原創作品。","All films, music and characters are original works."],
+  "f.d2":["制作に生成AIを使用しています。","製作過程使用生成式AI。","Generative AI is used in production."]
 };
-var A={ /* aria-label */
-  "prev":["前へ","上一個"],"next":["次へ","下一個"],"chips":["ページ内の移動","頁內導覽"],"strip":["作品","作品"]
-};
+var A={ "prev":["前へ","上一個","Previous"],"next":["次へ","下一個","Next"],"chips":["ページ内の移動","頁內導覽","In-page navigation"] };
 
 /* ============================================================
    2) 動画の再生管理: ページ全体で再生権は1つ。URLは再生対象だけに設定。
-      低モーション / 省データ / 回線不明で保守的な場合は動画に触らない。
+      低モーション / 省データでは動画に触らない。
    ============================================================ */
 var LKV=(function(){
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -715,8 +953,7 @@ var LKV=(function(){
     vids(u).forEach(function(v){
       var s=srcOf(v); if(!s) return;
       if(v.getAttribute('src')!==s){ v.setAttribute('src',s); }
-      var onplay=function(){ v.classList.add('on'); };
-      v.addEventListener('playing',onplay,{once:true});
+      v.addEventListener('playing',function(){ v.classList.add('on'); },{once:true});
       var p=v.play(); if(p&&p.catch){ p.catch(function(){ v.classList.remove('on'); }); }
     });
   }
@@ -745,16 +982,19 @@ var LKV=(function(){
    3) 言語切替(要素キー方式)。動画には触らず、文言・画像・リンク・aria だけ更新。
    ============================================================ */
 (function(){
-  var h=document.documentElement, bj=document.getElementById('lj'), bz=document.getElementById('lz');
-  function ensureFonts(zh){
-    var id='lk-fonts-'+(zh?'zh':'ja'); if(document.getElementById(id)) return;
-    var fam=zh?'family=Noto+Serif+TC:wght@600&family=Noto+Sans+TC:wght@400;500':'family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500';
+  var h=document.documentElement;
+  var btns=Array.prototype.slice.call(document.querySelectorAll('.lang button[data-lang]'));
+  var IDX={ja:0,zh:1,en:2};
+  function ensureFonts(lang){
+    var id='lk-fonts-'+lang; if(document.getElementById(id)) return;
+    var fam=(window.__LK_FONTS||{})[lang]; if(!fam) return;
     var l=document.createElement('link'); l.rel='stylesheet'; l.id=id;
     l.href='https://fonts.googleapis.com/css2?'+fam+'&display=swap'; document.head.appendChild(l);
   }
-  function apply(zh,save){
-    var i=zh?1:0;
+  function apply(lang,save){
+    var i=IDX[lang]||0, zh=(lang==='zh');
     document.querySelectorAll('[data-i18n]').forEach(function(el){ var k=el.getAttribute('data-i18n'); if(T[k]) el.textContent=T[k][i]; });
+    /* 繁中版が存在する動画(解説3本・作り方)だけ zh へ切替。英語版は無いので日本語版を指す */
     document.querySelectorAll('img[data-src-zh]').forEach(function(im){
       if(!im.getAttribute('data-src-ja')) im.setAttribute('data-src-ja',im.getAttribute('src'));
       im.setAttribute('src', zh?im.getAttribute('data-src-zh'):im.getAttribute('data-src-ja'));
@@ -766,15 +1006,15 @@ var LKV=(function(){
     var p=document.getElementById('sprev'), n=document.getElementById('snext');
     if(p) p.setAttribute('aria-label',A.prev[i]); if(n) n.setAttribute('aria-label',A.next[i]);
     var ch=document.querySelector('.chips'); if(ch) ch.setAttribute('aria-label',A.chips[i]);
-    h.lang = zh?'zh-Hant-TW':'ja'; h.classList.toggle('zh',zh);
-    bj.setAttribute('aria-pressed',String(!zh)); bz.setAttribute('aria-pressed',String(zh));
-    document.title = 'made_linlin — MV STUDIO';
-    ensureFonts(zh); LKV.setLang(zh);
-    if(save){ try{ localStorage.setItem('ml_lang',zh?'zh':'ja'); }catch(e){} }
+    h.lang = zh?'zh-Hant-TW':(lang==='en'?'en':'ja');
+    h.classList.toggle('zh',zh); h.classList.toggle('en',lang==='en');
+    btns.forEach(function(b){ b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===lang)); });
+    ensureFonts(lang); LKV.setLang(zh);
+    if(save){ try{ localStorage.setItem('ml_lang',lang); }catch(e){} }
   }
-  bj.addEventListener('click',function(){ apply(false,true); });
-  bz.addEventListener('click',function(){ apply(true,true); });
-  if(h.classList.contains('zh')) apply(true,false);
+  btns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-lang'),true); }); });
+  if(h.classList.contains('zh')) apply('zh',false);
+  else if(h.classList.contains('en')) apply('en',false);
 })();
 
 /* ============================================================
@@ -816,7 +1056,6 @@ var LKV=(function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('in'); }); return; }
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.05,rootMargin:'0px 0px 40px 0px'});
   els.forEach(function(e){ io.observe(e); });
-  /* 5秒以内に見えなかったものも表示する保険 */
   setTimeout(function(){ els.forEach(function(e){ e.classList.add('in'); }); },5000);
 })();
 document.getElementById('year').textContent=String(new Date().getFullYear());
