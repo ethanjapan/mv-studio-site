@@ -451,11 +451,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .cta-row{border-top:0;margin-top:0}
 .cta-sub{font-size:14px;font-weight:600;min-height:48px}
 /* 番組: サムネイルを捨て、題名と尺だけ */
-.act-2 .rows .row{grid-template-columns:1fr auto;align-items:baseline;min-height:0;padding:16px 0}
-.act-2 .rows .row .th{display:none}
-.act-2 .rows .row .tx{display:contents}
-.act-2 .rows .row .t{font-family:var(--serif-jp);font-weight:600;font-size:16px;line-height:1.5;-webkit-line-clamp:unset;display:block;grid-column:1}
-.act-2 .rows .row .m{grid-column:1/-1;margin-top:6px}
+.act-2 .rows .row{grid-template-columns:minmax(128px,38%) 1fr;gap:14px;align-items:center;min-height:0;padding:14px 0}
+.act-2 .rows .row .th{display:block;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#10171f;border-radius:0}
+.act-2 .rows .row .th video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
+.act-2 .rows .row .th video.on{opacity:1}
+.act-2 .rows .row .tx{display:grid;gap:6px}
+.act-2 .rows .row .t{font-family:var(--serif-jp);font-weight:600;font-size:15px;line-height:1.5;-webkit-line-clamp:3}
+.act-2 .rows .row .m{margin-top:0}
 .act-2 .rows .row .m .num{margin-left:auto}
 /* 幕見出し: 大きく・和英併記・金の短い罫 */
 .act-head{padding:56px 0 26px}
@@ -939,22 +941,22 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 
     <div class="sub-head"><h3 data-i18n="prog.head">番組</h3><i aria-hidden="true"></i></div>
     <div class="rows">
-      <a class="row rise" href="https://youtu.be/ge2S7PQAxZI" data-href-zh="https://youtu.be/Etnjj5HnuWg" style="--i:0">
-        <span class="th"><img src="https://img.youtube.com/vi/ge2S7PQAxZI/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/Etnjj5HnuWg/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"></span>
+      <a class="row prog rise" href="https://youtu.be/ge2S7PQAxZI" data-href-zh="https://youtu.be/Etnjj5HnuWg" data-vunit style="--i:0">
+        <span class="th"><img src="https://img.youtube.com/vi/ge2S7PQAxZI/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/Etnjj5HnuWg/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"><video data-src-ja="assets/bb_k03.mp4?v=20260829a" data-src-zh="assets/bb_k03_zh.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></span>
         <span class="tx">
           <span class="t" data-i18n="p.k03.title">この家から、データは出ない</span>
           <span class="m"><span data-i18n="p.k03.kind">解説</span><span class="num" data-i18n="p.k03.dur">15:42</span></span>
         </span>
       </a>
-      <a class="row rise" href="https://youtu.be/h8pIGgVFmLI" data-href-zh="https://youtu.be/_2nsdgYRu0U" style="--i:1">
-        <span class="th"><img src="https://img.youtube.com/vi/h8pIGgVFmLI/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/_2nsdgYRu0U/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"></span>
+      <a class="row prog rise" href="https://youtu.be/h8pIGgVFmLI" data-href-zh="https://youtu.be/_2nsdgYRu0U" data-vunit style="--i:1">
+        <span class="th"><img src="https://img.youtube.com/vi/h8pIGgVFmLI/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/_2nsdgYRu0U/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"><video data-src-ja="assets/bb_radio.mp4?v=20260829a" data-src-zh="assets/bb_radio_zh.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></span>
         <span class="tx">
           <span class="t" data-i18n="p.radio.title">データは出ないのに、わたしの失敗は出ていく</span>
           <span class="m"><span data-i18n="p.radio.kind">RINKAのオフレコ #02</span><span class="num" data-i18n="p.radio.dur">9:45</span></span>
         </span>
       </a>
-      <a class="row rise" href="https://youtu.be/6hEolofq4Oc" data-href-zh="https://youtu.be/kJPFVfpHEX4" style="--i:2">
-        <span class="th"><img src="https://img.youtube.com/vi/6hEolofq4Oc/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/kJPFVfpHEX4/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"></span>
+      <a class="row prog rise" href="https://youtu.be/6hEolofq4Oc" data-href-zh="https://youtu.be/kJPFVfpHEX4" data-vunit style="--i:2">
+        <span class="th"><img src="https://img.youtube.com/vi/6hEolofq4Oc/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/kJPFVfpHEX4/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"><video data-src-ja="assets/bb_k02.mp4?v=20260829a" data-src-zh="assets/bb_k02_zh.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></span>
         <span class="tx">
           <span class="t" data-i18n="p.k02.title">AIが作ったMV、と言われます。半分は、その通りです。</span>
           <span class="m"><span data-i18n="p.k02.kind">『約束』制作全記録</span><span class="num" data-i18n="p.k02.dur">13:34</span></span>
