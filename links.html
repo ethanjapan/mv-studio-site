@@ -451,14 +451,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .cta-row{border-top:0;margin-top:0}
 .cta-sub{font-size:14px;font-weight:600;min-height:48px}
 /* 番組: サムネイルを捨て、題名と尺だけ */
-.act-2 .rows .row{grid-template-columns:minmax(128px,38%) 1fr;gap:14px;align-items:center;min-height:0;padding:14px 0}
-.act-2 .rows .row .th{display:block;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#10171f;border-radius:0}
-.act-2 .rows .row .th video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
-.act-2 .rows .row .th video.on{opacity:1}
-.act-2 .rows .row .tx{display:grid;gap:6px}
-.act-2 .rows .row .t{font-family:var(--serif-jp);font-weight:600;font-size:15px;line-height:1.5;-webkit-line-clamp:3}
-.act-2 .rows .row .m{margin-top:0}
-.act-2 .rows .row .m .num{margin-left:auto}
+.row.prog{grid-template-columns:minmax(128px,38%) 1fr;gap:14px;align-items:center;min-height:0;padding:14px 0}
+.row.prog .th{display:block;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#10171f;border-radius:0}
+.row.prog .th video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
+.row.prog .th video.on{opacity:1}
+.row.prog .tx{display:grid;gap:6px}
+.row.prog .t{font-family:var(--serif-jp);font-weight:600;font-size:15px;line-height:1.5;-webkit-line-clamp:3}
+.row.prog .m{margin-top:0}
+.row.prog .m .num{margin-left:auto}
 /* 幕見出し: 大きく・和英併記・金の短い罫 */
 .act-head{padding:56px 0 26px}
 .kv + .act-head{padding-top:12px}
@@ -734,6 +734,8 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 .t-ja .film .vt b,.t-zh .film .vt b{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .t-ja .vtcal,.t-zh .vtcal{display:block;width:clamp(52px,14vw,64px);height:auto;margin-top:-8px}  /* 影は PNG に焼き込み(WebKit の drop-shadow で矩形が出た) */
 .t-ja .film .vt i,.t-zh .film .vt i{height:calc(clamp(44px,12vw,54px) * 1.8)}
+.row.prog .t.s{font-size:16px}
+.row.prog .d{margin:0}
 /* ---- 明るいテーマ共通 ---- */
 .t-ja :focus-visible{outline-color:#405B70} .t-zh :focus-visible{outline-color:#55705D}
 .t-ja ::selection{background:rgba(64,91,112,.20)} .t-zh ::selection{background:rgba(85,112,93,.20)}
@@ -1060,10 +1062,9 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
       </a>
     </div>
     <div class="rows">
-      <a class="row txt rise" href="https://ethanjapan.github.io/mv-studio-site/" style="--i:0">
-        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.2 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.2-4-8.5s1.4-6.2 4-8.5z"/></svg></span>
+      <a class="row prog rise" href="https://ethanjapan.github.io/mv-studio-site/" data-vunit style="--i:0">
+        <span class="th"><img src="assets/lk_mvs_thumb.jpg?v=20260906a" width="800" height="450" alt="" loading="lazy" decoding="async"><video data-src-ja="assets/lk_mvs_loop.mp4?v=20260906a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></span>
         <span class="tx"><span class="t s" data-i18n="b.mvs">MV STUDIO について</span><span class="d" data-i18n="b.mvs.d">話すだけで、MVができる。アプリの紹介サイト。</span></span>
-        <span class="go" aria-hidden="true">→</span>
       </a>
       <a class="row txt rise" href="https://ig.me/m/made_linlin" style="--i:1">
         <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r="1" fill="#7B572C" stroke="none"/></svg></span>
