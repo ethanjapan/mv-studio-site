@@ -4,827 +4,822 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>made_linlin — MV STUDIO</title>
-<meta name="description" content="ローカルAIでミュージックビデオを作っています。最新MV・作り方の記事・教材。">
+<meta name="description" content="夜と光を、音楽のある物語に。made_linlin のオリジナルMVと、その作り方。">
+<meta name="theme-color" content="#090E16">
 <link rel="icon" href="assets/favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&display=swap" rel="stylesheet">
 <meta property="og:type" content="website">
 <meta property="og:title" content="made_linlin — MV STUDIO">
-<meta property="og:description" content="ローカルAIでミュージックビデオを作っています。">
+<meta property="og:description" content="夜と光を、音楽のある物語に。オリジナルMVと、その作り方。">
 <meta property="og:url" content="https://ethanjapan.github.io/mv-studio-site/links.html">
-<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/og.jpg?v=20260815b">
+<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/og_links.jpg?v=20260905a">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/lk_poster_umikemuri.jpg?v=20260905a" fetchpriority="high">
+<script>
+/* 言語を先に決めて、表示言語の書体だけ読み込む(日本語と繁中を両方は読まない) */
+(function(){
+  var zh=false;
+  try{ var p=localStorage.getItem('ml_lang'); zh = p ? p==='zh' : /^zh/i.test(navigator.language||''); }catch(e){}
+  var h=document.documentElement;
+  h.lang = zh ? 'zh-Hant-TW' : 'ja';
+  h.className += ' js' + (zh ? ' zh' : '');
+  var fam = zh ? 'family=Noto+Serif+TC:wght@600&family=Noto+Sans+TC:wght@400;500'
+               : 'family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500';
+  var l=document.createElement('link'); l.rel='stylesheet'; l.id='lk-fonts-'+(zh?'zh':'ja');
+  l.href='https://fonts.googleapis.com/css2?'+fam+'&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Mono:wght@400&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Mono:wght@400&display=swap"></noscript>
 <style>
 /* ============================================================
-   made_linlin links — 本体サイト(夜オーロラ→水面)の世界観を
-   1枚のリンク集へ凝縮。Three.jsは載せず、canvas星空+CSSオーロラ+
-   ガラスカードで「軽いのに高級」を狙う。
+   made_linlin links — 「夜明けまで」
+   1ページを一夜に見立て、深夜(I)→薄明(II)→曙(III)→朝(IV)へ。
+   文字色は幕ごとに固定。夜→朝の転換は文字を置かない帯で行う。
    ============================================================ */
 :root{
-  --bg:#05060d; --bg2:#0d1226;
-  --ink:#f4f1e8; --sub:rgba(235,229,214,.62); --faint:rgba(235,229,214,.4);
-  --line:rgba(242,236,220,.15);
-  --a1:#e6b476; --a2:#f2b2c6; --a3:#f6dcab; --a4:#b7e2ee;
-  --card:rgba(230,180,118,.05);
-  --card-hi:rgba(230,180,118,.10);
-  --r:18px;
+  --n0:#090E16; --n1:#17232E; --d0:#354852; --d1:#B8C2C1; --m0:#F3EFE6;
+  --ink:#F3EFE6; --sub:#BAC4C6; --ink-m:#18252C; --sub-m:#495C61;
+  --gold:#D7B887; --gold-m:#7B572C; --mizu:#A9CDD1; --mizu-m:#356A78; --sakura:#D9B2BE;
+  --line:rgba(243,239,230,.16); --line-m:rgba(24,37,44,.16);
+  --serif-jp:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --serif-la:"Cormorant Garamond","Times New Roman",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --pad:20px; --max:600px; --r:12px; --r-s:8px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+html:lang(zh-Hant){
+  --serif-jp:"Noto Serif TC","PingFang TC","Songti TC",serif;
+  --sans:"Noto Sans TC","PingFang TC","Heiti TC",-apple-system,sans-serif;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  background:var(--bg);
+  background:var(--n0); color:var(--ink);
+  font-family:var(--sans); font-weight:400; font-size:15px; line-height:1.8; letter-spacing:0;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  line-break:strict; word-break:normal; overflow-x:hidden;
+}
+@supports (text-autospace:normal){ body{ text-autospace:normal } }
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+img,video{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.act-4 :focus-visible, .dawn-cap :focus-visible, .foot :focus-visible{outline-color:var(--gold-m)}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- 書体トークン ---------- */
+.t-serif{font-family:var(--serif-jp);font-weight:600;font-feature-settings:normal}
+.wordmark{font-family:var(--serif-la);font-weight:400;font-size:clamp(48px,13.33vw,56px);line-height:1.08;letter-spacing:0;font-kerning:normal;margin:0;color:var(--ink)}
+.statement{font-family:var(--serif-jp);font-weight:600;font-size:20px;line-height:1.55;letter-spacing:.015em;margin:14px 0 0;max-inline-size:30em}
+.subline{font-size:13px;line-height:1.65;letter-spacing:.01em;color:var(--sub);margin:8px 0 0}
+.num{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:0;font-variant-numeric:tabular-nums}
+.label{font-weight:500;font-size:12px;letter-spacing:.10em;line-height:1.4;text-transform:uppercase}
+
+/* ---------- トップバー(通常フロー・sticky・不透明) ---------- */
+.top{
+  position:sticky;top:0;z-index:20;background:var(--n0);
+  padding-top:env(safe-area-inset-top);
+  border-bottom:1px solid rgba(243,239,230,.08);
+}
+.top .wrap{height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--sub)}
+.brand .label{color:var(--sub)}
+.brand i{display:block;width:22px;height:1px;background:var(--gold)}
+.lang{display:flex;gap:4px}
+.lang button{
+  min-width:72px;height:44px;padding:0 10px;border-radius:999px;
+  font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--sub);
+  border:1px solid transparent;transition:color .16s,background .16s,border-color .16s;
+}
+.lang button[aria-pressed="true"]{color:var(--n0);background:var(--gold)}
+.lang button:not([aria-pressed="true"]):hover{border-color:var(--line);color:var(--ink)}
+
+/* ---------- 幕(共通) ---------- */
+.act{position:relative}
+.act-head{padding:56px 0 20px}
+.act-num{display:flex;align-items:baseline;gap:12px;margin:0}
+.act-num .rn{font-family:var(--serif-la);font-weight:400;font-size:28px;line-height:1.4;color:var(--gold)}
+.act-num .nm{font-family:var(--serif-jp);font-weight:600;font-size:28px;line-height:1.4;letter-spacing:.025em}
+.act-head h2{margin:2px 0 0;font-weight:500;font-size:14px;letter-spacing:.10em;color:var(--sub)}
+.act-head .lead{margin:14px 0 0;font-size:15px;line-height:1.8;color:var(--ink);max-inline-size:30em}
+.act-4 .act-num .rn{color:var(--gold-m)}
+.act-4 .act-head h2{color:var(--sub-m)}
+.anchor{scroll-margin-top:calc(72px + env(safe-area-inset-top))}
+
+/* ---------- I 深夜 ---------- */
+.act-1{
   color:var(--ink);
-  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
-  -webkit-font-smoothing:antialiased;
-  min-height:100dvh;
-  overflow-x:hidden;
-}
-
-/* ---------- 背景: 星空canvas + オーロラ帯 ---------- */
-#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
-.aurora{
-  position:fixed;z-index:1;pointer-events:none;
-  filter:blur(58px);opacity:.5;mix-blend-mode:screen;
-  will-change:transform;
-}
-.aurora.a{
-  width:130vw;height:46vh;left:-18vw;top:-14vh;
-  background:linear-gradient(100deg,transparent 4%,rgba(230,180,118,.42) 30%,rgba(246,220,171,.4) 52%,rgba(242,178,198,.3) 74%,transparent 96%);
-  border-radius:50% 42% 55% 45% / 68% 55% 62% 48%;
-  animation:drift1 26s ease-in-out infinite alternate;
-}
-.aurora.b{
-  width:110vw;height:36vh;right:-24vw;top:-4vh;
-  background:linear-gradient(82deg,transparent 6%,rgba(242,178,198,.32) 36%,rgba(230,180,118,.24) 62%,transparent 94%);
-  border-radius:44% 56% 48% 52% / 60% 46% 58% 52%;
-  animation:drift2 33s ease-in-out infinite alternate;
-}
-.aurora.c{
-  width:90vw;height:30vh;left:-8vw;top:6vh;
-  background:linear-gradient(95deg,transparent 8%,rgba(183,226,238,.22) 42%,rgba(246,220,171,.22) 68%,transparent 92%);
-  border-radius:52% 48% 42% 58% / 55% 62% 46% 60%;
-  animation:drift3 21s ease-in-out infinite alternate;
-}
-@keyframes drift1{from{transform:translate3d(0,0,0) rotate(-2.5deg) scaleY(1)}to{transform:translate3d(4vw,3vh,0) rotate(2deg) scaleY(1.18)}}
-@keyframes drift2{from{transform:translate3d(0,0,0) rotate(2deg)}to{transform:translate3d(-5vw,4vh,0) rotate(-1.5deg) scaleY(.88)}}
-@keyframes drift3{from{transform:translate3d(0,0,0) rotate(-1deg) scaleX(1)}to{transform:translate3d(3vw,-2vh,0) rotate(1.6deg) scaleX(1.12)}}
-
-/* 地平の水面グロー(ページ下部) */
-.horizon{
-  position:fixed;left:0;right:0;bottom:0;height:34vh;z-index:1;pointer-events:none;
   background:
-    radial-gradient(120% 120% at 50% 118%, rgba(230,180,118,.12), transparent 55%),
-    linear-gradient(0deg, rgba(8,15,34,.9), transparent 70%);
+    url("assets/lk_stars.png?v=20260905a") no-repeat top center / 100% auto,
+    linear-gradient(180deg,var(--n0) 0%,var(--n0) 45%,var(--n1) 100%);
 }
+.hero{padding:18px 0 0}
+.hero .mini{display:flex;align-items:center;gap:10px;color:var(--sub);margin:0 0 14px}
+.hero .mini .rn{font-family:var(--serif-la);font-size:14px;line-height:1;color:var(--gold)}
+.hero .mini .nm{font-family:var(--serif-jp);font-weight:600;font-size:12px;letter-spacing:.06em}
+.hero .mini i{display:block;width:28px;height:1px;background:var(--line)}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 18px;border-radius:999px;
+  font-weight:500;font-size:14px;line-height:1.3;letter-spacing:.01em;text-align:center;
+  transition:transform .16s var(--ease),background .16s,border-color .16s}
+.cta-main{margin-top:22px;width:100%;background:var(--gold);color:var(--n0)}
+.cta-main .num{color:var(--n0);opacity:.78}
+.cta-main .num::before{content:"·";margin-right:8px}
+.cta-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.cta-sub{min-height:44px;border:1px solid var(--line);color:var(--ink)}
+.cta-sub svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+@media (hover:hover) and (pointer:fine){
+  .cta-main:hover{transform:translateY(-2px)}
+  .cta-sub:hover{border-color:var(--gold);transform:translateY(-2px)}
+}
+.cta:active{transform:scale(.99);transition-duration:90ms}
 
-/* ---------- レイアウト ---------- */
-.wrap{position:relative;z-index:2;max-width:600px;margin:0 auto;padding:56px 22px 72px}
+/* 最新作ポスター */
+.poster{display:block;margin-top:40px;border-radius:var(--r);overflow:hidden;background:var(--n1);border:1px solid var(--line);transition:transform .16s var(--ease)}
+.win{position:relative;aspect-ratio:16/9;overflow:hidden;background:#10171f}
+.win img{width:100%;height:100%;object-fit:cover}
+.win video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
+.win video.on{opacity:1}
+.win .dur{position:absolute;right:12px;bottom:12px;color:var(--ink);background:rgba(9,14,22,.72);border:1px solid rgba(243,239,230,.18);padding:5px 10px;border-radius:999px}
+.win .dur::before{content:"";display:inline-block;width:0;height:0;border-left:6px solid var(--ink);border-top:4px solid transparent;border-bottom:4px solid transparent;margin-right:7px;vertical-align:1px}
+.poster-body{display:block;padding:18px 20px 20px}
+/* <a> の中の題・説明は span なので block を明示(題と説明が一行に流れる事故を防ぐ) */
+.poster-title,.poster-desc,.wbody,.wtitle,.wsub,.ctitle,.cdesc,.cbody,.win,.tile .img{display:block}
+/* 見出し類は2行に割れる時に行長を均す(1文字だけの折返しを避ける) */
+.statement,.poster-title,.wtitle,.ctitle,.row .t,.tile .t,.dawn-cap .cap,.disc span{text-wrap:balance}
+.disc span{display:inline-block;max-inline-size:100%}
+.poster-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.tag{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-weight:500;font-size:11px;letter-spacing:.10em}
+.poster-head .meta{color:var(--sub);font-size:12px;letter-spacing:.04em}
+.poster-title{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:20px;line-height:1.5;letter-spacing:.015em}
+.poster-desc{margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--sub)}
+@media (hover:hover) and (pointer:fine){ .poster:hover{transform:translateY(-2px)} }
+.poster:active{transform:scale(.99);transition-duration:90ms}
 
-/* ---------- ヒーロー ---------- */
-header{text-align:center;margin-bottom:40px}
-.mark{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:11px;letter-spacing:.42em;color:var(--sub);
-  text-transform:uppercase;margin-bottom:18px;padding-left:.42em;
-}
-.mark::before,.mark::after{
-  content:"";width:34px;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(230,180,118,.5));
-}
-.mark::after{transform:scaleX(-1)}
-h1{
-  font-size:34px;line-height:1.3;margin:0 0 14px;font-weight:700;letter-spacing:.04em;
-  background:linear-gradient(97deg,var(--a1) 8%,#cfd8ff 34%,var(--a2) 62%,var(--a3) 94%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 26px rgba(121,226,255,.24));
-;font-family:"Shippori Mincho",serif}
-.lead{font-size:14.5px;line-height:1.9;color:var(--sub);margin:0}
-.lead .zh{display:block;margin-top:3px;opacity:.72;font-size:13px}
+/* 章チップ(固定しない) */
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:28px 0 0;padding-bottom:40px}
+.chips a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 6px;border-radius:999px;border:1px solid var(--line);
+  font-weight:500;font-size:13px;letter-spacing:.01em;color:var(--sub);text-align:center;line-height:1.2;transition:color .16s,border-color .16s}
+.chips a:hover{color:var(--ink);border-color:var(--gold)}
 
-/* ---------- ヒーロー: 実作品のループ映像を1枚目に置く ----------
-   静止画(poster)を背景に敷き、動画は読めたら上へフェードイン。
-   動画が来なくても・自動再生が拒否されても、見た目は静止画で成立する。 */
-.hero{margin:-56px -22px 34px}
-/* ★帯の比率は素材そのまま(1722:1088)に固定する。
-   高さを vh で決めていた時は、上下バーで表示高が小さいアプリ内ブラウザだけ帯が
-   横長化し、縦素材が45%しか映らず顔が切れた(2026-08-30 実機Instagramで実測)。
-   素材と同じ比率にすれば切り取りが一切起きないので、端末やブラウザで見え方が変わらない。 */
-.hero__film{
-  position:relative;overflow:hidden;pointer-events:none;
-  aspect-ratio:1722 / 1088;
-  background:#080b16 center/cover no-repeat;
-}
-.hero__film video{
-  width:100%;height:100%;object-fit:cover;display:block;
-  opacity:0;transition:opacity 1.1s ease;
-}
-.hero__film video.on{opacity:1}
-.hero__film::after{ /* 下端をページ背景へ溶かす(文字は帯の外に置くので顔と競合しない) */
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,
-    rgba(5,6,13,.34) 0%, rgba(5,6,13,0) 22%,
-    rgba(5,6,13,.30) 58%, rgba(5,6,13,.86) 84%, var(--bg) 100%);
-}
-.hero header{position:relative;z-index:1;margin:-52px 0 0;padding:0 22px}
-
-/* ---------- セクション見出し ---------- */
-.sec{
-  display:flex;align-items:center;gap:14px;
-  margin:38px 0 14px;
-  font-size:10.5px;letter-spacing:.3em;color:var(--faint);
-  text-transform:uppercase;white-space:nowrap;
-}
-.sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-.sec b{color:var(--sub);font-weight:600}
-
-/* ---------- カード共通: グラデ縁 + ガラス + シーンスイープ ---------- */
-a.card{
-  --edge:linear-gradient(140deg,rgba(183,226,238,.22),rgba(242,236,220,.1) 34%,rgba(242,178,198,.2) 70%,rgba(246,220,171,.18));
-  position:relative;display:block;text-decoration:none;color:inherit;
-  border-radius:var(--r);
-  background:
-    linear-gradient(var(--card),var(--card)) padding-box,
-    var(--edge) border-box;
-  border:1px solid transparent;
-  margin-bottom:14px;
-  overflow:hidden;
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s ease,background-color .22s ease;
-  opacity:0;transform:translateY(14px);
-}
-a.card.in{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .22s ease}
-a.card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 14px 44px rgba(4,8,20,.55),0 0 0 1px rgba(148,178,255,.12),0 0 36px rgba(121,226,255,.1);
-}
-a.card:active{transform:translateY(-1px)}
-/* 光のスイープ */
-a.card .sheen{
-  position:absolute;inset:0;pointer-events:none;border-radius:inherit;
-  background:linear-gradient(115deg,transparent 32%,rgba(246,236,214,.09) 47%,rgba(246,236,214,.16) 50%,rgba(246,236,214,.09) 53%,transparent 68%);
-  transform:translateX(-120%);
-}
-a.card:hover .sheen{transition:transform .9s cubic-bezier(.25,.6,.2,1);transform:translateX(120%)}
-
-/* ---------- 動画カード(サムネ入り) ---------- */
-.vcard .thumb{
-  position:relative;aspect-ratio:16/9;overflow:hidden;
-  background:#0a1020;
-}
-.vcard .thumb img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transform:scale(1.02);transition:transform .5s cubic-bezier(.2,.7,.2,1);
-  filter:saturate(1.04);
-}
-.vcard:hover .thumb img{transform:scale(1.065)}
-/* サムネの上に載る作品ループ。静止画→映像へフェード(読めなければ静止画のまま) */
-.thumb video.loop{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
-  opacity:0;transition:opacity .55s ease;
-}
-.thumb video.loop.on{opacity:1}
-.vcard .thumb::after{ /* 下部スクリム */
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(4,8,18,.06) 55%,rgba(4,8,18,.62) 92%);
-}
-.play{
-  position:absolute;right:14px;bottom:12px;z-index:2;
-  display:flex;align-items:center;gap:8px;
-  font-size:11px;letter-spacing:.14em;color:#eaf4ff;
-  background:rgba(6,12,26,.55);border:1px solid rgba(160,200,255,.3);
-  padding:6px 12px;border-radius:999px;
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-}
-.play svg{width:10px;height:10px;fill:#eaf4ff}
-.vbody{padding:15px 18px 16px}
-.vtitle{font-size:16.5px;font-weight:650;line-height:1.5;letter-spacing:.01em}
-.vdesc{font-size:12.5px;color:var(--sub);line-height:1.75;margin-top:4px}
-.badge{
-  display:inline-block;font-size:9.5px;letter-spacing:.22em;font-weight:600;
-  padding:4px 10px;border-radius:999px;margin-bottom:9px;
-  color:#052033;
-  background:linear-gradient(96deg,var(--a1),var(--a4));
-  box-shadow:0 0 18px rgba(121,226,255,.35);
-}
-
-/* ---------- 作品棚: 横スクロール(作品が増えても縦に伸びない) ---------- */
-.shelf{
+/* ---------- II 薄明 ---------- */
+.act-2{color:var(--ink);background:linear-gradient(180deg,var(--n1) 0%,var(--d0) 100%)}
+.strip-wrap{position:relative;margin:0 calc(-1 * var(--pad))}
+.strip{
   display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory;
-  margin:0 -22px;padding:2px 22px 14px;
-  scrollbar-width:none;
+  scroll-snap-type:x proximity;scroll-padding-left:var(--pad);
+  padding:2px var(--pad) 6px;scrollbar-width:none;
 }
-.shelf::-webkit-scrollbar{display:none}
-.shelf a.card{flex:0 0 76%;max-width:340px;margin-bottom:0;scroll-snap-align:start}
-.shelf .vbody{padding:12px 15px 13px}
-.shelf .vtitle{font-size:14.5px}
-.shelf .vdesc{font-size:11.5px;line-height:1.65;margin-top:3px;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.shelf a.more{
-  flex:0 0 42%;max-width:180px;display:flex;align-items:center;justify-content:center;
-  min-height:120px;text-align:center;
-}
-.shelf a.more .tx{display:flex;flex-direction:column;gap:8px;align-items:center}
-.shelf a.more .t{font-size:13.5px;font-weight:650}
-.shelf a.more .d{font-size:11px;color:var(--sub)}
-.shelf a.more .arrow{font-size:20px;color:var(--a1)}
-.shelfwrap{position:relative}
-.shelfwrap::after{
-  content:"";position:absolute;top:0;bottom:14px;right:-22px;width:56px;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(4,6,13,.85));
-}
-@media (min-width:640px){.shelfwrap::after{right:0}}
+.strip::-webkit-scrollbar{display:none}
+.wcard{flex:0 0 82%;max-width:320px;scroll-snap-align:start;display:flex;flex-direction:column;
+  border-radius:var(--r);overflow:hidden;background:rgba(9,14,22,.35);border:1px solid var(--line);transition:transform .16s var(--ease)}
+.wcard .win{border-radius:0}
+.wcard .vt{position:absolute;right:14px;top:14px;writing-mode:vertical-rl;text-orientation:mixed;
+  font-family:var(--serif-jp);font-weight:600;font-size:24px;line-height:1.35;letter-spacing:.06em;color:var(--ink);
+  text-shadow:0 1px 18px rgba(0,0,0,.7),0 0 3px rgba(0,0,0,.5);margin:0}
+.wbody{padding:14px 16px 16px}
+.wtitle{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:18px;line-height:1.5;letter-spacing:.015em}
+.wsub{margin:2px 0 0;font-size:12px;letter-spacing:.06em;color:var(--sub)}
+.wdesc{margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wmore{flex:0 0 52%;max-width:200px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  min-height:180px;text-align:center;border-radius:var(--r);border:1px solid var(--line);color:var(--ink)}
+.wmore .arrow{font-family:var(--serif-la);font-size:28px;line-height:1;color:var(--gold)}
+.wmore .t{font-weight:500;font-size:14px}
+.wmore .d{font-size:12px;color:var(--sub)}
+@media (hover:hover) and (pointer:fine){ .wcard:hover,.wmore:hover{transform:translateY(-2px)} }
+.wcard:active,.wmore:active{transform:scale(.99);transition-duration:90ms}
+.strip-ctl{display:flex;align-items:center;gap:14px;margin-top:14px}
+.strip-ctl .bar{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden;border-radius:1px}
+.strip-ctl .bar i{position:absolute;left:0;top:0;bottom:0;width:20%;background:var(--gold);transition:transform .2s var(--ease),width .2s var(--ease);transform-origin:left}
+.strip-ctl .num{color:var(--sub);min-width:5.5em;text-align:center}
+.strip-ctl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink);transition:border-color .16s}
+.strip-ctl button:hover{border-color:var(--gold)}
+.strip-ctl button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.strip-ctl button[disabled]{opacity:.35}
 
-/* ---------- テキストカード ---------- */
-a.card.tcard{display:flex;align-items:center;gap:15px;padding:16px 18px}
-.tcard .ico{
-  flex:0 0 44px;height:44px;border-radius:13px;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(150deg,rgba(121,226,255,.12),rgba(167,139,255,.1));
-  border:1px solid rgba(148,178,238,.2);
-}
-.tcard .ico svg{width:20px;height:20px;stroke:#bcd2ff;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.tcard .tx{flex:1;min-width:0}
-.tcard .t{font-size:15px;font-weight:650;line-height:1.45}
-.tcard .d{font-size:12px;color:var(--sub);line-height:1.65;margin-top:2px}
-.tcard .arrow{
-  flex:0 0 auto;color:var(--faint);transition:transform .22s ease,color .22s ease;
-  font-size:15px;
-}
-a.card:hover .arrow{transform:translateX(4px);color:var(--a1)}
+.sub-head{margin:48px 0 14px;display:flex;align-items:center;gap:12px}
+.sub-head h3{margin:0;font-weight:500;font-size:14px;letter-spacing:.10em;color:var(--sub)}
+.sub-head i{flex:1;height:1px;background:var(--line)}
+.rows{display:grid;gap:12px}
+.row{display:grid;grid-template-columns:112px 1fr;gap:14px;align-items:center;min-height:96px;padding:12px 14px 12px 12px;
+  border-radius:var(--r);border:1px solid var(--line);background:rgba(9,14,22,.30);transition:transform .16s var(--ease)}
+.row .th{width:112px;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#10171f}
+.row .th img{width:100%;height:100%;object-fit:cover}
+.row .tx{display:grid;gap:6px;min-width:0}
+.row .t{margin:0;font-weight:500;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.row .m{display:flex;align-items:center;gap:10px;color:var(--sub);font-size:12px;letter-spacing:.04em}
+@media (hover:hover) and (pointer:fine){ .row:hover{transform:translateY(-2px)} }
+.row:active{transform:scale(.99);transition-duration:90ms}
 
-/* ---------- サムネ付きリンクカード(各セクションの先頭1枚だけ) ----------
-   全部のリンクにサムネを付けると「動画=大きい / リンク=行」の階層が壊れ、
-   スマホの全長が約6割伸びる。節の中で最初に見てほしい1枚にだけ絵を持たせる。 */
-a.card.tcard.fcard{display:block;padding:0}
-.fcard .fthumb{
-  position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#0a1020;
+/* ---------- III 曙 ---------- */
+.act-3{color:var(--ink);background:var(--d0);padding-bottom:56px}
+.card{display:block;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:rgba(9,14,22,.30);transition:transform .16s var(--ease)}
+.card .cbody{padding:16px 18px 18px}
+.ctitle{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:18px;line-height:1.5;letter-spacing:.015em}
+.cdesc{margin:6px 0 0;font-size:13px;line-height:1.65;color:var(--sub)}
+@media (hover:hover) and (pointer:fine){ .card:hover{transform:translateY(-2px)} }
+.card:active{transform:scale(.99);transition-duration:90ms}
+.row.txt{grid-template-columns:44px 1fr auto;min-height:72px}
+.row .ico{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.row .ico svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.row .t.s{font-family:var(--serif-jp);font-weight:600;font-size:15px}
+.row .d{margin:0;font-size:13px;line-height:1.6;color:var(--sub)}
+.row .go{font-family:var(--serif-la);font-size:22px;line-height:1;color:var(--gold);padding-left:6px}
+
+/* ---------- 転換帯: 夜→朝(文字を置かない) + 対画 ---------- */
+.dawn{
+  position:relative;
+  background:var(--d0) url("assets/lk_sky.jpg?v=20260905a") no-repeat center / cover;
+  padding:44px 0 44px;
 }
-.fcard .fthumb img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transform:scale(1.02);transition:transform .5s cubic-bezier(.2,.7,.2,1);
-}
-.fcard:hover .fthumb img{transform:scale(1.065)}
-.fcard .fthumb::after{ /* 下端を沈めて、下の文字行へ繋ぐ */
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(4,8,18,.05) 58%,rgba(4,8,18,.55) 94%);
-}
-.fcard .frow{display:flex;align-items:center;gap:15px;padding:14px 18px 15px}
+.dawn::before,.dawn::after{content:"";position:absolute;left:0;right:0;height:24px;pointer-events:none}
+.dawn::before{top:0;background:linear-gradient(var(--d0),transparent)}
+.dawn::after{bottom:0;background:linear-gradient(transparent,var(--m0))}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.pair a{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:#10171f}
+.pair a:first-child{border-radius:var(--r-s) 0 0 var(--r-s)}
+.pair a:last-child{border-radius:0 var(--r-s) var(--r-s) 0}
+.pair img{width:100%;height:100%;object-fit:cover}
+.pair video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
+.pair video.on{opacity:1}
+.dawn-cap{background:var(--m0);color:var(--ink-m);padding:18px 0 0}
+.dawn-cap .cap{margin:0 0 12px;font-family:var(--serif-jp);font-weight:600;font-size:16px;line-height:1.6;letter-spacing:.015em;text-align:center}
+.pair-links{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pair-links a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:8px 10px;border-radius:999px;border:1px solid var(--line-m);
+  font-weight:500;font-size:13px;line-height:1.3;text-align:center;color:var(--ink-m);transition:border-color .16s,transform .16s var(--ease)}
+.pair-links a:hover{border-color:var(--gold-m)}
+.pair-links a:active{transform:scale(.99)}
+
+/* ---------- IV 朝 ---------- */
+.act-4{position:relative;color:var(--ink-m);background:var(--m0);padding-bottom:40px}
+.act-4::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.act-4 .wrap{position:relative}
+.act-4 .act-head{padding-top:40px}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line-m);
+  box-shadow:0 10px 30px rgba(24,37,44,.08);color:var(--ink-m);transition:transform .16s var(--ease),box-shadow .16s}
+.tile.wide{grid-column:1/-1}
+.tile .img{position:relative;overflow:hidden;background:#dfe3e2}
+.tile.wide .img{aspect-ratio:2/1}
+.tile:not(.wide) .img{aspect-ratio:4/3}
+.tile .img img{width:100%;height:100%;object-fit:cover}
+.tile .tx{padding:14px 16px 16px;display:grid;gap:4px}
+.tile .t{margin:0;font-family:var(--serif-jp);font-weight:600;font-size:17px;line-height:1.45;letter-spacing:.015em}
+.tile:not(.wide) .t{font-size:15px}
+.tile .d{margin:0;font-size:13px;line-height:1.6;color:var(--sub-m)}
+.tile:not(.wide) .d{font-size:12px}
+@media (hover:hover) and (pointer:fine){ .tile:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(24,37,44,.12)} }
+.tile:active{transform:scale(.99);transition-duration:90ms}
+.act-4 .rows{margin-top:12px}
+.act-4 .row{background:#fff;border-color:var(--line-m);box-shadow:0 10px 30px rgba(24,37,44,.06)}
+.act-4 .row .ico{border-color:var(--line-m)}
+.act-4 .row .ico svg{stroke:var(--gold-m)}
+.act-4 .row .d{color:var(--sub-m)}
+.act-4 .row .go{color:var(--gold-m)}
 
 /* ---------- フッター ---------- */
-footer{
-  margin-top:44px;text-align:center;
-  font-size:11px;color:var(--faint);line-height:2.0;letter-spacing:.04em;
-}
-footer .sig{
-  display:inline-block;margin-bottom:8px;
-  font-size:12px;letter-spacing:.18em;color:var(--sub);
-}
+.foot{background:var(--m0);color:var(--ink-m);padding:20px 0 56px}
+.socials{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-top:24px;border-top:1px solid var(--line-m)}
+.socials a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:64px;padding:8px 4px;border-radius:var(--r-s);
+  font-size:12px;letter-spacing:0;color:var(--ink-m);transition:background .16s}
+.socials a svg{width:22px;height:22px;stroke:var(--gold-m);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.socials a:hover{background:rgba(24,37,44,.05)}
+.sig{margin:28px 0 0;text-align:center;font-family:var(--serif-la);font-style:italic;font-size:17px;line-height:1.4;color:var(--ink-m)}
+.disc{margin:10px 0 0;text-align:center;font-size:13px;line-height:1.65;color:var(--sub-m)}
+.copy{margin:14px 0 0;text-align:center;color:var(--sub-m)}
 
-/* ---------- 言語トグル(本体サイトと同じ右上・pill) ---------- */
-.langsw{
-  position:fixed;top:14px;right:14px;z-index:10;
-  display:flex;gap:2px;padding:3px;border-radius:999px;
-  background:rgba(10,18,38,.55);border:1px solid rgba(148,178,238,.22);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-}
-.langsw button{
-  appearance:none;border:0;background:transparent;color:var(--sub);
-  font:inherit;font-size:11.5px;letter-spacing:.06em;
-  padding:5px 12px;border-radius:999px;cursor:pointer;
-}
-.langsw button.on{
-  color:#0a1224;font-weight:600;
-  background:linear-gradient(96deg,var(--a1),#cfe0ff);
-}
-body.lang-zh{font-family:"PingFang TC","Noto Sans TC","Hiragino Sans",sans-serif}
-body.lang-zh .lead .zh{display:none}
+/* ---------- 入場(JSがある時だけ。無ければ最初から見える) ---------- */
+.js .rise{opacity:0;transform:translateY(6px)}
+.js .rise.in{opacity:1;transform:none;transition:opacity .24s var(--ease),transform .24s var(--ease);transition-delay:min(calc(var(--i,0) * 40ms),80ms)}
 
-/* ---------- モーション設定 ---------- */
+/* ---------- 低モーション ---------- */
 @media (prefers-reduced-motion:reduce){
-  .aurora{animation:none}
-  a.card{opacity:1;transform:none;transition:none}
-  a.card .sheen{display:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rise{opacity:1;transform:none}
 }
-@media (max-width:430px){
-  h1{font-size:29px}
-  .wrap{padding:44px 16px 60px}
+/* ---------- 大画面での微調整 ---------- */
+@media (min-width:640px){
+  .wcard{flex-basis:320px}
+  .row .t{font-size:15px}
+}
+/* ---------- 200%拡大などで狭い時 ---------- */
+@media (max-width:359px){
+  .bento{grid-template-columns:1fr}
+  .tile.wide{grid-column:auto}
+  .chips{grid-template-columns:1fr 1fr}
+  .lang button{min-width:64px}
 }
 </style>
 </head>
 <body>
 
-<canvas id="sky"></canvas>
-<div class="aurora a"></div>
-<div class="aurora b"></div>
-<div class="aurora c"></div>
-<div class="horizon"></div>
-
-<div class="langsw" role="group" aria-label="Language">
-  <button id="lj" class="on" type="button">日本語</button>
-  <button id="lz" type="button">中文</button>
-</div>
-
-<div class="wrap">
-
-  <section class="hero">
-    <div class="hero__film" style="background-image:url(assets/hero_yakusoku.jpg?v=20260829a)" aria-hidden="true">
-      <video class="loop" src="assets/hero_yakusoku.mp4?v=20260829a" muted loop playsinline preload="none"></video>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="made_linlin"><i aria-hidden="true"></i><span class="label">MV Studio</span></a>
+    <div class="lang" role="group" aria-label="Language / 語言">
+      <button id="lj" type="button" aria-pressed="true" lang="ja">日本語</button>
+      <button id="lz" type="button" aria-pressed="false" lang="zh-Hant-TW">繁體中文</button>
     </div>
-    <header>
-      <div class="mark">MV Studio</div>
-      <h1>made_linlin</h1>
-      <p class="lead">
-        自宅のGPU 1台で、ミュージックビデオを作っています。
-        <span class="zh" data-i18n-skip>用家裡的一張顯卡，做音樂錄影帶。</span>
-      </p>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== I 深夜 ===== -->
+<section class="act act-1 anchor" id="top">
+  <div class="wrap">
+    <div class="hero">
+      <p class="mini"><span class="rn" aria-hidden="true">I</span><span class="nm t-serif" data-i18n="act1.name">深夜</span><i aria-hidden="true"></i></p>
+      <h1 class="wordmark">made_linlin</h1>
+      <p class="statement" data-i18n="hero.statement">夜と光を、音楽のある物語に。</p>
+      <p class="subline" data-i18n="hero.sub">自宅から届ける、オリジナルMV。</p>
+
+      <a class="cta cta-main" href="https://youtu.be/t9NJumW8D1Q">
+        <span data-i18n="cta.latest">最新作『海煙』を観る</span><span class="num" data-i18n="dur.umk">3:42</span>
+      </a>
+      <div class="cta-row">
+        <a class="cta cta-sub" href="#works"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="M10.5 9.6l5 2.4-5 2.4z"/></svg><span data-i18n="cta.works">作品一覧</span></a>
+        <a class="cta cta-sub" href="#howto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg><span data-i18n="cta.howto">作り方</span></a>
+      </div>
+    </div>
+
+    <a class="poster rise" href="https://youtu.be/t9NJumW8D1Q" data-vunit style="--i:0">
+      <span class="win">
+        <img src="assets/lk_poster_umikemuri.jpg?v=20260905a" width="1280" height="720" alt="" fetchpriority="high" decoding="async">
+        <video data-src-ja="assets/lk_loop_umikemuri.mp4?v=20260905a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <span class="dur num" data-i18n="dur.umk">3:42</span>
+      </span>
+      <span class="poster-body">
+        <span class="poster-head"><span class="tag">NEW</span><span class="meta" data-i18n="meta.fullmv">フルMV</span></span>
+        <span class="poster-title t-serif" data-i18n="w.umk.title">海煙</span>
+        <span class="poster-desc" data-i18n="w.umk.desc">夜明けの海に立つ白い霧。置いてきた言葉と歩く、ひと朝の物語。新しい顔をひとつ作るところから始めた、フルMV。</span>
+      </span>
+    </a>
+
+    <nav class="chips" aria-label="ページ内の移動">
+      <a href="#top" data-i18n="nav.latest">最新作</a>
+      <a href="#works" data-i18n="nav.works">作品</a>
+      <a href="#howto" data-i18n="nav.howto">作り方</a>
+      <a href="#more" data-i18n="nav.more">その他</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ===== II 薄明 ===== -->
+<section class="act act-2 anchor" id="works">
+  <div class="wrap">
+    <header class="act-head">
+      <p class="act-num"><span class="rn" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span></p>
+      <h2 data-i18n="act2.label">作品</h2>
     </header>
-  </section>
 
-  <div class="sec"><b>最新作</b> Latest</div>
+    <div class="strip-wrap">
+      <div class="strip" id="strip" tabindex="0" aria-label="作品">
 
-  <a class="card vcard" href="https://youtu.be/t9NJumW8D1Q">
-    <div class="thumb">
-      <img src="https://img.youtube.com/vi/t9NJumW8D1Q/maxresdefault.jpg" alt="海煙" loading="eager">
-      <video class="loop" src="assets/wk_umikemuri.mp4?v=20260830a" muted loop playsinline preload="none"></video>
-      <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:42</span>
+        <a class="wcard rise" href="https://youtu.be/5y02Xjvpbhg" data-vunit style="--i:0">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/5y02Xjvpbhg/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <video data-src-ja="assets/wk_natsuumi.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <span class="dur num">3:29</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle" data-i18n="w.natsuumi.title">まぶしい方へ</span>
+            <span class="wsub">RINKA</span>
+            <span class="wdesc" data-i18n="w.natsuumi.desc">日本の海で遊ぶ、ひと夏の一日。</span>
+          </span>
+        </a>
+
+        <a class="wcard rise" href="https://youtu.be/GcyCD2BFMDk" data-vunit style="--i:1">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/GcyCD2BFMDk/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <video data-src-ja="assets/wk_mimei.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <span class="vt" aria-hidden="true">未明</span>
+            <span class="dur num">3:01</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle" data-i18n="w.mimei.title">未明</span>
+            <span class="wsub">RINKA</span>
+            <span class="wdesc" data-i18n="w.mimei.desc">夜明けより先に、会いに行く。</span>
+          </span>
+        </a>
+
+        <a class="wcard rise" href="https://youtu.be/c5VEfcGqnIo" data-vunit style="--i:2">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/c5VEfcGqnIo/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <video data-src-ja="assets/wk_rok09.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <span class="dur num">3:12</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle" data-i18n="w.rok09.title">軽音部最後の放課後</span>
+            <span class="wsub">RINKA</span>
+            <span class="wdesc" data-i18n="w.rok09.desc">最後だから、一番でかい音でいこう。</span>
+          </span>
+        </a>
+
+        <a class="wcard rise" href="https://youtu.be/tocAiUy0hVc" data-vunit style="--i:0">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/tocAiUy0hVc/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <video data-src-ja="assets/wk_utakata.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <span class="dur num">3:07</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle" data-i18n="w.utakata.title">泡沫の夏</span>
+            <span class="wsub">RINKA</span>
+            <span class="wdesc" data-i18n="w.utakata.desc">光ってすぐに消える。それでも掴みたくて。</span>
+          </span>
+        </a>
+
+        <a class="wcard rise" href="https://youtu.be/R0uR2UpWyK4" data-vunit style="--i:1">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/R0uR2UpWyK4/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <video data-src-ja="assets/hero_yakusoku.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <span class="vt" aria-hidden="true" data-i18n="w.yks.title">約束</span>
+            <span class="dur num">3:04</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle" data-i18n="w.yks.title">約束</span>
+            <span class="wsub">MV STUDIO</span>
+            <span class="wdesc" data-i18n="w.yks.desc">夏祭りの一夜を描いたショートフィルム。</span>
+          </span>
+        </a>
+
+        <a class="wcard rise" href="https://youtu.be/RGkFilRKopQ" data-vunit style="--i:2">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/RGkFilRKopQ/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <video data-src-ja="assets/wk_engawa.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <span class="dur num">3:18</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle" data-i18n="w.engawa.title">雨の縁側</span>
+            <span class="wsub">RINKA</span>
+            <span class="wdesc" data-i18n="w.engawa.desc">雨音だけが続く縁側で、和装のRINKAと過ごす午後。</span>
+          </span>
+        </a>
+
+        <a class="wcard rise" href="https://youtu.be/JfcypRzaTZ4" data-vunit style="--i:0">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/JfcypRzaTZ4/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <video data-src-ja="assets/wk_pastel.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <span class="dur num">3:01</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle" data-i18n="w.pastel.title">パステルルーム</span>
+            <span class="wsub">RINKA</span>
+            <span class="wdesc" data-i18n="w.pastel.desc">好きなものだけで、できてる部屋から。</span>
+          </span>
+        </a>
+
+        <a class="wcard rise" href="https://youtu.be/PvKTci7Z27g" style="--i:1">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/PvKTci7Z27g/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <span class="dur num">2:32</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle">Heartbeat Signal</span>
+            <span class="wsub">MV STUDIO</span>
+            <span class="wdesc" data-i18n="w.hb.desc">日本語と中国語、2つの言語で歌うMV。</span>
+          </span>
+        </a>
+
+        <a class="wmore rise" href="https://www.youtube.com/channel/UC38mkrVSHqUgvnl0axQVPJg" style="--i:2">
+          <span class="arrow" aria-hidden="true">→</span>
+          <span class="t" data-i18n="w.more">すべて見る</span>
+          <span class="d" data-i18n="w.more.d">YouTube チャンネル</span>
+        </a>
+
+      </div>
     </div>
-    <div class="vbody">
-      <span class="badge">NEW</span>
-      <div class="vtitle">海煙</div>
-      <div class="vdesc">夜明けの海に立つ白い霧。置いてきた言葉と歩く、ひと朝の物語。新しい顔をひとつ作るところから始めた、フルMV。</div>
+    <div class="strip-ctl">
+      <button type="button" id="sprev" aria-label="前へ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></button>
+      <span class="bar" aria-hidden="true"><i id="sbar"></i></span>
+      <span class="num" id="snum" aria-live="polite">01 / 09</span>
+      <button type="button" id="snext" aria-label="次へ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5.5 6.5 6.5-6.5 6.5"/></svg></button>
     </div>
-    <span class="sheen"></span>
-  </a>
 
-  <div class="shelfwrap"><div class="shelf">
+    <div class="sub-head"><h3 data-i18n="prog.head">番組</h3><i aria-hidden="true"></i></div>
+    <div class="rows">
+      <a class="row rise" href="https://youtu.be/ge2S7PQAxZI" data-href-zh="https://youtu.be/Etnjj5HnuWg" style="--i:0">
+        <span class="th"><img src="https://img.youtube.com/vi/ge2S7PQAxZI/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/Etnjj5HnuWg/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"></span>
+        <span class="tx">
+          <span class="t" data-i18n="p.k03.title">この家から、データは出ない</span>
+          <span class="m"><span data-i18n="p.k03.kind">解説</span><span class="num" data-i18n="p.k03.dur">15:42</span></span>
+        </span>
+      </a>
+      <a class="row rise" href="https://youtu.be/h8pIGgVFmLI" data-href-zh="https://youtu.be/_2nsdgYRu0U" style="--i:1">
+        <span class="th"><img src="https://img.youtube.com/vi/h8pIGgVFmLI/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/_2nsdgYRu0U/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"></span>
+        <span class="tx">
+          <span class="t" data-i18n="p.radio.title">データは出ないのに、わたしの失敗は出ていく</span>
+          <span class="m"><span data-i18n="p.radio.kind">RINKAのオフレコ #02</span><span class="num" data-i18n="p.radio.dur">9:45</span></span>
+        </span>
+      </a>
+      <a class="row rise" href="https://youtu.be/6hEolofq4Oc" data-href-zh="https://youtu.be/kJPFVfpHEX4" style="--i:2">
+        <span class="th"><img src="https://img.youtube.com/vi/6hEolofq4Oc/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/kJPFVfpHEX4/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"></span>
+        <span class="tx">
+          <span class="t" data-i18n="p.k02.title">AIが作ったMV、と言われます。半分は、その通りです。</span>
+          <span class="m"><span data-i18n="p.k02.kind">『約束』制作全記録</span><span class="num" data-i18n="p.k02.dur">13:34</span></span>
+        </span>
+      </a>
+    </div>
+    <div style="height:56px"></div>
+  </div>
+</section>
 
-    <a class="card vcard" href="https://youtu.be/ge2S7PQAxZI" data-zh-href="https://youtu.be/Etnjj5HnuWg">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/ge2S7PQAxZI/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/Etnjj5HnuWg/maxresdefault.jpg" alt="この家から、データは出ない" loading="eager">
-          <video class="loop" src="assets/bb_k03.mp4?v=20260829a" data-zh-src="assets/bb_k03_zh.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>15:42</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">この家から、データは出ない</div>
-        <div class="vdesc">MVを生む“工場”の中身。素材も失敗も完成した一本も、なぜ外に出ないのか。案内役のRINKAが15分で説明します。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-    <a class="card vcard" href="https://youtu.be/h8pIGgVFmLI" data-zh-href="https://youtu.be/_2nsdgYRu0U">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/h8pIGgVFmLI/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/_2nsdgYRu0U/maxresdefault.jpg" alt="RINKAのオフレコ #02" loading="eager">
-          <video class="loop" src="assets/bb_radio.mp4?v=20260829a" data-zh-src="assets/bb_radio_zh.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>9:45</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">データは出ないのに、わたしの失敗は出ていく</div>
-        <div class="vdesc">制作の裏話ラジオ『RINKAのオフレコ』第2回。解説動画『この家から、データは出ない』の裏で起きたことを、監督のいないところで話します。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-    <a class="card vcard" href="https://youtu.be/6hEolofq4Oc" data-zh-href="https://youtu.be/kJPFVfpHEX4">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/6hEolofq4Oc/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/kJPFVfpHEX4/maxresdefault.jpg" alt="約束 制作全記録" loading="lazy">
-          <video class="loop" src="assets/bb_k02.mp4?v=20260829a" data-zh-src="assets/bb_k02_zh.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>13:34</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">AIが作ったMV、と言われます。半分は、その通りです。</div>
-        <div class="vdesc">『約束』の制作全記録。697枚から選ばれたRINKAが、ボツになった50本ぶんの失敗を自分で話します。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-  </div></div>
+<!-- ===== III 曙 ===== -->
+<section class="act act-3 anchor" id="howto">
+  <div class="wrap">
+    <header class="act-head">
+      <p class="act-num"><span class="rn" aria-hidden="true">III</span><span class="nm" data-i18n="act3.name">曙</span></p>
+      <h2 data-i18n="act3.label">作り方</h2>
+      <p class="lead" data-i18n="howto.lead">自宅のGPU 1台で、曲づくりから編集まで。工程と失敗を、動画と記事で公開しています。</p>
+    </header>
 
-  <div class="sec"><b>作品</b> Works</div>
-
-  <div class="shelfwrap"><div class="shelf">
-
-    <a class="card vcard" href="https://youtu.be/t9NJumW8D1Q">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/t9NJumW8D1Q/maxresdefault.jpg" alt="海煙" loading="eager">
-        <video class="loop" src="assets/wk_umikemuri.mp4?v=20260830a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:42</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">海煙</div>
-        <div class="vdesc">夜明けの海に立つ白い霧。置いてきた言葉と歩く、ひと朝の物語。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-    <a class="card vcard" href="https://youtu.be/5y02Xjvpbhg">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/5y02Xjvpbhg/maxresdefault.jpg" alt="まぶしい方へ" loading="lazy">
-        <video class="loop" src="assets/wk_natsuumi.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:29</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">まぶしい方へ — RINKA</div>
-        <div class="vdesc">日本の海で遊ぶ、ひと夏の一日。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-    <a class="card vcard" href="https://youtu.be/GcyCD2BFMDk">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/GcyCD2BFMDk/maxresdefault.jpg" alt="未明" loading="lazy">
-        <video class="loop" src="assets/wk_mimei.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:01</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">未明 — RINKA</div>
-        <div class="vdesc">夜明けより先に、会いに行く。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-    <a class="card vcard" href="https://youtu.be/c5VEfcGqnIo">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/c5VEfcGqnIo/maxresdefault.jpg" alt="軽音部最後の放課後" loading="lazy">
-        <video class="loop" src="assets/wk_rok09.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:12</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">軽音部最後の放課後 — RINKA</div>
-        <div class="vdesc">最後だから、一番でかい音でいこう。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-    <a class="card vcard" href="https://youtu.be/tocAiUy0hVc">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/tocAiUy0hVc/maxresdefault.jpg" alt="泡沫の夏" loading="lazy">
-        <video class="loop" src="assets/wk_utakata.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:07</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">泡沫の夏 — RINKA</div>
-        <div class="vdesc">光ってすぐに消える。それでも掴みたくて。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-    <a class="card vcard" href="https://youtu.be/R0uR2UpWyK4">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/R0uR2UpWyK4/maxresdefault.jpg" alt="約束" loading="lazy">
-        <video class="loop" src="assets/hero_yakusoku.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:04</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">約束 — MV STUDIO</div>
-        <div class="vdesc">夏祭りの一夜を描いたショートフィルム。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-
-    <a class="card vcard" href="https://youtu.be/RGkFilRKopQ">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/RGkFilRKopQ/maxresdefault.jpg" alt="雨の縁側" loading="lazy">
-        <video class="loop" src="assets/wk_engawa.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:18</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">雨の縁側 — RINKA</div>
-        <div class="vdesc">雨音だけが続く縁側で、和装のRINKAと過ごす午後。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-    <a class="card vcard" href="https://youtu.be/JfcypRzaTZ4">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/JfcypRzaTZ4/maxresdefault.jpg" alt="パステルルーム" loading="lazy">
-        <video class="loop" src="assets/wk_pastel.mp4?v=20260829a" muted loop playsinline preload="none"></video>
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>3:01</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">パステルルーム — RINKA</div>
-        <div class="vdesc">好きなものだけで、できてる部屋から。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-    <a class="card vcard" href="https://youtu.be/PvKTci7Z27g">
-      <div class="thumb">
-        <img src="https://img.youtube.com/vi/PvKTci7Z27g/maxresdefault.jpg" alt="Heartbeat Signal" loading="lazy">
-        <span class="play"><svg viewBox="0 0 12 12"><path d="M2 1.2v9.6L10.6 6z"/></svg>2:32</span>
-      </div>
-      <div class="vbody">
-        <div class="vtitle">Heartbeat Signal — MV STUDIO</div>
-        <div class="vdesc">日本語と中国語、2つの言語で歌うMV。</div>
-      </div>
-      <span class="sheen"></span>
-    </a>
-
-    <a class="card more" href="https://www.youtube.com/channel/UC38mkrVSHqUgvnl0axQVPJg">
-      <span class="tx">
-        <span class="arrow">→</span>
-        <span class="t">すべて見る</span>
-        <span class="d">YouTube チャンネル</span>
+    <a class="card rise" href="https://youtu.be/KAT8w5_e1Js" data-href-zh="https://youtu.be/Sekow7dcEog" style="--i:0">
+      <span class="win">
+        <img src="https://img.youtube.com/vi/KAT8w5_e1Js/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/Sekow7dcEog/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+        <span class="dur num">10:02</span>
       </span>
-      <span class="sheen"></span>
+      <span class="cbody">
+        <span class="ctitle" data-i18n="h.video.title">AIが自分の作られ方を話す</span>
+        <span class="cdesc" data-i18n="h.video.desc">10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。</span>
+      </span>
     </a>
 
-  </div></div>
+    <div class="rows" style="margin-top:12px">
+      <a class="row txt rise" href="https://zenn.dev/made_linlin/articles/local-ai-mv-full-workflow" style="--i:1">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg></span>
+        <span class="tx">
+          <span class="t s" data-i18n="h.zenn.title">ローカルAIでフルMVを作る全工程</span>
+          <span class="d" data-i18n="h.zenn.desc">無料記事。曲づくりから編集まで、1本を通しで。</span>
+        </span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="row txt rise" href="https://note.com/made_linlin/n/n9702c577133b" style="--i:2">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5h12v15H6z"/><path d="M6 4.5c-1.4 0-2 .8-2 2v11c0 1.2.6 2 2 2"/><path d="M9.5 9h5M9.5 12.5h5"/></svg></span>
+        <span class="tx">
+          <span class="t s" data-i18n="h.note.title">ローカルAI MVスタジオの教科書</span>
+          <span class="d" data-i18n="h.note.desc">76ページの体系教材。工程設計と、失敗パターン19項目。</span>
+        </span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-  <div class="sec"><b>作り方</b> How it's made</div>
-
-  <a class="card tcard fcard" href="https://youtu.be/KAT8w5_e1Js" data-zh-href="https://youtu.be/Sekow7dcEog">
-    <span class="fthumb"><img src="https://img.youtube.com/vi/KAT8w5_e1Js/maxresdefault.jpg" data-zh-src="https://img.youtube.com/vi/Sekow7dcEog/maxresdefault.jpg" alt="" loading="lazy"></span>
-    <span class="frow">
-      <span class="ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="3.5"/><path d="M10.5 9.6l5 2.4-5 2.4z"/></svg></span>
-      <span class="tx">
-        <span class="t">AIが自分の作られ方を話す</span>
-        <span class="d">10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。</span>
-      </span>
-      <span class="arrow">→</span>
-    </span>
-    <span class="sheen"></span>
-  </a>
-
-  <a class="card tcard" href="https://zenn.dev/made_linlin/articles/local-ai-mv-full-workflow">
-    <span class="ico"><svg viewBox="0 0 24 24"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg></span>
-    <span class="tx">
-      <span class="t">ローカルAIでフルMVを作る全工程</span>
-      <span class="d">無料記事。曲づくりから編集まで、1本を通しで。</span>
-    </span>
-    <span class="arrow">→</span>
-    <span class="sheen"></span>
-  </a>
-
-  <a class="card tcard" href="https://note.com/made_linlin/n/n9702c577133b">
-    <span class="ico"><svg viewBox="0 0 24 24"><path d="M6 4.5h12v15H6z"/><path d="M6 4.5c-1.4 0-2 .8-2 2v11c0 1.2.6 2 2 2"/><path d="M9.5 9h5M9.5 12.5h5"/></svg></span>
-    <span class="tx">
-      <span class="t">ローカルAI MVスタジオの教科書</span>
-      <span class="d">76ページの体系教材。工程設計と、失敗パターン19項目。</span>
-    </span>
-    <span class="arrow">→</span>
-    <span class="sheen"></span>
-  </a>
-
-  <div class="sec"><b>その他</b> More</div>
-
-  <a class="card tcard fcard" href="https://ethanjapan.github.io/made-linlin/">
-    <span class="fthumb"><img src="https://ethanjapan.github.io/made-linlin/public/img/asagiri-valley/asagiri_01-1280.jpg" alt="" loading="lazy"></span>
-    <span class="frow">
-      <span class="ico"><svg viewBox="0 0 24 24"><path d="M3.5 8.5h3l1.6-2.4h7.8l1.6 2.4h3v10h-17z"/><circle cx="12" cy="13" r="3.8"/></svg></span>
-      <span class="tx">
-        <span class="t">写真作品集</span>
-        <span class="d">風景と光。森の入口から入る、3Dスクロールの写真集。</span>
-      </span>
-      <span class="arrow">→</span>
-    </span>
-    <span class="sheen"></span>
-  </a>
-
-  <a class="card tcard" href="https://ethanjapan.github.io/japan-3d-guide/">
-    <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 7l5.5-2.5L15 7l5-2.5V17l-5 2.5L9.5 17 4 19.5z"/><path d="M9.5 4.5V17M15 7v12.5"/></svg></span>
-    <span class="tx">
-      <span class="t">日本3D観光ガイド</span>
-      <span class="d">47都道府県・235景点を3D地図で。5言語対応。</span>
-    </span>
-    <span class="arrow">→</span>
-    <span class="sheen"></span>
-  </a>
-
-  <a class="card tcard" href="https://ethanjapan.github.io/taiwan-3d-guide/">
-    <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 7l5.5-2.5L15 7l5-2.5V17l-5 2.5L9.5 17 4 19.5z"/><path d="M9.5 4.5V17M15 7v12.5"/></svg></span>
-    <span class="tx">
-      <span class="t">台湾3D観光ガイド</span>
-      <span class="d">22県市を3D地図と旅程で。5言語対応。</span>
-    </span>
-    <span class="arrow">→</span>
-    <span class="sheen"></span>
-  </a>
-
-  <a class="card tcard" href="https://ethanjapan.github.io/mv-studio-site/">
-    <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.2 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.2-4-8.5s1.4-6.2 4-8.5z"/></svg></span>
-    <span class="tx">
-      <span class="t">MV STUDIO について</span>
-      <span class="d">話すだけで、MVができる。アプリの紹介サイト。</span>
-    </span>
-    <span class="arrow">→</span>
-    <span class="sheen"></span>
-  </a>
-
-  <a class="card tcard" href="https://ig.me/m/made_linlin">
-    <span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r="1" fill="#bcd2ff" stroke="none"/></svg></span>
-    <span class="tx">
-      <span class="t">制作者に連絡する</span>
-      <span class="d">Instagram のDMへ。</span>
-    </span>
-    <span class="arrow">→</span>
-    <span class="sheen"></span>
-  </a>
-
-  <footer>
-    <span class="sig">Created by @made_linlin</span><br>
-    映像・楽曲・キャラクターはすべてオリジナルの創作物です。<br>
-    制作に生成AIを使用しています。
-  </footer>
-
+<!-- ===== 転換帯: 夜 → 朝(文字なし)+対画 ===== -->
+<section class="dawn" aria-label="約束と海煙">
+  <div class="wrap">
+    <div class="pair" data-vunit>
+      <a href="https://youtu.be/R0uR2UpWyK4" aria-label="約束">
+        <img src="assets/lk_pair_yakusoku.jpg?v=20260905a" width="720" height="480" alt="" loading="lazy" decoding="async">
+        <video data-src-ja="assets/lk_pair_yakusoku.mp4?v=20260905a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+      </a>
+      <a href="https://youtu.be/t9NJumW8D1Q" aria-label="海煙">
+        <img src="assets/lk_pair_umikemuri.jpg?v=20260905a" width="720" height="480" alt="" loading="lazy" decoding="async">
+        <video data-src-ja="assets/lk_pair_umikemuri.mp4?v=20260905a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+      </a>
+    </div>
+  </div>
+</section>
+<div class="dawn-cap">
+  <div class="wrap">
+    <p class="cap" data-i18n="pair.cap">祭りの夜から、海の朝へ。</p>
+    <div class="pair-links">
+      <a href="https://youtu.be/R0uR2UpWyK4" data-i18n="pair.yks">約束 — 夏祭りの夜</a>
+      <a href="https://youtu.be/t9NJumW8D1Q" data-i18n="pair.umk">海煙 — 夜明けの海</a>
+    </div>
+  </div>
 </div>
+
+<!-- ===== IV 朝 ===== -->
+<section class="act act-4 anchor" id="more">
+  <div class="wrap">
+    <header class="act-head">
+      <p class="act-num"><span class="rn" aria-hidden="true">IV</span><span class="nm" data-i18n="act4.name">朝</span></p>
+      <h2 data-i18n="act4.label">その他</h2>
+    </header>
+
+    <div class="bento">
+      <a class="tile wide rise" href="https://ethanjapan.github.io/made-linlin/" style="--i:0">
+        <span class="img"><img src="assets/lk_bento_photo.jpg?v=20260905a" width="800" height="400" alt="" loading="lazy" decoding="async"></span>
+        <span class="tx"><span class="t" data-i18n="b.photo">写真作品集</span><span class="d" data-i18n="b.photo.d">風景と光の記録。</span></span>
+      </a>
+      <a class="tile rise" href="https://ethanjapan.github.io/japan-3d-guide/" style="--i:1">
+        <span class="img"><img src="assets/lk_bento_japan.jpg?v=20260905a" width="640" height="480" alt="" loading="lazy" decoding="async"></span>
+        <span class="tx"><span class="t" data-i18n="b.jp">日本を旅する</span><span class="d" data-i18n="b.guide">3D観光ガイド</span></span>
+      </a>
+      <a class="tile rise" href="https://ethanjapan.github.io/taiwan-3d-guide/" style="--i:2">
+        <span class="img"><img src="assets/lk_bento_taiwan.jpg?v=20260905a" width="640" height="480" alt="" loading="lazy" decoding="async"></span>
+        <span class="tx"><span class="t" data-i18n="b.tw">台湾を旅する</span><span class="d" data-i18n="b.guide">3D観光ガイド</span></span>
+      </a>
+    </div>
+    <div class="rows">
+      <a class="row txt rise" href="https://ethanjapan.github.io/mv-studio-site/" style="--i:0">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.2 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.2-4-8.5s1.4-6.2 4-8.5z"/></svg></span>
+        <span class="tx"><span class="t s" data-i18n="b.mvs">MV STUDIO について</span><span class="d" data-i18n="b.mvs.d">話すだけで、MVができる。アプリの紹介サイト。</span></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="row txt rise" href="https://ig.me/m/made_linlin" style="--i:1">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r="1" fill="#7B572C" stroke="none"/></svg></span>
+        <span class="tx"><span class="t s" data-i18n="b.contact">制作者に連絡する</span><span class="d" data-i18n="b.contact.d">Instagram のDMへ。</span></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <nav class="socials" aria-label="SNS">
+      <a href="https://www.youtube.com/channel/UC38mkrVSHqUgvnl0axQVPJg"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="3.5"/><path d="M10.5 9.6l5 2.4-5 2.4z"/></svg>YouTube</a>
+      <a href="https://www.instagram.com/made_linlin/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r="1" fill="#7B572C" stroke="none"/></svg>Instagram</a>
+      <a href="https://note.com/made_linlin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5h12v15H6z"/><path d="M6 4.5c-1.4 0-2 .8-2 2v11c0 1.2.6 2 2 2"/><path d="M9.5 9h5M9.5 12.5h5"/></svg>note</a>
+      <a href="https://zenn.dev/made_linlin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg>Zenn</a>
+    </nav>
+    <p class="sig">Created by @made_linlin</p>
+    <p class="disc"><span data-i18n="f.d1">映像・楽曲・キャラクターはすべてオリジナルの創作物です。</span><br><span data-i18n="f.d2">制作に生成AIを使用しています。</span></p>
+    <p class="copy num">© <span id="year">2026</span> made_linlin</p>
+  </div>
+</footer>
 
 <script>
-/* ---------- 星空: 軽量canvas(数百点・ゆらぎ) ---------- */
-(function(){
-  const c=document.getElementById('sky'), x=c.getContext('2d');
-  let W,H,stars=[],raf;
-  const DPR=Math.min(devicePixelRatio||1,2);
-  const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function size(){
-    W=innerWidth;H=innerHeight;
-    c.width=W*DPR;c.height=H*DPR;
-    c.style.width=W+'px';c.style.height=H+'px';
-    x.setTransform(DPR,0,0,DPR,0,0);
-    const N=Math.min(240,Math.floor(W*H/6200));
-    stars=Array.from({length:N},()=>({
-      x:Math.random()*W, y:Math.random()*H*0.92,
-      r:Math.random()<0.86?Math.random()*0.9+0.35:Math.random()*1.5+1.0,
-      p:Math.random()*Math.PI*2,          // twinkle位相
-      s:0.4+Math.random()*1.1,            // twinkle速度
-      b:0.35+Math.random()*0.5,           // 基礎輝度
-      tint:Math.random()
-    }));
-  }
-  function frame(t){
-    x.clearRect(0,0,W,H);
-    for(const st of stars){
-      const tw=REDUCED?1:(0.72+0.28*Math.sin(st.p+t*0.001*st.s));
-      const a=st.b*tw*(1-Math.max(0,(st.y/H-0.6))*1.4); // 地平近くはフェード
-      if(a<=0.02) continue;
-      x.globalAlpha=Math.min(a,0.9);
-      x.fillStyle=st.tint<0.12?'#cfe8ff':st.tint<0.2?'#ffe9f4':'#eef4ff';
-      x.beginPath();x.arc(st.x,st.y,st.r,0,6.2832);x.fill();
-      if(st.r>1.15){ // 大きい星に十字グレア
-        x.globalAlpha=Math.min(a*0.35,0.35);
-        x.fillRect(st.x-st.r*3.2,st.y-0.4,st.r*6.4,0.8);
-        x.fillRect(st.x-0.4,st.y-st.r*3.2,0.8,st.r*6.4);
-      }
-    }
-    x.globalAlpha=1;
-    if(!REDUCED) raf=requestAnimationFrame(frame);
-  }
-  addEventListener('resize',()=>{cancelAnimationFrame(raf);size();raf=requestAnimationFrame(frame);},{passive:true});
-  size();raf=requestAnimationFrame(frame);
-  if(REDUCED) frame(0);
-})();
+/* ============================================================
+   1) 文言(日本語 / 繁體中文・台灣)。要素キー方式。
+   ============================================================ */
+var T={
+  "act1.name":["深夜","深夜"],"act2.name":["薄明","薄明"],"act3.name":["曙","破曉"],"act4.name":["朝","清晨"],
+  "act2.label":["作品","作品"],"act3.label":["作り方","製作方法"],"act4.label":["その他","其他"],
+  "nav.latest":["最新作","最新作品"],"nav.works":["作品","作品"],"nav.howto":["作り方","製作方法"],"nav.more":["その他","其他"],
+  "hero.statement":["夜と光を、音楽のある物語に。","把夜色與光，寫成有音樂的故事。"],
+  "hero.sub":["自宅から届ける、オリジナルMV。","在家創作，與你分享原創音樂錄影帶。"],
+  "cta.latest":["最新作『海煙』を観る","觀看最新作品《海煙》"],
+  "cta.works":["作品一覧","作品一覽"],"cta.howto":["作り方","製作方法"],
+  "meta.fullmv":["フルMV","完整MV"],
+  "dur.umk":["3:42","3:42"],
+  "w.umk.title":["海煙","海煙"],
+  "w.umk.desc":["夜明けの海に立つ白い霧。置いてきた言葉と歩く、ひと朝の物語。新しい顔をひとつ作るところから始めた、フルMV。","黎明海面上升起的白霧。與留下的話語一起走過的，一個早晨的故事。從做出一張新的臉開始的完整MV。"],
+  "w.natsuumi.title":["まぶしい方へ","往最亮的那邊"],"w.natsuumi.desc":["日本の海で遊ぶ、ひと夏の一日。","在日本的海邊玩耍的，一整個夏天的一日。"],
+  "w.mimei.title":["未明","未明"],"w.mimei.desc":["夜明けより先に、会いに行く。","比天亮更早，去見你。"],
+  "w.rok09.title":["軽音部最後の放課後","輕音部最後的放學後"],"w.rok09.desc":["最後だから、一番でかい音でいこう。","因為是最後一次，就用最大的聲音吧。"],
+  "w.utakata.title":["泡沫の夏","泡沫之夏"],"w.utakata.desc":["光ってすぐに消える。それでも掴みたくて。","一閃，就消失了。即使如此，還是想抓住。"],
+  "w.yks.title":["約束","約定"],"w.yks.desc":["夏祭りの一夜を描いたショートフィルム。","描繪夏日祭典一夜的短片。"],
+  "w.engawa.title":["雨の縁側","雨的簷廊"],"w.engawa.desc":["雨音だけが続く縁側で、和装のRINKAと過ごす午後。","只有雨聲的簷廊上，和穿著和服的RINKA一起度過的午後。"],
+  "w.pastel.title":["パステルルーム","粉彩房間"],"w.pastel.desc":["好きなものだけで、できてる部屋から。","從一個只用喜歡的東西堆起來的房間開始。"],
+  "w.hb.desc":["日本語と中国語、2つの言語で歌うMV。","用日文和中文兩種語言演唱的MV。"],
+  "w.more":["すべて見る","全部觀看"],"w.more.d":["YouTube チャンネル","YouTube 頻道"],
+  "prog.head":["番組","節目"],
+  "p.k03.title":["この家から、データは出ない","資料，不出這個家"],"p.k03.kind":["解説","解說"],"p.k03.dur":["15:42","13:47"],
+  "p.radio.title":["データは出ないのに、わたしの失敗は出ていく","資料不出門，我的失誤天天出門"],"p.radio.kind":["RINKAのオフレコ #02","RINKA的悄悄話 #02"],"p.radio.dur":["9:45","9:45"],
+  "p.k02.title":["AIが作ったMV、と言われます。半分は、その通りです。","有人說這是AI做的MV。有一半，確實如此。"],"p.k02.kind":["『約束』制作全記録","《約定》完整製作記錄"],"p.k02.dur":["13:34","13:16"],
+  "howto.lead":["自宅のGPU 1台で、曲づくりから編集まで。工程と失敗を、動画と記事で公開しています。","用家裡的一張顯卡，從作曲到剪輯。把過程與失敗，用影片和文章公開。"],
+  "h.video.title":["AIが自分の作られ方を話す","AI親自說自己是怎麼做出來的"],"h.video.desc":["10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。","10分鐘的解說影片。六支MV，全部在自家電腦本地生成。"],
+  "h.zenn.title":["ローカルAIでフルMVを作る全工程","用本地AI製作完整MV的全部流程"],"h.zenn.desc":["無料記事。曲づくりから編集まで、1本を通しで。","免費文章。從作曲到剪輯，完整走一遍。"],
+  "h.note.title":["ローカルAI MVスタジオの教科書","本地AI MV工作室教科書"],"h.note.desc":["76ページの体系教材。工程設計と、失敗パターン19項目。","76頁的體系化教材。工程設計，與19項失敗模式。"],
+  "pair.cap":["祭りの夜から、海の朝へ。","從祭典的夜，到海的早晨。"],
+  "pair.yks":["約束 — 夏祭りの夜","約定 — 夏日祭典的夜"],"pair.umk":["海煙 — 夜明けの海","海煙 — 黎明的海"],
+  "b.photo":["写真作品集","攝影作品集"],"b.photo.d":["風景と光の記録。","風景與光的紀錄。"],
+  "b.jp":["日本を旅する","走訪日本"],"b.tw":["台湾を旅する","走訪台灣"],"b.guide":["3D観光ガイド","3D觀光導覽"],
+  "b.mvs":["MV STUDIO について","關於 MV STUDIO"],"b.mvs.d":["話すだけで、MVができる。アプリの紹介サイト。","只要開口說，MV就完成。應用程式介紹網站。"],
+  "b.contact":["制作者に連絡する","聯絡製作者"],"b.contact.d":["Instagram のDMへ。","前往 Instagram 私訊。"],
+  "f.d1":["映像・楽曲・キャラクターはすべてオリジナルの創作物です。","影像、樂曲、角色，皆為原創作品。"],
+  "f.d2":["制作に生成AIを使用しています。","製作過程使用生成式AI。"]
+};
+var A={ /* aria-label */
+  "prev":["前へ","上一個"],"next":["次へ","下一個"],"chips":["ページ内の移動","頁內導覽"],"strip":["作品","作品"]
+};
 
-/* ---------- カードの段差入場 ---------- */
-(function(){
-  const cards=[...document.querySelectorAll('a.card')];
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-    cards.forEach(c=>c.classList.add('in'));return;
-  }
-  const io=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(e.isIntersecting){
-        const i=cards.indexOf(e.target);
-        setTimeout(()=>e.target.classList.add('in'), Math.min(i*70,420));
-        io.unobserve(e.target);
-      }
+/* ============================================================
+   2) 動画の再生管理: ページ全体で再生権は1つ。URLは再生対象だけに設定。
+      低モーション / 省データ / 回線不明で保守的な場合は動画に触らない。
+   ============================================================ */
+var LKV=(function(){
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var save=false; try{ save=!!(navigator.connection&&navigator.connection.saveData); }catch(e){}
+  var allow=!reduced&&!save;
+  var zh=document.documentElement.classList.contains('zh');
+  var units=Array.prototype.slice.call(document.querySelectorAll('[data-vunit]'));
+  var active=null, ratios=new Map();
+  function srcOf(v){ return (zh&&v.getAttribute('data-src-zh'))||v.getAttribute('data-src-ja'); }
+  function vids(u){ return Array.prototype.slice.call(u.querySelectorAll('video')); }
+  function stop(u){ if(!u) return; vids(u).forEach(function(v){ try{v.pause();}catch(e){} v.classList.remove('on'); }); if(active===u) active=null; }
+  function start(u){
+    if(!allow||!u||active===u) return;
+    stop(active); active=u;
+    vids(u).forEach(function(v){
+      var s=srcOf(v); if(!s) return;
+      if(v.getAttribute('src')!==s){ v.setAttribute('src',s); }
+      var onplay=function(){ v.classList.add('on'); };
+      v.addEventListener('playing',onplay,{once:true});
+      var p=v.play(); if(p&&p.catch){ p.catch(function(){ v.classList.remove('on'); }); }
     });
-  },{threshold:0.08});
-  cards.forEach(c=>io.observe(c));
-})();
-
-/* ---------- 作品ループの再生制御 ----------
-   正本= 本体サイト js/main.js の works/shows 動画(preload="none" + IntersectionObserver
-   で画面内だけ再生)。差分= ①静止画の上へフェードインさせる .on ②省データ/低モーション
-   設定では動画を一切読まない(静止画のまま=見た目は成立する)。 */
-(function(){
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let saveData=false;
-  try{ saveData = !!(navigator.connection && navigator.connection.saveData); }catch(e){}
-  if(reduced || saveData) return;                 // 静止画のまま(動画は1バイトも取りに行かない)
-
-  const vids=[...document.querySelectorAll('video.loop')];
-  if(!vids.length) return;
-  const io=new IntersectionObserver(es=>es.forEach(en=>{
-    const v=en.target;
-    if(en.isIntersecting){
-      v.play().then(()=>v.classList.add('on')).catch(()=>{});   // 拒否されたら静止画のまま
-    }else{
-      v.pause(); v.classList.remove('on');
-    }
-  }),{threshold:.25});
-  vids.forEach(v=>io.observe(v));
-})();
-
-/* ---------- サムネのフォールバック(maxres→hqdefault) ---------- */
-document.querySelectorAll('.thumb img, .fthumb img').forEach(img=>{
-  img.addEventListener('error',()=>{
-    if(!img.dataset.fb){img.dataset.fb=1;img.src=img.src.replace('maxresdefault','hqdefault');}
-  });
-  /* maxresが無い動画は120x90のグレー枠を返すことがある→実寸で検知 */
-  img.addEventListener('load',()=>{
-    if(img.naturalWidth<=120 && !img.dataset.fb){
-      img.dataset.fb=1;img.src=img.src.replace('maxresdefault','hqdefault');
-    }
-  });
-});
-
-/* ---------- i18n: 日本語⇔繁體中文(台灣語彙)。本体サイトと同じテキストノード置換 ---------- */
-(function(){
-  const M={
-    "自宅のGPU 1台で、ミュージックビデオを作っています。":"用家裡的一張顯卡，做音樂錄影帶。",
-    "最新作":"最新作品","作品":"作品","作り方":"製作方法","その他":"其他",
-    "写真作品集":"攝影作品集",
-    "風景と光。森の入口から入る、3Dスクロールの写真集。":"風景與光。從森林的入口進入的3D捲動攝影集。",
-    "最後だから、一番でかい音でいこう。三年分の音を最後にぜんぶ鳴らした、放課後のフルMV。":"因為是最後一次，就用最大的聲音吧。把三年份的聲音，在最後全部鳴響的放學後完整MV。",
-    "光ってすぐに消える。それでも掴みたくて。":"一閃，就消失了。即使如此，還是想抓住。",
-    "夏祭りの一夜を描いたショートフィルム。":"描繪夏日祭典一夜的短片。",
-    "すべて見る":"全部觀看","YouTube チャンネル":"YouTube 頻道",
-    "ローカルAIでフルMVを作る全工程":"用本地AI製作完整MV的全部流程",
-    "無料記事。曲づくりから編集まで、1本を通しで。":"免費文章。從作曲到剪輯，完整走一遍。",
-    "ローカルAI MVスタジオの教科書":"本地AI MV工作室教科書",
-    "76ページの体系教材。工程設計と、失敗パターン19項目。":"76頁的體系化教材。工程設計，與19項失敗模式。",
-    "軽音部最後の放課後 — RINKA":"輕音部最後的放學後 — RINKA",
-    "泡沫の夏 — RINKA":"泡沫之夏 — RINKA",
-    "約束 — MV STUDIO":"約定 — MV STUDIO",
-    "まぶしい方へ — RINKA":"往最亮的那邊 — RINKA",
-    "AIが作ったMV、と言われます。半分は、その通りです。":"有人說這是AI做的MV。有一半，確實如此。",
-    "『約束』の制作全記録。697枚から選ばれたRINKAが、ボツになった50本ぶんの失敗を自分で話します。":"《約定》的完整製作記錄。從697張候選中被選出來的RINKA，親自講述被淘汰的50支影片裡的失敗。",
-    "日本の海で遊ぶ、ひと夏の一日。":"在日本的海邊玩耍的，一整個夏天的一日。",
-    "未明 — RINKA":"未明 — RINKA",
-    "夜明けより先に、会いに行く。":"比天亮更早，去見你。",
-    "AIが自分の作られ方を話す":"AI親自說自己是怎麼做出來的",
-    "データは出ないのに、わたしの失敗は出ていく":"資料不出門，我的失誤天天出門",
-    "制作の裏話ラジオ『RINKAのオフレコ』第2回。解説動画『この家から、データは出ない』の裏で起きたことを、監督のいないところで話します。":"幕後閒聊廣播《RINKA的悄悄話》第二集。解說影片《資料，不出這個家》背後發生的事，趁導演不在的時候講給你聽。",
-    "夜明けの海に立つ白い霧。置いてきた言葉と歩く、ひと朝の物語。新しい顔をひとつ作るところから始めた、フルMV。":"黎明海面上升起的白霧。與留下的話語一起走過的，一個早晨的故事。從做出一張新的臉開始的完整MV。",
-    "夜明けの海に立つ白い霧。置いてきた言葉と歩く、ひと朝の物語。":"黎明海面上升起的白霧。與留下的話語一起走過的，一個早晨的故事。",
-    "この家から、データは出ない":"資料，不出這個家",
-    "MVを生む“工場”の中身。素材も失敗も完成した一本も、なぜ外に出ないのか。案内役のRINKAが15分で説明します。":"生出MV的那座「工廠」裡面長什麼樣。素材、失敗、完成的那一支，為什麼都不會流到外面。由帶路的RINKA用十五分鐘說給你聽。",
-    "15:42":"13:47",
-    "8:14":"7:29",
-    "13:34":"13:16",
-    "10分の解説動画。6本のMVを、全部自宅のPCでローカル生成。":"10分鐘的解說影片。六支MV，全部在自家電腦本地生成。",
-    "日本の海で遊ぶ、ひと夏の一日。36カットで追いかけた、まぶしい方へ走り出す夏のフルMV。":"在日本的海邊玩耍的一整天。用36個鏡頭追著跑，往最亮的那邊奔去的夏天完整MV。",
-    "最後だから、一番でかい音でいこう。":"因為是最後一次，就用最大的聲音吧。",
-    "雨の縁側 — RINKA":"雨的簷廊 — RINKA",
-    "雨音だけが続く縁側で、和装のRINKAと過ごす午後。":"只有雨聲的簷廊上，和穿著和服的RINKA一起度過的午後。",
-    "パステルルーム — RINKA":"粉彩房間 — RINKA",
-    "好きなものだけで、できてる部屋から。":"從一個只用喜歡的東西堆起來的房間開始。",
-    "Heartbeat Signal — MV STUDIO":"Heartbeat Signal — MV STUDIO",
-    "日本語と中国語、2つの言語で歌うMV。":"用日文和中文兩種語言演唱的MV。",
-    "MV STUDIO について":"關於 MV STUDIO",
-    "日本3D観光ガイド":"日本3D觀光導覽","47都道府県・235景点を3D地図で。5言語対応。":"47都道府縣、235個景點的3D地圖。支援5種語言。",
-    "台湾3D観光ガイド":"台灣3D旅遊導覽","22県市を3D地図と旅程で。5言語対応。":"22縣市的3D地圖與行程。支援5種語言。",
-    "話すだけで、MVができる。アプリの紹介サイト。":"只要開口說，MV就完成。應用程式介紹網站。",
-    "制作者に連絡する":"聯絡製作者","Instagram のDMへ。":"前往 Instagram 私訊。",
-    "映像・楽曲・キャラクターはすべてオリジナルの創作物です。":"影像、樂曲、角色，皆為原創作品。",
-    "制作に生成AIを使用しています。":"製作過程使用生成式AI。"
-  };
-  const R={};for(const k in M)R[M[k]]=k;
-  /* 日本語モードでも中国語のまま見せる併記行(.lead .zh)は置換の対象外にする。
-     除外しないと 中文→日本語 に戻した時に逆引きが効いて、併記行が日本語に化けて
-     同じ文が2行並ぶ(2026-08-29 に公開ページで実測・再現手順= 中文→日本語)。 */
-  function walk(map){
-    const it=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
-      acceptNode(n){
-        return n.parentElement && n.parentElement.closest('[data-i18n-skip]')
-          ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
-      }
-    });
-    let n;while(n=it.nextNode()){
-      const t=n.nodeValue.trim();
-      if(map[t])n.nodeValue=n.nodeValue.replace(t,map[t]);
-    }
   }
-  const bj=document.getElementById('lj'),bz=document.getElementById('lz');
+  function pick(){
+    if(document.hidden){ stop(active); return; }
+    var best=null,bd=1e9,vh=window.innerHeight||1;
+    units.forEach(function(u){
+      var r=ratios.get(u)||0; if(r<.6) return;
+      var b=u.getBoundingClientRect(); var d=Math.abs((b.top+b.bottom)/2 - vh/2);
+      if(d<bd){ bd=d; best=u; }
+    });
+    if(best!==active){ stop(active); if(best) start(best); }
+  }
+  if(allow&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ ratios.set(e.target,e.intersectionRatio); }); pick(); },
+      {threshold:[0,.2,.4,.6,.8,1]});
+    units.forEach(function(u){ io.observe(u); });
+    document.addEventListener('visibilitychange',function(){ if(document.hidden) stop(active); else pick(); });
+    window.addEventListener('pagehide',function(){ stop(active); });
+    window.addEventListener('pageshow',pick);
+  }
+  return { setLang:function(z){ zh=z; var u=active; if(u){ stop(u); start(u); } } };
+})();
+
+/* ============================================================
+   3) 言語切替(要素キー方式)。動画には触らず、文言・画像・リンク・aria だけ更新。
+   ============================================================ */
+(function(){
+  var h=document.documentElement, bj=document.getElementById('lj'), bz=document.getElementById('lz');
+  function ensureFonts(zh){
+    var id='lk-fonts-'+(zh?'zh':'ja'); if(document.getElementById(id)) return;
+    var fam=zh?'family=Noto+Serif+TC:wght@600&family=Noto+Sans+TC:wght@400;500':'family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500';
+    var l=document.createElement('link'); l.rel='stylesheet'; l.id=id;
+    l.href='https://fonts.googleapis.com/css2?'+fam+'&display=swap'; document.head.appendChild(l);
+  }
   function apply(zh,save){
-    document.body.classList.toggle('lang-zh',zh);
-    walk(zh?M:R);
-    document.querySelectorAll('[data-zh-only]').forEach(el=>{el.style.display=zh?'':'none'});
-    document.querySelectorAll('img[data-zh-src]').forEach(im=>{
-      if(!im.dataset.jaSrc)im.dataset.jaSrc=im.getAttribute('src');
-      im.setAttribute('src', zh ? im.dataset.zhSrc : im.dataset.jaSrc);
+    var i=zh?1:0;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ var k=el.getAttribute('data-i18n'); if(T[k]) el.textContent=T[k][i]; });
+    document.querySelectorAll('img[data-src-zh]').forEach(function(im){
+      if(!im.getAttribute('data-src-ja')) im.setAttribute('data-src-ja',im.getAttribute('src'));
+      im.setAttribute('src', zh?im.getAttribute('data-src-zh'):im.getAttribute('data-src-ja'));
     });
-    document.querySelectorAll('video[data-zh-src]').forEach(v=>{
-      if(!v.dataset.jaSrc)v.dataset.jaSrc=v.getAttribute('src');
-      const next = zh ? v.dataset.zhSrc : v.dataset.jaSrc;
-      if(v.getAttribute('src')===next) return;
-      const wasOn=v.classList.contains('on');
-      v.setAttribute('src',next); v.load();
-      if(wasOn) v.play().catch(()=>{});          // 再生中だった枠は切替後もそのまま流す
+    document.querySelectorAll('a[data-href-zh]').forEach(function(a){
+      if(!a.getAttribute('data-href-ja')) a.setAttribute('data-href-ja',a.getAttribute('href'));
+      a.setAttribute('href', zh?a.getAttribute('data-href-zh'):a.getAttribute('data-href-ja'));
     });
-    document.querySelectorAll('a[data-zh-href]').forEach(a=>{
-      if(!a.dataset.jaHref)a.dataset.jaHref=a.getAttribute('href');
-      a.setAttribute('href', zh ? a.dataset.zhHref : a.dataset.jaHref);
-    });
-    bj.classList.toggle('on',!zh);bz.classList.toggle('on',zh);
-    document.documentElement.lang=zh?'zh-Hant-TW':'ja';
-    if(save)try{localStorage.setItem('ml_lang',zh?'zh':'ja')}catch(e){}
+    var p=document.getElementById('sprev'), n=document.getElementById('snext');
+    if(p) p.setAttribute('aria-label',A.prev[i]); if(n) n.setAttribute('aria-label',A.next[i]);
+    var ch=document.querySelector('.chips'); if(ch) ch.setAttribute('aria-label',A.chips[i]);
+    h.lang = zh?'zh-Hant-TW':'ja'; h.classList.toggle('zh',zh);
+    bj.setAttribute('aria-pressed',String(!zh)); bz.setAttribute('aria-pressed',String(zh));
+    document.title = 'made_linlin — MV STUDIO';
+    ensureFonts(zh); LKV.setLang(zh);
+    if(save){ try{ localStorage.setItem('ml_lang',zh?'zh':'ja'); }catch(e){} }
   }
-  bj.addEventListener('click',()=>apply(false,true));
-  bz.addEventListener('click',()=>apply(true,true));
-  let pref=null;try{pref=localStorage.getItem('ml_lang')}catch(e){}
-  if(pref==='zh')apply(true,false);
-  else if(!pref&&/^zh/i.test(navigator.language||''))apply(true,false);
+  bj.addEventListener('click',function(){ apply(false,true); });
+  bz.addEventListener('click',function(){ apply(true,true); });
+  if(h.classList.contains('zh')) apply(true,false);
 })();
+
+/* ============================================================
+   4) 作品棚の送り(位置表示・前後ボタン)
+   ============================================================ */
+(function(){
+  var s=document.getElementById('strip'); if(!s) return;
+  var cards=Array.prototype.slice.call(s.children), n=cards.length;
+  var bar=document.getElementById('sbar'), num=document.getElementById('snum');
+  var prev=document.getElementById('sprev'), next=document.getElementById('snext');
+  function idx(){
+    var x=s.scrollLeft+8, k=0;
+    for(var i=0;i<n;i++){ if(cards[i].offsetLeft - cards[0].offsetLeft <= x) k=i; }
+    return k;
+  }
+  function pad(v){ return (v<10?'0':'')+v; }
+  function upd(){
+    var k=idx();
+    if(bar){ bar.style.width=(100/n)+'%'; bar.style.transform='translateX('+(k*100)+'%)'; }
+    if(num) num.textContent=pad(k+1)+' / '+pad(n);
+    if(prev) prev.disabled=(k<=0); if(next) next.disabled=(k>=n-1);
+  }
+  function go(d){
+    var k=Math.max(0,Math.min(n-1,idx()+d));
+    s.scrollTo({left:cards[k].offsetLeft - cards[0].offsetLeft, behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
+  var t; s.addEventListener('scroll',function(){ cancelAnimationFrame(t); t=requestAnimationFrame(upd); },{passive:true});
+  if(prev) prev.addEventListener('click',function(){ go(-1); });
+  if(next) next.addEventListener('click',function(){ go(1); });
+  window.addEventListener('resize',upd,{passive:true});
+  upd();
+})();
+
+/* ============================================================
+   5) 入場(短く・1度だけ)。JSが無い環境ではこの処理自体が無いので、最初から見える。
+   ============================================================ */
+(function(){
+  var els=Array.prototype.slice.call(document.querySelectorAll('.rise'));
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.05,rootMargin:'0px 0px 40px 0px'});
+  els.forEach(function(e){ io.observe(e); });
+  /* 5秒以内に見えなかったものも表示する保険 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('in'); }); },5000);
+})();
+document.getElementById('year').textContent=String(new Date().getFullYear());
 </script>
 </body>
 </html>
