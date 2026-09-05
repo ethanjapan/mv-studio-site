@@ -717,6 +717,21 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 .t-zh [data-n="2"]{-webkit-mask-image:url("assets/lk_tw_num2.png?v=20260905d");mask-image:url("assets/lk_tw_num2.png?v=20260905d")}
 .t-zh [data-n="3"]{-webkit-mask-image:url("assets/lk_tw_num3.png?v=20260905d");mask-image:url("assets/lk_tw_num3.png?v=20260905d")}
 .t-zh [data-n="4"]{-webkit-mask-image:url("assets/lk_tw_num4.png?v=20260905d");mask-image:url("assets/lk_tw_num4.png?v=20260905d")}
+
+/* ---- 動くプレートと帯(ループ動画は静止画の上へフェード) ---- */
+.plate video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0;transition:opacity .8s ease}
+.plate video.on{opacity:1}
+.t-ja .plate video{object-position:center 0}
+.kv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.kv video.on{opacity:1}
+.kv::after{z-index:2}
+/* ---- 書の幕名と縦題(日/台)。文字は読み上げ用に残す ---- */
+.nmcal,.vtcal{display:none}
+.t-ja .act-num .nm,.t-zh .act-num .nm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.t-ja .nmcal,.t-zh .nmcal{display:block;height:46px;width:auto;align-self:center}
+.t-ja .film .vt b,.t-zh .film .vt b{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.t-ja .vtcal,.t-zh .vtcal{display:block;width:clamp(44px,12vw,54px);height:auto;filter:drop-shadow(0 2px 14px rgba(0,0,0,.65)) drop-shadow(0 0 2px rgba(0,0,0,.4))}
+.t-ja .film .vt i,.t-zh .film .vt i{height:calc(clamp(44px,12vw,54px) * 1.8)}
 /* ---- 明るいテーマ共通 ---- */
 .t-ja :focus-visible{outline-color:#405B70} .t-zh :focus-visible{outline-color:#55705D}
 .t-ja ::selection{background:rgba(64,91,112,.20)} .t-zh ::selection{background:rgba(85,112,93,.20)}
@@ -738,15 +753,16 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <main>
 
 <!-- ===== I 深夜: タイトルバック ===== -->
-<section class="act act-1 anchor" id="top">
-  <div class="plate" aria-hidden="true"><img src="assets/lk_hero_plate.jpg?v=20260905b" data-t-en="assets/lk_hero_plate.jpg?v=20260905b" data-t-ja="assets/lk_ja_plate.jpg?v=20260905c" data-t-zh="assets/lk_tw_plate.jpg?v=20260905c" width="780" height="1170" alt="" fetchpriority="high" decoding="async"></div>
+<section class="act act-1 anchor" id="top" data-vunit>
+  <div class="plate" aria-hidden="true"><img src="assets/lk_hero_plate.jpg?v=20260905b" data-t-en="assets/lk_hero_plate.jpg?v=20260905b" data-t-ja="assets/lk_ja_plate.jpg?v=20260905c" data-t-zh="assets/lk_tw_plate.jpg?v=20260905c" width="780" height="1170" alt="" fetchpriority="high" decoding="async">
+    <video data-themed data-src-en="assets/lk_loop_plate_en.mp4?v=20260906a" data-src-ja="assets/lk_loop_plate_ja.mp4?v=20260906a" data-src-zh="assets/lk_loop_plate_tw.mp4?v=20260906a" muted loop playsinline preload="none" tabindex="-1"></video></div>
   <div class="wrap hero" id="hero">
 
-    <a class="film bleed" href="https://youtu.be/t9NJumW8D1Q" data-vunit aria-label="海煙 — 3:42">
+    <a class="film bleed" href="https://youtu.be/t9NJumW8D1Q" aria-label="海煙 — 3:42">
       <img src="assets/lk_poster_umikemuri.jpg?v=20260905a" width="1280" height="720" alt="" decoding="async">
       <video data-src-ja="assets/lk_loop_umikemuri.mp4?v=20260905a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
       <span class="mini"><span class="rn" data-n="1" aria-hidden="true">I</span><span class="nm" data-i18n="act1.name">深夜</span><i aria-hidden="true"></i></span>
-      <span class="vt" aria-hidden="true"><i></i><b>海煙</b></span>
+      <span class="vt" aria-hidden="true"><i></i><b>海煙</b><img class="vtcal" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-en="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-ja="assets/lk_ja_umk.png?v=20260906a" data-t-zh="assets/lk_tw_umk.png?v=20260906a" width="240" height="428" alt="" decoding="async"></span>
       <span class="tag">NEW</span>
       <span class="dur num" data-i18n="dur.umk">3:42</span>
     </a>
@@ -778,10 +794,10 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <!-- ===== II 薄明 ===== -->
 <section class="act act-2 anchor" id="works">
   <div class="wrap">
-    <div class="kv bleed" aria-hidden="true"><img src="assets/lk_kv2.jpg?v=20260905b" data-t-en="assets/lk_kv2.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv2.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv2.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
+    <div class="kv bleed" aria-hidden="true" data-vunit><img src="assets/lk_kv2.jpg?v=20260905b" data-t-en="assets/lk_kv2.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv2.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv2.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"><video data-themed data-src-ja="assets/lk_loop_kv_ja.mp4?v=20260906a" muted loop playsinline preload="none" tabindex="-1"></video></div>
     <header class="act-head">
       <span class="ghost" data-n="2" aria-hidden="true">II</span>
-      <p class="act-num"><span class="rn" data-n="2" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span></p>
+      <p class="act-num"><span class="rn" data-n="2" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span><img class="nmcal" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-en="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-ja="assets/lk_ja_name2.png?v=20260906a" data-t-zh="assets/lk_tw_name2.png?v=20260906a" height="200" alt="" loading="lazy" decoding="async"></p>
       <h2><span data-i18n="act2.label">作品</span><i aria-hidden="true">Works</i></h2>
     </header>
 
@@ -942,7 +958,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
     <div class="kv bleed" aria-hidden="true"><img src="assets/lk_sky.jpg?v=20260905a" data-t-en="assets/lk_sky.jpg?v=20260905a" data-t-ja="assets/lk_ja_kv3.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv3.jpg?v=20260905c" width="1800" height="600" alt="" loading="lazy" decoding="async" style="object-position:center 12%"></div>
     <header class="act-head">
       <span class="ghost" data-n="3" aria-hidden="true">III</span>
-      <p class="act-num"><span class="rn" data-n="3" aria-hidden="true">III</span><span class="nm" data-i18n="act3.name">曙</span></p>
+      <p class="act-num"><span class="rn" data-n="3" aria-hidden="true">III</span><span class="nm" data-i18n="act3.name">曙</span><img class="nmcal" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-en="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-ja="assets/lk_ja_name3.png?v=20260906a" data-t-zh="assets/lk_tw_name3.png?v=20260906a" height="200" alt="" loading="lazy" decoding="async"></p>
       <h2><span data-i18n="act3.label">作り方</span><i aria-hidden="true">How it's made</i></h2>
       <p class="lead" data-i18n="howto.lead">自宅のGPU 1台で、曲づくりから編集まで。工程と失敗を、動画と記事で公開しています。</p>
     </header>
@@ -1009,7 +1025,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
     <div class="kv bleed kv-4" aria-hidden="true" style="margin-top:28px"><img src="assets/lk_kv4.jpg?v=20260905b" data-t-en="assets/lk_kv4.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv4.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv4.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
     <header class="act-head">
       <span class="ghost" data-n="4" aria-hidden="true">IV</span>
-      <p class="act-num"><span class="rn" data-n="4" aria-hidden="true">IV</span><span class="nm" data-i18n="act4.name">朝</span></p>
+      <p class="act-num"><span class="rn" data-n="4" aria-hidden="true">IV</span><span class="nm" data-i18n="act4.name">朝</span><img class="nmcal" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-en="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-ja="assets/lk_ja_name4.png?v=20260906a" data-t-zh="assets/lk_tw_name4.png?v=20260906a" height="200" alt="" loading="lazy" decoding="async"></p>
       <h2><span data-i18n="act4.label">その他</span><i aria-hidden="true">More</i></h2>
     </header>
 
@@ -1120,10 +1136,11 @@ var LKV=(function(){
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var save=false; try{ save=!!(navigator.connection&&navigator.connection.saveData); }catch(e){}
   var allow=!reduced&&!save;
-  var zh=document.documentElement.classList.contains('zh');
+  var h0=document.documentElement; var lang=h0.classList.contains('zh')?'zh':h0.classList.contains('en')?'en':'ja';
   var units=Array.prototype.slice.call(document.querySelectorAll('[data-vunit]'));
   var active=null, ratios=new Map();
-  function srcOf(v){ return (zh&&v.getAttribute('data-src-zh'))||v.getAttribute('data-src-ja'); }
+  function srcOf(v){ if(v.hasAttribute('data-themed')) return v.getAttribute('data-src-'+lang); return (lang==='zh'&&v.getAttribute('data-src-zh'))||v.getAttribute('data-src-ja'); }
+  function playable(u){ return vids(u).some(function(v){ return !!srcOf(v); }); }
   function vids(u){ return Array.prototype.slice.call(u.querySelectorAll('video')); }
   function stop(u){ if(!u) return; vids(u).forEach(function(v){ try{v.pause();}catch(e){} v.classList.remove('on'); }); if(active===u) active=null; }
   function start(u){
@@ -1140,7 +1157,7 @@ var LKV=(function(){
     if(document.hidden){ stop(active); return; }
     var best=null,bd=1e9,vh=window.innerHeight||1;
     units.forEach(function(u){
-      var r=ratios.get(u)||0; if(r<.6) return;
+      var r=ratios.get(u)||0; var need=u.classList.contains('act-1')?.35:.6; if(r<need||!playable(u)) return;
       var b=u.getBoundingClientRect(); var d=Math.abs((b.top+b.bottom)/2 - vh/2);
       if(d<bd){ bd=d; best=u; }
     });
@@ -1154,7 +1171,7 @@ var LKV=(function(){
     window.addEventListener('pagehide',function(){ stop(active); });
     window.addEventListener('pageshow',pick);
   }
-  return { setLang:function(z){ zh=z; var u=active; if(u){ stop(u); start(u); } } };
+  return { setLang:function(l){ lang=l; var u=active; if(u){ stop(u); start(u); } pick(); } };
 })();
 
 /* ============================================================
@@ -1190,7 +1207,7 @@ var LKV=(function(){
     ['ja','zh','en'].forEach(function(t){ h.classList.toggle('t-'+t, t===lang); });
     document.querySelectorAll('img[data-t-en]').forEach(function(im){ var u=im.getAttribute('data-t-'+lang)||im.getAttribute('data-t-en'); if(im.getAttribute('src')!==u) im.setAttribute('src',u); });
     btns.forEach(function(b){ b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===lang)); });
-    ensureFonts(lang); LKV.setLang(zh);
+    ensureFonts(lang); LKV.setLang(lang);
     if(save){ try{ localStorage.setItem('ml_lang',lang); }catch(e){} }
   }
   btns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-lang'),true); }); });
