@@ -729,6 +729,14 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 .t-ja .plate video{object-position:center 0}
 .kv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
 .kv video.on{opacity:1}
+/* 英語版の I2V は「静かな夜の海」で動きが極小(画素変化 5〜6・台/日は 15〜70)= 静止画と判別できない(2026-09-06 ユーザー指摘)。
+   生成側で動きは増えない(lightx2v 蒸留では ±6%・実測SSOT)ので、映像の上に「面の呼吸」= ごく遅い拡大と上下の漂いを CSS で重ねる。
+   英語版の全映像と、日本語の転換帯(山水の霧・同じく極小)に限定。低モーション設定では止める */
+.t-en .plate video.on{animation:lkBreathe 28s ease-in-out infinite alternate}
+.t-en .kv video.on,.t-en .dawn-v.on,.t-ja .dawn-v.on{animation:lkDrift 22s ease-in-out infinite alternate}
+@keyframes lkBreathe{from{transform:scale(1) translateY(0)}to{transform:scale(1.06) translateY(-1.2%)}}
+@keyframes lkDrift{from{transform:scale(1.04) translateY(2.2%)}to{transform:scale(1.1) translateY(-2.2%)}}
+@media (prefers-reduced-motion: reduce){.plate video,.kv video,.dawn-v{animation:none!important}}
 .kv::after{z-index:2}
 /* ---- 書の幕名と縦題(日/台)。文字は読み上げ用に残す ---- */
 .nmcal,.vtcal{display:none}
@@ -801,7 +809,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <!-- ===== II 薄明 ===== -->
 <section class="act act-2 anchor" id="works">
   <div class="wrap">
-    <div class="kv bleed" aria-hidden="true" data-vunit><img src="assets/lk_kv2_sq.jpg?v=20260906c" data-t-en="assets/lk_kv2_sq.jpg?v=20260906c" data-t-ja="assets/lk_ja_kv2.jpg?v=20260905c" data-t-zh="assets/lk_tw_lantern_sq.jpg?v=20260906c" width="1024" height="1024" alt="" loading="lazy" decoding="async"><video data-themed data-src-en="assets/lk_loop_kv2_en.mp4?v=20260906c" data-src-ja="assets/lk_loop_kv_ja.mp4?v=20260906c" data-src-zh="assets/lk_loop_kv2_tw.mp4?v=20260906d" muted loop playsinline preload="none" tabindex="-1"></video></div>
+    <div class="kv bleed" aria-hidden="true" data-vunit><img src="assets/lk_kv2_sq.jpg?v=20260906c" data-t-en="assets/lk_kv2_sq.jpg?v=20260906c" data-t-ja="assets/lk_ja_kv2.jpg?v=20260905c" data-t-zh="assets/lk_tw_lantern_sq.jpg?v=20260906c" width="1024" height="1024" alt="" loading="lazy" decoding="async"><video data-themed data-src-en="assets/lk_loop_kv2_en.mp4?v=20260906d" data-src-ja="assets/lk_loop_kv_ja.mp4?v=20260906c" data-src-zh="assets/lk_loop_kv2_tw.mp4?v=20260906d" muted loop playsinline preload="none" tabindex="-1"></video></div>
     <header class="act-head">
       <span class="ghost" data-n="2" aria-hidden="true">II</span>
       <p class="act-num"><span class="rn" data-n="2" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span><img class="nmcal" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-en="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-ja="assets/lk_ja_name2.png?v=20260906c" data-t-zh="assets/lk_tw_name2.png?v=20260906c" height="200" alt="" loading="lazy" decoding="async"></p>
