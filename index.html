@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/theater.css?v=20260825b">
+<link rel="stylesheet" href="css/theater.css?v=20260906a">
 </head>
 <body>
   <div class="grain"></div>
@@ -337,17 +337,18 @@
   </section>
 
   <!-- 05 使うほど あなた色に -->
-  <section class="panel cine" data-ch="05" data-num="08" style="--bd:url(../assets/bd_river.jpg?v=20260814b)">
+  <section class="panel cine" id="yourcolor" data-ch="05" data-num="08" style="--bd:url(../assets/bd_river.jpg?v=20260814b)">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">08 — 使うほど、あなた色に</div>
       <h2 class="ch-title reveal d1">渡すほど、あなた専属になる。</h2>
       <p class="ch-sub reveal d2">好きな世界観や参考を渡すたび、あなたの“好み”を覚えていく。<br>渡すほど、色が深まる——あなただけのディレクターへ。</p>
       <div class="orb-wrap reveal d2">
-        <span class="ref-chip r1">世界観</span>
-        <span class="ref-chip r2">参考のMV</span>
-        <span class="ref-chip r3">ムード</span>
-        <span class="ref-chip r4">色づかい</span>
-        <span class="ref-chip r5">テンポ</span>
+        <!-- 参考=顔料を内包した鋳造ガラスの断片(gpt-image-2・透過PNG)。約3秒に1点ずつ球へ溶け込む。文字は枠のないキャプション -->
+        <figure class="ref r1"><span class="rf"><img src="assets/ref_sekaikan.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>世界観</figcaption></figure>
+        <figure class="ref r2"><span class="rf"><img src="assets/ref_mv.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>参考のMV</figcaption></figure>
+        <figure class="ref r3"><span class="rf"><img src="assets/ref_mood.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>ムード</figcaption></figure>
+        <figure class="ref r4"><span class="rf"><img src="assets/ref_color.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>色づかい</figcaption></figure>
+        <figure class="ref r5"><span class="rf"><img src="assets/ref_tempo.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>テンポ</figcaption></figure>
         <div class="orb">
           <div class="orb-ring"></div>
           <div class="orb-scale"><div class="orb-core"><video src="assets/orb_flow.mp4?v=20260824c" muted loop playsinline preload="none" aria-hidden="true"></video></div></div>
@@ -358,7 +359,7 @@
   </section>
 
   <!-- 06 言語と声 -->
-  <section class="panel" data-ch="06" data-num="09">
+  <section class="panel" id="voice" data-ch="06" data-num="09">
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">09 — 言語と、声</div>
       <h2 class="ch-title reveal d1">日本語でも、<br>繁體中文（台灣）でも。</h2>
@@ -379,33 +380,26 @@
         <div class="voice-row">
           <div class="vcard">
             <div class="vc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>好きな声を選ぶ</div>
-            <div class="vdrop" id="vdrop">
-              <button class="vdrop-head" id="vdropHead" aria-haspopup="listbox">
-                <span class="vd-label" id="vdLabel">声 A ・ クリア</span>
-                <span class="vwave-mini" data-bars="6"></span>
-                <span class="vd-caret">▾</span>
-              </button>
-              <div class="vdrop-list" id="vdropList" role="listbox">
-                <button class="vd-opt sel" data-name="声 A ・ クリア"><span class="vn">声 A ・ クリア</span><span class="vwave-mini" data-bars="6"></span></button>
-                <button class="vd-opt" data-name="声 B ・ やわらか"><span class="vn">声 B ・ やわらか</span><span class="vwave-mini" data-bars="6"></span></button>
-                <button class="vd-opt" data-name="声 C ・ りりしい"><span class="vn">声 C ・ りりしい</span><span class="vwave-mini" data-bars="6"></span></button>
-                <button class="vd-opt" data-name="声 D ・ おちつき"><span class="vn">声 D ・ おちつき</span><span class="vwave-mini" data-bars="6"></span></button>
-                <button class="vd-opt" data-name="ナレーション向き"><span class="vn">ナレーション向き</span><span class="vwave-mini" data-bars="6"></span></button>
-              </div>
+            <!-- 声の一覧: 塗りも囲みも無し。選択中は左端の金の短い縦線と波形だけ -->
+            <div class="vlist" id="vdropList" role="listbox" aria-label="声を選ぶ">
+              <button class="vd-opt sel" role="option" aria-selected="true" data-name="声 A ・ クリア"><span class="vn">声 A ・ クリア</span><span class="vwave-mini" data-bars="7"></span></button>
+              <button class="vd-opt" role="option" aria-selected="false" data-name="声 B ・ やわらか"><span class="vn">声 B ・ やわらか</span><span class="vwave-mini" data-bars="7"></span></button>
+              <button class="vd-opt" role="option" aria-selected="false" data-name="声 C ・ りりしい"><span class="vn">声 C ・ りりしい</span><span class="vwave-mini" data-bars="7"></span></button>
+              <button class="vd-opt" role="option" aria-selected="false" data-name="声 D ・ おちつき"><span class="vn">声 D ・ おちつき</span><span class="vwave-mini" data-bars="7"></span></button>
+              <button class="vd-opt" role="option" aria-selected="false" data-name="ナレーション向き"><span class="vn">ナレーション向き</span><span class="vwave-mini" data-bars="7"></span></button>
             </div>
           </div>
           <div class="clone">
-            <span class="clone-badge">もう一つの目玉</span>
             <div class="clone-title">実際の声を、コピーする。</div>
-            <div class="clone-flow">
-              <div class="clone-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>実際の声<span class="vwave-mini" data-bars="7"></span></div>
-              <span class="clone-arrow">→</span>
-              <div class="clone-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg>その声で話す<span class="vwave-mini" data-bars="7"></span></div>
+            <!-- 声紋の図版(gpt-image-2・透過PNG): 上=取り込んだ実際の声(金) / 下=同じ形が桃へ写る=その声で話す -->
+            <div class="vp">
+              <div class="vp-caps"><span class="c1">実際の声</span><span class="c2">その声で話す</span></div>
+              <img class="vp-art" src="assets/voice_print.png?v=20260906a" alt="" loading="lazy" decoding="async">
             </div>
             <div class="clone-desc">好きな声を取り込めば、ディレクターは“その声”であなたと話す。世界に一つの相棒に。</div>
           </div>
         </div>
-        <div class="voice-note">日本語・繁體中文（台灣）ともにネイティブ発音　／　声はプルダウンで選択、または実際の声をコピー</div>
+        <div class="voice-note">日本語・繁體中文（台灣）ともにネイティブ発音　／　声は一覧から選択、または実際の声をコピー</div>
       </div>
     </div>
   </section>
@@ -780,6 +774,6 @@
   </footer>
 
 
-<script src="js/main.js?v=20260830a"></script>
+<script src="js/main.js?v=20260906a"></script>
 </body>
 </html>

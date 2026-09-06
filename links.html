@@ -277,8 +277,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .row .go{font-family:var(--serif-la);font-size:22px;line-height:1;color:var(--gold);padding-left:6px}
 
 /* ---------- 転換帯: 夜→朝(文字を置かない) + 対画 ---------- */
-.dawn{position:relative;overflow:hidden;background:var(--d0) url("assets/lk_sky.jpg?v=20260905a") no-repeat center / cover;padding:56px 0}
-.dawn::before,.dawn::after{content:"";position:absolute;left:0;right:0;height:24px;pointer-events:none}
+.dawn{position:relative;overflow:hidden;background:var(--d0) url("assets/lk_sky_sq.jpg?v=20260906c") no-repeat center / cover;padding:56px 0}
+.dawn>.wrap{position:relative;z-index:1}
+.dawn-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .8s ease;z-index:0}
+.dawn-v.on{opacity:1}
+.dawn::before,.dawn::after{content:"";position:absolute;left:0;right:0;height:24px;pointer-events:none;z-index:2}
 .dawn::before{top:0;background:linear-gradient(var(--d0),transparent)}
 .dawn::after{bottom:0;background:linear-gradient(transparent,var(--m0))}
 .pair{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:2px}
@@ -599,7 +602,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 .t-ja .wcard .vt{font-family:"Yuji Syuku",serif;font-weight:400;font-size:30px}
 .t-ja .strip-ctl .bar i{background:#454842}
 /* 転換帯= 淡墨の山水(青磁)。対画は筆跡の形で */
-.t-ja .dawn{background:var(--d0) url("assets/lk_ja_landscape.jpg?v=20260905c") no-repeat center bottom / cover;padding:64px 0 40px}
+.t-ja .dawn{background:var(--d0) url("assets/lk_ja_landscape_sq.jpg?v=20260906c") no-repeat center / cover;padding:64px 0 40px}
 .t-ja .dawn::before{background:linear-gradient(var(--d0),transparent)}
 .t-ja .pair::before{display:none}
 .t-ja .pair a:first-child{-webkit-mask:url("assets/lk_ja_stroke_h.png?v=20260906e") center / 100% 100% no-repeat;mask:url("assets/lk_ja_stroke_h.png?v=20260906e") center / 100% 100% no-repeat;border-radius:0;box-shadow:none}
@@ -666,7 +669,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 .t-zh .chips a + a::before{background:rgba(48,60,55,.18)}
 /* II・III の外側は磨石子。文字欄は石灰壁色の不透明面 */
 .t-zh .act-2,.t-zh .act-3{background:#E4DED1 url("assets/lk_tw_terrazzo.jpg?v=20260905d") repeat center / 480px auto;--kvbg:#E4DED1}
-.t-zh .act-2 .kv,.t-zh .act-3 .kv,.t-zh .kv-4{display:none}
+.t-zh .act-3 .kv,.t-zh .kv-4{display:none}
 .t-zh .wbody,.t-zh .act-2 .rows,.t-zh .act-3 .card .cbody,.t-zh .act-3 .rows{background:#F1EBDD}
 .t-zh .wbody{padding:12px 14px 14px;margin-top:0;border-top:0}
 .t-zh .act-2 .rows,.t-zh .act-3 .rows{padding:0 14px;border:1px solid rgba(48,60,55,.14);border-radius:3px}
@@ -686,7 +689,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 .tw-tiles i + i{background-position:-64px -64px}
 .t-zh .tw-tiles{display:flex}
 /* 転換帯: 磨石子の地。対画の直下は石灰壁の不透明面 */
-.t-zh .dawn{background:#E4DED1 url("assets/lk_tw_terrazzo.jpg?v=20260905d") repeat center / 480px auto;padding:56px 0 40px}
+.t-zh .dawn{background:#E4DED1 url("assets/lk_tw_courtyard_sq.jpg?v=20260906c") no-repeat center / cover;padding:56px 0 40px}
 .t-zh .dawn::before{background:linear-gradient(var(--d0),transparent)}
 .t-zh .pair::before{display:none}
 .t-zh .pair a{box-shadow:none;outline:1px solid rgba(48,60,55,.22);outline-offset:-1px}
@@ -759,7 +762,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <!-- ===== I 深夜: タイトルバック ===== -->
 <section class="act act-1 anchor" id="top" data-vunit>
   <div class="plate" aria-hidden="true"><img src="assets/lk_hero_plate.jpg?v=20260905b" data-t-en="assets/lk_hero_plate.jpg?v=20260905b" data-t-ja="assets/lk_ja_plate.jpg?v=20260905c" data-t-zh="assets/lk_tw_plate.jpg?v=20260905c" width="780" height="1170" alt="" fetchpriority="high" decoding="async">
-    <video data-themed data-src-en="assets/lk_loop_plate_en.mp4?v=20260906a" data-src-ja="assets/lk_loop_plate_ja.mp4?v=20260906a" data-src-zh="assets/lk_loop_plate_tw.mp4?v=20260906a" muted loop playsinline preload="none" tabindex="-1"></video></div>
+    <video data-themed data-src-en="assets/lk_loop_plate_en.mp4?v=20260906c" data-src-ja="assets/lk_loop_plate_ja.mp4?v=20260906c" data-src-zh="assets/lk_loop_plate_tw.mp4?v=20260906c" muted loop playsinline preload="none" tabindex="-1"></video></div>
   <div class="wrap hero" id="hero">
 
     <a class="film bleed" href="https://youtu.be/t9NJumW8D1Q" aria-label="海煙 — 3:42">
@@ -798,7 +801,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <!-- ===== II 薄明 ===== -->
 <section class="act act-2 anchor" id="works">
   <div class="wrap">
-    <div class="kv bleed" aria-hidden="true" data-vunit><img src="assets/lk_kv2.jpg?v=20260905b" data-t-en="assets/lk_kv2.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv2.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv2.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"><video data-themed data-src-ja="assets/lk_loop_kv_ja.mp4?v=20260906a" muted loop playsinline preload="none" tabindex="-1"></video></div>
+    <div class="kv bleed" aria-hidden="true" data-vunit><img src="assets/lk_kv2_sq.jpg?v=20260906c" data-t-en="assets/lk_kv2_sq.jpg?v=20260906c" data-t-ja="assets/lk_ja_kv2.jpg?v=20260905c" data-t-zh="assets/lk_tw_lantern_sq.jpg?v=20260906c" width="1024" height="1024" alt="" loading="lazy" decoding="async"><video data-themed data-src-en="assets/lk_loop_kv2_en.mp4?v=20260906c" data-src-ja="assets/lk_loop_kv_ja.mp4?v=20260906c" data-src-zh="assets/lk_loop_kv2_tw.mp4?v=20260906c" muted loop playsinline preload="none" tabindex="-1"></video></div>
     <header class="act-head">
       <span class="ghost" data-n="2" aria-hidden="true">II</span>
       <p class="act-num"><span class="rn" data-n="2" aria-hidden="true">II</span><span class="nm" data-i18n="act2.name">薄明</span><img class="nmcal" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-en="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-ja="assets/lk_ja_name2.png?v=20260906c" data-t-zh="assets/lk_tw_name2.png?v=20260906c" height="200" alt="" loading="lazy" decoding="async"></p>
@@ -1015,7 +1018,8 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 </section>
 
 <!-- ===== 転換帯: 夜 → 朝(文字なし)+対画 ===== -->
-<section class="dawn" aria-label="約束と海煙">
+<section class="dawn" id="dawn" aria-label="約束と海煙" data-vunit="bg">
+  <video class="dawn-v" data-themed data-src-en="assets/lk_loop_band_en.mp4?v=20260906c" data-src-ja="assets/lk_loop_band_ja.mp4?v=20260906c" data-src-zh="assets/lk_loop_band_tw.mp4?v=20260906c" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
   <div class="wrap">
     <div class="pair" data-vunit>
       <a href="https://youtu.be/R0uR2UpWyK4" aria-label="約束">
@@ -1040,7 +1044,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 <!-- ===== IV 朝 ===== -->
 <section class="act act-4 anchor" id="more">
   <div class="wrap">
-    <div class="kv bleed kv-4" aria-hidden="true" style="margin-top:28px"><img src="assets/lk_kv4.jpg?v=20260905b" data-t-en="assets/lk_kv4.jpg?v=20260905b" data-t-ja="assets/lk_ja_kv4.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv4.jpg?v=20260905c" width="1200" height="400" alt="" loading="lazy" decoding="async"></div>
+    <div class="kv bleed kv-4" aria-hidden="true" style="margin-top:28px" data-vunit><img src="assets/lk_kv4_sq.jpg?v=20260906c" data-t-en="assets/lk_kv4_sq.jpg?v=20260906c" data-t-ja="assets/lk_ja_kv4.jpg?v=20260905c" data-t-zh="assets/lk_tw_kv4.jpg?v=20260905c" width="1024" height="1024" alt="" loading="lazy" decoding="async"><video data-themed data-src-en="assets/lk_loop_kv4_en.mp4?v=20260906c" muted loop playsinline preload="none" tabindex="-1"></video></div>
     <header class="act-head">
       <span class="ghost" data-n="4" aria-hidden="true">IV</span>
       <p class="act-num"><span class="rn" data-n="4" aria-hidden="true">IV</span><span class="nm" data-i18n="act4.name">朝</span><img class="nmcal" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-en="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-t-ja="assets/lk_ja_name4.png?v=20260906c" data-t-zh="assets/lk_tw_name4.png?v=20260906c" height="200" alt="" loading="lazy" decoding="async"></p>
@@ -1155,15 +1159,18 @@ var LKV=(function(){
   var save=false; try{ save=!!(navigator.connection&&navigator.connection.saveData); }catch(e){}
   var allow=!reduced&&!save;
   var h0=document.documentElement; var lang=h0.classList.contains('zh')?'zh':h0.classList.contains('en')?'en':'ja';
-  var units=Array.prototype.slice.call(document.querySelectorAll('[data-vunit]'));
-  var active=null, ratios=new Map();
+  var all=Array.prototype.slice.call(document.querySelectorAll('[data-vunit]'));
+  var units=all.filter(function(u){ return u.getAttribute('data-vunit')!=='bg'; });
+  var bgs=all.filter(function(u){ return u.getAttribute('data-vunit')==='bg'; });   /* 転換帯の背景=前景と同時に1本だけ */
+  var active=null, activeBg=null, ratios=new Map();
   function srcOf(v){ if(v.hasAttribute('data-themed')) return v.getAttribute('data-src-'+lang); return (lang==='zh'&&v.getAttribute('data-src-zh'))||v.getAttribute('data-src-ja'); }
   function playable(u){ return vids(u).some(function(v){ return !!srcOf(v); }); }
-  function vids(u){ return Array.prototype.slice.call(u.querySelectorAll('video')); }
-  function stop(u){ if(!u) return; vids(u).forEach(function(v){ try{v.pause();}catch(e){} v.classList.remove('on'); }); if(active===u) active=null; }
+  function isBg(u){ return u.getAttribute('data-vunit')==='bg'; }
+  function vids(u){ var s=isBg(u)?':scope > video':'video'; return Array.prototype.slice.call(u.querySelectorAll(s)); }
+  function stop(u){ if(!u) return; vids(u).forEach(function(v){ try{v.pause();}catch(e){} v.classList.remove('on'); }); if(active===u) active=null; if(activeBg===u) activeBg=null; }
   function start(u){
-    if(!allow||!u||active===u) return;
-    stop(active); active=u;
+    if(!allow||!u) return;
+    if(isBg(u)){ if(activeBg===u) return; stop(activeBg); activeBg=u; } else { if(active===u) return; stop(active); active=u; }
     vids(u).forEach(function(v){
       var s=srcOf(v); if(!s) return;
       if(v.getAttribute('src')!==s){ v.setAttribute('src',s); }
@@ -1171,25 +1178,28 @@ var LKV=(function(){
       var p=v.play(); if(p&&p.catch){ p.catch(function(){ v.classList.remove('on'); }); }
     });
   }
-  function pick(){
-    if(document.hidden){ stop(active); return; }
+  function choose(list,cur){
     var best=null,bd=1e9,vh=window.innerHeight||1;
-    units.forEach(function(u){
-      var r=ratios.get(u)||0; var need=u.classList.contains('act-1')?.35:.6; if(r<need||!playable(u)) return;
+    list.forEach(function(u){
+      var r=ratios.get(u)||0; var need=u.classList.contains('act-1')?.35:isBg(u)?.3:.6; if(r<need||!playable(u)) return;
       var b=u.getBoundingClientRect(); var d=Math.abs((b.top+b.bottom)/2 - vh/2);
       if(d<bd){ bd=d; best=u; }
     });
-    if(best!==active){ stop(active); if(best) start(best); }
+    if(best!==cur){ stop(cur); if(best) start(best); }
+  }
+  function pick(){
+    if(document.hidden){ stop(active); stop(activeBg); return; }
+    choose(units,active); choose(bgs,activeBg);
   }
   if(allow&&'IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){ es.forEach(function(e){ ratios.set(e.target,e.intersectionRatio); }); pick(); },
       {threshold:[0,.2,.4,.6,.8,1]});
-    units.forEach(function(u){ io.observe(u); });
-    document.addEventListener('visibilitychange',function(){ if(document.hidden) stop(active); else pick(); });
-    window.addEventListener('pagehide',function(){ stop(active); });
+    all.forEach(function(u){ io.observe(u); });
+    document.addEventListener('visibilitychange',function(){ if(document.hidden){ stop(active); stop(activeBg); } else pick(); });
+    window.addEventListener('pagehide',function(){ stop(active); stop(activeBg); });
     window.addEventListener('pageshow',pick);
   }
-  return { setLang:function(l){ lang=l; var u=active; if(u){ stop(u); start(u); } pick(); } };
+  return { setLang:function(l){ lang=l; [active,activeBg].forEach(function(u){ if(u){ stop(u); start(u); } }); pick(); } };
 })();
 
 /* ============================================================
