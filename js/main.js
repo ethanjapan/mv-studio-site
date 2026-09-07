@@ -18,6 +18,18 @@
    landscape screens: RINKA yukata + fireworks (1920x1088 ping-pong loop, seamless).
    portrait phones: the vertical singing MV cut (already shipped as ex_final.mp4).
    Source is chosen ONCE at load — swapping mid-session would re-download for nothing. */
+/* Safari(macOS)対策(2026-09-07): 省電力モード等で muted 自動再生の play() が拒否されることがある。
+   拒否された video を覚え、最初のタップ/クリック/キー操作で画面内のものだけ1回再試行する。src を入れた直後は load() で読み込みを明示 */
+const __retryVids=new Set();let __retryArmed=false;
+function safePlay(v){
+  const p=v.play();
+  if(p&&p.catch)p.catch(()=>{__retryVids.add(v);
+    if(__retryArmed)return;__retryArmed=true;
+    const once=()=>{['pointerdown','touchend','keydown'].forEach(t=>document.removeEventListener(t,once,true));__retryArmed=false;
+      __retryVids.forEach(x=>{__retryVids.delete(x);const r=x.getBoundingClientRect();
+        if(r.bottom>0&&r.top<innerHeight)x.play().catch(()=>{});});};
+    ['pointerdown','touchend','keydown'].forEach(t=>document.addEventListener(t,once,true));});
+}
 (function heroFilm(){
   const v=document.getElementById('heroFilm');if(!v)return;
   let mode='';
@@ -34,7 +46,8 @@
       v.src='assets/hero_yakusoku.mp4?v=20260815a';
       v.style.objectPosition='center 35%';
     }
-    v.play().catch(()=>{});
+    try{v.load();}catch(e){}
+    safePlay(v);
   }
   pick();
   // device rotation swaps the footage to the matching cut (bar-jitter resizes can't
@@ -43,7 +56,7 @@
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
   // decode only while the hero is on screen (same discipline as the showcase clip)
   new IntersectionObserver(es=>es.forEach(en=>{
-    if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
+    if(en.isIntersecting){safePlay(v);}else{v.pause();}
   }),{threshold:0.05}).observe(v);
 })();
 
@@ -60,7 +73,7 @@
   document.querySelectorAll('.works video,.shows video,.orb-core video').forEach(v=>{
     new IntersectionObserver(es=>es.forEach(en=>{
       v.dataset.inview=en.isIntersecting?'1':'0';   // 言語切替時に再生を継ぐため
-      if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
+      if(en.isIntersecting){safePlay(v);}else{v.pause();}
     }),{threshold:0.05}).observe(v);
   });
 })();
@@ -124,7 +137,7 @@
 (function(){
   const v=document.querySelector('.exstrip video.ex');if(!v)return;
   new IntersectionObserver(es=>es.forEach(en=>{
-    if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
+    if(en.isIntersecting){safePlay(v);}else{v.pause();}
   }),{threshold:0.05}).observe(v);
 })();
 
@@ -296,7 +309,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       const src=zh?v.dataset.zhSrc:v.__jasrc, poster=zh?v.dataset.zhPoster:v.__japoster;
       if(v.getAttribute('src')===src)return;
       v.setAttribute('poster',poster);v.setAttribute('src',src);v.load();
-      if(v.dataset.inview==='1')v.play().catch(()=>{});
+      if(v.dataset.inview==='1')safePlay(v);
     });
     document.querySelectorAll('#langSwitch .ls-btn').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lang')===lang));
     try{localStorage.setItem('mvlang',lang)}catch(e){}
@@ -308,15 +321,13 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   setLang(saved);
 })();
 
-/* ===== hero video-typo: 見出しglyphsの中を流れる花火 (デスクトップのみ) =====
-   モバイルはCSS側でグラデ文字にフォールバック済=映像をロードしない */
+/* ===== hero video-typo: 見出しglyphsの中を流れる花火 (2026-09-07 モバイルも対象=ユーザー方針「一番贅沢な設計」) ===== */
 (function vtFilm(){
   const v=document.querySelector('.vt-film');if(!v)return;
-  if(!matchMedia('(min-width:861px)').matches)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  v.src='assets/hero_hanabi.mp4?v=20260815a';
+  v.src='assets/hero_hanabi.mp4?v=20260815a';try{v.load();}catch(e){}
   new IntersectionObserver(es=>es.forEach(en=>{
-    if(en.isIntersecting){v.play().catch(()=>{});}else{v.pause();}
+    if(en.isIntersecting){safePlay(v);}else{v.pause();}
   }),{threshold:0.05}).observe(v);
 })();
 

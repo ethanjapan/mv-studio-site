@@ -1181,10 +1181,20 @@ var LKV=(function(){
     if(isBg(u)){ if(activeBg===u) return; stop(activeBg); activeBg=u; } else { if(active===u) return; stop(active); active=u; }
     vids(u).forEach(function(v){
       var s=srcOf(v); if(!s) return;
-      if(v.getAttribute('src')!==s){ v.setAttribute('src',s); }
+      /* Safari(macOS): preload=none の video に src を入れただけでは読み込みが始まらず play() が空振りする。load() で明示的に開始する
+         (2026-09-07 ユーザー「Safari だと上部の動画が動かない」)。play() が拒否された時(省電力モードの自動再生ブロック等)は
+         最初のタップ/クリック/キー操作で1回だけ再試行する */
+      if(v.getAttribute('src')!==s){ v.setAttribute('src',s); try{ v.load(); }catch(e){} }
       v.addEventListener('playing',function(){ v.classList.add('on'); },{once:true});
-      var p=v.play(); if(p&&p.catch){ p.catch(function(){ v.classList.remove('on'); }); }
+      var p=v.play(); if(p&&p.catch){ p.catch(function(){ v.classList.remove('on'); armRetry(); }); }
     });
+  }
+  var retryArmed=false;
+  function armRetry(){
+    if(retryArmed) return; retryArmed=true;
+    var once=function(){ ['pointerdown','touchend','keydown'].forEach(function(t){ document.removeEventListener(t,once,true); });
+      retryArmed=false; [active,activeBg].forEach(function(u){ if(u){ var a=u; stop(a); start(a); } }); pick(); };
+    ['pointerdown','touchend','keydown'].forEach(function(t){ document.addEventListener(t,once,true); });
   }
   function choose(list,cur){
     var best=null,bd=1e9,vh=window.innerHeight||1;
