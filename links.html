@@ -819,6 +819,19 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
     <div class="strip-wrap">
       <div class="strip" id="strip" tabindex="0" aria-label="作品">
 
+        <a class="wcard rise" href="https://youtu.be/404X3_ih8sc" data-vunit style="--i:0">
+          <span class="win">
+            <img src="https://img.youtube.com/vi/404X3_ih8sc/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <video data-src-ja="assets/wk_gravity.mp4?v=20260915a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <span class="dur num">2:48</span>
+          </span>
+          <span class="wbody">
+            <span class="wtitle" data-i18n="w.gravity.title">重力 GRAVITY</span>
+            <span class="wsub">KANADE × RINKA</span>
+            <span class="wdesc" data-i18n="w.gravity.desc">軽いものは浮いて消える。重いものだけが、ここに残る。</span>
+          </span>
+        </a>
+
         <a class="wcard rise" href="https://youtu.be/lGSqVuqk8RY" data-vunit style="--i:0">
           <span class="win">
             <img src="https://img.youtube.com/vi/lGSqVuqk8RY/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
@@ -961,12 +974,19 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
     <div class="strip-ctl">
       <button type="button" id="sprev" aria-label="前へ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></button>
       <span class="bar" aria-hidden="true"><i id="sbar"></i></span>
-      <span class="num" id="snum" aria-live="polite">01 / 10</span>
+      <span class="num" id="snum" aria-live="polite">01 / 12</span>
       <button type="button" id="snext" aria-label="次へ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5.5 6.5 6.5-6.5 6.5"/></svg></button>
     </div>
 
     <div class="sub-head"><h3 data-i18n="prog.head">番組</h3><i aria-hidden="true"></i></div>
     <div class="rows">
+      <a class="row prog rise" href="https://youtu.be/cyWj8otgUNI" data-vunit style="--i:0">
+        <span class="th"><img src="https://img.youtube.com/vi/cyWj8otgUNI/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"><video data-src-ja="assets/bb_r03.mp4?v=20260915a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></span>
+        <span class="tx">
+          <span class="t" data-i18n="p.r03.title">跳ねていなかったのは、わたしじゃなかった</span>
+          <span class="m"><span data-i18n="p.r03.kind">RINKAのオフレコ #03</span><span class="num" data-i18n="p.r03.dur">10:41</span></span>
+        </span>
+      </a>
       <a class="row prog rise" href="https://youtu.be/ge2S7PQAxZI" data-href-zh="https://youtu.be/Etnjj5HnuWg" data-vunit style="--i:0">
         <span class="th"><img src="https://img.youtube.com/vi/ge2S7PQAxZI/maxresdefault.jpg" data-src-zh="https://img.youtube.com/vi/Etnjj5HnuWg/maxresdefault.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"><video data-src-ja="assets/bb_k03.mp4?v=20260829a" data-src-zh="assets/bb_k03_zh.mp4?v=20260829a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></span>
         <span class="tx">
@@ -1142,6 +1162,8 @@ var T={
   "cta.works":["作品一覧","作品一覽","All works"],"cta.howto":["作り方","製作方法","How it's made"],
   "dur.umk":["3:42","3:42","3:42"],
   "w.umk.title":["海煙","海煙","Sea Smoke"],
+  "w.gravity.title":["重力 GRAVITY","重力 GRAVITY","GRAVITY"],
+  "w.gravity.desc":["軽いものは浮いて消える。重いものだけが、ここに残る。","輕飄飄的，飄起來就散了。只有夠重的，才留得下來。","Light things drift up and fade. Only the heavy ones get to stay."],
   "w.bunny.title":["ぴょんぴょんハート","蹦蹦心動","Pyon Pyon Heart"],
   "w.bunny.desc":["心臓がさきに跳ねる。KANADE × RINKA、初のライブMV。","心跳搶先蹦起來。KANADE × RINKA，首支現場舞台MV。","The heart jumps first. KANADE × RINKA's first live-stage music video."],
   "w.sumida.title":["隅田川の花火","隅田川的煙火","Sumida River Fireworks"],"w.sumida.desc":["夜空に夏が咲いた。KANADEのデビュー作。","夏天在夜空中綻放。KANADE 的出道作品。","Summer bloomed in the night sky. KANADE's debut."],
@@ -1155,6 +1177,7 @@ var T={
   "w.hb.desc":["日本語と中国語、2つの言語で歌うMV。","用日文和中文兩種語言演唱的MV。","A music video with vocals in Japanese and Chinese."],
   "w.more":["すべて見る","查看全部","See all"],"w.more.d":["YouTube チャンネル","YouTube 頻道","YouTube channel"],
   "prog.head":["番組","節目","Programs"],
+  "p.r03.title":["跳ねていなかったのは、わたしじゃなかった","不會跳的，其實不是我","The one who wasn't jumping wasn't me"],"p.r03.kind":["RINKAのオフレコ #03","RINKA的悄悄話 #03","RINKA Off the Record #03"],"p.r03.dur":["10:41","10:41","10:41"],
   "p.k03.title":["この家から、データは出ない","資料，不出這個家","The data never leaves this house"],"p.k03.kind":["解説","解說","Explainer"],"p.k03.dur":["15:42","13:47","15:42"],
   "p.radio.title":["データは出ないのに、わたしの失敗は出ていく","資料留在家裡，我的糗事卻傳了出去","The data stays in, but my failures get out"],"p.radio.kind":["RINKAのオフレコ #02","RINKA的悄悄話 #02","RINKA Off the Record #02"],"p.radio.dur":["9:45","9:45","9:45"],
   "p.k02.title":["AIが作ったMV、と言われます。半分は、その通りです。","有人說這是AI做的MV。有一半，確實如此。","They call it an AI-made music video. Half of that is true."],"p.k02.kind":["『約束』制作全記録","《約定》完整製作記錄","Making of The Promise"],"p.k02.dur":["13:34","13:16","13:34"],
