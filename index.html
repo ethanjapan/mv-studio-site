@@ -32,6 +32,52 @@
 <link rel="stylesheet" href="css/theater.css?v=20261008a">
 </head>
 <body>
+
+<!-- オープニング(2026-10-08): MV STUDIO のアイデント 7.5 秒。セッションで1回・無音で自動再生(音は SOUND で)・SKIP/終了で本編へ。
+     動きを減らす設定・?nointro・再生できない時は出さない -->
+<div id="intro" class="intro" data-noi18n aria-label="MV STUDIO opening" hidden>
+  <video id="introVideo" muted playsinline preload="auto"></video>
+  <div class="intro-ctl">
+    <button type="button" id="introSound" class="intro-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M16 9l5 6M21 9l-5 6"/></svg><span>SOUND</span></button>
+    <button type="button" id="introSkip" class="intro-btn">SKIP</button>
+  </div>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('intro'),v=document.getElementById('introVideo');
+  var q=location.search.indexOf('nointro')>=0;
+  var seen=false;try{seen=sessionStorage.getItem('mvs_intro_seen')==='1'}catch(e){}
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(q||seen||calm||!v.canPlayType('video/mp4'))return;
+  var small=Math.min(innerWidth,innerHeight*1.76)*(window.devicePixelRatio||1)<=1400;   // 映る幅(全体を収める表示)×画素密度で選ぶ= スマホ縦は 1280 版
+  v.src='assets/intro_ident_'+(small?'1280':'1920')+'.mp4?v=20261008a';
+  el.hidden=false;document.documentElement.classList.add('intro-on');
+  var done=false;
+  function finish(){
+    if(done)return;done=true;
+    try{sessionStorage.setItem('mvs_intro_seen','1')}catch(e){}
+    el.classList.add('intro-out');document.documentElement.classList.remove('intro-on');
+    setTimeout(function(){try{v.pause()}catch(e){}el.remove()},900);
+  }
+  v.addEventListener('ended',finish);
+  v.addEventListener('error',finish);
+  document.getElementById('introSkip').addEventListener('click',finish);
+  var sb=document.getElementById('introSound');
+  sb.addEventListener('click',function(){v.muted=!v.muted;sb.setAttribute('aria-pressed',String(!v.muted));if(!v.muted&&v.paused)v.play().catch(function(){})});
+  addEventListener('keydown',function(e){if(e.key==='Escape')finish()});
+  // 背景のタブでは再生が止められる(省電力)= 見えるようになってから流す。見えているのに始まらない時だけ諦めて本編へ
+  var guard=null;
+  function arm(ms){clearTimeout(guard);guard=setTimeout(finish,ms)}
+  function start(){
+    if(done)return;
+    if(document.hidden){document.addEventListener('visibilitychange',function f(){if(!document.hidden){document.removeEventListener('visibilitychange',f);start()}});return}
+    arm(8000);   // 8 秒たっても始まらなければ本編へ(回線が極端に遅い・再生を拒まれた)
+    var p=v.play();if(p&&p.catch)p.catch(function(){if(!document.hidden)finish();else start()});
+  }
+  v.addEventListener('playing',function(){arm(((v.duration||7.5)+3)*1000)});
+  start();
+})();
+</script>
   <div class="grain"></div>
   <div class="reel-progress" aria-hidden="true"></div>
 

@@ -999,3 +999,23 @@ a.show-thumb{text-decoration:none;color:inherit}
   .df-ipad{width:64%}
   .df-phone{width:24%}
 }
+
+/* ===== オープニング(2026-10-08) ===== */
+.intro{position:fixed;inset:0;z-index:10000;background:#02030a;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  transition:opacity .85s ease}
+.intro[hidden]{display:none}
+.intro video{width:100%;height:100%;object-fit:contain;background:#02030a}   /* 映像の黒(1,2,8)に寄せて境目を消す */
+@media (orientation:portrait){.intro video{width:170vw;height:auto;max-width:none;flex:none;
+  -webkit-mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent)}}   /* 縦画面= ∞ と字が横幅いっぱいになるまで寄せる(左右の暗い所だけ切れる) */
+.intro.intro-out{opacity:0;pointer-events:none}
+html.intro-on,html.intro-on body{overflow:hidden}
+.intro-ctl{position:absolute;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));display:flex;gap:10px}
+.intro-btn{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:999px;cursor:pointer;
+  font-family:var(--en);font-size:11px;letter-spacing:.22em;color:rgba(244,241,232,.82);
+  background:rgba(10,12,26,.45);border:1px solid rgba(242,236,220,.22);backdrop-filter:blur(6px);transition:.25s}
+.intro-btn:hover{color:#fff;border-color:rgba(230,180,118,.55)}
+.intro-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.intro-btn svg path:first-child{fill:currentColor;stroke:none}
+.intro-btn .on{display:none}
+.intro-btn[aria-pressed="true"] .on{display:inline}
+.intro-btn[aria-pressed="true"] .off{display:none}
