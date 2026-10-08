@@ -954,7 +954,7 @@ a.show-thumb{text-decoration:none;color:inherit}
 .appshow{margin-top:56px;display:flex;flex-direction:column;gap:76px}
 .as-row{display:grid;grid-template-columns:1.6fr 1fr;gap:46px;align-items:center}
 .as-row.rev{grid-template-columns:1fr 1.6fr}
-.as-row.rev .as-shot{order:2}
+.as-row.rev .as-shot,.as-row.rev .as-pair{order:2}
 .as-shot{position:relative;margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);
   background:#0b0c14;box-shadow:0 34px 80px -34px rgba(0,0,0,.85)}
 .as-shot img{display:block;width:100%;height:auto}
@@ -969,6 +969,7 @@ a.show-thumb{text-decoration:none;color:inherit}
 .as-d{font-size:14px;line-height:2.0;color:var(--muted)}
 .as-note{margin-top:12px;font-size:12px;line-height:1.8;color:var(--gold-dim)}
 .as-tiles{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.as-pair{display:flex;flex-direction:column;gap:14px}
 .as-tile{margin:0}
 .as-tile figcaption{margin-top:12px;display:flex;align-items:baseline;gap:12px}
 .as-tile figcaption b{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:.04em}
@@ -977,6 +978,7 @@ a.show-thumb{text-decoration:none;color:inherit}
   .appshow{gap:52px}
   .as-row,.as-row.rev{grid-template-columns:1fr;gap:22px}
   .as-row.rev .as-shot{order:0}
+  .as-row.rev .as-pair{order:0}
   .as-tiles{grid-template-columns:1fr}
   .as-phone{right:3%;bottom:-8%;width:27%;border-width:4px;border-radius:16px}
   .as-voice{margin-bottom:16%}                       /* はみ出したスマホの写しが下の見出しに重ならないように */
