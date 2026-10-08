@@ -29,51 +29,75 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/theater.css?v=20261008c">
+<link rel="stylesheet" href="css/theater.css?v=20261008e">
 </head>
 <body>
 
-<!-- オープニング(2026-10-08): MV STUDIO のアイデント 7.5 秒。セッションで1回・無音で自動再生(音は SOUND で)・SKIP/終了で本編へ。
-     動きを減らす設定・?nointro・再生できない時は出さない -->
+<!-- オープニング(2026-10-08): MV STUDIO のアイデント 7.5 秒。音は常にあり(ユーザー指示「音声のオンオフはいらない」)。
+     音つきの自動再生をブラウザが許す時はそのまま流し、許さない時(初めて来た人の多く・iPhone)は「TAP TO START」→ 最初のタップで音つきで流す。
+     毎回の訪問とリロードで流す(戻る/進む・同じサイトの別ページから来た時は出さない)・SKIP/Esc/終了で本編へ。動きを減らす設定・?nointro では出さない。確認用= ?forceintro / ?introat=<秒> -->
 <div id="intro" class="intro" data-noi18n aria-label="MV STUDIO opening" hidden>
-  <video id="introVideo" muted playsinline preload="auto"></video>
+  <video id="introVideo" playsinline preload="auto"></video>
+  <button type="button" id="introTap" class="intro-tap" hidden><span class="it-main">TAP TO START</span><span class="it-sub">SOUND ON</span></button>
   <div class="intro-ctl">
-    <button type="button" id="introSound" class="intro-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M16 9l5 6M21 9l-5 6"/></svg><span>SOUND</span></button>
     <button type="button" id="introSkip" class="intro-btn">SKIP</button>
   </div>
 </div>
 <script>
 (function(){
-  var el=document.getElementById('intro'),v=document.getElementById('introVideo');
+  var el=document.getElementById('intro'),v=document.getElementById('introVideo'),tap=document.getElementById('introTap');
   var q=location.search.indexOf('nointro')>=0;
-  var seen=false;try{seen=sessionStorage.getItem('mvs_intro_seen')==='1'}catch(e){}
+  // 毎回の訪問とリロードで流す(ユーザー指示「リロードすると出ない」)。出さないのは「戻る/進む」と、同じサイトの別ページ(links 等)から来た時だけ
+  var nav=(performance.getEntriesByType&&performance.getEntriesByType('navigation')[0])||{},nt=nav.type||'navigate';
+  var internal=false;try{internal=nt==='navigate'&&document.referrer&&new URL(document.referrer).origin===location.origin&&new URL(document.referrer).pathname!==location.pathname}catch(e){}
+  var seen=nt==='back_forward'||internal;
   var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var force=/[?&]forceintro\b/.test(location.search),at=(location.search.match(/[?&]introat=([\d.]+)/)||[])[1];   // 確認用: 毎回出す/指定の秒で止める
   if(q||(seen&&!force)||calm||!v.canPlayType('video/mp4'))return;
   var small=Math.min(innerWidth,innerHeight*1.76)*(window.devicePixelRatio||1)<=1400;   // 映る幅(全体を収める表示)×画素密度で選ぶ= スマホ縦は 1280 版
   v.src='assets/intro_ident_'+(small?'1280':'1920')+'.mp4?v=20261008a';
+  if(window.matchMedia&&matchMedia('(hover: hover)').matches)tap.querySelector('.it-main').textContent='CLICK TO START';
   el.hidden=false;document.documentElement.classList.add('intro-on');
-  var done=false;
-  function finish(){
-    if(done)return;done=true;
-    try{sessionStorage.setItem('mvs_intro_seen','1')}catch(e){}
+  var done=false,waiting=false,guard=null;
+  function arm(ms){clearTimeout(guard);guard=setTimeout(finish,ms)}
+  var dbg=/[?&]introdebug\b/.test(location.search),why=[];   // 確認用: 終わった理由を画面に出す
+  function log(s){if(dbg)why.push(((performance.now()/1000)|0)+'s '+s)}
+  function finish(r){
+    if(done)return;done=true;clearTimeout(guard);log('finish:'+(r&&r.type||r&&r.name||r||'?'));
+    if(dbg)setTimeout(function(){var d=document.createElement('pre');d.style.cssText='position:fixed;left:8px;top:120px;z-index:99999;background:#000c;color:#fd8;font:12px/1.4 monospace;padding:8px;white-space:pre-wrap;max-width:90vw';d.textContent=why.join('\n');document.body.appendChild(d)},1000);
     el.classList.add('intro-out');document.documentElement.classList.remove('intro-on');
     setTimeout(function(){try{v.pause()}catch(e){}el.remove()},900);
   }
   v.addEventListener('ended',finish);
   v.addEventListener('error',finish);
-  document.getElementById('introSkip').addEventListener('click',finish);
-  var sb=document.getElementById('introSound');
-  sb.addEventListener('click',function(){v.muted=!v.muted;sb.setAttribute('aria-pressed',String(!v.muted));if(!v.muted&&v.paused)v.play().catch(function(){})});
+  document.getElementById('introSkip').addEventListener('click',function(e){e.stopPropagation();finish()});
   addEventListener('keydown',function(e){if(e.key==='Escape')finish()});
-  // 背景のタブでは再生が止められる(省電力)= 見えるようになってから流す。見えているのに始まらない時だけ諦めて本編へ
-  var guard=null;
-  function arm(ms){clearTimeout(guard);guard=setTimeout(finish,ms)}
+  // 音つきの再生を許されなかった= 最初のタップ(どこでも)で音つきで始める
+  function askTap(){
+    if(done||waiting)return;waiting=true;clearTimeout(guard);
+    tap.hidden=false;el.classList.add('intro-wait');
+    function go(e){
+      if(e&&e.target&&e.target.closest&&e.target.closest('#introSkip'))return;
+      el.removeEventListener('click',go);removeEventListener('keydown',key);
+      waiting=false;tap.hidden=true;el.classList.remove('intro-wait');
+      v.muted=false;try{v.currentTime=0}catch(x){}log('tap rs='+v.readyState);
+      var p=v.play();if(p&&p.catch)p.catch(function(e){log('play after tap: '+e.name+' '+e.message);finish(e)});
+    }
+    function key(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}
+    el.addEventListener('click',go);addEventListener('keydown',key);
+  }
   function start(){
     if(done)return;
+    // 背景のタブでは再生が止められる(省電力)= 見えるようになってから流す
     if(document.hidden){document.addEventListener('visibilitychange',function f(){if(!document.hidden){document.removeEventListener('visibilitychange',f);start()}});return}
-    arm(8000);   // 8 秒たっても始まらなければ本編へ(回線が極端に遅い・再生を拒まれた)
-    var p=v.play();if(p&&p.catch)p.catch(function(){if(!document.hidden)finish();else start()});
+    arm(8000);   // 8 秒たっても始まらなければ本編へ(回線が極端に遅い)
+    v.muted=false;
+    var p=v.play();
+    if(p&&p.catch)p.catch(function(err){log('autoplay: '+(err&&err.name));
+      if(document.hidden)return start();
+      if(err&&err.name==='NotAllowedError')return askTap();   // 音つきの自動再生を止められた
+      finish();
+    });
   }
   v.addEventListener('playing',function(){if(at){clearTimeout(guard);if(!v.__j){v.__j=1;v.addEventListener('seeked',function(){v.pause()},{once:true});v.currentTime=+at}return}arm(((v.duration||7.5)+3)*1000)});
   start();
