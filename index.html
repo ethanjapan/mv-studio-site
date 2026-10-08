@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/theater.css?v=20261008a">
+<link rel="stylesheet" href="css/theater.css?v=20261008c">
 </head>
 <body>
 
@@ -48,7 +48,8 @@
   var q=location.search.indexOf('nointro')>=0;
   var seen=false;try{seen=sessionStorage.getItem('mvs_intro_seen')==='1'}catch(e){}
   var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(q||seen||calm||!v.canPlayType('video/mp4'))return;
+  var force=/[?&]forceintro\b/.test(location.search),at=(location.search.match(/[?&]introat=([\d.]+)/)||[])[1];   // 確認用: 毎回出す/指定の秒で止める
+  if(q||(seen&&!force)||calm||!v.canPlayType('video/mp4'))return;
   var small=Math.min(innerWidth,innerHeight*1.76)*(window.devicePixelRatio||1)<=1400;   // 映る幅(全体を収める表示)×画素密度で選ぶ= スマホ縦は 1280 版
   v.src='assets/intro_ident_'+(small?'1280':'1920')+'.mp4?v=20261008a';
   el.hidden=false;document.documentElement.classList.add('intro-on');
@@ -74,7 +75,7 @@
     arm(8000);   // 8 秒たっても始まらなければ本編へ(回線が極端に遅い・再生を拒まれた)
     var p=v.play();if(p&&p.catch)p.catch(function(){if(!document.hidden)finish();else start()});
   }
-  v.addEventListener('playing',function(){arm(((v.duration||7.5)+3)*1000)});
+  v.addEventListener('playing',function(){if(at){clearTimeout(guard);if(!v.__j){v.__j=1;v.addEventListener('seeked',function(){v.pause()},{once:true});v.currentTime=+at}return}arm(((v.duration||7.5)+3)*1000)});
   start();
 })();
 </script>
