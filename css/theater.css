@@ -949,3 +949,53 @@ a.show-thumb{text-decoration:none;color:inherit}
 .lang-pill:hover .lp-l{color:#fff}
 .lang-pill.soon{border-style:dashed;border-color:rgba(242,236,220,.18);background:transparent}
 .lang-pill.soon .lp-l,.lang-pill.soon .lp-d{color:rgba(240,235,222,.38)}
+
+/* ===== 16 アプリの中(2026-10-08): 実際の画面を、制作の流れの順に ===== */
+.appshow{margin-top:56px;display:flex;flex-direction:column;gap:76px}
+.as-row{display:grid;grid-template-columns:1.6fr 1fr;gap:46px;align-items:center}
+.as-row.rev{grid-template-columns:1fr 1.6fr}
+.as-row.rev .as-shot{order:2}
+.as-shot{position:relative;margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:#0b0c14;box-shadow:0 34px 80px -34px rgba(0,0,0,.85)}
+.as-shot img{display:block;width:100%;height:auto}
+.as-shot.as-narrow{max-width:430px;justify-self:center;width:100%}
+.as-voice{overflow:visible}
+.as-voice>img{border-radius:14px}
+.as-phone{position:absolute;right:-4%;bottom:-10%;width:23%;border-radius:22px;overflow:hidden;
+  border:6px solid #15161d;box-shadow:0 24px 60px -18px rgba(0,0,0,.9)}
+.as-phone img{display:block;width:100%;height:auto}
+.as-num{font-family:var(--en);font-size:11px;letter-spacing:.2em;color:var(--gold)}
+.as-tt{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2vw,26px);letter-spacing:.04em;margin:12px 0 14px;line-height:1.5}
+.as-d{font-size:14px;line-height:2.0;color:var(--muted)}
+.as-note{margin-top:12px;font-size:12px;line-height:1.8;color:var(--gold-dim)}
+.as-tiles{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.as-tile{margin:0}
+.as-tile figcaption{margin-top:12px;display:flex;align-items:baseline;gap:12px}
+.as-tile figcaption b{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:.04em}
+.as-tile figcaption span{font-family:var(--en);font-size:13px;color:var(--gold)}
+@media (max-width:860px){
+  .appshow{gap:52px}
+  .as-row,.as-row.rev{grid-template-columns:1fr;gap:22px}
+  .as-row.rev .as-shot{order:0}
+  .as-tiles{grid-template-columns:1fr}
+  .as-phone{right:3%;bottom:-8%;width:27%;border-width:4px;border-radius:16px}
+}
+
+/* 20 対応環境: 同じ画面を3台の枠で */
+.devframes{margin-top:44px;display:flex;align-items:flex-end;justify-content:center;gap:2.4%}
+.df .scr{overflow:hidden;background:#0b0c14;border:solid #17181f;box-shadow:0 26px 60px -26px rgba(0,0,0,.9)}
+.df .scr img{display:block;width:100%;height:auto}
+.df-mac{width:58%}
+.df-mac .scr{border-width:10px 10px 14px;border-radius:14px 14px 4px 4px}
+.df-mac .base{height:12px;margin:0 -7%;border-radius:0 0 14px 14px;background:linear-gradient(#34353d,#17181f)}
+.df-ipad{width:28%;padding-bottom:12px}
+.df-ipad .scr{border-width:10px;border-radius:20px}
+.df-phone{width:10.5%;padding-bottom:12px}
+.df-phone .scr{border-width:5px;border-radius:20px}
+.df-cap{margin-top:18px;text-align:center;font-size:13px;color:var(--muted)}
+@media (max-width:640px){
+  .devframes{flex-wrap:wrap;gap:16px 4%}
+  .df-mac{width:100%}
+  .df-ipad{width:64%}
+  .df-phone{width:24%}
+}
