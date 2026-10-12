@@ -44,6 +44,11 @@
 .uc-shelf h3{font-family:var(--en-display);font-weight:500;font-size:15px;letter-spacing:.3em;color:var(--gold);margin:34px 0 14px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .uc-shelf h3 i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6)}
 .uc-shelf h3 span{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;color:var(--muted)}
+/* スマホ(3 列)で 1 マスになる札(note sq)は説明文が入りきらない(2026-10-13 ユーザー「文字切れてる」)= 札は番号と枚数だけにし、説明文は群の見出しの下に全文で出す(下の台本が写す) */
+.uc-shelf p.dm{display:none}
+@media (max-width:900px){.uc-shelf p.dm{display:block;font-family:var(--sans);font-size:12.5px;line-height:1.85;letter-spacing:.04em;color:var(--muted);margin:-4px 0 14px}
+  body.uc .uc-grid figure.note.sq:not(.m2):not(.m3) p{display:none}
+  body.uc .uc-grid figure.note.sq:not(.m2):not(.m3) .k{font-size:10px;letter-spacing:.1em;overflow-wrap:anywhere}}
 .uc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
 .uc-grid figure{margin:0;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1040/1520;background:#000}
 .uc-grid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.04);transition:.5s}
@@ -328,6 +333,9 @@
     <span class="foot-copy">© 2026 made_linlin</span>
   </footer>
   <a class="fab-contact" href="../#contact" aria-label="相談"><span>相談</span></a>
+<script>/* 1 マスの札の説明文を群の見出しの下へ写す(表示はスマホだけ・CSS 側)。HTML に書かないのは shelf_edit.py の群の検出(見出しの直後が uc-grid)を壊さないため。辞書 uc_i18n.js より前に走らせて訳も当てる */
+document.querySelectorAll('.uc-grid figure.note.sq:not(.m2):not(.m3)').forEach(function(n){var p=n.querySelector('p'),g=n.closest('.uc-grid');if(!p||!g)return;var d=document.createElement('p');d.className='dm';d.textContent=p.textContent;g.parentNode.insertBefore(d,g);});
+</script>
 <script src="../js/sitemenu.js?v=202610131830"></script>
 <script src="../js/uc_i18n.js?v=202610131830"></script>
 </body>
