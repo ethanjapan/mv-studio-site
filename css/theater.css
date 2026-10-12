@@ -986,25 +986,63 @@ a.show-thumb{text-decoration:none;color:inherit}
   .as-shot.as-narrow{max-width:300px}                /* 設定の窓は縦長なので小さめに */
 }
 
-/* 20 対応環境: 同じ画面を3台の枠で */
-.devframes{margin-top:44px;display:flex;align-items:flex-end;justify-content:center;gap:2.4%}
-.df .scr{overflow:hidden;background:#0b0c14;border:solid #17181f;box-shadow:0 26px 60px -26px rgba(0,0,0,.9)}
-.df .scr img{display:block;width:100%;height:auto}
-.df-mac{width:58%}
-.df-mac .scr{border-width:10px 10px 14px;border-radius:14px 14px 4px 4px}
-.df-mac .base{height:12px;margin:0 -3.5%;border-radius:0 0 14px 14px;background:linear-gradient(#34353d,#17181f)}
-.df-ipad{width:28%;padding-bottom:12px}
-.df-ipad .scr{border-width:10px;border-radius:20px}
-.df-phone{width:10.5%;padding-bottom:12px}
-.df-phone .scr{border-width:5px;border-radius:20px}
-.df-cap{margin-top:18px;text-align:center;font-size:13px;color:var(--muted)}
+/* 20 対応環境: 3台の実機らしい枠(2026-10-12 自前描画。ユーザー「より本物の iPhone、Mac、iPad にできる?」
+   Apple 公式の Product Bezels は同梱の規約で「Apple の OS だけで動く製品の UI モックアップ」に限られ、Windows/Android でも使う
+   MV Studio のサイトには使えない(規約の写し= _brand/device_bezels/LICENSE_読み取り_iPad_2026-10-12.txt)→ 実寸の比率で描く。
+   比率の根拠: iPhone 17 Pro 71.9×150mm 角 R10.5 / iPad Pro 11 (M4/M5) 249.7×177.5mm / MacBook Pro 14 画面 3024×1964 ノッチ付き) */
+.devframes{margin-top:44px;display:flex;align-items:flex-end;justify-content:center;gap:3%}
+.df{position:relative}
+.df .scr{position:relative;overflow:hidden;background:#000;container-type:inline-size}
+.df .scr img{display:block;width:100%;height:100%;object-fit:cover}
+/* --- MacBook Pro: 黒い縁の画面+ノッチ、アルミの天板の縁、下に台座(ヒンジ・指かけの窪み) --- */
+.df-mac{width:56%}
+.df-mac .lid{position:relative;aspect-ratio:1.46;padding:2.6% 2.6% 3.6%;border-radius:2.2% / 3.3%;
+  background:linear-gradient(180deg,#2a2b31,#141519);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),inset 0 0 0 2.5px #0b0b0e,0 40px 70px -30px rgba(0,0,0,.9)}
+.df-mac .scr{height:100%;border-radius:1.4% / 2.2% 1.4% / 2.2% 0 0}
+.df-mac .scr img{position:absolute;left:0;right:0;top:3.6%;bottom:0;height:auto}          /* メニューバーの下から */
+.df-mac .mb{position:absolute;left:0;right:0;top:0;height:3.6%;background:#15161e;border-bottom:1px solid rgba(255,255,255,.06)}
+.df-mac .mb::before{content:"MV Studio   ファイル   編集   表示   ウインドウ   ヘルプ";position:absolute;left:1.6%;top:50%;transform:translateY(-50%);
+  font:500 1.05cqw/1 -apple-system,"Helvetica Neue",var(--sans);color:rgba(255,255,255,.78);white-space:pre}
+.df-mac .mb::after{content:"10月12日(日)  10:54";position:absolute;right:1.6%;top:50%;transform:translateY(-50%);
+  font:500 1.05cqw/1 -apple-system,"Helvetica Neue",var(--sans);color:rgba(255,255,255,.78);white-space:pre}
+.df-mac .nt{position:absolute;left:50%;top:0;width:10.5%;height:3.4%;transform:translateX(-50%);background:#000;border-radius:0 0 7px 7px}
+.df-mac .base{position:relative;height:0;padding-top:2.1%;margin:0 -2.6%;
+  background:linear-gradient(180deg,#d6d7dc 0%,#a9abb3 38%,#6b6d76 70%,#3a3b43 100%);
+  border-radius:0 0 12px 12px / 0 0 16px 16px;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 30px 50px -22px rgba(0,0,0,.85)}
+.df-mac .base::before{content:"";position:absolute;left:50%;top:0;width:15%;height:38%;transform:translateX(-50%);
+  background:linear-gradient(#55575f,#2b2c33);border-radius:0 0 8px 8px}
+.df-mac .base::after{content:"";position:absolute;left:3%;right:3%;top:0;height:1px;background:rgba(0,0,0,.55)}
+/* --- iPad Pro 11(横): 均一の細い黒縁、アルミの側面、長辺の中央にカメラ --- */
+.df-ipad{width:30%;padding-bottom:1.4%}
+.df-ipad .body{position:relative;aspect-ratio:249.7/177.5;padding:2.9% 2.9%;border-radius:7.2% / 10.2%;
+  background:linear-gradient(160deg,#4a4b53,#26272d 45%,#17181d 70%,#3b3c44);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),inset 0 0 0 2px #0a0a0d,0 34px 60px -26px rgba(0,0,0,.9)}
+.df-ipad .scr{height:100%;border-radius:4.6% / 6.5%}
+.df-ipad .cam{position:absolute;left:50%;top:1.15%;width:1.6%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(circle at 40% 40%,#2a3240,#05060a 70%);box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+/* --- iPhone 17 Pro: チタンの縁、ダイナミックアイランド、左に音量とアクション、右に電源 --- */
+.df-phone{width:11.5%;padding-bottom:1.4%}
+.df-phone .body{position:relative;aspect-ratio:71.9/150;padding:2.4%;border-radius:14.7% / 7%;
+  background:linear-gradient(160deg,#6a6b73,#34353c 30%,#1d1e24 55%,#55565e);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),inset 0 0 0 2px #0a0a0d,0 34px 60px -24px rgba(0,0,0,.9)}
+.df-phone .body::before{content:"";position:absolute;left:-1.6%;top:17%;width:1.6%;height:24%;border-radius:2px 0 0 2px;
+  background:linear-gradient(#3a3b42 0 18%,transparent 18% 34%,#3a3b42 34% 64%,transparent 64% 74%,#3a3b42 74% 100%)}
+.df-phone .body::after{content:"";position:absolute;right:-1.6%;top:26%;width:1.6%;height:15%;border-radius:0 2px 2px 0;background:#3a3b42}
+.df-phone .scr{height:100%;border-radius:12.8% / 6.1%;background:#0f1019}
+.df-phone .scr img{position:absolute;left:0;right:0;top:5.2%;bottom:0;height:auto}        /* 時刻の帯の下から */
+.df-phone .sb{position:absolute;left:0;right:0;top:0;height:5.2%;background:#0f1019}
+.df-phone .sb::before{content:"10:54";position:absolute;left:11%;top:54%;transform:translateY(-50%);font:600 6.6cqw/1 -apple-system,"Helvetica Neue",var(--en);color:#fff;letter-spacing:-.01em}
+.df-phone .sb::after{content:"";position:absolute;right:9.5%;top:50%;width:10%;height:2.3cqw;transform:translateY(-50%);
+  border:1px solid rgba(255,255,255,.55);border-radius:2px;background:linear-gradient(90deg,#fff 0 72%,transparent 72%) content-box;padding:1px}
+.df-phone .isl{position:absolute;left:50%;top:2.6%;width:36%;height:3.3%;transform:translateX(-50%);background:#000;border-radius:999px;box-shadow:0 0 0 1px rgba(0,0,0,.6)}
 @media (max-width:640px){
-  .devframes{flex-wrap:wrap;gap:16px 4%}
+  .devframes{flex-wrap:wrap;gap:18px 4%}
   .df-mac{width:100%}
-  .df-mac .base{margin:0 -2%}                       /* 台座が画面の端まで届かないように */
   .df-ipad{width:64%}
   .df-phone{width:24%}
 }
+.df-cap{margin-top:18px;text-align:center;font-size:13px;color:var(--muted)}
 
 /* ===== オープニング(2026-10-08) ===== */
 .intro{position:fixed;inset:0;z-index:10000;background:#02030a;overflow:hidden;display:flex;align-items:center;justify-content:center;
