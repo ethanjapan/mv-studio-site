@@ -1464,3 +1464,141 @@ body.uc .alb-nav .btn .ar{display:inline-block}
   body.uc .ch-cta{font-size:13.5px}
   body.uc .cta{gap:10px 22px}
 }
+
+
+/* ============================================================
+   索引の札 v3(2026-10-12 夜・ユーザー「03 — 棚から選べる のレイアウトの采配はつまらない」「変な余白ないよね?」)
+   棚の群は 6 列 12 セル(2 段)を必ず埋める= 大きい 1 枚(2x2)+ 小さい 5 枚 + 索引の札(3x1 または 2x2)。札は群の番号・英題・一文・枚数。
+   大きい札の位置は群ごとに変える(左・中・右・下)。横長の画(蜜柑の皮)だけ 3x1 のまま。
+   ============================================================ */
+body.uc .uc-grid figure.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+body.uc .uc-grid figure.note{grid-column:span 3;aspect-ratio:auto;background:transparent;border:1px solid var(--rule-soft);border-radius:0;overflow:visible;
+  padding:16px 18px 14px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:0}
+body.uc .uc-grid figure.note.sq{grid-column:span 2;grid-row:span 2}
+body.uc .uc-grid figure.note:hover{border-color:var(--rule)}
+body.uc .uc-grid figure.note .k{font-family:var(--en-display);font-size:12px;letter-spacing:.3em;color:var(--gold);position:relative;padding-left:26px}
+body.uc .uc-grid figure.note .k::before{content:"";position:absolute;left:0;top:55%;width:16px;height:1px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.55)}
+body.uc .uc-grid figure.note p{margin:0;font-family:var(--serif);font-size:12.5px;line-height:1.9;letter-spacing:.04em;color:var(--text-2)}
+body.uc .uc-grid figure.note.sq p{font-size:13.5px;line-height:2}
+body.uc .uc-grid figure.note .n{font-family:var(--en-display);font-size:11px;letter-spacing:.14em;color:var(--text-3)}
+body.lang-zh .uc-grid figure.note p{font-family:"Noto Serif TC",serif}
+@media (max-width:900px){body.uc .uc-grid figure.note{padding:14px 14px 12px}body.uc .uc-grid figure.note p{font-size:12px;line-height:1.8}}
+
+/* ============================================================
+   ヘッダと冒頭の印 v3(2026-10-12 夜・ユーザー「これだと言語の切り替えがわからない。なんか以前よりレベルダウンした」「こういう凝っていないデザインをなくして」)
+   言語の切替= ナビの語と同じ姿だったので見分けがつかなかった → 「LANGUAGE」の小さな柱書き+2 語の下に 1 本のレール+選ばれた側に ∞ の光の玉(=スイッチの形)。右端に置き、ナビと間を空ける
+   冒頭の特徴= 点+線画の記号+文字+金の添え書きの「札」3 つ → 番号(I II III)・明朝の文字・点線の導き・添え書きの「仕様の一覧」に。記号は捨てる
+   作品の YouTube の目印= ∞ の塗りの丸札 → 文字+光の目印
+   ============================================================ */
+.head-right{gap:22px}
+.head-right .lang-switch{order:9;margin-left:12px;position:relative;padding:0 0 10px;gap:0}
+.head-right .lang-switch::before{content:"LANGUAGE";position:absolute;left:10px;top:-11px;font-family:var(--en-display);font-size:8.5px;letter-spacing:.32em;color:var(--gold);opacity:.9;white-space:nowrap}
+.head-right .lang-switch::after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:1px;background:rgba(226,230,242,.3)}
+body.uc .ls-btn{padding:3px 10px;font-size:12px;letter-spacing:.12em;color:var(--text-3)}
+body.uc .ls-btn+.ls-btn{border-left:0}
+body.uc .ls-btn:hover{color:var(--ink)}
+body.uc .ls-btn.on{color:var(--ink)}
+body.uc .ls-btn.on::after{content:"";position:absolute;left:50%;right:auto;bottom:-10px;width:7px;height:7px;border-radius:50%;background:var(--inf);
+  box-shadow:0 0 8px rgba(255,157,219,.85),0 0 2px #fff;transform:translateX(-50%);transition:left .4s}
+.head-right .uc-back{order:5}
+@media (max-width:640px){.head-right{gap:14px}.head-right .lang-switch{margin-left:4px}.head-right .lang-switch::before{font-size:8px;top:-10px}}
+
+/* 冒頭の特徴= 仕様の一覧 */
+.caps{display:flex;flex-direction:column;align-items:stretch;gap:0;max-width:520px;margin:26px auto 0;padding:0;counter-reset:cap;text-align:left}
+.chip{display:grid;grid-template-columns:auto auto 1fr auto;align-items:baseline;column-gap:14px;padding:9px 2px;border:0;border-bottom:1px solid rgba(226,230,242,.16);border-radius:0;
+  background:none;backdrop-filter:none;-webkit-backdrop-filter:none;counter-increment:cap;font-family:var(--serif);font-size:13.5px;letter-spacing:.08em;color:var(--ink);text-shadow:0 1px 2px rgba(3,8,20,.7),0 2px 12px rgba(3,8,20,.45)}
+.chip:first-child{border-top:1px solid rgba(226,230,242,.16)}
+.chip::before{content:counter(cap,upper-roman);width:auto;height:auto;border-radius:0;background:none;box-shadow:none;display:block;min-width:1.6em;font-family:var(--en-display);font-size:12px;letter-spacing:.2em;color:var(--gold)}
+.chip svg{display:none}
+.chip>span:not(.dots){grid-column:2;white-space:nowrap}
+.chip::after{content:"";grid-column:3;height:1px;background:rgba(226,230,242,.22);align-self:center;margin:0 2px;min-width:18px}
+.chip em,.chip .dots{grid-column:4;margin:0;border:0;padding:0;font-family:var(--en-display);font-style:italic;font-size:12.5px;letter-spacing:.12em;color:var(--gold)}
+.chip .dots{display:inline-flex;gap:6px;align-self:center}
+.chip .dots i{width:6px;height:6px}
+body.lang-zh .chip{font-family:"Noto Serif TC",serif}
+@media (max-width:640px){.caps{margin-top:18px}.chip{font-size:12.5px;column-gap:10px;padding:8px 0}.chip>span:not(.dots){white-space:normal}}
+@media (min-width:641px) and (max-width:900px){.caps{padding:0;max-width:440px}}
+
+/* 作品の YouTube の目印 */
+.yt-badge{background:none;color:var(--gold);font-family:var(--en-display);font-weight:500;font-size:11px;letter-spacing:.28em;padding:0 0 0 22px;border-radius:0;text-shadow:0 1px 2px rgba(3,8,20,.8)}
+.yt-badge::before{content:"";position:absolute;left:0;top:50%;width:14px;height:1px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.6)}
+
+/* サイトの地図の語を統一(2026-10-12 夜・ユーザー「サイト全体のマップ、動線のヘッダーに統一していない」)= ヘッダ・パンくず・フッターの語を同じ日本語にする(ホーム / 用途 / 作品 / 裏番組 / 相談・各用途は正式名)。英字の HOME / USE CASES / BRIDAL の戻り札は廃止 */
+.crumbs{font-family:var(--serif);font-size:12.5px;letter-spacing:.2em;color:var(--text-3)}
+.crumbs a{font-family:var(--serif)}
+.crumbs span{letter-spacing:.14em}
+body.lang-zh .crumbs,body.lang-zh .crumbs a{font-family:"Noto Serif TC",serif}
+
+/* ============================================================
+   棚の段の高さを明示(2026-10-12 夜・iPhone 実機で発見した不具合= WebKit は align-self:stretch の格子で aspect-ratio の高さを段の高さに数えず、
+   写真だけの段が 0 に潰れた(ブライダルの WASOU がまるごと消え、撮影会は札のある段しか残らなかった)。Chrome では出ない。
+   直し= 段の高さを容器幅(cqw)から計算して固定し、写真は段に合わせて伸ばす。横長の画がある群は横長が切れない高さにし、縦の画は左右を少し切る(顔は中央なので無事)
+   ============================================================ */
+body.uc .uc-shelf{container-type:inline-size}
+body.uc .uc-grid{grid-auto-rows:calc((100cqw - 50px) / 6 * 1520 / 1040)}
+body.uc .uc-grid:has(figure.wide){grid-auto-rows:calc(((100cqw - 50px) / 2 + 20px) * 1168 / 2048)}
+body.uc .uc-grid figure,body.uc .uc-grid figure.wide,body.uc .uc-grid figure.big{aspect-ratio:auto;min-height:0;align-self:stretch}
+body.uc .uc-grid figure img{object-position:50% 22%}
+body.uc .uc-grid figure.wide img{object-position:50% 50%}
+body.uc .uc-grid figure.note{overflow:hidden}
+@media (max-width:900px){
+  body.uc .uc-grid{grid-auto-rows:calc((100cqw - 20px) / 3 * 1520 / 1040)}
+  body.uc .uc-grid:has(figure.wide){grid-auto-rows:calc(100cqw * 1168 / 2048)}
+  body.uc .uc-grid figure.note{padding:12px 13px 10px;gap:6px}
+  body.uc .uc-grid figure.note p{font-size:11.5px;line-height:1.7}
+  body.uc .uc-grid figure.note .k{font-size:11px;letter-spacing:.24em}
+  body.uc .uc-grid figure.note .n{font-size:10px}
+}
+
+/* ============================================================
+   サイトの地図の引き出し(2026-10-12 夜・ユーザー「画面遷移がわからないので、サイトバー見たいなメニューを追加して」→ 引き出し式をおすすめで)
+   ヘッダ右端の MENU(光の目印+文字)。右から 360px の引き出し。番号(Cormorant)+明朝の語、用途の下に 6 つ、いま居る頁に ∞ の玉。下に言語。
+   ============================================================ */
+.sm-btn{order:20;display:inline-flex;align-items:center;gap:9px;border:0;background:transparent;cursor:pointer;padding:6px 0 6px 6px;
+  font-family:var(--en-display);font-size:12px;letter-spacing:.32em;color:var(--ink);position:relative}
+.sm-btn i{width:18px;height:9px;position:relative;display:block}
+.sm-btn i::before,.sm-btn i::after{content:"";position:absolute;left:0;right:0;height:1px;background:var(--inf);box-shadow:0 0 5px rgba(255,157,219,.6);transition:transform .4s,width .4s}
+.sm-btn i::before{top:0}.sm-btn i::after{bottom:0;width:60%}
+.sm-btn:hover i::after{width:100%}
+body.sm-open .sm-btn i::before{transform:translateY(4px) rotate(20deg)}body.sm-open .sm-btn i::after{width:100%;transform:translateY(-4px) rotate(-20deg)}
+.sm-veil{position:fixed;inset:0;z-index:40;background:rgba(3,4,10,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .4s}
+.sm-drawer{position:fixed;top:0;right:0;bottom:0;z-index:41;width:min(360px,88vw);background:rgba(6,8,20,.96);border-left:1px solid var(--rule-soft);
+  display:flex;flex-direction:column;padding:26px 30px 28px;transform:translateX(100%);transition:transform .5s cubic-bezier(.2,.7,.2,1);overflow-y:auto}
+body.sm-open .sm-veil{opacity:1;pointer-events:auto}body.sm-open .sm-drawer{transform:none}
+.sm-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.sm-k{font-family:var(--en-display);font-size:10.5px;letter-spacing:.34em;color:var(--gold)}
+.sm-x{border:0;background:transparent;cursor:pointer;font-family:var(--serif);font-size:12px;letter-spacing:.22em;color:var(--text-3);padding:6px 0;position:relative}
+.sm-x:hover{color:var(--ink)}
+.sm-nav{display:flex;flex-direction:column}
+.sm-a{display:flex;align-items:baseline;gap:14px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-weight:500;font-size:17px;letter-spacing:.14em;
+  padding:11px 0 11px 26px;border-bottom:1px solid var(--rule-soft);position:relative;transition:color .3s}
+.sm-a .sm-n{font-style:normal;font-family:var(--en-display);font-size:11px;letter-spacing:.2em;color:var(--gold);min-width:1.8em}
+.sm-a:hover{color:#fff}
+.sm-a.on::before{content:"";position:absolute;left:6px;top:50%;width:7px;height:7px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.85);transform:translateY(-50%)}
+.sm-sub{display:flex;flex-direction:column;padding:4px 0 8px;border-bottom:1px solid var(--rule-soft)}
+.sm-a.sub{font-size:13.5px;letter-spacing:.1em;color:var(--text-2);padding:7px 0 7px 46px;border:0}
+.sm-a.sub.in{padding-left:62px;font-size:12.5px}
+.sm-a.sub.in::after{content:"";position:absolute;left:48px;top:50%;width:8px;height:1px;background:var(--rule)}
+.sm-a.sub.on::before{left:30px}
+.sm-a.soon{color:var(--text-3);pointer-events:none}
+.sm-a em{font-style:normal;font-family:var(--en-display);font-size:9.5px;letter-spacing:.3em;color:var(--text-3);margin-left:auto}
+.sm-foot{margin-top:auto;padding-top:22px}
+.sm-lang{display:flex;gap:0;margin-top:10px;position:relative;padding-bottom:12px}
+.sm-lang::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;background:rgba(226,230,242,.3)}
+.sm-lang button{border:0;background:transparent;cursor:pointer;font-family:var(--serif);font-size:13px;letter-spacing:.16em;color:var(--text-3);padding:4px 14px 4px 0;position:relative}
+.sm-lang button.on{color:var(--ink)}
+.sm-lang button.on::after{content:"";position:absolute;left:calc(50% - 7px);bottom:-11px;width:7px;height:7px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.85)}
+body.lang-zh .sm-a,body.lang-zh .sm-x,body.lang-zh .sm-lang button{font-family:"Noto Serif TC",serif}
+@media (max-width:640px){.sm-btn span{display:none}.sm-btn{padding-left:2px}.sm-drawer{padding:22px 22px 24px}.sm-a{font-size:16px}}
+
+/* 繁体字の折り返し(2026-10-12 夜・ユーザー「繁体字中国語のレイアウトもチェックしてね。改行とかも」)
+   見出しは語の途中で折れて「的，」が 1 字で残った → 見出しは字間を詰め、狭い幅では一回り小さく。添え書きは折らない */
+body.lang-zh .ch-title,body.lang-zh h1{letter-spacing:.02em;text-wrap:balance;line-break:strict}
+body.lang-zh .ch-sub,body.lang-zh .sub,body.lang-zh p{line-break:strict}
+body.lang-zh .chip em{white-space:nowrap}
+@media (max-width:640px){
+  body.lang-zh .ch-title{font-size:clamp(26px,8.2vw,40px)}
+  body.lang-zh .chip{font-size:12.5px;column-gap:8px}
+  body.lang-zh .chip em,body.lang-zh .chip .dots{font-size:11.5px}
+  body.lang-zh .door strong{font-size:15px}
+}
