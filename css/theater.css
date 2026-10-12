@@ -1030,3 +1030,57 @@ html.intro-on,html.intro-on body{overflow:hidden}
 .intro.intro-wait video{opacity:0}   /* 待っている間は最初のコマ(暗い板)を見せない */
 @keyframes introPulse{0%,100%{box-shadow:0 0 0 0 rgba(230,180,118,0)}50%{box-shadow:0 0 0 10px rgba(230,180,118,.08)}}
 @media (prefers-reduced-motion: reduce){.intro-tap{animation:none}}
+
+/* ============================================================
+   役割の衣装(2026-10-12・ユーザー「デザインの悪い文字ボックスが多い。全体見直し」→ 3案から C「∞ の光」を選択)
+   13 クラスが同じ衣装(丸い札・細い枠・暗い半透明・ぼかし)だったのを、役割で4つに分ける。
+   押す物= ∞ のロゴの色(紫→桃→水色)の細い光の縁(丸いまま)。主ボタンは白地に光の縁。
+   印(押せない)= 箱を脱ぎ、光る点ひとつ+文字。飾り(思考の札)= 箱なしで文字が光る。目印= ∞ の色の塗り。
+   後から足した節なので、上の各クラスの値はそのまま(この節が勝つ)。見本= _site_bg/いつもの顔_サイト更新_20261012/_mock_ui.html
+   ============================================================ */
+:root{--inf:linear-gradient(90deg,#b59bff,#ff9ddb 50%,#8fe3ff);--inf-ink:#0a0c1a}
+/* --- 押す物: 光の縁 --- */
+.btn,.ch-cta,.lang-pill,.intro-tap,.intro-btn,.lang-switch{
+  border:1px solid transparent;backdrop-filter:none;-webkit-backdrop-filter:none;color:var(--ink);
+  background:linear-gradient(var(--inf-ink),var(--inf-ink)) padding-box,var(--inf) border-box}
+.btn.ghost{box-shadow:0 0 22px -8px rgba(181,155,255,.55)}
+.btn.ghost:hover{background:linear-gradient(#141630,#141630) padding-box,var(--inf) border-box;border-color:transparent}
+.btn.primary{color:#120a1a;font-weight:700;border:1px solid transparent;
+  background:linear-gradient(var(--ink),var(--ink)) padding-box,var(--inf) border-box;
+  box-shadow:0 0 30px -6px rgba(255,157,219,.55)}
+.ch-cta{color:var(--ink)}
+.ch-cta:hover{color:#fff;border-color:transparent;background:linear-gradient(#141630,#141630) padding-box,var(--inf) border-box}
+.lang-pill .lp-l{color:var(--ink)}
+.lang-pill:hover{border-color:transparent;background:linear-gradient(#141630,#141630) padding-box,var(--inf) border-box}
+.lang-pill.soon{border-style:solid;border-color:transparent;background:linear-gradient(var(--inf-ink),var(--inf-ink)) padding-box,linear-gradient(90deg,rgba(181,155,255,.35),rgba(255,157,219,.35),rgba(143,227,255,.35)) border-box}
+.lang-switch{padding:3px}
+.ls-btn.on{background:rgba(255,157,219,.14);color:var(--ink);font-weight:500}
+.intro-tap .it-sub{color:#ff9ddb}
+.intro-btn:hover{color:#fff;border-color:transparent}
+/* --- 印(押せない): 箱を脱いで点ひとつ --- */
+.chip,.st-chip,.res-tier,.prop-opt,.show-genre{
+  border:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;border-radius:0;gap:9px;color:var(--muted)}
+.chip::before,.st-chip::before,.res-tier::before,.prop-opt::before,.show-genre::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6);flex:none;display:inline-block}
+.chip{color:var(--ink)}
+.chip em{border:0;padding:0;margin-left:6px;color:#ff9ddb}
+.show-genre{display:inline-flex;align-items:center;letter-spacing:.22em;font-size:10.5px;color:var(--gold)}
+.res-tier,.prop-opt{display:inline-flex;align-items:center}
+/* --- 飾り: 浮かぶ思考の札は文字だけが光る --- */
+.thought{border:0;background:none;box-shadow:none;padding:0;letter-spacing:.2em;color:rgba(244,240,230,.85);
+  text-shadow:0 0 14px rgba(181,155,255,.45),0 0 28px rgba(143,227,255,.25)}
+.thought.th2{color:#ffc3e6}.thought.th4{color:#f4d5a0}.thought.th6{color:#b7e2ee}
+/* --- 対応機器・目印 --- */
+.dev{border:0;background:none;padding:10px 0;min-width:84px;color:var(--muted)}
+.dev:hover{border:0;color:var(--ink)}
+.yt-badge{background:var(--inf);color:#120a1a}
+/* --- 狭い画面の調整(実機の 390px で確認して足した) --- */
+.btn.primary{padding:14px 29px}                                  /* 光の縁 1px のぶんを引く(以前は枠なし)= 文字が折り返さない */
+@media (max-width:640px){
+  .btn{white-space:nowrap;padding:15px 22px}
+  .btn.primary{padding:14px 21px}
+  .navlink{display:none}                                          /* 390px では ∞ のマーク+言語切替が収まらない(添え字は見出しにもある) */
+  .brand .brand-mark{width:36px;height:14px;margin-right:10px}
+}
+@media (min-width:641px) and (max-width:900px){.caps{padding:0 56px}} /* 800px 前後で特徴チップの行が脇の縦書きに重ならない */
+.chip,.chip em{text-shadow:0 1px 2px rgba(3,8,20,.6),0 2px 12px rgba(3,8,20,.45)}   /* 箱を脱いだので、明るい写真の上でも読めるように影だけ */
