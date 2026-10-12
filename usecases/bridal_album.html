@@ -58,7 +58,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
 .spread.single.cover{justify-content:flex-end}
 .spread.single.back{justify-content:flex-start}
 .pg.hid{visibility:hidden}
-.leaf{position:absolute;top:0;bottom:0;width:50%;z-index:5;transform-style:preserve-3d;transition:transform .95s cubic-bezier(.45,.05,.2,1);will-change:transform;pointer-events:none}
+.leaf{position:absolute;top:0;bottom:0;width:50%;z-index:5;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .95s cubic-bezier(.45,.05,.2,1);will-change:transform;pointer-events:none}
 .leaf.fwd{left:50%;transform-origin:left center}
 .leaf.bwd{left:0;transform-origin:right center}
 .leaf .face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper) url(../assets/uc/album/tex_paper.jpg?v=1013b) center/17% repeat;container-type:inline-size}
@@ -66,8 +66,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
 .leaf .face .spread{position:absolute;top:0;left:0;width:200%;height:100%;visibility:visible;opacity:1;box-shadow:none;transform:none}
 .leaf .face .spread::after{display:none}
 .leaf .face.showR .spread{left:-100%}
-.spread.cur.clipL{clip-path:inset(0 50% 0 0)}
-.spread.cur.clipR{clip-path:inset(0 0 0 50%)}
+/* めくる間、動かない側の半分= 見開きの複製を overflow:hidden の箱で半分だけ見せる(clip-path は iOS Safari で video に効かず右側に残像が出た・2026-10-13) */
+.half{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;z-index:3;pointer-events:none;background:var(--paper) url(../assets/uc/album/tex_paper.jpg?v=1013b) center/34% repeat}
+.half.L{left:0}.half.R{left:50%}
+.half .spread{position:absolute;top:0;left:0;width:200%;height:100%;visibility:visible;opacity:1;box-shadow:none;transform:none;clip-path:none}
+.half.R .spread{left:-100%}
+.half .spread::after{display:none}
 .alb-dots i{cursor:pointer;width:7px;height:7px;transition:.25s}
 .alb-dots i:hover{background:rgba(241,242,247,.6)}
 .alb-dots i.ch{width:9px;height:9px;background:rgba(217,189,138,.55)}
@@ -601,7 +605,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   function vids(s,on){s.querySelectorAll('video.ph').forEach(v=>{if(on){v.play().catch(()=>{})}else{v.pause()}})}
   function paint(){cnt.textContent=(cur+1)+' / '+sp.length;hint.textContent=sp[cur].dataset.l||'';[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===cur));
     let ci=0;CH.forEach((c,k)=>{if(cur>=c)ci=k});[...chap.children].forEach((b,k)=>b.classList.toggle('on',k===ci))}
-  function show(i){sp.forEach((s,k)=>{s.classList.toggle('cur',k===i);s.classList.remove('under','clipL','clipR');vids(s,k===i)});cur=i;sc.classList.toggle('one',sp[i].classList.contains('single'));paint()}
+  function show(i){sp.forEach((s,k)=>{s.classList.toggle('cur',k===i);s.classList.remove('under','clipL','clipR');s.style.visibility='';vids(s,k===i)});cur=i;sc.classList.toggle('one',sp[i].classList.contains('single'));paint()}
   function cloneSpread(s){const c=s.cloneNode(true);c.classList.remove('cur','under','clipL','clipR');c.querySelectorAll('video').forEach(v=>{v.removeAttribute('autoplay');v.pause()});c.querySelectorAll('.tap').forEach(t=>t.remove());return c}
   function face(cls,src,showRight){const f=document.createElement('div');f.className='face '+cls+(showRight?' showR':'');f.appendChild(cloneSpread(src));return f}
   function flip(to){
@@ -612,11 +616,14 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     const leaf=document.createElement('div');leaf.className='leaf '+(fwd?'fwd':'bwd');
     // 表= いまの見開きの動く側の半分・裏= 次の見開きの、葉の裏に来る半分
     leaf.appendChild(face('front',from,fwd));leaf.appendChild(face('back',next,!fwd));
-    next.classList.add('under');from.classList.add(fwd?'clipL':'clipR');
+    next.classList.add('under');
+    // 動かない側の半分(進む= 左・戻る= 右)は複製を箱に入れて見せ、元の見開きは隠す(clip-path を使わない)
+    const half=document.createElement('div');half.className='half '+(fwd?'L':'R');half.appendChild(cloneSpread(from));sc.appendChild(half);
+    from.style.visibility='hidden';
     const sh=document.createElement('div');sh.className='lshadow '+(fwd?'r':'l');sc.appendChild(sh);
     sc.appendChild(leaf);leaf.getBoundingClientRect();sh.style.opacity='0';
     leaf.style.transform='rotateY('+(fwd?'-180deg':'180deg')+')';
-    const done=()=>{leaf.remove();sh.remove();show(to);busy=false};
+    const done=()=>{leaf.remove();sh.remove();half.remove();from.style.visibility='';show(to);busy=false};
     leaf.addEventListener('transitionend',done,{once:true});setTimeout(()=>{if(busy)done()},1300);
   }
   const go=i=>flip(Math.max(0,Math.min(sp.length-1,i)));
