@@ -758,6 +758,17 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 /* ---- 明るいテーマ共通 ---- */
 .t-ja :focus-visible{outline-color:#405B70} .t-zh :focus-visible{outline-color:#55705D}
 .t-ja ::selection{background:rgba(64,91,112,.20)} .t-zh ::selection{background:rgba(85,112,93,.20)}
+
+/* 公式サイトの札(2026-10-13 ユーザー「公式サイトが一番下で見つかり辛い。目立つところに、公式サイトとわかりやすく」)。
+   ヒーローのボタンの直下・どの言語の世界観でも色は変数で追従 */
+.official{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;margin-top:16px;padding:14px 16px;
+  text-decoration:none;color:var(--ink);border:1px solid var(--gold);background:linear-gradient(90deg,rgba(215,184,135,.10),rgba(215,184,135,0) 70%);position:relative}
+.official .mk{width:46px;height:auto;filter:drop-shadow(0 0 6px rgba(181,155,255,.55))}
+.official .k{display:block;font-size:10.5px;letter-spacing:.3em;color:var(--gold)}
+.official .t{display:block;margin-top:3px;font-family:var(--serif-jp);font-weight:600;font-size:17px;letter-spacing:.04em;color:var(--ink)}
+.official .d{display:block;margin-top:2px;font-size:12px;letter-spacing:.04em;color:var(--sub)}
+.official .go{font-size:18px;color:var(--gold);transition:transform .3s}
+.official:hover .go{transform:translateX(4px)}
 </style>
 </head>
 <body>
@@ -803,6 +814,12 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
       <a class="cta cta-sub" href="#works"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="M10.5 9.6l5 2.4-5 2.4z"/></svg><span data-i18n="cta.works">作品一覧</span></a>
       <a class="cta cta-sub" href="#howto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg><span data-i18n="cta.howto">作り方</span></a>
     </div>
+
+    <a class="official" href="https://ethanjapan.github.io/mv-studio-site/">
+      <img class="mk" src="assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">
+      <span><span class="k">OFFICIAL SITE</span><span class="t" data-i18n="off.t">MV STUDIO 公式サイト</span><span class="d" data-i18n="off.d">話すだけで、MVができる。用途・作品・仕組み</span></span>
+      <span class="go" aria-hidden="true">→</span>
+    </a>
 
     <nav class="uc-chips" aria-label="用途から見る">
       <span class="uk" data-i18n="uc.k">用途から見る</span>
@@ -1198,7 +1215,7 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
     <div class="rows">
       <a class="row prog rise" href="https://ethanjapan.github.io/mv-studio-site/" data-vunit style="--i:0">
         <span class="th"><img src="assets/lk_mvs_thumb.jpg?v=20260906a" width="800" height="450" alt="" loading="lazy" decoding="async"><video data-src-ja="assets/lk_mvs_loop.mp4?v=20260906a" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></span>
-        <span class="tx"><span class="t s" data-i18n="b.mvs">MV STUDIO について</span><span class="d" data-i18n="b.mvs.d">話すだけで、MVができる。アプリの紹介サイト。</span></span>
+        <span class="tx"><span class="t s" data-i18n="b.mvs">MV STUDIO 公式サイト</span><span class="d" data-i18n="b.mvs.d">話すだけで、MVができる。アプリの紹介サイト。</span></span>
       </a>
       <a class="row txt rise" href="https://ig.me/m/made_linlin" style="--i:1">
         <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r="1" fill="#7B572C" stroke="none"/></svg></span>
@@ -1290,7 +1307,7 @@ var T={
   "pair.yks":["約束 — 夏祭りの夜","約定 — 夏日祭典的夜","The Promise — festival night"],"pair.umk":["海煙 — 夜明けの海","海煙 — 黎明的海","Sea Smoke — sea at dawn"],
   "b.photo":["写真作品集","攝影作品集","Photography"],"b.photo.d":["風景と光の記録。","風景與光的紀錄。","A record of landscapes and light."],
   "b.jp":["日本を旅する","走訪日本","Travel Japan"],"b.tw":["台湾を旅する","走訪台灣","Travel Taiwan"],"b.guide":["3D観光ガイド","3D觀光導覽","3D travel guide"],
-  "b.mvs":["MV STUDIO について","關於 MV STUDIO","About MV STUDIO"],"b.mvs.d":["話すだけで、MVができる。アプリの紹介サイト。","只要開口說，MV就完成。應用程式介紹網站。","Make a music video just by talking. About the app."],
+  "b.mvs":["MV STUDIO 公式サイト","MV STUDIO 官方網站","MV STUDIO official site"],"off.t":["MV STUDIO 公式サイト","MV STUDIO 官方網站","MV STUDIO official site"],"off.d":["話すだけで、MVができる。用途・作品・仕組み","只要開口說，MV就完成。用途・作品・運作方式","Make a music video just by talking — use cases, works, how it works"],"b.mvs.d":["話すだけで、MVができる。アプリの紹介サイト。","只要開口說，MV就完成。應用程式介紹網站。","Make a music video just by talking. About the app."],
   "b.contact":["制作者に連絡する","聯絡製作者","Contact"],"b.contact.d":["Instagram のDMへ。","前往 Instagram 私訊。","Instagram DM."],
   "f.d1":["映像・楽曲・キャラクターはすべてオリジナルの創作物です。","影像、樂曲、角色，皆為原創作品。","All films, music and characters are original works."],
   "f.d2":["制作に生成AIを使用しています。","製作過程使用生成式AI。","Generative AI is used in production."]
