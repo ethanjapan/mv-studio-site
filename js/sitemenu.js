@@ -18,7 +18,7 @@
       {k:'美容',h:base+'usecases/',f:'',soon:true}]},
     {k:'作品',h:base+'#works',f:'',n:'III'},
     {k:'裏番組',h:base+'#shows',f:'',n:'IV'},
-    {k:'仕組み',h:base+'#how',f:'',n:'V'},
+    {k:'仕組み',h:base+'strengths.html',f:'strengths.html',n:'V'},
     {k:'相談',h:base+'#contact',f:'',n:'VI'}];
   function li(it,sub){
     var a=document.createElement('a');a.href=it.h;

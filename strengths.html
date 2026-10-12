@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>手元で、全部。— MV Studio の強み</title>
+<meta name="description" content="写真も動画も声も、家の中の PC で生まれる。24 時間列が進み、鍵つきの入口から外からも呼べて、上限は自分の GPU だけ。同じ顔のまま、棚の資産 29,000 から選ぶ。" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MV Studio" />
+<meta property="og:title" content="手元で、全部。— MV Studio の強み" />
+<meta property="og:description" content="外に出ない。24 時間、列が進む。外からも呼べる。上限は自分の GPU だけ。同じ顔のまま。棚は資産。" />
+<meta property="og:url" content="https://ethanjapan.github.io/mv-studio-site/strengths.html" />
+<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/st/plate_home.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#04060f" />
+<link rel="icon" type="image/svg+xml" href="assets/icon_mv.svg?v=20261012a" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=20261012a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theater.css?v=20261012x">
+<style>
+.uc-hero{min-height:calc(var(--vhpx,100svh)*.9);padding-top:18vh}
+.uc-hero .panel-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.uc-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.uc-cta .note{font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+/* 六つの柱= 写真と文を交互に(雑誌の見開き) */
+.st-row{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(40px,6vw,80px) 0;border-top:1px solid var(--rule-soft)}
+.st-row:first-of-type{border-top:0}
+.st-row.flip .st-ph{order:2}
+.st-ph{position:relative;aspect-ratio:2048/1168;overflow:hidden;background:#000;border:1px solid var(--rule-soft)}
+.st-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.04)}
+.st-ph.tall{aspect-ratio:4/3}
+.st-ph .cap{position:absolute;left:14px;bottom:12px;font-family:var(--en-display);font-size:11px;letter-spacing:.3em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.st-n{font-family:var(--en-display);font-size:13px;letter-spacing:.34em;color:var(--gold);display:flex;align-items:center;gap:14px}
+.st-n::before{content:"";width:34px;height:1px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.5)}
+.st-t{margin:14px 0 16px;font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,36px);line-height:1.35;letter-spacing:.04em;color:var(--ink)}
+.st-t .em{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.st-p{margin:0;font-size:14.5px;line-height:2;color:var(--text-2);max-width:46ch}
+.st-fact{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--serif);font-size:12.5px;letter-spacing:.1em;color:var(--text-3)}
+.st-fact b{color:var(--gold);font-weight:500;font-family:var(--en-display);font-size:15px;letter-spacing:.08em;margin-right:6px}
+/* 比較= 5 行の表(罫だけ) */
+.st-cmp{margin-top:40px;width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.8}
+.st-cmp th,.st-cmp td{padding:14px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top;text-align:left}
+.st-cmp th{font-family:var(--en-display);font-weight:500;font-size:12px;letter-spacing:.28em;color:var(--gold);border-bottom:1px solid var(--rule)}
+.st-cmp td:first-child{font-family:var(--serif);color:var(--ink);letter-spacing:.06em;width:22%}
+.st-cmp td:nth-child(2){color:var(--text-3)}
+.st-cmp td:nth-child(3){color:var(--ink);position:relative;padding-left:26px}
+.st-cmp td:nth-child(3)::before{content:"";position:absolute;left:8px;top:24px;width:7px;height:7px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.7)}
+.uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
+.uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
+@media (max-width:900px){.uc-hero .panel-inner{grid-template-columns:1fr}.st-row{grid-template-columns:1fr;padding:34px 0}.st-row.flip .st-ph{order:0}.st-cmp td:first-child{width:28%}.st-cmp{font-size:12.5px}}
+</style>
+</head>
+<body class="uc">
+  <div class="grain"></div>
+  <header class="uc-head">
+    <a class="brand" href="./"><img class="brand-mark" src="assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
+    <div class="head-right"><nav class="top-nav" aria-label="主な入口">
+        <a href="usecases/">用途</a><a href="./#works">作品</a><a href="strengths.html">仕組み</a><a href="./#contact">相談</a>
+      </nav>
+      <nav class="lang-switch" id="langSwitch" aria-label="Language"><button class="ls-btn on" data-lang="ja">日本語</button><button class="ls-btn tc" data-lang="zh">繁中</button></nav></div>
+  </header>
+
+  <section class="panel cine uc-hero" data-num="00" style="--bd:url(assets/st/plate_home.jpg?v=1013a);--bd-pos:center 45%">
+    <div class="panel-inner">
+      <div>
+        <nav class="crumbs" aria-label="現在地"><a href="./">ホーム</a><i>/</i><span>仕組み</span></nav>
+        <div class="ch-eyebrow">STRENGTHS — 仕組みの強み</div>
+        <h2 class="ch-title">手元で、<span class="em">全部</span>。</h2>
+        <p class="ch-sub">写真も動画も声も、家の中の 1 台の PC で生まれる。外に送らない。夜のあいだも列が進む。鍵つきの入口から外からも呼べる。上限は自分の GPU だけ。そして、どのカットでも同じ顔。</p>
+        <div class="uc-cta">
+          <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">導入の相談をする</a>
+          <span class="note">Instagram · @made_linlin</span>
+        </div>
+      </div>
+      <div class="st-ph tall"><img src="assets/st/plate_home.jpg?v=1013a" alt=""><span class="cap">HOME STUDIO — NIGHT</span></div>
+    </div>
+  </section>
+
+  <section class="panel" data-num="01">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">01 — 六つの柱</div>
+      <h2 class="ch-title">クラウドに送らない、<span class="em">六つの理由</span>。</h2>
+
+      <div class="st-row">
+        <div class="st-ph"><img src="assets/st/plate_home.jpg?v=1013a" alt=""><span class="cap">I — LOCAL</span></div>
+        <div>
+          <div class="st-n">I — LOCAL</div>
+          <h3 class="st-t">全部、<span class="em">手元で</span>。</h3>
+          <p class="st-p">写真も動画も声も、家の中の PC で生まれる。会話の頭脳をローカルにすれば、相談の中身も外に出ない。送るのは、見せたい完成品だけ。</p>
+          <div class="st-fact"><span><b>1</b>台の生成サーバー、家の中に</span><span><b>0</b>外に送る素材</span></div>
+        </div>
+      </div>
+
+      <div class="st-row flip">
+        <div class="st-ph"><img src="assets/st/plate_dawn.jpg?v=1013a" alt=""><span class="cap">II — 24H QUEUE</span></div>
+        <div>
+          <div class="st-n">II — 24 HOURS</div>
+          <h3 class="st-t">24 時間、<span class="em">列が進む</span>。</h3>
+          <p class="st-p">頼んだ生成は列に並び、空いた GPU を 10 分ごとに埋めていく。夜に 200 枚、朝に選ぶ。待つのは人ではなく、機械。</p>
+          <div class="st-fact"><span><b>10</b>分ごとに空きを埋める</span><span><b>200</b>枚を一晩で</span></div>
+        </div>
+      </div>
+
+      <div class="st-row">
+        <div class="st-ph"><img src="assets/st/plate_cable.jpg?v=1013a" alt=""><span class="cap">III — API</span></div>
+        <div>
+          <div class="st-n">III — API</div>
+          <h3 class="st-t">自分のスタジオを、<span class="em">外から呼ぶ</span>。</h3>
+          <p class="st-p">生成の入口は鍵つきの HTTP。自作の道具や他のアプリから、同じスタジオを呼べる。家の中の 1 台が、あなたの生成サーバーになる。</p>
+          <div class="st-fact"><span><b>HTTP</b>鍵つきの入口</span><span><b>1</b>本の列に直列で安全</span></div>
+        </div>
+      </div>
+
+      <div class="st-row flip">
+        <div class="st-ph"><img src="assets/st/plate_window.jpg?v=1013a" alt=""><span class="cap">IV — NO LIMITS</span></div>
+        <div>
+          <div class="st-n">IV — NO LIMITS</div>
+          <h3 class="st-t">上限は、<span class="em">自分の GPU</span> だけ。</h3>
+          <p class="st-p">枚数にも、尺にも、やり直しにも、課金の上限はない。作風も題材も、棚と会話で決める。頭脳はローカル / Claude / ChatGPT を、相談の中身で切り替える。</p>
+          <div class="st-fact"><span><b>∞</b>枚数・尺・やり直し</span><span><b>3</b>つの頭脳を切替</span></div>
+        </div>
+      </div>
+
+      <div class="st-row">
+        <div class="st-ph tall"><img src="assets/app_char.jpg?v=20261008a" alt=""><span class="cap">V — SAME FACE</span></div>
+        <div>
+          <div class="st-n">V — SAME FACE</div>
+          <h3 class="st-t">どのカットでも、<span class="em">同じ顔</span>。</h3>
+          <p class="st-p">キャラの顔を学習して固定する。写真でも動画でも、場所が変わっても衣装が変わっても、同じ“その人”で出てくる。</p>
+          <div class="st-fact"><span><b>1</b>枚の原器から全画角</span><span><b>LoRA</b>で顔を固定</span></div>
+        </div>
+      </div>
+
+      <div class="st-row flip">
+        <div class="st-ph tall"><img src="assets/app_photo.jpg?v=20261008a" alt=""><span class="cap">VI — THE SHELF</span></div>
+        <div>
+          <div class="st-n">VI — THE SHELF</div>
+          <h3 class="st-t">棚は、<span class="em">資産</span>。</h3>
+          <p class="st-p">撮影の様式 18,582、衣装 11,137。すべて作例つき。選ぶだけで、その一本の装いと光が決まる。棚は毎週、増える。</p>
+          <div class="st-fact"><span><b>18,582</b>撮影の様式</span><span><b>11,137</b>衣装</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" data-num="02">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">02 — クラウドの生成サービスと</div>
+      <h2 class="ch-title">違いは、<span class="em">五つ</span>。</h2>
+      <table class="st-cmp">
+        <thead><tr><th></th><th>CLOUD SERVICES</th><th>MV STUDIO</th></tr></thead>
+        <tbody>
+          <tr><td>お金</td><td>枚数と尺に従って課金が増える</td><td>自分の GPU の電気代だけ</td></tr>
+          <tr><td>素材の行き先</td><td>相手のサーバーに置かれる</td><td>家の中から出ない</td></tr>
+          <tr><td>内容の制限</td><td>サービスの規約が決める</td><td>自分の判断と、法律だけ</td></tr>
+          <tr><td>待ち時間</td><td>混雑の列に並ぶ</td><td>自分の列。夜も進む</td></tr>
+          <tr><td>顔</td><td>生成のたびにゆらぐ</td><td>学習して固定。どのカットでも同じ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel uc-contact" data-num="03">
+    <div class="panel-inner">
+      <h2 class="ch-title">導入の相談は、<span class="em">環境</span>から。</h2>
+      <p class="ch-sub" style="margin-left:auto;margin-right:auto">いまの PC と、作りたいもの。それだけ送ってください。必要な構成と手順にしてお返しします。</p>
+      <div class="uc-cta" style="justify-content:center">
+        <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">導入の相談をする</a>
+        <a class="btn ghost" href="usecases/">用途から見る</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="foot-map" aria-label="サイトマップ">
+    <span class="fm-k">用途</span>
+    <a href="usecases/bridal.html">ブライダル前撮り</a><a href="usecases/portrait.html">撮影会ポートレート</a><a href="usecases/world.html">世界の撮影</a><a href="usecases/kaisetsu.html">解説動画</a>
+    <span class="fm-sep"></span>
+    <a href="./#works">作品</a><a href="./#shows">裏番組</a><a href="./#contact">相談</a>
+  </nav>
+  <footer class="site-foot">
+    <span class="foot-brand">MV&nbsp;STUDIO</span>
+    <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
+    <span class="foot-copy">© 2026 made_linlin</span>
+  </footer>
+  <a class="fab-contact" href="./#contact" aria-label="相談"><span>相談</span></a>
+<script src="js/sitemenu.js?v=20261012y"></script>
+<script src="js/uc_i18n.js?v=20261012y"></script>
+</body>
+</html>
