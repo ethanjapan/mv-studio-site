@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/theater.css?v=20261013d">
+<link rel="stylesheet" href="../css/theater.css?v=20261013e">
 <style>
 /* ユースケースのページだけの小さな決まり。部品の衣装は theater.css の「役割の衣装」と「第1段 色の一本化」をそのまま使う */
 .uc-head .brand{text-decoration:none}
@@ -31,6 +31,7 @@
 .uc-film video,.uc-film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .uc-film .cap{position:absolute;left:14px;bottom:12px;z-index:2;font-family:var(--en-display);font-size:13px;letter-spacing:.12em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.8)}
 .uc-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+@media (max-width:760px){.uc-cta .note{flex-basis:100%}}  /* スマホでは添え書きを段を変えて(ボタンが 2 つの時に横に並ばないように) */
 .uc-cta .note{font-size:12.5px;color:var(--muted);letter-spacing:.04em}
 .uc-steps{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .uc-step{position:relative;padding:22px 22px 24px;border-radius:18px;border:1px solid var(--line);background:var(--card)}
@@ -181,7 +182,7 @@
   <section class="panel wall" data-num="03">
     <div class="panel-inner">
       <div class="ch-eyebrow">03 — 棚から選べる</div>
-      <h2 class="ch-title">前撮りの様式、<span class="em">620 以上</span>。</h2>
+      <h2 class="ch-title">前撮りの様式、<span class="em nw">620 以上</span>。</h2>
       <p class="ch-sub">和装も洋装も 200 以上。参拝、手水舎、相合傘、挙式風、バックショット——それぞれ 10 の場所で。ここに並ぶのは、その中の 24。</p>
       <div class="uc-shelf">
         <h3><i></i>WASOU <span>和装 200 以上の様式から</span></h3>
@@ -275,7 +276,7 @@
   <section class="panel" data-num="03">
     <div class="panel-inner">
       <div class="ch-eyebrow">03 — ドレスも、棚から</div>
-      <h2 class="ch-title">ドレスの棚、<span class="em">500 以上</span>。</h2>
+      <h2 class="ch-title">ドレスの棚、<span class="em nw">500 以上</span>。</h2>
       <p class="ch-sub">A ライン、ボールガウン、マーメイド、袖つき、カラードレス、韓国風、中華、和装——ファッションの棚にある婚礼衣装 500 着から選んで、同じ顔のまま着替える。実在のドレスの型を参照した設計で、生地と刺繍の違いまで。ここに並ぶのは、11 の系統から 4 着ずつ。</p>
       <div class="dress-wall">
           <div class="dcol"><h4>A ライン</h4><figure title="星モチーフ オフショルストラップAライン"><img src="../assets/uc/dress/dress_016.jpg?v=1012d" alt="" loading="lazy"><figcaption>星モチーフ オフショルストラップAライン</figcaption></figure><figure title="重ねチュール ストラップレスAライン"><img src="../assets/uc/dress/dress_020.jpg?v=1012d" alt="" loading="lazy"><figcaption>重ねチュール ストラップレスAライン</figcaption></figure><figure title="フューズドレース オーガンザサッシュAライン"><img src="../assets/uc/dress/dress_007.jpg?v=1012d" alt="" loading="lazy"><figcaption>フューズドレース オーガンザサッシュAライン</figcaption></figure><figure title="イタリア刺繍アップリケ カテドラルAライン"><img src="../assets/uc/dress/dress_047.jpg?v=1012d" alt="" loading="lazy"><figcaption>イタリア刺繍アップリケ カテドラルAライン</figcaption></figure></div>

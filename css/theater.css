@@ -1610,3 +1610,6 @@ body.uc .uc-grid figure.note.w2{grid-column:span 2}  /* 横長の画が居る群
 @media (max-width:900px){body.uc .uc-grid figure.note.m1{grid-column:span 1}}  /* 3 列では 1 マスの札 */
 @media (max-width:900px){body.uc .uc-grid figure.note.m3{grid-column:span 3;grid-row:span 1}}  /* 3 列では横 1 列の札 */
 @media (max-width:900px){body.uc .uc-grid figure.note.m2{grid-column:span 2;grid-row:span 1}}  /* 3 列では横 2 マスの札(横長 6 枚+縦 13 枚の ART のように、1 マスでも 3 マスでも穴が出る群) */
+
+/* 数の見出し(620 以上 など)は「以上」で折り返さない(iPhone 幅で「620 以/上」に割れた 2026-10-13) */
+body.uc .ch-title .em.nw{white-space:nowrap}
