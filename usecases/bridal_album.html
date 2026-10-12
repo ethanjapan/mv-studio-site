@@ -239,6 +239,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
 .rot .p{margin:0 0 22px;font-size:13px;line-height:1.9;color:var(--text-2)}
 .rot .btn{font-size:13px}
 @media (prefers-reduced-motion: reduce){.rot .ph{animation:none;transform:rotate(-90deg)}}
+
+/* 横向きのスマホ(高さが低い)= 見開きを画面の高さに収める。ヘッダの帯(約 56px)を引いた高さ × 2 を幅の上限にし、中央に置く(2026-10-13: 横向きで本の上が帯に隠れ、下が切れていた) */
+@media (orientation: landscape) and (max-height: 520px){
+  .spreads{width:min(100%, calc((100svh - 74px) * 2));margin:10px auto 14px}
+  .alb-nav{margin-top:0}
+}
 </style>
 </head>
 <body class="uc">
