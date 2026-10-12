@@ -219,10 +219,35 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
 .alb-dots i{background:rgba(226,230,242,.22)}.alb-dots i.ch{background:rgba(226,230,242,.5)}
 .alb-dots i.on{background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6)}
 .spreads .tap:focus-visible{outline-color:#8fe3ff}
+
+/* 横向きの案内(2026-10-13 ユーザー「スマホは横向きで利用する前提。促すことができる?」)。iOS Safari は向きを固定できないので、縦の時だけ薄い幕で促す。
+   「このまま見る」で閉じられ(そのタブの間は出さない)、横に回せば自動で消える。縦でも見開きは縦積みで読める */
+.rot{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;
+  background:rgba(4,6,15,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.rot.show{display:flex}
+.rot .in{max-width:320px}
+.rot .ph{width:46px;height:82px;margin:0 auto 22px;border:1.5px solid rgba(241,242,247,.7);border-radius:9px;position:relative;animation:rot-turn 2.6s cubic-bezier(.6,0,.2,1) infinite}
+.rot .ph::before{content:"";position:absolute;left:50%;top:6px;width:10px;height:2px;margin-left:-5px;border-radius:2px;background:rgba(241,242,247,.6)}
+.rot .ph::after{content:"";position:absolute;left:8px;right:8px;top:14px;bottom:10px;border-radius:3px;background:linear-gradient(135deg,rgba(181,155,255,.35),rgba(255,157,219,.25),rgba(143,227,255,.35))}
+@keyframes rot-turn{0%,25%{transform:rotate(0)}55%,80%{transform:rotate(-90deg)}100%{transform:rotate(0)}}
+.rot .k{font-family:var(--en-display);font-size:11px;letter-spacing:.34em;color:var(--gold)}
+.rot .t{margin:10px 0 8px;font-family:var(--serif);font-size:20px;letter-spacing:.06em;color:var(--ink)}
+.rot .p{margin:0 0 22px;font-size:13px;line-height:1.9;color:var(--text-2)}
+.rot .btn{font-size:13px}
+@media (prefers-reduced-motion: reduce){.rot .ph{animation:none;transform:rotate(-90deg)}}
 </style>
 </head>
 <body class="uc">
   <div class="grain"></div>
+  <div class="rot" id="rotPrompt" role="dialog" aria-live="polite" aria-label="横向きの案内">
+    <div class="in">
+      <div class="ph" aria-hidden="true"></div>
+      <div class="k">TURN YOUR PHONE</div>
+      <div class="t">スマホを横に</div>
+      <p class="p">見開きのアルバムは、横向きで本の形になります。縦のままでも、上下に並べて読めます。</p>
+      <a class="btn ghost" href="#" id="rotStay">このまま見る</a>
+    </div>
+  </div>
 
   <header class="uc-head">
     <a class="brand" href="../"><img class="brand-mark" src="../assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
@@ -605,6 +630,19 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
 })();
 </script>
 <script src="../js/sitemenu.js?v=202610122100"></script>
-<script src="../js/uc_i18n.js?v=202610122100"></script>
+<script>
+(function(){
+  // 縦のスマホだけ幕を出す。横に回したら消す。「このまま見る」はそのタブの間だけ覚える(sessionStorage)
+  var el=document.getElementById('rotPrompt'),stay=document.getElementById('rotStay');if(!el)return;
+  var mq=matchMedia('(orientation: portrait) and (max-width: 760px)');
+  var off=false;try{off=sessionStorage.getItem('alb_rot_off')==='1'}catch(e){}
+  function upd(){el.classList.toggle('show',mq.matches&&!off);}
+  stay.addEventListener('click',function(e){e.preventDefault();off=true;try{sessionStorage.setItem('alb_rot_off','1')}catch(e){}upd();});
+  (mq.addEventListener?mq.addEventListener('change',upd):mq.addListener(upd));
+  window.addEventListener('orientationchange',function(){setTimeout(upd,150)});
+  upd();
+})();
+</script>
+<script src="../js/uc_i18n.js?v=202610122104"></script>
 </body>
 </html>
