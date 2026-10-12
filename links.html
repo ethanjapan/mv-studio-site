@@ -192,7 +192,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 }
 .cta:active,.film:active{transform:scale(.99);transition-duration:90ms}
 /* 章チップ(固定しない) */
-.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:28px 0 0}
+.uc-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:26px 0 0;padding-top:16px;border-top:1px solid rgba(243,239,230,.14)}
+.uc-chips .uk{font-size:11px;letter-spacing:.26em;color:var(--gold);margin-right:4px}
+.uc-chips a{font-size:12.5px;letter-spacing:.12em;color:var(--sub);text-decoration:none;position:relative;padding:4px 0}
+.uc-chips a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .4s}
+.uc-chips a:hover{color:var(--ink)}.uc-chips a:hover::after{width:100%}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:18px 0 0}
 .chips a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 6px;border-radius:999px;border:1px solid rgba(243,239,230,.22);
   font-weight:500;font-size:13px;letter-spacing:.01em;color:var(--sub);text-align:center;line-height:1.2;transition:color .16s,border-color .16s;background:rgba(9,14,22,.30)}
 .chips a:hover{color:var(--ink);border-color:var(--gold)}
@@ -799,6 +804,15 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
       <a class="cta cta-sub" href="#howto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10.5l3.5 3.5v11.5H5z"/><path d="M15 4.5V8h3.5"/><path d="M8.5 12h7M8.5 15.5h7"/></svg><span data-i18n="cta.howto">作り方</span></a>
     </div>
 
+    <nav class="uc-chips" aria-label="用途から見る">
+      <span class="uk" data-i18n="uc.k">用途から見る</span>
+      <a href="usecases/bridal.html" data-i18n="uc.bridal">ブライダル前撮り</a>
+      <a href="usecases/portrait.html" data-i18n="uc.portrait">撮影会</a>
+      <a href="usecases/world.html" data-i18n="uc.world">世界の撮影</a>
+      <a href="usecases/kaisetsu.html" data-i18n="uc.kaisetsu">解説動画</a>
+      <a href="usecases/" data-i18n="uc.all">すべて</a>
+    </nav>
+
     <nav class="chips" aria-label="ページ内の移動">
       <a href="#top" data-i18n="nav.latest">最新作</a>
       <a href="#works" data-i18n="nav.works">作品</a>
@@ -1234,7 +1248,7 @@ var T={
   "hero.statement":["夜と光を、音楽のある物語に。","把夜色與光，\n寫成有音樂的故事。","Night and light become stories set to music."],
   "hero.sub":["自宅から届ける、オリジナルMV。","在家創作，與你分享原創音樂錄影帶。","Original music videos, made at home."],
   "cta.latest":["最新作『いつもの顔』を観る","觀看最新作品《平常的臉》","Watch Itsumo no Kao"],
-  "cta.works":["作品一覧","作品一覽","All works"],"cta.howto":["作り方","製作方法","How it's made"],
+  "cta.works":["作品一覧","作品一覽","All works"],"uc.k":["用途から見る","從用途找","Use cases"],"uc.bridal":["ブライダル前撮り","婚紗照","Bridal"],"uc.portrait":["撮影会","外拍人像","Portrait"],"uc.world":["世界の撮影","環遊世界的拍攝","World"],"uc.kaisetsu":["解説動画","解說影片","Explainers"],"uc.all":["すべて","全部","All"],"cta.howto":["作り方","製作方法","How it's made"],
   "dur.umk":["3:42","3:42","3:42"],
   "dur.grv":["2:48","2:48","2:48"],"dur.hdk":["4:36","4:36","4:36"],"dur.shr":["3:59","3:59","3:59"],"dur.krt":["3:57","3:57","3:57"],"dur.kgt":["3:47","3:47","3:47"],"dur.itm":["4:09","4:09","4:09"],
   "w.umk.title":["海煙","海煙","Sea Smoke"],

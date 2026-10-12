@@ -30,9 +30,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/theater.css?v=20261012f">
+<link rel="stylesheet" href="css/theater.css?v=20261012l">
 </head>
-<body>
+<body class="uc">
 
 <!-- オープニング(2026-10-08): MV STUDIO のアイデント 7.5 秒。音は常にあり(ユーザー指示「音声のオンオフはいらない」)。
      音つきの自動再生をブラウザが許す時はそのまま流し、許さない時(初めて来た人の多く・iPhone)は「TAP TO START」→ 最初のタップで音つきで流す。
@@ -110,6 +110,9 @@
   <header>
     <div class="brand"><img class="brand-mark" src="assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</div>
     <div class="head-right">
+      <nav class="top-nav" aria-label="主な入口">
+        <a href="usecases/">用途</a><a href="#works">作品</a><a href="#how">仕組み</a><a href="#contact">相談</a>
+      </nav>
       <span class="navlink">An AI Film Director</span>
       <nav class="lang-switch" id="langSwitch" aria-label="Language">
         <button class="ls-btn on" data-lang="ja">日本語</button>
@@ -171,6 +174,32 @@
     <div class="scroll"><div class="txt">Scroll</div><div class="line"></div></div>
   </section>
 
+  <!-- 三つの扉 — 来た人が自分で道を選ぶ(2026-10-12 動線 A) -->
+  <section class="doors" aria-label="三つの入口">
+    <div class="panel-inner">
+      <div class="doors-grid">
+        <a class="door reveal" href="#works">
+          <img src="assets/wk_itsumo.jpg?v=20261012a" alt="" loading="lazy">
+          <span class="dk">I</span>
+          <strong>作品を観る</strong>
+          <em>すでに生まれた 16 本</em>
+        </a>
+        <a class="door reveal d1" href="usecases/">
+          <img src="assets/uc/uc_bridal_B27.jpg?v=1012b" alt="" loading="lazy">
+          <span class="dk">II</span>
+          <strong>用途から見る</strong>
+          <em>ブライダル・撮影会・世界・解説・美容</em>
+        </a>
+        <a class="door reveal d2" href="#how">
+          <img src="assets/app_chat.jpg?v=20261008a" alt="" loading="lazy">
+          <span class="dk">III</span>
+          <strong>仕組みを知る</strong>
+          <em>声で相談し、手元で生成する</em>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- 01 はじまりの問い -->
   <section class="panel cine" data-ch="01" data-num="01" style="--bd:url(../assets/bd_room.jpg?v=20260814b)">
     <div class="panel-inner">
@@ -190,377 +219,47 @@
     </div>
   </section>
 
-  <!-- 02 声で相談する -->
-  <section class="panel" data-ch="02" data-num="02">
+  <!-- 02 用途 — what it is for (five doors into the use-case pages) -->
+  <section class="panel" id="uses" data-ch="uc" data-num="02">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">02 — 声で、相談する</div>
-      <h2 class="ch-title reveal d1">作るのではなく、<span class="em">相談する</span>。</h2>
-      <p class="ch-sub reveal d2">ボタンを探す制作ではなく、プロと言葉を交わす制作へ。あなたの“なんとなく”を、映像の言葉に翻訳する。</p>
-      <div class="chat" id="chat">
-        <div class="bubble ai"><span class="who">Director</span>どんな雰囲気にする？ イメージを聞かせて。</div>
-        <div class="bubble me"><span class="who">You</span>もっと色っぽくて、夜っぽい感じに。</div>
-        <div class="bubble ai proposal"><span class="who">Director</span>
-          <div class="prop-lead">いいね。プロ目線で、この3案がおすすめ。</div>
-          <div class="prop-opts">
-            <span class="prop-opt rec">ネオンの反射<em>おすすめ</em></span>
-            <span class="prop-opt">雨に濡れた夜</span>
-            <span class="prop-opt">月光</span>
-          </div>
-        </div>
-        <div class="bubble me"><span class="who">You</span>ネオンで。肌の質感もリアルに。</div>
-        <div class="bubble ai"><span class="who">Director</span>了解。視線を外す表情で艶を出すね。今から顔を出す。</div>
-        <div class="bubble ai facecand"><span class="who">Director</span>
-          <div class="prop-lead">顔、出したよ。表情はこの3つから選ぼう。</div>
-          <div class="face-opts">
-            <figure class="fo"><img src="assets/fc_profile.jpg?v=20260816f" alt="" loading="lazy"><figcaption>横顔・見上げ</figcaption></figure>
-            <figure class="fo sel"><img src="assets/fc_wish.jpg?v=20260816f" alt="" loading="lazy"><figcaption>瞑目・願い</figcaption></figure>
-            <figure class="fo"><img src="assets/fc_candy.jpg?v=20260816f" alt="" loading="lazy"><figcaption>りんご飴</figcaption></figure>
-          </div>
-        </div>
-        <div class="bubble me"><span class="who">You</span>この目を閉じてる表情、最高。これで。</div>
+      <div class="ch-eyebrow reveal">02 — 用途から見る</div>
+      <h2 class="ch-title reveal d1">何に、<span class="em">使える</span>のか。</h2>
+      <p class="ch-sub reveal d2">MV だけではありません。棚の様式と、同じ顔を保つキャラ、声での相談——同じ仕組みが、こんな用途に。</p>
+      <div class="uses reveal d2">
+        <a class="use" href="usecases/bridal.html">
+          <img src="assets/uc/uc_bridal_B27.jpg?v=1012b" alt="" loading="lazy">
+          <span class="k">I</span>
+          <span class="t"><strong>ブライダル前撮り</strong><span>和装・洋装・韓国風・台湾・中華風、620 の様式とアルバム</span></span>
+        </a>
+        <a class="use" href="usecases/portrait.html">
+          <img src="assets/uc/uc_port_33.jpg?v=1012b" alt="" loading="lazy">
+          <span class="k">II</span>
+          <span class="t"><strong>撮影会ポートレート</strong><span>作風の違う 36 の様式で、一人のモデルを一日ぶん</span></span>
+        </a>
+        <a class="use" href="usecases/world.html">
+          <img src="assets/uc/world_27.jpg?v=1012b" alt="" loading="lazy">
+          <span class="k">III</span>
+          <span class="t"><strong>世界の撮影</strong><span>地域ごとの様式 3,000 から、同じ顔で世界を一周</span></span>
+        </a>
+        <a class="use" href="usecases/kaisetsu.html">
+          <img src="assets/bb_k03.jpg?v=20260825a" alt="" loading="lazy">
+          <span class="k">IV</span>
+          <span class="t"><strong>解説動画</strong><span>作り方そのものを番組に。解説 01〜05 とオフレコ</span></span>
+        </a>
+        <a class="use soon" href="usecases/" aria-disabled="true">
+          <img src="assets/wk_itsumo.jpg?v=20261012a" alt="" loading="lazy">
+          <span class="k">V</span>
+          <span class="t"><strong>美容 — 化粧・髪型・アクセサリー</strong><span>同じ顔のまま、髪型・口紅・耳元だけを変えて見せる</span></span>
+        </a>
       </div>
+      <a class="ch-cta reveal d3" href="usecases/">用途の一覧へ →</a>
     </div>
   </section>
 
-  <!-- 03 渡すだけで伝わる — reference attach (photo / costume / video URL) -->
-  <section class="panel cine" data-ch="02b" data-num="03" style="--bd:url(../assets/bd_goldfish.jpg?v=20260814b)">
+  <!-- 03 作品 — finished films born from this studio -->
+  <section class="panel" id="works" data-ch="08b" data-num="03">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">03 — 渡すだけで、伝わる</div>
-      <h2 class="ch-title reveal d1">声だけじゃない。<br><span class="em">渡すだけ</span>でいい。</h2>
-      <p class="ch-sub reveal d2">写真を添付、動画のURLを貼る——参考をそのまま渡せば、AIはその通りに受け取る。</p>
-      <div class="cards3">
-        <div class="info-card reveal d1">
-          <div class="ra-thumb face"><img class="rimg" src="assets/ref_face2.jpg?v=20260812a" alt="顔の参考写真の例" loading="lazy"></div>
-          <div class="ra-tag">顔の参考写真</div>
-          <div class="ra-say">「この顔に似た、20代前半の日本人女性に」</div>
-        </div>
-        <div class="info-card reveal d2">
-          <div class="ra-thumb wear"><img class="rimg" src="assets/ref_dress2.jpg?v=20260812a" alt="衣装の参考写真の例" loading="lazy"></div>
-          <div class="ra-tag">衣装の参考写真</div>
-          <div class="ra-say">「この衣装で」</div>
-        </div>
-        <div class="info-card reveal d3">
-          <div class="ra-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6M10.5 6.5l1-1a4 4 0 0 1 6 6l-1 1M13.5 17.5l-1 1a4 4 0 0 1-6-6l1-1"/></svg>youtube.com&nbsp;/&nbsp;tiktok.com</div>
-          <div class="ra-tag">動画のURL</div>
-          <div class="ra-say">「この振り付けを真似して踊らせて」</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 制作の旅 — filmstrip (native horizontal scroll) -->
-  <section class="panel" data-ch="03" data-num="04">
-    <div class="panel-inner wide">
-      <div class="ch-eyebrow reveal">04 — 制作の旅</div>
-      <h2 class="ch-title reveal d1">雰囲気から完成まで、<span class="em">ひとつながり</span>で。</h2>
-      <div class="strip reelstrip reveal d2">
-          <figure class="stripcard"><img src="assets/reel_0.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">01</span><figcaption>雰囲気</figcaption></figure>
-          <figure class="stripcard"><img src="assets/reel_1.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">02</span><figcaption>顔</figcaption></figure>
-          <figure class="stripcard"><img src="assets/reel_2.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">03</span><figcaption>衣装</figcaption></figure>
-          <figure class="stripcard"><img src="assets/reel_3.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">04</span><figcaption>スタイル</figcaption></figure>
-          <figure class="stripcard"><img src="assets/reel_4.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">05</span><figcaption>音楽</figcaption></figure>
-          <figure class="stripcard"><img src="assets/reel_5.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">06</span><figcaption>ダンス</figcaption></figure>
-          <figure class="stripcard"><img src="assets/reel_6.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">07</span><figcaption>絵コンテ</figcaption></figure>
-          <figure class="stripcard"><img src="assets/reel_7.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">08</span><figcaption>完成</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 本物の人間 — 4K等倍の証拠 -->
-  <section class="panel" data-ch="04" data-num="05">
-    <div class="panel-inner">
-      <div class="ch-eyebrow reveal">05 — 本物の人間</div>
-      <h2 class="ch-title reveal d1">「AIっぽさ」を、<span class="em">消す</span>。</h2>
-      <p class="ch-sub reveal d2">本物に見える理由は、細部への執着。光が割れた瞬間、すべてが“本物”に焦点を結ぶ。</p>
-      <div class="bento reveal d2">
-        <figure class="b-skin"><img src="assets/lv4_skin.jpg?v=20260814b" alt="" loading="lazy">
-          <figcaption><strong>超リアルな肌</strong><span>毛穴・うぶ毛、光の乗り方まで。</span></figcaption></figure>
-        <figure class="b-eyes"><img src="assets/lv4_eyes.jpg?v=20260814b" alt="" loading="lazy">
-          <figcaption><strong>視線の制御</strong><span>寄りは目線、引きは外す。語る視線。</span></figcaption></figure>
-        <figure class="b-mouth"><img src="assets/lv4_mouth.jpg?v=20260814b" alt="" loading="lazy">
-          <figcaption><strong>自然な微表情</strong><span>感情を、生理反応の積み重ねで。</span></figcaption></figure>
-        <figure class="b-cons"><div class="cg3"><img src="assets/cg3_yks.jpg?v=20260814b" alt="" loading="lazy"><img src="assets/cg3_rok.jpg?v=20260814b" alt="" loading="lazy"><img src="assets/cg3_utk.jpg?v=20260814b" alt="" loading="lazy"></div>
-          <figcaption><strong>顔の一貫性</strong><span>写真も動画も、どのカットでも同じ“その人”。</span></figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-<!-- ============================================================
-     挿入ブロック: 06 世界観のライブラリ + 07 スタイリング
-     挿入位置: [data-ch="04"](本物の人間) の直後、[data-ch="05"] の直前
-     ============================================================ -->
-
-  <!-- 06 世界観のライブラリ — the sea of worlds (drifting film wall) -->
-  <section class="panel wall" id="worlds" data-ch="04b" data-num="06">
-    <div class="panel-inner wide">
-      <div class="ch-eyebrow reveal">06 — 世界観のライブラリ</div>
-      <h2 class="ch-title reveal d1">どんな世界も、<span class="em">すでにそこに</span>。</h2>
-      <p class="ch-sub reveal d2">阿里山の雲海から、九份の提灯、雨のネオン、中華古装まで——<br>実際に生成された世界観が、何百も待っている。話す前から、旅は始まっている。</p>
-    </div>
-    <div class="wallwrap reveal d2">
-      <div class="wallrow wr1"><div class="wallseq">
-          <figure class="wcard"><img src="assets/lib_jiufen.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_city_night.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_lotus.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_moon_window.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_02.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_05.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_00.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_01.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_hall_light.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_22.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_city_roof.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_06.jpg?v=20260814f" alt="" loading="lazy"></figure>
-      </div></div>
-      <div class="wallrow wr2"><div class="wallseq">
-          <figure class="wcard"><img src="assets/lib_alishan_forest.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_alishan_avenue.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_amis_ocean.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_beigang.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_14.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_15.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_16.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_17.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_18.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_23.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_19.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_03.jpg?v=20260814f" alt="" loading="lazy"></figure>
-      </div></div>
-      <div class="wallrow wr3"><div class="wallseq">
-          <figure class="wcard"><img src="assets/tw_04.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_07.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_08.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_09.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_10.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_11.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_12.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_13.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_airline.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/lib_skate.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_20.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="wcard"><img src="assets/tw_21.jpg?v=20260814f" alt="" loading="lazy"></figure>
-      </div></div>
-    </div>
-  </section>
-
-  <!-- 07 スタイリング — the fashion director's closet -->
-  <section class="panel wall" data-ch="04c" data-num="07">
-    <div class="panel-inner">
-      <div class="ch-eyebrow reveal">07 — スタイリング</div>
-      <h2 class="ch-title reveal d1">衣装も、髪も、メイクも。<br><span class="em">専属スタイリスト</span>がいる。</h2>
-      <p class="ch-sub reveal d2">2026トレンド、四季、女子ウケも男子ウケも、レース和装から水着まで——<br>4,000点を超えるワードローブから、その一本のための装いを整える。</p>
-    </div>
-    <div class="rackwrap reveal d2">
-      <div class="rackrow rr1"><div class="rackseq">
-          <figure class="rcard"><img src="assets/wd_00.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_01.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_02.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_03.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_04.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_05.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_06.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_07.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_08.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_09.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_10.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_11.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_12.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_13.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_14.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_15.jpg?v=20260814f" alt="" loading="lazy"></figure>
-      </div></div>
-      <div class="rackrow rr2"><div class="rackseq">
-          <figure class="rcard"><img src="assets/wd_16.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_17.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_18.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_19.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_20.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_21.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_22.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_23.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_24.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_25.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_26.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_27.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_28.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_29.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_30.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_31.jpg?v=20260814f" alt="" loading="lazy"></figure>
-      </div></div>
-      <div class="rackrow rr3"><div class="rackseq">
-          <figure class="rcard"><img src="assets/wd_32.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_33.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_34.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_35.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_36.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_37.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_38.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_39.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_40.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_41.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_42.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_43.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_44.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_45.jpg?v=20260814f" alt="" loading="lazy"></figure>
-          <figure class="rcard"><img src="assets/wd_46.jpg?v=20260814f" alt="" loading="lazy"></figure>
-      </div></div>
-      <div class="rack-note">スタイリング資産 4,000点超 — 衣装・ヘア・メイク・アクセサリーより抜粋</div>
-    </div>
-  </section>
-
-  <!-- 05 使うほど あなた色に -->
-  <section class="panel cine" id="yourcolor" data-ch="05" data-num="08" style="--bd:url(../assets/bd_river.jpg?v=20260814b)">
-    <div class="panel-inner">
-      <div class="ch-eyebrow reveal">08 — 使うほど、あなた色に</div>
-      <h2 class="ch-title reveal d1">渡すほど、あなた専属になる。</h2>
-      <p class="ch-sub reveal d2">好きな世界観や参考を渡すたび、あなたの“好み”を覚えていく。<br>渡すほど、色が深まる——あなただけのディレクターへ。</p>
-      <div class="orb-wrap reveal d2">
-        <!-- 参考=顔料を内包した鋳造ガラスの断片(gpt-image-2・透過PNG)。約3秒に1点ずつ球へ溶け込む。文字は枠のないキャプション -->
-        <figure class="ref r1"><span class="rf"><img src="assets/ref_sekaikan.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>世界観</figcaption></figure>
-        <figure class="ref r2"><span class="rf"><img src="assets/ref_mv.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>参考のMV</figcaption></figure>
-        <figure class="ref r3"><span class="rf"><img src="assets/ref_mood.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>ムード</figcaption></figure>
-        <figure class="ref r4"><span class="rf"><img src="assets/ref_color.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>色づかい</figcaption></figure>
-        <figure class="ref r5"><span class="rf"><img src="assets/ref_tempo.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>テンポ</figcaption></figure>
-        <div class="orb">
-          <div class="orb-ring"></div>
-          <div class="orb-scale"><div class="orb-core"><video src="assets/orb_flow.mp4?v=20260824c" muted loop playsinline preload="none" aria-hidden="true"></video></div></div>
-        </div>
-        <div class="orb-cap">あなたの色</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 06 言語と声 -->
-  <section class="panel" id="voice" data-ch="06" data-num="09">
-    <div class="panel-inner">
-      <div class="ch-eyebrow reveal">09 — 言語と、声</div>
-      <h2 class="ch-title reveal d1">日本語でも、<br>繁體中文（台灣）でも。</h2>
-      <p class="ch-sub reveal d2">どちらも<strong>ネイティブの発音</strong>で。そして、相棒の声はあなたが選ぶ。世界と、あなたの耳に寄り添う。</p>
-      <div class="voice-ui reveal d2">
-        <div class="lang-toggle" id="langToggle">
-          <button class="lt-btn on" data-lang="ja">日本語</button>
-          <button class="lt-btn tc" data-lang="zh">繁體中文（台灣）</button>
-        </div>
-        <div class="voice-live">
-          <button class="vs-play" id="vsPlay" aria-label="実際の声を再生">
-            <svg class="vp-i" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-            <svg class="vp-p" viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 5.5h3.4v13H7.5zM13.1 5.5h3.4v13h-3.4z"/></svg>
-          </button>
-          <div class="voice-sample" id="voiceSample" data-noi18n><span class="q">「</span>あ、……こんにちは。RINKAです。<span class="q">」</span></div>
-        </div>
-        <div class="vs-note" id="vsNote" data-noi18n>RINKA ・ 実際に生成された声 ・ タップで再生</div>
-        <div class="voice-row">
-          <div class="vcard">
-            <div class="vc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>好きな声を選ぶ</div>
-            <!-- 声の一覧: 塗りも囲みも無し。選択中は左端の金の短い縦線と波形だけ -->
-            <div class="vlist" id="vdropList" role="listbox" aria-label="声を選ぶ">
-              <button class="vd-opt sel" role="option" aria-selected="true" data-name="声 A ・ クリア"><span class="vn">声 A ・ クリア</span><span class="vwave-mini" data-bars="7"></span></button>
-              <button class="vd-opt" role="option" aria-selected="false" data-name="声 B ・ やわらか"><span class="vn">声 B ・ やわらか</span><span class="vwave-mini" data-bars="7"></span></button>
-              <button class="vd-opt" role="option" aria-selected="false" data-name="声 C ・ りりしい"><span class="vn">声 C ・ りりしい</span><span class="vwave-mini" data-bars="7"></span></button>
-              <button class="vd-opt" role="option" aria-selected="false" data-name="声 D ・ おちつき"><span class="vn">声 D ・ おちつき</span><span class="vwave-mini" data-bars="7"></span></button>
-              <button class="vd-opt" role="option" aria-selected="false" data-name="ナレーション向き"><span class="vn">ナレーション向き</span><span class="vwave-mini" data-bars="7"></span></button>
-            </div>
-          </div>
-          <div class="clone">
-            <div class="clone-title">実際の声を、コピーする。</div>
-            <!-- 声紋の図版(gpt-image-2・透過PNG): 上=取り込んだ実際の声(金) / 下=同じ形が桃へ写る=その声で話す -->
-            <div class="vp">
-              <div class="vp-caps"><span class="c1">実際の声</span><span class="c2">その声で話す</span></div>
-              <img class="vp-art" src="assets/voice_print.png?v=20260906a" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="clone-desc">好きな声を取り込めば、ディレクターは“その声”であなたと話す。世界に一つの相棒に。</div>
-          </div>
-        </div>
-        <div class="voice-note">日本語・繁體中文（台灣）ともにネイティブ発音　／　声は一覧から選択、または実際の声をコピー</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 07 あなただけのスタジオ -->
-  <section class="panel" data-ch="07" data-num="10">
-    <div class="panel-inner">
-      <div class="ch-eyebrow reveal">10 — あなただけのスタジオ</div>
-      <h2 class="ch-title reveal d1">すべてが、あなたの手の中に。</h2>
-      <p class="ch-sub reveal d2">誰にも気兼ねなく、のびのびと。あなたのアイデアは、最後まであなただけのもの。</p>
-      <div class="studio reveal d2">
-        <div class="st-frame">
-          <div class="st-glow"></div>
-          <div class="st-tag">Your Private Studio</div>
-          <div class="st-label">あなたのスタジオ</div>
-        </div>
-        <div class="freedom reveal d3">
-          <div class="freedom-glow"></div>
-          <div class="freedom-main">制限のない、<span class="free-word">自由</span>。</div>
-          <div class="freedom-sub">誰にも気兼ねなく、外に送られることもない。表現したいものを、ためらわず、そのまま。</div>
-          <div class="freedom-chips">
-            <span class="st-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.4-2"/></svg>完全プライベート</span>
-            <span class="st-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l4 4 4-6 4 6 4-4v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/></svg>すべてあなたのもの</span>
-          </div>
-        </div>
-        <p class="disclaimer reveal">ご利用にあたって — 自由には、責任が伴います。各国・地域の法令を遵守し、倫理・道徳・公序良俗に反する利用、第三者の権利（肖像権・著作権・名誉・プライバシー等）を侵害する利用は固くお断りします。本サービスの利用により生じたいかなる結果・損害についても、製作者および提供者は一切の責任を負いません。すべての責任は利用者ご自身に帰属します。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 11 ローカル生成 — the concept behind the private studio -->
-  <section class="panel cine" data-ch="07b" data-num="11" style="--bd:url(../assets/bd_local.jpg?v=20260824a)">
-    <div class="panel-inner">
-      <div class="ch-eyebrow reveal">11 — ローカル生成</div>
-      <h2 class="ch-title reveal d1">生成は、ぜんぶ、<br class="brm"><span class="em">この手元</span>で。</h2>
-      <p class="ch-sub reveal d2">クラウドに送って作るのではなく、スタジオそのものが手元のマシンに入っている。<br>素材も、途中の失敗も、完成した一本も——ここから外へは出ない。</p>
-      <div class="pillars">
-        <div class="pillar reveal d1"><div class="pn">01</div><div class="pt">外に出ないから、自由</div><div class="pd">素材も途中経過も、ネットの向こうへ送らない。だから誰にも気兼ねなく、最後まで作り切れる。</div></div>
-        <div class="pillar reveal d2"><div class="pn">02</div><div class="pt">何度でも、納得するまで</div><div class="pd">生成のたびの追加費用がない。失敗のコストは時間だけ——「もう一回」を、ためらわない。</div></div>
-        <div class="pillar reveal d3"><div class="pn">03</div><div class="pt">失敗も、財産になる</div><div class="pd">やり直したテイクは流れて消えず、手元に積み上がる。次の一本が、その分だけ賢くなる。</div></div>
-        <div class="pillar reveal d4"><div class="pn">04</div><div class="pt">眠っている間も、働く</div><div class="pd">生成の列は夜のあいだも自動で進む。朝には、選ぶだけの状態が待っている。</div></div>
-      </div>
-      <div class="stats reveal d3">
-        <div class="stat"><span class="st-num" data-count="10000" data-plus="1" data-noi18n>0</span><span class="st-cap">手元で生まれた素材</span></div>
-        <div class="stat"><span class="st-num">200分</span><span class="st-cap">完成作品の上映時間</span></div>
-        <div class="stat"><span class="st-num">0円</span><span class="st-cap">生成ごとの追加費用</span></div>
-        <div class="stat"><span class="st-num" data-count="100" data-suffix="%" data-noi18n>0</span><span class="st-cap">手元のマシンで完結</span></div>
-      </div>
-      <a class="ch-cta reveal d4" href="https://youtu.be/ge2S7PQAxZI" data-zh-href="https://youtu.be/Etnjj5HnuWg" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-        <span>この章の話を、工場の見学として——『この家から、データは出ない』</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- 12 実例 — the making of one MV (native horizontal scroll) -->
-  <section class="panel" data-ch="08" data-num="12">
-    <div class="panel-inner wide">
-      <div class="ch-eyebrow reveal">12 — 実例：話すだけで、ここまで</div>
-      <h2 class="ch-title reveal d1">一本のMVが、<span class="em">生まれる</span>まで。</h2>
-      <div class="strip exstrip reveal d2">
-          <figure class="stripcard">
-            <div class="sc-thumb"><img src="assets/ex_moodm.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 01</span><span class="sc-step">雰囲気</span></div>
-            <figcaption><div class="say"><span class="qq">「</span>夕暮れの部室で、青春バンドMVに<span class="qq">」</span></div><div class="act">金色の光と舞う埃——雰囲気を3案から選ぶ。</div></figcaption>
-          </figure>
-          <figure class="stripcard">
-            <div class="sc-thumb"><img src="assets/ex_facem.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 02</span><span class="sc-step">顔</span></div>
-            <figcaption><div class="say"><span class="qq">「</span>まっすぐな目の、あどけなさの残る子<span class="qq">」</span></div><div class="act">超リアルな顔を見比べて、相談して決める。</div></figcaption>
-          </figure>
-          <figure class="stripcard">
-            <div class="sc-thumb"><img src="assets/ex_dressm.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 03</span><span class="sc-step">衣装</span></div>
-            <figcaption><div class="say"><span class="qq">「</span>白シャツに、紺のプリーツスカートで<span class="qq">」</span></div><div class="act">衣装・体型・スタイルまで反映する。</div></figcaption>
-          </figure>
-          <figure class="stripcard">
-            <div class="sc-thumb"><img src="assets/ex_face.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 04</span><span class="sc-step">歌唱・表情</span></div>
-            <figcaption><div class="say"><span class="qq">「</span>ラスサビは、想いを解き放つように<span class="qq">」</span></div><div class="act">声と口元・表情を、曲に合わせて演出する。</div></figcaption>
-          </figure>
-          <figure class="stripcard">
-            <div class="sc-thumb"><video class="ex" src="assets/ex_final.mp4?v=20260812a" poster="assets/ex_final.jpg?v=20260812a" muted loop playsinline preload="metadata"></video><span class="sc-n">SCENE 05</span><span class="sc-step">完成MV</span></div>
-            <figcaption><div class="say"><span class="qq">「</span>絵コンテOK、仕上げて<span class="qq">」</span></div><div class="act">高画質で仕上げ——実際に生成された一本のMV。</div></figcaption>
-          </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 13 作品 — finished films born from this studio -->
-  <section class="panel" data-ch="08b" data-num="13">
-    <div class="panel-inner">
-      <div class="ch-eyebrow reveal">13 — 作品</div>
+      <div class="ch-eyebrow reveal">03 — 作品</div>
       <h2 class="ch-title reveal d1">すでに生まれた、<span class="em">一本たち</span>。</h2>
       <p class="ch-sub reveal d2">夜明け前の街、夏の海のまぶしさ、軽音部の放課後、雨の剣戟、語りかける彼女——<br>どれも、このスタジオの対話から実際に生まれた作品。</p>
       <div class="works reveal d2">
@@ -644,7 +343,6 @@
           <figcaption><strong>暁の誓剣</strong><span>アクション短編 ・ 42秒</span></figcaption>
         </figure>
       </div>
-      <a class="ch-cta reveal d3" href="usecases/" style="margin-top:28px">用途から見る —— ブライダル前撮り・撮影会・美容・解説動画 →</a>
       <div class="stats reveal d3" id="stats">
         <div class="stat"><span class="st-num" data-count="16" data-noi18n>0</span><span class="st-cap">完成した作品</span></div>
         <div class="stat"><span class="st-num" data-count="11137" data-noi18n>0</span><span class="st-cap">スタイリング資産</span></div>
@@ -654,10 +352,10 @@
     </div>
   </section>
 
-  <!-- 14 裏番組 — the shows behind the films -->
-  <section class="panel" data-ch="08c" data-num="14">
+  <!-- 04 裏番組 — the shows behind the films -->
+  <section class="panel" id="shows" data-ch="08c" data-num="04">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">14 — 裏番組</div>
+      <div class="ch-eyebrow reveal">04 — 裏番組</div>
       <h2 class="ch-title reveal d1">上映のあとも、<br class="brm"><span class="em">番組</span>は続く。</h2>
       <p class="ch-sub reveal d2">完成した一本の裏には、山ほどの失敗と、やり直しの夜がある。<br>それを隠さずに、番組にした——作られた本人、RINKAが話す。</p>
       <div class="shows reveal d2">
@@ -748,10 +446,377 @@
     </div>
   </section>
 
-  <!-- 15 プロの精度で操る -->
-  <section class="panel" data-ch="09" data-num="15">
+  <!-- 05 実例 — the making of one MV (native horizontal scroll) -->
+  <section class="panel" data-ch="08" data-num="05">
+    <div class="panel-inner wide">
+      <div class="ch-eyebrow reveal">05 — 実例：話すだけで、ここまで</div>
+      <h2 class="ch-title reveal d1">一本のMVが、<span class="em">生まれる</span>まで。</h2>
+      <div class="strip exstrip reveal d2">
+          <figure class="stripcard">
+            <div class="sc-thumb"><img src="assets/ex_moodm.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 01</span><span class="sc-step">雰囲気</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>夕暮れの部室で、青春バンドMVに<span class="qq">」</span></div><div class="act">金色の光と舞う埃——雰囲気を3案から選ぶ。</div></figcaption>
+          </figure>
+          <figure class="stripcard">
+            <div class="sc-thumb"><img src="assets/ex_facem.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 02</span><span class="sc-step">顔</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>まっすぐな目の、あどけなさの残る子<span class="qq">」</span></div><div class="act">超リアルな顔を見比べて、相談して決める。</div></figcaption>
+          </figure>
+          <figure class="stripcard">
+            <div class="sc-thumb"><img src="assets/ex_dressm.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 03</span><span class="sc-step">衣装</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>白シャツに、紺のプリーツスカートで<span class="qq">」</span></div><div class="act">衣装・体型・スタイルまで反映する。</div></figcaption>
+          </figure>
+          <figure class="stripcard">
+            <div class="sc-thumb"><img src="assets/ex_face.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">SCENE 04</span><span class="sc-step">歌唱・表情</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>ラスサビは、想いを解き放つように<span class="qq">」</span></div><div class="act">声と口元・表情を、曲に合わせて演出する。</div></figcaption>
+          </figure>
+          <figure class="stripcard">
+            <div class="sc-thumb"><video class="ex" src="assets/ex_final.mp4?v=20260812a" poster="assets/ex_final.jpg?v=20260812a" muted loop playsinline preload="metadata"></video><span class="sc-n">SCENE 05</span><span class="sc-step">完成MV</span></div>
+            <figcaption><div class="say"><span class="qq">「</span>絵コンテOK、仕上げて<span class="qq">」</span></div><div class="act">高画質で仕上げ——実際に生成された一本のMV。</div></figcaption>
+          </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 声で相談する -->
+  <section class="panel" id="how" data-ch="02" data-num="06">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">15 — プロの精度で、操る</div>
+      <div class="ch-eyebrow reveal">06 — 声で、相談する</div>
+      <h2 class="ch-title reveal d1">作るのではなく、<span class="em">相談する</span>。</h2>
+      <p class="ch-sub reveal d2">ボタンを探す制作ではなく、プロと言葉を交わす制作へ。あなたの“なんとなく”を、映像の言葉に翻訳する。</p>
+      <div class="chat" id="chat">
+        <div class="bubble ai"><span class="who">Director</span>どんな雰囲気にする？ イメージを聞かせて。</div>
+        <div class="bubble me"><span class="who">You</span>もっと色っぽくて、夜っぽい感じに。</div>
+        <div class="bubble ai proposal"><span class="who">Director</span>
+          <div class="prop-lead">いいね。プロ目線で、この3案がおすすめ。</div>
+          <div class="prop-opts">
+            <span class="prop-opt rec">ネオンの反射<em>おすすめ</em></span>
+            <span class="prop-opt">雨に濡れた夜</span>
+            <span class="prop-opt">月光</span>
+          </div>
+        </div>
+        <div class="bubble me"><span class="who">You</span>ネオンで。肌の質感もリアルに。</div>
+        <div class="bubble ai"><span class="who">Director</span>了解。視線を外す表情で艶を出すね。今から顔を出す。</div>
+        <div class="bubble ai facecand"><span class="who">Director</span>
+          <div class="prop-lead">顔、出したよ。表情はこの3つから選ぼう。</div>
+          <div class="face-opts">
+            <figure class="fo"><img src="assets/fc_profile.jpg?v=20260816f" alt="" loading="lazy"><figcaption>横顔・見上げ</figcaption></figure>
+            <figure class="fo sel"><img src="assets/fc_wish.jpg?v=20260816f" alt="" loading="lazy"><figcaption>瞑目・願い</figcaption></figure>
+            <figure class="fo"><img src="assets/fc_candy.jpg?v=20260816f" alt="" loading="lazy"><figcaption>りんご飴</figcaption></figure>
+          </div>
+        </div>
+        <div class="bubble me"><span class="who">You</span>この目を閉じてる表情、最高。これで。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 渡すだけで伝わる — reference attach (photo / costume / video URL) -->
+  <section class="panel cine" data-ch="02b" data-num="07" style="--bd:url(../assets/bd_goldfish.jpg?v=20260814b)">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">07 — 渡すだけで、伝わる</div>
+      <h2 class="ch-title reveal d1">声だけじゃない。<br><span class="em">渡すだけ</span>でいい。</h2>
+      <p class="ch-sub reveal d2">写真を添付、動画のURLを貼る——参考をそのまま渡せば、AIはその通りに受け取る。</p>
+      <div class="cards3">
+        <div class="info-card reveal d1">
+          <div class="ra-thumb face"><img class="rimg" src="assets/ref_face2.jpg?v=20260812a" alt="顔の参考写真の例" loading="lazy"></div>
+          <div class="ra-tag">顔の参考写真</div>
+          <div class="ra-say">「この顔に似た、20代前半の日本人女性に」</div>
+        </div>
+        <div class="info-card reveal d2">
+          <div class="ra-thumb wear"><img class="rimg" src="assets/ref_dress2.jpg?v=20260812a" alt="衣装の参考写真の例" loading="lazy"></div>
+          <div class="ra-tag">衣装の参考写真</div>
+          <div class="ra-say">「この衣装で」</div>
+        </div>
+        <div class="info-card reveal d3">
+          <div class="ra-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6M10.5 6.5l1-1a4 4 0 0 1 6 6l-1 1M13.5 17.5l-1 1a4 4 0 0 1-6-6l1-1"/></svg>youtube.com&nbsp;/&nbsp;tiktok.com</div>
+          <div class="ra-tag">動画のURL</div>
+          <div class="ra-say">「この振り付けを真似して踊らせて」</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 制作の旅 — filmstrip (native horizontal scroll) -->
+  <section class="panel" data-ch="03" data-num="08">
+    <div class="panel-inner wide">
+      <div class="ch-eyebrow reveal">08 — 制作の旅</div>
+      <h2 class="ch-title reveal d1">雰囲気から完成まで、<span class="em">ひとつながり</span>で。</h2>
+      <div class="strip reelstrip reveal d2">
+          <figure class="stripcard"><img src="assets/reel_0.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">01</span><figcaption>雰囲気</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_1.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">02</span><figcaption>顔</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_2.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">03</span><figcaption>衣装</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_3.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">04</span><figcaption>スタイル</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_4.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">05</span><figcaption>音楽</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_5.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">06</span><figcaption>ダンス</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_6.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">07</span><figcaption>絵コンテ</figcaption></figure>
+          <figure class="stripcard"><img src="assets/reel_7.jpg?v=20260812a" alt="" loading="lazy"><span class="sc-n">08</span><figcaption>完成</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 本物の人間 — 4K等倍の証拠 -->
+  <section class="panel" data-ch="04" data-num="09">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">09 — 本物の人間</div>
+      <h2 class="ch-title reveal d1">「AIっぽさ」を、<span class="em">消す</span>。</h2>
+      <p class="ch-sub reveal d2">本物に見える理由は、細部への執着。光が割れた瞬間、すべてが“本物”に焦点を結ぶ。</p>
+      <div class="bento reveal d2">
+        <figure class="b-skin"><img src="assets/lv4_skin.jpg?v=20260814b" alt="" loading="lazy">
+          <figcaption><strong>超リアルな肌</strong><span>毛穴・うぶ毛、光の乗り方まで。</span></figcaption></figure>
+        <figure class="b-eyes"><img src="assets/lv4_eyes.jpg?v=20260814b" alt="" loading="lazy">
+          <figcaption><strong>視線の制御</strong><span>寄りは目線、引きは外す。語る視線。</span></figcaption></figure>
+        <figure class="b-mouth"><img src="assets/lv4_mouth.jpg?v=20260814b" alt="" loading="lazy">
+          <figcaption><strong>自然な微表情</strong><span>感情を、生理反応の積み重ねで。</span></figcaption></figure>
+        <figure class="b-cons"><div class="cg3"><img src="assets/cg3_yks.jpg?v=20260814b" alt="" loading="lazy"><img src="assets/cg3_rok.jpg?v=20260814b" alt="" loading="lazy"><img src="assets/cg3_utk.jpg?v=20260814b" alt="" loading="lazy"></div>
+          <figcaption><strong>顔の一貫性</strong><span>写真も動画も、どのカットでも同じ“その人”。</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+<!-- ============================================================
+     挿入ブロック: 06 世界観のライブラリ + 07 スタイリング
+     挿入位置: [data-ch="04"](本物の人間) の直後、[data-ch="05"] の直前
+     ============================================================ -->
+
+  <!-- 10 世界観のライブラリ — the sea of worlds (drifting film wall) -->
+  <section class="panel wall" id="worlds" data-ch="04b" data-num="10">
+    <div class="panel-inner wide">
+      <div class="ch-eyebrow reveal">10 — 世界観のライブラリ</div>
+      <h2 class="ch-title reveal d1">どんな世界も、<span class="em">すでにそこに</span>。</h2>
+      <p class="ch-sub reveal d2">阿里山の雲海から、九份の提灯、雨のネオン、中華古装まで——<br>実際に生成された世界観が、何百も待っている。話す前から、旅は始まっている。</p>
+    </div>
+    <div class="wallwrap reveal d2">
+      <div class="wallrow wr1"><div class="wallseq">
+          <figure class="wcard"><img src="assets/lib_jiufen.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_city_night.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_lotus.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_moon_window.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_02.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_05.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_00.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_01.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_hall_light.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_22.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_city_roof.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_06.jpg?v=20260814f" alt="" loading="lazy"></figure>
+      </div></div>
+      <div class="wallrow wr2"><div class="wallseq">
+          <figure class="wcard"><img src="assets/lib_alishan_forest.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_alishan_avenue.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_amis_ocean.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_beigang.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_14.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_15.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_16.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_17.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_18.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_23.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_19.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_03.jpg?v=20260814f" alt="" loading="lazy"></figure>
+      </div></div>
+      <div class="wallrow wr3"><div class="wallseq">
+          <figure class="wcard"><img src="assets/tw_04.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_07.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_08.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_09.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_10.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_11.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_12.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_13.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_airline.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/lib_skate.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_20.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="wcard"><img src="assets/tw_21.jpg?v=20260814f" alt="" loading="lazy"></figure>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 11 スタイリング — the fashion director's closet -->
+  <section class="panel wall" data-ch="04c" data-num="11">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">11 — スタイリング</div>
+      <h2 class="ch-title reveal d1">衣装も、髪も、メイクも。<br><span class="em">専属スタイリスト</span>がいる。</h2>
+      <p class="ch-sub reveal d2">2026トレンド、四季、女子ウケも男子ウケも、レース和装から水着まで——<br>4,000点を超えるワードローブから、その一本のための装いを整える。</p>
+    </div>
+    <div class="rackwrap reveal d2">
+      <div class="rackrow rr1"><div class="rackseq">
+          <figure class="rcard"><img src="assets/wd_00.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_01.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_02.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_03.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_04.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_05.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_06.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_07.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_08.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_09.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_10.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_11.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_12.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_13.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_14.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_15.jpg?v=20260814f" alt="" loading="lazy"></figure>
+      </div></div>
+      <div class="rackrow rr2"><div class="rackseq">
+          <figure class="rcard"><img src="assets/wd_16.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_17.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_18.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_19.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_20.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_21.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_22.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_23.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_24.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_25.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_26.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_27.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_28.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_29.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_30.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_31.jpg?v=20260814f" alt="" loading="lazy"></figure>
+      </div></div>
+      <div class="rackrow rr3"><div class="rackseq">
+          <figure class="rcard"><img src="assets/wd_32.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_33.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_34.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_35.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_36.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_37.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_38.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_39.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_40.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_41.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_42.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_43.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_44.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_45.jpg?v=20260814f" alt="" loading="lazy"></figure>
+          <figure class="rcard"><img src="assets/wd_46.jpg?v=20260814f" alt="" loading="lazy"></figure>
+      </div></div>
+      <div class="rack-note">スタイリング資産 4,000点超 — 衣装・ヘア・メイク・アクセサリーより抜粋</div>
+    </div>
+  </section>
+
+  <!-- 12 使うほど あなた色に -->
+  <section class="panel cine" id="yourcolor" data-ch="05" data-num="12" style="--bd:url(../assets/bd_river.jpg?v=20260814b)">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">12 — 使うほど、あなた色に</div>
+      <h2 class="ch-title reveal d1">渡すほど、あなた専属になる。</h2>
+      <p class="ch-sub reveal d2">好きな世界観や参考を渡すたび、あなたの“好み”を覚えていく。<br>渡すほど、色が深まる——あなただけのディレクターへ。</p>
+      <div class="orb-wrap reveal d2">
+        <!-- 参考=顔料を内包した鋳造ガラスの断片(gpt-image-2・透過PNG)。約3秒に1点ずつ球へ溶け込む。文字は枠のないキャプション -->
+        <figure class="ref r1"><span class="rf"><img src="assets/ref_sekaikan.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>世界観</figcaption></figure>
+        <figure class="ref r2"><span class="rf"><img src="assets/ref_mv.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>参考のMV</figcaption></figure>
+        <figure class="ref r3"><span class="rf"><img src="assets/ref_mood.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>ムード</figcaption></figure>
+        <figure class="ref r4"><span class="rf"><img src="assets/ref_color.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>色づかい</figcaption></figure>
+        <figure class="ref r5"><span class="rf"><img src="assets/ref_tempo.png?v=20260906a" alt="" loading="lazy" decoding="async"></span><figcaption>テンポ</figcaption></figure>
+        <div class="orb">
+          <div class="orb-ring"></div>
+          <div class="orb-scale"><div class="orb-core"><video src="assets/orb_flow.mp4?v=20260824c" muted loop playsinline preload="none" aria-hidden="true"></video></div></div>
+        </div>
+        <div class="orb-cap">あなたの色</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 言語と声 -->
+  <section class="panel" id="voice" data-ch="06" data-num="13">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">13 — 言語と、声</div>
+      <h2 class="ch-title reveal d1">日本語でも、<br>繁體中文（台灣）でも。</h2>
+      <p class="ch-sub reveal d2">どちらも<strong>ネイティブの発音</strong>で。そして、相棒の声はあなたが選ぶ。世界と、あなたの耳に寄り添う。</p>
+      <div class="voice-ui reveal d2">
+        <div class="lang-toggle" id="langToggle">
+          <button class="lt-btn on" data-lang="ja">日本語</button>
+          <button class="lt-btn tc" data-lang="zh">繁體中文（台灣）</button>
+        </div>
+        <div class="voice-live">
+          <button class="vs-play" id="vsPlay" aria-label="実際の声を再生">
+            <svg class="vp-i" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+            <svg class="vp-p" viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 5.5h3.4v13H7.5zM13.1 5.5h3.4v13h-3.4z"/></svg>
+          </button>
+          <div class="voice-sample" id="voiceSample" data-noi18n><span class="q">「</span>あ、……こんにちは。RINKAです。<span class="q">」</span></div>
+        </div>
+        <div class="vs-note" id="vsNote" data-noi18n>RINKA ・ 実際に生成された声 ・ タップで再生</div>
+        <div class="voice-row">
+          <div class="vcard">
+            <div class="vc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>好きな声を選ぶ</div>
+            <!-- 声の一覧: 塗りも囲みも無し。選択中は左端の金の短い縦線と波形だけ -->
+            <div class="vlist" id="vdropList" role="listbox" aria-label="声を選ぶ">
+              <button class="vd-opt sel" role="option" aria-selected="true" data-name="声 A ・ クリア"><span class="vn">声 A ・ クリア</span><span class="vwave-mini" data-bars="7"></span></button>
+              <button class="vd-opt" role="option" aria-selected="false" data-name="声 B ・ やわらか"><span class="vn">声 B ・ やわらか</span><span class="vwave-mini" data-bars="7"></span></button>
+              <button class="vd-opt" role="option" aria-selected="false" data-name="声 C ・ りりしい"><span class="vn">声 C ・ りりしい</span><span class="vwave-mini" data-bars="7"></span></button>
+              <button class="vd-opt" role="option" aria-selected="false" data-name="声 D ・ おちつき"><span class="vn">声 D ・ おちつき</span><span class="vwave-mini" data-bars="7"></span></button>
+              <button class="vd-opt" role="option" aria-selected="false" data-name="ナレーション向き"><span class="vn">ナレーション向き</span><span class="vwave-mini" data-bars="7"></span></button>
+            </div>
+          </div>
+          <div class="clone">
+            <div class="clone-title">実際の声を、コピーする。</div>
+            <!-- 声紋の図版(gpt-image-2・透過PNG): 上=取り込んだ実際の声(金) / 下=同じ形が桃へ写る=その声で話す -->
+            <div class="vp">
+              <div class="vp-caps"><span class="c1">実際の声</span><span class="c2">その声で話す</span></div>
+              <img class="vp-art" src="assets/voice_print.png?v=20260906a" alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="clone-desc">好きな声を取り込めば、ディレクターは“その声”であなたと話す。世界に一つの相棒に。</div>
+          </div>
+        </div>
+        <div class="voice-note">日本語・繁體中文（台灣）ともにネイティブ発音　／　声は一覧から選択、または実際の声をコピー</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 あなただけのスタジオ -->
+  <section class="panel" data-ch="07" data-num="14">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">14 — あなただけのスタジオ</div>
+      <h2 class="ch-title reveal d1">すべてが、あなたの手の中に。</h2>
+      <p class="ch-sub reveal d2">誰にも気兼ねなく、のびのびと。あなたのアイデアは、最後まであなただけのもの。</p>
+      <div class="studio reveal d2">
+        <div class="st-frame">
+          <div class="st-glow"></div>
+          <div class="st-tag">Your Private Studio</div>
+          <div class="st-label">あなたのスタジオ</div>
+        </div>
+        <div class="freedom reveal d3">
+          <div class="freedom-glow"></div>
+          <div class="freedom-main">制限のない、<span class="free-word">自由</span>。</div>
+          <div class="freedom-sub">誰にも気兼ねなく、外に送られることもない。表現したいものを、ためらわず、そのまま。</div>
+          <div class="freedom-chips">
+            <span class="st-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.4-2"/></svg>完全プライベート</span>
+            <span class="st-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l4 4 4-6 4 6 4-4v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/></svg>すべてあなたのもの</span>
+          </div>
+        </div>
+        <p class="disclaimer reveal">ご利用にあたって — 自由には、責任が伴います。各国・地域の法令を遵守し、倫理・道徳・公序良俗に反する利用、第三者の権利（肖像権・著作権・名誉・プライバシー等）を侵害する利用は固くお断りします。本サービスの利用により生じたいかなる結果・損害についても、製作者および提供者は一切の責任を負いません。すべての責任は利用者ご自身に帰属します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 ローカル生成 — the concept behind the private studio -->
+  <section class="panel cine" data-ch="07b" data-num="15" style="--bd:url(../assets/bd_local.jpg?v=20260824a)">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">15 — ローカル生成</div>
+      <h2 class="ch-title reveal d1">生成は、ぜんぶ、<br class="brm"><span class="em">この手元</span>で。</h2>
+      <p class="ch-sub reveal d2">クラウドに送って作るのではなく、スタジオそのものが手元のマシンに入っている。<br>素材も、途中の失敗も、完成した一本も——ここから外へは出ない。</p>
+      <div class="pillars">
+        <div class="pillar reveal d1"><div class="pn">01</div><div class="pt">外に出ないから、自由</div><div class="pd">素材も途中経過も、ネットの向こうへ送らない。だから誰にも気兼ねなく、最後まで作り切れる。</div></div>
+        <div class="pillar reveal d2"><div class="pn">02</div><div class="pt">何度でも、納得するまで</div><div class="pd">生成のたびの追加費用がない。失敗のコストは時間だけ——「もう一回」を、ためらわない。</div></div>
+        <div class="pillar reveal d3"><div class="pn">03</div><div class="pt">失敗も、財産になる</div><div class="pd">やり直したテイクは流れて消えず、手元に積み上がる。次の一本が、その分だけ賢くなる。</div></div>
+        <div class="pillar reveal d4"><div class="pn">04</div><div class="pt">眠っている間も、働く</div><div class="pd">生成の列は夜のあいだも自動で進む。朝には、選ぶだけの状態が待っている。</div></div>
+      </div>
+      <div class="stats reveal d3">
+        <div class="stat"><span class="st-num" data-count="10000" data-plus="1" data-noi18n>0</span><span class="st-cap">手元で生まれた素材</span></div>
+        <div class="stat"><span class="st-num">200分</span><span class="st-cap">完成作品の上映時間</span></div>
+        <div class="stat"><span class="st-num">0円</span><span class="st-cap">生成ごとの追加費用</span></div>
+        <div class="stat"><span class="st-num" data-count="100" data-suffix="%" data-noi18n>0</span><span class="st-cap">手元のマシンで完結</span></div>
+      </div>
+      <a class="ch-cta reveal d4" href="https://youtu.be/ge2S7PQAxZI" data-zh-href="https://youtu.be/Etnjj5HnuWg" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+        <span>この章の話を、工場の見学として——『この家から、データは出ない』</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 16 プロの精度で操る -->
+  <section class="panel" data-ch="09" data-num="16">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">16 — プロの精度で、操る</div>
       <h2 class="ch-title reveal d1">細部まで、あなたの指先で。</h2>
       <p class="ch-sub reveal d2">監督でありながら、撮影者でもあるあなたへ。仕上がりの細部まで、思いのまま。</p>
       <div class="sbwrap reveal d2">
@@ -782,9 +847,9 @@
     </div>
   </section>
 
-  <section class="panel" data-ch="09b" data-num="16">
+  <section class="panel" data-ch="09b" data-num="17">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">16 — アプリの中</div>
+      <div class="ch-eyebrow reveal">17 — アプリの中</div>
       <h2 class="ch-title reveal d1">これが、<span class="em">実際の画面</span>。</h2>
       <p class="ch-sub reveal d2">相談も、声も、曲も、写真も、キャラも。ひとつのアプリの中で、話しながら進めていく。</p>
       <div class="appshow">
@@ -858,10 +923,10 @@
     </div>
   </section>
 
-  <!-- 16 こんな人に -->
-  <section class="panel cine" data-ch="12a" data-num="17" style="--bd:url(../assets/bd_club.jpg?v=20260814b)">
+  <!-- 18 こんな人に -->
+  <section class="panel cine" data-ch="12a" data-num="18" style="--bd:url(../assets/bd_club.jpg?v=20260814b)">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">17 — こんな人に、届く</div>
+      <div class="ch-eyebrow reveal">18 — こんな人に、届く</div>
       <h2 class="ch-title reveal d1"><span class="em">あなたの一本</span>を、話すだけで。</h2>
       <p class="ch-sub reveal d2">歌い手も、配信者も、ブランドも——伝えたい想いのかたちは違っても。<br>話すだけで、届けるための一本が生まれる。</p>
       <div class="pillars">
@@ -873,10 +938,10 @@
     </div>
   </section>
 
-  <!-- 17 届けて、広げる -->
-  <section class="panel cine" data-ch="13a" data-num="18" style="--bd:url(../assets/bd_sparkler.jpg?v=20260814b)">
+  <!-- 19 届けて、広げる -->
+  <section class="panel cine" data-ch="13a" data-num="19" style="--bd:url(../assets/bd_sparkler.jpg?v=20260814b)">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">18 — 届けて、広げる</div>
+      <div class="ch-eyebrow reveal">19 — 届けて、広げる</div>
       <h2 class="ch-title reveal d1">作った一本を、<span class="em">世界へ</span>。</h2>
       <p class="ch-sub reveal d2">映像は、作って終わりじゃない——<br>あなたの世界を、まだ知らない誰かのもとへ運ぶための、小さなコツを。</p>
       <div class="pillars">
@@ -888,10 +953,10 @@
     </div>
   </section>
 
-  <!-- 18 三つのスタジオ -->
-  <section class="panel" data-ch="14a" data-num="19">
+  <!-- 20 三つのスタジオ -->
+  <section class="panel" data-ch="14a" data-num="20">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">19 — 三人の専門家</div>
+      <div class="ch-eyebrow reveal">20 — 三人の専門家</div>
       <h2 class="ch-title reveal d1">ひとつのスタジオに、<span class="em">三人の専門家</span>。</h2>
       <p class="ch-sub reveal d2">MV Studioは、あなたのスタジオ。その中で、三人のディレクターが働く——<br>MVも、写真も、音楽も、ひとつの対話から。</p>
       <div class="cards3">
@@ -917,10 +982,10 @@
     </div>
   </section>
 
-  <!-- 19 対応環境 (devices / install / resolution) -->
-  <section class="panel cine" data-ch="10b" data-num="20" style="--bd:url(../assets/bd_lantern.jpg?v=20260814b)">
+  <!-- 21 対応環境 (devices / install / resolution) -->
+  <section class="panel cine" data-ch="10b" data-num="21" style="--bd:url(../assets/bd_lantern.jpg?v=20260814b)">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">20 — 対応環境</div>
+      <div class="ch-eyebrow reveal">21 — 対応環境</div>
       <h2 class="ch-title reveal d1">どこでも、あなたの手元で。</h2>
       <p class="ch-sub reveal d2">PC（Mac / Windows）にインストールして使う。iPhone・iPad・Android からも、そのまま。</p>
       <div class="devices reveal d2">
@@ -945,10 +1010,10 @@
     </div>
   </section>
 
-  <!-- 20 導入のかたち -->
-  <section class="panel" data-ch="15a" data-num="21">
+  <!-- 22 導入のかたち -->
+  <section class="panel" data-ch="15a" data-num="22">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">21 — 導入のかたち</div>
+      <div class="ch-eyebrow reveal">22 — 導入のかたち</div>
       <h2 class="ch-title reveal d1">作る力を、<span class="em">あなたの手元に</span>。</h2>
       <p class="ch-sub reveal d2">個人にも、チームにも。あなたの環境に導入して、あとは作るだけ——<br>詳しくは、お気軽にご相談ください。</p>
       <div class="pillars">
@@ -965,7 +1030,7 @@
   </section>
 
   <!-- 10 closing -->
-  <section class="closing cine" data-ch="10" style="--bd:url(../assets/bd_finale.jpg?v=20260824c)">
+  <section class="closing cine" id="contact" data-ch="10" style="--bd:url(../assets/bd_finale.jpg?v=20260824c)">
     <div class="finale" id="finale" aria-hidden="true"></div>
     <h2 class="reveal">さあ、<br class="brm">話しかけてみよう。</h2>
     <p class="reveal d1">頭の中のあの一本を、声に出すところから。</p>
@@ -976,6 +1041,12 @@
     <p class="contact-note reveal d2">ご興味を持った方は、お気軽にご連絡ください。<br><span class="ig-handle">Instagram&nbsp;·&nbsp;@made_linlin</span></p>
   </section>
 
+  <nav class="foot-map" aria-label="サイトマップ">
+    <span class="fm-k">用途から見る</span>
+    <a href="usecases/bridal.html">ブライダル</a><a href="usecases/portrait.html">撮影会</a><a href="usecases/world.html">世界</a><a href="usecases/kaisetsu.html">解説</a>
+    <span class="fm-sep"></span>
+    <a href="#works">作品</a><a href="#shows">裏番組</a><a href="#contact">相談</a>
+  </nav>
   <footer class="site-foot">
     <span class="foot-brand">MV&nbsp;STUDIO</span>
     <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">
@@ -986,6 +1057,7 @@
   </footer>
 
 
-<script src="js/main.js?v=20261012a"></script>
+  <a class="fab-contact" href="#contact" aria-label="相談"><span>相談</span></a>
+<script src="js/main.js?v=20261012h"></script>
 </body>
 </html>

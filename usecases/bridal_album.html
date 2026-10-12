@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>アルバムの見本 — ブライダル前撮り — MV Studio</title>
+<meta name="description" content="前撮りの写真を、印刷のアルバムのレイアウトで。表紙、扉、見開き、章扉——30cm 正方形のレイフラット製本の見本を画面でめくる。" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MV Studio" />
+<meta property="og:title" content="アルバムの見本 — ブライダル前撮り — MV Studio" />
+<meta property="og:description" content="前撮りの写真を、印刷のアルバムのレイアウトで。表紙、扉、見開き、章扉を画面でめくる見本。" />
+<meta property="og:url" content="https://ethanjapan.github.io/mv-studio-site/usecases/bridal_album.html" />
+<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/uc/album/w1.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#1b1715" />
+<link rel="icon" type="image/svg+xml" href="../assets/icon_mv.svg?v=20261012a" />
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261012a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/theater.css?v=20261012l">
+<style>
+/* 印刷アルバムの見本。theater.css はヘッダと部品の衣装だけ借り、本の中身はここで決める。
+   本= 30cm 正方形のレイフラット製本(見開き 2:1)。紙= 生成り(--paper)・文字= 墨(--inkp)。章= 和装 / 洋装 / 韓国風 / 台湾の婚紗 */
+:root{--paper:#f7f3ec;--paper2:#efe9df;--inkp:#2b2622;--inkp2:rgba(43,38,34,.62);--linen:#2f2a26;--stage:#080b1a}
+html{scroll-behavior:auto}
+body{background:radial-gradient(70% 55% at 50% 46%,rgba(217,189,138,.075),transparent 70%) fixed,var(--stage);color:var(--ink);min-height:100svh}  /* 地は夜(サイトと同じ)・本の下にだけ灯りの溜まり(10-12 配色の正本 v3) */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 42%,rgba(255,236,210,.08),transparent 60%),radial-gradient(ellipse 100% 60% at 50% 110%,rgba(0,0,0,.6),transparent 60%)}
+.uc-head .brand{text-decoration:none}
+.uc-back{font-family:var(--en-display);font-size:14px;letter-spacing:.14em;color:var(--muted);text-decoration:none}
+.uc-back:hover{color:var(--ink)}
+
+.alb-wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:92px 20px 60px}
+.alb-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.alb-top .ch-eyebrow{margin:0}
+.alb-top h1{margin:8px 0 0;font-family:var(--serif);font-weight:500;font-size:clamp(22px,3vw,32px);letter-spacing:.04em;color:var(--ink)}
+.alb-top h1 .em{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.alb-top p{margin:10px 0 0;font-size:13px;line-height:1.9;color:var(--muted);max-width:620px}
+.alb-spec{font-family:var(--en-display);font-size:13px;letter-spacing:.18em;color:var(--muted);text-align:right;line-height:1.9}
+.alb-spec b{display:block;color:var(--ink);font-weight:500;font-size:15px}
+
+/* 本体= 見開きを同じ場所に積み、めくる葉(leaf)を 3D で返す。スワイプ・矢印・ページの左右クリックでめくれる */
+.book{position:relative;perspective:2600px}
+.spreads{position:relative;aspect-ratio:2/1;margin:26px 0 36px;transform-style:preserve-3d}
+.spread{position:absolute;inset:0;display:flex;background:var(--paper) url(../assets/uc/album/tex_paper.jpg?v=1013b) center/34% repeat;color:var(--inkp);visibility:hidden;opacity:0;
+  box-shadow:0 50px 90px -30px rgba(0,0,0,.9),0 2px 0 rgba(255,255,255,.06) inset,0 -1px 0 rgba(0,0,0,.25) inset}
+.spread.cur{visibility:visible;opacity:1;z-index:2}
+.spread.under{visibility:visible;opacity:1;z-index:1}
+.spread.fade{transition:opacity .45s}
+.spread{isolation:isolate}
+.spread video.ph{z-index:0}
+/* 綴じの影= 動画の上にも出す(transform を使うと動画の合成レイヤーに負けて消えた= 2026-10-12 ユーザー指摘「真ん中の黒線入らない・動画だから」) */
+.spread::after{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 60px);width:120px;pointer-events:none;z-index:3;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.05) 38%,rgba(0,0,0,.16) 50%,rgba(0,0,0,.05) 62%,transparent)}
+.spread.single::after{display:none}
+.spread.single{background:transparent;box-shadow:none}
+.spread.single.cover{justify-content:flex-end}
+.spread.single.back{justify-content:flex-start}
+.pg.hid{visibility:hidden}
+.leaf{position:absolute;top:0;bottom:0;width:50%;z-index:5;transform-style:preserve-3d;transition:transform .95s cubic-bezier(.45,.05,.2,1);will-change:transform;pointer-events:none}
+.leaf.fwd{left:50%;transform-origin:left center}
+.leaf.bwd{left:0;transform-origin:right center}
+.leaf .face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper) url(../assets/uc/album/tex_paper.jpg?v=1013b) center/17% repeat;container-type:inline-size}
+.leaf .face.back{transform:rotateY(180deg)}
+.leaf .face .spread{position:absolute;top:0;left:0;width:200%;height:100%;visibility:visible;opacity:1;box-shadow:none;transform:none}
+.leaf .face .spread::after{display:none}
+.leaf .face.showR .spread{left:-100%}
+.spread.cur.clipL{clip-path:inset(0 50% 0 0)}
+.spread.cur.clipR{clip-path:inset(0 0 0 50%)}
+.alb-dots i{cursor:pointer;width:7px;height:7px;transition:.25s}
+.alb-dots i:hover{background:rgba(241,242,247,.6)}
+.alb-dots i.ch{width:9px;height:9px;background:rgba(217,189,138,.55)}
+.alb-chap{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.alb-chap button{font-family:var(--serif);font-size:12.5px;letter-spacing:.12em;color:var(--muted);background:transparent;border:1px solid rgba(226,230,242,.14);border-radius:999px;padding:6px 14px;cursor:pointer;transition:.3s}
+.alb-chap button:hover,.alb-chap button.on{color:var(--ink);border-color:var(--gold)}
+.leaf .face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.18),transparent 22%,transparent 78%,rgba(0,0,0,.08))}
+.leaf.fwd .face.front::after{background:linear-gradient(90deg,rgba(0,0,0,.2),transparent 25%)}
+.leaf.bwd .face.front::after{background:linear-gradient(270deg,rgba(0,0,0,.2),transparent 25%)}
+.spreads .tap{position:absolute;top:0;bottom:0;width:50%;z-index:4;cursor:pointer;background:transparent;border:0;padding:0;margin:0;appearance:none;-webkit-appearance:none}
+.spreads .tap.l{left:0}.spreads .tap.r{right:0}
+.spreads .tap:focus-visible{outline:2px solid var(--gold);outline-offset:-4px}
+.pg{position:relative;flex:0 0 50%;height:100%;overflow:hidden}
+.pg .no{position:absolute;bottom:3.2%;font-family:var(--en-display);font-size:clamp(9px,1cqw,12px);letter-spacing:.2em;color:var(--inkp2);z-index:2}
+.pg.l .no{left:5.5%}.pg.r .no{right:5.5%}
+.spread{container-type:inline-size}
+.ph{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%;background:var(--paper2)}
+.mat{position:absolute;overflow:hidden;background:var(--paper2)}
+.mat .ph{position:absolute}
+.cap{position:absolute;font-family:var(--en-display);font-style:italic;font-size:clamp(10px,1.25cqw,15px);letter-spacing:.06em;color:var(--inkp2);line-height:1.5;z-index:2}
+.cap .jp{display:block;font-family:var(--serif);font-style:normal;font-size:clamp(9px,1.05cqw,12.5px);letter-spacing:.14em;margin-top:.35em;color:var(--inkp)}
+.cap.onph{color:rgba(255,255,255,.88);text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.cap.onph .jp{color:rgba(255,255,255,.95)}
+
+/* 表紙・裏表紙= 布張り。閉じた本なので片面だけ */
+.spread.single{background:transparent;box-shadow:none;justify-content:center}
+/* 材質= GPT(gpt-image-2)で作った継ぎ目のない布張り(2026-10-12・_site_bg/usecase_bridal_20261012/gpt_cover)。上に窓からの光の落ち方と縁の擦れを重ねる */
+.spread.single .pg{flex:0 0 50%;background-color:var(--linen);box-shadow:0 50px 90px -30px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.05) inset;
+  background-image:linear-gradient(118deg,rgba(255,255,255,.10),rgba(255,255,255,0) 38%,rgba(0,0,0,.18) 100%),url(../assets/uc/album/tex_linen.jpg?v=1013b),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);
+  background-size:auto,42% auto,auto,auto;background-repeat:no-repeat,repeat,repeat,repeat}  /* 質感の画像が無い間は CSS の布目が下から見える */
+.spread.single .pg::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  box-shadow:0 0 0 1px rgba(0,0,0,.35) inset,0 0 0 2px rgba(255,255,255,.04) inset,0 0 60px rgba(0,0,0,.35) inset}
+.spread.single.cover .pg{border-radius:3px 8px 8px 3px}
+.spread.single.back .pg{border-radius:8px 3px 3px 8px}
+.spread.single .cover-t{z-index:2}
+.cover-t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#d8c9a6;padding:10%}
+.cover-t .k{font-family:var(--en-display);font-size:clamp(9px,1.3cqw,14px);letter-spacing:.5em;opacity:.8}
+.cover-t .t{font-family:var(--en-display);font-weight:500;font-size:clamp(22px,5.2cqw,60px);letter-spacing:.14em;line-height:1.05;margin:.35em 0 .25em}
+.cover-t .j{font-family:var(--serif);font-size:clamp(10px,1.5cqw,16px);letter-spacing:.42em}
+.cover-t .d{margin-top:2.6em;font-family:var(--en-display);font-size:clamp(9px,1.25cqw,13px);letter-spacing:.3em;opacity:.75}
+.cover-t .line{width:14%;height:1px;background:currentColor;opacity:.45;margin:1.4em auto 0}
+.cover-t .mark{width:18%;max-width:120px;opacity:.9;filter:sepia(.4) saturate(.6) brightness(1.05)}
+.cover-t.back .mark{margin-bottom:1.4em}
+
+/* 扉= 左は白紙に小さな紋、右はトレーシングペーパー越しの写真と題字 */
+.tp .ph{filter:brightness(1.12) contrast(.85) saturate(.6)}
+.tp .veil{position:absolute;inset:0;background:rgba(247,243,236,.68);backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px)}
+.tp .tt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12%;z-index:2}
+.tp .tt .k{font-family:var(--en-display);font-size:clamp(9px,1.2cqw,13px);letter-spacing:.5em;color:var(--inkp2)}
+.tp .tt .t{font-family:var(--serif);font-weight:500;font-size:clamp(16px,3cqw,34px);letter-spacing:.2em;margin:.5em 0 .4em;color:var(--inkp)}
+.tp .tt .s{font-family:var(--en-display);font-style:italic;font-size:clamp(10px,1.45cqw,16px);letter-spacing:.08em;color:var(--inkp2);line-height:1.7}
+.mono{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--en-display);font-size:clamp(14px,2.6cqw,30px);letter-spacing:.3em;color:var(--inkp2);opacity:.55}
+
+/* 章扉= 左は広い余白の 1 枚・右は章の文字 */
+.chap .txt{position:absolute;left:12%;right:12%;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+.chap .txt .n{font-family:var(--en-display);font-size:clamp(28px,6cqw,64px);font-weight:400;line-height:1;color:var(--inkp2);letter-spacing:.06em}
+.chap .txt .t{font-family:var(--serif);font-weight:500;font-size:clamp(16px,3cqw,34px);letter-spacing:.22em;margin:.5em 0 .35em;color:var(--inkp)}
+.chap .txt .e{font-family:var(--en-display);font-style:italic;font-size:clamp(11px,1.6cqw,18px);letter-spacing:.1em;color:var(--inkp2)}
+.chap .txt .b{margin-top:1.8em;font-family:var(--serif);font-size:clamp(9px,1.2cqw,13.5px);line-height:2.1;letter-spacing:.08em;color:var(--inkp)}
+.chap .txt .rule{width:2.4em;height:1px;background:var(--inkp2);margin-top:1.6em;opacity:.6}
+
+/* 見開き 1 枚(裁ち落とし) */
+.bleed .ph{left:0;top:0;width:100%;height:100%}
+.spread.bleed{overflow:hidden}
+.spread.bleed .pg{position:static;flex:0 0 50%}
+.spread.bleed > .ph{position:absolute;inset:0}
+
+/* 文字だけの見開き(誓いの言葉)= 左右とも紙 */
+.vow .txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14%}
+.vow .txt .q{font-family:var(--serif);font-size:clamp(11px,1.65cqw,19px);line-height:2.3;letter-spacing:.16em;color:var(--inkp)}
+.vow .txt .w{margin-top:1.8em;font-family:var(--en-display);font-style:italic;font-size:clamp(10px,1.35cqw,15px);letter-spacing:.1em;color:var(--inkp2)}
+
+/* 動く見開き= 写真の代わりに短い動画(無音・ループ)。見えている間だけ再生する */
+.spread video.ph{object-fit:cover}
+.mv-tag{position:absolute;top:4.5%;left:4%;z-index:2;display:inline-flex;align-items:center;gap:8px;font-family:var(--en-display);font-size:clamp(9px,1.15cqw,12.5px);letter-spacing:.3em;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.mv-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.8)}
+.mv-tag.ink{color:var(--inkp2);text-shadow:none}
+.chap .txt .b.small{font-size:clamp(9px,1.05cqw,12px);line-height:2}
+
+/* 操作= 真鍮色の細い矢印・紙のインデックスタブ・本の厚み・めくる影(2026-10-12 「より凝った感じに」) */
+.alb-nav .btn{border:0;background:transparent;box-shadow:none;padding:10px 14px;font-family:var(--serif);font-size:13px;letter-spacing:.22em;color:var(--gold);display:inline-flex;align-items:center;gap:12px}
+.alb-nav .btn::before,.alb-nav .btn::after{display:none}
+.alb-nav .btn .ar{display:inline-block;width:46px;height:1px;background:var(--gold);position:relative;transition:width .35s}
+.alb-nav .btn .ar::after{content:"";position:absolute;top:-4px;width:8px;height:8px;border-top:1px solid var(--gold);border-right:1px solid var(--gold)}
+.alb-nav #next .ar::after{right:0;transform:rotate(45deg)}
+.alb-nav #prev .ar::after{left:0;transform:rotate(-135deg)}
+.alb-nav .btn:hover{color:#fff;background:transparent}.alb-nav .btn:hover .ar{width:64px;background:#fff}.alb-nav .btn:hover .ar::after{border-color:#fff}
+.alb-nav .cnt{font-family:var(--en-display);font-size:15px;letter-spacing:.3em;color:var(--ink)}
+.alb-chap{gap:0;margin-top:18px}
+.alb-chap button{border:0;border-radius:0;background:transparent;color:var(--muted);font-family:var(--serif);font-size:12px;letter-spacing:.14em;padding:8px 14px;position:relative}
+.alb-chap button+button::before{content:"";position:absolute;left:0;top:30%;height:40%;width:1px;background:rgba(217,189,138,.35)}
+.alb-chap button.on{color:var(--ink)}
+.alb-chap button.on::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:1px;background:var(--gold)}
+.alb-chap button:hover{color:var(--ink);border:0}
+.alb-dots i{background:rgba(217,189,138,.25)}.alb-dots i.ch{background:rgba(217,189,138,.55)}.alb-dots i.on{background:var(--gold)}
+.spreads::before,.spreads::after{content:"";position:absolute;top:1.2%;bottom:1.2%;width:10px;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,#efe9df 0 1px,#cfc7b8 1px 2px,#f7f3ec 2px 3px)}
+.spreads::before{left:-9px;transform:skewY(-1deg)}.spreads::after{right:-9px;transform:skewY(1deg)}
+.spreads.one::before,.spreads.one::after{display:none}
+.spreads{filter:drop-shadow(0 60px 50px rgba(0,0,0,.55))}
+.lshadow{position:absolute;top:0;bottom:0;width:50%;z-index:4;pointer-events:none;opacity:.45;transition:opacity .95s ease}
+.lshadow.r{left:50%;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.18) 30%,transparent 70%)}
+.lshadow.l{left:0;background:linear-gradient(270deg,rgba(0,0,0,.55),rgba(0,0,0,.18) 30%,transparent 70%)}
+.leaf .face.front::after{background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.06) 18%,transparent 45%,rgba(255,255,255,.06) 70%,rgba(0,0,0,.1))}
+.leaf.bwd .face.front::after{background:linear-gradient(270deg,rgba(0,0,0,.28),rgba(0,0,0,.06) 18%,transparent 45%,rgba(255,255,255,.06) 70%,rgba(0,0,0,.1))}
+.leaf .face.back::after{background:linear-gradient(270deg,rgba(0,0,0,.22),rgba(0,0,0,.05) 20%,transparent 50%)}
+.leaf.bwd .face.back::after{background:linear-gradient(90deg,rgba(0,0,0,.22),rgba(0,0,0,.05) 20%,transparent 50%)}
+@media (max-width:760px){.spreads::before,.spreads::after{display:none}.alb-nav .btn .ar{width:28px}}
+
+/* 画面の操作 */
+.alb-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:4px}
+.alb-nav .cnt{font-family:var(--en-display);font-size:14px;letter-spacing:.24em;color:var(--muted);min-width:7em;text-align:center}
+.alb-nav .btn{padding:10px 18px;font-size:12.5px}
+.alb-dots{display:flex;justify-content:center;gap:6px;margin-top:14px;flex-wrap:wrap}
+.alb-dots i{width:5px;height:5px;border-radius:50%;background:rgba(241,242,247,.22);transition:.3s}
+.alb-dots i.on{background:var(--gold);box-shadow:0 0 8px rgba(217,189,138,.7)}
+.alb-hint{text-align:center;margin-top:16px;font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.alb-foot{margin:54px auto 0;max-width:760px;text-align:center;font-size:13px;line-height:2;color:var(--muted)}
+.alb-foot .uc-cta{justify-content:center}
+
+@media (max-width:760px){
+  .alb-wrap{padding:84px 12px 40px}
+  .alb-spec{text-align:left}
+  .spreads{aspect-ratio:1/2;transition:aspect-ratio .4s}
+  .spreads.one{aspect-ratio:1/1}
+  .spread{flex-direction:column}
+  .spread::after{top:50%;bottom:auto;left:0;right:0;width:auto;height:70px;transform:translateY(-50%);
+    background:linear-gradient(180deg,transparent,rgba(0,0,0,.05) 38%,rgba(0,0,0,.14) 50%,rgba(0,0,0,.05) 62%,transparent)}
+  .pg{flex:0 0 50%;height:50%}
+  .spread.single .pg{flex:0 0 50%;height:50%}
+  .spread.single.cover,.spread.single.back{justify-content:center}
+  .pg .no{font-size:9px}
+  .cap{font-size:11px}.cap .jp{font-size:9.5px}
+  .chap .txt .n{font-size:34px}.chap .txt .t{font-size:18px}.chap .txt .e{font-size:12px}.chap .txt .b{font-size:10.5px}
+  .cover-t .t{font-size:30px}.tp .tt .t{font-size:18px}
+  .vow .txt .q{font-size:12px}
+}
+
+/* 配色の正本 v3(10-12): 本(表紙・紙・タブ)は暖かい「画」・まわりの UI は月明かり+∞ */
+.alb-nav .btn{color:var(--text-2)}
+.alb-nav .btn .ar{background:var(--rule-hi)}
+.alb-nav .btn .ar::after{border-color:var(--rule-hi)}
+.alb-nav .btn:hover{color:#fff}
+.alb-nav #next:hover .ar{background:linear-gradient(90deg,#ff9ddb,#8fe3ff)}.alb-nav #next:hover .ar::after{border-color:#8fe3ff}
+.alb-nav #prev:hover .ar{background:linear-gradient(90deg,#cdbaff,#ff9ddb)}.alb-nav #prev:hover .ar::after{border-color:#cdbaff}
+.alb-chap button+button::before{background:var(--rule-soft)}
+.alb-chap button.on::after{background:var(--inf)}
+.alb-dots i{background:rgba(226,230,242,.22)}.alb-dots i.ch{background:rgba(226,230,242,.5)}
+.alb-dots i.on{background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6)}
+.spreads .tap:focus-visible{outline-color:#8fe3ff}
+</style>
+</head>
+<body class="uc">
+  <div class="grain"></div>
+
+  <header class="uc-head">
+    <a class="brand" href="../"><img class="brand-mark" src="../assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
+    <div class="head-right">
+      <nav class="top-nav" aria-label="主な入口">
+        <a href="./">用途</a><a href="../#works">作品</a><a href="../#how">仕組み</a><a href="../#contact">相談</a>
+      </nav>
+      <nav class="lang-switch" id="langSwitch" aria-label="Language"><button class="ls-btn on" data-lang="ja">日本語</button><button class="ls-btn tc" data-lang="zh">繁中</button></nav>
+      <a class="uc-back" href="bridal.html">BRIDAL</a>
+    </div>
+  </header>
+
+  <main class="alb-wrap">
+    <div class="alb-top">
+      <div>
+        <nav class="crumbs" aria-label="現在地"><a href="../">HOME</a><i>/</i><a href="./">USE CASES</a><i>/</i><a href="bridal.html">ブライダル前撮り</a><i>/</i><span>アルバム</span></nav>
+        <div class="ch-eyebrow">USE CASE 01 — ブライダル前撮り / アルバムの見本</div>
+        <h1>写真は、<span class="em">本になって</span>残る。</h1>
+        <p>棚の様式で焼いた前撮りを、印刷のアルバムのレイアウトで。表紙、トレーシングペーパーの扉、裁ち落としの見開き、章扉、誓いの言葉——製本屋に渡す形そのままを、画面でめくれます。</p>
+      </div>
+      <div class="alb-spec"><b>30 × 30 cm · LAYFLAT</b><span id="spec">18 SPREADS · 27 PHOTOS · 2 MOVING</span><br>和装 / 洋装 / 韓国風 / 台湾の婚紗 / 中華風</div>
+    </div>
+
+    <div class="book">
+      <div class="spreads" id="spreads" aria-label="アルバムの見開き">
+        <button class="tap l" type="button" aria-label="前の見開き"></button><button class="tap r" type="button" aria-label="次の見開き"></button>
+
+        <!-- 表紙 -->
+        <section class="spread single cover" data-l="表紙">
+          <div class="pg r">
+            <div class="cover-t">
+              <img class="mark" src="../assets/mark_inf.png?v=20261012a" alt="">
+              <div class="k">THE WEDDING ALBUM</div>
+              <div class="t">Before<br>the Day</div>
+              <div class="j">前　撮　り</div>
+              <div class="line"></div>
+              <div class="d">AUTUMN · 2026</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 扉 -->
+        <section class="spread tp" data-l="扉">
+          <div class="pg l"><div class="mono">∞</div></div>
+          <div class="pg r">
+            <img class="ph" src="../assets/uc/album/w4.jpg" alt="" loading="lazy">
+            <div class="veil"></div>
+            <div class="tt">
+              <div class="k">PRE-WEDDING</div>
+              <div class="t">ふたりの、前の日</div>
+              <div class="s">five stories in one book<br>和装 · 洋装 · 韓国風 · 台湾の婚紗 · 中華風</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 第1章 和装 -->
+        <section class="spread chap" data-l="第1章 和装">
+          <div class="pg l">
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/w1.jpg" alt="" loading="lazy"></div>
+            <div class="cap" style="left:24%;bottom:5.5%">Shrine<span class="jp">参拝 · 社殿の前</span></div>
+            <span class="no">01</span>
+          </div>
+          <div class="pg r">
+            <div class="txt"><div class="n">I</div><div class="t">和　装</div><div class="e">Shiromuku &amp; Iro-uchikake</div>
+              <div class="b">白無垢と色打掛。<br>鳥居の参道、手水舎、紅葉の庭。<br>静かな所作を、静かな光で。</div><div class="rule"></div></div>
+            <span class="no">02</span>
+          </div>
+        </section>
+
+        <section class="spread bleed" data-l="和装 · 和傘">
+          <img class="ph" src="../assets/uc/album/w2.jpg" alt="" loading="lazy" style="object-position:50% 8%">
+          <div class="pg l"></div><div class="pg r"></div>
+          <div class="cap onph" style="right:4%;bottom:5%;text-align:right">Red umbrella for two<span class="jp">和傘の相合傘 · 紅葉の庭</span></div>
+        </section>
+
+        <section class="spread" data-l="和装 · お散歩と石段">
+          <div class="pg l">
+            <img class="ph" src="../assets/uc/album/w3.jpg" alt="" loading="lazy">
+            <div class="cap onph" style="left:6%;bottom:5.5%">A walk under the blossoms<span class="jp">お散歩 · 桜の庭</span></div>
+          </div>
+          <div class="pg r">
+            <div class="mat" style="left:16%;top:10%;width:68%;height:56%"><img class="ph" src="../assets/uc/album/w6.jpg" alt="" loading="lazy" style="object-position:50% 20%"></div>
+            <div class="cap" style="left:16%;top:70%">Escort<span class="jp">エスコート · 苔の石段</span></div>
+            <span class="no">05</span>
+          </div>
+        </section>
+
+        <section class="spread" data-l="和装 · 雪とご挨拶">
+          <div class="pg l">
+            <div class="mat" style="left:10%;top:10%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/w7.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:52%;top:30%;width:38%;height:56%"><img class="ph" src="../assets/uc/album/w5.jpg" alt="" loading="lazy"></div>
+            <div class="cap" style="left:10%;top:66%">A formal greeting<span class="jp">正座でご挨拶 · 五重塔</span></div>
+            <span class="no">06</span>
+          </div>
+          <div class="pg r">
+            <img class="ph" src="../assets/uc/album/w4.jpg" alt="" loading="lazy" style="object-position:50% 25%">
+            <div class="cap onph" style="right:5%;bottom:5.5%;text-align:right">The bride, in autumn<span class="jp">新婦ソロ · 紅葉の庭</span></div>
+          </div>
+        </section>
+
+        <!-- 第2章 洋装 -->
+        <section class="spread chap" data-l="第2章 洋装">
+          <div class="pg l">
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/y5.jpg" alt="" loading="lazy"></div>
+            <div class="cap" style="left:24%;bottom:5.5%">The grand staircase<span class="jp">階段 · 洋館のホール</span></div>
+            <span class="no">08</span>
+          </div>
+          <div class="pg r">
+            <div class="txt"><div class="n">II</div><div class="t">洋　装</div><div class="e">Gown &amp; Tuxedo</div>
+              <div class="b">礼拝堂のバージンロード、洋館の大階段、<br>湖畔の草原、夜景のテラス。<br>ドレスのラインを、光で描く。</div><div class="rule"></div></div>
+            <span class="no">09</span>
+          </div>
+        </section>
+
+        <section class="spread bleed" data-l="洋装 · ベールアップ">
+          <img class="ph" src="../assets/uc/album/y1.jpg" alt="" loading="lazy" style="object-position:50% 8%">
+          <div class="pg l"></div><div class="pg r"></div>
+          <div class="cap onph" style="left:4%;bottom:5%">The veil, lifted<span class="jp">挙式風 · ベールアップ · 白い砂浜</span></div>
+        </section>
+
+
+        <section class="spread bleed mv" data-l="動く見開き · 洋装">
+          <video class="ph" src="../assets/uc/uc_bridal_B27.mp4" poster="../assets/uc/uc_bridal_B27.jpg" muted loop playsinline preload="none" style="object-position:50% 40%"></video>
+          <div class="pg l"></div><div class="pg r"></div>
+          <div class="mv-tag">MOVING PAGE</div>
+          <div class="cap onph" style="right:4%;bottom:5%;text-align:right">The page that moves<span class="jp">動く見開き · 画面で見るアルバムは、写真が動く</span></div>
+        </section>
+        <section class="spread" data-l="洋装 · 三枚">
+          <div class="pg l">
+            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y2.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y7.jpg" alt="" loading="lazy"></div>
+            <span class="no">12</span>
+          </div>
+          <div class="pg r">
+            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y3.jpg?v=1012d" alt="" loading="lazy"></div>
+            <div class="cap" style="left:54%;top:12%;width:38%">Lavender, brick, city lights<span class="jp">ラベンダー畑 · レンガの街 · 夜景</span></div>
+            <div class="mat" style="left:54%;top:50%;width:38%;height:40%"><img class="ph" src="../assets/uc/album/y6.jpg" alt="" loading="lazy" style="object-position:50% 40%"></div>
+            <span class="no">13</span>
+          </div>
+        </section>
+
+        <section class="spread vow" data-l="誓いの言葉">
+          <div class="pg l">
+            <img class="ph" src="../assets/uc/album/y4.jpg" alt="" loading="lazy" style="object-position:50% 30%">
+          </div>
+          <div class="pg r">
+            <div class="txt"><div class="q">晴れの日も、雨の日も。<br>同じ方を向いて歩くこと。<br>それだけを、約束します。</div>
+              <div class="w">— the vows, lakeside meadow</div></div>
+            <span class="no">15</span>
+          </div>
+        </section>
+
+        <!-- 第3章 韓国風 -->
+        <section class="spread chap" data-l="第3章 韓国風">
+          <div class="pg l">
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/k2.jpg" alt="" loading="lazy"></div>
+            <div class="cap" style="left:24%;bottom:5.5%">Veil in the wind<span class="jp">干潟 · 風のベール</span></div>
+            <span class="no">16</span>
+          </div>
+          <div class="pg r">
+            <div class="txt"><div class="n">III</div><div class="t">韓　国　風</div><div class="e">Seoul &amp; Jeju</div>
+              <div class="b">白黒フィルム、無関心なシック、<br>ゴシックロマン、火山島のスナップ。<br>ソウルの写真館の文法で。</div><div class="rule"></div></div>
+            <span class="no">17</span>
+          </div>
+        </section>
+
+        <section class="spread bleed" data-l="韓国風 · 霧の夜明け">
+          <img class="ph" src="../assets/uc/album/k1.jpg" alt="" loading="lazy" style="object-position:50% 45%">
+          <div class="pg l"></div><div class="pg r"></div>
+          <div class="cap onph" style="right:4%;bottom:5%;text-align:right">Gothic romance, misty dawn<span class="jp">ゴシックロマン · 霧の夜明け</span></div>
+        </section>
+
+        <section class="spread" data-l="韓国風 · 二枚">
+          <div class="pg l">
+            <img class="ph" src="../assets/uc/album/k4.jpg" alt="" loading="lazy" style="object-position:50% 20%">
+            <div class="cap onph" style="left:6%;bottom:5.5%">Black and white film<span class="jp">白黒フィルム · 踊る</span></div>
+          </div>
+          <div class="pg r">
+            <div class="mat" style="left:18%;top:12%;width:64%;height:58%"><img class="ph" src="../assets/uc/album/k3.jpg" alt="" loading="lazy" style="object-position:50% 25%"></div>
+            <div class="cap" style="left:18%;top:74%">Champagne tower<span class="jp">フルグラム · シャンパンタワー</span></div>
+            <span class="no">21</span>
+          </div>
+        </section>
+
+        <section class="spread" data-l="韓国風 · 火山島">
+          <div class="pg l">
+            <div class="mat" style="left:12%;top:14%;width:76%;height:46%"><img class="ph" src="../assets/uc/album/k5.jpg" alt="" loading="lazy" style="object-position:50% 40%"></div>
+            <div class="cap" style="left:12%;top:64%">Phone snap, the aisle<span class="jp">スマホで撮る結婚式スナップ · バージンロード</span></div>
+            <span class="no">22</span>
+          </div>
+          <div class="pg r">
+            <img class="ph" src="../assets/uc/album/k6.jpg" alt="" loading="lazy" style="object-position:50% 25%">
+            <div class="cap onph" style="right:5%;bottom:5.5%;text-align:right">Volcanic island<span class="jp">火山島 · 向かい合って小声で</span></div>
+          </div>
+        </section>
+
+        <!-- 第4章 台湾の婚紗 -->
+        <section class="spread chap" data-l="第4章 台湾の婚紗">
+          <div class="pg l">
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/t2.jpg" alt="" loading="lazy"></div>
+            <div class="cap" style="left:24%;bottom:5.5%">A look back<span class="jp">電影 · 風のベールの回眸</span></div>
+            <span class="no">24</span>
+          </div>
+          <div class="pg r">
+            <div class="txt"><div class="n">IV</div><div class="t">台　湾　の　婚　紗</div><div class="e">Timeless, Taipei</div>
+              <div class="b">侘寂、極簡、電影、美式。<br>雲海の山道、霧の茶畑、麦畑。<br>旅をしながら撮る、ふたり。</div><div class="rule"></div></div>
+            <span class="no">25</span>
+          </div>
+        </section>
+
+        <section class="spread bleed" data-l="台湾 · 雲海">
+          <img class="ph" src="../assets/uc/album/t3.jpg?v=1013b" alt="" loading="lazy" style="object-position:50% 28%">
+          <div class="pg l"></div><div class="pg r"></div>
+          <div class="cap onph" style="left:4%;bottom:5%">Above the clouds<span class="jp">雲海の山道 · 小さな二人</span></div>
+        </section>
+
+        <section class="spread" data-l="台湾 · 三枚">
+          <div class="pg l">
+            <img class="ph" src="../assets/uc/album/t4.jpg" alt="" loading="lazy" style="object-position:50% 15%">
+            <div class="cap onph" style="left:6%;bottom:5.5%">Leading the horse<span class="jp">新郎 · 馬を引く</span></div>
+          </div>
+          <div class="pg r">
+            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/t5.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/t6.jpg" alt="" loading="lazy"></div>
+            <span class="no">29</span>
+          </div>
+        </section>
+
+        <section class="spread" data-l="台湾 · 線香花火">
+          <div class="pg l">
+            <div class="mat" style="left:14%;top:12%;width:72%;height:76%"><img class="ph" src="../assets/uc/album/t1.jpg" alt="" loading="lazy"></div>
+            <div class="cap" style="left:24%;bottom:5.5%">Mountain road<span class="jp">極簡 · 雲海の上の山道</span></div>
+            <span class="no">30</span>
+          </div>
+          <div class="pg r">
+            <img class="ph" src="../assets/uc/album/t7.jpg" alt="" loading="lazy" style="object-position:50% 30%">
+            <div class="cap onph" style="right:5%;bottom:5.5%;text-align:right">Sparklers, the last night<span class="jp">線香花火の光</span></div>
+          </div>
+        </section>
+
+
+
+        <!-- 第5章 中華風 -->
+        <section class="spread chap" data-l="第5章 中華風">
+          <div class="pg l">
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/c1.jpg" alt="" loading="lazy"></div>
+            <div class="cap" style="left:24%;bottom:5.5%">The phoenix crown<span class="jp">龍鳳褂と鳳冠 · 鳳冠の寄り</span></div>
+            <span class="no">32</span>
+          </div>
+          <div class="pg r">
+            <div class="txt"><div class="n">V</div><div class="t">中　華　風</div><div class="e">Xiuhe, Qun Kwa &amp; the red wall</div>
+              <div class="b">秀禾服と龍鳳褂、鳳冠と紅い蓋頭。<br>紅い壁、祖堂、園林、古鎮の水郷。<br>金の刺繍を、紅の中で。</div><div class="rule"></div></div>
+            <span class="no">33</span>
+          </div>
+        </section>
+
+        <section class="spread bleed" data-l="中華風 · 水郷">
+          <img class="ph" src="../assets/uc/album/c7.jpg" alt="" loading="lazy" style="object-position:50% 50%">
+          <div class="pg l"></div><div class="pg r"></div>
+          <div class="cap onph" style="left:4%;bottom:5%">The old town on the water<span class="jp">古鎮と水郷 · 水郷の引き</span></div>
+        </section>
+
+        <section class="spread" data-l="中華風 · 蓋頭と提灯">
+          <div class="pg l">
+            <img class="ph" src="../assets/uc/album/c2.jpg" alt="" loading="lazy" style="object-position:50% 20%">
+            <div class="cap onph" style="left:6%;bottom:5.5%">The red veil<span class="jp">紅い蓋頭</span></div>
+          </div>
+          <div class="pg r">
+            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/c3.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/c4.jpg" alt="" loading="lazy"></div>
+            <span class="no">37</span>
+          </div>
+        </section>
+
+        <section class="spread" data-l="中華風 · 園林">
+          <div class="pg l">
+            <div class="mat" style="left:12%;top:14%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/c5.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:52%;top:34%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/c6.jpg" alt="" loading="lazy"></div>
+            <div class="cap" style="left:12%;top:70%">Garden, in pale tones<span class="jp">園林の新中式 · 花窓越し · 筆と硯</span></div>
+            <span class="no">38</span>
+          </div>
+          <div class="pg r">
+            <img class="ph" src="../assets/uc/album/c8.jpg" alt="" loading="lazy" style="object-position:50% 25%">
+            <div class="cap onph" style="right:5%;bottom:5.5%;text-align:right">Lifting the veil<span class="jp">蓋頭を上げる二人</span></div>
+          </div>
+        </section>
+        <section class="spread chap mv" data-l="動くページ · 台湾">
+          <div class="pg l">
+            <div class="mat" style="left:10%;top:22%;width:80%;height:56%"><video class="ph" src="../assets/uc/uc_bridal_B17.mp4" poster="../assets/uc/uc_bridal_B17.jpg" muted loop playsinline preload="none"></video></div>
+            <div class="mv-tag ink" style="top:13%;left:10%">MOVING PAGE</div>
+            <div class="cap" style="left:10%;top:81%">Wind on the deck<span class="jp">甲板の風 · 5 秒の動画を紙面に</span></div>
+            <span class="no">33</span>
+          </div>
+          <div class="pg r">
+            <div class="txt"><div class="n">+</div><div class="t">動　く　写　真</div><div class="e">Moving pages, in the same book</div>
+              <div class="b small">紙のアルバムと同じレイアウトのまま、画面で見る版では写真が動きます。<br>前撮りの 1 枚から 5 秒の動画を起こし、見開きに埋め込む。<br>スマホで開いて、ゆっくりめくるための本。</div><div class="rule"></div></div>
+            <span class="no">34</span>
+          </div>
+        </section>
+        <!-- 裏表紙 -->
+        <section class="spread single back" data-l="裏表紙">
+          <div class="pg l">
+            <div class="cover-t back">
+              <img class="mark" src="../assets/mark_inf.png?v=20261012a" alt="">
+              <div class="k">MADE WITH MV STUDIO</div>
+              <div class="d">棚の様式 580 · 同じ顔のまま · 手元の PC で</div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="alb-nav">
+        <button class="btn" id="prev" type="button" aria-label="前の見開き"><span class="ar"></span><span class="t">前へ</span></button>
+        <div class="cnt" id="cnt">1 / 18</div>
+        <button class="btn" id="next" type="button" aria-label="次の見開き"><span class="t">次へ</span><span class="ar"></span></button>
+      </div>
+      <div class="alb-dots" id="dots" aria-label="見開きへジャンプ"></div>
+      <div class="alb-chap" id="chap"></div>
+      <div class="alb-hint" id="hint">表紙</div>
+      <div class="alb-hint" style="margin-top:6px;opacity:.7">ページの右半分を押すと次へ、左半分で戻る。スワイプと ← → キーも</div>
+    </div>
+
+    <div class="alb-foot">
+      <p>この見本の写真は、すべて棚の様式から焼いたものです。章の順、写真の数、見開きの形は、ふたりの前撮りに合わせて組み直します。印刷は 30cm 正方形のレイフラット製本(見開きが平らに開く)を想定しています。</p>
+      <div class="uc-cta">
+        <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">アルバムの相談をする</a>
+        <a class="btn" href="bridal.html">ブライダル前撮りのページへ</a>
+      </div>
+    </div>
+  </main>
+
+  <nav class="foot-map" aria-label="サイトマップ">
+    <span class="fm-k">用途から見る</span>
+    <a href="bridal.html">ブライダル</a><a href="portrait.html">撮影会</a><a href="world.html">世界</a><a href="kaisetsu.html">解説</a>
+    <span class="fm-sep"></span>
+    <a href="../#works">作品</a><a href="../#shows">裏番組</a><a href="../#contact">相談</a>
+  </nav>
+  <footer class="site-foot">
+    <span class="foot-brand">MV&nbsp;STUDIO</span>
+    <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
+    <span class="foot-copy">© 2026 made_linlin</span>
+  </footer>
+
+<script>
+(function(){
+  const sc=document.getElementById('spreads'),sp=[...sc.querySelectorAll('.spread')],cnt=document.getElementById('cnt'),hint=document.getElementById('hint'),dots=document.getElementById('dots'),chap=document.getElementById('chap');
+  const CH=[];sp.forEach((s,i)=>{const d=document.createElement('i');d.title=s.dataset.l||'';d.addEventListener('click',()=>go(i));dots.appendChild(d);
+    const l=s.dataset.l||'';if(i===0||i===sp.length-1||/^第\d章/.test(l)){CH.push(i);const b=document.createElement('button');b.type='button';b.textContent=l.replace(/^第(\d)章 /,'$1. ');b.addEventListener('click',()=>go(i));chap.appendChild(b);dots.lastChild.classList.add('ch')}});
+  let cur=0,busy=false;
+  const narrow=()=>matchMedia('(max-width:760px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function vids(s,on){s.querySelectorAll('video.ph').forEach(v=>{if(on){v.play().catch(()=>{})}else{v.pause()}})}
+  function paint(){cnt.textContent=(cur+1)+' / '+sp.length;hint.textContent=sp[cur].dataset.l||'';[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===cur));
+    let ci=0;CH.forEach((c,k)=>{if(cur>=c)ci=k});[...chap.children].forEach((b,k)=>b.classList.toggle('on',k===ci))}
+  function show(i){sp.forEach((s,k)=>{s.classList.toggle('cur',k===i);s.classList.remove('under','clipL','clipR');vids(s,k===i)});cur=i;sc.classList.toggle('one',sp[i].classList.contains('single'));paint()}
+  function cloneSpread(s){const c=s.cloneNode(true);c.classList.remove('cur','under','clipL','clipR');c.querySelectorAll('video').forEach(v=>{v.removeAttribute('autoplay');v.pause()});c.querySelectorAll('.tap').forEach(t=>t.remove());return c}
+  function face(cls,src,showRight){const f=document.createElement('div');f.className='face '+cls+(showRight?' showR':'');f.appendChild(cloneSpread(src));return f}
+  function flip(to){
+    if(busy||to===cur)return;
+    const from=sp[cur],next=sp[to],fwd=to>cur;
+    if(narrow()){sp.forEach(s=>s.classList.add('fade'));show(to);return}
+    busy=true;
+    const leaf=document.createElement('div');leaf.className='leaf '+(fwd?'fwd':'bwd');
+    // 表= いまの見開きの動く側の半分・裏= 次の見開きの、葉の裏に来る半分
+    leaf.appendChild(face('front',from,fwd));leaf.appendChild(face('back',next,!fwd));
+    next.classList.add('under');from.classList.add(fwd?'clipL':'clipR');
+    const sh=document.createElement('div');sh.className='lshadow '+(fwd?'r':'l');sc.appendChild(sh);
+    sc.appendChild(leaf);leaf.getBoundingClientRect();sh.style.opacity='0';
+    leaf.style.transform='rotateY('+(fwd?'-180deg':'180deg')+')';
+    const done=()=>{leaf.remove();sh.remove();show(to);busy=false};
+    leaf.addEventListener('transitionend',done,{once:true});setTimeout(()=>{if(busy)done()},1300);
+  }
+  const go=i=>flip(Math.max(0,Math.min(sp.length-1,i)));
+  document.getElementById('prev').onclick=()=>go(cur-1);document.getElementById('next').onclick=()=>go(cur+1);
+  sc.querySelector('.tap.l').onclick=()=>go(cur-1);sc.querySelector('.tap.r').onclick=()=>go(cur+1);
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){go(cur+1);e.preventDefault()}else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(cur-1);e.preventDefault()}else if(e.key==='Home'){go(0)}else if(e.key==='End'){go(sp.length-1)}});
+  let tx=null;sc.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});sc.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>40)go(cur+(dx<0?1:-1))},{passive:true});
+  const spec=document.getElementById('spec');if(spec)spec.textContent=sp.length+' SPREADS · '+sc.querySelectorAll('img.ph').length+' PHOTOS · '+sc.querySelectorAll('video.ph').length+' MOVING';
+  document.addEventListener('mvlang',()=>{[...chap.children].forEach((b,k)=>{b.textContent=(sp[CH[k]].dataset.l||'').replace(/^第 ?(\d) ?章 /,'$1. ')});paint()});
+  show(0);
+})();
+</script>
+<script src="../js/uc_i18n.js?v=20261012m"></script>
+</body>
+</html>

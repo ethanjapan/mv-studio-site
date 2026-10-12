@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/theater.css?v=20261012f">
+<link rel="stylesheet" href="../css/theater.css?v=20261012l">
 <style>
 /* ユースケースのページだけの小さな決まり。部品の衣装は theater.css の「役割の衣装」と「第1段 色の一本化」をそのまま使う */
 .uc-head .brand{text-decoration:none}
@@ -48,6 +48,11 @@
 .uc-grid figure{margin:0;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1040/1520;background:#000}
 .uc-grid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.04);transition:.5s}
 .uc-grid figure:hover img{transform:scale(1.04)}
+.uc-grid{grid-auto-flow:dense}
+.uc-grid figure{align-self:stretch}
+.uc-grid figure.wide{grid-column:span 3;aspect-ratio:2048/1168}
+.uc-grid figure.wide img{object-position:50% 50%}
+
 .uc-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;font-size:11px;letter-spacing:.05em;color:rgba(241,242,247,.9);
   background:linear-gradient(transparent,rgba(4,6,15,.85))}
 .uc-fin{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -62,12 +67,16 @@
 }
 </style>
 </head>
-<body>
+<body class="uc">
   <div class="grain"></div>
 
   <header class="uc-head">
     <a class="brand" href="../"><img class="brand-mark" src="../assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
     <div class="head-right">
+      <nav class="top-nav" aria-label="主な入口">
+        <a href="./">用途</a><a href="../#works">作品</a><a href="../#how">仕組み</a><a href="../#contact">相談</a>
+      </nav>
+      <nav class="lang-switch" id="langSwitch" aria-label="Language"><button class="ls-btn on" data-lang="ja">日本語</button><button class="ls-btn tc" data-lang="zh">繁中</button></nav>
       <a class="uc-back" href="./">USE CASES</a>
     </div>
   </header>
@@ -76,6 +85,7 @@
   <section class="panel cine uc-hero" data-num="01" style="--bd:url(../assets/uc/uc_port_33.jpg);--bd-pos:center 30%">
     <div class="panel-inner">
       <div>
+        <nav class="crumbs" aria-label="現在地"><a href="../">HOME</a><i>/</i><a href="./">USE CASES</a><i>/</i><span>撮影会ポートレート</span></nav>
         <div class="ch-eyebrow">USE CASE 02 — 撮影会ポートレート</div>
         <h2 class="ch-title">一人のモデルを、<br><span class="em">一日ぶん</span>。</h2>
         <p class="ch-sub">写真家の作風、芸術、雰囲気と幻想、雑誌の光、室内の撮影会——作風の違う様式を棚から選ぶだけで、同じ顔のまま一日ぶんの写真になる。スタジオも屋外も、衣装も髪も、声で相談しながら。</p>
@@ -85,7 +95,7 @@
         </div>
       </div>
       <div class="uc-film">
-        <video src="../assets/uc/uc_port_25.mp4" poster="../assets/uc/uc_port_25.jpg" muted loop playsinline autoplay preload="auto"></video>
+        <video src="../assets/uc/uc_port_25.mp4" poster="../assets/uc/uc_port_25.jpg?v=1012b" muted loop playsinline autoplay preload="auto"></video>
         <span class="cap">ITSUMO NO KAO — SAKURA</span>
       </div>
     </div>
@@ -113,7 +123,7 @@
         <div class="uc-step">
           <div class="n">03</div><h4>焼く</h4>
           <p>確定した一枚は、そのまま動き出す。写真も動画も 4K まで。夜のあいだに列が進み、朝には選ぶだけ。</p>
-          <div class="pic"><video src="../assets/uc/uc_port_28.mp4" poster="../assets/uc/uc_port_28.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+          <div class="pic"><video src="../assets/uc/uc_port_28.mp4" poster="../assets/uc/uc_port_28.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video></div>
           <div class="say">紅葉を手に、目線を落として</div>
         </div>
       </div>
@@ -129,57 +139,57 @@
       <div class="uc-shelf">
         <h3><i></i>PHOTOGRAPHERS <span>写真家の作風 — 映画のような夜の街、黄金の逆光、広角の砂丘——著名な作風の発色と構図を、固有名なしで</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_01.jpg" alt="" loading="lazy"><figcaption>通行人への一灯・屋上</figcaption></figure>
-          <figure><img src="../assets/uc/port_02.jpg" alt="" loading="lazy"><figcaption>映画のような一灯・夜の街</figcaption></figure>
-          <figure><img src="../assets/uc/port_03.jpg" alt="" loading="lazy"><figcaption>完璧な人工光・喫茶店</figcaption></figure>
-          <figure><img src="../assets/uc/port_04.jpg" alt="" loading="lazy"><figcaption>生活の光・公園</figcaption></figure>
-          <figure><img src="../assets/uc/port_05.jpg" alt="" loading="lazy"><figcaption>黄金の逆光</figcaption></figure>
-          <figure><img src="../assets/uc/port_06.jpg" alt="" loading="lazy"><figcaption>広角の砂丘</figcaption></figure>
+          <figure><img src="../assets/uc/port_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>通行人への一灯・屋上</figcaption></figure>
+          <figure><img src="../assets/uc/port_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>映画のような一灯・夜の街</figcaption></figure>
+          <figure><img src="../assets/uc/port_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>完璧な人工光・喫茶店</figcaption></figure>
+          <figure><img src="../assets/uc/port_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>生活の光・公園</figcaption></figure>
+          <figure><img src="../assets/uc/port_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>黄金の逆光</figcaption></figure>
+          <figure><img src="../assets/uc/port_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>広角の砂丘</figcaption></figure>
         </div>
         <h3><i></i>ART <span>芸術 — 色面、鳥籠、絹と砂丘、反復する形——写真を絵として組む</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_07.jpg" alt="" loading="lazy"><figcaption>色面・半身</figcaption></figure>
-          <figure><img src="../assets/uc/port_08.jpg" alt="" loading="lazy"><figcaption>反復する形・全身</figcaption></figure>
-          <figure><img src="../assets/uc/port_09.jpg" alt="" loading="lazy"><figcaption>鳥籠の頭</figcaption></figure>
-          <figure><img src="../assets/uc/port_10.jpg" alt="" loading="lazy"><figcaption>卵を差し出す</figcaption></figure>
-          <figure><img src="../assets/uc/port_11.jpg" alt="" loading="lazy"><figcaption>蜜柑の皮</figcaption></figure>
-          <figure><img src="../assets/uc/port_12.jpg" alt="" loading="lazy"><figcaption>絹と砂丘</figcaption></figure>
+          <figure><img src="../assets/uc/port_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>色面・半身</figcaption></figure>
+          <figure><img src="../assets/uc/port_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>反復する形・全身</figcaption></figure>
+          <figure><img src="../assets/uc/port_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>鳥籠の頭</figcaption></figure>
+          <figure><img src="../assets/uc/port_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>卵を差し出す</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/port_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>蜜柑の皮</figcaption></figure>
+          <figure><img src="../assets/uc/port_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>絹と砂丘</figcaption></figure>
         </div>
-        <h3><i></i>MOOD & FANTASY <span>雰囲気と幻想 — カーテン越しの光、映写機、翼の影、提灯の魚——光と空想で場所を作る</span></h3>
+        <h3><i></i>MOOD & FANTASY <span>雰囲気と幻想 — カーテン越しの光、映写機、翼の影、提灯の森——光と空想で場所を作る</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_13.jpg" alt="" loading="lazy"><figcaption>カーテン越しの逆光・野</figcaption></figure>
-          <figure><img src="../assets/uc/port_14.jpg" alt="" loading="lazy"><figcaption>映写機の光・野</figcaption></figure>
-          <figure><img src="../assets/uc/port_15.jpg" alt="" loading="lazy"><figcaption>白熱灯の部屋・野</figcaption></figure>
-          <figure><img src="../assets/uc/port_16.jpg" alt="" loading="lazy"><figcaption>ガラスドームの中</figcaption></figure>
-          <figure><img src="../assets/uc/port_17.jpg" alt="" loading="lazy"><figcaption>提灯の魚</figcaption></figure>
-          <figure><img src="../assets/uc/port_18.jpg" alt="" loading="lazy"><figcaption>翼の影</figcaption></figure>
+          <figure><img src="../assets/uc/port_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>カーテン越しの逆光・野</figcaption></figure>
+          <figure><img src="../assets/uc/port_14.jpg?v=1012b" alt="" loading="lazy"><figcaption>映写機の光・野</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/port_15.jpg?v=1012b" alt="" loading="lazy"><figcaption>白熱灯の部屋・野</figcaption></figure>
+          <figure><img src="../assets/uc/port_16.jpg?v=1012b" alt="" loading="lazy"><figcaption>ガラスドームの中</figcaption></figure>
+          <figure><img src="../assets/uc/port_17.jpg?v=1012e" alt="" loading="lazy"><figcaption>提灯の森</figcaption></figure>
+          <figure><img src="../assets/uc/port_18.jpg?v=1012b" alt="" loading="lazy"><figcaption>翼の影</figcaption></figure>
         </div>
         <h3><i></i>MAGAZINE & STUDIO <span>雑誌とスタジオ — 銀幕のグラマー、表紙の笑顔、日の丸構図——誌面のための光</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_19.jpg" alt="" loading="lazy"><figcaption>街角のモノクロ・公園</figcaption></figure>
-          <figure><img src="../assets/uc/port_20.jpg" alt="" loading="lazy"><figcaption>銀幕のグラマー・スタジオ</figcaption></figure>
-          <figure><img src="../assets/uc/port_21.jpg" alt="" loading="lazy"><figcaption>横顔と首</figcaption></figure>
-          <figure><img src="../assets/uc/port_22.jpg" alt="" loading="lazy"><figcaption>笑顔の表紙</figcaption></figure>
-          <figure><img src="../assets/uc/port_23.jpg" alt="" loading="lazy"><figcaption>スタジオの椅子</figcaption></figure>
-          <figure><img src="../assets/uc/port_24.jpg" alt="" loading="lazy"><figcaption>日の丸 校門</figcaption></figure>
+          <figure><img src="../assets/uc/port_19.jpg?v=1012b" alt="" loading="lazy"><figcaption>街角のモノクロ・公園</figcaption></figure>
+          <figure><img src="../assets/uc/port_20.jpg?v=1012b" alt="" loading="lazy"><figcaption>銀幕のグラマー・スタジオ</figcaption></figure>
+          <figure><img src="../assets/uc/port_21.jpg?v=1012b" alt="" loading="lazy"><figcaption>横顔と首</figcaption></figure>
+          <figure><img src="../assets/uc/port_22.jpg?v=1012b" alt="" loading="lazy"><figcaption>笑顔の表紙</figcaption></figure>
+          <figure><img src="../assets/uc/port_23.jpg?v=1012b" alt="" loading="lazy"><figcaption>スタジオの椅子</figcaption></figure>
+          <figure><img src="../assets/uc/port_24.jpg?v=1012b" alt="" loading="lazy"><figcaption>日の丸 校門</figcaption></figure>
         </div>
         <h3><i></i>INDOOR SESSION <span>室内の撮影会 — 鏡の通路、薄いカーテン、可愛い衣装、ネオン管——部屋ひとつで一日ぶん</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_25.jpg" alt="" loading="lazy"><figcaption>鏡の通路</figcaption></figure>
-          <figure><img src="../assets/uc/port_26.jpg" alt="" loading="lazy"><figcaption>薄いカーテンに包まれて</figcaption></figure>
-          <figure><img src="../assets/uc/port_27.jpg" alt="" loading="lazy"><figcaption>ラベンダーのベビードール・日当た</figcaption></figure>
-          <figure><img src="../assets/uc/port_28.jpg" alt="" loading="lazy"><figcaption>控室のソファ</figcaption></figure>
-          <figure><img src="../assets/uc/port_29.jpg" alt="" loading="lazy"><figcaption>50年代の浜辺のピンナップ・豹柄</figcaption></figure>
-          <figure><img src="../assets/uc/port_30.jpg" alt="" loading="lazy"><figcaption>ネオン管のスタジオ・ネオンの顔ア</figcaption></figure>
+          <figure><img src="../assets/uc/port_25.jpg?v=1012b" alt="" loading="lazy"><figcaption>鏡の通路</figcaption></figure>
+          <figure><img src="../assets/uc/port_26.jpg?v=1012b" alt="" loading="lazy"><figcaption>薄いカーテンに包まれて</figcaption></figure>
+          <figure><img src="../assets/uc/port_27.jpg?v=1012b" alt="" loading="lazy"><figcaption>ラベンダーのベビードール・日当た</figcaption></figure>
+          <figure><img src="../assets/uc/port_28.jpg?v=1012b" alt="" loading="lazy"><figcaption>控室のソファ</figcaption></figure>
+          <figure><img src="../assets/uc/port_29.jpg?v=1012b" alt="" loading="lazy"><figcaption>50年代の浜辺のピンナップ・豹柄</figcaption></figure>
+          <figure><img src="../assets/uc/port_30.jpg?v=1012b" alt="" loading="lazy"><figcaption>ネオン管のスタジオ・ネオンの顔ア</figcaption></figure>
         </div>
         <h3><i></i>SENSUAL <span>セクシー — レース、シャンパン、水着。下着の線は越えない——雑誌のグラビアの作法で</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_31.jpg" alt="" loading="lazy"><figcaption>夜の屋上テラス</figcaption></figure>
-          <figure><img src="../assets/uc/port_32.jpg" alt="" loading="lazy"><figcaption>磯の潮だまり</figcaption></figure>
-          <figure><img src="../assets/uc/port_33.jpg" alt="" loading="lazy"><figcaption>黒レースとガーター・ホテルのスイ</figcaption></figure>
-          <figure><img src="../assets/uc/port_34.jpg" alt="" loading="lazy"><figcaption>白レースのブライダル・夜景の窓辺</figcaption></figure>
-          <figure><img src="../assets/uc/port_35.jpg" alt="" loading="lazy"><figcaption>シャンパンのシュミーズ・鏡台の前</figcaption></figure>
-          <figure><img src="../assets/uc/port_36.jpg" alt="" loading="lazy"><figcaption>赤レースのロングライン・ホテルの</figcaption></figure>
+          <figure><img src="../assets/uc/port_31.jpg?v=1012b" alt="" loading="lazy"><figcaption>夜の屋上テラス</figcaption></figure>
+          <figure><img src="../assets/uc/port_32.jpg?v=1012b" alt="" loading="lazy"><figcaption>磯の潮だまり</figcaption></figure>
+          <figure><img src="../assets/uc/port_33.jpg?v=1012b" alt="" loading="lazy"><figcaption>黒レースとガーター・ホテルのスイ</figcaption></figure>
+          <figure><img src="../assets/uc/port_34.jpg?v=1012b" alt="" loading="lazy"><figcaption>白レースのブライダル・夜景の窓辺</figcaption></figure>
+          <figure><img src="../assets/uc/port_35.jpg?v=1012b" alt="" loading="lazy"><figcaption>シャンパンのシュミーズ・鏡台の前</figcaption></figure>
+          <figure><img src="../assets/uc/port_36.jpg?v=1012b" alt="" loading="lazy"><figcaption>赤レースのロングライン・ホテルの</figcaption></figure>
         </div>
       </div>
     </div>
@@ -192,9 +202,9 @@
       <h2 class="ch-title">写真が、<span class="em">動き出す</span>。</h2>
       <p class="ch-sub">写真から、数秒の動画へ。同じ顔のまま、桜の下でも、夕暮れの浜でも、夏祭りの夜でも。</p>
       <div class="uc-fin">
-        <div class="uc-film"><video src="../assets/uc/uc_port_31.mp4" poster="../assets/uc/uc_port_31.jpg" muted loop playsinline autoplay preload="metadata"></video><span class="cap">SUNSET · SHORE</span></div>
-        <div class="uc-film"><video src="../assets/uc/uc_port_03.mp4" poster="../assets/uc/uc_port_03.jpg" muted loop playsinline autoplay preload="metadata"></video><span class="cap">FESTIVAL · LANTERN</span></div>
-        <div class="uc-film"><video src="../assets/uc/uc_port_12.mp4" poster="../assets/uc/uc_port_12.jpg" muted loop playsinline autoplay preload="metadata"></video><span class="cap">OVERPASS · WIND</span></div>
+        <div class="uc-film"><video src="../assets/uc/uc_port_31.mp4" poster="../assets/uc/uc_port_31.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">SUNSET · SHORE</span></div>
+        <div class="uc-film"><video src="../assets/uc/uc_port_03.mp4" poster="../assets/uc/uc_port_03.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">FESTIVAL · LANTERN</span></div>
+        <div class="uc-film"><video src="../assets/uc/uc_port_12.mp4" poster="../assets/uc/uc_port_12.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">OVERPASS · WIND</span></div>
       </div>
       <div class="uc-proof">
         <a class="ch-cta" href="https://youtu.be/_uC-XiL0EuY" target="_blank" rel="noopener noreferrer">実績の一本を観る —『いつもの顔』棚の写真が動き出す四季のMV 4分09秒 →</a>
@@ -215,10 +225,24 @@
     </div>
   </section>
 
+  <section class="uc-next">
+    <div class="panel-inner">
+      <div><span class="k">NEXT USE CASE</span><a class="nx" href="world.html">次の用途へ — 世界の撮影<span class="ar">→</span></a></div>
+      <a class="all" href="./">すべての用途</a>
+    </div>
+  </section>
+  <nav class="foot-map" aria-label="サイトマップ">
+    <span class="fm-k">用途から見る</span>
+    <a href="bridal.html">ブライダル</a><a href="portrait.html">撮影会</a><a href="world.html">世界</a><a href="kaisetsu.html">解説</a>
+    <span class="fm-sep"></span>
+    <a href="../#works">作品</a><a href="../#shows">裏番組</a><a href="../#contact">相談</a>
+  </nav>
   <footer class="site-foot">
     <span class="foot-brand">MV&nbsp;STUDIO</span>
     <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
     <span class="foot-copy">© 2026 made_linlin</span>
   </footer>
+  <a class="fab-contact" href="../#contact" aria-label="相談"><span>相談</span></a>
+<script src="../js/uc_i18n.js?v=20261012m"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/theater.css?v=20261012f">
+<link rel="stylesheet" href="../css/theater.css?v=20261012l">
 <style>
 .uc-head .brand{text-decoration:none}
 .uc-back{font-family:var(--en-display);font-size:14px;letter-spacing:.14em;color:var(--muted);text-decoration:none}
@@ -34,11 +34,15 @@
 @media (max-width:760px){.uc-list{grid-template-columns:1fr}}
 </style>
 </head>
-<body>
+<body class="uc">
   <div class="grain"></div>
   <header class="uc-head">
     <a class="brand" href="../"><img class="brand-mark" src="../assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
-    <div class="head-right"><a class="uc-back" href="../">HOME</a></div>
+    <div class="head-right"><nav class="top-nav" aria-label="主な入口">
+        <a href="./">用途</a><a href="../#works">作品</a><a href="../#how">仕組み</a><a href="../#contact">相談</a>
+      </nav>
+      <nav class="lang-switch" id="langSwitch" aria-label="Language"><button class="ls-btn on" data-lang="ja">日本語</button><button class="ls-btn tc" data-lang="zh">繁中</button></nav>
+      <a class="uc-back" href="../">HOME</a></div>
   </header>
 
   <section class="panel" data-num="UC" style="padding-top:20vh">
@@ -48,12 +52,12 @@
       <p class="ch-sub">MV だけではありません。棚の様式と、同じ顔を保つキャラ、声での相談——同じ仕組みが、こんな用途に。</p>
       <div class="uc-list">
         <a class="uc-card" href="bridal.html">
-          <img src="../assets/uc/uc_bridal_B27.jpg" alt="">
+          <img src="../assets/uc/uc_bridal_B27.jpg?v=1012b" alt="">
           <span class="k">01</span>
-          <span class="t"><strong>ブライダル前撮り</strong><span>和装 200・洋装 200 の様式から。礼拝堂、港、神社——写真と短い動画を。</span></span>
+          <span class="t"><strong>ブライダル前撮り</strong><span>和装 200・洋装 200・韓国風 80・台湾の婚紗 100・中華風 40。礼拝堂、港、神社、紅い壁——写真と短い動画と、アルバム。</span></span>
         </a>
         <a class="uc-card" href="portrait.html">
-          <img src="../assets/uc/uc_port_33.jpg" alt="">
+          <img src="../assets/uc/uc_port_33.jpg?v=1012b" alt="">
           <span class="k">02</span>
           <span class="t"><strong>撮影会ポートレート</strong><span>写真家の作風、芸術、雑誌、室内の撮影会——作風の違う 36 の様式で、一人のモデルを一日ぶん。</span></span>
         </a>
@@ -67,14 +71,27 @@
           <span class="k">04</span>
           <span class="t"><strong>解説動画</strong><span>作り方そのものを番組に。解説 01〜05 とオフレコの棚卸し。</span></span>
         </a>
+        <a class="uc-card" href="world.html">
+          <img src="../assets/uc/world_27.jpg?v=1012b" alt="">
+          <span class="k">05</span>
+          <span class="t"><strong>世界の撮影</strong><span>アメリカ、韓国と K-POP、台湾、中国、日本、日本の絶景——地域ごとの様式 3,000 から。同じ顔で、世界を一周。</span></span>
+        </a>
       </div>
     </div>
   </section>
 
+  <nav class="foot-map" aria-label="サイトマップ">
+    <span class="fm-k">用途から見る</span>
+    <a href="bridal.html">ブライダル</a><a href="portrait.html">撮影会</a><a href="world.html">世界</a><a href="kaisetsu.html">解説</a>
+    <span class="fm-sep"></span>
+    <a href="../#works">作品</a><a href="../#shows">裏番組</a><a href="../#contact">相談</a>
+  </nav>
   <footer class="site-foot">
     <span class="foot-brand">MV&nbsp;STUDIO</span>
     <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
     <span class="foot-copy">© 2026 made_linlin</span>
   </footer>
+  <a class="fab-contact" href="../#contact" aria-label="相談"><span>相談</span></a>
+<script src="../js/uc_i18n.js?v=20261012m"></script>
 </body>
 </html>

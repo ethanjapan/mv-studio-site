@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>世界の撮影 — MV Studio ユースケース</title>
+<meta name="description" content="アメリカ、韓国、台湾、中国、日本、日本の絶景——地域ごとの撮影の様式 3,000 から。同じ顔で、世界を一周。" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MV Studio" />
+<meta property="og:title" content="世界の撮影 — MV Studio ユースケース" />
+<meta property="og:description" content="地域ごとの撮影の様式 3,000 から。同じ顔で、世界を一周。" />
+<meta property="og:url" content="https://ethanjapan.github.io/mv-studio-site/usecases/world.html" />
+<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/uc/world_01.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#04060f" />
+<link rel="icon" type="image/svg+xml" href="../assets/icon_mv.svg?v=20261012a" />
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261012a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/theater.css?v=20261012l">
+<style>
+/* ユースケースのページだけの小さな決まり。部品の衣装は theater.css の「役割の衣装」と「第1段 色の一本化」をそのまま使う */
+.uc-head .brand{text-decoration:none}
+.uc-back{font-family:var(--en-display);font-size:14px;letter-spacing:.14em;color:var(--muted);text-decoration:none}
+.uc-back:hover{color:var(--ink)}
+.uc-hero{min-height:calc(var(--vhpx,100svh)*.96);padding-top:18vh}
+.uc-hero .panel-inner{grid-template-columns:1.25fr .75fr}
+.uc-hero .uc-film{aspect-ratio:4/5;width:100%;max-width:440px;justify-self:end}
+.uc-hero .uc-film img{object-position:50% 20%}
+.uc-hero .panel-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.uc-film{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:16/9;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(226,230,242,.08)}
+.uc-film video,.uc-film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-film .cap{position:absolute;left:14px;bottom:12px;z-index:2;font-family:var(--en-display);font-size:13px;letter-spacing:.12em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.uc-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.uc-cta .note{font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.uc-steps{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.uc-step{position:relative;padding:22px 22px 24px;border-radius:18px;border:1px solid var(--line);background:var(--card)}
+.uc-step .n{font-family:var(--en-display);font-size:30px;line-height:1;color:var(--gold);letter-spacing:.06em}
+.uc-step h4{margin:12px 0 8px;font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.03em;color:var(--ink)}
+.uc-step p{margin:0;font-size:13.5px;line-height:1.95;color:var(--muted)}
+.uc-step .pic{margin-top:16px;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/10;position:relative}
+.uc-step .pic img,.uc-step .pic video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-step .say{margin-top:14px;font-family:var(--serif);font-size:15px;color:var(--ink)}
+.uc-shelf{margin-top:40px}
+.uc-shelf h3{font-family:var(--en-display);font-weight:500;font-size:15px;letter-spacing:.3em;color:var(--gold);margin:34px 0 14px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.uc-shelf h3 i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6)}
+.uc-shelf h3 span{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;color:var(--muted)}
+.uc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.uc-grid figure{margin:0;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1040/1520;background:#000}
+.uc-grid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.04);transition:.5s}
+.uc-grid figure:hover img{transform:scale(1.04)}
+.uc-grid{grid-auto-flow:dense}
+.uc-grid figure{align-self:stretch}
+.uc-grid figure.wide{grid-column:span 3;aspect-ratio:2048/1168}
+.uc-grid figure.wide img{object-position:50% 50%}
+
+.uc-grid.world figure.big{grid-column:span 2;grid-row:span 2}
+.uc-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;font-size:11px;letter-spacing:.05em;color:rgba(241,242,247,.9);
+  background:linear-gradient(transparent,rgba(4,6,15,.85))}
+.uc-fin{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.uc-fin .uc-film{aspect-ratio:16/9}
+.uc-proof{margin-top:28px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;font-size:13.5px;color:var(--muted)}
+.uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
+.uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
+@media (max-width:900px){
+  .uc-hero .panel-inner{grid-template-columns:1fr}
+  .uc-steps,.uc-fin{grid-template-columns:1fr}
+  .uc-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body class="uc">
+  <div class="grain"></div>
+
+  <header class="uc-head">
+    <a class="brand" href="../"><img class="brand-mark" src="../assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
+    <div class="head-right">
+      <nav class="top-nav" aria-label="主な入口">
+        <a href="./">用途</a><a href="../#works">作品</a><a href="../#how">仕組み</a><a href="../#contact">相談</a>
+      </nav>
+      <nav class="lang-switch" id="langSwitch" aria-label="Language"><button class="ls-btn on" data-lang="ja">日本語</button><button class="ls-btn tc" data-lang="zh">繁中</button></nav>
+      <a class="uc-back" href="./">USE CASES</a>
+    </div>
+  </header>
+
+  <!-- 1 冒頭 -->
+  <section class="panel cine uc-hero" data-num="01" style="--bd:url(../assets/uc/world_27.jpg);--bd-pos:center 20%">
+    <div class="panel-inner">
+      <div>
+        <nav class="crumbs" aria-label="現在地"><a href="../">HOME</a><i>/</i><a href="./">USE CASES</a><i>/</i><span>世界の撮影</span></nav>
+        <div class="ch-eyebrow">USE CASE 05 — 世界の撮影</div>
+        <h2 class="ch-title">同じ顔で、<br><span class="em">世界を一周</span>。</h2>
+        <p class="ch-sub">アメリカの宣材、韓国の写真館と K-POP、台湾の写真館、中国の旅拍、日本の祭りと絶景——地域ごとに集めた撮影の様式 3,000。同じ顔のまま、国の数だけ撮り分ける。すべて高画素で、手元の PC で。</p>
+        <div class="uc-cta">
+          <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
+          <span class="note">Instagram · @made_linlin</span>
+        </div>
+      </div>
+      <div class="uc-film">
+        <img src="../assets/uc/world_hero.jpg?v=1012c" alt="" loading="eager">
+        <span class="cap">JAPAN — JŪNIHITOE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 頼み方 -->
+  <section class="panel" data-num="02">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">02 — 頼み方</div>
+      <h2 class="ch-title">話す、<span class="em">選ぶ</span>、焼く。</h2>
+      <p class="ch-sub">「韓国の写真館みたいに」「台湾の旅拍で」——国と雰囲気を言うだけ。ディレクターが、その土地の光と衣装を当てる。</p>
+      <div class="uc-steps">
+        <div class="uc-step">
+          <div class="n">01</div><h4>話す</h4>
+          <p>行きたい国、撮りたい雰囲気。言葉にできる所だけでいい。棚の地域の段から指すのが一番早い。</p>
+          <div class="pic"><img src="../assets/app_photo.jpg?v=20261008a" alt="フォトテンプレの棚" loading="lazy"></div>
+          <div class="say">「韓国の写真館みたいに」</div>
+        </div>
+        <div class="uc-step">
+          <div class="n">02</div><h4>候補から選ぶ</h4>
+          <p>同じ顔で、光と構図の違う候補が並ぶ。気に入った一枚だけ残し、表情や衣装は何度でも作り直す。</p>
+          <div class="pic"><img src="../assets/app_rinka4.jpg?v=20261009a" alt="同じ顔の候補" loading="lazy"></div>
+          <div class="say">「この表情、最高。これで」</div>
+        </div>
+        <div class="uc-step">
+          <div class="n">03</div><h4>焼く</h4>
+          <p>確定した一枚は、そのまま動き出す。写真も動画も 4K まで。夜のあいだに列が進み、朝には選ぶだけ。</p>
+          <div class="pic"><video src="../assets/uc/uc_port_28.mp4" poster="../assets/uc/uc_port_28.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video></div>
+          <div class="say">紅葉を手に、目線を落として</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 棚 -->
+  <section class="panel wall" data-num="03">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">03 — 棚から選べる</div>
+      <h2 class="ch-title">地域の様式、<span class="em">3,000</span>。</h2>
+      <p class="ch-sub">US 800・韓国 800・台湾 200・中国 280・日本 600・日本の絶景 300。それぞれの国の「撮られ方」を集めた棚から、ここに並ぶのは 106。すべて 1408×2048 の高画素。</p>
+      <div class="uc-shelf">
+        <h3><i></i>UNITED STATES <span>アメリカ — 俳優の宣材、オーラ・ビューティー、レトロダイナー、オールドマネー、ヴァンプ、モダンウエスタン——色と役割で撮る</span></h3>
+        <div class="uc-grid world">
+          <figure class="big"><img src="../assets/uc/world_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>俳優の宣材写真・コマーシャル(スタジオ正面・</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/world_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>オーラ・ビューティー・1色に揃えた顔</figcaption></figure>
+          <figure><img src="../assets/uc/world_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>フォトブースの1コマ・フラッシュの1コマ</figcaption></figure>
+          <figure><img src="../assets/uc/world_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>エクストラ・セレスチャル・未来的なトラック</figcaption></figure>
+          <figure><img src="../assets/uc/world_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>コテージコア・野菜を育てる</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>フィッシャーマン・レインコートの着こなし</figcaption></figure>
+          <figure><img src="../assets/uc/world_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>モブワイフ・黒に毛皮のコート</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>オペラ美学・劇的なシルエット</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>社交界のプールサイド・山を望むテラス</figcaption></figure>
+          <figure><img src="../assets/uc/world_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>ロココ・リバイバル・扇の寄り</figcaption></figure>
+          <figure><img src="../assets/uc/world_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>トマトガール・サマー・ゼラニウムのバルコニー</figcaption></figure>
+          <figure><img src="../assets/uc/world_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>モダンウエスタン・牧場の家の戸口</figcaption></figure>
+        </div>
+        <h3><i></i>KOREA <span>韓国 — モノクロ写真館、桜スナップ、韓服、4コマ写真ブース、MZ のポーズ、色背景の肖像——澄んだ光と白</span></h3>
+        <div class="uc-grid world">
+          <figure class="big"><img src="../assets/uc/world_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>モノクロ写真館・振り向き</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/world_14.jpg?v=1012b" alt="" loading="lazy"><figcaption>桜スナップ・小川の桜</figcaption></figure>
+          <figure><img src="../assets/uc/world_15.jpg?v=1012b" alt="" loading="lazy"><figcaption>作り込みセットのセルフスタジオ・電話ボックス</figcaption></figure>
+          <figure><img src="../assets/uc/world_16.jpg?v=1012b" alt="" loading="lazy"><figcaption>目の超接写・指で囲む</figcaption></figure>
+          <figure><img src="../assets/uc/world_17.jpg?v=1012b" alt="" loading="lazy"><figcaption>フュージョン韓服・舞台衣装の韓服</figcaption></figure>
+          <figure><img src="../assets/uc/world_18.jpg?v=1012b" alt="" loading="lazy"><figcaption>宮殿の韓服スナップ・インスタント写真のおまけ</figcaption></figure>
+          <figure><img src="../assets/uc/world_19.jpg?v=1012b" alt="" loading="lazy"><figcaption>4コマ写真ブースの1コマ・カチューシャの小物</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_20.jpg?v=1012b" alt="" loading="lazy"><figcaption>MZ世代のポーズミーム・腕のハート 横</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_21.jpg?v=1012b" alt="" loading="lazy"><figcaption>人外のファンタジーコンセプト・森 横</figcaption></figure>
+          <figure><img src="../assets/uc/world_22.jpg?v=1012b" alt="" loading="lazy"><figcaption>色背景の肖像証明・黒背景</figcaption></figure>
+          <figure><img src="../assets/uc/world_23.jpg?v=1012b" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・シダの寄り</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_24.jpg?v=1012b" alt="" loading="lazy"><figcaption>火山島のウェディングスナップ・黒い砂浜と白い</figcaption></figure>
+        </div>
+        <h3><i></i>K-POP <span>韓国 — アイドルの写真文法。ファンサイトの望遠、シーズングリーティング、コンセプトフォト(ガールクラッシュ、フューチャリスティック、キュート、Y2K)</span></h3>
+        <div class="uc-grid world">
+          <figure><img src="../assets/uc/world_kp_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>ファンサイトの望遠写真・授賞式</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>ファンサイトの望遠写真・音楽番組の出勤路</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>シーズングリーティングの画報・バレーボール</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>ガールクラッシュのコンセプト・ボールガウン×エッジ</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>フューチャリスティックのコンセプト・厚底スニーカー</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>キュート・パステルのコンセプト・夏の明るい版</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>ファン&amp;実験のコンセプト・ゼリーシューズ</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>プールのある家のY2Kコンセプト・トラックスーツ</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>シーズングリーティングの画報・テニス</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>ガールクラッシュのコンセプト・コンバットブーツ</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>フューチャリスティックのコンセプト・極端なネイル</figcaption></figure>
+          <figure><img src="../assets/uc/world_kp_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>プールのある家のY2Kコンセプト・チューブドレス</figcaption></figure>
+        </div>
+        <h3><i></i>TAIWAN <span>台湾 — 写真館の文化と外拍。レトロ白黒4連写、Y2K ブース、民国の写真館、眷村、花季の山、島の端のロケ、武侠、都市のランドマーク</span></h3>
+        <div class="uc-grid world">
+          <figure><img src="../assets/uc/world_35.jpg?v=1012b" alt="" loading="lazy"><figcaption>レトロ白黒4連写(ビストロ併設)・笑い崩れる</figcaption></figure>
+          <figure><img src="../assets/uc/world_36.jpg?v=1012b" alt="" loading="lazy"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・緑</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>Y2K・90年代レトロ撮影ブース(魚眼)・フィルム枠風の縁</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>民国初期写真館・チャイナドレス復古・黄灯の室内</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_13.jpg?v=1012c" alt="" loading="lazy"><figcaption>山のアジサイ畑の花季写真・ピンクのアジサイ</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・日の出</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>眷村(軍人村)レトロ撮影・理髪店の椅子</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>中判フィルム写真館(12コマ限定)・ふと笑う</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>博物館級レトロ写真館(日治時代・古欧州)・窓辺の横顔</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>真上から撮る韓国式ブース(俯拍)・横向きに丸まる</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>韓式プロフィール・全身記念写真・季節限定の一枚</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>映画のワンシーン再現・車の窓</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_14.jpg?v=1012c" alt="" loading="lazy"><figcaption>韓国式セルフ撮影スタジオ・跳ぶ</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_tw_15.jpg?v=1012c" alt="" loading="lazy"><figcaption>武侠風写真・顔寄り</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_16.jpg?v=1012c" alt="" loading="lazy"><figcaption>古典漢服写真(台湾)・祭事の場</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_tw_17.jpg?v=1012c" alt="" loading="lazy"><figcaption>築百年の旧写真館で撮る・光の筋</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_tw_18.jpg?v=1012c" alt="" loading="lazy"><figcaption>アイドル風プロフィール(音楽番組風)・ステージの引き</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_tw_19.jpg?v=1012c" alt="" loading="lazy"><figcaption>都市のランドマーク・ファッション・屋上の夕景</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_tw_20.jpg?v=1012c" alt="" loading="lazy"><figcaption>欧州古典レースドレス写真・装飾の部屋の引き</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_21.jpg?v=1012c" alt="" loading="lazy"><figcaption>レトロ白黒4連写(ビストロ併設)・目を閉じる寄り</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_22.jpg?v=1012c" alt="" loading="lazy"><figcaption>ひとりウェディングフォト・モダンドレス</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_tw_23.jpg?v=1012c" alt="" loading="lazy"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・白黒の八角灯台</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_24.jpg?v=1012c" alt="" loading="lazy"><figcaption>韓式プロフィール・全身記念写真・半身の形象照</figcaption></figure>
+          <figure><img src="../assets/uc/world_tw_25.jpg?v=1012c" alt="" loading="lazy"><figcaption>映画のワンシーン再現・電話ボックス</figcaption></figure>
+        </div>
+        <h3><i></i>CHINA <span>中国 — 旅拍と国風。飛天の旅拍、ドーパミンカラー、港式レトロ食堂、撕拉片、盛唐衣装、新中式</span></h3>
+        <div class="uc-grid world">
+          <figure class="wide"><img src="../assets/uc/world_25.jpg?v=1012b" alt="" loading="lazy"><figcaption>砂漠の天女(飛天)旅拍・宝飾の寄り</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_26.jpg?v=1012b" alt="" loading="lazy"><figcaption>ドーパミンカラー(撞色)写真・水面に映る色</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_27.jpg?v=1012b" alt="" loading="lazy"><figcaption>頭の花冠と牡蠣殻の家(簪花囲)・花冠の後頭部</figcaption></figure>
+          <figure><img src="../assets/uc/world_28.jpg?v=1012b" alt="" loading="lazy"><figcaption>朝鮮族衣装の旅拍(公主)・ぶらんこ</figcaption></figure>
+          <figure><img src="../assets/uc/world_29.jpg?v=1012b" alt="" loading="lazy"><figcaption>港式レトロ食堂での撮影・レトロ電話を持つ</figcaption></figure>
+          <figure><img src="../assets/uc/world_30.jpg?v=1012b" alt="" loading="lazy"><figcaption>メイラード(ブラウン系)・赤茶のジャケット</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_31.jpg?v=1012b" alt="" loading="lazy"><figcaption>宮殿の赤壁×宮廷衣装の旅拍・頭飾りの寄り</figcaption></figure>
+          <figure><img src="../assets/uc/world_32.jpg?v=1012b" alt="" loading="lazy"><figcaption>ピールアパート(撕拉片)インスタント肖像・額</figcaption></figure>
+          <figure><img src="../assets/uc/world_33.jpg?v=1012b" alt="" loading="lazy"><figcaption>盛唐衣装の古都旅拍・寺の桜</figcaption></figure>
+          <figure><img src="../assets/uc/world_34.jpg?v=1012b" alt="" loading="lazy"><figcaption>新中式(モダン中華)ポートレート・春節の中国</figcaption></figure>
+          <figure><img src="../assets/uc/world_cn_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>正統漢服×宋韻の園林写真・円洞門</figcaption></figure>
+          <figure><img src="../assets/uc/world_cn_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>銀飾りの民族衣装旅拍(苗族の装い)・盃</figcaption></figure>
+          <figure><img src="../assets/uc/world_cn_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>盛唐衣装の古都旅拍・灯籠の街区</figcaption></figure>
+          <figure><img src="../assets/uc/world_cn_14.jpg?v=1012b" alt="" loading="lazy"><figcaption>港風スタジオ写真(90年代香港)・サングラス</figcaption></figure>
+          <figure><img src="../assets/uc/world_cn_15.jpg?v=1012b" alt="" loading="lazy"><figcaption>松弛感(力の抜けた自然体)・芝生に寝転ぶ</figcaption></figure>
+          <figure><img src="../assets/uc/world_cn_16.jpg?v=1012b" alt="" loading="lazy"><figcaption>オールドマネー/静かな贅沢・厩舎</figcaption></figure>
+        </div>
+        <h3><i></i>JAPAN <span>日本 — アートアクアリウム、阿波踊り、十二単、ねぶた、花魁、歌劇団、球場——祭りと舞台の衣装で</span></h3>
+        <div class="uc-grid world">
+          <figure class="big"><img src="../assets/uc/world_37.jpg?v=1012b" alt="" loading="lazy"><figcaption>アートアクアリウム×浴衣・低い水槽の前にしゃ</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/world_38.jpg?v=1012e" alt="" loading="lazy"><figcaption>阿波踊りの女踊り・夕暮れの路地で待つ</figcaption></figure>
+          <figure><img src="../assets/uc/world_39.jpg?v=1012b" alt="" loading="lazy"><figcaption>フィギュアスケートの衣装と技・レイバックスピ</figcaption></figure>
+          <figure><img src="../assets/uc/world_40.jpg?v=1012b" alt="" loading="lazy"><figcaption>女子プロレスのリングコスチューム・入場の衣装</figcaption></figure>
+          <figure><img src="../assets/uc/world_41.jpg?v=1012b" alt="" loading="lazy"><figcaption>女優ポートレートと花・桜の枝</figcaption></figure>
+          <figure><img src="../assets/uc/world_42.jpg?v=1012b" alt="" loading="lazy"><figcaption>十二単の着装・檜扇で顔を隠す</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_43.jpg?v=1012e" alt="" loading="lazy"><figcaption>ねぶた祭の跳人・跳躍のブレ</figcaption></figure>
+          <figure><img src="../assets/uc/world_44.jpg?v=1012b" alt="" loading="lazy"><figcaption>花魁道中の装い・赤い傘の下の横顔</figcaption></figure>
+          <figure><img src="../assets/uc/world_45.jpg?v=1012b" alt="" loading="lazy"><figcaption>歌劇団の男役・羽根扇を広げる</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_46.jpg?v=1012b" alt="" loading="lazy"><figcaption>よさこいの踊り子・鳴子を構えて前進</figcaption></figure>
+          <figure><img src="../assets/uc/world_47.jpg?v=1012b" alt="" loading="lazy"><figcaption>球場の赤いユニフォーム応援・赤ユニで応援する</figcaption></figure>
+          <figure><img src="../assets/uc/world_48.jpg?v=1012b" alt="" loading="lazy"><figcaption>量産型・自撮りで上目づかい</figcaption></figure>
+          <figure><img src="../assets/uc/world_jp_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>聖地巡礼とぬい撮り・神社の石段とぬいぐるみ</figcaption></figure>
+          <figure><img src="../assets/uc/world_jp_14.jpg?v=1012b" alt="" loading="lazy"><figcaption>推し活スタジオ(生誕祭)・推し色バルーンの祭壇</figcaption></figure>
+          <figure class="wide"><img src="../assets/uc/world_jp_15.jpg?v=1012b" alt="" loading="lazy"><figcaption>歌劇団の男役・舞台化粧の寄り</figcaption></figure>
+          <figure><img src="../assets/uc/world_jp_16.jpg?v=1012b" alt="" loading="lazy"><figcaption>地雷系・夜の歩道橋の手すり</figcaption></figure>
+          <figure><img src="../assets/uc/world_jp_17.jpg?v=1012c" alt="" loading="lazy"><figcaption>推し活スタジオ(生誕祭)・特大ケーキのオブジェ</figcaption></figure>
+          <figure><img src="../assets/uc/world_jp_18.jpg?v=1012c" alt="" loading="lazy"><figcaption>アートアクアリウム×浴衣・柱の水槽を見上げる</figcaption></figure>
+        </div>
+        <h3><i></i>JAPAN SCENIC <span>日本の絶景×人物 — 青い池、浅間公園、長谷寺、ジュエリーアイス、河津桜、華厳の滝、只見線——名所の光の中に立つ</span></h3>
+        <div class="uc-grid world">
+          <figure class="big"><img src="../assets/uc/world_49.jpg?v=1012b" alt="" loading="lazy"><figcaption>美瑛 白金青い池・秋・紅葉の映り込み</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/world_50.jpg?v=1012b" alt="" loading="lazy"><figcaption>新倉山浅間公園 忠霊塔・振袖で巡る</figcaption></figure>
+          <figure><img src="../assets/uc/world_51.jpg?v=1012b" alt="" loading="lazy"><figcaption>鎌倉 長谷寺 あじさい路・眺望散策路・池と紅</figcaption></figure>
+          <figure><img src="../assets/uc/world_52.jpg?v=1012b" alt="" loading="lazy"><figcaption>豊頃 大津海岸のジュエリーアイス・昼・透き通</figcaption></figure>
+          <figure><img src="../assets/uc/world_53.jpg?v=1012b" alt="" loading="lazy"><figcaption>河津桜並木 河津川沿い・川沿いの桜並木と菜の</figcaption></figure>
+          <figure><img src="../assets/uc/world_54.jpg?v=1012b" alt="" loading="lazy"><figcaption>華厳の滝・観瀑台から見上げる</figcaption></figure>
+          <figure><img src="../assets/uc/world_55.jpg?v=1012b" alt="" loading="lazy"><figcaption>鎌倉 明月院・悟りの窓越しのあじさいと苔</figcaption></figure>
+          <figure><img src="../assets/uc/world_56.jpg?v=1012b" alt="" loading="lazy"><figcaption>三十槌の氷柱・氷柱の寄り</figcaption></figure>
+          <figure><img src="../assets/uc/world_58.jpg?v=1012b" alt="" loading="lazy"><figcaption>奥入瀬渓流・新緑の朝霧</figcaption></figure>
+          <figure><img src="../assets/uc/world_59.jpg?v=1012b" alt="" loading="lazy"><figcaption>美瑛 白ひげの滝・橋の上の寄り</figcaption></figure>
+          <figure><img src="../assets/uc/world_60.jpg?v=1012b" alt="" loading="lazy"><figcaption>只見線 第一只見川橋梁・渓谷の寄り</figcaption></figure>
+          <figure><img src="../assets/uc/world_zk_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>小樽運河・冬の夜・キャンドルの中の着物</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 仕上がり -->
+  <section class="panel cine" data-num="04" style="--bd:url(../assets/uc/uc_port_31.jpg);--bd-pos:center 40%">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">04 — 仕上がり</div>
+      <h2 class="ch-title">写真から、<span class="em">動画</span>へ。</h2>
+      <p class="ch-sub">どの国の一枚も、同じ仕組みで数秒の動画になる。下は日本の棚の実例——写真 56 枚がそのまま動いた「いつもの顔」のカット。</p>
+      <div class="uc-fin">
+        <div class="uc-film"><video src="../assets/uc/uc_port_31.mp4" poster="../assets/uc/uc_port_31.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">SUNSET · SHORE</span></div>
+        <div class="uc-film"><video src="../assets/uc/uc_port_03.mp4" poster="../assets/uc/uc_port_03.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">FESTIVAL · LANTERN</span></div>
+        <div class="uc-film"><video src="../assets/uc/uc_port_12.mp4" poster="../assets/uc/uc_port_12.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">OVERPASS · WIND</span></div>
+      </div>
+      <div class="uc-proof">
+        <a class="ch-cta" href="https://youtu.be/_uC-XiL0EuY" target="_blank" rel="noopener noreferrer">実績の一本を観る —『いつもの顔』棚の写真が動き出す四季のMV 4分09秒 →</a>
+        <span>上の動画は、その本編のカット。写真 56 枚が、そのまま動いた。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 連絡 -->
+  <section class="panel uc-contact" data-num="05">
+    <div class="panel-inner">
+      <h2 class="ch-title">世界の撮影の相談は、<span class="em">国の名前</span>から。</h2>
+      <p class="ch-sub" style="margin-left:auto;margin-right:auto">撮りたい国と雰囲気、着たい衣装。それだけ送ってください。その土地の様式で候補にしてお返しします。</p>
+      <div class="uc-cta" style="justify-content:center">
+        <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
+        <a class="btn ghost" href="./">ほかの用途を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="uc-next">
+    <div class="panel-inner">
+      <div><span class="k">NEXT USE CASE</span><a class="nx" href="kaisetsu.html">次の用途へ — 解説動画<span class="ar">→</span></a></div>
+      <a class="all" href="./">すべての用途</a>
+    </div>
+  </section>
+  <nav class="foot-map" aria-label="サイトマップ">
+    <span class="fm-k">用途から見る</span>
+    <a href="bridal.html">ブライダル</a><a href="portrait.html">撮影会</a><a href="world.html">世界</a><a href="kaisetsu.html">解説</a>
+    <span class="fm-sep"></span>
+    <a href="../#works">作品</a><a href="../#shows">裏番組</a><a href="../#contact">相談</a>
+  </nav>
+  <footer class="site-foot">
+    <span class="foot-brand">MV&nbsp;STUDIO</span>
+    <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
+    <span class="foot-copy">© 2026 made_linlin</span>
+  </footer>
+  <a class="fab-contact" href="../#contact" aria-label="相談"><span>相談</span></a>
+<script src="../js/uc_i18n.js?v=20261012m"></script>
+</body>
+</html>

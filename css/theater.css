@@ -7,11 +7,11 @@
   --bg:#05060d;
   --night:#0a0d1d;
   --ink:#f4f1e8;                    /* 提灯に照らされた生成りの白 */
-  --muted:rgba(235,229,214,.60);
-  --gold:#e6b476;
-  --gold-dim:rgba(230,180,118,.42);
+  --muted:rgba(226,230,242,.60);
+  --gold:#d9bd8a;
+  --gold-dim:rgba(217,189,138,.42);
   --pink:#f2b2c6;
-  --line:rgba(242,236,220,.15);
+  --line:rgba(226,230,242,.15);
   --card:rgba(15,18,36,.52);
   --serif:"Shippori Mincho",serif;
   --sans:"Zen Kaku Gothic New",sans-serif;
@@ -25,9 +25,9 @@ body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
    固定背景は fixed 擬似要素レイヤで敷く(合成レイヤ化されIGアプリ内でも安定) */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(120% 70% at 82% -8%, rgba(230,180,118,.05), transparent 55%),
+    radial-gradient(120% 70% at 82% -8%, rgba(217,189,138,.05), transparent 55%),
     radial-gradient(130% 100% at 50% -12%, #0c1022 0%, #06070f 52%, #030409 100%)}
-::selection{background:rgba(230,180,118,.32)}
+::selection{background:rgba(217,189,138,.32)}
 
 /* film grain */
 .grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.055;
@@ -70,8 +70,8 @@ body.lang-zh .freedom-main{font-family:"Noto Serif TC",serif !important}
 .dots-nav{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:19;
   display:flex;flex-direction:column;gap:9px}
 .dot-i{position:relative;width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;
-  background:rgba(242,236,220,.22);transition:.3s}
-.dot-i.on{background:var(--gold);box-shadow:0 0 10px rgba(230,180,118,.8)}
+  background:rgba(226,230,242,.22);transition:.3s}
+.dot-i.on{background:var(--gold);box-shadow:0 0 10px rgba(217,189,138,.8)}
 .dot-i .lbl{position:absolute;right:16px;top:50%;transform:translateY(-50%);
   font-size:10.5px;letter-spacing:.14em;color:var(--ink);background:rgba(8,10,22,.85);
   padding:4px 10px;border-radius:6px;border:1px solid var(--line);
@@ -103,7 +103,7 @@ body.lang-zh .freedom-main{font-family:"Noto Serif TC",serif !important}
   opacity:0;transform:translateY(14px);animation:rise 1.1s .25s cubic-bezier(.2,.7,.2,1) forwards}
 .eyebrow .dot{display:inline-block;width:5px;height:5px;border-radius:50%;
   background:var(--gold);margin-right:14px;vertical-align:middle;
-  box-shadow:0 0 12px 3px rgba(230,180,118,.8)}
+  box-shadow:0 0 12px 3px rgba(217,189,138,.8)}
 @media (min-width:1100px){
   .eyebrow{position:absolute;left:clamp(26px,4vw,60px);top:50%;
     transform:translateY(-50%);writing-mode:vertical-rl;letter-spacing:.62em;margin:0;
@@ -129,12 +129,12 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   opacity:0;transform:translateY(16px);animation:rise 1.2s 1.2s cubic-bezier(.2,.7,.2,1) forwards}
 .chip{display:inline-flex;align-items:center;gap:10px;
   padding:9px 16px;border-radius:100px;
-  border:1px solid rgba(242,236,220,.2);background:rgba(8,9,20,.55);
+  border:1px solid rgba(226,230,242,.2);background:rgba(8,9,20,.55);
   backdrop-filter:blur(12px);font-size:12.5px;letter-spacing:.03em;color:var(--ink)}
 .chip svg{width:15px;height:15px;flex:none;stroke:var(--gold)}
 .chip .tc{font-family:"Noto Sans TC",sans-serif;font-weight:500}
 .chip em{font-style:normal;font-size:10px;letter-spacing:.14em;color:var(--gold);
-  border:1px solid rgba(230,180,118,.45);border-radius:100px;padding:2px 9px;margin-left:3px}
+  border:1px solid rgba(217,189,138,.45);border-radius:100px;padding:2px 9px;margin-left:3px}
 .chip .dots{display:inline-flex;gap:5px;margin-left:3px}
 .chip .dots i{width:7px;height:7px;border-radius:50%;display:inline-block;
   box-shadow:0 0 8px currentColor}
@@ -142,19 +142,19 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   opacity:0;animation:fade 1.4s 1.35s forwards}
 .wave i{width:3px;border-radius:3px;
   background:linear-gradient(180deg,#f2cf9a,#e8a9c0);
-  box-shadow:0 0 10px rgba(230,180,118,.45);
+  box-shadow:0 0 10px rgba(217,189,138,.45);
   animation:eq 1.3s ease-in-out infinite}
 .cta{margin-top:30px;display:flex;gap:18px;align-items:center;
   opacity:0;transform:translateY(16px);animation:rise 1.2s 1.5s cubic-bezier(.2,.7,.2,1) forwards}
 .btn{font-family:var(--sans);font-weight:500;font-size:14px;
   letter-spacing:.08em;padding:15px 30px;border-radius:100px;cursor:pointer;
-  border:1px solid rgba(242,236,220,.2);color:#fff;
+  border:1px solid rgba(226,230,242,.2);color:#fff;
   background:rgba(255,255,255,.05);backdrop-filter:blur(14px);
   transition:.45s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden;
   display:inline-block;text-decoration:none}
 .btn.primary{border:none;color:#241608;font-weight:700;
   background:linear-gradient(96deg,#f4d5a0,#eeb0c4 62%,#e8c9f0);
-  box-shadow:0 8px 40px -8px rgba(230,180,118,.55)}
+  box-shadow:0 8px 40px -8px rgba(217,189,138,.55)}
 .btn:hover{transform:translateY(-2px)}
 .btn.ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.32)}
 .btn .vico{display:inline-block;width:8px;height:8px;border-radius:50%;
@@ -165,7 +165,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   opacity:0;animation:fade 1.4s 1.9s forwards}
 .scroll .txt{font-family:var(--en);font-size:10px;letter-spacing:.34em;
   text-transform:uppercase;color:var(--muted)}
-.scroll .line{width:1px;height:40px;background:linear-gradient(180deg,rgba(242,236,220,.5),transparent);
+.scroll .line{width:1px;height:40px;background:linear-gradient(180deg,rgba(226,230,242,.5),transparent);
   position:relative;overflow:hidden}
 .scroll .line::after{content:"";position:absolute;top:-50%;left:0;width:100%;height:50%;
   background:linear-gradient(180deg,transparent,var(--gold));animation:drop 2s ease-in-out infinite}
@@ -185,7 +185,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .panel[data-num]::before{content:attr(data-num);position:absolute;z-index:0;
   font-family:var(--serif);font-weight:400;line-height:.8;
   font-size:clamp(200px,30vw,430px);
-  color:transparent;-webkit-text-stroke:1px rgba(230,180,118,.13);
+  color:transparent;-webkit-text-stroke:1px rgba(217,189,138,.13);
   right:clamp(-30px,-1vw,0px);top:6vh;pointer-events:none;user-select:none}
 .panel[data-num]:nth-of-type(even)::before{right:auto;left:clamp(-30px,-1vw,0px)}
 .panel.wall[data-num]::before{top:2vh}
@@ -226,24 +226,24 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
    ============================================================ */
 .thoughts{position:relative;margin:52px auto 0;height:clamp(220px,30vh,300px);max-width:680px}
 .mind-glow{position:absolute;left:50%;top:50%;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;
-  background:radial-gradient(circle,rgba(230,180,118,.16),rgba(242,178,198,.07) 46%,transparent 70%);
+  background:radial-gradient(circle,rgba(217,189,138,.16),rgba(242,178,198,.07) 46%,transparent 70%);
   filter:blur(6px);animation:breathe 5.5s ease-in-out infinite}
 .thought{position:absolute;white-space:nowrap;font-weight:400;z-index:1;
-  font-size:clamp(13px,1.4vw,16.5px);letter-spacing:.16em;color:rgba(244,240,230,.9);
-  padding:10px 20px;border-radius:100px;border:1px solid rgba(230,180,118,.26);
-  background:rgba(14,14,26,.5);box-shadow:0 0 24px -6px rgba(230,180,118,.25);
+  font-size:clamp(13px,1.4vw,16.5px);letter-spacing:.16em;color:rgba(241,242,247,.9);
+  padding:10px 20px;border-radius:100px;border:1px solid rgba(217,189,138,.26);
+  background:rgba(14,14,26,.5);box-shadow:0 0 24px -6px rgba(217,189,138,.25);
   animation:poolFloatSm 6s ease-in-out infinite}
 /* 想いチップに付く、実作品からの記憶フラグメント */
 .tmem{position:absolute;right:-16px;top:-36px;width:62px;height:40px;border-radius:8px;
   background-size:cover;background-position:center;pointer-events:none;
-  border:1px solid rgba(242,236,220,.28);box-shadow:0 8px 20px -8px rgba(0,0,0,.65);
+  border:1px solid rgba(226,230,242,.28);box-shadow:0 8px 20px -8px rgba(0,0,0,.65);
   transform:rotate(5deg);opacity:.88}
 .tmem.alt{right:auto;left:-18px;transform:rotate(-6deg)}
 /* 中央 — 断片が像を結ぶ(スクロールでピントが合う) */
 .mind-frame{position:absolute;left:50%;top:50%;width:clamp(230px,30vw,340px);aspect-ratio:16/10;
   transform:translate(-50%,-50%);margin:0;border-radius:16px;overflow:hidden;
-  border:1px solid rgba(242,236,220,.18);
-  box-shadow:0 18px 60px -18px rgba(0,0,0,.7),0 0 70px -10px rgba(230,180,118,.3)}
+  border:1px solid rgba(226,230,242,.18);
+  box-shadow:0 18px 60px -18px rgba(0,0,0,.7),0 0 70px -10px rgba(217,189,138,.3)}
 .mind-frame img{width:100%;height:100%;object-fit:cover;display:block;
   filter:blur(3px) saturate(.9);opacity:.85;transform:scale(1.04)}
 @supports (animation-timeline: scroll()){
@@ -262,7 +262,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .thought.th1{top:4%;left:16%;animation-delay:.1s}
 .thought.th2{top:16%;right:10%;animation-delay:.7s;color:var(--pink);border-color:rgba(242,178,198,.35)}
 .thought.th3{top:44%;left:4%;animation-delay:1.2s}
-.thought.th4{bottom:16%;left:26%;animation-delay:.4s;color:var(--gold);border-color:rgba(230,180,118,.4)}
+.thought.th4{bottom:16%;left:26%;animation-delay:.4s;color:var(--gold);border-color:rgba(217,189,138,.4)}
 .thought.th5{top:40%;right:22%;animation-delay:1.6s}
 .thought.th6{bottom:4%;right:8%;animation-delay:.9s;color:#b7e2ee;border-color:rgba(183,226,238,.3)}
 
@@ -275,7 +275,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .bubble.show{opacity:1;transform:none}
 .bubble .who{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.22em;
   text-transform:uppercase;margin-bottom:6px;color:var(--gold)}
-.bubble.ai{align-self:flex-start;background:rgba(16,19,38,.72);border:1px solid rgba(230,180,118,.2);
+.bubble.ai{align-self:flex-start;background:rgba(16,19,38,.72);border:1px solid rgba(217,189,138,.2);
   border-top-left-radius:4px;box-shadow:0 10px 34px -14px rgba(0,0,0,.6)}
 .bubble.me{align-self:flex-end;background:linear-gradient(120deg,rgba(242,207,154,.16),rgba(238,176,196,.14));
   border:1px solid rgba(242,178,198,.24);border-top-right-radius:4px}
@@ -299,7 +299,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .info-card{position:relative;padding:28px 24px;border-radius:18px;
   border:1px solid var(--line);background:var(--card);
   backdrop-filter:blur(10px);transition:.4s;overflow:hidden}
-.info-card:hover{border-color:rgba(230,180,118,.4);transform:translateY(-3px)}
+.info-card:hover{border-color:rgba(217,189,138,.4);transform:translateY(-3px)}
 .info-card .ic{width:26px;height:26px;stroke:var(--gold);margin-bottom:16px}
 .info-card .it{font-family:var(--serif);font-size:17.5px;font-weight:600;letter-spacing:.04em;
   color:var(--ink);margin-bottom:9px}
@@ -307,7 +307,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .ra-thumb{border-radius:12px;overflow:hidden;margin-bottom:15px;border:1px solid var(--line)}
 .ra-thumb .rimg{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 22%;display:block}
 .ra-url{display:flex;align-items:center;gap:9px;aspect-ratio:16/10;border-radius:12px;
-  border:1px dashed rgba(230,180,118,.35);margin-bottom:15px;justify-content:center;
+  border:1px dashed rgba(217,189,138,.35);margin-bottom:15px;justify-content:center;
   font-family:var(--en);font-size:12.5px;letter-spacing:.04em;color:var(--muted)}
 .ra-url svg{width:16px;height:16px;stroke:var(--gold)}
 .ra-tag{font-family:var(--en);font-size:10px;letter-spacing:.22em;color:var(--gold);margin-bottom:8px}
@@ -321,9 +321,9 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .pc-vis{height:86px;border-radius:12px;border:1px solid var(--line);margin-bottom:16px;
   display:flex;align-items:center;justify-content:center;gap:8px;position:relative;
   background:rgba(8,10,22,.5);overflow:hidden}
-.pc-strip .pc-cell{width:34px;height:48px;border-radius:6px;border:1px solid rgba(242,236,220,.25)}
+.pc-strip .pc-cell{width:34px;height:48px;border-radius:6px;border:1px solid rgba(226,230,242,.25)}
 .pc-strip .pc-cell.edit{border-color:var(--gold);color:var(--gold);display:flex;align-items:center;
-  justify-content:center;font-size:15px;box-shadow:0 0 18px -4px rgba(230,180,118,.5)}
+  justify-content:center;font-size:15px;box-shadow:0 0 18px -4px rgba(217,189,138,.5)}
 .pc-bokeh .bk{position:absolute;border-radius:50%;background:rgba(242,207,154,.5);filter:blur(2px)}
 .pc-bokeh .b1{width:26px;height:26px;left:14%;top:18%}
 .pc-bokeh .b2{width:16px;height:16px;left:30%;bottom:14%;background:rgba(238,176,196,.5)}
@@ -343,24 +343,24 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
    ============================================================ */
 .strip{display:flex;gap:16px;overflow-x:auto;padding:10px 4px 20px;
   scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;scrollbar-color:rgba(230,180,118,.35) transparent;margin-top:48px}
+  scrollbar-width:thin;scrollbar-color:rgba(217,189,138,.35) transparent;margin-top:48px}
 .strip::-webkit-scrollbar{height:5px}
 .strip::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:3px}
-.strip::-webkit-scrollbar-thumb{background:rgba(230,180,118,.4);border-radius:3px}
+.strip::-webkit-scrollbar-thumb{background:rgba(217,189,138,.4);border-radius:3px}
 .stripcard{position:relative;flex:none;scroll-snap-align:center;margin:0}
 .reelstrip .stripcard{width:clamp(220px,24vw,330px)}
 .reelstrip img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;display:block;
-  border:1px solid rgba(242,236,220,.12);box-shadow:0 16px 44px -18px rgba(0,0,0,.65)}
+  border:1px solid rgba(226,230,242,.12);box-shadow:0 16px 44px -18px rgba(0,0,0,.65)}
 .reelstrip .sc-n{position:absolute;top:10px;left:12px;font-family:var(--en);
-  font-size:10px;letter-spacing:.22em;color:rgba(244,240,230,.8)}
+  font-size:10px;letter-spacing:.22em;color:rgba(241,242,247,.8)}
 .reelstrip figcaption{padding:11px 4px 0;font-family:var(--serif);font-size:13.5px;
   letter-spacing:.14em;color:var(--muted);text-align:center}
 .exstrip .stripcard{width:clamp(230px,26vw,340px)}
 .exstrip .sc-thumb{position:relative;border-radius:14px;overflow:hidden;
-  border:1px solid rgba(242,236,220,.12);box-shadow:0 16px 44px -18px rgba(0,0,0,.65)}
+  border:1px solid rgba(226,230,242,.12);box-shadow:0 16px 44px -18px rgba(0,0,0,.65)}
 .exstrip .sc-thumb img,.exstrip .sc-thumb video{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
 .exstrip .sc-n{position:absolute;top:10px;left:12px;font-family:var(--en);
-  font-size:10px;letter-spacing:.22em;color:rgba(244,240,230,.9);text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  font-size:10px;letter-spacing:.22em;color:rgba(241,242,247,.9);text-shadow:0 1px 6px rgba(0,0,0,.6)}
 .exstrip .sc-step{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;
   font-size:12px;letter-spacing:.12em;color:var(--gold);
   background:linear-gradient(180deg,transparent,rgba(3,4,10,.78))}
@@ -375,7 +375,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .bento{margin-top:52px;display:grid;gap:18px;
   grid-template-columns:repeat(12,1fr);grid-auto-rows:150px}
 .bento figure{position:relative;margin:0;border-radius:16px;overflow:hidden;
-  border:1px solid rgba(242,236,220,.12);box-shadow:0 18px 50px -20px rgba(0,0,0,.65)}
+  border:1px solid rgba(226,230,242,.12);box-shadow:0 18px 50px -20px rgba(0,0,0,.65)}
 .bento figure img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .bento figure:hover img{transform:scale(1.04)}
@@ -409,11 +409,11 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .wr2 .wallseq{animation-direction:reverse;animation-duration:76s}
 .wr3 .wallseq{animation-duration:88s}
 .wcard{position:relative;flex:none;width:clamp(200px,21vw,340px);aspect-ratio:16/9;
-  border-radius:14px;overflow:hidden;border:1px solid rgba(242,236,220,.1);
+  border-radius:14px;overflow:hidden;border:1px solid rgba(226,230,242,.1);
   box-shadow:0 18px 50px -18px rgba(0,0,0,.6);margin:0}
 .wcard img{width:100%;height:100%;object-fit:cover;display:block}
 .wcard figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;
-  font-size:11.5px;letter-spacing:.1em;color:rgba(244,240,230,.9);
+  font-size:11.5px;letter-spacing:.1em;color:rgba(241,242,247,.9);
   background:linear-gradient(180deg,transparent,rgba(3,4,10,.74))}
 .rackwrap{margin-top:50px;overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
@@ -423,7 +423,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .rr3 .rackseq{animation-duration:80s}
 .rackseq{display:flex;gap:16px;padding-right:16px;animation:drift 58s linear infinite}
 .rcard{flex:none;width:clamp(108px,11.5vw,168px);border-radius:12px;overflow:hidden;
-  background:#f3f2f0;border:1px solid rgba(242,236,220,.14);margin:0;
+  background:#f3f2f0;border:1px solid rgba(226,230,242,.14);margin:0;
   box-shadow:0 14px 40px -16px rgba(0,0,0,.55)}
 .rcard img{width:100%;aspect-ratio:482/780;object-fit:cover;object-position:center top;display:block}
 .rcard figcaption{padding:9px 10px;font-size:11px;letter-spacing:.1em;color:#4a3a24;
@@ -442,7 +442,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   background:url(../assets/orb_pigment.jpg?v=20260824b) center/135% 135% no-repeat,
     conic-gradient(from 0deg,#f6dcab,#f2b2c6,#b48ce0,#b7e2ee,#f6dcab);
   animation:spin 70s linear infinite;
-  box-shadow:0 0 90px -8px rgba(238,176,196,.55),0 0 40px -4px rgba(230,180,118,.5)}
+  box-shadow:0 0 90px -8px rgba(238,176,196,.55),0 0 40px -4px rgba(217,189,138,.5)}
 .orb-core::after{content:"";position:absolute;inset:0;border-radius:50%;
   background:radial-gradient(circle at 40% 32%,rgba(255,255,255,.28),transparent 55%),
     radial-gradient(circle at 50% 115%,rgba(10,12,26,.5),transparent 60%)}
@@ -461,7 +461,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   from{filter:saturate(.4) brightness(.82)}
   to{filter:saturate(1.22) brightness(1.06)}}
 .orb-ring{position:absolute;inset:-26px;border-radius:50%;
-  border:1px dashed rgba(230,180,118,.4);animation:spin 40s linear infinite reverse}
+  border:1px dashed rgba(217,189,138,.4);animation:spin 40s linear infinite reverse}
 .orb-cap{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);
   font-family:var(--serif);font-size:15px;letter-spacing:.3em;color:var(--gold)}
 /* 参考の5点= 顔料を内包した鋳造ガラスの断片(gpt-image-2・透過PNG)。ピルの文字ではなく「もの」。
@@ -544,15 +544,15 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
    ============================================================ */
 .studio{margin-top:52px;display:flex;flex-direction:column;gap:26px}
 .st-frame{position:relative;height:clamp(220px,30vw,300px);border-radius:20px;overflow:hidden;
-  border:1px solid rgba(230,180,118,.25);
+  border:1px solid rgba(217,189,138,.25);
   background:url("../assets/bd_theater.jpg?v=20260814f") center 35%/cover;
   box-shadow:0 24px 70px -24px rgba(0,0,0,.7)}
 .st-frame::before{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(4,5,12,.2),rgba(4,5,12,.68))}
 .st-glow{position:absolute;left:50%;bottom:-40%;width:70%;height:80%;transform:translateX(-50%);
-  background:radial-gradient(ellipse,rgba(230,180,118,.28),transparent 65%);filter:blur(10px)}
+  background:radial-gradient(ellipse,rgba(217,189,138,.28),transparent 65%);filter:blur(10px)}
 .st-tag{position:absolute;top:16px;left:18px;font-family:var(--en);font-size:10px;
-  letter-spacing:.26em;color:rgba(244,240,230,.85)}
+  letter-spacing:.26em;color:rgba(241,242,247,.85)}
 .st-label{position:absolute;left:18px;bottom:14px;font-family:var(--serif);
   font-size:clamp(19px,2.4vw,26px);letter-spacing:.1em;color:#fff}
 .freedom{position:relative;padding:34px clamp(20px,4vw,46px);border-radius:20px;
@@ -567,18 +567,18 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .freedom-chips{position:relative;margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
 .st-chip{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.06em;
   padding:10px 16px;border-radius:100px;color:var(--ink);
-  border:1px solid rgba(230,180,118,.3);background:rgba(8,10,22,.5)}
+  border:1px solid rgba(217,189,138,.3);background:rgba(8,10,22,.5)}
 .st-chip svg{width:15px;height:15px;stroke:var(--gold)}
-.disclaimer{font-size:10.5px;line-height:1.9;color:rgba(235,229,214,.4);max-width:74ch}
+.disclaimer{font-size:10.5px;line-height:1.9;color:rgba(226,230,242,.4);max-width:74ch}
 
 /* ============================================================
    12 作品
    ============================================================ */
 .works{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .workcard{position:relative;border-radius:16px;overflow:hidden;margin:0;
-  border:1px solid rgba(242,236,220,.12);background:#060810;
+  border:1px solid rgba(226,230,242,.12);background:#060810;
   box-shadow:0 22px 60px -22px rgba(0,0,0,.65);transition:.4s}
-.workcard:hover{border-color:rgba(230,180,118,.4)}
+.workcard:hover{border-color:rgba(217,189,138,.4)}
 .workcard video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .workcard figcaption{position:absolute;left:0;right:0;bottom:0;
   padding:34px 16px 12px;display:flex;flex-direction:column;gap:2px;
@@ -595,14 +595,14 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   background:var(--card)}
 .sbhead{font-family:var(--en);font-size:10.5px;letter-spacing:.26em;color:var(--gold);margin-bottom:16px}
 .sbrow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.sbcut{position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(242,236,220,.1)}
+.sbcut{position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(226,230,242,.1)}
 .sbcut img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
 .sbcut .sbn{position:absolute;top:8px;left:9px;font-family:var(--en);font-size:9px;
-  letter-spacing:.18em;color:rgba(244,240,230,.85);text-shadow:0 1px 4px rgba(0,0,0,.7)}
+  letter-spacing:.18em;color:rgba(241,242,247,.85);text-shadow:0 1px 4px rgba(0,0,0,.7)}
 .sbcut .sbl{position:absolute;left:0;right:0;bottom:0;padding:16px 9px 7px;font-size:10.5px;
-  letter-spacing:.08em;color:rgba(244,240,230,.92);
+  letter-spacing:.08em;color:rgba(241,242,247,.92);
   background:linear-gradient(180deg,transparent,rgba(3,4,10,.8))}
-.sbcut.take{border-color:rgba(230,180,118,.5)}
+.sbcut.take{border-color:rgba(217,189,138,.5)}
 .sbcut .sbtake{position:absolute;top:7px;right:8px;font-family:var(--en);font-size:9px;
   letter-spacing:.12em;padding:3px 8px;border-radius:100px;color:#241608;font-weight:700;
   background:linear-gradient(96deg,#f2cf9a,#eeb0c4)}
@@ -616,7 +616,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .dev{display:inline-flex;flex-direction:column;align-items:center;gap:12px;min-width:104px;
   padding:20px 16px;border-radius:16px;border:1px solid var(--line);background:var(--card);
   font-family:var(--en);font-size:12px;letter-spacing:.08em;color:var(--ink);transition:.35s}
-.dev:hover{border-color:rgba(230,180,118,.4);transform:translateY(-3px)}
+.dev:hover{border-color:rgba(217,189,138,.4);transform:translateY(-3px)}
 .dev svg{width:26px;height:26px;stroke:var(--gold)}
 .res-wrap{margin-top:30px;display:flex;flex-direction:column;gap:12px}
 .res-tiers{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -633,7 +633,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .pillar{display:grid;grid-template-columns:74px 240px 1fr;gap:22px;align-items:baseline;
   padding:26px 6px;border-bottom:1px solid var(--line);transition:.35s;border-radius:4px}
 .pillar:first-child{border-top:1px solid var(--line)}
-.pillar:hover{background:rgba(230,180,118,.05);padding-left:14px}
+.pillar:hover{background:rgba(217,189,138,.05);padding-left:14px}
 .pillar .pn{font-family:var(--serif);font-size:22px;color:var(--gold)}
 .pillar .pt{font-family:var(--serif);font-size:clamp(17px,1.8vw,21px);font-weight:600;
   letter-spacing:.05em;color:var(--ink)}
@@ -658,7 +658,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .contact-note .ig-handle{font-family:var(--en);letter-spacing:.04em;color:var(--ink);opacity:.9;font-weight:500}
 .finale{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .mote{position:absolute;bottom:-16px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#f9e7c5,#e6b476);
+  background:radial-gradient(circle at 35% 30%,#f9e7c5,#d9bd8a);
   opacity:.5;filter:blur(1px);animation:moteUp 9s linear infinite}
 .brm{display:none}
 @media (max-width:640px){.brm{display:block}}
@@ -672,7 +672,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   text-decoration:none;letter-spacing:.05em}
 .foot-cred:hover{color:var(--ink)}
 .foot-cred svg{width:15px;height:15px;stroke:var(--gold)}
-.foot-copy{font-family:var(--en);font-size:11px;letter-spacing:.08em;color:rgba(235,229,214,.4)}
+.foot-copy{font-family:var(--en);font-size:11px;letter-spacing:.08em;color:rgba(226,230,242,.4)}
 
 
   /* 13 実画像ミニビジュアル */
@@ -682,7 +682,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
     font-size:10px;letter-spacing:.1em;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
   .pc-sbstrip{padding:8px;gap:6px}
   .pc-sbstrip img{height:100%;flex:1;min-width:0;object-fit:cover;border-radius:6px;opacity:.55}
-  .pc-sbstrip img.edit{opacity:1;outline:1.5px solid var(--gold);box-shadow:0 0 16px -2px rgba(230,180,118,.6)}
+  .pc-sbstrip img.edit{opacity:1;outline:1.5px solid var(--gold);box-shadow:0 0 16px -2px rgba(217,189,138,.6)}
   .pc-sbstrip .pen{position:absolute;color:var(--gold);font-size:15px;
     left:calc(8px + (100% - 16px)*0.375);top:50%;transform:translate(-50%,-50%);
     text-shadow:0 1px 8px rgba(0,0,0,.8)}
@@ -691,7 +691,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   /* YouTube導線 */
   .hero-yt{margin-top:20px;display:inline-flex;align-items:center;gap:9px;
     font-family:var(--sans);font-size:12.5px;letter-spacing:.16em;color:var(--gold);
-    text-decoration:none;border-bottom:1px solid rgba(230,180,118,.45);padding-bottom:4px;
+    text-decoration:none;border-bottom:1px solid rgba(217,189,138,.45);padding-bottom:4px;
     opacity:0;animation:fade 1.4s 1.7s forwards;transition:.3s}
   .hero-yt svg{width:13px;height:13px}
   .hero-yt:hover{color:#fff;border-color:rgba(255,255,255,.6)}
@@ -705,7 +705,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   /* 17 三人の専門家 — 実物の一瞥 */
   .dir-strip{display:flex;gap:7px;margin-bottom:16px}
   .dir-strip img{width:calc((100% - 14px)/3);aspect-ratio:1/1;object-fit:cover;
-    border-radius:9px;border:1px solid rgba(242,236,220,.12)}
+    border-radius:9px;border:1px solid rgba(226,230,242,.12)}
 
 /* ---- keyframes ---- */
 @keyframes rise{to{opacity:1;transform:none}}
@@ -830,7 +830,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .reel-progress{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:21;
   pointer-events:none;transform-origin:0 50%;transform:scaleX(0);
   background:linear-gradient(90deg,#f2cf9a,#eeb0c4 70%,#b7e2ee);
-  box-shadow:0 0 12px rgba(230,180,118,.5)}
+  box-shadow:0 0 12px rgba(217,189,138,.5)}
 
 /* --- 世界観ウォール: わずかな遠近(フィルムの峡谷) --- */
 .wallwrap{transform:perspective(1200px) rotateX(4deg) scale(1.02)}
@@ -840,10 +840,10 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   .worklink .workcard{will-change:transform}
   .worklink:hover .workcard{
     transform:perspective(900px) rotateX(2deg) translateY(-5px);
-    border-color:rgba(230,180,118,.55);
-    box-shadow:0 28px 74px -22px rgba(0,0,0,.78),0 0 36px -12px rgba(230,180,118,.35)}
+    border-color:rgba(217,189,138,.55);
+    box-shadow:0 28px 74px -22px rgba(0,0,0,.78),0 0 36px -12px rgba(217,189,138,.35)}
   .workcard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:linear-gradient(115deg,transparent 42%,rgba(244,240,230,.13) 50%,transparent 58%);
+    background:linear-gradient(115deg,transparent 42%,rgba(241,242,247,.13) 50%,transparent 58%);
     transform:translateX(-160%)}
   .worklink:hover .workcard::after{animation:sheen .95s cubic-bezier(.3,.6,.3,1) forwards}
 }
@@ -853,9 +853,9 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .face-opts{display:flex;gap:10px;margin-top:4px}
 .fo{margin:0;flex:1;min-width:0}
 .fo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 20%;
-  border-radius:10px;border:1px solid rgba(242,236,220,.18);display:block}
-.fo.sel img{border-color:rgba(230,180,118,.75);
-  box-shadow:0 0 18px -4px rgba(230,180,118,.55)}
+  border-radius:10px;border:1px solid rgba(226,230,242,.18);display:block}
+.fo.sel img{border-color:rgba(217,189,138,.75);
+  box-shadow:0 0 18px -4px rgba(217,189,138,.55)}
 .fo figcaption{font-size:10.5px;letter-spacing:.06em;color:var(--muted);
   margin-top:6px;text-align:center}
 .fo.sel figcaption{color:var(--gold)}
@@ -863,17 +863,17 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 /* --- RINKA実音声プレーヤー --- */
 .voice-live{display:flex;align-items:center;gap:16px}
 .vs-play{flex:none;width:46px;height:46px;border-radius:50%;cursor:pointer;
-  border:1px solid rgba(230,180,118,.5);background:rgba(8,10,22,.6);color:var(--gold);
+  border:1px solid rgba(217,189,138,.5);background:rgba(8,10,22,.6);color:var(--gold);
   display:inline-flex;align-items:center;justify-content:center;transition:.35s;position:relative}
 .vs-play svg{width:17px;height:17px}
 .vs-play .vp-p{display:none}
-.vs-play:hover{border-color:var(--gold);box-shadow:0 0 22px -6px rgba(230,180,118,.55)}
+.vs-play:hover{border-color:var(--gold);box-shadow:0 0 22px -6px rgba(217,189,138,.55)}
 .vs-play.playing{border:none;color:#241608;
   background:linear-gradient(96deg,#f2cf9a,#eeb0c4)}
 .vs-play.playing .vp-i{display:none}
 .vs-play.playing .vp-p{display:block}
 .vs-play.playing::before{content:"";position:absolute;inset:-7px;border-radius:50%;
-  border:1px solid rgba(230,180,118,.45);animation:vsPulse 1.6s ease-out infinite}
+  border:1px solid rgba(217,189,138,.45);animation:vsPulse 1.6s ease-out infinite}
 @keyframes vsPulse{0%{transform:scale(.86);opacity:.9}100%{transform:scale(1.22);opacity:0}}
 .vs-note{margin-top:12px;font-family:var(--en);font-size:10.5px;letter-spacing:.18em;
   color:var(--gold-dim)}
@@ -912,17 +912,17 @@ a.show-thumb{text-decoration:none;color:inherit}
 .showcard{display:grid;grid-template-columns:minmax(260px,340px) 1fr;margin:0;
   border:1px solid var(--line);border-radius:16px;overflow:hidden;
   background:rgba(12,14,28,.55);transition:border-color .3s,transform .3s}
-.showlink:hover .showcard,.showcard:hover{border-color:rgba(230,180,118,.4);transform:translateY(-2px)}
+.showlink:hover .showcard,.showcard:hover{border-color:rgba(217,189,138,.4);transform:translateY(-2px)}
 .show-thumb{position:relative;min-height:100%}
 .show-thumb video{width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .showcard figcaption{padding:20px 26px;display:flex;flex-direction:column;gap:8px;justify-content:center}
 .show-genre{align-self:flex-start;font-size:10.5px;letter-spacing:.22em;color:var(--gold);
-  border:1px solid rgba(230,180,118,.45);border-radius:999px;padding:3px 11px}
+  border:1px solid rgba(217,189,138,.45);border-radius:999px;padding:3px 11px}
 .showcard strong{font-family:var(--serif);font-weight:600;font-size:clamp(17px,1.9vw,22px);color:var(--ink)}
 .show-desc{font-size:12.5px;line-height:1.9;color:var(--muted);max-width:60ch}
 .show-meta{font-family:var(--en);font-size:10.5px;letter-spacing:.18em;color:rgba(240,235,222,.55)}
 .show-note{margin-top:28px;font-size:12.5px;letter-spacing:.04em;color:var(--muted)}
-.show-note a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(230,180,118,.45);padding-bottom:2px}
+.show-note a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(217,189,138,.45);padding-bottom:2px}
 .show-note a:hover{color:#fff;border-color:rgba(255,255,255,.6)}
 @media (max-width:860px){
   .showcard{grid-template-columns:1fr}
@@ -932,7 +932,7 @@ a.show-thumb{text-decoration:none;color:inherit}
 /* 章末の導線(11 ローカル生成 / 20 導入のかたち → 解説動画03) */
 .ch-cta{margin-top:34px;display:inline-flex;align-items:center;gap:10px;
   font-size:12.5px;letter-spacing:.06em;color:var(--gold);text-decoration:none;
-  border:1px solid rgba(230,180,118,.32);border-radius:100px;padding:11px 20px;
+  border:1px solid rgba(217,189,138,.32);border-radius:100px;padding:11px 20px;
   background:rgba(12,14,28,.5);transition:.3s}
 .ch-cta svg{width:13px;height:13px;flex:none}
 .ch-cta:hover{color:#fff;border-color:rgba(255,255,255,.55);background:rgba(20,22,40,.7)}
@@ -942,13 +942,13 @@ a.show-thumb{text-decoration:none;color:inherit}
 /* 番組カードの言語ボタン(日本語版と繁中版を同列に出す) */
 .show-langs{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
 .lang-pill{display:inline-flex;align-items:baseline;gap:9px;text-decoration:none;
-  border:1px solid rgba(230,180,118,.3);border-radius:100px;padding:7px 15px;
+  border:1px solid rgba(217,189,138,.3);border-radius:100px;padding:7px 15px;
   background:rgba(12,14,28,.5);transition:.25s}
 .lang-pill .lp-l{font-size:11.5px;letter-spacing:.08em;color:var(--gold)}
 .lang-pill .lp-d{font-family:var(--en);font-size:10.5px;letter-spacing:.12em;color:rgba(240,235,222,.6)}
-.lang-pill:hover{border-color:rgba(255,255,255,.5);background:rgba(230,180,118,.12)}
+.lang-pill:hover{border-color:rgba(255,255,255,.5);background:rgba(217,189,138,.12)}
 .lang-pill:hover .lp-l{color:#fff}
-.lang-pill.soon{border-style:dashed;border-color:rgba(242,236,220,.18);background:transparent}
+.lang-pill.soon{border-style:dashed;border-color:rgba(226,230,242,.18);background:transparent}
 .lang-pill.soon .lp-l,.lang-pill.soon .lp-d{color:rgba(240,235,222,.38)}
 
 /* ===== 16 アプリの中(2026-10-08): 実際の画面を、制作の流れの順に ===== */
@@ -1056,17 +1056,17 @@ html.intro-on,html.intro-on body{overflow:hidden}
 .intro-ctl{position:absolute;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));display:flex;gap:10px}
 .intro-btn{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:999px;cursor:pointer;
   font-family:var(--en);font-size:11px;letter-spacing:.22em;color:rgba(244,241,232,.82);
-  background:rgba(10,12,26,.45);border:1px solid rgba(242,236,220,.22);backdrop-filter:blur(6px);transition:.25s}
-.intro-btn:hover{color:#fff;border-color:rgba(230,180,118,.55)}
+  background:rgba(10,12,26,.45);border:1px solid rgba(226,230,242,.22);backdrop-filter:blur(6px);transition:.25s}
+.intro-btn:hover{color:#fff;border-color:rgba(217,189,138,.55)}
 .intro-tap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
-  padding:18px 34px;border-radius:999px;cursor:pointer;background:rgba(10,12,26,.5);border:1px solid rgba(242,236,220,.28);backdrop-filter:blur(8px);
+  padding:18px 34px;border-radius:999px;cursor:pointer;background:rgba(10,12,26,.5);border:1px solid rgba(226,230,242,.28);backdrop-filter:blur(8px);
   color:rgba(244,241,232,.92);font-family:var(--en);animation:introPulse 2.4s ease-in-out infinite}
 .intro-tap[hidden]{display:none}
 .intro-tap .it-main{font-size:13px;letter-spacing:.32em;padding-left:.32em}
 .intro-tap .it-sub{font-size:10px;letter-spacing:.28em;color:var(--gold);padding-left:.28em}
 .intro.intro-wait{cursor:pointer}
 .intro.intro-wait video{opacity:0}   /* 待っている間は最初のコマ(暗い板)を見せない */
-@keyframes introPulse{0%,100%{box-shadow:0 0 0 0 rgba(230,180,118,0)}50%{box-shadow:0 0 0 10px rgba(230,180,118,.08)}}
+@keyframes introPulse{0%,100%{box-shadow:0 0 0 0 rgba(217,189,138,0)}50%{box-shadow:0 0 0 10px rgba(217,189,138,.08)}}
 @media (prefers-reduced-motion: reduce){.intro-tap{animation:none}}
 
 /* ============================================================
@@ -1105,7 +1105,7 @@ html.intro-on,html.intro-on body{overflow:hidden}
 .show-genre{display:inline-flex;align-items:center;letter-spacing:.22em;font-size:10.5px;color:var(--gold)}
 .res-tier,.prop-opt{display:inline-flex;align-items:center}
 /* --- 飾り: 浮かぶ思考の札は文字だけが光る --- */
-.thought{border:0;background:none;box-shadow:none;padding:0;letter-spacing:.2em;color:rgba(244,240,230,.85);
+.thought{border:0;background:none;box-shadow:none;padding:0;letter-spacing:.2em;color:rgba(241,242,247,.85);
   text-shadow:0 0 14px rgba(181,155,255,.45),0 0 28px rgba(143,227,255,.25)}
 .thought.th2{color:#ffc3e6}.thought.th4{color:#f4d5a0}.thought.th6{color:#b7e2ee}
 /* --- 対応機器・目印 --- */
@@ -1150,3 +1150,317 @@ html.intro-on,html.intro-on body{overflow:hidden}
 .navlink{font-family:var(--en-display);font-size:13px;letter-spacing:.2em;font-weight:500}
 .st-num{color:var(--ink)}
 .workcard video,.workcard img,.rcard img,.wcard img,.sc-thumb img,.sc-thumb video{filter:saturate(.9) contrast(1.04)}
+
+/* ============================================================
+   署名の衣装 v2(2026-10-12・ユーザー「ボタンなどのデザインも全て凝っていて。Claude Code で作った感じ(独自性がない)を極力なくしたい」)
+   丸い札をやめる。押す物= 明朝の文字・髪の毛ほどの金の線・角の小さな鉤(写真の額縁の隅)。主ボタン= 生成りの紙に金の内枠。
+   まずユースケースのページ(body.uc)だけに当てて見せる。OK なら本体へ(body.uc を外す)。
+   ============================================================ */
+body.uc{--hair:rgba(217,189,138,.55);--hair2:rgba(217,189,138,.9);--paper:#f3ede2}
+body.uc .btn,body.uc .ch-cta,body.uc .lang-pill,body.uc .intro-btn{
+  border-radius:0;background:transparent;border:1px solid var(--hair);box-shadow:none;color:var(--ink);position:relative;
+  font-family:var(--serif);font-weight:500;font-size:14px;letter-spacing:.18em;padding:15px 30px;transition:color .35s,border-color .35s,background .35s}
+body.uc .btn::before,body.uc .btn::after,body.uc .ch-cta::before,body.uc .ch-cta::after{
+  content:"";position:absolute;width:9px;height:9px;border:1px solid var(--hair2);transition:width .35s,height .35s,border-color .35s;pointer-events:none}
+body.uc .btn::before,body.uc .ch-cta::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+body.uc .btn::after,body.uc .ch-cta::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+body.uc .btn:hover,body.uc .ch-cta:hover{transform:none;color:#fff;border-color:var(--hair2);background:linear-gradient(90deg,rgba(217,189,138,.06),rgba(217,189,138,.12))}
+body.uc .btn:hover::before,body.uc .btn:hover::after,body.uc .ch-cta:hover::before,body.uc .ch-cta:hover::after{width:16px;height:16px;border-color:#fff}
+body.uc .btn.primary{color:#1a1410;font-weight:600;border-color:transparent;background:var(--paper);
+  box-shadow:inset 0 0 0 4px var(--paper),inset 0 0 0 5px rgba(26,20,16,.35)}
+body.uc .btn.primary::before,body.uc .btn.primary::after{border-color:#1a1410}
+body.uc .btn.primary:hover{color:#1a1410;background:#fff;box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 5px rgba(26,20,16,.6)}
+body.uc .btn.ghost{border-color:rgba(226,230,242,.28)}
+body.uc .btn.ghost:hover{background:rgba(255,255,255,.05);border-color:rgba(226,230,242,.6)}
+body.uc .ch-cta{padding:12px 22px 12px 18px;font-size:13px;gap:14px}
+body.uc .ch-cta svg{display:none}
+body.uc .lang-switch{border:0;background:transparent;padding:0;gap:0;border-radius:0}
+body.uc .ls-btn{border-radius:0;padding:4px 12px;font-family:var(--serif);font-size:12px;letter-spacing:.14em;color:var(--muted);background:transparent;position:relative}
+body.uc .ls-btn+.ls-btn{border-left:1px solid var(--hair)}
+body.uc .ls-btn.on{background:transparent;color:var(--ink);font-weight:500}
+body.uc .ls-btn.on::after{content:"";position:absolute;left:12px;right:12px;bottom:-2px;height:1px;background:var(--hair2)}
+body.uc .uc-back{font-family:var(--serif);font-size:12.5px;letter-spacing:.3em;color:var(--muted);position:relative;padding-bottom:3px}
+body.uc .uc-back::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--hair2);transition:width .4s}
+body.uc .uc-back:hover{color:var(--ink)}body.uc .uc-back:hover::after{width:100%}
+body.uc .ch-eyebrow::before{background:var(--hair2)}
+body.uc .uc-card{border-radius:0;box-shadow:0 0 0 1px rgba(217,189,138,.25)}
+body.uc .uc-grid figure,body.uc .dcol figure{border-radius:3px}
+body.uc .uc-step{border-radius:0;border-color:rgba(217,189,138,.22)}
+body.uc .alb-card{border-radius:0}
+@media (max-width:640px){body.uc .btn{padding:14px 20px;font-size:13px;letter-spacing:.14em}}
+
+
+/* ============================================================
+   動線 A+B(2026-10-12・ユーザー「サイト全体の動線配置を考えて欲しい。ユースケースを先に出したりとか」→「おすすめでやって」)
+   固定ナビ 4 語 / 三つの扉 / 02 章 用途 / パンくず / 次の用途 / フッターのサイトマップ / スマホの「相談」
+   書体は明朝+髪の毛ほどの金の線(署名の衣装 v2 と同じ語彙)。丸い札は使わない。
+   ============================================================ */
+:root{--hair:rgba(217,189,138,.55);--hair2:rgba(217,189,138,.9)}
+.top-nav{display:flex;gap:26px;margin-right:6px}
+.top-nav a{font-family:var(--serif);font-size:12.5px;letter-spacing:.3em;color:rgba(226,230,242,.78);text-decoration:none;position:relative;padding:4px 0}
+.top-nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--hair2);transition:width .4s}
+.top-nav a:hover{color:#fff}.top-nav a:hover::after{width:100%}
+body.lang-zh .top-nav a{font-family:"Noto Serif TC",serif;letter-spacing:.22em}
+@media (max-width:1020px){.top-nav{gap:18px}.top-nav a{font-size:12px;letter-spacing:.2em}}
+@media (max-width:860px){.top-nav{display:none}}
+
+/* 三つの扉 */
+.doors{position:relative;z-index:6;padding:0 clamp(22px,5vw,64px);margin-top:calc(var(--vhpx,100svh)*-.06)}
+.doors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.door{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;text-decoration:none;color:var(--ink);
+  border:1px solid var(--hair);background:#000;isolation:isolate}
+.door::before,.door::after{content:"";position:absolute;width:12px;height:12px;border:1px solid var(--hair2);z-index:3;transition:width .4s,height .4s,border-color .4s;pointer-events:none}
+.door::before{left:-1px;top:-1px;border-right:0;border-bottom:0}.door::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+.door:hover::before,.door:hover::after{width:22px;height:22px;border-color:#fff}
+.door img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05) brightness(.82);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .6s;z-index:0}
+.door:hover img{transform:scale(1.04);filter:saturate(1) contrast(1.05) brightness(.95)}
+.door .dk{position:absolute;left:18px;top:14px;z-index:2;font-family:var(--en-display);font-size:13px;letter-spacing:.3em;color:var(--gold)}
+.door strong,.door em{position:absolute;left:18px;right:18px;z-index:2;font-style:normal}
+.door strong{bottom:42px;font-family:var(--serif);font-weight:500;font-size:clamp(17px,1.7vw,24px);letter-spacing:.12em;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.door em{bottom:18px;font-size:11.5px;letter-spacing:.08em;color:rgba(226,230,242,.75);text-shadow:0 1px 8px rgba(0,0,0,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}  /* iPhone で 2 行に折れて題と重なった(10-12 実機) */
+.door strong::after{content:"";display:block;width:26px;height:1px;background:var(--hair2);margin-top:9px;transition:width .5s}
+.door:hover strong::after{width:56px}
+.door::marker{display:none}
+.door .veil{display:none}
+.door{box-shadow:0 30px 60px -40px rgba(0,0,0,.9)}
+.door{background-image:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(4,6,15,.85))}
+.door img{mix-blend-mode:normal}
+.door:hover{border-color:var(--hair2)}
+body.lang-zh .door strong{font-family:"Noto Serif TC",serif}
+@media (max-width:860px){.doors{margin-top:0;padding-top:28px}.doors-grid{grid-template-columns:1fr 1fr}.door:first-child{grid-column:1/-1;aspect-ratio:16/8}}
+@media (max-width:640px){.doors{padding-left:16px;padding-right:16px}.doors-grid{gap:10px}.door{aspect-ratio:16/11}.door strong{font-size:16px;bottom:36px}.door em{font-size:10.5px;bottom:14px}}
+
+/* 02 章 用途= 5 枚の札(1 段目 3 枚・2 段目 2 枚) */
+.uses{margin-top:44px;display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.use{position:relative;display:block;grid-column:span 2;aspect-ratio:16/10;overflow:hidden;text-decoration:none;color:var(--ink);border:1px solid var(--hair);background:#000}
+.use:nth-child(4){grid-column:1/4}.use:nth-child(5){grid-column:4/7}
+.use img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.04) brightness(.9);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.use:hover img{transform:scale(1.04)}
+.use .k{position:absolute;left:16px;top:13px;font-family:var(--en-display);font-size:13px;letter-spacing:.3em;color:var(--gold);z-index:2}
+.use .t{position:absolute;left:0;right:0;bottom:0;padding:54px 16px 16px;background:linear-gradient(transparent,rgba(4,6,15,.92));z-index:2}
+.use .t strong{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(16px,1.5vw,20px);letter-spacing:.06em}
+.use .t span{display:block;margin-top:5px;font-size:11.5px;line-height:1.7;color:var(--muted);letter-spacing:.03em}
+.use::before,.use::after{content:"";position:absolute;width:10px;height:10px;border:1px solid var(--hair2);z-index:3;transition:width .4s,height .4s,border-color .4s;pointer-events:none}
+.use::before{left:-1px;top:-1px;border-right:0;border-bottom:0}.use::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+.use:hover::before,.use:hover::after{width:18px;height:18px;border-color:#fff}
+.use.soon img{filter:saturate(.35) contrast(.9) brightness(.55)}
+.use.soon .k::after{content:"  ·  COMING";color:var(--muted)}
+body.lang-zh .use .t strong{font-family:"Noto Serif TC",serif}
+@media (max-width:860px){.uses{grid-template-columns:1fr 1fr;gap:10px}.use,.use:nth-child(4),.use:nth-child(5){grid-column:auto}.use:nth-child(5){grid-column:1/-1;aspect-ratio:16/7}}
+@media (max-width:640px){.use .t{padding:40px 12px 12px}.use .t strong{font-size:15px}.use .t span{font-size:10.5px}}
+
+/* 下層のパンくず・次の用途 */
+.crumbs{display:flex;align-items:center;gap:10px;margin-bottom:22px;font-family:var(--en-display);font-size:12px;letter-spacing:.24em;color:rgba(226,230,242,.6)}
+.crumbs a{color:inherit;text-decoration:none;transition:color .3s}.crumbs a:hover{color:#fff}
+.crumbs i{font-style:normal;color:var(--hair2);opacity:.8}
+.crumbs span{color:var(--ink);font-family:var(--serif);letter-spacing:.16em}
+.uc-next{position:relative;z-index:5;padding:70px clamp(22px,5vw,64px) 60px;border-top:1px solid var(--line)}
+.uc-next .panel-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.uc-next .k{display:block;font-family:var(--en-display);font-size:12px;letter-spacing:.34em;color:var(--gold);margin-bottom:12px}
+.uc-next .k::after{content:"";display:block;width:34px;height:1px;background:var(--hair2);margin-top:12px}
+.uc-next .nx{font-family:var(--serif);font-weight:500;font-size:clamp(22px,3vw,36px);letter-spacing:.06em;color:var(--ink);text-decoration:none;line-height:1.3;display:inline-block;position:relative}
+.uc-next .nx::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--hair2);transition:width .5s}
+.uc-next .nx:hover::after{width:100%}
+.uc-next .nx .ar{font-family:var(--en-display);margin-left:.4em;opacity:.8}
+.uc-next .all{font-family:var(--serif);font-size:12.5px;letter-spacing:.3em;color:var(--muted);text-decoration:none;padding-bottom:3px;border-bottom:1px solid var(--hair)}
+.uc-next .all:hover{color:var(--ink);border-color:var(--hair2)}
+body.lang-zh .uc-next .nx,body.lang-zh .crumbs span{font-family:"Noto Serif TC",serif}
+
+/* フッターのサイトマップ */
+.foot-map{position:relative;z-index:5;display:flex;align-items:center;flex-wrap:wrap;gap:6px 22px;padding:26px clamp(22px,5vw,64px) 6px;border-top:1px solid var(--line)}
+.foot-map .fm-k{font-family:var(--en-display);font-size:11px;letter-spacing:.3em;color:var(--gold);margin-right:4px}
+.foot-map .fm-sep{width:1px;height:14px;background:var(--hair)}
+.foot-map a{font-family:var(--serif);font-size:12.5px;letter-spacing:.2em;color:var(--muted);text-decoration:none;position:relative;padding:3px 0}
+.foot-map a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--hair2);transition:width .4s}
+.foot-map a:hover{color:var(--ink)}.foot-map a:hover::after{width:100%}
+.foot-map+.site-foot{border-top:0;padding-top:14px}
+body.lang-zh .foot-map a{font-family:"Noto Serif TC",serif;letter-spacing:.12em}
+@media (max-width:640px){.foot-map{gap:4px 16px;padding-left:16px;padding-right:16px}.foot-map .fm-sep{display:none}}
+
+/* スマホの「相談」= 右下に浮かせる(固定ナビが隠れる幅だけ) */
+.fab-contact{display:none}
+@media (max-width:860px){
+  .fab-contact{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:30;display:flex;align-items:center;justify-content:center;
+    width:58px;height:58px;border:1px solid var(--hair2);background:rgba(8,9,20,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    color:var(--ink);text-decoration:none;font-family:var(--serif);font-size:13px;letter-spacing:.12em;box-shadow:0 14px 30px -14px rgba(0,0,0,.9)}
+  .fab-contact::before,.fab-contact::after{content:"";position:absolute;width:8px;height:8px;border:1px solid var(--hair2)}
+  .fab-contact::before{left:3px;top:3px;border-right:0;border-bottom:0}.fab-contact::after{right:3px;bottom:3px;border-left:0;border-top:0}
+  .fab-contact span{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.08em}
+  body.lang-zh .fab-contact{font-family:"Noto Serif TC",serif}
+}
+
+
+/* ============================================================
+   配色の正本 v3(2026-10-12・ユーザー「全体の配色、色使いもちゃんと考えてね。プロのデザイナの目線で」)
+   正本= 午前の「第1段 色の一本化」(画は暖かく・紙は冷たく・光は ∞)。その後に足した部品(署名の衣装 v2・動線 A+B)と古い値の残りを、この規則に戻す。
+   役割(面積の目安)
+     夜      地・面                         6 割   --bg / --night
+     月明かり 文字・罫・押す物の枠・主ボタンの紙  3 割   --ink / --text-2 / --text-3 / --rule / --moon
+     金      柱書き・章番号・小さな添え書きだけ  1 割未満 --gold(シャンパン #d9bd8a)
+     ∞ の光   花火= 強調の語・押す物の角の鉤・目印・声・進み具合だけ  ごく少し  --inf / --grad / --tick-a・--tick-b
+   画(写真・アルバムの紙と表紙)は暖かいまま= 紙面の UI が冷たいので写真の肌と灯りが浮く
+   明暗差の下限(実測): 添え書き 4.5:1 以上= 白 α.58 以上 / 押す物の枠 3:1 以上= 白 α.42(3.43:1)
+   ============================================================ */
+:root{
+  --rule:rgba(226,230,242,.42);--rule-hi:rgba(226,230,242,.82);--rule-soft:rgba(226,230,242,.16);
+  --text-2:rgba(226,230,242,.78);--text-3:rgba(226,230,242,.60);
+  --tick-a:#cdbaff;--tick-b:#8fe3ff;                 /* ∞ の両端(紫・水色)= 押す物の角の鉤 */
+  --tick-a-ink:#6a4fd6;--tick-b-ink:#168fb8;         /* 紙の上の鉤(明るい紙で 4.5:1 以上) */
+  --moon:#f2f3f8;--moon-ink:#0b0d1c;
+  --gold-line:rgba(217,189,138,.5);
+  --grad-v:linear-gradient(180deg,#cdbaff,#ff9ddb);
+  --hair:var(--rule);--hair2:var(--rule-hi)}
+body.uc{--hair:var(--rule);--hair2:var(--rule-hi);--paper:var(--moon)}
+
+/* --- 押す物: 形は署名の衣装 v2(明朝・細線・角の鉤)・色は月明かりの枠+∞ の両端の鉤 --- */
+body.uc .btn::before,body.uc .ch-cta::before,.door::before,.use::before,.fab-contact::before{border-color:var(--tick-a)}
+body.uc .btn::after,body.uc .ch-cta::after,.door::after,.use::after,.fab-contact::after{border-color:var(--tick-b)}
+body.uc .btn:hover::before,body.uc .ch-cta:hover::before,.door:hover::before,.use:hover::before{border-color:var(--tick-a);filter:drop-shadow(0 0 4px rgba(205,186,255,.85))}
+body.uc .btn:hover::after,body.uc .ch-cta:hover::after,.door:hover::after,.use:hover::after{border-color:var(--tick-b);filter:drop-shadow(0 0 4px rgba(143,227,255,.85))}
+body.uc .btn:hover,body.uc .ch-cta:hover{background:rgba(226,230,242,.06);border-color:var(--rule-hi);color:#fff}
+body.uc .btn.ghost{border-color:var(--rule)}
+body.uc .btn.ghost:hover{background:rgba(226,230,242,.06);border-color:var(--rule-hi)}
+/* 主ボタン= 月明かりの紙(手作りの紙の質感)に墨の内枠・鉤は ∞ の両端の濃い色 */
+body.uc .btn.primary{color:var(--moon-ink);border-color:transparent;box-shadow:none;
+  background:var(--moon) url(../assets/uc/album/tex_paper_moon.jpg?v=1013a) center/240px repeat;
+  outline:1px solid rgba(11,13,28,.28);outline-offset:-5px}
+body.uc .btn.primary::before{border-color:var(--tick-a-ink)}
+body.uc .btn.primary::after{border-color:var(--tick-b-ink)}
+body.uc .btn.primary:hover{color:var(--moon-ink);filter:brightness(1.05);outline-color:rgba(11,13,28,.55);
+  background:var(--moon) url(../assets/uc/album/tex_paper_moon.jpg?v=1013a) center/240px repeat}
+body.uc .btn.primary:hover::before{border-color:var(--tick-a-ink);filter:none}
+body.uc .btn.primary:hover::after{border-color:var(--tick-b-ink);filter:none}
+body.uc .btn.primary:focus-visible{outline:2px solid var(--moon-ink);outline-offset:-5px}
+body.uc .ls-btn+.ls-btn{border-left-color:var(--rule-soft)}
+body.uc .ls-btn.on::after{background:var(--inf)}
+body.uc .ch-eyebrow::before{background:var(--gold-dim)}           /* 柱書きは金の文字+金の罫のまま */
+body.uc .uc-card{box-shadow:0 0 0 1px var(--rule-soft)}
+body.uc .uc-step{border-color:var(--rule-soft)}
+/* アルバムの入口カード= 押す物(∞ の縁 → 月明かりの細い枠+∞ の両端の鉤) */
+body.uc .alb-card{position:relative;border:1px solid var(--rule-soft);background:#080b1a}
+body.uc .alb-card::before,body.uc .alb-card::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none;transition:width .4s,height .4s}
+body.uc .alb-card::before{left:-1px;top:-1px;border-top:1px solid var(--tick-a);border-left:1px solid var(--tick-a)}
+body.uc .alb-card::after{right:-1px;bottom:-1px;border-bottom:1px solid var(--tick-b);border-right:1px solid var(--tick-b)}
+body.uc .alb-card:hover{border-color:var(--rule)}
+body.uc .alb-card:hover::before,body.uc .alb-card:hover::after{width:26px;height:26px}
+
+/* --- 動線の部品(固定ナビ・扉・用途・パンくず・次の用途・サイトマップ・相談) --- */
+.top-nav a{color:var(--text-2)}
+.top-nav a::after,.foot-map a::after,.uc-next .nx::after{background:var(--inf)}
+.door,.use{border-color:var(--rule-soft)}
+.door em{color:var(--text-2)}
+.door strong::after{background:var(--rule-hi)}
+.crumbs{color:var(--text-3)}.crumbs i{color:var(--text-3)}
+.uc-next .k::after{background:var(--gold-line)}
+.uc-next .all{border-bottom-color:var(--rule)}.uc-next .all:hover{border-bottom-color:var(--rule-hi)}
+.foot-map .fm-sep{background:var(--rule-soft)}
+.foot-copy{color:var(--text-3)}                                   /* .40 は 3.2:1 で小さい文字の下限に届かなかった */
+.fab-contact{border-color:var(--rule);background:rgba(8,11,26,.84)}
+
+/* --- 桃橙の塗り(金と桃の混色= どの役割でもない)を役割へ --- */
+.wave i,.vwave-mini i{background:var(--grad-v)}                    /* 声= 光 */
+.vs-play.playing{background:var(--grad);color:#0a0c1a}
+.reel-progress{background:var(--inf)}                              /* 進み具合= 光 */
+.dot-i.on{background:var(--inf);box-shadow:0 0 10px rgba(255,157,219,.65)}
+.pro-badge,.sbcut .sbtake,.prop-opt.rec,.res-tier.hi{background:var(--inf);color:#0a0c1a}   /* 目印= ∞ の塗り(午前の決まり) */
+.bubble.me{background:linear-gradient(120deg,rgba(205,186,255,.13),rgba(255,157,219,.08))}
+/* --- 桃の単色の文字(2 つ目の差し色になっていた)→ 小さな添え書きは金 --- */
+.chip em,.intro-tap .it-sub,.bubble.me .who{color:var(--gold)}
+.chip svg{stroke:var(--text-2)}                                    /* 特徴チップのアイコン 3 色(水・桃・橙)→ 1 色。点が ∞ の光を持つ */
+
+
+/* ============================================================
+   押す物の言葉= 光の筆跡 v3(2026-10-12・ユーザー「こういう CLAUDE のありがちのテンプレをなくしたいね」→ 3 案から A「光の筆跡」を「おすすめ」で採用)
+   箱・枠・角の鉤・下線・● を全部やめる。押す物は「明朝の文字の下を、∞ のマークと同じ光の一筆が走る」の一語だけ。
+     主   = ∞ の小さなマーク+文字+光の一筆(全部)。触れると左から書き直される
+     副   = 文字+光の一筆(左 4 割)。触れると最後まで書かれる
+     文字 = 小さな文字の前に短い光の目印
+     ナビ = 文字。触れる/選ばれると ∞ の 1px の線が左から伸びる(動線 A+B の線をこの語に揃えた)
+   写真の上の読みやすさ= 文字の影(text-shadow)と、一筆の中に焼き込んだ光のぼかし。箱が無いので触れる面は padding で 44px 以上を確保。
+   一筆は CSS の背景の SVG(曲線+ぼかし+∞ の階調)・書く動きは mask の位置の移動(登録プロパティ不要)。
+   ============================================================ */
+:root{--stroke:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 22' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='0'><stop offset='0' stop-color='%23b59bff' stop-opacity='0'/><stop offset='.14' stop-color='%23b59bff'/><stop offset='.5' stop-color='%23ff9ddb'/><stop offset='.86' stop-color='%238fe3ff'/><stop offset='1' stop-color='%238fe3ff' stop-opacity='0'/></linearGradient><filter id='b' x='-10%25' y='-150%25' width='120%25' height='400%25'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path d='M6 15C70 9 150 20 294 12' fill='none' stroke='url(%23g)' stroke-width='6' stroke-linecap='round' filter='url(%23b)' opacity='.6' vector-effect='non-scaling-stroke'/><path d='M6 15C70 9 150 20 294 12' fill='none' stroke='url(%23g)' stroke-width='1.4' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>")}
+body.uc .btn,body.uc .ch-cta{
+  display:inline-flex;align-items:center;gap:12px;border:0;border-radius:0;background:transparent;box-shadow:none;outline:0;overflow:visible;
+  color:#fff;font-family:var(--serif);font-weight:500;font-size:16.5px;letter-spacing:.2em;line-height:1.3;
+  padding:12px 12px 16px 4px;min-height:44px;position:relative;transform:none;
+  text-shadow:0 1px 2px rgba(3,8,20,.75),0 2px 14px rgba(3,8,20,.5);transition:color .4s}
+body.uc .btn::before,body.uc .ch-cta::before{content:none}
+body.uc .btn::after,body.uc .ch-cta::after{
+  content:"";position:absolute;left:-14px;right:-14px;bottom:0;height:22px;border:0;width:auto;pointer-events:none;
+  background:var(--stroke) center/100% 100% no-repeat;opacity:.9;filter:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 0 45%,transparent 55%);mask-image:linear-gradient(90deg,#000 0 45%,transparent 55%);
+  -webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:0 0;mask-position:0 0;transition:-webkit-mask-position 1s cubic-bezier(.2,.7,.2,1),mask-position 1s cubic-bezier(.2,.7,.2,1),opacity .4s}
+@keyframes stroke-draw{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}
+body.uc .btn:hover,body.uc .ch-cta:hover{color:#fff;background:transparent;border:0;transform:none;filter:none}
+body.uc .btn:hover::after,body.uc .btn:hover::before,body.uc .ch-cta:hover::after,body.uc .ch-cta:hover::before{width:auto;height:22px;border:0;filter:none}
+/* 主= ∞ のマーク+全部の一筆。触れると書き直し */
+body.uc .btn.primary{color:#fff;background:transparent;outline:0;box-shadow:none;filter:none}
+body.uc .btn.primary::before{content:"";display:block;flex:none;width:30px;height:12px;border:0;position:static;
+  background:url(../assets/mark_inf.png?v=20261012a) center/contain no-repeat;filter:drop-shadow(0 0 6px rgba(205,186,255,.55))}
+body.uc .btn.primary:hover{color:#fff;background:transparent;filter:none;outline:0}
+body.uc .btn.primary:hover::after{animation:stroke-draw 1.1s cubic-bezier(.2,.7,.2,1) both;opacity:1}
+body.uc .btn.primary:hover::before{filter:drop-shadow(0 0 9px rgba(255,157,219,.8))}
+body.uc .btn .vico{display:none}
+/* 副= 文字+左 4 割の一筆。触れると最後まで */
+body.uc .btn.ghost,body.uc .btn:not(.primary),body.uc .ch-cta{color:var(--text-2);font-size:15px;border:0;background:transparent}
+body.uc .btn.ghost::after,body.uc .btn:not(.primary)::after,body.uc .ch-cta::after{-webkit-mask-position:49% 0;mask-position:49% 0;opacity:.75}
+body.uc .btn.ghost:hover::after,body.uc .btn:not(.primary):hover::after,body.uc .ch-cta:hover::after{-webkit-mask-position:0 0;mask-position:0 0;opacity:1}
+body.uc .btn.ghost:hover,body.uc .btn:not(.primary):hover,body.uc .ch-cta:hover{background:transparent;border:0}
+body.uc .ch-cta{padding:10px 10px 14px 2px;font-size:14px;gap:10px;margin-top:30px}
+body.uc .ch-cta svg{display:none}
+body.uc .btn:focus-visible,body.uc .ch-cta:focus-visible{outline:1px dashed var(--rule-hi);outline-offset:6px}
+/* 入口カードの中の札(a の中の span)は主と同じ */
+body.uc .alb-card .btn.primary{pointer-events:none}
+/* 文字= 短い光の目印+文字(ヒーローの「フルで観る」・SKIP・一覧へ) */
+body.uc .hero-yt,body.uc .intro-btn,body.uc .uc-next .all{
+  display:inline-flex;align-items:center;gap:10px;border:0;border-bottom:0;border-radius:0;background:transparent;padding:8px 6px 8px 0;height:auto;
+  font-family:var(--serif);font-size:13px;letter-spacing:.16em;color:var(--text-2);text-shadow:0 1px 2px rgba(3,8,20,.7);transition:color .4s}
+body.uc .hero-yt::before,body.uc .intro-btn::before,body.uc .uc-next .all::before{content:"";display:block;flex:none;width:18px;height:1px;background:var(--inf);
+  box-shadow:0 0 6px rgba(255,157,219,.6);transition:width .5s;border:0;position:static}
+body.uc .hero-yt:hover,body.uc .intro-btn:hover,body.uc .uc-next .all:hover{color:#fff;border:0;background:transparent}
+body.uc .hero-yt:hover::before,body.uc .intro-btn:hover::before,body.uc .uc-next .all:hover::before{width:30px}
+body.uc .hero-yt svg{display:none}
+body.uc .intro-btn{position:absolute;right:28px;bottom:28px}
+/* オープニングの TAP TO START= 丸い札をやめて、文字の下に一筆 */
+body.uc .intro-tap{border:0;border-radius:0;background:transparent;box-shadow:none;padding:14px 18px 20px;color:#fff;
+  font-family:var(--serif);letter-spacing:.32em}
+body.uc .intro-tap::after{content:"";position:absolute;left:-10px;right:-10px;bottom:4px;height:22px;background:var(--stroke) center/100% 100% no-repeat;opacity:.95;pointer-events:none}
+body.uc .intro-tap .it-sub{color:var(--gold);font-family:var(--en-display);letter-spacing:.3em}
+body.uc .intro-tap{animation:none}                                    /* 丸い札の時代の脈打つ影(box-shadow)は四角い枠に見える= 止める */
+body.uc .intro-tap::after{animation:stroke-breathe 2.6s ease-in-out infinite}  /* 代わりに一筆が呼吸する */
+@keyframes stroke-breathe{0%,100%{opacity:.55}50%{opacity:1}}
+@media (prefers-reduced-motion: reduce){body.uc .intro-tap::after{animation:none;opacity:.9}}
+/* 解説動画の言語の札= 文字+ ∞ の線 */
+body.uc .lang-pill{border:0;border-radius:0;background:transparent;padding:6px 0;position:relative;color:var(--text-2);font-family:var(--serif);letter-spacing:.14em}
+body.uc .lang-pill+.lang-pill{margin-left:18px}
+body.uc .lang-pill::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--inf);transition:width .45s}
+body.uc .lang-pill:hover{color:#fff;background:transparent;border:0}body.uc .lang-pill:hover::after{width:100%}
+body.uc .lang-pill.soon{opacity:.45;background:transparent;border:0}
+body.uc .lang-pill .lp-l{color:inherit}
+/* ナビ・戻る・章の札= ∞ の線が伸びる(動線 A+B の線と同じ語) */
+body.uc .uc-back::after{background:var(--inf)}
+.top-nav a::after,.foot-map a::after,.uc-next .nx::after{background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.45)}
+/* 扉・用途・入口カード= 角の鉤をやめ、写真は細い線だけ。題の下の短い線が ∞ の光 */
+.door::before,.door::after,.use::before,.use::after,body.uc .alb-card::before,body.uc .alb-card::after,.fab-contact::before,.fab-contact::after{display:none}
+.door strong::after{background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.5)}
+.use .t strong{position:relative;padding-bottom:8px}
+.use .t strong::after{content:"";position:absolute;left:0;bottom:0;width:26px;height:1px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.5);transition:width .5s}
+.use:hover .t strong::after{width:56px}
+/* スマホの「相談」= 丸い灯り(縁なし)。文字の下に短い一筆 */
+@media (max-width:860px){
+  .fab-contact{border:0;border-radius:50%;background:rgba(8,11,26,.82);box-shadow:0 14px 30px -12px rgba(0,0,0,.9),0 0 0 1px rgba(226,230,242,.08);flex-direction:column;gap:5px}
+  .fab-contact span{writing-mode:horizontal-tb;letter-spacing:.14em;font-size:12.5px;padding-left:.14em}
+  .fab-contact::after{display:block;content:"";position:static;width:22px;height:1px;border:0;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.6)}
+}
+/* アルバムのめくりの矢印は自前の線のまま(一筆は付けない) */
+body.uc .alb-nav .btn{padding:10px 14px;font-size:13px;min-height:0;gap:10px;color:var(--text-2);text-shadow:none}
+body.uc .alb-nav .btn::after,body.uc .alb-nav .btn::before{content:none;display:none;animation:none}
+body.uc .alb-nav .btn .ar{display:inline-block}
+@media (max-width:640px){
+  body.uc .btn{font-size:15px;letter-spacing:.16em;padding:10px 8px 15px 2px;white-space:nowrap}
+  body.uc .btn.primary::before{width:26px;height:10px}
+  body.uc .ch-cta{font-size:13.5px}
+  body.uc .cta{gap:10px 22px}
+}
