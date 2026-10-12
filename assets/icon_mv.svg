@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- MV STUDIO 正式マーク(∞ の光)のベクター版= favicon / 小さな表示用。本物の質感は icon_mv_*.png(原器から) -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b59bff"/>
+      <stop offset="0.5" stop-color="#ff9ddb"/>
+      <stop offset="1" stop-color="#8fe3ff"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-60%" width="160%" height="220%">
+      <feGaussianBlur stdDeviation="14" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#08080f"/>
+  <!-- レムニスケート(∞)= 幅 60%・中心 -->
+  <path d="M 256 256 C 226 196, 110 196, 110 256 C 110 316, 226 316, 256 256 C 286 196, 402 196, 402 256 C 402 316, 286 316, 256 256 Z"
+        fill="none" stroke="url(#g)" stroke-width="22" stroke-linecap="round" opacity="0.55" filter="url(#glow)"/>
+  <path d="M 256 256 C 226 196, 110 196, 110 256 C 110 316, 226 316, 256 256 C 286 196, 402 196, 402 256 C 402 316, 286 316, 256 256 Z"
+        fill="none" stroke="url(#g)" stroke-width="11" stroke-linecap="round"/>
+  <path d="M 256 256 C 226 196, 110 196, 110 256 C 110 316, 226 316, 256 256 C 286 196, 402 196, 402 256 C 402 316, 286 316, 256 256 Z"
+        fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/>
+</svg>

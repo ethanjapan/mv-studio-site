@@ -41,7 +41,8 @@ header{position:fixed;top:0;left:0;width:100%;z-index:20;
   background:linear-gradient(180deg,rgba(4,5,12,.55),transparent);pointer-events:none}
 header>*{pointer-events:auto}
 .brand{font-family:var(--en);font-weight:500;letter-spacing:.42em;
-  font-size:13px;text-transform:uppercase;color:var(--ink);padding-left:.42em}
+  font-size:13px;text-transform:uppercase;color:var(--ink);padding-left:.42em;display:flex;align-items:center}
+.brand .brand-mark{width:47px;height:18px;margin-right:14px;filter:drop-shadow(0 0 6px rgba(200,150,255,.35))}
 .navlink{font-family:var(--en);font-weight:400;letter-spacing:.18em;
   font-size:11px;text-transform:uppercase;color:var(--muted)}
 .head-right{display:flex;align-items:center;gap:18px}
