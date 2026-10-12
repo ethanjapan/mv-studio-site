@@ -1127,3 +1127,26 @@ html.intro-on,html.intro-on body{overflow:hidden}
   .devices .dev{min-width:0;flex:0 0 28%;padding:8px 0}
   .devices .dev svg{width:22px;height:22px}
 }
+
+/* ============================================================
+   第1段 色の一本化(2026-10-12・ユーザー「全体の配色、演出を含めてワンランク上に」→ 提案「画は暖かく、紙は冷たく、光は ∞」を「おすすめ」で採用)
+   - 紙(地・罫・文字)は提灯の生成りから月明かりの白へ寄せ、写真の中の暖かさ(肌・提灯)が浮くようにする
+   - 強調色は ∞ の光ひとつ(見出しの強調・柱書きの点)。金は柱書き・大きな数字など小さな文字の小物だけに残し、色も橙から淡いシャンパンへ
+   - 英字の見出し書体を links.html と同じ Cormorant Garamond に揃える(UI の小さな英字は Inter のまま)
+   - 作品棚・世界観棚のサムネに同じ薄い膜(彩度を少し下げ、コントラストを少し上げる)= 出どころの違う画が1つの番組に見える
+   後から足した節なので上の値はそのまま(この節が勝つ)。
+   ============================================================ */
+:root{
+  --bg:#04060f;--night:#080b1a;
+  --ink:#f1f2f7;--muted:rgba(226,230,242,.62);
+  --gold:#d9bd8a;--gold-dim:rgba(217,189,138,.42);
+  --pink:#ff9ddb;
+  --line:rgba(226,230,242,.14);--card:rgba(12,15,32,.56);
+  --grad:linear-gradient(96deg,#cdbaff 0%,#ff9ddb 52%,#8fe3ff 100%);
+  --en-display:"Cormorant Garamond",serif}
+.grad,.ch-title .em,.free-word{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.eyebrow{font-family:var(--en-display);font-size:14.5px;font-weight:500;letter-spacing:.42em;color:var(--gold)}
+.eyebrow .dot{background:var(--inf);box-shadow:0 0 12px 3px rgba(255,157,219,.55)}
+.navlink{font-family:var(--en-display);font-size:13px;letter-spacing:.2em;font-weight:500}
+.st-num{color:var(--ink)}
+.workcard video,.workcard img,.rcard img,.wcard img,.sc-thumb img,.sc-thumb video{filter:saturate(.9) contrast(1.04)}
