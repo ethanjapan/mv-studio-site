@@ -1602,3 +1602,6 @@ body.lang-zh .chip em{white-space:nowrap}
   body.lang-zh .chip em,body.lang-zh .chip .dots{font-size:11.5px}
   body.lang-zh .door strong{font-size:15px}
 }
+
+body.uc .uc-grid figure.note.w2{grid-column:span 2}  /* 横長の画が居る群の札= 2x1(撮影会 SENSUAL) */
+@media (max-width:900px){body.uc .uc-grid figure.note.sq{grid-column:span 1;grid-row:span 1}body.uc .uc-grid figure.note.w2{grid-column:span 1}}  /* 3 列では札を 1 マスに(穴を作らない並びの検算で決めた) */
