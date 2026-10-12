@@ -9,7 +9,7 @@
   var cur=function(f){return f && (inUC?('usecases/'+here):here)===f;};
   var MAP=[
     {k:'ホーム',h:base,f:'index.html',n:'I'},
-    {k:'用途',h:base+'usecases/',f:'usecases/index.html',n:'II',sub:[
+    {k:'用途',h:base+'usecases/',f:'usecases/index.html',n:'II',nw:'2026-11-15',sub:[
       {k:'ブライダル前撮り',h:base+'usecases/bridal.html',f:'usecases/bridal.html'},
       {k:'アルバム',h:base+'usecases/bridal_album.html',f:'usecases/bridal_album.html',in:true},
       {k:'撮影会ポートレート',h:base+'usecases/portrait.html',f:'usecases/portrait.html'},
@@ -20,12 +20,16 @@
     {k:'裏番組',h:base+'#shows',f:'',n:'IV'},
     {k:'仕組み',h:base+'strengths.html',f:'strengths.html',n:'V'},
     {k:'相談',h:base+'#contact',f:'',n:'VI'}];
+  function expired(d){return new Date(d+'T23:59:59')<new Date();}
+  // NEW の印の期限切れを外す(ページ側の data-new-until も同じ日付で書く)
+  document.querySelectorAll('[data-new-until]').forEach(function(el){if(expired(el.getAttribute('data-new-until')))el.remove();});
   function li(it,sub){
     var a=document.createElement('a');a.href=it.h;
     a.className='sm-a'+(sub?' sub':'')+(it.in?' in':'')+(it.soon?' soon':'')+(cur(it.f)?' on':'');
     if(it.n){var n=document.createElement('i');n.className='sm-n';n.textContent=it.n;a.appendChild(n);}
     var s=document.createElement('span');s.textContent=it.k;a.appendChild(s);
     if(it.soon){var e=document.createElement('em');e.textContent='COMING';a.appendChild(e);}
+    if(it.nw&&!expired(it.nw)){var t=document.createElement('i');t.className='tag-new';t.textContent='NEW';a.appendChild(t);}
     return a;
   }
   var btn=document.createElement('button');btn.type='button';btn.className='sm-btn';btn.setAttribute('aria-label','メニュー');btn.setAttribute('aria-expanded','false');

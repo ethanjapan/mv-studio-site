@@ -1613,3 +1613,13 @@ body.uc .uc-grid figure.note.w2{grid-column:span 2}  /* 横長の画が居る群
 
 /* 数の見出し(620 以上 など)は「以上」で折り返さない(iPhone 幅で「620 以/上」に割れた 2026-10-13) */
 body.uc .ch-title .em.nw{white-space:nowrap}
+
+/* NEW の印(用途= 2026-10 に新設)。点+文字の文法。data-new-until を過ぎたら sitemenu.js が外す(2026-10-13) */
+.tag-new{display:inline-flex;align-items:center;gap:5px;font-family:var(--en-display);font-style:normal;font-weight:500;font-size:9.5px;letter-spacing:.26em;color:var(--gold);vertical-align:top;margin-left:6px;transform:translateY(-5px)}
+.tag-new::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--inf);box-shadow:0 0 7px rgba(255,157,219,.85);animation:tagnew-breathe 2.6s ease-in-out infinite}
+@keyframes tagnew-breathe{0%,100%{opacity:.75}50%{opacity:1;box-shadow:0 0 11px rgba(255,157,219,1)}}
+.top-nav a .tag-new{position:absolute;left:100%;top:-2px;margin-left:4px;white-space:nowrap}
+.top-nav a:has(.tag-new){margin-right:34px}
+.use .tag-new{position:absolute;right:14px;top:12px;z-index:4;margin:0;transform:none;font-size:10px;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.sm-a .tag-new{margin-left:10px;transform:translateY(-1px)}
+@media (max-width:900px){.top-nav a .tag-new{display:none}.top-nav a:has(.tag-new){margin-right:0}}
