@@ -1605,3 +1605,5 @@ body.lang-zh .chip em{white-space:nowrap}
 
 body.uc .uc-grid figure.note.w2{grid-column:span 2}  /* 横長の画が居る群の札= 2x1(撮影会 SENSUAL) */
 @media (max-width:900px){body.uc .uc-grid figure.note.sq{grid-column:span 1;grid-row:span 1}body.uc .uc-grid figure.note.w2{grid-column:span 1}}  /* 3 列では札を 1 マスに(穴を作らない並びの検算で決めた) */
+@media (max-width:900px){body.uc .uc-grid figure.note.m1{grid-column:span 1}}  /* 3 列では 1 マスの札 */
+@media (max-width:900px){body.uc .uc-grid figure.note.m3{grid-column:span 3;grid-row:span 1}}  /* 3 列では横 1 列の札 */
