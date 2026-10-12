@@ -162,6 +162,24 @@
       el.setAttribute('data-l',zh&&M[el.__jal]?M[el.__jal]:el.__jal);
     });
     document.querySelectorAll('#langSwitch .ls-btn').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lang')===lang));
+    // 言語別のリンク・映像・背景(解説動画= 台湾華語版は別撮り。2026-10-13 ユーザー「台湾語を選んでも日本語の背景やサムネイル」)
+    document.querySelectorAll('a[data-zh-href]').forEach(a=>{
+      if(a.__jahref==null)a.__jahref=a.getAttribute('href');
+      a.setAttribute('href',zh?a.getAttribute('data-zh-href'):a.__jahref);
+    });
+    document.querySelectorAll('video[data-zh-src]').forEach(v=>{
+      if(v.__jasrc==null){v.__jasrc=v.getAttribute('src')||v.__src;v.__japoster=v.getAttribute('poster');}
+      const src=zh?v.dataset.zhSrc:v.__jasrc, poster=zh?v.dataset.zhPoster:v.__japoster;
+      if((v.getAttribute('src')||v.__src)===src)return;
+      v.setAttribute('poster',poster);
+      const r=v.getBoundingClientRect(), inview=r.bottom>0&&r.top<innerHeight;
+      if(v.getAttribute('src')||inview){v.__src=src;v.setAttribute('src',src);try{v.load();}catch(e){}if(inview&&(v.autoplay||v.__gated)){const p=v.play();if(p&&p.catch)p.catch(()=>{});}}
+      else{v.__src=src;}   // 画面外で src を外されている video は、戻った時に門が新しい src を入れる
+    });
+    document.querySelectorAll('[data-zh-bd]').forEach(el=>{
+      if(el.__jabd==null)el.__jabd=el.style.getPropertyValue('--bd');
+      el.style.setProperty('--bd',zh?el.getAttribute('data-zh-bd'):el.__jabd);
+    });
     try{localStorage.setItem('mvlang',lang)}catch(e){}
     window.__lang=lang;
     document.dispatchEvent(new CustomEvent('mvlang',{detail:lang}));

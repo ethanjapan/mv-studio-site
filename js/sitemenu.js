@@ -29,7 +29,7 @@
         if(en.isIntersecting){if(!v.getAttribute('src')&&v.__src){v.setAttribute('src',v.__src);try{v.load();}catch(e){}}var p=v.play();if(p&&p.catch)p.catch(function(){});}
         else{v.pause();var s=v.getAttribute('src');if(s){v.__src=s;v.removeAttribute('src');try{v.load();}catch(e){}}}
       });},{threshold:0.05,rootMargin:'200px 0px'});
-      vids.forEach(function(v){v.removeAttribute('autoplay');v.setAttribute('preload','none');io.observe(v);});
+      vids.forEach(function(v){v.removeAttribute('autoplay');v.setAttribute('preload','none');v.__gated=true;io.observe(v);});
     }
   }
   function expired(d){return new Date(d+'T23:59:59')<new Date();}
