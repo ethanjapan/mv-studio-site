@@ -30,6 +30,10 @@ function safePlay(v){
         if(r.bottom>0&&r.top<innerHeight)x.play().catch(()=>{});});};
     ['pointerdown','touchend','keydown'].forEach(t=>document.addEventListener(t,once,true));});
 }
+/* iOS Safari 対策(2026-10-13・実機 iPhone で「このWebページで問題が繰り返し起きました」= スクロールで読み込み済みの video が 28 本溜まりメモリ落ち)。
+   画面外に出たら pause だけでなく src を外して load() し、デコーダとバッファを返す。戻ったら src を戻して再生 */
+function vidOut(v){v.pause();const s=v.getAttribute('src');if(s){v.__src=s;v.removeAttribute('src');try{v.load();}catch(e){}}}
+function vidIn(v){if(!v.getAttribute('src')&&v.__src){v.setAttribute('src',v.__src);try{v.load();}catch(e){}}safePlay(v);}
 (function heroFilm(){
   const v=document.getElementById('heroFilm');if(!v)return;
   let mode='';
@@ -73,7 +77,7 @@ function safePlay(v){
   document.querySelectorAll('.works video,.shows video,.orb-core video').forEach(v=>{
     new IntersectionObserver(es=>es.forEach(en=>{
       v.dataset.inview=en.isIntersecting?'1':'0';   // 言語切替時に再生を継ぐため
-      if(en.isIntersecting){safePlay(v);}else{v.pause();}
+      if(en.isIntersecting){vidIn(v);}else{vidOut(v);}
     }),{threshold:0.05}).observe(v);
   });
 })();
@@ -137,7 +141,7 @@ function safePlay(v){
 (function(){
   const v=document.querySelector('.exstrip video.ex');if(!v)return;
   new IntersectionObserver(es=>es.forEach(en=>{
-    if(en.isIntersecting){safePlay(v);}else{v.pause();}
+    if(en.isIntersecting){vidIn(v);}else{vidOut(v);}
   }),{threshold:0.05}).observe(v);
 })();
 
@@ -304,12 +308,13 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     });
     // 番組カードのループ映像も版ごとに差し替える(台湾版は衣装も収録場所も別撮り)
     document.querySelectorAll('video[data-zh-src]').forEach(v=>{
-      if(v.__jasrc==null){v.__jasrc=v.getAttribute('src');v.__japoster=v.getAttribute('poster');}
+      if(v.__jasrc==null){v.__jasrc=v.getAttribute('src')||v.__src;v.__japoster=v.getAttribute('poster');}
       const zh=lang==='zh';
       const src=zh?v.dataset.zhSrc:v.__jasrc, poster=zh?v.dataset.zhPoster:v.__japoster;
-      if(v.getAttribute('src')===src)return;
-      v.setAttribute('poster',poster);v.setAttribute('src',src);v.load();
-      if(v.dataset.inview==='1')safePlay(v);
+      if((v.getAttribute('src')||v.__src)===src)return;
+      v.setAttribute('poster',poster);v.__src=src;
+      if(v.dataset.inview==='1'){v.setAttribute('src',src);v.load();safePlay(v);}
+      else{v.removeAttribute('src');try{v.load();}catch(e){}}   // 画面外なら読み込まない(戻った時に vidIn が入れる)
     });
     document.querySelectorAll('#langSwitch .ls-btn').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lang')===lang));
     try{localStorage.setItem('mvlang',lang)}catch(e){}

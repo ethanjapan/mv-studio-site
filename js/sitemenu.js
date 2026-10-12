@@ -20,6 +20,18 @@
     {k:'裏番組',h:base+'#shows',f:'',n:'IV'},
     {k:'仕組み',h:base+'strengths.html',f:'strengths.html',n:'V'},
     {k:'相談',h:base+'#contact',f:'',n:'VI'}];
+
+  // iOS Safari 対策(2026-10-13): サブページの autoplay video(撮影会 11 本など)は画面内だけ読み込む。トップは main.js が同じ門を持つ
+  if(!document.querySelector('.works')){
+    var vids=document.querySelectorAll('video[autoplay]');
+    if(vids.length&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){es.forEach(function(en){var v=en.target;
+        if(en.isIntersecting){if(!v.getAttribute('src')&&v.__src){v.setAttribute('src',v.__src);try{v.load();}catch(e){}}var p=v.play();if(p&&p.catch)p.catch(function(){});}
+        else{v.pause();var s=v.getAttribute('src');if(s){v.__src=s;v.removeAttribute('src');try{v.load();}catch(e){}}}
+      });},{threshold:0.05,rootMargin:'200px 0px'});
+      vids.forEach(function(v){v.removeAttribute('autoplay');v.setAttribute('preload','none');io.observe(v);});
+    }
+  }
   function expired(d){return new Date(d+'T23:59:59')<new Date();}
   // NEW の印の期限切れを外す(ページ側の data-new-until も同じ日付で書く)
   document.querySelectorAll('[data-new-until]').forEach(function(el){if(expired(el.getAttribute('data-new-until')))el.remove();});
