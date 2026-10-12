@@ -78,5 +78,7 @@
     document.body.appendChild(veil);document.body.appendChild(dr);
     syncLang();
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
+  // 本文末尾で読まれるので header はもうある= すぐ差し込む。DOMContentLoaded まで待つと、後に続く辞書(uc_i18n.js / main.js)の
+  // 初回の翻訳が先に終わり、繁中で開いた時に地図だけ日本語のまま残っていた(2026-10-13)
+  if(document.querySelector('header'))mount();else document.addEventListener('DOMContentLoaded',mount);
 })();
