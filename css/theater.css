@@ -1623,3 +1623,8 @@ body.uc .ch-title .em.nw{white-space:nowrap}
 .use .tag-new{position:absolute;right:14px;top:12px;z-index:4;margin:0;transform:none;font-size:10px;text-shadow:0 1px 6px rgba(0,0,0,.8)}
 .sm-a .tag-new{margin-left:10px;transform:translateY(-1px)}
 @media (max-width:900px){.top-nav a .tag-new{display:none}.top-nav a:has(.tag-new){margin-right:0}}
+
+/* スクロール後のヘッダ= 濃い紺の帯+ぼかし(本文の見出しと重なって読めなかった・2026-10-13 リール録画で発見) */
+header{transition:background .35s,padding .35s,box-shadow .35s}
+header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) saturate(1.1);backdrop-filter:blur(12px) saturate(1.1);
+  padding-top:14px;padding-bottom:14px;box-shadow:0 1px 0 rgba(226,230,242,.08)}

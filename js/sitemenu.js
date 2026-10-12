@@ -32,6 +32,11 @@
       vids.forEach(function(v){v.removeAttribute('autoplay');v.setAttribute('preload','none');v.__gated=true;io.observe(v);});
     }
   }
+
+  // スクロールしたらヘッダを帯にする(見出しと重ならないように)
+  (function(){var h=document.querySelector('header');if(!h)return;var on=false;
+    function f(){var s=window.scrollY>40;if(s!==on){on=s;h.classList.toggle('solid',s);}}
+    window.addEventListener('scroll',f,{passive:true});f();})();
   function expired(d){return new Date(d+'T23:59:59')<new Date();}
   // NEW の印の期限切れを外す(ページ側の data-new-until も同じ日付で書く)
   document.querySelectorAll('[data-new-until]').forEach(function(el){if(expired(el.getAttribute('data-new-until')))el.remove();});
