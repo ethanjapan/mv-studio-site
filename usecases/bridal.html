@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ブライダル前撮り — MV Studio ユースケース</title>
+<meta name="description" content="棚にある 400 の前撮りの様式から選んで、声で相談するだけ。礼拝堂も、港も、神社も——写真と短い動画を、手元の PC で。" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MV Studio" />
+<meta property="og:title" content="ブライダル前撮り — MV Studio ユースケース" />
+<meta property="og:description" content="棚にある 400 の前撮りの様式から選んで、声で相談するだけ。礼拝堂も、港も、神社も。" />
+<meta property="og:url" content="https://ethanjapan.github.io/mv-studio-site/usecases/bridal.html" />
+<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/uc/uc_bridal_B27.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#04060f" />
+<link rel="icon" type="image/svg+xml" href="../assets/icon_mv.svg?v=20261012a" />
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261012a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/theater.css?v=20261012f">
+<style>
+/* ユースケースのページだけの小さな決まり。部品の衣装は theater.css の「役割の衣装」と「第1段 色の一本化」をそのまま使う */
+.uc-head .brand{text-decoration:none}
+.uc-back{font-family:var(--en-display);font-size:14px;letter-spacing:.14em;color:var(--muted);text-decoration:none}
+.uc-back:hover{color:var(--ink)}
+.uc-hero{min-height:calc(var(--vhpx,100svh)*.96);padding-top:18vh}
+.uc-hero .panel-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.uc-film{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:16/9;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(226,230,242,.08)}
+.uc-film video,.uc-film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-film .cap{position:absolute;left:14px;bottom:12px;z-index:2;font-family:var(--en-display);font-size:13px;letter-spacing:.12em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.uc-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.uc-cta .note{font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.uc-steps{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.uc-step{position:relative;padding:22px 22px 24px;border-radius:18px;border:1px solid var(--line);background:var(--card)}
+.uc-step .n{font-family:var(--en-display);font-size:30px;line-height:1;color:var(--gold);letter-spacing:.06em}
+.uc-step h4{margin:12px 0 8px;font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.03em;color:var(--ink)}
+.uc-step p{margin:0;font-size:13.5px;line-height:1.95;color:var(--muted)}
+.uc-step .pic{margin-top:16px;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/10;position:relative}
+.uc-step .pic img,.uc-step .pic video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-step .say{margin-top:14px;font-family:var(--serif);font-size:15px;color:var(--ink)}
+.uc-shelf{margin-top:40px}
+.uc-shelf h3{font-family:var(--en-display);font-weight:500;font-size:15px;letter-spacing:.3em;color:var(--gold);margin:30px 0 14px;display:flex;align-items:center;gap:12px}
+.uc-shelf h3 i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6)}
+.uc-shelf h3 span{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;color:var(--muted)}
+.uc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.uc-grid figure{margin:0;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1040/1520;background:#000}
+.uc-grid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.04);transition:.5s}
+.uc-grid figure:hover img{transform:scale(1.04)}
+.uc-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;font-size:11px;letter-spacing:.05em;color:rgba(241,242,247,.9);
+  background:linear-gradient(transparent,rgba(4,6,15,.85))}
+.uc-fin{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.uc-fin .uc-film{aspect-ratio:16/9}
+.uc-proof{margin-top:28px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;font-size:13.5px;color:var(--muted)}
+.uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
+.uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
+@media (max-width:900px){
+  .uc-hero .panel-inner{grid-template-columns:1fr}
+  .uc-steps,.uc-fin{grid-template-columns:1fr}
+  .uc-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="uc-head">
+    <a class="brand" href="../"><img class="brand-mark" src="../assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
+    <div class="head-right">
+      <a class="uc-back" href="./">USE CASES</a>
+    </div>
+  </header>
+
+  <!-- 1 冒頭 -->
+  <section class="panel cine uc-hero" data-num="01" style="--bd:url(../assets/uc/uc_bridal_B17.jpg);--bd-pos:center 40%">
+    <div class="panel-inner">
+      <div>
+        <div class="ch-eyebrow">USE CASE 01 — ブライダル前撮り</div>
+        <h2 class="ch-title">式の前に、<br><span class="em">物語を一本</span>。</h2>
+        <p class="ch-sub">棚にある 400 の前撮りの様式から選んで、声で相談するだけ。礼拝堂も、港も、神社も——写真と短い動画を、手元の PC で焼く。衣装も髪も、同じ顔のまま何通りでも。</p>
+        <div class="uc-cta">
+          <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
+          <span class="note">Instagram · @made_linlin</span>
+        </div>
+      </div>
+      <div class="uc-film">
+        <video src="../assets/uc/uc_bridal_B27.mp4" poster="../assets/uc/uc_bridal_B27.jpg" muted loop playsinline autoplay preload="auto"></video>
+        <span class="cap">WHITE SAIL — LIGHTHOUSE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 頼み方 -->
+  <section class="panel" data-num="02">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">02 — 頼み方</div>
+      <h2 class="ch-title">話す、<span class="em">選ぶ</span>、焼く。</h2>
+      <p class="ch-sub">ボタンを探す制作ではなく、プロと言葉を交わす制作。「海の見える礼拝堂で、前撮りを」——それだけで、ディレクターが段取りを組む。</p>
+      <div class="uc-steps">
+        <div class="uc-step">
+          <div class="n">01</div><h4>話す</h4>
+          <p>場所の雰囲気、衣装、二人の距離感。言葉にできる所だけでいい。参考の写真があれば貼るだけ。</p>
+          <div class="pic"><img src="../assets/app_chat.jpg?v=20261008a" alt="企画チャットの画面" loading="lazy"></div>
+          <div class="say">「海の見える礼拝堂で、前撮りを」</div>
+        </div>
+        <div class="uc-step">
+          <div class="n">02</div><h4>絵コンテで決める</h4>
+          <p>棚の様式から場所と構図を当てた絵コンテが並ぶ。気に入ったカットだけ残し、気になる所は何度でも作り直す。</p>
+          <div class="pic"><img src="../assets/app_rinka4.jpg?v=20261009a" alt="白い帆の絵コンテ" loading="lazy"></div>
+          <div class="say">「礼拝堂のカットがすごく好き」</div>
+        </div>
+        <div class="uc-step">
+          <div class="n">03</div><h4>焼く</h4>
+          <p>確定した一枚から、短い動画へ。写真も動画も 4K まで。夜のあいだに列が進み、朝には選ぶだけ。</p>
+          <div class="pic"><video src="../assets/uc/uc_bridal_B07.mp4" poster="../assets/uc/uc_bridal_B07.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+          <div class="say">礼拝堂の窓辺、キャンドルの光で</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 棚 -->
+  <section class="panel wall" data-num="03">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">03 — 棚から選べる</div>
+      <h2 class="ch-title">前撮りの様式、<span class="em">400</span>。</h2>
+      <p class="ch-sub">和装 200・洋装 200。参拝、手水舎、相合傘、挙式風、バックショット——それぞれ 10 の場所で。ここに並ぶのは、その中の 24。</p>
+      <div class="uc-shelf">
+        <h3><i></i>WASOU <span>和装 200 様式から</span></h3>
+        <div class="uc-grid">
+          <figure><img src="../assets/uc/bridal_01.jpg" alt="" loading="lazy"><figcaption>参拝・社殿の前</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_02.jpg" alt="" loading="lazy"><figcaption>和傘の相合傘・紅葉の庭</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_03.jpg" alt="" loading="lazy"><figcaption>新婦ソロ・紅葉の庭</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_04.jpg" alt="" loading="lazy"><figcaption>手水舎・桜の庭</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_05.jpg" alt="" loading="lazy"><figcaption>シルエット・雪の庭</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_06.jpg" alt="" loading="lazy"><figcaption>お散歩・桜の庭</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_07.jpg" alt="" loading="lazy"><figcaption>正座でご挨拶・五重塔</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_08.jpg" alt="" loading="lazy"><figcaption>石段に座る・社殿の前</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_09.jpg" alt="" loading="lazy"><figcaption>エスコート・苔の石段</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_10.jpg" alt="" loading="lazy"><figcaption>新婦ソロ全身・紅葉の庭</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_11.jpg" alt="" loading="lazy"><figcaption>おみくじ・町家の通り</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_12.jpg" alt="" loading="lazy"><figcaption>背中合わせ・紅葉の庭</figcaption></figure>
+        </div>
+        <h3><i></i>YOUSOU <span>洋装 200 様式から</span></h3>
+        <div class="uc-grid">
+          <figure><img src="../assets/uc/bridal_13.jpg" alt="" loading="lazy"><figcaption>挙式風・ベールアップ・白い砂浜</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_14.jpg" alt="" loading="lazy"><figcaption>バックショット・ラベンダー畑</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_15.jpg" alt="" loading="lazy"><figcaption>新婦ソロ・レンガ倉庫の街</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_16.jpg" alt="" loading="lazy"><figcaption>向かい合わせ・イルミネーション</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_17.jpg" alt="" loading="lazy"><figcaption>階段・洋館のホール</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_18.jpg" alt="" loading="lazy"><figcaption>おでこを寄せる・湖畔の草原</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_19.jpg" alt="" loading="lazy"><figcaption>シルエット・赤い壁のサロン</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_20.jpg" alt="" loading="lazy"><figcaption>小物・ブーケとヘッドドレス</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_21.jpg" alt="" loading="lazy"><figcaption>ふたりで座る・洋館の大階段</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_22.jpg" alt="" loading="lazy"><figcaption>手をつないで・夜景</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_23.jpg" alt="" loading="lazy"><figcaption>新婦ソロ全身・イルミネーション</figcaption></figure>
+          <figure><img src="../assets/uc/bridal_24.jpg" alt="" loading="lazy"><figcaption>半身フォーマル・赤い壁のサロン</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 仕上がり -->
+  <section class="panel cine" data-num="04" style="--bd:url(../assets/uc/uc_bridal_B47.jpg);--bd-pos:center 60%">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">04 — 仕上がり</div>
+      <h2 class="ch-title">写真が、<span class="em">動き出す</span>。</h2>
+      <p class="ch-sub">確定した一枚を開始画像に、数秒の動画へ。同じ顔・同じ衣装のまま、灯台の島でも、礼拝堂でも、砂浜でも。</p>
+      <div class="uc-fin">
+        <div class="uc-film"><video src="../assets/uc/uc_bridal_B43.mp4" poster="../assets/uc/uc_bridal_B43.jpg" muted loop playsinline autoplay preload="metadata"></video><span class="cap">LIGHTHOUSE · TWO</span></div>
+        <div class="uc-film"><video src="../assets/uc/uc_bridal_B17.mp4" poster="../assets/uc/uc_bridal_B17.jpg" muted loop playsinline autoplay preload="metadata"></video><span class="cap">CLIFF · VEIL</span></div>
+        <div class="uc-film"><video src="../assets/uc/uc_bridal_B47.mp4" poster="../assets/uc/uc_bridal_B47.jpg" muted loop playsinline autoplay preload="metadata"></video><span class="cap">BEACH · BACK</span></div>
+      </div>
+      <div class="uc-proof">
+        <a class="ch-cta" href="https://youtu.be/ZT5IRk41IM8" target="_blank" rel="noopener noreferrer">実績の一本を観る —『白い帆』嵐の花嫁MV 3分59秒 →</a>
+        <span>上の動画は、その本編のカット。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 連絡 -->
+  <section class="panel uc-contact" data-num="05">
+    <div class="panel-inner">
+      <h2 class="ch-title">前撮りの相談は、<span class="em">一言</span>から。</h2>
+      <p class="ch-sub" style="margin-left:auto;margin-right:auto">場所の雰囲気と、着たい衣装。それだけ送ってください。絵コンテにしてお返しします。</p>
+      <div class="uc-cta" style="justify-content:center">
+        <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
+        <a class="btn ghost" href="./">ほかの用途を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <span class="foot-brand">MV&nbsp;STUDIO</span>
+    <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
+    <span class="foot-copy">© 2026 made_linlin</span>
+  </footer>
+</body>
+</html>

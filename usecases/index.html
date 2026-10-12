@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ユースケース — MV Studio</title>
+<meta name="description" content="MV Studio でできること。ブライダル前撮り、撮影会ポートレート、美容(化粧・髪型・アクセサリー)、解説動画。" />
+<meta property="og:title" content="ユースケース — MV Studio" />
+<meta property="og:url" content="https://ethanjapan.github.io/mv-studio-site/usecases/" />
+<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/uc/uc_bridal_B27.jpg" />
+<meta name="theme-color" content="#04060f" />
+<link rel="icon" type="image/svg+xml" href="../assets/icon_mv.svg?v=20261012a" />
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261012a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/theater.css?v=20261012f">
+<style>
+.uc-head .brand{text-decoration:none}
+.uc-back{font-family:var(--en-display);font-size:14px;letter-spacing:.14em;color:var(--muted);text-decoration:none}
+.uc-back:hover{color:var(--ink)}
+.uc-list{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.uc-card{position:relative;display:block;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9;text-decoration:none;color:var(--ink);
+  box-shadow:0 0 0 1px rgba(226,230,242,.08)}
+.uc-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.04);transition:.6s}
+.uc-card:hover img{transform:scale(1.03)}
+.uc-card .t{position:absolute;left:0;right:0;bottom:0;padding:60px 22px 20px;background:linear-gradient(transparent,rgba(4,6,15,.9))}
+.uc-card .t strong{display:block;font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:.03em}
+.uc-card .t span{display:block;margin-top:6px;font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.uc-card .k{position:absolute;left:18px;top:16px;font-family:var(--en-display);font-size:14px;letter-spacing:.24em;color:var(--gold)}
+.uc-card.soon{pointer-events:none}
+.uc-card.soon img{filter:saturate(.4) contrast(.9) brightness(.6)}
+.uc-card.soon .k::after{content:"  ·  COMING";color:var(--muted)}
+@media (max-width:760px){.uc-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="uc-head">
+    <a class="brand" href="../"><img class="brand-mark" src="../assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
+    <div class="head-right"><a class="uc-back" href="../">HOME</a></div>
+  </header>
+
+  <section class="panel" data-num="UC" style="padding-top:20vh">
+    <div class="panel-inner">
+      <div class="ch-eyebrow">USE CASES — 用途から見る</div>
+      <h2 class="ch-title">何に、<span class="em">使える</span>のか。</h2>
+      <p class="ch-sub">MV だけではありません。棚の様式と、同じ顔を保つキャラ、声での相談——同じ仕組みが、こんな用途に。</p>
+      <div class="uc-list">
+        <a class="uc-card" href="bridal.html">
+          <img src="../assets/uc/uc_bridal_B27.jpg" alt="">
+          <span class="k">01</span>
+          <span class="t"><strong>ブライダル前撮り</strong><span>和装 200・洋装 200 の様式から。礼拝堂、港、神社——写真と短い動画を。</span></span>
+        </a>
+        <a class="uc-card soon" href="#" aria-disabled="true">
+          <img src="../assets/wk_kugatsu.jpg?v=20261009b" alt="">
+          <span class="k">02</span>
+          <span class="t"><strong>撮影会ポートレート</strong><span>スタジオも屋外も。光と構図の文法で、一人のモデルを一日ぶん。</span></span>
+        </a>
+        <a class="uc-card soon" href="#" aria-disabled="true">
+          <img src="../assets/wk_itsumo.jpg?v=20261012a" alt="">
+          <span class="k">03</span>
+          <span class="t"><strong>美容 — 化粧・髪型・アクセサリー</strong><span>同じ顔のまま、髪型だけ・口紅だけ・耳元だけを変えて見せる。</span></span>
+        </a>
+        <a class="uc-card soon" href="#" aria-disabled="true">
+          <img src="../assets/wk_kaisetsu.jpg?v=20260817a" alt="">
+          <span class="k">04</span>
+          <span class="t"><strong>解説動画</strong><span>作り方そのものを番組に。解説 01〜05 とオフレコの棚卸し。</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <span class="foot-brand">MV&nbsp;STUDIO</span>
+    <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
+    <span class="foot-copy">© 2026 made_linlin</span>
+  </footer>
+</body>
+</html>
