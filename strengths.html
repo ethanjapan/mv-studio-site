@@ -31,6 +31,9 @@
 /* 01 構成図= 家の壁の内側にスタジオ。線画 1 本・中心だけ光る */
 .st-map{margin-top:40px;border:1px solid var(--rule-soft);background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(255,255,255,0));padding:clamp(14px,2.4vw,30px)}
 .st-map svg{display:block;width:100%;height:auto}
+.st-map svg.m{display:none}
+.st-map svg.m text{font-size:24px}.st-map svg.m text.en{font-size:15px;letter-spacing:.28em}.st-map svg.m text.sm{font-size:17px}
+.st-map svg.m .glow,.st-map svg.m .core,.st-map svg.m .out{stroke:url(#infm)}
 .st-map text{font-family:var(--serif);fill:var(--ink);font-size:17px;letter-spacing:.08em}
 .st-map text.en{font-family:var(--en-display);fill:var(--gold);font-size:12.5px;letter-spacing:.32em}
 .st-map text.sm{fill:var(--text-3);font-size:13px;letter-spacing:.06em}
@@ -93,7 +96,7 @@
 .st-src a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--rule)}
 .uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
 .uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
-@media (max-width:900px){.uc-hero .panel-inner{grid-template-columns:1fr}.st-cards{grid-template-columns:1fr}.st-card{min-height:0}.st-card.lead{grid-template-columns:1fr}.st-vs{grid-template-columns:1fr}.st-vs .r{grid-template-columns:6.5em 1fr;font-size:13px}.st-proof{grid-template-columns:1fr}.st-step{border-right:0;border-bottom:1px solid var(--rule-soft);padding:20px 4px}.st-step:last-child{border-bottom:0}.st-films{grid-template-columns:1fr}.st-map{padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}.st-map svg{min-width:760px}.st-map text{font-size:19px}.st-map text.en{font-size:14px}.st-map text.sm{font-size:15px}.st-legend{font-size:12px}}
+@media (max-width:900px){.uc-hero .panel-inner{grid-template-columns:1fr}.st-cards{grid-template-columns:1fr}.st-card{min-height:0}.st-card.lead{grid-template-columns:1fr}.st-vs{grid-template-columns:1fr}.st-vs .r{grid-template-columns:6.5em 1fr;font-size:13px}.st-proof{grid-template-columns:1fr}.st-step{border-right:0;border-bottom:1px solid var(--rule-soft);padding:20px 4px}.st-step:last-child{border-bottom:0}.st-films{grid-template-columns:1fr}.st-map{padding:10px}.st-map svg.d{display:none}.st-map svg.m{display:block}.st-legend{font-size:12px}}
 </style>
 </head>
 <body class="uc">
@@ -118,7 +121,7 @@
           <span class="note">Instagram · @made_linlin</span>
         </div>
       </div>
-      <div class="st-ph tall"><img src="assets/st/plate_home.jpg?v=1013b" alt=""><span class="cap">HOME STUDIO — NIGHT</span></div>
+      <div class="st-ph tall"><img src="assets/st/plate_window.jpg?v=1013b" alt=""><span class="cap">MOON WINDOW — THE QUEUE RUNS</span></div>
     </div>
   </section>
 
@@ -128,7 +131,7 @@
       <h2 class="ch-title">一台の中に、<span class="em">スタジオ</span>がある。</h2>
       <p class="ch-sub">家の壁の内側で、写真・動画・曲・声・会話・編集が回る。外に出るのは、見せたい完成品だけ。入口には鍵がかかり、列は夜も止まらない。</p>
       <div class="st-map" role="img" aria-label="家の中の 1 台の PC に、写真・動画・曲・声・会話・編集の部屋があり、鍵つきの入口と 24 時間の列を持つ。外に出るのは完成品だけ。">
-        <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" data-noi18n-svg>
+        <svg class="d" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="inf" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b59bff"/><stop offset=".5" stop-color="#ff9ddb"/><stop offset="1" stop-color="#8fe3ff"/></linearGradient></defs>
           <!-- 家の壁 -->
           <rect class="wall" x="60" y="40" width="860" height="520" rx="6"/>
@@ -164,6 +167,29 @@
           <!-- 壁の中に留まるもの -->
           <text class="sm" x="84" y="100">素材・相談の中身・学習した顔</text>
           <text class="sm" x="84" y="124">— 壁の内側から出ない</text>
+        </svg>
+        <svg class="m" viewBox="0 0 600 990" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="infm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b59bff"/><stop offset=".5" stop-color="#ff9ddb"/><stop offset="1" stop-color="#8fe3ff"/></linearGradient></defs>
+          <rect class="wall" x="20" y="60" width="560" height="760" rx="6"/>
+          <text class="en" x="40" y="44">HOME — 家の中</text>
+          <text class="en" x="40" y="872">OUTSIDE — 外</text>
+          <rect class="room" x="50" y="90" width="500" height="78" rx="3"/>
+          <text class="en" x="70" y="122">QUEUE</text><text x="170" y="124">列</text><text class="sm" x="215" y="124">24 時間、順に進む</text>
+          <path class="glow" d="M300 168 L300 342"/><circle class="dot" cx="300" cy="342" r="4"/>
+          <circle class="core" cx="300" cy="420" r="78"/>
+          <text class="c" x="300" y="414">GPU 1 台</text><text class="c sm" x="300" y="442">生成サーバー</text>
+          <rect class="room" x="50" y="200" width="160" height="92" rx="3"/><text class="c" x="130" y="240">写真</text><text class="c sm" x="130" y="268">棚の作風 20,000 以上</text>
+          <rect class="room" x="390" y="200" width="160" height="92" rx="3"/><text class="c" x="470" y="240">動画</text><text class="c sm" x="470" y="268">写真が動き出す</text>
+          <rect class="room" x="50" y="380" width="160" height="92" rx="3"/><text class="c" x="130" y="420">曲</text><text class="c sm" x="130" y="448">歌詞から一曲</text>
+          <rect class="room" x="390" y="380" width="160" height="92" rx="3"/><text class="c" x="470" y="420">声</text><text class="c sm" x="470" y="448">キャラの声</text>
+          <rect class="room" x="50" y="560" width="160" height="92" rx="3"/><text class="c" x="130" y="600">会話</text><text class="c sm" x="130" y="628">頭脳は切替</text>
+          <rect class="room" x="390" y="560" width="160" height="92" rx="3"/><text class="c" x="470" y="600">編集・4K</text><text class="c sm" x="470" y="628">つなぎと仕上げ</text>
+          <path class="line" d="M245 365 L210 292"/><path class="line" d="M355 365 L390 292"/><path class="line" d="M222 426 L210 426"/><path class="line" d="M378 426 L390 426"/><path class="line" d="M245 475 L210 560"/><path class="line" d="M355 475 L390 560"/>
+          <text class="sm" x="50" y="700">素材・相談の中身・学習した顔</text><text class="sm" x="50" y="728">— 壁の内側から出ない</text>
+          <path class="out" d="M120 905 L120 822"/><circle class="dot" cx="120" cy="822" r="4"/>
+          <text class="en" x="140" y="915">API — 鍵つきの入口</text><text class="sm" x="140" y="945">自作の道具・他のアプリ</text>
+          <path class="out" d="M480 822 L480 905"/><circle class="dot" cx="480" cy="905" r="4"/>
+          <text class="en" x="560" y="915" text-anchor="end">DELIVER</text><text class="sm" x="560" y="945" text-anchor="end">見せたい完成品だけ</text><text class="sm" x="560" y="975" text-anchor="end">YouTube / Instagram / 納品</text>
         </svg>
         <div class="st-legend"><span><i></i>家の壁</span><span><i class="g"></i>列から GPU へ</span><span><i class="d"></i>壁を越えるのは、入口の鍵と完成品だけ</span></div>
       </div>
