@@ -1400,6 +1400,8 @@ body.uc .btn.primary{color:#fff;background:transparent;outline:0;box-shadow:none
 body.uc .btn.primary::before{content:"";display:block;flex:none;width:30px;height:12px;border:0;position:static;
   background:url(../assets/mark_inf.png?v=20261012a) center/contain no-repeat;filter:drop-shadow(0 0 6px rgba(205,186,255,.55))}
 body.uc .btn.primary:hover{color:#fff;background:transparent;filter:none;outline:0}
+/* 旧 v2 の hover(1172 行の inset 4px #fff の box-shadow / 1329 行の outline)が残っていた= マウスを当てると白い枠(2026-10-13 ユーザー指摘)。v3 の筆跡ボタンは影も枠も持たない */
+body.uc .btn:hover,body.uc .btn.primary:hover,body.uc .btn.ghost:hover,body.uc .ch-cta:hover,body.uc .btn:active,body.uc .btn.primary:active{box-shadow:none;outline:0;border:0;background:transparent;transform:none}
 body.uc .btn.primary:hover::after{animation:stroke-draw 1.1s cubic-bezier(.2,.7,.2,1) both;opacity:1}
 body.uc .btn.primary:hover::before{filter:drop-shadow(0 0 9px rgba(255,157,219,.8))}
 body.uc .btn .vico{display:none}
