@@ -294,6 +294,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
   function setLang(lang){
     document.documentElement.lang=lang==='zh'?'zh-Hant':'ja';
+    if(window.__mvFonts)window.__mvFonts(lang);   // 繁中に切り替えたら Noto TC を読む(初回だけ)
     document.body.classList.toggle('lang-zh',lang==='zh');
     walk().forEach(n=>{
       if(n.__ja==null)n.__ja=n.nodeValue;

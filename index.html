@@ -29,14 +29,19 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=20261012a" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+/* 表示言語の書体だけ読む(2026-10-13・links.html と同じ作法): 日本語の時は繁中の Noto TC を読まない。言語を切り替えた時は main.js / uc_i18n.js が __mvFonts(lang) で足す */
+(function(){var L=["family=Zen+Kaku+Gothic+New:wght@300;400;500;700", "family=Shippori+Mincho:wght@400;500;600", "family=Inter:wght@300;400;500", "family=Cormorant+Garamond:wght@400;500;600"],Z=["family=Noto+Sans+TC:wght@300;400;500;700", "family=Noto+Serif+TC:wght@500;600"],done={};function add(k){if(done[k]||!(k==="zh"?Z:L).length)return;done[k]=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?"+(k==="zh"?Z:L).join("&")+"&display=swap";document.head.appendChild(l)}
+var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base");if(lang==="zh")add("zh");window.__mvFonts=function(k){if(k==="zh")add("zh")}})();
+</script>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="css/theater.css?v=20261013cf6">
 </head>
 <body class="uc">
 
 <!-- オープニング(2026-10-08): MV STUDIO のアイデント 7.5 秒。音は常にあり(ユーザー指示「音声のオンオフはいらない」)。
      音つきの自動再生をブラウザが許す時はそのまま流し、許さない時(初めて来た人の多く・iPhone)は「TAP TO START」→ 最初のタップで音つきで流す。
-     毎回の訪問とリロードで流す(戻る/進む・同じサイトの別ページから来た時は出さない)・SKIP/Esc/終了で本編へ。動きを減らす設定・?nointro では出さない。確認用= ?forceintro / ?introat=<秒> -->
+     1 日 1 回流す(2026-10-13 変更・以前は毎回)。戻る/進む・同じサイトの別ページから来た時は出さない・SKIP/Esc/終了で本編へ。動きを減らす設定・?nointro では出さない。確認用= ?forceintro / ?introat=<秒> -->
 <div id="intro" class="intro" data-noi18n aria-label="MV STUDIO opening" hidden>
   <video id="introVideo" playsinline preload="auto"></video>
   <button type="button" id="introTap" class="intro-tap" hidden><span class="it-main">TAP TO START</span><span class="it-sub">SOUND ON</span></button>
@@ -51,7 +56,9 @@
   // 毎回の訪問とリロードで流す(ユーザー指示「リロードすると出ない」)。出さないのは「戻る/進む」と、同じサイトの別ページ(links 等)から来た時だけ
   var nav=(performance.getEntriesByType&&performance.getEntriesByType('navigation')[0])||{},nt=nav.type||'navigate';
   var internal=false;try{internal=nt==='navigate'&&document.referrer&&new URL(document.referrer).origin===location.origin&&new URL(document.referrer).pathname!==location.pathname}catch(e){}
-  var seen=nt==='back_forward'||internal;
+  // 1 日 1 回(2026-10-13): 同じ日の 2 回目からは流さない(1.5〜3.4MB・スマホは TAP の手間)。記憶は端末内。?forceintro で毎回
+  var today=new Date().toISOString().slice(0,10),today_seen=false;try{today_seen=localStorage.getItem('mv_intro_day')===today}catch(e){}
+  var seen=nt==='back_forward'||internal||today_seen;
   var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var force=/[?&]forceintro\b/.test(location.search),at=(location.search.match(/[?&]introat=([\d.]+)/)||[])[1];   // 確認用: 毎回出す/指定の秒で止める
   if(q||(seen&&!force)||calm||!v.canPlayType('video/mp4'))return;
@@ -59,6 +66,7 @@
   v.src='assets/intro_ident_'+(small?'1280':'1920')+'.mp4?v=20261008a';
   if(window.matchMedia&&matchMedia('(hover: hover)').matches)tap.querySelector('.it-main').textContent='CLICK TO START';
   el.hidden=false;document.documentElement.classList.add('intro-on');
+  try{localStorage.setItem('mv_intro_day',today)}catch(e){}
   var done=false,waiting=false,guard=null;
   function arm(ms){clearTimeout(guard);guard=setTimeout(finish,ms)}
   var dbg=/[?&]introdebug\b/.test(location.search),why=[];   // 確認用: 終わった理由を画面に出す
@@ -1017,6 +1025,6 @@
   <a class="fab-contact" href="#contact" aria-label="相談"><span>相談</span></a>
 <script src="js/sitemenu.js?v=20261013zh1"></script>
 <script src="js/works_i18n.js?v=20261013yk1"></script>
-<script src="js/main.js?v=20261013cf10"></script>
+<script src="js/main.js?v=20261013ft1"></script>
 </body>
 </html>
