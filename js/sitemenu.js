@@ -35,7 +35,7 @@
 
   // スクロールしたらヘッダを帯にする(見出しと重ならないように)
   (function(){var h=document.querySelector('header');if(!h)return;var on=false;
-    function f(){var s=window.scrollY>40;if(s!==on){on=s;h.classList.toggle('solid',s);}}
+    function f(){var s=window.scrollY>40;if(s!==on){on=s;h.classList.toggle('solid',s);document.body.classList.toggle('top-solid',s);}}
     window.addEventListener('scroll',f,{passive:true});f();})();
   function expired(d){return new Date(d+'T23:59:59')<new Date();}
   // NEW の印の期限切れを外す(ページ側の data-new-until も同じ日付で書く)
@@ -118,4 +118,16 @@
       if(s.getBoundingClientRect().top>innerHeight*2){s.dataset.bd=s.style.getPropertyValue('--bd');s.style.removeProperty('--bd');}io2.observe(s);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+
+/* 進み具合の線(2026-10-14): 実際のスクロール位置から 1 コマ 1 回だけ書く(iOS 26 で CSS の scroll(root) が慣性中にずれた)。
+   伸び縮み(ゴム)のはみ出しは 0〜1 に丸める。折りたたみの開閉でページの長さが変わっても毎回測り直す */
+(function(){
+  var b=document.querySelector('.reel-progress');if(!b)return;
+  var tick=false,last=-1;
+  function f(){tick=false;var de=document.documentElement,max=de.scrollHeight-innerHeight;
+    var p=max>0?Math.min(1,Math.max(0,(window.scrollY||de.scrollTop)/max)):0,s=p.toFixed(4);
+    if(s!==last){last=s;b.style.transform='scaleX('+s+')';}}
+  function q(){if(!tick){tick=true;requestAnimationFrame(f);}}
+  addEventListener('scroll',q,{passive:true});addEventListener('resize',q);addEventListener('load',q);f();
 })();

@@ -11,7 +11,7 @@ import { dirname, join } from 'node:path'
 const ROOT = dirname(fileURLToPath(import.meta.url))
 const DATA = JSON.parse(readFileSync(join(ROOT, 'data/works.json'), 'utf8'))
 const TOP_WORKS = Infinity   // トップは Cover Flow= 高さ一定なので全作品を載せる(2026-10-13 ユーザー「iPod touch の音楽を選ぶ時の感じ」)
-const TOP_SHOWS = 3   // トップに出す番組の数
+const TOP_SHOWS = Infinity   // トップも Cover Flow(2026-10-14)= 高さ一定なので全番組
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 
@@ -64,6 +64,9 @@ const L = {
   next: ['次の作品', '下一支作品'],
   allWorks: [`すべての作品を見る（${nW}本）→`, `看全部作品（${nW} 支）→`],
   doorCount: [`すでに生まれた ${nW} 本`, `已經誕生的 ${nW} 支`],
+  flowS: ['番組', '節目'],
+  prevS: ['前の番組', '上一集節目'],
+  nextS: ['次の番組', '下一集節目'],
   allShows: [`番組をすべて見る（${nS}回）→`, `看全部節目（${nS} 集）→`],
   pageTitle: ['作品一覧 — MV Studio', '全部作品 — MV Studio'],
   eyebrowW: [`WORKS — 作品（${nW}本）`, `WORKS — 作品（${nW} 支）`],
@@ -98,9 +101,26 @@ ${DATA.works.slice(0, TOP_WORKS).map(flowItem).join('\n')}
       </div>
       <a class="ch-cta reveal d3" href="works.html">${L.allWorks[0]}</a>
 `
+// 番組も Cover Flow(2026-10-14 ユーザー「この部分もスクロールがながいから、作品の表示仕方と同様な演出はできる？」)。
+// 表紙= YouTube のサムネ(繁中は台湾版のサムネ・リンク・ループ動画に main.js が差し替える)。中央の札の下に 種別・題・説明・言語と尺
+function showFlowItem(s) {
+  const id = ytId(s.yt), zid = ytId(s.zh_yt)
+  const zhA = s.zh_asset || s.asset, zhV = s.zh_asset ? s.zh_v : s.v
+  const zhAttrs = zid ? ` data-zh-href="${esc(s.zh_yt)}" data-zh-yt="${zid}" data-zh-img="https://i.ytimg.com/vi/${zid}/maxresdefault.jpg" data-zh-fb="assets/${zhA}.jpg?v=${zhV}"` : ''
+  const img = `<img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='assets/${s.asset}.jpg?v=${s.v}'" alt="" loading="lazy" decoding="async">`
+  const video = `<video data-src="assets/${s.asset}.mp4?v=${s.v}"${s.zh_asset ? ` data-zh-vsrc="assets/${zhA}.mp4?v=${zhV}"` : ''} muted loop playsinline preload="none" aria-hidden="true"></video>`
+  const langs = s.langs.map(l => `<span class="cf-lang"><span>${esc(l.l)}</span><span class="d">${esc(l.d)}</span></span>`).join('')
+  return `        <a class="cf-item" href="${esc(s.yt)}" target="_blank" rel="noopener noreferrer" data-yt="${id}"${zhAttrs}>
+          <span class="cf-cover"><span class="cf-face">${img}${video}<span class="yt-badge">YouTube</span></span>${img.replace('<img ', '<img class="cf-refl" aria-hidden="true" ')}</span>
+          <span class="cf-cap"><em class="cf-genre">${esc(s.genre)}</em><strong>${esc(s.title)}</strong><span class="cf-desc">${esc(s.desc)}</span><span class="cf-langs">${langs}</span></span>
+        </a>`
+}
 const topShows = `
-      <div class="shows reveal d2">
-${DATA.shows.slice(0, TOP_SHOWS).map(s => showCard(s)).join('\n')}
+      <div class="cflow cf-shows reveal d2" data-n="${DATA.shows.length}">
+        <div class="cf-track" tabindex="0" role="group" aria-roledescription="carousel" aria-label="${L.flowS[0]}">
+${DATA.shows.map(showFlowItem).join('\n')}
+        </div>
+        <div class="cf-ctl"><button type="button" class="cf-prev" aria-label="${L.prevS[0]}"></button><div class="cf-bar" aria-hidden="true"><i></i></div><button type="button" class="cf-next" aria-label="${L.nextS[0]}"></button></div>
       </div>
       <a class="ch-cta reveal d3" href="works.html#shows">${L.allShows[0]}</a>
 `
@@ -184,7 +204,7 @@ const js = `/* 生成物: node gen_works.mjs が data/works.json から書く(�
 const jp = join(ROOT, 'js/works_i18n.js')
 let old = ''; try { old = readFileSync(jp, 'utf8') } catch {}
 if (old !== js) { writeFileSync(jp, js); console.log('js/works_i18n.js を書き換え') }
-console.log(`作品 ${nW} 本(トップ Cover Flow ${Math.min(nW, TOP_WORKS)})・番組 ${nS} 回(トップ ${TOP_SHOWS})`)
+console.log(`作品 ${nW} 本(トップ Cover Flow ${Math.min(nW, TOP_WORKS)})・番組 ${nS} 回(トップ Cover Flow ${Math.min(nS, TOP_SHOWS)})`)
 
 // ★2026-10-14: links.html(made_linlin のリンク集)はこの生成器の外で手書き。10-13 に水鏡を works.json へ足した時、
 //   links.html のヒーロー/最新作ボタン/作品棚と、トップの「完成作品の上映時間」(番組の尺も含む合計= works.json から出せない)が

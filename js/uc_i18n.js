@@ -159,7 +159,7 @@
       else n.nodeValue=n.__ja;
     });
     // 繁中の見出し(h1/h2): 台湾の見出しは句読点を置かない(2026-10-13 ユーザー指摘)。末尾の「。」を外し、途中の「，」「、」は <br> の前なら外し、それ以外は全角空白に。日本語は触らない
-    if(lang==='zh')document.querySelectorAll('h1, h2, h3, h4, .ch-eyebrow').forEach(h=>{
+    if(lang==='zh')document.querySelectorAll('h1, h2, h3, h4, .ch-eyebrow, .cf-cap strong, .workcard figcaption strong, .showcard figcaption strong').forEach(h=>{
       if(h.closest('[data-noi18n]'))return;
       // h3/h4 の説明の span(棚の見出しの「和服超過 200 種風格之中」など)は文なので触らない
       const tn=[];const tw=document.createTreeWalker(h,NodeFilter.SHOW_TEXT);let t;while(t=tw.nextNode())if(t.nodeValue.trim()&&!(h.matches('h3, h4')&&t.parentNode!==h&&t.parentNode.matches('span:not(.em)')))tn.push(t);

@@ -303,7 +303,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       else n.nodeValue=n.__ja;
     });
     // 繁中の見出し(h1/h2): 台湾の見出しは句読点を置かない(2026-10-13 ユーザー指摘)。末尾の「。」を外し、途中の「，」「、」は <br> の前なら外し、それ以外は全角空白に。日本語は触らない
-    if(lang==='zh')document.querySelectorAll('h1, h2, h3, h4, .ch-eyebrow').forEach(h=>{
+    if(lang==='zh')document.querySelectorAll('h1, h2, h3, h4, .ch-eyebrow, .cf-cap strong, .workcard figcaption strong, .showcard figcaption strong').forEach(h=>{
       if(h.closest('[data-noi18n]'))return;
       // h3/h4 の説明の span(棚の見出しの「和服超過 200 種風格之中」など)は文なので触らない
       const tn=[];const tw=document.createTreeWalker(h,NodeFilter.SHOW_TEXT);let t;while(t=tw.nextNode())if(t.nodeValue.trim()&&!(h.matches('h3, h4')&&t.parentNode!==h&&t.parentNode.matches('span:not(.em)')))tn.push(t);
@@ -333,6 +333,21 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       if(v.dataset.inview==='1'){v.setAttribute('src',src);v.load();safePlay(v);}
       else{v.removeAttribute('src');try{v.load();}catch(e){}}   // 画面外なら読み込まない(戻った時に vidIn が入れる)
     });
+    // 番組の Cover Flow(2026-10-14): 繁中は台湾版の YouTube サムネ・埋め込み・ループ動画に(リンクは上の a[data-zh-href] が替える)
+    const cfDirty=new Set();
+    document.querySelectorAll('.cf-item[data-zh-yt]').forEach(it=>{
+      if(it.__ja==null){const v0=it.querySelector('video');it.__ja={yt:it.dataset.yt,img:it.querySelector('.cf-face img').getAttribute('src'),fb:null,v:v0&&v0.dataset.src};}
+      const zh=lang==='zh',yt=zh?it.dataset.zhYt:it.__ja.yt;
+      if(it.dataset.yt===yt)return;
+      it.dataset.yt=yt;
+      const src=zh?it.dataset.zhImg:it.__ja.img,fb=zh?it.dataset.zhFb:null;
+      it.querySelectorAll('.cf-face img,img.cf-refl').forEach(im=>{
+        if(it.__ja.fb==null){const m=/this\.src='([^']+)'/.exec(im.getAttribute('onerror')||'');it.__ja.fb=m?m[1]:'';}
+        const f=fb||it.__ja.fb;im.onerror=function(){this.onerror=null;this.src=f;};im.src=src;});
+      const v=it.querySelector('video');if(v&&v.dataset.zhVsrc){v.dataset.src=zh?v.dataset.zhVsrc:it.__ja.v;}
+      const r=it.closest('.cflow');if(r)cfDirty.add(r);
+    });
+    cfDirty.forEach(r=>{if(r.__cfReset)r.__cfReset();});
     document.querySelectorAll('#langSwitch .ls-btn').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lang')===lang));
     try{localStorage.setItem('mvlang',lang)}catch(e){}
     window.__lang=lang;
@@ -383,7 +398,9 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   //  ② 動画はスクロールが止まってから中央の 1 枚だけ読む(通過する札ごとに load していた)
   //  ③ 脇の暗さは filter をやめ、上に重ねた幕の opacity で(合成だけで済む)
   //  ④ 書き込みは値が変わった札だけ ⑤ PC はマウスのドラッグでも送れる(離した時の勢いで行き先を決める)
-  const root=document.querySelector('.cflow');if(!root)return;
+  // 2026-10-14: 作品と番組の 2 つ(ユーザー「この部分もスクロールがながいから、作品の表示仕方と同様な演出はできる？」)。札の組ごとに同じ仕組みを動かす
+  document.querySelectorAll('.cflow').forEach(cf);
+  function cf(root){
   const track=root.querySelector('.cf-track'),items=[...track.querySelectorAll('.cf-item')];
   const bar=root.querySelector('.cf-bar i'),prev=root.querySelector('.cf-prev'),next=root.querySelector('.cf-next');
   if(!items.length)return;
@@ -495,9 +512,12 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   });
   track.addEventListener('dragstart',e=>e.preventDefault());
   new IntersectionObserver(es=>es.forEach(en=>{inView=en.isIntersecting;if(inView)play();else stopPlay();}),{threshold:0.2}).observe(track);
+  // 言語を切り替えた時(番組の繁中は別撮り): setLang が表紙・リンク・data-src を差し替えた後に呼ぶ。中央の再生を作り直す
+  root.__cfReset=()=>{vids.forEach(v=>{if(v)v.__src=v.dataset.src;});ytOff();if(inView)play();};
   root.__cf={get cur(){return cur},get inView(){return inView},get ytOn(){return ytOn},get centers(){return centers.slice(0,3)},get stepW(){return stepW},get viewW(){return viewW}};   // 点検用
   measure();update();
   setTimeout(()=>{if(inView)play();},500);   // 初回: 画面内にあれば中央の 1 枚を始める(観測の発火を待たない)
+  }
 })();
 
 /* スマホの折りたたみ(2026-10-13): トップが 40 画面ぶん(22 章)。後半の技術の章(14〜22)は、スマホでは見出しとリード文だけ見せ、
@@ -511,13 +531,20 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const lead=inner.querySelector('.ch-sub')||inner.querySelector('.ch-title');if(!lead)return;
     const rest=[];let el=lead.nextElementSibling;while(el){rest.push(el);el=el.nextElementSibling;}
     if(!rest.length)return;
-    const body=document.createElement('div');body.className='fold-body';body.hidden=true;rest.forEach(x=>body.appendChild(x));
+    // 2026-10-14 ユーザー「矢印がデザイン性がない。畳む・展開の演出、誘導に工夫して」:
+    //  閉じている間も続きの頭(84px)を薄く見せて「まだある」と分からせる(mask で溶かす)・札は 輪+山形 の印で、閉じている間だけ輪が脈打って誘う
+    //  開閉は高さをなめらかに(max-height)。閉じている間の中身は inert(押せない・読み上げない)
+    const body=document.createElement('div');body.className='fold-body closed';body.inert=true;rest.forEach(x=>body.appendChild(x));
     const btn=document.createElement('button');btn.type='button';btn.className='ch-cta fold-btn';btn.setAttribute('aria-expanded','false');
-    btn.innerHTML='<span class="ja">続きを見る</span><span class="zh">看更多</span><i aria-hidden="true">↓</i>';
-    btn.addEventListener('click',()=>{const open=body.hidden;body.hidden=!open;btn.setAttribute('aria-expanded',String(open));btn.classList.toggle('open',open);
-      btn.querySelector('.ja').textContent=open?'閉じる':'続きを見る';btn.querySelector('.zh').textContent=open?'收起':'看更多';
-      if(!open)sec.scrollIntoView({block:'start',behavior:'smooth'});});
-    lead.after(btn);btn.after(body);
+    btn.innerHTML='<span class="fold-l"><span class="ja">続きを見る</span><span class="zh">看更多</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span>';
+    btn.addEventListener('click',()=>{const open=body.classList.contains('closed');
+      if(open){body.style.maxHeight=body.scrollHeight+'px';body.classList.remove('closed');body.inert=false;
+        body.addEventListener('transitionend',function te(e){if(e.target!==body)return;body.style.maxHeight='none';body.removeEventListener('transitionend',te);});}
+      else{body.style.maxHeight=body.scrollHeight+'px';body.getBoundingClientRect();body.classList.add('closed');body.style.maxHeight='';body.inert=true;
+        sec.scrollIntoView({block:'start',behavior:'smooth'});}
+      btn.setAttribute('aria-expanded',String(open));btn.classList.toggle('open',open);
+      btn.querySelector('.ja').textContent=open?'閉じる':'続きを見る';btn.querySelector('.zh').textContent=open?'收起':'看更多';});
+    lead.after(body);body.after(btn);
   });
 })();
 

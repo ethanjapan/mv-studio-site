@@ -1731,10 +1731,19 @@ body.lang-zh .cf-cap strong{font-family:"Noto Serif TC",serif}
 /* 繁中の見出しの強調(2026-10-13 ユーザー指摘「挑一 / 挑」): 強調の語は途中で折らず、空白で折る */
 body.lang-zh .ch-title .em,body.lang-zh h1 .em,body.lang-zh h2 .em{white-space:nowrap}
 /* スマホの折りたたみ(main.js mobileFold): 14〜22 章の本文を「続きを見る」で開く */
-.fold-body[hidden]{display:none}
-.fold-btn{cursor:pointer;font:inherit;margin-top:22px;gap:8px}
-.fold-btn i{font-style:normal;transition:transform .25s cubic-bezier(.23,1,.32,1)}
-.fold-btn.open i{transform:rotate(180deg)}
+.fold-body{position:relative;overflow:clip;transition:max-height .75s cubic-bezier(.2,.7,.2,1)}   /* clip= スクロール容器にしない(中の .reveal のスクロール連動が止まる) */
+.fold-body.closed{max-height:150px;pointer-events:none;
+  -webkit-mask-image:linear-gradient(#000 0%,#000 30%,rgba(0,0,0,.45) 65%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 30%,rgba(0,0,0,.45) 65%,transparent 100%)}
+/* 札(2026-10-14): 文字 + 輪の中の山形。開くと山形が返る。閉じている間だけ輪が外へ脈打つ(誘い)。トップは body.uc の札(光の下線= ::after)なので印は span で持つ */
+.fold-btn{cursor:pointer;font:inherit;position:relative;margin-top:14px;gap:12px}
+.fold-ic-w{position:relative;flex:none;width:22px;height:22px;margin-left:2px}
+body.uc .fold-btn svg.fold-ic,.fold-ic{display:block;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.fold-ic circle{stroke:rgba(217,189,138,.55)}
+.fold-btn.open .fold-ic{transform:rotate(180deg)}
+.fold-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(217,189,138,.75);opacity:0;animation:foldPulse 2.8s ease-out infinite}
+.fold-btn.open .fold-ring{animation:none}
+@keyframes foldPulse{0%{opacity:.8;transform:scale(.85)}60%{opacity:0;transform:scale(2.1)}100%{opacity:0;transform:scale(2.1)}}
+@media (prefers-reduced-motion: reduce){.fold-ring{animation:none}.fold-body{transition:none}.fold-ic{transition:none}}
 .fold-btn .zh,html[lang^="zh"] .fold-btn .ja{display:none}
 html[lang^="zh"] .fold-btn .zh{display:inline}
 
@@ -1761,3 +1770,33 @@ body.uc .uc-grid figure.reveal.in,body.uc .dcol figure.reveal.in{transform:none}
     body.uc .uc-grid figure.reveal,body.uc .dcol figure.reveal{animation-name:srRevealS;animation-range:entry 0% entry 42%}
   }
 }
+
+/* 番組の Cover Flow(2026-10-14 ユーザー「この部分もスクロールがながいから、作品の表示仕方と同様な演出はできる？」)
+   トップの番組欄 3 枚の縦積み(スマホ 3.8 画面)→ 作品と同じ横送り(全 7 回・高さ一定)。中央の札の下に 種別・題・説明・言語と尺 */
+.cf-shows .cf-genre{display:inline-flex;align-items:center;gap:8px;margin-bottom:8px;font-style:normal;font-family:var(--sans);font-size:11.5px;letter-spacing:.2em;color:var(--gold)}
+.cf-shows .cf-genre::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6)}
+.cf-shows .cf-cap > .cf-desc{display:block;margin:8px auto 0;max-width:34em;font-family:var(--sans);font-size:12.5px;line-height:1.75;letter-spacing:.04em;color:rgba(240,235,222,.66);text-wrap:pretty;line-break:strict}
+.cf-shows .cf-cap > .cf-langs{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px;margin-top:10px;font-family:var(--sans);font-size:11px;letter-spacing:.1em;color:rgba(240,235,222,.62)}
+.cf-shows .cf-lang .d{margin-left:8px;font-family:var(--en);letter-spacing:.08em;color:rgba(240,235,222,.85)}
+.cf-shows .cf-track{height:calc(var(--H) + var(--H)*.42 + 176px)}
+.cflow.cf-shows:not(.cf-on) .cf-track{height:auto}
+@media (max-width:860px){
+  .cf-shows .cf-track{height:calc(var(--H) + var(--H)*.36 + 216px)}
+  .cf-shows .cf-cap > .cf-desc{font-size:12px;line-height:1.7;letter-spacing:.02em}
+  .cf-shows .cf-genre{font-size:10.5px;margin-bottom:6px}
+}
+
+/* iOS 26 Safari の上端(2026-10-14 ユーザー実機「上のバーはスクロールの位置とズレがあり、スクロールするとよく混乱して表示する」)
+   ① 時計の帯: Safari 26 は上端に固定した要素の「単色の背景色」で塗る。半透明+ぼかし(backdrop-filter)は単色と見なされず、
+      帯に本文が透けて流れていた → スクロール後のヘッダは不透明の単色(見た目は .82 の紺とほぼ同じ)
+   ② 進み具合の線: CSS のスクロール連動(scroll(root))は iPhone の慣性スクロール中に実位置からずれ、止まると跳ね戻る報告がある
+      → sitemenu.js が毎コマ scrollY から書く(下の animation を止める)
+   ③ 帯の塗りの元になるのは上端で一番手前の固定要素= 進み具合の線(グラデーション= 単色でない→本文を延長して描いていた)。
+      シミュレータ実測(2026-10-14): safe-area-inset-top は 0・viewport は帯の下から= 帯はページの外で、CSS で直接は塗れない。
+      線にも「下地の単色」を持たせ、スクロール後(body.top-solid)は帯がヘッダと同じ紺になる。頁の先頭ではヒーローが帯に続く(今まで通り) */
+header.solid{background:#05070f;-webkit-backdrop-filter:none;backdrop-filter:none}
+.reel-progress{animation:none!important;will-change:transform}
+body.top-solid .reel-progress{background-color:#05070f}
+/* ④ 帯の「蓋」(シミュレータ実測 2026-10-14): ヘッダを不透明の単色にしても帯には通り過ぎた本文が描かれた= 帯はページの上の外側。
+      画面の上の外側(top:-160px)に固定した単色の板は、Safari が帯を描く時にそこに映る。頁の先頭(body.top-solid 無し)では出さない= ヒーローは帯まで続く */
+body.top-solid::after{content:"";position:fixed;left:0;right:0;top:-160px;height:160px;background:#05070f;z-index:22;pointer-events:none}
