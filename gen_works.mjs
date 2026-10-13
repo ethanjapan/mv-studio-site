@@ -70,12 +70,20 @@ const L = {
 }
 
 // ---- トップ(index.html)
-// Cover Flow の 1 枚。表紙= 静止画(先に見える)+ 動画(中央の 1 枚だけ src を入れて再生= main.js の coverFlow)
+// Cover Flow の 1 枚(2026-10-13 ユーザー「YouTube のサムネを表示、スライドしたら動画再生」)。
+// 表紙= YouTube のサムネ(無ければ手元の静止画)。中央に来たら main.js が YouTube の埋め込み(ミュート・インライン・ループ)を差し込む。
+// YouTube に上げていない作品(暁の誓剣)だけ手元のループ動画
+function ytId(url) { const m = /youtu\.be\/([\w-]+)/.exec(url || ''); return m ? m[1] : '' }
 function flowItem(w) {
+  const id = ytId(w.yt)
   const tag = w.yt ? 'a' : 'div'
-  const attrs = w.yt ? ` href="${esc(w.yt)}" target="_blank" rel="noopener noreferrer"` : ''
+  const attrs = (w.yt ? ` href="${esc(w.yt)}" target="_blank" rel="noopener noreferrer" data-yt="${id}"` : '')
+  const img = id
+    ? `<img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='assets/${w.asset}.jpg?v=${w.v}'" alt="" loading="lazy" decoding="async">`
+    : `<img src="assets/${w.asset}.jpg?v=${w.v}" alt="" loading="lazy" decoding="async">`
+  const video = id ? '' : `<video data-src="assets/${w.asset}.mp4?v=${w.v}" muted loop playsinline preload="none" aria-hidden="true"></video>`
   return `        <${tag} class="cf-item"${attrs}>
-          <span class="cf-cover"><img src="assets/${w.asset}.jpg?v=${w.v}" alt="" loading="lazy" decoding="async"><video data-src="assets/${w.asset}.mp4?v=${w.v}" muted loop playsinline preload="none" aria-hidden="true"></video>${w.yt ? '<span class="yt-badge">YouTube</span>' : ''}</span>
+          <span class="cf-cover">${img}${video}${w.yt ? '<span class="yt-badge">YouTube</span>' : ''}</span>
           <span class="cf-cap"><strong>${esc(w.title)}</strong><span>${subHtml(w.sub)}</span></span>
         </${tag}>`
 }

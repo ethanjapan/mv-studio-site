@@ -377,46 +377,95 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
    横スクロール+中央で止まる(scroll-snap)。傾き・奥行き・重なりはスクロール位置から毎フレーム計算(CSS の scroll-driven は Safari の横方向が未確認のため JS)。
    動画は中央の 1 枚だけ(iOS のメモリ対策= vidIn/vidOut)。脇の札を押すと中央へ寄せ、中央を押すと YouTube へ。動きを減らす設定では平らな列のまま */
 (function coverFlow(){
+  // 2026-10-13 滑らかさの直し(iPhone シミュレータ実測: 8 回送る間に 190ms 止まるコマが 14〜15)。
+  //  ① 位置は一度だけ測って覚える(書いてから読むとレイアウトの計算し直しが毎コマ起きていた)
+  //  ② 動画はスクロールが止まってから中央の 1 枚だけ読む(通過する札ごとに load していた)
+  //  ③ 脇の暗さは filter をやめ、上に重ねた幕の opacity で(合成だけで済む)
+  //  ④ 書き込みは値が変わった札だけ ⑤ PC はマウスのドラッグでも送れる(離した時の勢いで行き先を決める)
   const root=document.querySelector('.cflow');if(!root)return;
   const track=root.querySelector('.cf-track'),items=[...track.querySelectorAll('.cf-item')];
   const bar=root.querySelector('.cf-bar i'),prev=root.querySelector('.cf-prev'),next=root.querySelector('.cf-next');
   if(!items.length)return;
   const flat=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!flat)root.classList.add('cf-on');
-  let cur=-1,inView=false,tick=false;
   const covers=items.map(it=>it.querySelector('.cf-cover')),vids=items.map(it=>it.querySelector('video'));
-  vids.forEach(v=>{if(v){v.__src=v.dataset.src;}});
-  function step(){return items[0].getBoundingClientRect().width;}
-  function centerOf(i){return items[i].offsetLeft+items[i].offsetWidth/2-track.clientWidth/2;}
-  function go(i){i=Math.max(0,Math.min(items.length-1,i));track.scrollTo({left:centerOf(i),behavior:flat?'auto':'smooth'});}
+  const shades=covers.map(c=>{const e=document.createElement('i');e.className='cf-shade';c.appendChild(e);return e;});
+  vids.forEach(v=>{if(v)v.__src=v.dataset.src;});
+  let cur=-1,inView=false,tick=false,settle=0,centers=[],stepW=1,coverW=1,viewW=1,playing=-1;
+  const lastT=new Array(items.length).fill(''),lastZ=new Array(items.length).fill(''),lastO=new Array(items.length).fill('');
+  function measure(){
+    viewW=track.clientWidth;stepW=items[0].offsetWidth;coverW=covers[0].offsetWidth;
+    centers=items.map(it=>it.offsetLeft+it.offsetWidth/2);
+  }
+  function target(i){return centers[i]-viewW/2;}
+  function go(i,smooth=true){i=Math.max(0,Math.min(items.length-1,i));track.scrollTo({left:target(i),behavior:(flat||!smooth)?'auto':'smooth'});}
+  // 再生(2026-10-13 ユーザー「YouTube のサムネを表示、スライドしたら動画再生」): スクロールが止まった中央の 1 枚だけ、
+  // YouTube の埋め込み(ミュート・インライン・ループ・操作なし)を差し込む。中央を外れたら外す(同時に 1 つ)。
+  // 手元のループ動画しか無い札(YouTube 無し)は、その動画を再生
+  let ytOn=-1;
+  function ytOff(){if(ytOn<0)return;const f=covers[ytOn].querySelector('iframe');if(f)f.remove();items[ytOn].classList.remove('playing');if(vids[ytOn])vidOut(vids[ytOn]);ytOn=-1;}
+  function play(){try{play_();}catch(e){root.__cfErr=String(e&&e.stack||e);}}
+  function play_(){                      // スクロールが止まった時だけ呼ぶ
+    if(flat||!inView||cur<0)return;
+    if(ytOn===cur&&(covers[cur].querySelector('iframe')||(vids[cur]&&vids[cur].getAttribute('src'))))return;   // 既に差してあれば何もしない(無ければ差し直す)
+    ytOff();ytOn=cur;
+    const id=items[cur].dataset.yt;
+    if(id){
+      const f=document.createElement('iframe');
+      // enablejsapi で再生状態を受け取り、本当に動き出してから(playerState 1)表に出す= サムネ → 動画の切り替えに YouTube の題や再生ボタンが見えない
+      f.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&playsinline=1&loop=1&playlist=${id}&rel=0&modestbranding=1&iv_load_policy=3&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
+      f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture');f.setAttribute('title','');f.setAttribute('tabindex','-1');f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+      // URL の autoplay=1 だけでは始まらない環境がある(手元の Chrome で実測: 状態 -1 のまま)。API で mute → playVideo を送る(準備完了後に最大 3 回)
+      const cmd=fn=>{try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:fn,args:[]}),'*');}catch(e){}};
+      f.__kick=0;f.__play=()=>{if(f.__kick++>3||!f.isConnected)return;cmd('mute');cmd('playVideo');setTimeout(()=>{if(f.isConnected&&items[ytOn]&&!items[ytOn].classList.contains('playing'))f.__play();},900);};
+      f.addEventListener('load',()=>{try{f.contentWindow.postMessage(JSON.stringify({event:'listening',id:id,channel:'widget'}),'*');}catch(e){}setTimeout(f.__play,300);});
+      covers[cur].appendChild(f);
+    }else if(vids[cur]){vidIn(vids[cur]);items[cur].classList.add('playing');}
+  }
+  // YouTube からの再生状態(1= 再生中)。再生が始まった札だけ .playing(動画が表に出る)。再生できない時はサムネのまま
+  addEventListener('message',e=>{
+    if(typeof e.data!=='string'||!/youtube/.test(e.origin))return;
+    let d;try{d=JSON.parse(e.data);}catch(x){return;}
+    if(ytOn<0)return;const f=covers[ytOn].querySelector('iframe');if(!f||f.contentWindow!==e.source)return;
+    if(d.event==='onReady'){f.__kick=0;f.__play();return;}
+    if(d.event!=='infoDelivery'||!d.info||d.info.playerState==null)return;
+    items[ytOn].classList.toggle('playing',d.info.playerState===1);items[ytOn].dataset.ytstate=d.info.playerState;
+  });
+  function stopFar(){if(ytOn>=0&&ytOn!==cur)ytOff();}
+  function stopPlay(){ytOff();}
   function setCur(i){
     if(i===cur)return;
-    if(cur>=0){items[cur].classList.remove('on');if(vids[cur])vidOut(vids[cur]);}
+    if(cur>=0)items[cur].classList.remove('on');
     cur=i;items[i].classList.add('on');
-    if(inView&&vids[i]&&!flat)vidIn(vids[i]);
-    if(bar){const n=items.length,w=Math.max(8,100/n);bar.style.width=w+'%';bar.style.left=(n>1?i/(n-1)*(100-w):0)+'%';}
+    if(bar){const n=items.length,w=Math.max(8,100/n);bar.style.width=w+'%';bar.style.transform='translateX('+((n>1?i/(n-1)*(100-w):0)/w*100).toFixed(2)+'%)';}
     if(prev)prev.disabled=i===0;if(next)next.disabled=i===items.length-1;
   }
   function update(){
     tick=false;
-    const s=step(),vc=track.scrollLeft+track.clientWidth/2,W=covers[0].offsetWidth;
-    let best=0,bd=1e9;
-    items.forEach((it,i)=>{
-      const d=(it.offsetLeft+it.offsetWidth/2-vc)/s,ad=Math.abs(d);
+    const vc=track.scrollLeft+viewW/2;let best=0,bd=1e9;
+    for(let i=0;i<items.length;i++){
+      const d=(centers[i]-vc)/stepW,ad=Math.abs(d);
       if(ad<bd){bd=ad;best=i;}
-      if(flat)return;
-      const a=Math.max(-1,Math.min(1,d)),aa=Math.abs(a);
-      // 中央= 正面・手前。脇= 62 度傾けて奥へ、中央の札の幅ぶん外へ逃がす(重なりは iTunes と同じく浅く)
-      const ry=-a*62,tx=a*W*0.42,tz=(1-aa)*W*0.16-Math.min(ad,6)*6;
-      covers[i].style.transform=`perspective(${Math.round(W*2.6)}px) translateX(${tx.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${ry.toFixed(1)}deg)`;
-      it.style.zIndex=String(200-Math.round(ad*10));
-      covers[i].style.filter=ad>0.5?`brightness(${(1-Math.min(ad,4)*0.09).toFixed(2)})`:'';
-    });
+      if(flat)continue;
+      if(ad>9&&lastT[i])continue;       // 画面の外の遠い札は書かない(最後の形のまま)
+      const a=d<-1?-1:d>1?1:d,aa=a<0?-a:a;
+      const ry=-a*62,tx=a*coverW*0.42,tz=(1-aa)*coverW*0.16-(ad<6?ad:6)*6;
+      const t=`perspective(${Math.round(coverW*2.6)}px) translate3d(${tx.toFixed(1)}px,0,${tz.toFixed(1)}px) rotateY(${ry.toFixed(1)}deg)`;
+      if(t!==lastT[i]){covers[i].style.transform=t;lastT[i]=t;}
+      const z=String(200-Math.round(ad*10));if(z!==lastZ[i]){items[i].style.zIndex=z;lastZ[i]=z;}
+      const o=ad>0.5?Math.min(ad,4)*0.09:0,os=o.toFixed(2);if(os!==lastO[i]){shades[i].style.opacity=os;lastO[i]=os;}
+    }
     setCur(best);
   }
-  track.addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(update);}},{passive:true});
-  addEventListener('resize',()=>{update();go(cur);});
-  items.forEach((it,i)=>it.addEventListener('click',e=>{if(i!==cur){e.preventDefault();go(i);}}));
+  function onScroll(){
+    if(!tick){tick=true;requestAnimationFrame(update);}
+    stopFar();
+    clearTimeout(settle);settle=setTimeout(play,'onscrollend' in window?600:180);   // scrollend が無い Safari 26.1 以前の保険
+  }
+  track.addEventListener('scroll',onScroll,{passive:true});
+  track.addEventListener('scrollend',()=>{clearTimeout(settle);play();});
+  addEventListener('resize',()=>{measure();update();go(cur,false);});
+  items.forEach((it,i)=>it.addEventListener('click',e=>{if(dragMoved){e.preventDefault();return;}if(i!==cur){e.preventDefault();go(i);}}));
   if(prev)prev.addEventListener('click',()=>go(cur-1));
   if(next)next.addEventListener('click',()=>go(cur+1));
   track.addEventListener('keydown',e=>{
@@ -424,7 +473,25 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     else if(e.key==='Enter'&&items[cur].href){window.open(items[cur].href,'_blank','noopener');}
   });
   const barEl=root.querySelector('.cf-bar');
-  if(barEl)barEl.parentNode.addEventListener('click',e=>{if(e.target.closest('button'))return;const r=barEl.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right)return;go(Math.round((e.clientX-r.left)/r.width*(items.length-1)));});
-  new IntersectionObserver(es=>es.forEach(en=>{inView=en.isIntersecting;const v=vids[cur];if(!v||flat)return;if(inView)vidIn(v);else vidOut(v);}),{threshold:0.2}).observe(track);
-  update();
+  if(barEl)barEl.addEventListener('click',e=>{const r=barEl.getBoundingClientRect();go(Math.round((e.clientX-r.left)/r.width*(items.length-1)));});
+  // PC のマウスでドラッグ(指は端末のスクロールに任せる)。離した時の速さで 1〜数枚ぶん先へ
+  let dragMoved=false;
+  track.addEventListener('pointerdown',e=>{
+    if(e.pointerType!=='mouse'||e.button!==0)return;
+    const x0=e.clientX,s0=track.scrollLeft;let lx=x0,lt=performance.now(),v=0,down=true;dragMoved=false;
+    track.style.scrollSnapType='none';
+    const move=ev=>{if(!down)return;const dx=ev.clientX-x0;if(Math.abs(dx)>4)dragMoved=true;
+      const now=performance.now();v=(ev.clientX-lx)/Math.max(1,now-lt);lx=ev.clientX;lt=now;track.scrollLeft=s0-dx;};
+    const up=()=>{down=false;removeEventListener('pointermove',move);removeEventListener('pointerup',up);
+      track.style.scrollSnapType='';
+      const fling=-v*260;const vc=track.scrollLeft+fling+viewW/2;let best=0,bd=1e9;
+      centers.forEach((c,i)=>{const d=Math.abs(c-vc);if(d<bd){bd=d;best=i;}});go(best);
+      setTimeout(()=>{dragMoved=false;},0);};
+    addEventListener('pointermove',move);addEventListener('pointerup',up);
+  });
+  track.addEventListener('dragstart',e=>e.preventDefault());
+  new IntersectionObserver(es=>es.forEach(en=>{inView=en.isIntersecting;if(inView)play();else stopPlay();}),{threshold:0.2}).observe(track);
+  root.__cf={get cur(){return cur},get inView(){return inView},get ytOn(){return ytOn},get centers(){return centers.slice(0,3)},get stepW(){return stepW},get viewW(){return viewW}};   // 点検用
+  measure();update();
+  setTimeout(()=>{if(inView)play();},500);   // 初回: 画面内にあれば中央の 1 枚を始める(観測の発火を待たない)
 })();

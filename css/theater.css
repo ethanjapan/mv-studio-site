@@ -1672,8 +1672,15 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
   box-shadow:0 30px 60px -28px rgba(0,0,0,.9),0 0 0 1px rgba(226,230,242,.10);transform-origin:50% 50%;
   -webkit-box-reflect:below 2px linear-gradient(transparent 58%,rgba(255,255,255,.22))}
 .cf-cover img,.cf-cover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cf-shade{position:absolute;inset:0;z-index:3;background:#000;opacity:0;pointer-events:none}   /* 脇の札の暗さ(filter だと毎コマ描き直しになる) */
+.cflow.cf-on .cf-cover{will-change:transform}
+.cf-track{cursor:grab;user-select:none;-webkit-user-select:none}.cf-track:active{cursor:grabbing}
+.cf-cover img{-webkit-user-drag:none}
 .cf-cover video{opacity:0;transition:opacity .4s ease}
-.cf-item.on .cf-cover video[src]{opacity:1}
+.cf-item.playing .cf-cover video[src]{opacity:1}
+/* YouTube の埋め込み(中央の 1 枚だけ): サムネの上に重ね、読み込めたら現れる。札全体はリンクのままにする(埋め込みは押せない) */
+.cf-cover iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2;opacity:0;transition:opacity .5s ease;pointer-events:none;background:#000}
+.cf-item.playing .cf-cover iframe{opacity:1}
 .cf-cover .yt-badge{position:absolute;top:12px;right:14px;z-index:2;opacity:0;transition:opacity .3s}
 .cf-item.on .cf-cover .yt-badge{opacity:1}
 /* 札の題= 中央の 1 枚の下(映り込みの下)に、iPod の曲名のように */
@@ -1697,7 +1704,7 @@ body.lang-zh .cf-cap strong{font-family:"Noto Serif TC",serif}
 @media (hover:hover) and (pointer:fine){.cf-ctl button:not(:disabled):hover{color:var(--gold)}}
 .cf-bar{position:relative;flex:1;height:3px;border-radius:3px;background:rgba(226,230,242,.16);cursor:pointer}
 .cf-bar::before{content:"";position:absolute;left:0;right:0;top:-20px;bottom:-20px}   /* 押せる範囲 */
-.cf-bar i{position:absolute;top:0;bottom:0;left:0;width:10%;border-radius:3px;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.55);transition:left .25s cubic-bezier(.23,1,.32,1)}
+.cf-bar i{position:absolute;top:0;bottom:0;left:0;width:10%;border-radius:3px;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.55);transition:transform .25s cubic-bezier(.23,1,.32,1)}
 .cflow:not(.cf-on) .cf-ctl{display:none}
 @media (max-width:860px){.cflow{--W:62vw;margin-top:30px}.cf-cap strong{font-size:17px}.cf-cap > span{font-size:10.5px;letter-spacing:.05em}
   .cf-track{height:calc(var(--H) + var(--H)*.36 + 92px)}.cf-cap{top:calc(var(--H) + var(--H)*.3 + 14px)}}
