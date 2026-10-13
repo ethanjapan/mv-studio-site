@@ -18,8 +18,9 @@
       {k:'美容',h:base+'usecases/',f:'',soon:true}]},
     {k:'作品',h:base+'works.html',f:'works.html',n:'III'},
     {k:'裏番組',h:base+'works.html#shows',f:'',n:'IV'},
-    {k:'仕組み',h:base+'strengths.html',f:'strengths.html',n:'V'},
-    {k:'相談',h:base+'#contact',f:'',n:'VI'}];
+    {k:'スタジオの中',h:base+'studio.html',f:'studio.html',n:'V'},
+    {k:'仕組み',h:base+'strengths.html',f:'strengths.html',n:'VI'},
+    {k:'相談',h:base+'#contact',f:'',n:'VII'}];
 
   // iOS Safari 対策(2026-10-13): サブページの autoplay video(撮影会 11 本など)は画面内だけ読み込む。トップは main.js が同じ門を持つ
   if(!document.querySelector('script[src*="js/main.js"]')){   // トップは main.js が同じ門を持つ(一覧 works.html も .works を持つので script で見る)
