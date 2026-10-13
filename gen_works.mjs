@@ -129,10 +129,12 @@ for (const w of DATA.works) {
 // 一覧ページ(works.html)の固定文(見出し・リード文・注記)は main.js の辞書から写す(トップと同じ訳にする)
 {
   const mainJs = readFileSync(join(ROOT, 'js/main.js'), 'utf8')
-  const s0 = mainJs.indexOf('const M=Object.assign({},window.MV_WORKS_I18N||{},{', mainJs.indexOf('(function i18n(){'))
-  const s1 = mainJs.indexOf('\n  });', s0)
+  // 形: const M=Object.assign({},{ ...辞書... },window.MV_WORKS_I18N||{});  (生成物が辞書に勝つ)
+  const head = 'const M=Object.assign({},{'
+  const s0 = mainJs.indexOf(head, mainJs.indexOf('(function i18n(){'))
+  const s1 = mainJs.indexOf('\n  },window.MV_WORKS_I18N||{});', s0)
   if (s0 < 0 || s1 < 0) throw new Error('js/main.js の辞書 M が見つからない(形が変わった)')
-  const M = (0, eval)('(' + mainJs.slice(s0 + 'const M=Object.assign({},window.MV_WORKS_I18N||{},'.length, s1).trim() + '})')
+  const M = (0, eval)('(' + mainJs.slice(s0 + head.length - 1, s1).trim() + '})')
   const page = readFileSync(join(ROOT, 'works.html'), 'utf8').replace(/<!-- gen:[\s\S]*?<!-- gen:\w+:end -->/g, '').replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, '')
   const texts = new Set([...page.matchAll(/>([^<>]+)</g)].map(m => m[1].trim()).filter(Boolean))
   let n = 0
