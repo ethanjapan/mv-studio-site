@@ -1668,21 +1668,25 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
 .cf-track::-webkit-scrollbar{display:none}
 .cf-item{flex:0 0 var(--step);position:relative;scroll-snap-align:center;text-decoration:none;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.cf-cover{position:absolute;left:50%;top:0;width:var(--W);height:var(--H);margin-left:calc(var(--W)/-2);border-radius:6px;overflow:hidden;background:#05070f;
-  box-shadow:0 30px 60px -28px rgba(0,0,0,.9),0 0 0 1px rgba(226,230,242,.10);transform-origin:50% 50%;
-  -webkit-box-reflect:below 2px linear-gradient(transparent 58%,rgba(255,255,255,.22))}
-.cf-cover img,.cf-cover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cf-cover{position:absolute;left:50%;top:0;width:var(--W);height:var(--H);margin-left:calc(var(--W)/-2);transform-origin:50% 50%}
+.cf-face{position:absolute;inset:0;border-radius:6px;overflow:hidden;background:#05070f;
+  box-shadow:0 30px 60px -28px rgba(0,0,0,.9),0 0 0 1px rgba(226,230,242,.10)}
+.cf-face img,.cf-face video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* 映り込み(2026-10-13): -webkit-box-reflect は別の層で一拍遅れ、出た途端に崩れた(実機 iPhone)。札と同じ箱に反転したサムネを置いて一緒に動かす。Firefox でも出る */
+.cf-refl{position:absolute;left:0;top:calc(var(--H) + 2px);width:100%;height:calc(var(--H)*.42);object-fit:cover;object-position:bottom;display:block;border-radius:0 0 6px 6px;
+  transform:scaleY(-1);transform-origin:50% 50%;pointer-events:none;opacity:.22;   /* 50% 0 だと上へ反転して札の裏に隠れた(実測) */
+  -webkit-mask-image:linear-gradient(to top,#000,transparent 95%);mask-image:linear-gradient(to top,#000,transparent 95%)}
 .cf-shade{position:absolute;inset:0;z-index:3;background:#000;opacity:0;pointer-events:none}   /* 脇の札の暗さ(filter だと毎コマ描き直しになる) */
 .cflow.cf-on .cf-cover{will-change:transform}
 .cf-track{cursor:grab;user-select:none;-webkit-user-select:none}.cf-track:active{cursor:grabbing}
-.cf-cover img{-webkit-user-drag:none}
-.cf-cover video{opacity:0;transition:opacity .4s ease}
-.cf-item.playing .cf-cover video[src]{opacity:1}
+.cf-face img,.cf-refl{-webkit-user-drag:none}
+.cf-face video{opacity:0;transition:opacity .4s ease}
+.cf-item.playing .cf-face video[src]{opacity:1}
 /* YouTube の埋め込み(中央の 1 枚だけ): サムネの上に重ね、読み込めたら現れる。札全体はリンクのままにする(埋め込みは押せない) */
-.cf-cover iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2;opacity:0;transition:opacity .5s ease;pointer-events:none;background:#000}
-.cf-item.playing .cf-cover iframe{opacity:1}
-.cf-cover .yt-badge{position:absolute;top:12px;right:14px;z-index:2;opacity:0;transition:opacity .3s}
-.cf-item.on .cf-cover .yt-badge{opacity:1}
+.cf-face iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2;opacity:0;transition:opacity .5s ease;pointer-events:none;background:#000}
+.cf-item.playing .cf-face iframe{opacity:1}
+.cf-face .yt-badge{position:absolute;top:12px;right:14px;z-index:2;opacity:0;transition:opacity .3s}
+.cf-item.on .cf-face .yt-badge{opacity:1}
 /* 札の題= 中央の 1 枚の下(映り込みの下)に、iPod の曲名のように */
 .cf-cap{position:absolute;left:50%;top:calc(var(--H) + var(--H)*.36 + 18px);width:min(var(--W),88vw);margin-left:calc(min(var(--W),88vw)/-2);text-align:center;
   opacity:0;transform:translateY(6px);transition:opacity .25s cubic-bezier(.23,1,.32,1),transform .25s cubic-bezier(.23,1,.32,1);pointer-events:none}
@@ -1692,7 +1696,7 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
 body.lang-zh .cf-cap strong{font-family:"Noto Serif TC",serif}
 /* 平らな列(JS 無し・動きを減らす): 題は常に見せる */
 .cflow:not(.cf-on) .cf-cap{opacity:1;transform:none;position:static;width:auto;margin:calc(var(--H) + 14px) 0 0;text-align:left}
-.cflow:not(.cf-on) .cf-cover{-webkit-box-reflect:none}
+.cflow:not(.cf-on) .cf-refl{display:none}
 .cflow:not(.cf-on) .cf-track{height:auto;padding-bottom:10px}
 .cflow:not(.cf-on) .cf-item{scroll-snap-align:start}
 /* 送り: 前後のボタン(44pt)と、iTunes の下のつまみの線 */

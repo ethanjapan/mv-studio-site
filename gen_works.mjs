@@ -85,7 +85,7 @@ function flowItem(w) {
   // スマホは YouTube の埋め込みでなく手元の小さなループ(720p・0.3〜0.5MB)を中央だけ再生する(iPhone のメモリ: 埋め込みは +100MB 級)。PC は埋め込み
   const video = `<video data-src="assets/${w.asset}.mp4?v=${w.v}" muted loop playsinline preload="none" aria-hidden="true"></video>`
   return `        <${tag} class="cf-item"${attrs}>
-          <span class="cf-cover">${img}${video}${w.yt ? '<span class="yt-badge">YouTube</span>' : ''}</span>
+          <span class="cf-cover"><span class="cf-face">${img}${video}${w.yt ? '<span class="yt-badge">YouTube</span>' : ''}</span>${img.replace('<img ', '<img class="cf-refl" aria-hidden="true" ')}</span>
           <span class="cf-cap"><strong>${esc(w.title)}</strong><span>${subHtml(w.sub)}</span></span>
         </${tag}>`
 }

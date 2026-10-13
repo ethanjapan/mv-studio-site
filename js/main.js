@@ -390,7 +390,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const flat=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!flat)root.classList.add('cf-on');
   const covers=items.map(it=>it.querySelector('.cf-cover')),vids=items.map(it=>it.querySelector('video'));
-  const shades=covers.map(c=>{const e=document.createElement('i');e.className='cf-shade';c.appendChild(e);return e;});
+  const faces=covers.map(c=>c.querySelector('.cf-face')||c);
+  const shades=faces.map(f=>{const e=document.createElement('i');e.className='cf-shade';f.appendChild(e);return e;});
   vids.forEach(v=>{if(v)v.__src=v.dataset.src;});
   let cur=-1,inView=false,tick=false,settle=0,centers=[],stepW=1,coverW=1,viewW=1,playing=-1;
   const lastT=new Array(items.length).fill(''),lastZ=new Array(items.length).fill(''),lastO=new Array(items.length).fill(''),lastF=new Array(items.length).fill(false);
@@ -405,11 +406,11 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   // YouTube の埋め込み(ミュート・インライン・ループ・操作なし)を差し込む。中央を外れたら外す(同時に 1 つ)。
   // 手元のループ動画しか無い札(YouTube 無し)は、その動画を再生
   let ytOn=-1;
-  function ytOff(){if(ytOn<0)return;const f=covers[ytOn].querySelector('iframe');if(f)f.remove();items[ytOn].classList.remove('playing');if(vids[ytOn])vidOut(vids[ytOn]);ytOn=-1;}
+  function ytOff(){if(ytOn<0)return;const f=faces[ytOn].querySelector('iframe');if(f)f.remove();items[ytOn].classList.remove('playing');if(vids[ytOn])vidOut(vids[ytOn]);ytOn=-1;}
   function play(){try{play_();}catch(e){root.__cfErr=String(e&&e.stack||e);}}
   function play_(){                      // スクロールが止まった時だけ呼ぶ
     if(flat||!inView||cur<0)return;
-    if(ytOn===cur&&(covers[cur].querySelector('iframe')||(vids[cur]&&vids[cur].getAttribute('src'))))return;   // 既に差してあれば何もしない(無ければ差し直す)
+    if(ytOn===cur&&(faces[cur].querySelector('iframe')||(vids[cur]&&vids[cur].getAttribute('src'))))return;   // 既に差してあれば何もしない(無ければ差し直す)
     ytOff();ytOn=cur;
     const id=mobile?'':items[cur].dataset.yt;   // スマホ: 埋め込みを使わず手元のループ(iPhone のメモリ対策・実機で落ちた)
     if(id){
@@ -421,14 +422,14 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       const cmd=fn=>{try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:fn,args:[]}),'*');}catch(e){}};
       f.__kick=0;f.__play=()=>{if(f.__kick++>3||!f.isConnected)return;cmd('mute');cmd('playVideo');setTimeout(()=>{if(f.isConnected&&items[ytOn]&&!items[ytOn].classList.contains('playing'))f.__play();},900);};
       f.addEventListener('load',()=>{try{f.contentWindow.postMessage(JSON.stringify({event:'listening',id:id,channel:'widget'}),'*');}catch(e){}setTimeout(f.__play,300);});
-      covers[cur].appendChild(f);
+      faces[cur].appendChild(f);
     }else if(vids[cur]){vidIn(vids[cur]);items[cur].classList.add('playing');}
   }
   // YouTube からの再生状態(1= 再生中)。再生が始まった札だけ .playing(動画が表に出る)。再生できない時はサムネのまま
   addEventListener('message',e=>{
     if(typeof e.data!=='string'||!/youtube/.test(e.origin))return;
     let d;try{d=JSON.parse(e.data);}catch(x){return;}
-    if(ytOn<0)return;const f=covers[ytOn].querySelector('iframe');if(!f||f.contentWindow!==e.source)return;
+    if(ytOn<0)return;const f=faces[ytOn].querySelector('iframe');if(!f||f.contentWindow!==e.source)return;
     if(d.event==='onReady'){f.__kick=0;f.__play();return;}
     if(d.event!=='infoDelivery'||!d.info||d.info.playerState==null)return;
     items[ytOn].classList.toggle('playing',d.info.playerState===1);items[ytOn].dataset.ytstate=d.info.playerState;
