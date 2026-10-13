@@ -774,6 +774,19 @@ body::after{content:"";position:fixed;inset:-40px;z-index:50;pointer-events:none
 .official .d{display:block;margin-top:2px;font-size:12px;letter-spacing:.04em;color:var(--sub)}
 .official .go{font-size:18px;color:var(--gold);transition:transform .3s}
 .official:hover .go{transform:translateX(4px)}
+
+/* 導線の印(2026-10-14): 文字の矢印(→ ↓ ←)を本家サイトと同じ「輪の中の山形」に。色(金属の金・朝の幕の墨色)はそのまま */
+:root{--go-ic:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10.5'/><path d='M10.5 8l4 4-4 4'/></svg>")}
+.row .go,.wmore .arrow,.official .go,.cta-main::after,.pair-links a::after,.cta-sub::after,#sprev::before,#snext::before{
+  content:"";font-size:0!important;line-height:0;display:inline-block;width:22px;height:22px;flex:none;color:transparent;
+  background:var(--gold-metal)!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;
+  -webkit-mask:var(--go-ic) center/contain no-repeat;mask:var(--go-ic) center/contain no-repeat}
+.wmore .arrow{width:30px;height:30px}
+.pair-links a::after,.act-4 .row .go{background:var(--gold-m)!important}
+.t-ja .act-4 .row .go{background:#454842!important}.t-zh .act-4 .row .go{background:#303C37!important}
+.cta-sub::after{transform:rotate(90deg)}
+#sprev::before{transform:rotate(180deg)}
+.strip-ctl button{display:inline-flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>

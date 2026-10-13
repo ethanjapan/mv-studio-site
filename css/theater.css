@@ -1800,3 +1800,15 @@ body.top-solid .reel-progress{background-color:#05070f}
 /* ④ 帯の「蓋」(シミュレータ実測 2026-10-14): ヘッダを不透明の単色にしても帯には通り過ぎた本文が描かれた= 帯はページの上の外側。
       画面の上の外側(top:-160px)に固定した単色の板は、Safari が帯を描く時にそこに映る。頁の先頭(body.top-solid 無し)では出さない= ヒーローは帯まで続く */
 body.top-solid::after{content:"";position:fixed;left:0;right:0;top:-160px;height:160px;background:#05070f;z-index:22;pointer-events:none}
+
+/* 導線の印(2026-10-14 ユーザー「→ の文字はデザイン性がない。全体見直し」): 文字の矢印(→)を全ページでやめ、畳む札と同じ「輪の中の山形」(右向き= 進む)。
+   マウスを乗せると山形が少し進み、輪が明るむ。解像度の段(720P 1080P 4K)は輪なしの小さな山形 */
+.go-ic{width:20px;height:20px;flex:none;align-self:center;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.3em;margin-left:.4em}
+.go-ic circle{stroke:rgba(217,189,138,.55);transition:stroke .3s}
+.go-ic path{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+a:hover .go-ic circle,button:hover .go-ic circle{stroke:rgba(217,189,138,.95)}
+a:hover .go-ic path,button:hover .go-ic path{transform:translateX(1.5px)}
+.ch-cta svg.go-ic,body.uc .ch-cta svg.go-ic,body.uc .btn svg.go-ic,body.uc .hero-yt svg.go-ic{display:block;width:20px;height:20px;margin:0 0 0 .1em}
+.uc-next .nx .go-ic{width:.85em;height:.85em;margin-left:.3em;vertical-align:-.08em;opacity:.9}
+.st-src .go-ic{width:16px;height:16px;vertical-align:-.28em;margin-left:.15em}
+.res-arrow svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.1em}

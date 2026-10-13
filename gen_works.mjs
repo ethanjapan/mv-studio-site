@@ -57,17 +57,19 @@ ${langs}
 }
 
 const nW = DATA.works.length, nS = DATA.shows.length
+// 導線の印(2026-10-14 ユーザー「→ の文字はデザイン性がない」): 畳む札と同じ「輪の中の山形」
+const GO = '<svg class="go-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10.5 8l4 4-4 4"/></svg>'
 // 文言(日本語→繁中)。作品・番組の本文と、ここで作る見出し・導線
 const L = {
   flow: ['作品', '作品'],
   prev: ['前の作品', '上一支作品'],
   next: ['次の作品', '下一支作品'],
-  allWorks: [`すべての作品を見る（${nW}本）→`, `看全部作品（${nW} 支）→`],
+  allWorks: [`すべての作品を見る（${nW}本）`, `看全部作品（${nW} 支）`],
   doorCount: [`すでに生まれた ${nW} 本`, `已經誕生的 ${nW} 支`],
   flowS: ['番組', '節目'],
   prevS: ['前の番組', '上一集節目'],
   nextS: ['次の番組', '下一集節目'],
-  allShows: [`番組をすべて見る（${nS}回）→`, `看全部節目（${nS} 集）→`],
+  allShows: [`番組をすべて見る（${nS}回）`, `看全部節目（${nS} 集）`],
   pageTitle: ['作品一覧 — MV Studio', '全部作品 — MV Studio'],
   eyebrowW: [`WORKS — 作品（${nW}本）`, `WORKS — 作品（${nW} 支）`],
   eyebrowS: [`SHOWS — 裏番組（${nS}回）`, `SHOWS — 幕後節目（${nS} 集）`],
@@ -99,7 +101,7 @@ ${DATA.works.slice(0, TOP_WORKS).map(flowItem).join('\n')}
         </div>
         <div class="cf-ctl"><button type="button" class="cf-prev" aria-label="${L.prev[0]}"></button><div class="cf-bar" aria-hidden="true"><i></i></div><button type="button" class="cf-next" aria-label="${L.next[0]}"></button></div>
       </div>
-      <a class="ch-cta reveal d3" href="works.html">${L.allWorks[0]}</a>
+      <a class="ch-cta reveal d3" href="works.html">${L.allWorks[0]}${GO}</a>
 `
 // 番組も Cover Flow(2026-10-14 ユーザー「この部分もスクロールがながいから、作品の表示仕方と同様な演出はできる？」)。
 // 表紙= YouTube のサムネ(繁中は台湾版のサムネ・リンク・ループ動画に main.js が差し替える)。中央の札の下に 種別・題・説明・言語と尺
@@ -122,7 +124,7 @@ ${DATA.shows.map(showFlowItem).join('\n')}
         </div>
         <div class="cf-ctl"><button type="button" class="cf-prev" aria-label="${L.prevS[0]}"></button><div class="cf-bar" aria-hidden="true"><i></i></div><button type="button" class="cf-next" aria-label="${L.nextS[0]}"></button></div>
       </div>
-      <a class="ch-cta reveal d3" href="works.html#shows">${L.allShows[0]}</a>
+      <a class="ch-cta reveal d3" href="works.html#shows">${L.allShows[0]}${GO}</a>
 `
 // ---- 一覧(works.html)
 const allWorks = `
