@@ -1694,3 +1694,5 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
 /* ---- 札の説明の改行(2026-10-13 繁中の全頁計測: 「手水舍・櫻花庭 / 園」のように 2 行目が 1〜2 字だけになる札が 78)。
    2〜3 行の短い説明は行の長さをそろえて折る(text-wrap:balance・Safari 26.5 / Chrome 対応)。日本語の札にも効く ---- */
 .uc-grid figcaption,.dcol figcaption,.use .t > span{text-wrap:balance}
+/* 繁中の見出しの強調(2026-10-13 ユーザー指摘「挑一 / 挑」): 強調の語は途中で折らず、空白で折る */
+body.lang-zh .ch-title .em,body.lang-zh h1 .em,body.lang-zh h2 .em{white-space:nowrap}
