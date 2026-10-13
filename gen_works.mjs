@@ -63,6 +63,7 @@ const L = {
   prev: ['前の作品', '上一支作品'],
   next: ['次の作品', '下一支作品'],
   allWorks: [`すべての作品を見る（${nW}本）→`, `看全部作品（${nW} 支）→`],
+  doorCount: [`すでに生まれた ${nW} 本`, `已經誕生的 ${nW} 支`],
   allShows: [`番組をすべて見る（${nS}回）→`, `看全部節目（${nS} 集）→`],
   pageTitle: ['作品一覧 — MV Studio', '全部作品 — MV Studio'],
   eyebrowW: [`WORKS — 作品（${nW}本）`, `WORKS — 作品（${nW} 支）`],
@@ -133,6 +134,12 @@ fill('works.html', 'shows', allShows)
   const p = join(ROOT, 'works.html'), src = readFileSync(p, 'utf8')
   const out = src.replace(/WORKS — 作品（\d+本）/, L.eyebrowW[0]).replace(/SHOWS — 裏番組（\d+回）/, L.eyebrowS[0])
   if (out !== src) { writeFileSync(p, out); console.log('works.html: 見出しの数を更新') }
+}
+// 三つの扉「作品を観る」の数(トップ)
+{
+  const p = join(ROOT, 'index.html'), src = readFileSync(p, 'utf8')
+  const out = src.replace(/<em>すでに生まれた \d+ 本<\/em>/, `<em>${L.doorCount[0]}</em>`)
+  if (out !== src) { writeFileSync(p, out); console.log('index.html: 扉の作品数を更新') }
 }
 // 完成した作品の数(トップの数字)
 {
