@@ -185,3 +185,18 @@ const jp = join(ROOT, 'js/works_i18n.js')
 let old = ''; try { old = readFileSync(jp, 'utf8') } catch {}
 if (old !== js) { writeFileSync(jp, js); console.log('js/works_i18n.js を書き換え') }
 console.log(`作品 ${nW} 本(トップ Cover Flow ${Math.min(nW, TOP_WORKS)})・番組 ${nS} 回(トップ ${TOP_SHOWS})`)
+
+// ★2026-10-14: links.html(made_linlin のリンク集)はこの生成器の外で手書き。10-13 に水鏡を works.json へ足した時、
+//   links.html のヒーロー/最新作ボタン/作品棚と、トップの「完成作品の上映時間」(番組の尺も含む合計= works.json から出せない)が
+//   更新されずに残った(ユーザーに「made_linlin のサイトにも」と言われるまで)。最新作が links.html に無ければ大きく知らせる
+{
+  const links = readFileSync(join(ROOT, 'links.html'), 'utf8')
+  const yid = (w) => (w.yt || '').split('/').pop()
+  const miss = DATA.works.filter(w => w.yt && !links.includes(yid(w))).map(w => w.title)
+  const latest = DATA.works.find(w => w.yt)
+  if (miss.length) console.warn(`★links.html に無い作品: ${miss.join(' / ')}(作品棚 wcard・番号 snum・訳 w.<id>.*)`)
+  if (latest && !new RegExp(`class="cta cta-main" href="https://youtu\\.be/${yid(latest)}"`).test(links))
+    console.warn(`★links.html の最新作ボタン/ヒーローが最新作『${latest.title}』でない(lk_loop_/lk_poster_/縦題 lk_ja_/lk_tw_・og_links.jpg)`)
+  if (miss.length || (latest && !links.includes(`cta-main" href="${latest.yt}`)))
+    console.warn('★作品を足したら index.html の「完成作品の上映時間」(と js/main.js の訳)も足す= 手順は README の「作品を足す」')
+}

@@ -17,6 +17,7 @@ const EXCLUDE = new Set([
   '.DS_Store', 'Thumbs.db',   // OS が撒くゴミ。配信するとファイル名が漏れる
   'js/world.js',              // どの HTML からも参照されていない死蔵ファイル
   '_review',                  // 画像の目視チェック用(公開しない)
+  'tools',                    // 作品の素材を作る台本(tools/new_work_assets.py・公開しない)
 ])
 
 const HTML_OPTS = {
