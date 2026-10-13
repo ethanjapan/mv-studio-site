@@ -565,7 +565,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:600}
 .freedom-sub{position:relative;margin-top:12px;font-size:13.5px;line-height:2;color:var(--muted)}
 .freedom-chips{position:relative;margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-.sc-chip{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.06em;
+.st-chip{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.06em;
   padding:10px 16px;border-radius:100px;color:var(--ink);
   border:1px solid rgba(217,189,138,.3);background:rgba(8,10,22,.5)}
 .st-chip svg{width:15px;height:15px;stroke:var(--gold)}
@@ -1854,11 +1854,14 @@ a:hover .go-ic path,button:hover .go-ic path{transform:translateX(1.5px)}
 /* studio.html の先頭と分類の札 */
 .studio-top{padding-top:calc(var(--vhpx,100svh)*.18);min-height:calc(var(--vhpx,100svh)*.62)}
 .studio-top h1.ch-title{font-size:clamp(30px,5vw,58px)}
-.sc-chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-.sc-chip{display:inline-flex;align-items:center;gap:12px;padding:12px 18px 12px 16px;border:1px solid rgba(217,189,138,.32);border-radius:100px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-size:14px;letter-spacing:.08em;transition:.3s}
+/* 分類の行(ピル型は禁止= DESIGN_RULES.md): ヒーローの I/II/III の行と同じ、番号・文字・数・細い下線 */
+.sc-chips{display:flex;flex-direction:column;margin-top:34px;max-width:520px}
+.sc-chip{display:grid;grid-template-columns:2.2em 1fr auto;align-items:baseline;column-gap:14px;padding:12px 2px;border-bottom:1px solid rgba(226,230,242,.16);text-decoration:none;color:var(--ink);font-family:var(--serif);font-size:15px;letter-spacing:.08em;position:relative;transition:color .3s}
+.sc-chip:first-child{border-top:1px solid rgba(226,230,242,.16)}
 .sc-chip .k{font-family:var(--en-display);font-size:12px;letter-spacing:.2em;color:var(--gold)}
 .sc-chip .n{font-family:var(--en);font-size:11px;letter-spacing:.1em;color:var(--muted)}
-.sc-chip:hover{border-color:rgba(255,255,255,.55);color:#fff}
+.sc-chip::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.45);transition:width .5s}
+.sc-chip:hover{color:#fff}.sc-chip:hover::after{width:100%}
 .st-part{font-family:var(--en-display);font-size:clamp(28px,4vw,44px);letter-spacing:.2em;color:var(--gold);opacity:.7;margin-bottom:18px}
 .st-part::after{content:"";display:block;width:54px;height:1px;background:var(--inf);margin-top:10px}
 @media (prefers-reduced-motion: reduce){.map-card:hover{transform:none}.map-card:hover > img{transform:none}}
