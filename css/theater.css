@@ -1706,6 +1706,8 @@ body.lang-zh .cf-cap strong{font-family:"Noto Serif TC",serif}
 .cf-bar::before{content:"";position:absolute;left:0;right:0;top:-20px;bottom:-20px}   /* 押せる範囲 */
 .cf-bar i{position:absolute;top:0;bottom:0;left:0;width:10%;border-radius:3px;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.55);transition:transform .25s cubic-bezier(.23,1,.32,1)}
 .cflow:not(.cf-on) .cf-ctl{display:none}
+/* iPhone のメモリ対策(2026-10-13 実機で「問題が繰り返し起きました」= ページ落ち): スマホは映り込み無し・層の先取り無し・遠い札は描かない */
+@media (max-width:860px){.cf-cover{-webkit-box-reflect:none}.cflow.cf-on .cf-cover{will-change:auto}.cf-item.cf-far{visibility:hidden}}
 @media (max-width:860px){.cflow{--W:62vw;margin-top:30px}.cf-cap strong{font-size:17px}.cf-cap > span{font-size:10.5px;letter-spacing:.05em}
   .cf-track{height:calc(var(--H) + var(--H)*.36 + 92px)}.cf-cap{top:calc(var(--H) + var(--H)*.3 + 14px)}}
 

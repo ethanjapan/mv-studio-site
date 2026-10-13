@@ -393,7 +393,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const shades=covers.map(c=>{const e=document.createElement('i');e.className='cf-shade';c.appendChild(e);return e;});
   vids.forEach(v=>{if(v)v.__src=v.dataset.src;});
   let cur=-1,inView=false,tick=false,settle=0,centers=[],stepW=1,coverW=1,viewW=1,playing=-1;
-  const lastT=new Array(items.length).fill(''),lastZ=new Array(items.length).fill(''),lastO=new Array(items.length).fill('');
+  const lastT=new Array(items.length).fill(''),lastZ=new Array(items.length).fill(''),lastO=new Array(items.length).fill(''),lastF=new Array(items.length).fill(false);
+  const mobile=matchMedia('(max-width:860px)').matches;
   function measure(){
     viewW=track.clientWidth;stepW=items[0].offsetWidth;coverW=covers[0].offsetWidth;
     centers=items.map(it=>it.offsetLeft+it.offsetWidth/2);
@@ -448,6 +449,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       const d=(centers[i]-vc)/stepW,ad=Math.abs(d);
       if(ad<bd){bd=ad;best=i;}
       if(flat)continue;
+      if(mobile){const far=ad>3.5;if(far!==lastF[i]){items[i].classList.toggle('cf-far',far);lastF[i]=far;}if(far)continue;}   // スマホ: 中央 ±3 だけ描く(メモリ)
       if(ad>9&&lastT[i])continue;       // 画面の外の遠い札は書かない(最後の形のまま)
       const a=d<-1?-1:d>1?1:d,aa=a<0?-a:a;
       const ry=-a*62,tx=a*coverW*0.42,tz=(1-aa)*coverW*0.16-(ad<6?ad:6)*6;
@@ -461,10 +463,10 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   function onScroll(){
     if(!tick){tick=true;requestAnimationFrame(update);}
     stopFar();
-    clearTimeout(settle);settle=setTimeout(play,'onscrollend' in window?600:180);   // scrollend が無い Safari 26.1 以前の保険
+    clearTimeout(settle);settle=setTimeout(play,mobile?1000:('onscrollend' in window?600:180));   // スマホは止まって 1 秒(埋め込みの作り直しを減らす)
   }
   track.addEventListener('scroll',onScroll,{passive:true});
-  track.addEventListener('scrollend',()=>{clearTimeout(settle);play();});
+  track.addEventListener('scrollend',()=>{clearTimeout(settle);settle=setTimeout(play,mobile?900:0);});
   addEventListener('resize',()=>{measure();update();go(cur,false);});
   items.forEach((it,i)=>it.addEventListener('click',e=>{if(dragMoved){e.preventDefault();return;}if(i!==cur){e.preventDefault();go(i);}}));
   if(prev)prev.addEventListener('click',()=>go(cur-1));
