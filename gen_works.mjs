@@ -24,15 +24,15 @@ function subHtml(sub) {
   const [head, tail] = splitSub(sub)
   return tail ? `${esc(head)} ・ <span class="nw">${esc(tail)}</span>` : esc(sub)
 }
-function workCard(w, { autoplay = false } = {}) {
+function workCard(w, { autoplay = false, big = false } = {}) {   // big= 一覧の韻律(2026-10-14・ブライダルの棚と同じ 2 列ぶん)
   const video = `<video src="assets/${w.asset}.mp4?v=${w.v}" poster="assets/${w.asset}.jpg?v=${w.v}" muted loop playsinline preload="none"${autoplay ? ' autoplay' : ''}></video>`
   const cap = `<figcaption><strong>${esc(w.title)}</strong><span>${subHtml(w.sub)}</span></figcaption>`
   // YouTube に上げていない作品(暁の誓剣)はリンク無しの札(2026-10-13: JSON 化の時に取りこぼして消していた)
-  if (!w.yt) return `        <figure class="workcard reveal">
+  if (!w.yt) return `        <figure class="workcard reveal${big ? ' big' : ''}">
           ${video}
           ${cap}
         </figure>`
-  return `        <a class="worklink reveal" href="${esc(w.yt)}" target="_blank" rel="noopener noreferrer"><figure class="workcard">
+  return `        <a class="worklink reveal${big ? ' big' : ''}" href="${esc(w.yt)}" target="_blank" rel="noopener noreferrer"><figure class="workcard">
           ${video}
           <span class="yt-badge">YouTube</span>
           ${cap}
@@ -129,7 +129,7 @@ ${DATA.shows.map(showFlowItem).join('\n')}
 // ---- 一覧(works.html)
 const allWorks = `
       <div class="works all">
-${DATA.works.map(w => workCard(w, { autoplay: true })).join('\n')}
+${DATA.works.map((w, i) => workCard(w, { autoplay: true, big: i === 0 || i === 9 })).join('\n')}
       </div>
 `
 const allShows = `
