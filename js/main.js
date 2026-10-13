@@ -532,19 +532,22 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const rest=[];let el=lead.nextElementSibling;while(el){rest.push(el);el=el.nextElementSibling;}
     if(!rest.length)return;
     // 2026-10-14 ユーザー「矢印がデザイン性がない。畳む・展開の演出、誘導に工夫して」:
-    //  閉じている間も続きの頭(84px)を薄く見せて「まだある」と分からせる(mask で溶かす)・札は 輪+山形 の印で、閉じている間だけ輪が脈打って誘う
-    //  開閉は高さをなめらかに(max-height)。閉じている間の中身は inert(押せない・読み上げない)
-    const body=document.createElement('div');body.className='fold-body closed';body.inert=true;rest.forEach(x=>body.appendChild(x));
+    //  閉じている間も続きの頭(最初の要素だけ・150px)を薄く見せて「まだある」と分からせる(mask で溶かす)。札は 輪+山形(閉じている間だけ輪が脈打つ)
+    //  ★実機で落ちた(2026-10-14 朝・2 度目): 一度「中身を全部描いて高さで隠す」にしたら iPhone がメモリ落ち(14〜22 章の中身= 数十のリビール要素が描画層を持つ)。
+    //    → 覗き見は最初の要素だけ(.fold-peek)。残り(.fold-body)は以前と同じ display:none(hidden)。開く時は fold-body を出して薄く浮かせる
+    const peek=document.createElement('div');peek.className='fold-peek closed';peek.inert=true;peek.appendChild(rest[0]);
+    const body=document.createElement('div');body.className='fold-body';body.hidden=true;rest.slice(1).forEach(x=>body.appendChild(x));
     const btn=document.createElement('button');btn.type='button';btn.className='ch-cta fold-btn';btn.setAttribute('aria-expanded','false');
     btn.innerHTML='<span class="fold-l"><span class="ja">続きを見る</span><span class="zh">看更多</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span>';
-    btn.addEventListener('click',()=>{const open=body.classList.contains('closed');
-      if(open){body.style.maxHeight=body.scrollHeight+'px';body.classList.remove('closed');body.inert=false;
-        body.addEventListener('transitionend',function te(e){if(e.target!==body)return;body.style.maxHeight='none';body.removeEventListener('transitionend',te);});}
-      else{body.style.maxHeight=body.scrollHeight+'px';body.getBoundingClientRect();body.classList.add('closed');body.style.maxHeight='';body.inert=true;
+    btn.addEventListener('click',()=>{const open=peek.classList.contains('closed');
+      if(open){peek.style.maxHeight=peek.scrollHeight+'px';peek.classList.remove('closed');peek.inert=false;
+        peek.addEventListener('transitionend',function te(e){if(e.target!==peek)return;peek.style.maxHeight='none';peek.removeEventListener('transitionend',te);});
+        body.hidden=false;body.classList.remove('in');requestAnimationFrame(()=>requestAnimationFrame(()=>body.classList.add('in')));}
+      else{body.hidden=true;body.classList.remove('in');peek.style.maxHeight=peek.scrollHeight+'px';peek.getBoundingClientRect();peek.classList.add('closed');peek.style.maxHeight='';peek.inert=true;
         sec.scrollIntoView({block:'start',behavior:'smooth'});}
       btn.setAttribute('aria-expanded',String(open));btn.classList.toggle('open',open);
       btn.querySelector('.ja').textContent=open?'閉じる':'続きを見る';btn.querySelector('.zh').textContent=open?'收起':'看更多';});
-    lead.after(body);body.after(btn);
+    lead.after(peek);peek.after(body);body.after(btn);
   });
 })();
 
