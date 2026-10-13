@@ -1628,3 +1628,26 @@ body.uc .ch-title .em.nw{white-space:nowrap}
 header{transition:background .35s,padding .35s,box-shadow .35s}
 header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) saturate(1.1);backdrop-filter:blur(12px) saturate(1.1);
   padding-top:14px;padding-bottom:14px;box-shadow:0 1px 0 rgba(226,230,242,.08)}
+
+/* ============================================================
+   iPhone 実測の修正(2026-10-13・iOS シミュレータ iPhone 17 Pro 402pt / 17 Pro Max 440pt の Safari 26.5 で計測)
+   Impeccable audit + Emil review-animations の指摘のうち、実機で再現したものだけ。世界観(色・書体・罫)は変えない
+   ============================================================ */
+/* 1) 言語ボタン(高さ24)とメニュー(20x21)は指で押しにくい。見た目はそのまま、押せる範囲だけ 44pt に広げる */
+.ls-btn::before{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+.sm-btn::before{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+/* 2) ヒーローの特徴「すべて手元のPCで生 / 成」が語の途中で折れた。空白でだけ折る(「日本語 ・ / 繁體中文(台灣)」は空白で折れる) */
+.chip > span:not(.dots){word-break:keep-all}
+/* 3) 用途カード: 402pt で題名が上まで伸びて NEW の札に重なった(ブライダル前撮り)。スマホはカードを正方形にして題名を下げる */
+@media (max-width:640px){ .use{aspect-ratio:1/1} }
+/*    NEW は明るい写真(花冠)の上で読めなかった。札の下に薄い夜の色を敷く */
+.use .tag-new{padding:4px 7px 4px 8px;background:rgba(4,6,15,.62)}
+/* 4) リード文の最終行に 1〜2 字だけ残る(「作 / 品。」「ディレクター / へ。」)。対応ブラウザでは段落全体で折り返しを整える */
+.ch-sub{text-wrap:pretty}
+/* 5) 右下の「相談」が本文と見出しを隠していた。下へ読み進めている間は隠し、上へ戻ると出す(js/sitemenu.js)。
+      動きは opacity と transform だけ・200ms・強い ease-out。動きを減らす設定では移動なしで消えるだけ */
+@media (max-width:860px){
+  .fab-contact{transition:opacity .2s cubic-bezier(.23,1,.32,1),transform .2s cubic-bezier(.23,1,.32,1)}
+  .fab-contact.fab-away{opacity:0;transform:translateY(12px) scale(.96);pointer-events:none}
+}
+@media (prefers-reduced-motion:reduce){ .fab-contact.fab-away{transform:none} }

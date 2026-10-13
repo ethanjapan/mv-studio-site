@@ -82,3 +82,21 @@
   // 初回の翻訳が先に終わり、繁中で開いた時に地図だけ日本語のまま残っていた(2026-10-13)
   if(document.querySelector('header'))mount();else document.addEventListener('DOMContentLoaded',mount);
 })();
+
+/* スマホの「相談」ボタン: 下へ読み進めている間は隠し、上へ戻る・ページ末尾に来ると出す
+   (2026-10-13 iPhone 実測で見出しと本文の行末を隠していた。表示の切替は theater.css の .fab-away) */
+(function(){
+  function init(){
+    var fab=document.querySelector('.fab-contact');if(!fab)return;
+    var last=scrollY,tick=false;
+    function update(){
+      tick=false;
+      var y=scrollY,dy=y-last,end=y+innerHeight>=document.documentElement.scrollHeight-80;
+      if(end||y<160||dy<-6)fab.classList.remove('fab-away');
+      else if(dy>6)fab.classList.add('fab-away');
+      if(Math.abs(dy)>6)last=y;
+    }
+    addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(update)}},{passive:true});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
