@@ -112,6 +112,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 }
 .top .wrap{height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;color:var(--sub)}
+.brand{position:relative}.brand::before{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}   /* 押せる範囲だけ 44pt(2026-10-13 iPhone 実測 18pt) */
 .brand .label{color:var(--sub)}
 .brand i{display:block;width:22px;height:1px;background:var(--gold)}
 .brand .brand-mark{display:block;width:47px;height:18px;filter:drop-shadow(0 0 6px rgba(200,150,255,.35))}
@@ -192,9 +193,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 }
 .cta:active,.film:active{transform:scale(.99);transition-duration:90ms}
 /* 章チップ(固定しない) */
-.uc-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:26px 0 0;padding-top:16px;border-top:1px solid rgba(243,239,230,.14)}
+.uc-chips{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;margin:26px 0 0;padding-top:16px;border-top:1px solid rgba(243,239,230,.14)}
 .uc-chips .uk{font-size:11px;letter-spacing:.26em;color:var(--gold);margin-right:4px}
 .uc-chips a{font-size:12.5px;letter-spacing:.12em;color:var(--sub);text-decoration:none;position:relative;padding:4px 0}
+.uc-chips a::before{content:"";position:absolute;left:-6px;right:-6px;top:50%;height:44px;transform:translateY(-50%)}   /* 押せる範囲だけ 44pt(2026-10-13 iPhone 実測 30pt) */
 .uc-chips a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .4s}
 .uc-chips a:hover{color:var(--ink)}.uc-chips a:hover::after{width:100%}
 .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:18px 0 0}

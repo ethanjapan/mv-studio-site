@@ -1645,6 +1645,8 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
 /* 4) リード文の最終行に 1〜2 字だけ残る(「作 / 品。」「ディレクター / へ。」)。対応ブラウザでは段落全体で折り返しを整える
       用途カードの説明も同じ(繁中 402pt で「…還有相 / 本」と 1 字落ちた) */
 .ch-sub,.use .t > span{text-wrap:pretty}
+/*    PC の Chrome で「ディレクタ / ーへ。」と「ー」が行頭に出た(text-wrap:pretty の副作用)。繁中と同じく行頭の禁則を厳しく */
+.ch-sub,.use .t > span{line-break:strict}
 /* 5) 右下の「相談」が本文と見出しを隠していた。下へ読み進めている間は隠し、上へ戻ると出す(js/sitemenu.js)。
       動きは opacity と transform だけ・200ms・強い ease-out。動きを減らす設定では移動なしで消えるだけ */
 @media (max-width:860px){
@@ -1652,3 +1654,39 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
   .fab-contact.fab-away{opacity:0;transform:translateY(12px) scale(.96);pointer-events:none}
 }
 @media (prefers-reduced-motion:reduce){ .fab-contact.fab-away{transform:none} }
+
+/* ============================================================
+   作品の棚(2026-10-13): 作品が増えるたびにスマホのトップが伸びていた(作品集 4.8 画面・番組 3.8 画面)。
+   トップは最新 8 本だけ・スマホは横の棚(ブライダルのドレスの棚と同じ合図)・全部は works.html へ
+   ============================================================ */
+.works-swipe,.works-track{display:none}
+.workcard .nw{white-space:nowrap}   /* 尺(4分09秒)を折らない */
+@media (max-width:860px){
+  .works.shelf{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin:36px -22px 0;padding:4px 22px 10px;scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
+  .works.shelf::-webkit-scrollbar{display:none}
+  .works.shelf.at-end{-webkit-mask-image:none;mask-image:none}
+  .works.shelf .worklink{flex:0 0 78vw;max-width:360px;scroll-snap-align:start}
+  .works-swipe{display:flex;align-items:center;gap:10px;margin:18px 0 0;font-size:12px;letter-spacing:.14em;color:var(--text-2,rgba(241,242,247,.72));transition:opacity .5s}
+  .works-swipe::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6);flex:none}
+  .works-swipe .n{color:var(--gold)}
+  .works-swipe i{position:relative;display:inline-block;width:34px;height:1px;background:rgba(226,230,242,.25);overflow:hidden}
+  .works-swipe i::after{content:"";position:absolute;inset:0;background:var(--inf);transform:translateX(-100%);animation:worksSwipe 2.2s ease-in-out infinite}
+  .works-swipe.done{opacity:0}
+  .works-track{display:block;position:relative;height:2px;margin:10px 0 0;border-radius:2px;background:rgba(226,230,242,.14);overflow:hidden}
+  .works-track b{position:absolute;top:0;bottom:0;left:0;width:30%;border-radius:2px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.5)}
+  .works.shelf + .works-swipe + .works-track + .ch-cta{margin-top:26px}
+}
+@keyframes worksSwipe{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.works-swipe i::after{animation:none;transform:none}}
+
+/* ---- 全ページの押せる範囲(2026-10-13 iPhone 17 Pro / Pro Max で全 10 頁を計測): 見た目はそのまま、指で押せる範囲だけ 44pt に ----
+   文中・行内のリンクは上下の padding(行内要素の padding は行の高さを変えない)。flex の子は ::before で広げる */
+.foot-map a::before,.lang-pill::before,.lt-btn::before,.hero-yt::before,.sm-x::before,.sm-lang button::before,.brand::before{
+  content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+.lang-pill,.lt-btn,.hero-yt,.brand{position:relative}
+.foot-cred,.show-note a{padding-top:12px;padding-bottom:12px}   /* 行内リンク: 見た目の高さは変わらない */
+.sm-a.sub{padding-top:9px;padding-bottom:9px}                   /* 地図の引き出しの小項目 40 → 44 */
+/* サイトの地図(フッター)は行間 4px で並ぶため、広げた押せる範囲が上下の行と重なった(実測: 中心から 20pt 上下で隣に当たる)。スマホだけ行間を 14px に */
+@media (max-width:640px){.foot-map{gap:14px 16px}}

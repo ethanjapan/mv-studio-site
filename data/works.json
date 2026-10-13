@@ -1,0 +1,380 @@
+{
+ "_note": "作品と番組の正本。index.html と works.html の該当部分と js/works_i18n.js は `node gen_works.mjs` がここから生成する(手で編集しない)。新しい作品は先頭に足す(新しい順)。",
+ "works": [
+  {
+   "id": "itsumo",
+   "yt": "https://youtu.be/_uC-XiL0EuY",
+   "asset": "wk_itsumo",
+   "v": "20261012a",
+   "title": "いつもの顔",
+   "sub": "棚の写真が動き出す四季のMV ・ 4分09秒",
+   "zh": {
+    "title": "平常的臉",
+    "sub": "架上照片動起來的四季MV ・ 4分09秒"
+   }
+  },
+  {
+   "id": "kugatsu",
+   "yt": "https://youtu.be/JjVQNUwyofo",
+   "asset": "wk_kugatsu",
+   "v": "20261009b",
+   "title": "九月のピアノ",
+   "sub": "KANADE 海辺の古い家のピアノMV ・ 3分47秒",
+   "zh": {
+    "title": "九月的鋼琴",
+    "sub": "KANADE 海邊老房子的鋼琴MV ・ 3分47秒"
+   }
+  },
+  {
+   "id": "kuroitsuki",
+   "yt": "https://youtu.be/19JGF_Ev4E4",
+   "asset": "wk_kuroitsuki",
+   "v": "20261005a",
+   "title": "黒い月",
+   "sub": "KANADE 夜明け前の港MV ・ 3分57秒",
+   "zh": {
+    "title": "黑月",
+    "sub": "KANADE 黎明前的港口MV ・ 3分57秒"
+   }
+  },
+  {
+   "id": "shiraho",
+   "yt": "https://youtu.be/ZT5IRk41IM8",
+   "asset": "wk_shiraho",
+   "v": "20261004a",
+   "title": "白い帆",
+   "sub": "RINKA 嵐の花嫁MV ・ 3分59秒",
+   "zh": {
+    "title": "白帆",
+    "sub": "RINKA 暴風雨中的新娘MV ・ 3分59秒"
+   }
+  },
+  {
+   "id": "hodoke",
+   "yt": "https://youtu.be/3uRbovVRzQM",
+   "asset": "wk_hodoke",
+   "v": "20260919a",
+   "title": "ほどけちゃえ",
+   "sub": "RINKA × KANADE 冬のダンスMV ・ 4分36秒",
+   "zh": {
+    "title": "解開吧",
+    "sub": "RINKA × KANADE 冬日舞蹈MV ・ 4分36秒"
+   }
+  },
+  {
+   "id": "gravity",
+   "yt": "https://youtu.be/404X3_ih8sc",
+   "asset": "wk_gravity",
+   "v": "20260915a",
+   "title": "重力 GRAVITY",
+   "sub": "KANADE × RINKA ダンスMV ・ 2分48秒",
+   "zh": {
+    "title": "重力 GRAVITY",
+    "sub": "KANADE × RINKA 舞蹈MV ・ 2分48秒"
+   }
+  },
+  {
+   "id": "bunny",
+   "yt": "https://youtu.be/lGSqVuqk8RY",
+   "asset": "wk_bunny",
+   "v": "20260907a",
+   "title": "ぴょんぴょんハート",
+   "sub": "KANADE × RINKA ライブMV ・ 2分54秒",
+   "zh": {
+    "title": "蹦蹦心動",
+    "sub": "KANADE × RINKA 現場演出MV ・ 2分54秒"
+   }
+  },
+  {
+   "id": "sumidagawa",
+   "yt": "https://youtu.be/bEE1Eas6fWY",
+   "asset": "wk_sumidagawa",
+   "v": "20260915c",
+   "title": "隅田川の花火",
+   "sub": "KANADE デビューMV ・ 4分48秒",
+   "zh": {
+    "title": "隅田川的煙火",
+    "sub": "KANADE 出道MV ・ 4分48秒"
+   }
+  },
+  {
+   "id": "umikemuri",
+   "yt": "https://youtu.be/t9NJumW8D1Q",
+   "asset": "wk_umikemuri",
+   "v": "20260830a",
+   "title": "海煙",
+   "sub": "朝の海のMV ・ 3分42秒",
+   "zh": {
+    "title": "海煙",
+    "sub": "晨海的MV ・ 3分42秒"
+   }
+  },
+  {
+   "id": "natsuumi",
+   "yt": "https://youtu.be/5y02Xjvpbhg",
+   "asset": "wk_natsuumi",
+   "v": "20260816f",
+   "title": "まぶしい方へ",
+   "sub": "海のMV ・ 3分29秒",
+   "zh": {
+    "title": "往最亮的那邊",
+    "sub": "海的MV ・ 3分29秒"
+   }
+  },
+  {
+   "id": "mimei",
+   "yt": "https://youtu.be/GcyCD2BFMDk",
+   "asset": "wk_mimei",
+   "v": "20260824a",
+   "title": "未明",
+   "sub": "夜明けのMV ・ 3分01秒",
+   "zh": {
+    "title": "未明",
+    "sub": "黎明MV ・ 3分01秒"
+   }
+  },
+  {
+   "id": "rok09",
+   "yt": "https://youtu.be/c5VEfcGqnIo",
+   "asset": "wk_rok09",
+   "v": "20260816f",
+   "title": "軽音部、最後の放課後",
+   "sub": "バンドMV ・ 3分12秒",
+   "zh": {
+    "title": "輕音部、最後的放學後",
+    "sub": "樂團MV ・ 3分12秒"
+   }
+  },
+  {
+   "id": "utakata",
+   "yt": "https://youtu.be/tocAiUy0hVc",
+   "asset": "wk_utakata",
+   "v": "20260816f",
+   "title": "泡沫の夏",
+   "sub": "サマーMV ・ 3分07秒",
+   "zh": {
+    "title": "泡沫之夏",
+    "sub": "夏日MV ・ 3分07秒"
+   }
+  },
+  {
+   "id": "engawa",
+   "yt": "https://youtu.be/RGkFilRKopQ",
+   "asset": "wk_engawa",
+   "v": "20260816f",
+   "title": "雨の縁側",
+   "sub": "和装MV ・ 3分18秒",
+   "zh": {
+    "title": "雨的緣廊",
+    "sub": "和服MV ・ 3分18秒"
+   }
+  },
+  {
+   "id": "pastel",
+   "yt": "https://youtu.be/JfcypRzaTZ4",
+   "asset": "wk_pastel",
+   "v": "20260816f",
+   "title": "パステルルーム",
+   "sub": "ポップMV ・ 3分01秒",
+   "zh": {
+    "title": "粉彩房間",
+    "sub": "流行MV ・ 3分01秒"
+   }
+  }
+ ],
+ "shows": [
+  {
+   "id": "k03",
+   "yt": "https://youtu.be/ge2S7PQAxZI",
+   "zh_yt": "https://youtu.be/Etnjj5HnuWg",
+   "asset": "bb_k03",
+   "v": "20260825a",
+   "zh_asset": "bb_k03_zh",
+   "zh_v": "20260825b",
+   "genre": "工場見学",
+   "title": "この家から、データは出ない",
+   "desc": "MVを生む“工場”の中身。素材も、失敗も、完成した一本も——なぜ外に出ないのかを、案内役のRINKAが歩きながら説明する。",
+   "langs": [
+    {
+     "l": "日本語",
+     "yt": "https://youtu.be/ge2S7PQAxZI",
+     "d": "15:42"
+    },
+    {
+     "l": "繁體中文",
+     "yt": "https://youtu.be/Etnjj5HnuWg",
+     "d": "13:47"
+    }
+   ],
+   "zh": {
+    "genre": "工廠參觀",
+    "title": "資料，不出這個家",
+    "desc": "生出MV的那座「工廠」裡面長什麼樣。素材、失敗、完成的那一支——為什麼都不會流到外面，由帶路的RINKA一邊走一邊說給你聽。"
+   }
+  },
+  {
+   "id": "r04",
+   "yt": "https://youtu.be/x2e2sqWb1j8",
+   "zh_yt": null,
+   "asset": "bb_r04",
+   "v": "20260919a",
+   "zh_asset": null,
+   "zh_v": null,
+   "genre": "ラジオ",
+   "title": "RINKAのオフレコ #04",
+   "desc": "重いものだけが、残った——『重力』の制作を、KANADEと順位をつけて振り返る。",
+   "langs": [
+    {
+     "l": "日本語",
+     "yt": "https://youtu.be/x2e2sqWb1j8",
+     "d": "14:01"
+    }
+   ],
+   "zh": {
+    "genre": "廣播",
+    "title": "RINKA的悄悄話 #04",
+    "desc": "只有重的，留了下來——和 KANADE 一起排名次，回顧《重力》的製作。"
+   }
+  },
+  {
+   "id": "r03",
+   "yt": "https://youtu.be/cyWj8otgUNI",
+   "zh_yt": null,
+   "asset": "bb_r03",
+   "v": "20260915a",
+   "zh_asset": null,
+   "zh_v": null,
+   "genre": "ラジオ",
+   "title": "RINKAのオフレコ #03",
+   "desc": "跳ねていなかったのは、わたしじゃなかった——初ゲストのKANADEと、犯人捜しをする制作裏話。",
+   "langs": [
+    {
+     "l": "日本語",
+     "yt": "https://youtu.be/cyWj8otgUNI",
+     "d": "10:41"
+    }
+   ],
+   "zh": {
+    "genre": "廣播",
+    "title": "RINKA的悄悄話 #03",
+    "desc": "不會跳的，其實不是我——和第一位來賓 KANADE 一起，聊聊找出真兇的製作幕後。"
+   }
+  },
+  {
+   "id": "radio",
+   "yt": "https://youtu.be/h8pIGgVFmLI",
+   "zh_yt": "https://youtu.be/_2nsdgYRu0U",
+   "asset": "bb_radio",
+   "v": "20260824a",
+   "zh_asset": "bb_radio_zh",
+   "zh_v": "20260825b",
+   "genre": "ラジオ",
+   "title": "RINKAのオフレコ #02",
+   "desc": "データは出ないのに、わたしの失敗は出ていく——監督のいないところで話す、制作裏話。",
+   "langs": [
+    {
+     "l": "日本語",
+     "yt": "https://youtu.be/h8pIGgVFmLI",
+     "d": "9:45"
+    },
+    {
+     "l": "繁體中文",
+     "yt": "https://youtu.be/_2nsdgYRu0U",
+     "d": "9:25"
+    }
+   ],
+   "zh": {
+    "genre": "廣播",
+    "title": "RINKA的悄悄話 #02",
+    "desc": "資料不出門，我的失誤卻天天出門——趁導演不在，聊聊製作的幕後。"
+   }
+  },
+  {
+   "id": "k02",
+   "yt": "https://youtu.be/6hEolofq4Oc",
+   "zh_yt": "https://youtu.be/kJPFVfpHEX4",
+   "asset": "bb_k02",
+   "v": "20260824a",
+   "zh_asset": "bb_k02_zh",
+   "zh_v": "20260825b",
+   "genre": "解説",
+   "title": "『約束』制作全記録",
+   "desc": "697枚から選ばれた彼女が、ボツになった50本ぶんの失敗を自分で話す。",
+   "langs": [
+    {
+     "l": "日本語",
+     "yt": "https://youtu.be/6hEolofq4Oc",
+     "d": "13:34"
+    },
+    {
+     "l": "繁體中文",
+     "yt": "https://youtu.be/kJPFVfpHEX4",
+     "d": "13:16"
+    }
+   ],
+   "zh": {
+    "genre": "解說",
+    "title": "《約定》製作全紀錄",
+    "desc": "從697張候選裡被選出來的她，自己講出那50支被丟掉的失敗。"
+   }
+  },
+  {
+   "id": "kaisetsu",
+   "yt": "https://youtu.be/KAT8w5_e1Js",
+   "zh_yt": "https://youtu.be/Sekow7dcEog",
+   "asset": "wk_kaisetsu",
+   "v": "20260817a",
+   "zh_asset": null,
+   "zh_v": null,
+   "genre": "解説",
+   "title": "AIが自分の作られ方を話す",
+   "desc": "6本のMVの舞台裏を、AI本人がまとめて解説する。",
+   "langs": [
+    {
+     "l": "日本語",
+     "yt": "https://youtu.be/KAT8w5_e1Js",
+     "d": "10:54"
+    },
+    {
+     "l": "繁體中文",
+     "yt": "https://youtu.be/Sekow7dcEog",
+     "d": "8:15"
+    }
+   ],
+   "zh": {
+    "genre": "解說",
+    "title": "AI親自說自己是怎麼做出來的",
+    "desc": "六支MV的幕後，AI自己一次講完。"
+   }
+  },
+  {
+   "id": "rinka",
+   "yt": "https://youtu.be/IF1T04jc3ak",
+   "zh_yt": "https://youtu.be/7n8SF_zq3L8",
+   "asset": "wk_rinka",
+   "v": "20260813a",
+   "zh_asset": null,
+   "zh_v": null,
+   "genre": "技術デモ",
+   "title": "AIキャラが、自然に話す",
+   "desc": "口の動きも、間の取り方も。喋る映像がどこまで自然になるかを、手元のGPUだけで試した記録。",
+   "langs": [
+    {
+     "l": "日本語",
+     "yt": "https://youtu.be/IF1T04jc3ak",
+     "d": "2:22"
+    },
+    {
+     "l": "繁體中文",
+     "yt": "https://youtu.be/7n8SF_zq3L8",
+     "d": "2:42"
+    }
+   ],
+   "zh": {
+    "genre": "技術示範",
+    "title": "AI角色，自然地說話",
+    "desc": "嘴型、停頓，全都算在內。會說話的影像可以自然到什麼程度，只用手邊的顯卡跑出來的實測紀錄。"
+   }
+  }
+ ]
+}
