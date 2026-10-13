@@ -373,20 +373,58 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   });
 })();
 
-/* 作品の棚(スマホ)= 進み具合の線・端の判定・合図を消す・一度だけ少し横へ動かす(usecases/bridal.html のドレスの棚と同じ作法・2026-10-13) */
-(function worksShelf(){
-  const wall=document.querySelector('.works.shelf'),hint=document.querySelector('.works-swipe'),bar=document.querySelector('.works-track b');
-  if(!wall||!matchMedia('(max-width:860px)').matches)return;
-  function upd(){const max=wall.scrollWidth-wall.clientWidth;if(max<=0)return;
-    const f=wall.clientWidth/wall.scrollWidth,p=wall.scrollLeft/max;
-    if(bar){bar.style.width=(f*100)+'%';bar.style.left=(p*(100-f*100))+'%';}
-    wall.classList.toggle('at-end',wall.scrollLeft>=max-4);}
-  let moved=false,auto=false;   // auto= 一度だけの自動の動きの間(合図を消さない)
-  wall.addEventListener('scroll',()=>{upd();if(!auto&&!moved&&wall.scrollLeft>24){moved=true;hint&&hint.classList.add('done');}},{passive:true});
-  addEventListener('resize',upd);upd();
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;io.disconnect();
-    if(moved)return;setTimeout(()=>{if(moved)return;auto=true;wall.scrollTo({left:72,behavior:'smooth'});
-      setTimeout(()=>{wall.scrollTo({left:0,behavior:'smooth'});setTimeout(()=>{auto=false;},700);},700);},500);});},{threshold:.6});
-  io.observe(wall);
+/* 作品の Cover Flow(2026-10-13 ユーザー「iPod touch で音楽を選ぶ時の感じ」)。
+   横スクロール+中央で止まる(scroll-snap)。傾き・奥行き・重なりはスクロール位置から毎フレーム計算(CSS の scroll-driven は Safari の横方向が未確認のため JS)。
+   動画は中央の 1 枚だけ(iOS のメモリ対策= vidIn/vidOut)。脇の札を押すと中央へ寄せ、中央を押すと YouTube へ。動きを減らす設定では平らな列のまま */
+(function coverFlow(){
+  const root=document.querySelector('.cflow');if(!root)return;
+  const track=root.querySelector('.cf-track'),items=[...track.querySelectorAll('.cf-item')];
+  const bar=root.querySelector('.cf-bar i'),prev=root.querySelector('.cf-prev'),next=root.querySelector('.cf-next');
+  if(!items.length)return;
+  const flat=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!flat)root.classList.add('cf-on');
+  let cur=-1,inView=false,tick=false;
+  const covers=items.map(it=>it.querySelector('.cf-cover')),vids=items.map(it=>it.querySelector('video'));
+  vids.forEach(v=>{if(v){v.__src=v.dataset.src;}});
+  function step(){return items[0].getBoundingClientRect().width;}
+  function centerOf(i){return items[i].offsetLeft+items[i].offsetWidth/2-track.clientWidth/2;}
+  function go(i){i=Math.max(0,Math.min(items.length-1,i));track.scrollTo({left:centerOf(i),behavior:flat?'auto':'smooth'});}
+  function setCur(i){
+    if(i===cur)return;
+    if(cur>=0){items[cur].classList.remove('on');if(vids[cur])vidOut(vids[cur]);}
+    cur=i;items[i].classList.add('on');
+    if(inView&&vids[i]&&!flat)vidIn(vids[i]);
+    if(bar){const n=items.length,w=Math.max(8,100/n);bar.style.width=w+'%';bar.style.left=(n>1?i/(n-1)*(100-w):0)+'%';}
+    if(prev)prev.disabled=i===0;if(next)next.disabled=i===items.length-1;
+  }
+  function update(){
+    tick=false;
+    const s=step(),vc=track.scrollLeft+track.clientWidth/2,W=covers[0].offsetWidth;
+    let best=0,bd=1e9;
+    items.forEach((it,i)=>{
+      const d=(it.offsetLeft+it.offsetWidth/2-vc)/s,ad=Math.abs(d);
+      if(ad<bd){bd=ad;best=i;}
+      if(flat)return;
+      const a=Math.max(-1,Math.min(1,d)),aa=Math.abs(a);
+      // 中央= 正面・手前。脇= 62 度傾けて奥へ、中央の札の幅ぶん外へ逃がす(重なりは iTunes と同じく浅く)
+      const ry=-a*62,tx=a*W*0.42,tz=(1-aa)*W*0.16-Math.min(ad,6)*6;
+      covers[i].style.transform=`perspective(${Math.round(W*2.6)}px) translateX(${tx.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${ry.toFixed(1)}deg)`;
+      it.style.zIndex=String(200-Math.round(ad*10));
+      covers[i].style.filter=ad>0.5?`brightness(${(1-Math.min(ad,4)*0.09).toFixed(2)})`:'';
+    });
+    setCur(best);
+  }
+  track.addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(update);}},{passive:true});
+  addEventListener('resize',()=>{update();go(cur);});
+  items.forEach((it,i)=>it.addEventListener('click',e=>{if(i!==cur){e.preventDefault();go(i);}}));
+  if(prev)prev.addEventListener('click',()=>go(cur-1));
+  if(next)next.addEventListener('click',()=>go(cur+1));
+  track.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'){e.preventDefault();go(cur+1);}else if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1);}
+    else if(e.key==='Enter'&&items[cur].href){window.open(items[cur].href,'_blank','noopener');}
+  });
+  const barEl=root.querySelector('.cf-bar');
+  if(barEl)barEl.parentNode.addEventListener('click',e=>{if(e.target.closest('button'))return;const r=barEl.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right)return;go(Math.round((e.clientX-r.left)/r.width*(items.length-1)));});
+  new IntersectionObserver(es=>es.forEach(en=>{inView=en.isIntersecting;const v=vids[cur];if(!v||flat)return;if(inView)vidIn(v);else vidOut(v);}),{threshold:0.2}).observe(track);
+  update();
 })();

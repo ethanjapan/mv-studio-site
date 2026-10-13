@@ -1656,30 +1656,51 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
 @media (prefers-reduced-motion:reduce){ .fab-contact.fab-away{transform:none} }
 
 /* ============================================================
-   作品の棚(2026-10-13): 作品が増えるたびにスマホのトップが伸びていた(作品集 4.8 画面・番組 3.8 画面)。
-   トップは最新 8 本だけ・スマホは横の棚(ブライダルのドレスの棚と同じ合図)・全部は works.html へ
+   作品の Cover Flow(2026-10-13 ユーザー「iPod touch で音楽を選ぶ時の感じ・少し贅沢に」)
+   中央の 1 枚が正面・手前、左右は 62 度傾いて奥へ重なる。床の映り込みは -webkit-box-reflect(Firefox は映り込み無し)。
+   既定(JS 無し・動きを減らす)= 平らな横の列。JS が .cf-on を付けた時だけ重ねる
    ============================================================ */
-.works-swipe,.works-track{display:none}
-.workcard .nw{white-space:nowrap}   /* 尺(4分09秒)を折らない */
-@media (max-width:860px){
-  .works.shelf{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-    margin:36px -22px 0;padding:4px 22px 10px;scrollbar-width:none;
-    -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
-  .works.shelf::-webkit-scrollbar{display:none}
-  .works.shelf.at-end{-webkit-mask-image:none;mask-image:none}
-  .works.shelf .worklink{flex:0 0 78vw;max-width:360px;scroll-snap-align:start}
-  .works-swipe{display:flex;align-items:center;gap:10px;margin:18px 0 0;font-size:12px;letter-spacing:.14em;color:var(--text-2,rgba(241,242,247,.72));transition:opacity .5s}
-  .works-swipe::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6);flex:none}
-  .works-swipe .n{color:var(--gold)}
-  .works-swipe i{position:relative;display:inline-block;width:34px;height:1px;background:rgba(226,230,242,.25);overflow:hidden}
-  .works-swipe i::after{content:"";position:absolute;inset:0;background:var(--inf);transform:translateX(-100%);animation:worksSwipe 2.2s ease-in-out infinite}
-  .works-swipe.done{opacity:0}
-  .works-track{display:block;position:relative;height:2px;margin:10px 0 0;border-radius:2px;background:rgba(226,230,242,.14);overflow:hidden}
-  .works-track b{position:absolute;top:0;bottom:0;left:0;width:30%;border-radius:2px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.5)}
-  .works.shelf + .works-swipe + .works-track + .ch-cta{margin-top:26px}
-}
-@keyframes worksSwipe{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
-@media (prefers-reduced-motion:reduce){.works-swipe i::after{animation:none;transform:none}}
+.workcard .nw,.cf-cap .nw{white-space:nowrap}   /* 尺(4分09秒)を折らない */
+.cflow{--W:min(560px,74vw);--H:calc(var(--W)*9/16);--step:calc(var(--W) + 18px);position:relative;margin:44px calc(50% - 50vw) 0;width:100vw}
+.cflow.cf-on{--step:calc(var(--W)*0.34)}
+.cf-track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  padding:18px calc(50vw - var(--step)/2) 0;height:calc(var(--H) + var(--H)*.42 + 96px);outline:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.cf-track::-webkit-scrollbar{display:none}
+.cf-item{flex:0 0 var(--step);position:relative;scroll-snap-align:center;text-decoration:none;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cf-cover{position:absolute;left:50%;top:0;width:var(--W);height:var(--H);margin-left:calc(var(--W)/-2);border-radius:6px;overflow:hidden;background:#05070f;
+  box-shadow:0 30px 60px -28px rgba(0,0,0,.9),0 0 0 1px rgba(226,230,242,.10);transform-origin:50% 50%;
+  -webkit-box-reflect:below 2px linear-gradient(transparent 58%,rgba(255,255,255,.22))}
+.cf-cover img,.cf-cover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cf-cover video{opacity:0;transition:opacity .4s ease}
+.cf-item.on .cf-cover video[src]{opacity:1}
+.cf-cover .yt-badge{position:absolute;top:12px;right:14px;z-index:2;opacity:0;transition:opacity .3s}
+.cf-item.on .cf-cover .yt-badge{opacity:1}
+/* 札の題= 中央の 1 枚の下(映り込みの下)に、iPod の曲名のように */
+.cf-cap{position:absolute;left:50%;top:calc(var(--H) + var(--H)*.36 + 18px);width:min(var(--W),88vw);margin-left:calc(min(var(--W),88vw)/-2);text-align:center;
+  opacity:0;transform:translateY(6px);transition:opacity .25s cubic-bezier(.23,1,.32,1),transform .25s cubic-bezier(.23,1,.32,1);pointer-events:none}
+.cf-item.on .cf-cap{opacity:1;transform:none}
+.cf-cap strong{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(17px,1.7vw,22px);letter-spacing:.06em;color:#fff}
+.cf-cap > span{display:block;margin-top:6px;font-family:var(--en);font-size:11px;letter-spacing:.14em;color:rgba(240,235,222,.72)}
+body.lang-zh .cf-cap strong{font-family:"Noto Serif TC",serif}
+/* 平らな列(JS 無し・動きを減らす): 題は常に見せる */
+.cflow:not(.cf-on) .cf-cap{opacity:1;transform:none;position:static;width:auto;margin:calc(var(--H) + 14px) 0 0;text-align:left}
+.cflow:not(.cf-on) .cf-cover{-webkit-box-reflect:none}
+.cflow:not(.cf-on) .cf-track{height:auto;padding-bottom:10px}
+.cflow:not(.cf-on) .cf-item{scroll-snap-align:start}
+/* 送り: 前後のボタン(44pt)と、iTunes の下のつまみの線 */
+.cf-ctl{display:flex;align-items:center;gap:14px;width:min(560px,82vw);margin:6px auto 0}
+.cf-ctl button{flex:none;width:44px;height:44px;border:0;border-radius:50%;background:transparent;cursor:pointer;position:relative;color:var(--ink)}
+.cf-ctl button::before{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translate(-30%,-50%) rotate(45deg)}
+.cf-ctl .cf-next::before{transform:translate(-70%,-50%) rotate(-135deg)}
+.cf-ctl button:disabled{opacity:.25;cursor:default}
+@media (hover:hover) and (pointer:fine){.cf-ctl button:not(:disabled):hover{color:var(--gold)}}
+.cf-bar{position:relative;flex:1;height:3px;border-radius:3px;background:rgba(226,230,242,.16);cursor:pointer}
+.cf-bar::before{content:"";position:absolute;left:0;right:0;top:-20px;bottom:-20px}   /* 押せる範囲 */
+.cf-bar i{position:absolute;top:0;bottom:0;left:0;width:10%;border-radius:3px;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.55);transition:left .25s cubic-bezier(.23,1,.32,1)}
+.cflow:not(.cf-on) .cf-ctl{display:none}
+@media (max-width:860px){.cflow{--W:62vw;margin-top:30px}.cf-cap strong{font-size:17px}.cf-cap > span{font-size:10.5px}
+  .cf-track{height:calc(var(--H) + var(--H)*.36 + 92px)}.cf-cap{top:calc(var(--H) + var(--H)*.3 + 14px)}}
 
 /* ---- 全ページの押せる範囲(2026-10-13 iPhone 17 Pro / Pro Max で全 10 頁を計測): 見た目はそのまま、指で押せる範囲だけ 44pt に ----
    文中・行内のリンクは上下の padding(行内要素の padding は行の高さを変えない)。flex の子は ::before で広げる */

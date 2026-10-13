@@ -10,7 +10,7 @@ import { dirname, join } from 'node:path'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
 const DATA = JSON.parse(readFileSync(join(ROOT, 'data/works.json'), 'utf8'))
-const TOP_WORKS = 8   // トップに出す作品の数(スマホは横の棚・PC は 2 列 4 段)
+const TOP_WORKS = Infinity   // トップは Cover Flow= 高さ一定なので全作品を載せる(2026-10-13 ユーザー「iPod touch の音楽を選ぶ時の感じ」)
 const TOP_SHOWS = 3   // トップに出す番組の数
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
@@ -59,8 +59,9 @@ ${langs}
 const nW = DATA.works.length, nS = DATA.shows.length
 // 文言(日本語→繁中)。作品・番組の本文と、ここで作る見出し・導線
 const L = {
-  swipe: ['横にスワイプ', '左右滑動'],
-  latest: [`最新 ${TOP_WORKS} 本`, `最新 ${TOP_WORKS} 支`],
+  flow: ['作品', '作品'],
+  prev: ['前の作品', '上一支作品'],
+  next: ['次の作品', '下一支作品'],
   allWorks: [`すべての作品を見る（${nW}本）→`, `看全部作品（${nW} 支）→`],
   allShows: [`番組をすべて見る（${nS}回）→`, `看全部節目（${nS} 集）→`],
   pageTitle: ['作品一覧 — MV Studio', '全部作品 — MV Studio'],
@@ -69,12 +70,22 @@ const L = {
 }
 
 // ---- トップ(index.html)
+// Cover Flow の 1 枚。表紙= 静止画(先に見える)+ 動画(中央の 1 枚だけ src を入れて再生= main.js の coverFlow)
+function flowItem(w) {
+  const tag = w.yt ? 'a' : 'div'
+  const attrs = w.yt ? ` href="${esc(w.yt)}" target="_blank" rel="noopener noreferrer"` : ''
+  return `        <${tag} class="cf-item"${attrs}>
+          <span class="cf-cover"><img src="assets/${w.asset}.jpg?v=${w.v}" alt="" loading="lazy" decoding="async"><video data-src="assets/${w.asset}.mp4?v=${w.v}" muted loop playsinline preload="none" aria-hidden="true"></video>${w.yt ? '<span class="yt-badge">YouTube</span>' : ''}</span>
+          <span class="cf-cap"><strong>${esc(w.title)}</strong><span>${subHtml(w.sub)}</span></span>
+        </${tag}>`
+}
 const topWorks = `
-      <div class="works shelf reveal d2">
-${DATA.works.slice(0, TOP_WORKS).map(w => workCard(w)).join('\n')}
+      <div class="cflow reveal d2" data-n="${DATA.works.length}">
+        <div class="cf-track" tabindex="0" role="group" aria-roledescription="carousel" aria-label="${L.flow[0]}">
+${DATA.works.slice(0, TOP_WORKS).map(flowItem).join('\n')}
+        </div>
+        <div class="cf-ctl"><button type="button" class="cf-prev" aria-label="${L.prev[0]}"></button><div class="cf-bar" aria-hidden="true"><i></i></div><button type="button" class="cf-next" aria-label="${L.next[0]}"></button></div>
       </div>
-      <p class="works-swipe" aria-hidden="true"><span>${L.swipe[0]}</span><i></i><span class="n">${L.latest[0]}</span></p>
-      <div class="works-track" aria-hidden="true"><b></b></div>
       <a class="ch-cta reveal d3" href="works.html">${L.allWorks[0]}</a>
 `
 const topShows = `
@@ -157,4 +168,4 @@ const js = `/* 生成物: node gen_works.mjs が data/works.json から書く(�
 const jp = join(ROOT, 'js/works_i18n.js')
 let old = ''; try { old = readFileSync(jp, 'utf8') } catch {}
 if (old !== js) { writeFileSync(jp, js); console.log('js/works_i18n.js を書き換え') }
-console.log(`作品 ${nW} 本(トップ ${TOP_WORKS})・番組 ${nS} 回(トップ ${TOP_SHOWS})`)
+console.log(`作品 ${nW} 本(トップ Cover Flow ${Math.min(nW, TOP_WORKS)})・番組 ${nS} 回(トップ ${TOP_SHOWS})`)
