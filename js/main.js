@@ -496,3 +496,24 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   measure();update();
   setTimeout(()=>{if(inView)play();},500);   // 初回: 画面内にあれば中央の 1 枚を始める(観測の発火を待たない)
 })();
+
+/* スマホの折りたたみ(2026-10-13): トップが 40 画面ぶん(22 章)。後半の技術の章(14〜22)は、スマホでは見出しとリード文だけ見せ、
+   続きは「続きを見る」で開く(内容は消さない・PC はそのまま)。計測= iPhone 17 Pro 402pt で 14〜22 章の本文が約 12 画面 */
+(function mobileFold(){
+  if(!matchMedia('(max-width:860px)').matches)return;
+  const zh=()=>document.documentElement.lang.indexOf('zh')===0;
+  document.querySelectorAll('section.panel[data-num]').forEach(sec=>{
+    const n=+sec.dataset.num;if(!(n>=14&&n<=22))return;
+    const inner=sec.querySelector('.panel-inner');if(!inner)return;
+    const lead=inner.querySelector('.ch-sub')||inner.querySelector('.ch-title');if(!lead)return;
+    const rest=[];let el=lead.nextElementSibling;while(el){rest.push(el);el=el.nextElementSibling;}
+    if(!rest.length)return;
+    const body=document.createElement('div');body.className='fold-body';body.hidden=true;rest.forEach(x=>body.appendChild(x));
+    const btn=document.createElement('button');btn.type='button';btn.className='ch-cta fold-btn';btn.setAttribute('aria-expanded','false');
+    btn.innerHTML='<span class="ja">続きを見る</span><span class="zh">看更多</span><i aria-hidden="true">↓</i>';
+    btn.addEventListener('click',()=>{const open=body.hidden;body.hidden=!open;btn.setAttribute('aria-expanded',String(open));btn.classList.toggle('open',open);
+      btn.querySelector('.ja').textContent=open?'閉じる':'続きを見る';btn.querySelector('.zh').textContent=open?'收起':'看更多';
+      if(!open)sec.scrollIntoView({block:'start',behavior:'smooth'});});
+    lead.after(btn);btn.after(body);
+  });
+})();

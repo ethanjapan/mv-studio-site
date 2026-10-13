@@ -1724,3 +1724,10 @@ body.lang-zh .cf-cap strong{font-family:"Noto Serif TC",serif}
 .uc-grid figcaption,.dcol figcaption,.use .t > span{text-wrap:balance}
 /* 繁中の見出しの強調(2026-10-13 ユーザー指摘「挑一 / 挑」): 強調の語は途中で折らず、空白で折る */
 body.lang-zh .ch-title .em,body.lang-zh h1 .em,body.lang-zh h2 .em{white-space:nowrap}
+/* スマホの折りたたみ(main.js mobileFold): 14〜22 章の本文を「続きを見る」で開く */
+.fold-body[hidden]{display:none}
+.fold-btn{cursor:pointer;font:inherit;margin-top:22px;gap:8px}
+.fold-btn i{font-style:normal;transition:transform .25s cubic-bezier(.23,1,.32,1)}
+.fold-btn.open i{transform:rotate(180deg)}
+.fold-btn .zh,html[lang^="zh"] .fold-btn .ja{display:none}
+html[lang^="zh"] .fold-btn .zh{display:inline}
