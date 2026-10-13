@@ -100,3 +100,22 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
+
+/* サブページのリビールと背景板の遅延(2026-10-13 夜): トップの main.js と同じ作法(トップは main.js が持つので何もしない)
+   - .reveal は画面に入ったら .in(theater.css の .reveal / スクロール連動対応ブラウザは CSS が動かす)
+   - 2 画面より下の章の背景板(--bd)は 1.5 画面手前で読む(初回の読み込みを減らす・見える前に届く) */
+(function(){
+  if(document.querySelector('script[src*="js/main.js"]'))return;
+  function init(){
+    var els=document.querySelectorAll('.reveal'),i;
+    if(!('IntersectionObserver' in window)){for(i=0;i<els.length;i++)els[i].classList.add('in');return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:0.12,rootMargin:'0px 0px -6% 0px'});
+    for(i=0;i<els.length;i++)io.observe(els[i]);
+    var secs=document.querySelectorAll('section[style*="--bd:"]');
+    var io2=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var s=en.target;io2.unobserve(s);
+      if(s.dataset.bd){s.style.setProperty('--bd',s.dataset.bd);delete s.dataset.bd;}});},{rootMargin:'150% 0px'});
+    for(i=0;i<secs.length;i++){var s=secs[i];if(s.hasAttribute('data-zh-bd'))continue;
+      if(s.getBoundingClientRect().top>innerHeight*2){s.dataset.bd=s.style.getPropertyValue('--bd');s.style.removeProperty('--bd');}io2.observe(s);}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();

@@ -1737,3 +1737,27 @@ body.lang-zh .ch-title .em,body.lang-zh h1 .em,body.lang-zh h2 .em{white-space:n
 .fold-btn.open i{transform:rotate(180deg)}
 .fold-btn .zh,html[lang^="zh"] .fold-btn .ja{display:none}
 html[lang^="zh"] .fold-btn .zh{display:inline}
+
+/* ============================================================
+   全ページ共通の演出と軽量化(2026-10-13 夜・ユーザー「全ページについて、演出を強化したり、演出を落とさず、軽くできるものがあればやって」)
+   1) ページ間の遷移を舞台の暗転に(Cross-document View Transitions・Safari 18.2+ / Chrome 126+・無対応は普通の遷移)
+   2) サブページの見出し・棚のタイルにトップと同じリビール(JS は sitemenu.js・対応ブラウザはスクロール連動)
+   ============================================================ */
+@view-transition{navigation:auto}
+::view-transition{background:#05060e}
+::view-transition-old(root){animation:vtOut .2s ease-in both}
+::view-transition-new(root){animation:vtIn .34s ease-out .08s both}
+@keyframes vtOut{to{opacity:0}}
+@keyframes vtIn{from{opacity:0}}
+@media (prefers-reduced-motion: reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+}
+/* 棚のタイル: 見出しより控えめな立ち上がり(22px) */
+body.uc .uc-grid figure.reveal,body.uc .dcol figure.reveal{transform:translateY(22px);transition-duration:.9s}
+body.uc .uc-grid figure.reveal.in,body.uc .dcol figure.reveal.in{transform:none}
+@keyframes srRevealS{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    body.uc .uc-grid figure.reveal,body.uc .dcol figure.reveal{animation-name:srRevealS;animation-range:entry 0% entry 42%}
+  }
+}

@@ -23,7 +23,8 @@
 var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base");if(lang==="zh")add("zh");window.__mvFonts=function(k){if(k==="zh")add("zh")}})();
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="../css/theater.css?v=20261013zh2">
+<link rel="preload" as="image" fetchpriority="high" href="../assets/uc/uc_bridal_B17.jpg">
+<link rel="stylesheet" href="../css/theater.css?v=20261013vt1">
 <style>
 /* ユースケースのページだけの小さな決まり。部品の衣装は theater.css の「役割の衣装」と「第1段 色の一本化」をそのまま使う */
 .uc-head .brand{text-decoration:none}
@@ -142,9 +143,9 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
     <div class="panel-inner">
       <div>
         <nav class="crumbs" aria-label="現在地"><a href="../">ホーム</a><i>/</i><a href="./">用途</a><i>/</i><span>ブライダル前撮り</span></nav>
-        <div class="ch-eyebrow">USE CASE 01 — ブライダル前撮り</div>
-        <h2 class="ch-title">式の前に、<br><span class="em">物語を一本</span>。</h2>
-        <p class="ch-sub">棚にある 620 以上の前撮りの様式(和装・洋装・韓国風・台湾の婚紗・中華風)から選んで、声で相談するだけ。礼拝堂も、港も、神社も——写真と短い動画を、手元の PC で焼く。衣装も髪も、同じ顔のまま何通りでも。</p>
+        <div class="ch-eyebrow reveal">USE CASE 01 — ブライダル前撮り</div>
+        <h2 class="ch-title reveal d1">式の前に、<br><span class="em">物語を一本</span>。</h2>
+        <p class="ch-sub reveal d2">棚にある 620 以上の前撮りの様式(和装・洋装・韓国風・台湾の婚紗・中華風)から選んで、声で相談するだけ。礼拝堂も、港も、神社も——写真と短い動画を、手元の PC で焼く。衣装も髪も、同じ顔のまま何通りでも。</p>
         <div class="uc-cta">
           <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
           <a class="btn ghost" href="#album">印刷アルバムの見本 →</a>
@@ -167,7 +168,7 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
           <div class="alb-spread"><img src="../assets/uc/album/w2.jpg?v=1012d" alt=""><img src="../assets/uc/album/t2.jpg?v=1012d" alt=""></div>
         </div>
         <div class="alb-txt">
-          <div class="ch-eyebrow">PRINT ALBUM — 印刷アルバムの見本</div>
+          <div class="ch-eyebrow reveal">PRINT ALBUM — 印刷アルバムの見本</div>
           <strong>写真は、本になって残る。<br>表紙から裏表紙まで、画面でめくる。</strong>
           <p>30cm 正方形のレイフラット製本のレイアウト。5 章・25 見開き・動く見開きつき。章の順も写真の数も、ふたりの前撮りに合わせて組み直します。</p>
           <span class="btn primary">アルバムをめくる →</span>
@@ -179,20 +180,20 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 2 頼み方 -->
   <section class="panel" data-num="02">
     <div class="panel-inner">
-      <div class="ch-eyebrow">02 — 頼み方</div>
-      <h2 class="ch-title">話す、<span class="em">選ぶ</span>、焼く。</h2>
-      <p class="ch-sub">ボタンを探す制作ではなく、プロと言葉を交わす制作。「海の見える礼拝堂で、前撮りを」——それだけで、ディレクターが段取りを組む。</p>
+      <div class="ch-eyebrow reveal">02 — 頼み方</div>
+      <h2 class="ch-title reveal d1">話す、<span class="em">選ぶ</span>、焼く。</h2>
+      <p class="ch-sub reveal d2">ボタンを探す制作ではなく、プロと言葉を交わす制作。「海の見える礼拝堂で、前撮りを」——それだけで、ディレクターが段取りを組む。</p>
       <div class="uc-steps">
         <div class="uc-step">
           <div class="n">01</div><h4>話す</h4>
           <p>場所の雰囲気、衣装、二人の距離感。言葉にできる所だけでいい。参考の写真があれば貼るだけ。</p>
-          <div class="pic"><img src="../assets/app_chat.jpg?v=20261008a" alt="企画チャットの画面" loading="lazy"></div>
+          <div class="pic"><img src="../assets/app_chat.jpg?v=20261008a" alt="企画チャットの画面" loading="lazy" decoding="async"></div>
           <div class="say">「海の見える礼拝堂で、前撮りを」</div>
         </div>
         <div class="uc-step">
           <div class="n">02</div><h4>絵コンテで決める</h4>
           <p>棚の様式から場所と構図を当てた絵コンテが並ぶ。気に入ったカットだけ残し、気になる所は何度でも作り直す。</p>
-          <div class="pic"><img src="../assets/app_rinka4.jpg?v=20261009a" alt="白い帆の絵コンテ" loading="lazy"></div>
+          <div class="pic"><img src="../assets/app_rinka4.jpg?v=20261009a" alt="白い帆の絵コンテ" loading="lazy" decoding="async"></div>
           <div class="say">「礼拝堂のカットがすごく好き」</div>
         </div>
         <div class="uc-step">
@@ -208,91 +209,91 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 3 棚 -->
   <section class="panel wall" data-num="03">
     <div class="panel-inner">
-      <div class="ch-eyebrow">03 — 棚から選べる</div>
-      <h2 class="ch-title">前撮りの様式、<span class="em nw">620 以上</span>。</h2>
-      <p class="ch-sub">和装も洋装も 200 以上。参拝、手水舎、相合傘、挙式風、バックショット——それぞれ 10 の場所で。ここに並ぶのは、その中の 24。</p>
+      <div class="ch-eyebrow reveal">03 — 棚から選べる</div>
+      <h2 class="ch-title reveal d1">前撮りの様式、<span class="em nw">620 以上</span>。</h2>
+      <p class="ch-sub reveal d2">和装も洋装も 200 以上。参拝、手水舎、相合傘、挙式風、バックショット——それぞれ 10 の場所で。ここに並ぶのは、その中の 24。</p>
       <div class="uc-shelf">
         <h3><i></i>WASOU <span>和装 200 以上の様式から</span></h3>
         <div class="uc-grid">
-          <figure class="big"><img src="../assets/uc/bridal_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>参拝・社殿の前</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>和傘の相合傘・紅葉の庭</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>新婦ソロ・紅葉の庭</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>手水舎・桜の庭</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>シルエット・雪の庭</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>お散歩・桜の庭</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>正座でご挨拶・五重塔</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/bridal_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>石段に座る・社殿の前</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>エスコート・苔の石段</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>新婦ソロ全身・紅葉の庭</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>おみくじ・町家の通り</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>背中合わせ・紅葉の庭</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_01.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>参拝・社殿の前</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_02.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>和傘の相合傘・紅葉の庭</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_03.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新婦ソロ・紅葉の庭</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_04.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>手水舎・桜の庭</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_05.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>シルエット・雪の庭</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_06.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>お散歩・桜の庭</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_07.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>正座でご挨拶・五重塔</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_08.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>石段に座る・社殿の前</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_09.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>エスコート・苔の石段</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_10.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新婦ソロ全身・紅葉の庭</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_11.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>おみくじ・町家の通り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_12.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>背中合わせ・紅葉の庭</figcaption></figure>
         </div>
         <h3><i></i>YOUSOU <span>洋装 200 以上の様式から</span></h3>
         <div class="uc-grid">
-          <figure class="big"><img src="../assets/uc/bridal_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>挙式風・ベールアップ・白い砂浜</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_14.jpg?v=1012b" alt="" loading="lazy"><figcaption>バックショット・ラベンダー畑</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_15.jpg?v=1012b" alt="" loading="lazy"><figcaption>新婦ソロ・レンガ倉庫の街</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_16.jpg?v=1012e" alt="" loading="lazy"><figcaption>向かい合わせ・イルミネーション</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_17.jpg?v=1012b" alt="" loading="lazy"><figcaption>階段・洋館のホール</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_18.jpg?v=1012b" alt="" loading="lazy"><figcaption>おでこを寄せる・湖畔の草原</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_19.jpg?v=1012b" alt="" loading="lazy"><figcaption>シルエット・赤い壁のサロン</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/bridal_20.jpg?v=1012b" alt="" loading="lazy"><figcaption>小物・ブーケとヘッドドレス</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_21.jpg?v=1012b" alt="" loading="lazy"><figcaption>ふたりで座る・洋館の大階段</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_22.jpg?v=1012b" alt="" loading="lazy"><figcaption>手をつないで・夜景</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_23.jpg?v=1012b" alt="" loading="lazy"><figcaption>新婦ソロ全身・イルミネーション</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_24.jpg?v=1012b" alt="" loading="lazy"><figcaption>半身フォーマル・赤い壁のサロン</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_13.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>挙式風・ベールアップ・白い砂浜</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_14.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>バックショット・ラベンダー畑</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_15.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新婦ソロ・レンガ倉庫の街</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_16.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>向かい合わせ・イルミネーション</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_17.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>階段・洋館のホール</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_18.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>おでこを寄せる・湖畔の草原</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_19.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>シルエット・赤い壁のサロン</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_20.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>小物・ブーケとヘッドドレス</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_21.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ふたりで座る・洋館の大階段</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_22.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>手をつないで・夜景</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_23.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新婦ソロ全身・イルミネーション</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_24.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>半身フォーマル・赤い壁のサロン</figcaption></figure>
         </div>
         <h3><i></i>KOREA <span>韓国風 80 様式から — 白黒フィルム、無関心なシック、ゴシックロマン、火山島、セルフスタジオ</span></h3>
         <div class="uc-grid">
-          <figure class="wide"><img src="../assets/uc/bridal_kr_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・霧の夜明け</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/bridal_kr_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・燭台</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>干潟のリアリティウェディング・夕暮れの干潟</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>干潟のリアリティウェディング・風のベール</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>無関心なシックのウェディング・アバンギャルドなドレス</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>フルグラムのウェディング・シャンパンタワー</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>フルグラムのウェディング・紙吹雪</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>白黒フィルムのウェディング・笑う瞬間</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/bridal_kr_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>白黒フィルムのウェディング・踊る</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/bridal_kr_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>スマホで撮る結婚式スナップ・バージンロード</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>火山島のウェディングスナップ・向かい合って小声で</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>セルフウェディングスタジオ・韓服の回</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_13.jpg?v=1012c" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・苔の古宅</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_14.jpg?v=1012c" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・黒いスーツ</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/bridal_kr_01.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ゴシックロマンのウェディング・霧の夜明け</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_kr_02.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ゴシックロマンのウェディング・燭台</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_03.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>干潟のリアリティウェディング・夕暮れの干潟</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_04.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>干潟のリアリティウェディング・風のベール</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_05.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>無関心なシックのウェディング・アバンギャルドなドレス</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_06.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>フルグラムのウェディング・シャンパンタワー</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_07.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>フルグラムのウェディング・紙吹雪</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_08.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>白黒フィルムのウェディング・笑う瞬間</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_kr_09.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>白黒フィルムのウェディング・踊る</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/bridal_kr_10.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>スマホで撮る結婚式スナップ・バージンロード</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_11.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>火山島のウェディングスナップ・向かい合って小声で</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_12.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>セルフウェディングスタジオ・韓服の回</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_13.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>ゴシックロマンのウェディング・苔の古宅</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_kr_14.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>ゴシックロマンのウェディング・黒いスーツ</figcaption></figure>
         </div>
         <h3><i></i>TAIWAN <span>台湾の婚紗 100 様式から — 侘寂、極簡、電影、美式、Vogue、新郎入り</span></h3>
         <div class="uc-grid">
-          <figure class="big"><img src="../assets/uc/bridal_tw_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>侘寂・苔庭の飛び石</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>極簡・雲海の上の山道</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>電影・風のベールの回眸</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>美式・ヴィンテージカーにもたれる</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>Vogue・鏡の床に横たわる</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>新郎・階段で手を差し出す</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>新郎・ホールで回る</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/bridal_tw_08.jpg?v=1012e" alt="" loading="lazy"><figcaption>新郎・雲海の山道の小さな二人</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>新郎・馬を引く</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>新郎・麦畑のディップ</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>花嫁・霧の茶畑</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>花嫁・線香花火の光</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_tw_01.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>侘寂・苔庭の飛び石</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_02.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>極簡・雲海の上の山道</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_03.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>電影・風のベールの回眸</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_04.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>美式・ヴィンテージカーにもたれる</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_05.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>Vogue・鏡の床に横たわる</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_06.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新郎・階段で手を差し出す</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_07.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新郎・ホールで回る</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_tw_08.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>新郎・雲海の山道の小さな二人</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_09.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新郎・馬を引く</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_10.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新郎・麦畑のディップ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_11.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>花嫁・霧の茶畑</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_tw_12.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>花嫁・線香花火の光</figcaption></figure>
         </div>
         <h3><i></i>CHINA <span>中華風 40 様式から — 秀禾服と紅い壁、龍鳳褂と鳳冠、園林の新中式、古鎮と水郷</span></h3>
         <div class="uc-grid">
-          <figure class="big"><img src="../assets/uc/bridal_cn_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・紅い壁と団扇</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・赤い提灯の列</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・紅い油紙傘</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・敬茶の二人</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>龍鳳褂と鳳冠・鳳冠の寄り</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>龍鳳褂と鳳冠・紅い蓋頭</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>龍鳳褂と鳳冠・蓋頭を上げる二人</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/bridal_cn_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>園林の新中式・花窓越し</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>園林の新中式・筆と硯</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>古鎮と水郷の旅拍・提灯の小舟</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>古鎮と水郷の旅拍・茶楼の窓辺</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/bridal_cn_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>古鎮と水郷の旅拍・水郷の引き</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_cn_01.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>秀禾服と紅い壁・紅い壁と団扇</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_02.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>秀禾服と紅い壁・赤い提灯の列</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_03.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>秀禾服と紅い壁・紅い油紙傘</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_04.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>秀禾服と紅い壁・敬茶の二人</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_05.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>龍鳳褂と鳳冠・鳳冠の寄り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_06.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>龍鳳褂と鳳冠・紅い蓋頭</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_07.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>龍鳳褂と鳳冠・蓋頭を上げる二人</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/bridal_cn_08.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>園林の新中式・花窓越し</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_09.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>園林の新中式・筆と硯</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_10.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>古鎮と水郷の旅拍・提灯の小舟</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_11.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>古鎮と水郷の旅拍・茶楼の窓辺</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/bridal_cn_12.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>古鎮と水郷の旅拍・水郷の引き</figcaption></figure>
 
-          <figure><img src="../assets/uc/bridal_cn_13.jpg?v=1012c" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・紅い壁の全身</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_14.jpg?v=1012c" alt="" loading="lazy"><figcaption>龍鳳褂と鳳冠・刺繍の寄り</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_15.jpg?v=1012c" alt="" loading="lazy"><figcaption>園林の新中式・蓮池の石橋</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_16.jpg?v=1012c" alt="" loading="lazy"><figcaption>古鎮と水郷の旅拍・石畳の路地</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_13.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>秀禾服と紅い壁・紅い壁の全身</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_14.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>龍鳳褂と鳳冠・刺繍の寄り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_15.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>園林の新中式・蓮池の石橋</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/bridal_cn_16.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>古鎮と水郷の旅拍・石畳の路地</figcaption></figure>
         </div>
       </div>
     </div>
@@ -302,22 +303,22 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 3b ドレスの棚 -->
   <section class="panel" data-num="03">
     <div class="panel-inner">
-      <div class="ch-eyebrow">03 — ドレスも、棚から</div>
-      <h2 class="ch-title">ドレスの棚、<span class="em nw">500 以上</span>。</h2>
-      <p class="ch-sub">A ライン、ボールガウン、マーメイド、袖つき、カラードレス、韓国風、中華、和装——ファッションの棚にある婚礼衣装 500 着から選んで、同じ顔のまま着替える。実在のドレスの型を参照した設計で、生地と刺繍の違いまで。ここに並ぶのは、11 の系統から 4 着ずつ。</p>
+      <div class="ch-eyebrow reveal">03 — ドレスも、棚から</div>
+      <h2 class="ch-title reveal d1">ドレスの棚、<span class="em nw">500 以上</span>。</h2>
+      <p class="ch-sub reveal d2">A ライン、ボールガウン、マーメイド、袖つき、カラードレス、韓国風、中華、和装——ファッションの棚にある婚礼衣装 500 着から選んで、同じ顔のまま着替える。実在のドレスの型を参照した設計で、生地と刺繍の違いまで。ここに並ぶのは、11 の系統から 4 着ずつ。</p>
       <p class="dress-swipe" aria-hidden="true"><span>横にスワイプ</span><i></i><span class="n">11 の系統</span></p>
       <div class="dress-wall">
-          <div class="dcol"><h4>A ライン</h4><figure title="星モチーフ オフショルストラップAライン"><img src="../assets/uc/dress/dress_016.jpg?v=1012d" alt="" loading="lazy"><figcaption>星モチーフ オフショルストラップAライン</figcaption></figure><figure title="重ねチュール ストラップレスAライン"><img src="../assets/uc/dress/dress_020.jpg?v=1012d" alt="" loading="lazy"><figcaption>重ねチュール ストラップレスAライン</figcaption></figure><figure title="フューズドレース オーガンザサッシュAライン"><img src="../assets/uc/dress/dress_007.jpg?v=1012d" alt="" loading="lazy"><figcaption>フューズドレース オーガンザサッシュAライン</figcaption></figure><figure title="イタリア刺繍アップリケ カテドラルAライン"><img src="../assets/uc/dress/dress_047.jpg?v=1012d" alt="" loading="lazy"><figcaption>イタリア刺繍アップリケ カテドラルAライン</figcaption></figure></div>
-          <div class="dcol"><h4>ボールガウン</h4><figure title="スズラン柄ラジミール 特大ボールガウン"><img src="../assets/uc/dress/dress_086.jpg?v=1012d" alt="" loading="lazy"><figcaption>スズラン柄ラジミール 特大ボールガウン</figcaption></figure><figure title="ラッフルネック バスク サテンボールガウン"><img src="../assets/uc/dress/dress_091.jpg?v=1012d" alt="" loading="lazy"><figcaption>ラッフルネック バスク サテンボールガウン</figcaption></figure><figure title="レースバスクコルセット スクエアネック サテンボールガウン"><img src="../assets/uc/dress/dress_070.jpg?v=1012d" alt="" loading="lazy"><figcaption>レースバスクコルセット スクエアネック サテンボールガウン</figcaption></figure><figure title="サテンフェイスオーガンザ バスクボールガウン"><img src="../assets/uc/dress/dress_066.jpg?v=1012d" alt="" loading="lazy"><figcaption>サテンフェイスオーガンザ バスクボールガウン</figcaption></figure></div>
-          <div class="dcol"><h4>マーメイド</h4><figure title="ビーズギピュール ツーピース トランペット"><img src="../assets/uc/dress/dress_115.jpg?v=1012d" alt="" loading="lazy"><figcaption>ビーズギピュール ツーピース トランペット</figcaption></figure><figure title="コードフレンチレース ハイネックホルター"><img src="../assets/uc/dress/dress_112.jpg?v=1012d" alt="" loading="lazy"><figcaption>コードフレンチレース ハイネックホルター</figcaption></figure><figure title="シアーレース長袖 プランジF&amp;F"><img src="../assets/uc/dress/dress_136.jpg?v=1012d" alt="" loading="lazy"><figcaption>シアーレース長袖 プランジF&amp;F</figcaption></figure><figure title="ベビーバスク ミカド スリムフレア"><img src="../assets/uc/dress/dress_146.jpg?v=1012d" alt="" loading="lazy"><figcaption>ベビーバスク ミカド スリムフレア</figcaption></figure></div>
-          <div class="dcol"><h4>スレンダー</h4><figure title="シルクサテン深Vドレープ"><img src="../assets/uc/dress/dress_179.jpg?v=1012d" alt="" loading="lazy"><figcaption>シルクサテン深Vドレープ</figcaption></figure><figure title="レーストリムVエンパイア"><img src="../assets/uc/dress/dress_164.jpg?v=1012d" alt="" loading="lazy"><figcaption>レーストリムVエンパイア</figcaption></figure><figure title="マットジャージーカウル"><img src="../assets/uc/dress/dress_175.jpg?v=1012d" alt="" loading="lazy"><figcaption>マットジャージーカウル</figcaption></figure><figure title="ブレードトリムシルクタンク"><img src="../assets/uc/dress/dress_194.jpg?v=1012d" alt="" loading="lazy"><figcaption>ブレードトリムシルクタンク</figcaption></figure></div>
-          <div class="dcol"><h4>袖つき</h4><figure title="ツイード5分袖マーメイド"><img src="../assets/uc/dress/dress_325.jpg?v=1012d" alt="" loading="lazy"><figcaption>ツイード5分袖マーメイド</figcaption></figure><figure title="パール袖口ボートネック"><img src="../assets/uc/dress/dress_314.jpg?v=1012d" alt="" loading="lazy"><figcaption>パール袖口ボートネック</figcaption></figure><figure title="長袖レースジャンプスーツ"><img src="../assets/uc/dress/dress_308.jpg?v=1012d" alt="" loading="lazy"><figcaption>長袖レースジャンプスーツ</figcaption></figure><figure title="7分袖パールミカド"><img src="../assets/uc/dress/dress_302.jpg?v=1012d" alt="" loading="lazy"><figcaption>7分袖パールミカド</figcaption></figure></div>
-          <div class="dcol"><h4>ボヘミアン</h4><figure title="ドロップウエストスカラップ"><img src="../assets/uc/dress/dress_212.jpg?v=1012d" alt="" loading="lazy"><figcaption>ドロップウエストスカラップ</figcaption></figure><figure title="オフショルレースドロップウエスト"><img src="../assets/uc/dress/dress_222.jpg?v=1012d" alt="" loading="lazy"><figcaption>オフショルレースドロップウエスト</figcaption></figure><figure title="プリーツホルターチュールタイ"><img src="../assets/uc/dress/dress_219.jpg?v=1012d" alt="" loading="lazy"><figcaption>プリーツホルターチュールタイ</figcaption></figure><figure title="レースバッグドアウト裾"><img src="../assets/uc/dress/dress_207.jpg?v=1012d" alt="" loading="lazy"><figcaption>レースバッグドアウト裾</figcaption></figure></div>
-          <div class="dcol"><h4>モダン</h4><figure title="カウルボーンミニ"><img src="../assets/uc/dress/dress_267.jpg?v=1012d" alt="" loading="lazy"><figcaption>カウルボーンミニ</figcaption></figure><figure title="ビーズシャンティリーミニ"><img src="../assets/uc/dress/dress_268.jpg?v=1012d" alt="" loading="lazy"><figcaption>ビーズシャンティリーミニ</figcaption></figure><figure title="ハイカラートップ+ミニ"><img src="../assets/uc/dress/dress_263.jpg?v=1012d" alt="" loading="lazy"><figcaption>ハイカラートップ+ミニ</figcaption></figure><figure title="リボンバルーンミニ"><img src="../assets/uc/dress/dress_261.jpg?v=1012d" alt="" loading="lazy"><figcaption>リボンバルーンミニ</figcaption></figure></div>
-          <div class="dcol"><h4>カラードレス</h4><figure title="コーラルピンク×スカーレット ファイユ"><img src="../assets/uc/dress/dress_345.jpg?v=1012d" alt="" loading="lazy"><figcaption>コーラルピンク×スカーレット ファイユ</figcaption></figure><figure title="コバルト クロッケジャカード コラム"><img src="../assets/uc/dress/dress_344.jpg?v=1012d" alt="" loading="lazy"><figcaption>コバルト クロッケジャカード コラム</figcaption></figure><figure title="フューシャ×ライム ビビッドフリル"><img src="../assets/uc/dress/dress_366.jpg?v=1012d" alt="" loading="lazy"><figcaption>フューシャ×ライム ビビッドフリル</figcaption></figure><figure title="ティール サテン 長袖オフショル"><img src="../assets/uc/dress/dress_372.jpg?v=1012d" alt="" loading="lazy"><figcaption>ティール サテン 長袖オフショル</figcaption></figure></div>
-          <div class="dcol"><h4>韓国風</h4><figure title="ミカド 片リボンオフショル ミディ"><img src="../assets/uc/dress/dress_399.jpg?v=1012d" alt="" loading="lazy"><figcaption>ミカド 片リボンオフショル ミディ</figcaption></figure><figure title="ベル袖オーガンジー+花チョーカー"><img src="../assets/uc/dress/dress_381.jpg?v=1012d" alt="" loading="lazy"><figcaption>ベル袖オーガンジー+花チョーカー</figcaption></figure><figure title="黒金箔の中殿婚礼服"><img src="../assets/uc/dress/dress_414.jpg?v=1012d" alt="" loading="lazy"><figcaption>黒金箔の中殿婚礼服</figcaption></figure><figure title="総ビーズ ケープ袖"><img src="../assets/uc/dress/dress_397.jpg?v=1012d" alt="" loading="lazy"><figcaption>総ビーズ ケープ袖</figcaption></figure></div>
-          <div class="dcol"><h4>中華</h4><figure title="紅レース カテドラル旗袍"><img src="../assets/uc/dress/dress_485.jpg?v=1012d" alt="" loading="lazy"><figcaption>紅レース カテドラル旗袍</figcaption></figure><figure title="非対称鳳凰 サテン旗袍"><img src="../assets/uc/dress/dress_493.jpg?v=1012d" alt="" loading="lazy"><figcaption>非対称鳳凰 サテン旗袍</figcaption></figure><figure title="龍鳳 Aライン裙褂"><img src="../assets/uc/dress/dress_476.jpg?v=1012d" alt="" loading="lazy"><figcaption>龍鳳 Aライン裙褂</figcaption></figure><figure title="褂皇 総手刺繍"><img src="../assets/uc/dress/dress_472.jpg?v=1012d" alt="" loading="lazy"><figcaption>褂皇 総手刺繍</figcaption></figure></div>
-          <div class="dcol"><h4>和装</h4><figure title="緑 鹿の子雲取り大和絵"><img src="../assets/uc/dress/dress_431.jpg?v=1012d" alt="" loading="lazy"><figcaption>緑 鹿の子雲取り大和絵</figcaption></figure><figure title="黒 しだれ桜と松 青海波裾"><img src="../assets/uc/dress/dress_446.jpg?v=1012d" alt="" loading="lazy"><figcaption>黒 しだれ桜と松 青海波裾</figcaption></figure><figure title="黒 松に太鼓橋御所車"><img src="../assets/uc/dress/dress_433.jpg?v=1012d" alt="" loading="lazy"><figcaption>黒 松に太鼓橋御所車</figcaption></figure><figure title="よろけ織 流水松竹梅に鶴"><img src="../assets/uc/dress/dress_421.jpg?v=1012d" alt="" loading="lazy"><figcaption>よろけ織 流水松竹梅に鶴</figcaption></figure></div>
+          <div class="dcol"><h4>A ライン</h4><figure class="reveal" title="星モチーフ オフショルストラップAライン"><img src="../assets/uc/dress/dress_016.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>星モチーフ オフショルストラップAライン</figcaption></figure><figure class="reveal" title="重ねチュール ストラップレスAライン"><img src="../assets/uc/dress/dress_020.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>重ねチュール ストラップレスAライン</figcaption></figure><figure class="reveal" title="フューズドレース オーガンザサッシュAライン"><img src="../assets/uc/dress/dress_007.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>フューズドレース オーガンザサッシュAライン</figcaption></figure><figure class="reveal" title="イタリア刺繍アップリケ カテドラルAライン"><img src="../assets/uc/dress/dress_047.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>イタリア刺繍アップリケ カテドラルAライン</figcaption></figure></div>
+          <div class="dcol"><h4>ボールガウン</h4><figure class="reveal" title="スズラン柄ラジミール 特大ボールガウン"><img src="../assets/uc/dress/dress_086.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>スズラン柄ラジミール 特大ボールガウン</figcaption></figure><figure class="reveal" title="ラッフルネック バスク サテンボールガウン"><img src="../assets/uc/dress/dress_091.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ラッフルネック バスク サテンボールガウン</figcaption></figure><figure class="reveal" title="レースバスクコルセット スクエアネック サテンボールガウン"><img src="../assets/uc/dress/dress_070.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>レースバスクコルセット スクエアネック サテンボールガウン</figcaption></figure><figure class="reveal" title="サテンフェイスオーガンザ バスクボールガウン"><img src="../assets/uc/dress/dress_066.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>サテンフェイスオーガンザ バスクボールガウン</figcaption></figure></div>
+          <div class="dcol"><h4>マーメイド</h4><figure class="reveal" title="ビーズギピュール ツーピース トランペット"><img src="../assets/uc/dress/dress_115.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ビーズギピュール ツーピース トランペット</figcaption></figure><figure class="reveal" title="コードフレンチレース ハイネックホルター"><img src="../assets/uc/dress/dress_112.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>コードフレンチレース ハイネックホルター</figcaption></figure><figure class="reveal" title="シアーレース長袖 プランジF&amp;F"><img src="../assets/uc/dress/dress_136.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>シアーレース長袖 プランジF&amp;F</figcaption></figure><figure class="reveal" title="ベビーバスク ミカド スリムフレア"><img src="../assets/uc/dress/dress_146.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ベビーバスク ミカド スリムフレア</figcaption></figure></div>
+          <div class="dcol"><h4>スレンダー</h4><figure class="reveal" title="シルクサテン深Vドレープ"><img src="../assets/uc/dress/dress_179.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>シルクサテン深Vドレープ</figcaption></figure><figure class="reveal" title="レーストリムVエンパイア"><img src="../assets/uc/dress/dress_164.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>レーストリムVエンパイア</figcaption></figure><figure class="reveal" title="マットジャージーカウル"><img src="../assets/uc/dress/dress_175.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>マットジャージーカウル</figcaption></figure><figure class="reveal" title="ブレードトリムシルクタンク"><img src="../assets/uc/dress/dress_194.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ブレードトリムシルクタンク</figcaption></figure></div>
+          <div class="dcol"><h4>袖つき</h4><figure class="reveal" title="ツイード5分袖マーメイド"><img src="../assets/uc/dress/dress_325.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ツイード5分袖マーメイド</figcaption></figure><figure class="reveal" title="パール袖口ボートネック"><img src="../assets/uc/dress/dress_314.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>パール袖口ボートネック</figcaption></figure><figure class="reveal" title="長袖レースジャンプスーツ"><img src="../assets/uc/dress/dress_308.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>長袖レースジャンプスーツ</figcaption></figure><figure class="reveal" title="7分袖パールミカド"><img src="../assets/uc/dress/dress_302.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>7分袖パールミカド</figcaption></figure></div>
+          <div class="dcol"><h4>ボヘミアン</h4><figure class="reveal" title="ドロップウエストスカラップ"><img src="../assets/uc/dress/dress_212.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ドロップウエストスカラップ</figcaption></figure><figure class="reveal" title="オフショルレースドロップウエスト"><img src="../assets/uc/dress/dress_222.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>オフショルレースドロップウエスト</figcaption></figure><figure class="reveal" title="プリーツホルターチュールタイ"><img src="../assets/uc/dress/dress_219.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>プリーツホルターチュールタイ</figcaption></figure><figure class="reveal" title="レースバッグドアウト裾"><img src="../assets/uc/dress/dress_207.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>レースバッグドアウト裾</figcaption></figure></div>
+          <div class="dcol"><h4>モダン</h4><figure class="reveal" title="カウルボーンミニ"><img src="../assets/uc/dress/dress_267.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>カウルボーンミニ</figcaption></figure><figure class="reveal" title="ビーズシャンティリーミニ"><img src="../assets/uc/dress/dress_268.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ビーズシャンティリーミニ</figcaption></figure><figure class="reveal" title="ハイカラートップ+ミニ"><img src="../assets/uc/dress/dress_263.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ハイカラートップ+ミニ</figcaption></figure><figure class="reveal" title="リボンバルーンミニ"><img src="../assets/uc/dress/dress_261.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>リボンバルーンミニ</figcaption></figure></div>
+          <div class="dcol"><h4>カラードレス</h4><figure class="reveal" title="コーラルピンク×スカーレット ファイユ"><img src="../assets/uc/dress/dress_345.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>コーラルピンク×スカーレット ファイユ</figcaption></figure><figure class="reveal" title="コバルト クロッケジャカード コラム"><img src="../assets/uc/dress/dress_344.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>コバルト クロッケジャカード コラム</figcaption></figure><figure class="reveal" title="フューシャ×ライム ビビッドフリル"><img src="../assets/uc/dress/dress_366.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>フューシャ×ライム ビビッドフリル</figcaption></figure><figure class="reveal" title="ティール サテン 長袖オフショル"><img src="../assets/uc/dress/dress_372.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ティール サテン 長袖オフショル</figcaption></figure></div>
+          <div class="dcol"><h4>韓国風</h4><figure class="reveal" title="ミカド 片リボンオフショル ミディ"><img src="../assets/uc/dress/dress_399.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ミカド 片リボンオフショル ミディ</figcaption></figure><figure class="reveal" title="ベル袖オーガンジー+花チョーカー"><img src="../assets/uc/dress/dress_381.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>ベル袖オーガンジー+花チョーカー</figcaption></figure><figure class="reveal" title="黒金箔の中殿婚礼服"><img src="../assets/uc/dress/dress_414.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>黒金箔の中殿婚礼服</figcaption></figure><figure class="reveal" title="総ビーズ ケープ袖"><img src="../assets/uc/dress/dress_397.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>総ビーズ ケープ袖</figcaption></figure></div>
+          <div class="dcol"><h4>中華</h4><figure class="reveal" title="紅レース カテドラル旗袍"><img src="../assets/uc/dress/dress_485.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>紅レース カテドラル旗袍</figcaption></figure><figure class="reveal" title="非対称鳳凰 サテン旗袍"><img src="../assets/uc/dress/dress_493.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>非対称鳳凰 サテン旗袍</figcaption></figure><figure class="reveal" title="龍鳳 Aライン裙褂"><img src="../assets/uc/dress/dress_476.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>龍鳳 Aライン裙褂</figcaption></figure><figure class="reveal" title="褂皇 総手刺繍"><img src="../assets/uc/dress/dress_472.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>褂皇 総手刺繍</figcaption></figure></div>
+          <div class="dcol"><h4>和装</h4><figure class="reveal" title="緑 鹿の子雲取り大和絵"><img src="../assets/uc/dress/dress_431.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>緑 鹿の子雲取り大和絵</figcaption></figure><figure class="reveal" title="黒 しだれ桜と松 青海波裾"><img src="../assets/uc/dress/dress_446.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>黒 しだれ桜と松 青海波裾</figcaption></figure><figure class="reveal" title="黒 松に太鼓橋御所車"><img src="../assets/uc/dress/dress_433.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>黒 松に太鼓橋御所車</figcaption></figure><figure class="reveal" title="よろけ織 流水松竹梅に鶴"><img src="../assets/uc/dress/dress_421.jpg?v=1012d" alt="" loading="lazy" decoding="async"><figcaption>よろけ織 流水松竹梅に鶴</figcaption></figure></div>
       </div>
       <div class="dress-track" aria-hidden="true"><b></b></div>
       <p class="dress-note">衣装は棚の図で選ぶだけ。前撮りの様式(場所・構図)と組み合わせて、絵コンテに反映します。</p>
@@ -327,9 +328,9 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 4 仕上がり -->
   <section class="panel cine" data-num="04" style="--bd:url(../assets/uc/uc_bridal_B47.jpg);--bd-pos:center 60%">
     <div class="panel-inner">
-      <div class="ch-eyebrow">04 — 仕上がり</div>
-      <h2 class="ch-title">写真が、<span class="em">動き出す</span>。</h2>
-      <p class="ch-sub">確定した一枚を開始画像に、数秒の動画へ。同じ顔・同じ衣装のまま、灯台の島でも、礼拝堂でも、砂浜でも。</p>
+      <div class="ch-eyebrow reveal">04 — 仕上がり</div>
+      <h2 class="ch-title reveal d1">写真が、<span class="em">動き出す</span>。</h2>
+      <p class="ch-sub reveal d2">確定した一枚を開始画像に、数秒の動画へ。同じ顔・同じ衣装のまま、灯台の島でも、礼拝堂でも、砂浜でも。</p>
       <div class="uc-fin">
         <div class="uc-film"><video src="../assets/uc/uc_bridal_B43.mp4" poster="../assets/uc/uc_bridal_B43.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">LIGHTHOUSE · TWO</span></div>
         <div class="uc-film"><video src="../assets/uc/uc_bridal_B17.mp4" poster="../assets/uc/uc_bridal_B17.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">CLIFF · VEIL</span></div>
@@ -345,8 +346,8 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 5 連絡 -->
   <section class="panel uc-contact" data-num="05">
     <div class="panel-inner">
-      <h2 class="ch-title">前撮りの相談は、<span class="em">一言</span>から。</h2>
-      <p class="ch-sub" style="margin-left:auto;margin-right:auto">場所の雰囲気と、着たい衣装。それだけ送ってください。絵コンテにしてお返しします。</p>
+      <h2 class="ch-title reveal d1">前撮りの相談は、<span class="em">一言</span>から。</h2>
+      <p class="ch-sub reveal d2" style="margin-left:auto;margin-right:auto">場所の雰囲気と、着たい衣装。それだけ送ってください。絵コンテにしてお返しします。</p>
       <div class="uc-cta" style="justify-content:center">
         <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
         <a class="btn ghost" href="./">ほかの用途を見る</a>
@@ -391,7 +392,7 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   io.observe(wall);
 })();
 </script>
-<script src="../js/sitemenu.js?v=20261013zh1"></script>
+<script src="../js/sitemenu.js?v=20261013vt1"></script>
 <script src="../js/uc_i18n.js?v=20261013ft1"></script>
 </body>
 </html>

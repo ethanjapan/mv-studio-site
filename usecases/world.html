@@ -23,7 +23,8 @@
 var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base");if(lang==="zh")add("zh");window.__mvFonts=function(k){if(k==="zh")add("zh")}})();
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="../css/theater.css?v=20261013zh2">
+<link rel="preload" as="image" fetchpriority="high" href="../assets/uc/world_hero_fuji.jpg">
+<link rel="stylesheet" href="../css/theater.css?v=20261013vt1">
 <style>
 /* ユースケースのページだけの小さな決まり。部品の衣装は theater.css の「役割の衣装」と「第1段 色の一本化」をそのまま使う */
 .uc-head .brand{text-decoration:none}
@@ -94,9 +95,9 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
     <div class="panel-inner">
       <div>
         <nav class="crumbs" aria-label="現在地"><a href="../">ホーム</a><i>/</i><a href="./">用途</a><i>/</i><span>世界の撮影</span></nav>
-        <div class="ch-eyebrow">USE CASE 05 — 世界の撮影</div>
-        <h2 class="ch-title">同じ顔で、<br><span class="em">世界を一周</span>。</h2>
-        <p class="ch-sub">アメリカの宣材、韓国の写真館と K-POP、台湾の写真館、中国の旅拍、日本の祭りと絶景——地域ごとに集めた撮影の様式 3,000 以上。同じ顔のまま、国の数だけ撮り分ける。すべて高画素で、手元の PC で。</p>
+        <div class="ch-eyebrow reveal">USE CASE 05 — 世界の撮影</div>
+        <h2 class="ch-title reveal d1">同じ顔で、<br><span class="em">世界を一周</span>。</h2>
+        <p class="ch-sub reveal d2">アメリカの宣材、韓国の写真館と K-POP、台湾の写真館、中国の旅拍、日本の祭りと絶景——地域ごとに集めた撮影の様式 3,000 以上。同じ顔のまま、国の数だけ撮り分ける。すべて高画素で、手元の PC で。</p>
         <div class="uc-cta">
           <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
           <span class="note">Instagram · @made_linlin</span>
@@ -112,20 +113,20 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 2 頼み方 -->
   <section class="panel" data-num="02">
     <div class="panel-inner">
-      <div class="ch-eyebrow">02 — 頼み方</div>
-      <h2 class="ch-title">話す、<span class="em">選ぶ</span>、焼く。</h2>
-      <p class="ch-sub">「韓国の写真館みたいに」「台湾の旅拍で」——国と雰囲気を言うだけ。ディレクターが、その土地の光と衣装を当てる。</p>
+      <div class="ch-eyebrow reveal">02 — 頼み方</div>
+      <h2 class="ch-title reveal d1">話す、<span class="em">選ぶ</span>、焼く。</h2>
+      <p class="ch-sub reveal d2">「韓国の写真館みたいに」「台湾の旅拍で」——国と雰囲気を言うだけ。ディレクターが、その土地の光と衣装を当てる。</p>
       <div class="uc-steps">
         <div class="uc-step">
           <div class="n">01</div><h4>話す</h4>
           <p>行きたい国、撮りたい雰囲気。言葉にできる所だけでいい。棚の地域の段から指すのが一番早い。</p>
-          <div class="pic"><img src="../assets/app_photo.jpg?v=20261008a" alt="フォトテンプレの棚" loading="lazy"></div>
+          <div class="pic"><img src="../assets/app_photo.jpg?v=20261008a" alt="フォトテンプレの棚" loading="lazy" decoding="async"></div>
           <div class="say">「韓国の写真館みたいに」</div>
         </div>
         <div class="uc-step">
           <div class="n">02</div><h4>候補から選ぶ</h4>
           <p>同じ顔で、光と構図の違う候補が並ぶ。気に入った一枚だけ残し、表情や衣装は何度でも作り直す。</p>
-          <div class="pic"><img src="../assets/app_rinka4.jpg?v=20261009a" alt="同じ顔の候補" loading="lazy"></div>
+          <div class="pic"><img src="../assets/app_rinka4.jpg?v=20261009a" alt="同じ顔の候補" loading="lazy" decoding="async"></div>
           <div class="say">「この表情、最高。これで」</div>
         </div>
         <div class="uc-step">
@@ -141,150 +142,150 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 3 棚 -->
   <section class="panel wall" data-num="03">
     <div class="panel-inner">
-      <div class="ch-eyebrow">03 — 棚から選べる</div>
-      <h2 class="ch-title">地域の様式、<span class="em nw">3,000 以上</span>。</h2>
-      <p class="ch-sub">US 800・韓国 800・台湾 200・中国 280・日本 600・日本の絶景 300。それぞれの国の「撮られ方」を集めた棚から、ここに並ぶのは 106。すべて 1408×2048 の高画素。</p>
+      <div class="ch-eyebrow reveal">03 — 棚から選べる</div>
+      <h2 class="ch-title reveal d1">地域の様式、<span class="em nw">3,000 以上</span>。</h2>
+      <p class="ch-sub reveal d2">US 800・韓国 800・台湾 200・中国 280・日本 600・日本の絶景 300。それぞれの国の「撮られ方」を集めた棚から、ここに並ぶのは 106。すべて 1408×2048 の高画素。</p>
       <div class="uc-shelf">
         <h3><i></i>JAPAN SCENIC <span>日本の絶景×人物 — 青い池、浅間公園、長谷寺、ジュエリーアイス、河津桜、華厳の滝、只見線——名所の光の中に立つ</span></h3>
         <div class="uc-grid world">
-          <figure class="big"><img src="../assets/uc/world_49.jpg?v=1012b" alt="" loading="lazy"><figcaption>美瑛 白金青い池・秋・紅葉の映り込み</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/world_50.jpg?v=1012b" alt="" loading="lazy"><figcaption>新倉山浅間公園 忠霊塔・振袖で巡る</figcaption></figure>
-          <figure><img src="../assets/uc/world_51.jpg?v=1012b" alt="" loading="lazy"><figcaption>鎌倉 長谷寺 あじさい路・眺望散策路・池と紅</figcaption></figure>
-          <figure><img src="../assets/uc/world_52.jpg?v=1012b" alt="" loading="lazy"><figcaption>豊頃 大津海岸のジュエリーアイス・昼・透き通</figcaption></figure>
-          <figure><img src="../assets/uc/world_53.jpg?v=1012b" alt="" loading="lazy"><figcaption>河津桜並木 河津川沿い・川沿いの桜並木と菜の</figcaption></figure>
-          <figure><img src="../assets/uc/world_54.jpg?v=1012b" alt="" loading="lazy"><figcaption>華厳の滝・観瀑台から見上げる</figcaption></figure>
-          <figure><img src="../assets/uc/world_55.jpg?v=1012b" alt="" loading="lazy"><figcaption>鎌倉 明月院・悟りの窓越しのあじさいと苔</figcaption></figure>
-          <figure><img src="../assets/uc/world_56.jpg?v=1012b" alt="" loading="lazy"><figcaption>三十槌の氷柱・氷柱の寄り</figcaption></figure>
-          <figure><img src="../assets/uc/world_58.jpg?v=1012b" alt="" loading="lazy"><figcaption>奥入瀬渓流・新緑の朝霧</figcaption></figure>
-          <figure><img src="../assets/uc/world_59.jpg?v=1012b" alt="" loading="lazy"><figcaption>美瑛 白ひげの滝・橋の上の寄り</figcaption></figure>
-          <figure><img src="../assets/uc/world_60.jpg?v=1012b" alt="" loading="lazy"><figcaption>只見線 第一只見川橋梁・渓谷の寄り</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>小樽運河・冬の夜・キャンドルの中の着物</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_13.jpg?v=1013a" alt="" loading="lazy"><figcaption>新倉山浅間公園・紅葉と五重塔</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_14.jpg?v=1013a" alt="" loading="lazy"><figcaption>河口湖 大石公園・コキアと富士山</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_15.jpg?v=1013a" alt="" loading="lazy"><figcaption>忍野八海・青緑の池と鯉</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_16.jpg?v=1013a" alt="" loading="lazy"><figcaption>小樽運河・夕暮れのガス灯</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_17.jpg?v=1013a" alt="" loading="lazy"><figcaption>銀山温泉・橋の上の袴</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_18.jpg?v=1013a" alt="" loading="lazy"><figcaption>田沢湖・瑠璃色の湖と朱の鳥居</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_19.jpg?v=1013a" alt="" loading="lazy"><figcaption>青森ねぶた祭・跳ねるハネト</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_20.jpg?v=1013a" alt="" loading="lazy"><figcaption>東京タワー・夜の増上寺</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_21.jpg?v=1013a" alt="" loading="lazy"><figcaption>箱根神社・平和の鳥居の水鏡</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_22.jpg?v=1013a" alt="" loading="lazy"><figcaption>小笠原諸島・白砂を歩く</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_23.jpg?v=1013a" alt="" loading="lazy"><figcaption>白川郷・水田に映る合掌造り</figcaption></figure>
-          <figure><img src="../assets/uc/world_zk_24.jpg?v=1013a" alt="" loading="lazy"><figcaption>兼六園・灯籠と池の朝</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/world_49.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>美瑛 白金青い池・秋・紅葉の映り込み</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/world_50.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新倉山浅間公園 忠霊塔・振袖で巡る</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_51.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>鎌倉 長谷寺 あじさい路・眺望散策路・池と紅</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_52.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>豊頃 大津海岸のジュエリーアイス・昼・透き通</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_53.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>河津桜並木 河津川沿い・川沿いの桜並木と菜の</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_54.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>華厳の滝・観瀑台から見上げる</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_55.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>鎌倉 明月院・悟りの窓越しのあじさいと苔</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_56.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>三十槌の氷柱・氷柱の寄り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_58.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>奥入瀬渓流・新緑の朝霧</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_59.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>美瑛 白ひげの滝・橋の上の寄り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_60.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>只見線 第一只見川橋梁・渓谷の寄り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_12.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>小樽運河・冬の夜・キャンドルの中の着物</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_13.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>新倉山浅間公園・紅葉と五重塔</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_14.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>河口湖 大石公園・コキアと富士山</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_15.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>忍野八海・青緑の池と鯉</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_16.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>小樽運河・夕暮れのガス灯</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_17.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>銀山温泉・橋の上の袴</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_18.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>田沢湖・瑠璃色の湖と朱の鳥居</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_19.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>青森ねぶた祭・跳ねるハネト</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_20.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>東京タワー・夜の増上寺</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_21.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>箱根神社・平和の鳥居の水鏡</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_22.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>小笠原諸島・白砂を歩く</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_23.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>白川郷・水田に映る合掌造り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_zk_24.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>兼六園・灯籠と池の朝</figcaption></figure>
         </div>
         <h3><i></i>UNITED STATES <span>アメリカ — 俳優の宣材、オーラ・ビューティー、レトロダイナー、オールドマネー、ヴァンプ、モダンウエスタン——色と役割で撮る</span></h3>
         <div class="uc-grid world">
-          <figure class="big"><img src="../assets/uc/world_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>エクストラ・セレスチャル・未来的なトラック</figcaption></figure>
-          <figure><img src="../assets/uc/world_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>コテージコア・野菜を育てる</figcaption></figure>
-          <figure><img src="../assets/uc/world_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>トマトガール・サマー・ゼラニウムのバルコニー</figcaption></figure>
-          <figure><img src="../assets/uc/world_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>モダンウエスタン・牧場の家の戸口</figcaption></figure>
-          <figure><img src="../assets/uc/world_us2_03.jpg?v=1013a" alt="" loading="lazy"><figcaption>浜辺のピンナップ・桟橋で跳ぶ</figcaption></figure>
-          <figure><img src="../assets/uc/world_us2_04.jpg?v=1013a" alt="" loading="lazy"><figcaption>モダンウエスタン・干し草の柵</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>フィッシャーマン・レインコートの着こなし</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>社交界のプールサイド・山を望むテラス</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_us2_01.jpg?v=1013a" alt="" loading="lazy"><figcaption>モダンウエスタン・白い砂丘</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_us2_02.jpg?v=1013a" alt="" loading="lazy"><figcaption>トマトガール・港の石段</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_us2_05.jpg?v=1013a" alt="" loading="lazy"><figcaption>トマトガール・石畳の小径</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/world_04.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>エクストラ・セレスチャル・未来的なトラック</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_05.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>コテージコア・野菜を育てる</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_11.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>トマトガール・サマー・ゼラニウムのバルコニー</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_12.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>モダンウエスタン・牧場の家の戸口</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_us2_03.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>浜辺のピンナップ・桟橋で跳ぶ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_us2_04.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>モダンウエスタン・干し草の柵</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_06.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>フィッシャーマン・レインコートの着こなし</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_09.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>社交界のプールサイド・山を望むテラス</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_us2_01.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>モダンウエスタン・白い砂丘</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_us2_02.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>トマトガール・港の石段</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_us2_05.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>トマトガール・石畳の小径</figcaption></figure>
         </div>
         <h3><i></i>KOREA <span>韓国 — モノクロ写真館、桜スナップ、韓服、4コマ写真ブース、MZ のポーズ、色背景の肖像——澄んだ光と白</span></h3>
         <div class="uc-grid world">
-          <figure class="big"><img src="../assets/uc/world_14.jpg?v=1012b" alt="" loading="lazy"><figcaption>桜スナップ・小川の桜</figcaption></figure>
-          <figure><img src="../assets/uc/world_18.jpg?v=1012b" alt="" loading="lazy"><figcaption>宮殿の韓服スナップ・インスタント写真のおまけ</figcaption></figure>
-          <figure><img src="../assets/uc/world_23.jpg?v=1012b" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・シダの寄り</figcaption></figure>
-          <figure><img src="../assets/uc/world_kr2_01.jpg?v=1013a" alt="" loading="lazy"><figcaption>都市のエディトリアル・宮殿の門</figcaption></figure>
-          <figure><img src="../assets/uc/world_kr2_02.jpg?v=1013a" alt="" loading="lazy"><figcaption>都市のエディトリアル・漢江の橋</figcaption></figure>
-          <figure><img src="../assets/uc/world_kr2_04.jpg?v=1013a" alt="" loading="lazy"><figcaption>都市のエディトリアル・夏の緑</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_20.jpg?v=1012b" alt="" loading="lazy"><figcaption>MZ世代のポーズミーム・腕のハート 横</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_21.jpg?v=1012b" alt="" loading="lazy"><figcaption>人外のファンタジーコンセプト・森 横</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_24.jpg?v=1012b" alt="" loading="lazy"><figcaption>火山島のウェディングスナップ・黒い砂浜と白い</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_kr2_03.jpg?v=1013a" alt="" loading="lazy"><figcaption>フュージョン韓服・屋上</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_kr2_05.jpg?v=1013a" alt="" loading="lazy"><figcaption>秋の読書・落ち葉の引き</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/world_14.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>桜スナップ・小川の桜</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_18.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>宮殿の韓服スナップ・インスタント写真のおまけ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_23.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ゴシックロマンのウェディング・シダの寄り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kr2_01.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>都市のエディトリアル・宮殿の門</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kr2_02.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>都市のエディトリアル・漢江の橋</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kr2_04.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>都市のエディトリアル・夏の緑</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_20.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>MZ世代のポーズミーム・腕のハート 横</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_21.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>人外のファンタジーコンセプト・森 横</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_24.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>火山島のウェディングスナップ・黒い砂浜と白い</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_kr2_03.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>フュージョン韓服・屋上</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_kr2_05.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>秋の読書・落ち葉の引き</figcaption></figure>
         </div>
         <h3><i></i>K-POP <span>韓国 — アイドルの写真文法。ファンサイトの望遠、シーズングリーティング、コンセプトフォト(ガールクラッシュ、フューチャリスティック、キュート、Y2K)</span></h3>
         <div class="uc-grid world">
-          <figure><img src="../assets/uc/world_kp_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>ファンサイトの望遠写真・授賞式</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>ファンサイトの望遠写真・音楽番組の出勤路</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>シーズングリーティングの画報・バレーボール</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>ガールクラッシュのコンセプト・ボールガウン×エッジ</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_kp_16.jpg?v=1012g" alt="" loading="lazy"><figcaption>夕焼けと車・もたれる</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>フューチャリスティックのコンセプト・厚底スニーカー</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>キュート・パステルのコンセプト・夏の明るい版</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>ファン&amp;実験のコンセプト・ゼリーシューズ</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>プールのある家のY2Kコンセプト・トラックスーツ</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_13.jpg?v=1012g" alt="" loading="lazy"><figcaption>舞台衣装・マイク</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_kp_17.jpg?v=1012g" alt="" loading="lazy"><figcaption>夕焼けと車・屋根に</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>シーズングリーティングの画報・テニス</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>ガールクラッシュのコンセプト・コンバットブーツ</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>フューチャリスティックのコンセプト・極端なネイル</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>プールのある家のY2Kコンセプト・チューブドレス</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_14.jpg?v=1012g" alt="" loading="lazy"><figcaption>舞台衣装・豹柄</figcaption></figure>
-          <figure><img src="../assets/uc/world_kp_15.jpg?v=1013b" alt="" loading="lazy"><figcaption>舞台衣装・スパンコール</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_kp_18.jpg?v=1012g" alt="" loading="lazy"><figcaption>舞台衣装・床の振り付け</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_01.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ファンサイトの望遠写真・授賞式</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_02.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ファンサイトの望遠写真・音楽番組の出勤路</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_03.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>シーズングリーティングの画報・バレーボール</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_04.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ガールクラッシュのコンセプト・ボールガウン×エッジ</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_kp_16.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>夕焼けと車・もたれる</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_05.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>フューチャリスティックのコンセプト・厚底スニーカー</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_06.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>キュート・パステルのコンセプト・夏の明るい版</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_07.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ファン&amp;実験のコンセプト・ゼリーシューズ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_08.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>プールのある家のY2Kコンセプト・トラックスーツ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_13.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>舞台衣装・マイク</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_kp_17.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>夕焼けと車・屋根に</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_09.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>シーズングリーティングの画報・テニス</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_10.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ガールクラッシュのコンセプト・コンバットブーツ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_11.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>フューチャリスティックのコンセプト・極端なネイル</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_12.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>プールのある家のY2Kコンセプト・チューブドレス</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_14.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>舞台衣装・豹柄</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_kp_15.jpg?v=1013b" alt="" loading="lazy" decoding="async"><figcaption>舞台衣装・スパンコール</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_kp_18.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>舞台衣装・床の振り付け</figcaption></figure>
         </div>
         <h3><i></i>TAIWAN <span>台湾 — 写真館の文化と外拍。レトロ白黒4連写、Y2K ブース、民国の写真館、眷村、花季の山、島の端のロケ、武侠、都市のランドマーク</span></h3>
         <div class="uc-grid world">
-          <figure class="big"><img src="../assets/uc/world_36.jpg?v=1012b" alt="" loading="lazy"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・緑</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw_13.jpg?v=1012c" alt="" loading="lazy"><figcaption>山のアジサイ畑の花季写真・ピンクのアジサイ</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・日の出</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>映画のワンシーン再現・車の窓</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw_16.jpg?v=1012c" alt="" loading="lazy"><figcaption>古典漢服写真(台湾)・祭事の場</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw_22.jpg?v=1012c" alt="" loading="lazy"><figcaption>ひとりウェディングフォト・モダンドレス</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_01.jpg?v=1013a" alt="" loading="lazy"><figcaption>阿美族風の衣装・花の冠</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_02.jpg?v=1013a" alt="" loading="lazy"><figcaption>老街の騎楼・自転車と石畳</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_03.jpg?v=1013a" alt="" loading="lazy"><figcaption>猫の村・廃線の駅</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_04.jpg?v=1013a" alt="" loading="lazy"><figcaption>猫の村・屋根の猫を見上げる</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_05.jpg?v=1013a" alt="" loading="lazy"><figcaption>東海岸・岩の上に立つ</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_06.jpg?v=1013a" alt="" loading="lazy"><figcaption>果物の朝市・マンゴーの山</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_07.jpg?v=1013a" alt="" loading="lazy"><figcaption>温泉旅館・灯籠の小道</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_08.jpg?v=1013a" alt="" loading="lazy"><figcaption>提灯の坂道・雨の石段と傘</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_09.jpg?v=1013a" alt="" loading="lazy"><figcaption>夜市の屋台・串を持つ</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_10.jpg?v=1013a" alt="" loading="lazy"><figcaption>排湾族風の衣装・花と羽の冠</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_11.jpg?v=1013a" alt="" loading="lazy"><figcaption>天燈の鉄道町・空に上がる天燈</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_12.jpg?v=1013a" alt="" loading="lazy"><figcaption>ローカル線の小さな駅・夕方のホーム</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_13.jpg?v=1013a" alt="" loading="lazy"><figcaption>山の茶園・傘の茶畑</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_14.jpg?v=1013a" alt="" loading="lazy"><figcaption>廟会の提灯・太鼓の灯り</figcaption></figure>
-          <figure><img src="../assets/uc/world_tw2_15.jpg?v=1013a" alt="" loading="lazy"><figcaption>廟会の提灯・線香花火</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_tw_19.jpg?v=1012c" alt="" loading="lazy"><figcaption>都市のランドマーク・ファッション・屋上の夕景</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_tw_23.jpg?v=1012c" alt="" loading="lazy"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・白黒の八角灯台</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/world_36.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・緑</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw_13.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>山のアジサイ畑の花季写真・ピンクのアジサイ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw_04.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・日の出</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw_10.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>映画のワンシーン再現・車の窓</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw_16.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>古典漢服写真(台湾)・祭事の場</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw_22.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>ひとりウェディングフォト・モダンドレス</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_01.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>阿美族風の衣装・花の冠</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_02.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>老街の騎楼・自転車と石畳</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_03.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>猫の村・廃線の駅</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_04.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>猫の村・屋根の猫を見上げる</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_05.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>東海岸・岩の上に立つ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_06.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>果物の朝市・マンゴーの山</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_07.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>温泉旅館・灯籠の小道</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_08.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>提灯の坂道・雨の石段と傘</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_09.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>夜市の屋台・串を持つ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_10.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>排湾族風の衣装・花と羽の冠</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_11.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>天燈の鉄道町・空に上がる天燈</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_12.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>ローカル線の小さな駅・夕方のホーム</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_13.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>山の茶園・傘の茶畑</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_14.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>廟会の提灯・太鼓の灯り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_tw2_15.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>廟会の提灯・線香花火</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_tw_19.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>都市のランドマーク・ファッション・屋上の夕景</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_tw_23.jpg?v=1012c" alt="" loading="lazy" decoding="async"><figcaption>島の端のロケ(灯台・塩山・緑のトンネル)・白黒の八角灯台</figcaption></figure>
         </div>
         <h3><i></i>CHINA <span>中国 — 旅拍と国風。飛天の旅拍、ドーパミンカラー、港式レトロ食堂、撕拉片、盛唐衣装、新中式</span></h3>
         <div class="uc-grid world">
-          <figure class="big"><img src="../assets/uc/world_28.jpg?v=1012b" alt="" loading="lazy"><figcaption>朝鮮族衣装の旅拍(公主)・ぶらんこ</figcaption></figure>
-          <figure><img src="../assets/uc/world_33.jpg?v=1012b" alt="" loading="lazy"><figcaption>盛唐衣装の古都旅拍・寺の桜</figcaption></figure>
-          <figure><img src="../assets/uc/world_34.jpg?v=1012b" alt="" loading="lazy"><figcaption>新中式(モダン中華)ポートレート・春節の中国</figcaption></figure>
-          <figure><img src="../assets/uc/world_cn_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>正統漢服×宋韻の園林写真・円洞門</figcaption></figure>
-          <figure><img src="../assets/uc/world_cn_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>銀飾りの民族衣装旅拍(苗族の装い)・盃</figcaption></figure>
-          <figure><img src="../assets/uc/world_cn_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>盛唐衣装の古都旅拍・灯籠の街区</figcaption></figure>
-          <figure><img src="../assets/uc/world_cn_15.jpg?v=1012b" alt="" loading="lazy"><figcaption>松弛感(力の抜けた自然体)・芝生に寝転ぶ</figcaption></figure>
-          <figure><img src="../assets/uc/world_cn_16.jpg?v=1012b" alt="" loading="lazy"><figcaption>オールドマネー/静かな贅沢・厩舎</figcaption></figure>
-          <figure><img src="../assets/uc/world_cn2_02.jpg?v=1013a" alt="" loading="lazy"><figcaption>砂漠の天女(飛天)旅拍・駱駝の道</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_25.jpg?v=1012b" alt="" loading="lazy"><figcaption>砂漠の天女(飛天)旅拍・宝飾の寄り</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_26.jpg?v=1012b" alt="" loading="lazy"><figcaption>ドーパミンカラー(撞色)写真・水面に映る色</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_27.jpg?v=1012b" alt="" loading="lazy"><figcaption>頭の花冠と牡蠣殻の家(簪花囲)・花冠の後頭部</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_31.jpg?v=1012b" alt="" loading="lazy"><figcaption>宮殿の赤壁×宮廷衣装の旅拍・頭飾りの寄り</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_cn2_01.jpg?v=1013a" alt="" loading="lazy"><figcaption>砂漠の天女(飛天)旅拍・砂丘の引き</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_cn2_03.jpg?v=1013a" alt="" loading="lazy"><figcaption>聖堂と雪の夜・ハルビン風</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/world_28.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>朝鮮族衣装の旅拍(公主)・ぶらんこ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_33.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>盛唐衣装の古都旅拍・寺の桜</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_34.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>新中式(モダン中華)ポートレート・春節の中国</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_cn_11.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>正統漢服×宋韻の園林写真・円洞門</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_cn_12.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>銀飾りの民族衣装旅拍(苗族の装い)・盃</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_cn_13.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>盛唐衣装の古都旅拍・灯籠の街区</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_cn_15.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>松弛感(力の抜けた自然体)・芝生に寝転ぶ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_cn_16.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>オールドマネー/静かな贅沢・厩舎</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_cn2_02.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>砂漠の天女(飛天)旅拍・駱駝の道</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_25.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>砂漠の天女(飛天)旅拍・宝飾の寄り</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_26.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>ドーパミンカラー(撞色)写真・水面に映る色</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_27.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>頭の花冠と牡蠣殻の家(簪花囲)・花冠の後頭部</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_31.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>宮殿の赤壁×宮廷衣装の旅拍・頭飾りの寄り</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_cn2_01.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>砂漠の天女(飛天)旅拍・砂丘の引き</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_cn2_03.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>聖堂と雪の夜・ハルビン風</figcaption></figure>
         </div>
         <h3><i></i>JAPAN <span>日本 — アートアクアリウム、阿波踊り、十二単、ねぶた、花魁、歌劇団、球場——祭りと舞台の衣装で</span></h3>
         <div class="uc-grid world">
-          <figure><img src="../assets/uc/world_38.jpg?v=1012e" alt="" loading="lazy"><figcaption>阿波踊りの女踊り・夕暮れの路地で待つ</figcaption></figure>
-          <figure><img src="../assets/uc/world_41.jpg?v=1012b" alt="" loading="lazy"><figcaption>女優ポートレートと花・桜の枝</figcaption></figure>
-          <figure><img src="../assets/uc/world_42.jpg?v=1012b" alt="" loading="lazy"><figcaption>十二単の着装・檜扇で顔を隠す</figcaption></figure>
-          <figure><img src="../assets/uc/world_44.jpg?v=1012b" alt="" loading="lazy"><figcaption>花魁道中の装い・赤い傘の下の横顔</figcaption></figure>
-          <figure><img src="../assets/uc/world_47.jpg?v=1012b" alt="" loading="lazy"><figcaption>球場の赤いユニフォーム応援・赤ユニで応援する</figcaption></figure>
-          <figure><img src="../assets/uc/world_jp_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>聖地巡礼とぬい撮り・神社の石段とぬいぐるみ</figcaption></figure>
-          <figure><img src="../assets/uc/world_jp_16.jpg?v=1012b" alt="" loading="lazy"><figcaption>地雷系・夜の歩道橋の手すり</figcaption></figure>
-          <figure><img src="../assets/uc/world_jp2_03.jpg?v=1013a" alt="" loading="lazy"><figcaption>よさこいの踊り子・跳ぶ</figcaption></figure>
-          <figure><img src="../assets/uc/world_jp2_07.jpg?v=1013a" alt="" loading="lazy"><figcaption>阿波踊りの女踊り・提灯の下で腕を上げる</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_43.jpg?v=1012e" alt="" loading="lazy"><figcaption>ねぶた祭の跳人・跳躍のブレ</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_46.jpg?v=1012b" alt="" loading="lazy"><figcaption>よさこいの踊り子・鳴子を構えて前進</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_jp2_01.jpg?v=1013a" alt="" loading="lazy"><figcaption>山ガール・山頂</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_jp2_02.jpg?v=1013a" alt="" loading="lazy"><figcaption>山ガール・沢を渡る</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_jp2_04.jpg?v=1013a" alt="" loading="lazy"><figcaption>阿波踊りの女踊り・列で踊る</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_jp2_05.jpg?v=1013a" alt="" loading="lazy"><figcaption>ねぶた祭の跳人・山車の前で</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_jp2_06.jpg?v=1013a" alt="" loading="lazy"><figcaption>山ガール・ご来光</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_jp2_08.jpg?v=1013a" alt="" loading="lazy"><figcaption>よさこいの踊り子・地方車の前</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/world_jp2_09.jpg?v=1013a" alt="" loading="lazy"><figcaption>山ガール・池を見下ろす</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_38.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>阿波踊りの女踊り・夕暮れの路地で待つ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_41.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>女優ポートレートと花・桜の枝</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_42.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>十二単の着装・檜扇で顔を隠す</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_44.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>花魁道中の装い・赤い傘の下の横顔</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_47.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>球場の赤いユニフォーム応援・赤ユニで応援する</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_jp_13.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>聖地巡礼とぬい撮り・神社の石段とぬいぐるみ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_jp_16.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>地雷系・夜の歩道橋の手すり</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_jp2_03.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>よさこいの踊り子・跳ぶ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/world_jp2_07.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>阿波踊りの女踊り・提灯の下で腕を上げる</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_43.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>ねぶた祭の跳人・跳躍のブレ</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_46.jpg?v=1012b" alt="" loading="lazy" decoding="async"><figcaption>よさこいの踊り子・鳴子を構えて前進</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_jp2_01.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>山ガール・山頂</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_jp2_02.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>山ガール・沢を渡る</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_jp2_04.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>阿波踊りの女踊り・列で踊る</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_jp2_05.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>ねぶた祭の跳人・山車の前で</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_jp2_06.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>山ガール・ご来光</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_jp2_08.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>よさこいの踊り子・地方車の前</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/world_jp2_09.jpg?v=1013a" alt="" loading="lazy" decoding="async"><figcaption>山ガール・池を見下ろす</figcaption></figure>
         </div>
       </div>
     </div>
@@ -293,9 +294,9 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 4 仕上がり -->
   <section class="panel cine" data-num="04" style="--bd:url(../assets/uc/uc_port_31.jpg);--bd-pos:center 40%">
     <div class="panel-inner">
-      <div class="ch-eyebrow">04 — 仕上がり</div>
-      <h2 class="ch-title">写真から、<span class="em">動画</span>へ。</h2>
-      <p class="ch-sub">どの国の一枚も、同じ仕組みで数秒の動画になる。下は日本の棚の実例——写真 56 枚がそのまま動いた「いつもの顔」のカット。</p>
+      <div class="ch-eyebrow reveal">04 — 仕上がり</div>
+      <h2 class="ch-title reveal d1">写真から、<span class="em">動画</span>へ。</h2>
+      <p class="ch-sub reveal d2">どの国の一枚も、同じ仕組みで数秒の動画になる。下は日本の棚の実例——写真 56 枚がそのまま動いた「いつもの顔」のカット。</p>
       <div class="uc-fin">
         <div class="uc-film"><video src="../assets/uc/uc_port_31.mp4?v=20261013p1" poster="../assets/uc/uc_port_31.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">SUNSET · SHORE</span></div>
         <div class="uc-film"><video src="../assets/uc/uc_port_03.mp4" poster="../assets/uc/uc_port_03.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">FESTIVAL · LANTERN</span></div>
@@ -311,8 +312,8 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 5 連絡 -->
   <section class="panel uc-contact" data-num="05">
     <div class="panel-inner">
-      <h2 class="ch-title">世界の撮影の相談は、<span class="em">国の名前</span>から。</h2>
-      <p class="ch-sub" style="margin-left:auto;margin-right:auto">撮りたい国と雰囲気、着たい衣装。それだけ送ってください。その土地の様式で候補にしてお返しします。</p>
+      <h2 class="ch-title reveal d1">世界の撮影の相談は、<span class="em">国の名前</span>から。</h2>
+      <p class="ch-sub reveal d2" style="margin-left:auto;margin-right:auto">撮りたい国と雰囲気、着たい衣装。それだけ送ってください。その土地の様式で候補にしてお返しします。</p>
       <div class="uc-cta" style="justify-content:center">
         <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
         <a class="btn ghost" href="./">ほかの用途を見る</a>
@@ -338,7 +339,7 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
     <span class="foot-copy">© 2026 made_linlin</span>
   </footer>
   <a class="fab-contact" href="../#contact" aria-label="相談"><span>相談</span></a>
-<script src="../js/sitemenu.js?v=20261013zh1"></script>
+<script src="../js/sitemenu.js?v=20261013vt1"></script>
 <script src="../js/uc_i18n.js?v=20261013ft1"></script>
 </body>
 </html>

@@ -23,7 +23,8 @@
 var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base");if(lang==="zh")add("zh");window.__mvFonts=function(k){if(k==="zh")add("zh")}})();
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="../css/theater.css?v=20261013zh2">
+<link rel="preload" as="image" fetchpriority="high" href="../assets/uc/uc_port_33.jpg">
+<link rel="stylesheet" href="../css/theater.css?v=20261013vt1">
 <style>
 /* ユースケースのページだけの小さな決まり。部品の衣装は theater.css の「役割の衣装」と「第1段 色の一本化」をそのまま使う */
 .uc-head .brand{text-decoration:none}
@@ -95,9 +96,9 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
     <div class="panel-inner">
       <div>
         <nav class="crumbs" aria-label="現在地"><a href="../">ホーム</a><i>/</i><a href="./">用途</a><i>/</i><span>撮影会ポートレート</span></nav>
-        <div class="ch-eyebrow">USE CASE 02 — 撮影会ポートレート</div>
-        <h2 class="ch-title">一人のモデルを、<br><span class="em">一日ぶん</span>。</h2>
-        <p class="ch-sub">写真家の作風、芸術、雰囲気と幻想、雑誌の光、室内の撮影会——作風の違う様式を棚から選ぶだけで、同じ顔のまま一日ぶんの写真になる。スタジオも屋外も、衣装も髪も、声で相談しながら。</p>
+        <div class="ch-eyebrow reveal">USE CASE 02 — 撮影会ポートレート</div>
+        <h2 class="ch-title reveal d1">一人のモデルを、<br><span class="em">一日ぶん</span>。</h2>
+        <p class="ch-sub reveal d2">写真家の作風、芸術、雰囲気と幻想、雑誌の光、室内の撮影会——作風の違う様式を棚から選ぶだけで、同じ顔のまま一日ぶんの写真になる。スタジオも屋外も、衣装も髪も、声で相談しながら。</p>
         <div class="uc-cta">
           <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
           <span class="note">Instagram · @made_linlin</span>
@@ -113,20 +114,20 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 2 頼み方 -->
   <section class="panel" data-num="02">
     <div class="panel-inner">
-      <div class="ch-eyebrow">02 — 頼み方</div>
-      <h2 class="ch-title">話す、<span class="em">選ぶ</span>、焼く。</h2>
-      <p class="ch-sub">「黄金の逆光で、白いワンピース」「雑誌の表紙みたいに」——言葉と、気に入った様式を指すだけ。ディレクターが光と構図を当てる。</p>
+      <div class="ch-eyebrow reveal">02 — 頼み方</div>
+      <h2 class="ch-title reveal d1">話す、<span class="em">選ぶ</span>、焼く。</h2>
+      <p class="ch-sub reveal d2">「黄金の逆光で、白いワンピース」「雑誌の表紙みたいに」——言葉と、気に入った様式を指すだけ。ディレクターが光と構図を当てる。</p>
       <div class="uc-steps">
         <div class="uc-step">
           <div class="n">01</div><h4>話す</h4>
           <p>撮りたい雰囲気、衣装、場所。言葉にできる所だけでいい。棚の様式を指すのが一番早い。</p>
-          <div class="pic"><img src="../assets/app_photo.jpg?v=20261008a" alt="フォトテンプレの棚" loading="lazy"></div>
+          <div class="pic"><img src="../assets/app_photo.jpg?v=20261008a" alt="フォトテンプレの棚" loading="lazy" decoding="async"></div>
           <div class="say">「この光で、この服で」</div>
         </div>
         <div class="uc-step">
           <div class="n">02</div><h4>候補から選ぶ</h4>
           <p>同じ顔で、光と構図の違う候補が並ぶ。気に入った一枚だけ残し、表情や衣装は何度でも作り直す。</p>
-          <div class="pic"><img src="../assets/app_rinka4.jpg?v=20261009a" alt="同じ顔の候補" loading="lazy"></div>
+          <div class="pic"><img src="../assets/app_rinka4.jpg?v=20261009a" alt="同じ顔の候補" loading="lazy" decoding="async"></div>
           <div class="say">「この表情、最高。これで」</div>
         </div>
         <div class="uc-step">
@@ -142,159 +143,159 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 3 棚 -->
   <section class="panel wall" data-num="03">
     <div class="panel-inner">
-      <div class="ch-eyebrow">03 — 棚から選べる</div>
-      <h2 class="ch-title">作風は、<span class="em nw">20,000 以上</span>。</h2>
-      <p class="ch-sub">写真の様式の棚は 20,000 を超えて、毎週増える。写真家の作風、芸術、雰囲気と幻想、雑誌、室内の撮影会、セクシー——ここに並ぶのは、その中の 118。</p>
+      <div class="ch-eyebrow reveal">03 — 棚から選べる</div>
+      <h2 class="ch-title reveal d1">作風は、<span class="em nw">20,000 以上</span>。</h2>
+      <p class="ch-sub reveal d2">写真の様式の棚は 20,000 を超えて、毎週増える。写真家の作風、芸術、雰囲気と幻想、雑誌、室内の撮影会、セクシー——ここに並ぶのは、その中の 118。</p>
       <div class="uc-shelf">
         <h3><i></i>ART</h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_08.jpg?v=1012g" alt="" loading="lazy"><figcaption>反復する形・全身</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_42.jpg?v=1012g" alt="" loading="lazy"><figcaption>流れるシフォン</figcaption></figure>
-          <figure><img src="../assets/uc/port_41.jpg?v=1012g" alt="" loading="lazy"><figcaption>ドライローズ</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_43.jpg?v=1012g" alt="" loading="lazy"><figcaption>花で覆う</figcaption></figure>
-          <figure><img src="../assets/uc/port_99.jpg?v=1012g" alt="" loading="lazy"><figcaption>ミルクバス・真上から</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_44.jpg?v=1012g" alt="" loading="lazy"><figcaption>水墨の残像</figcaption></figure>
-          <figure class="note w2 m2"><span class="k">I — ART</span><p>芸術 — 水中のドレス、聖堂の光柱、金箔の肩、水墨、京劇、1950 年代のバレエ。写真を絵として組む。</p><span class="n">棚の様式から、ここに 19</span></figure>
-          <figure><img src="../assets/uc/port_130.jpg?v=1012g" alt="" loading="lazy"><figcaption>水墨の巻物・雲</figcaption></figure>
-          <figure><img src="../assets/uc/port_131.jpg?v=1012g" alt="" loading="lazy"><figcaption>水中のドレス</figcaption></figure>
-          <figure><img src="../assets/uc/port_132.jpg?v=1012g" alt="" loading="lazy"><figcaption>聖堂の光柱</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_146.jpg?v=1012g" alt="" loading="lazy"><figcaption>1950 年代・バレエの伸び</figcaption></figure>
-          <figure><img src="../assets/uc/port_133.jpg?v=1012g" alt="" loading="lazy"><figcaption>金箔の肩</figcaption></figure>
-          <figure><img src="../assets/uc/port_134.jpg?v=1012g" alt="" loading="lazy"><figcaption>左窓の静物光</figcaption></figure>
-          <figure><img src="../assets/uc/port_135.jpg?v=1012g" alt="" loading="lazy"><figcaption>粉の上の影</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_149.jpg?v=1012g" alt="" loading="lazy"><figcaption>森の原に寝る</figcaption></figure>
-          <figure><img src="../assets/uc/port_138.jpg?v=1012g" alt="" loading="lazy"><figcaption>影絵の体</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/port_45.jpg?v=1012g" alt="" loading="lazy"><figcaption>京劇の横顔</figcaption></figure>
-          <figure><img src="../assets/uc/port_147.jpg?v=1012g" alt="" loading="lazy"><figcaption>1950 年代・腕を上げる背面</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_150.jpg?v=1012g" alt="" loading="lazy"><figcaption>十二単の着装・縁側</figcaption></figure>
-          <figure><img src="../assets/uc/port_148.jpg?v=1012g" alt="" loading="lazy"><figcaption>廃墟の螺旋階段</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_08.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>反復する形・全身</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_42.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>流れるシフォン</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_41.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ドライローズ</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_43.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>花で覆う</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_99.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ミルクバス・真上から</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_44.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>水墨の残像</figcaption></figure>
+          <figure class="note w2 m2 reveal"><span class="k">I — ART</span><p>芸術 — 水中のドレス、聖堂の光柱、金箔の肩、水墨、京劇、1950 年代のバレエ。写真を絵として組む。</p><span class="n">棚の様式から、ここに 19</span></figure>
+          <figure class="reveal"><img src="../assets/uc/port_130.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>水墨の巻物・雲</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_131.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>水中のドレス</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_132.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>聖堂の光柱</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_146.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>1950 年代・バレエの伸び</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_133.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>金箔の肩</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_134.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>左窓の静物光</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_135.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>粉の上の影</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_149.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>森の原に寝る</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_138.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>影絵の体</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/port_45.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>京劇の横顔</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_147.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>1950 年代・腕を上げる背面</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_150.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>十二単の着装・縁側</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_148.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>廃墟の螺旋階段</figcaption></figure>
         </div>
         <h3><i></i>PHOTOGRAPHERS</h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_02.jpg?v=1012e" alt="" loading="lazy"><figcaption>映画のような一灯・夜の街</figcaption></figure>
-          <figure><img src="../assets/uc/port_06.jpg?v=1012e" alt="" loading="lazy"><figcaption>広角の砂丘</figcaption></figure>
-          <figure><img src="../assets/uc/port_151.jpg?v=1012g" alt="" loading="lazy"><figcaption>雨のガラス越し・喫茶店</figcaption></figure>
-          <figure><img src="../assets/uc/port_163.jpg?v=1012g" alt="" loading="lazy"><figcaption>正面のモノクロ・凝視</figcaption></figure>
-          <figure class="note sq"><span class="k">II — PHOTOGRAPHERS</span><p>写真家の作風 — 映画のような夜の街、黄金の逆光、広角の砂丘。著名な作風の発色と構図を、固有名なしで。</p><span class="n">棚の様式から、ここに 8</span></figure>
-          <figure><img src="../assets/uc/port_164.jpg?v=1012g" alt="" loading="lazy"><figcaption>飽和した花の部屋</figcaption></figure>
-          <figure><img src="../assets/uc/port_165.jpg?v=1012g" alt="" loading="lazy"><figcaption>色の残像・街</figcaption></figure>
-          <figure><img src="../assets/uc/port_166.jpg?v=1012g" alt="" loading="lazy"><figcaption>黒い水中</figcaption></figure>
-          <figure><img src="../assets/uc/port_167.jpg?v=1012g" alt="" loading="lazy"><figcaption>香港のネオン・粒子</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_02.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>映画のような一灯・夜の街</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_06.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>広角の砂丘</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_151.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>雨のガラス越し・喫茶店</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_163.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>正面のモノクロ・凝視</figcaption></figure>
+          <figure class="note sq reveal"><span class="k">II — PHOTOGRAPHERS</span><p>写真家の作風 — 映画のような夜の街、黄金の逆光、広角の砂丘。著名な作風の発色と構図を、固有名なしで。</p><span class="n">棚の様式から、ここに 8</span></figure>
+          <figure class="reveal"><img src="../assets/uc/port_164.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>飽和した花の部屋</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_165.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>色の残像・街</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_166.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>黒い水中</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_167.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>香港のネオン・粒子</figcaption></figure>
         </div>
         <h3><i></i>IDOL SESSION</h3>
         <div class="uc-grid">
-          <figure class="big"><img src="../assets/uc/port_191.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・スポットライト</figcaption></figure>
-          <figure><img src="../assets/uc/port_184.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・楽屋の椅子</figcaption></figure>
-          <figure><img src="../assets/uc/port_185.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・幕の陰から</figcaption></figure>
-          <figure><img src="../assets/uc/port_186.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・床に寝転ぶ</figcaption></figure>
-          <figure><img src="../assets/uc/port_187.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・ハートの手</figcaption></figure>
-          <figure><img src="../assets/uc/port_188.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・膝を抱える</figcaption></figure>
-          <figure><img src="../assets/uc/port_189.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・楽屋の鏡前</figcaption></figure>
-          <figure><img src="../assets/uc/port_190.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・ピンクの衣装</figcaption></figure>
-          <figure><img src="../assets/uc/port_192.jpg?v=1012g" alt="" loading="lazy"><figcaption>アイドル衣装・ステージの縁</figcaption></figure>
-          <figure><img src="../assets/uc/port_193.jpg?v=1012g" alt="" loading="lazy"><figcaption>ソフトクリーム・屋上の夕方</figcaption></figure>
-          <figure><img src="../assets/uc/port_194.jpg?v=1012g" alt="" loading="lazy"><figcaption>ソフトクリーム・階段</figcaption></figure>
-          <figure><img src="../assets/uc/port_195.jpg?v=1012g" alt="" loading="lazy"><figcaption>ソフトクリーム・両手に</figcaption></figure>
-          <figure><img src="../assets/uc/port_196.jpg?v=1012g" alt="" loading="lazy"><figcaption>赤い車・ボンネットの上</figcaption></figure>
-          <figure><img src="../assets/uc/port_197.jpg?v=1012g" alt="" loading="lazy"><figcaption>魚眼・赤い車</figcaption></figure>
-          <figure><img src="../assets/uc/port_198.jpg?v=1012g" alt="" loading="lazy"><figcaption>丸眼鏡・正面の寄り</figcaption></figure>
-          <figure><img src="../assets/uc/port_199.jpg?v=1012g" alt="" loading="lazy"><figcaption>丸眼鏡・眼鏡を外す</figcaption></figure>
-          <figure><img src="../assets/uc/port_200.jpg?v=1012g" alt="" loading="lazy"><figcaption>麦わら帽子・つばを持つ</figcaption></figure>
-          <figure><img src="../assets/uc/port_201.jpg?v=1012g" alt="" loading="lazy"><figcaption>麦わら帽子・頬に両手</figcaption></figure>
-          <figure><img src="../assets/uc/port_202.jpg?v=1012g" alt="" loading="lazy"><figcaption>麦わら帽子・帽子を背中に</figcaption></figure>
-          <figure><img src="../assets/uc/port_203.jpg?v=1012g" alt="" loading="lazy"><figcaption>麦わら帽子・ひまわり畑</figcaption></figure>
-          <figure><img src="../assets/uc/port_77.jpg?v=1012g" alt="" loading="lazy"><figcaption>ステージの決めポーズ</figcaption></figure>
-          <figure><img src="../assets/uc/port_95.jpg?v=1012g" alt="" loading="lazy"><figcaption>夏祭り・線香花火</figcaption></figure>
-          <figure><img src="../assets/uc/port_63.jpg?v=1012g" alt="" loading="lazy"><figcaption>教室の窓</figcaption></figure>
-          <figure><img src="../assets/uc/port_67.jpg?v=1012g" alt="" loading="lazy"><figcaption>屋上のフェンス</figcaption></figure>
-          <figure><img src="../assets/uc/port_60.jpg?v=1012g" alt="" loading="lazy"><figcaption>チェキ会・楽屋</figcaption></figure>
-          <figure><img src="../assets/uc/port_79.jpg?v=1012g" alt="" loading="lazy"><figcaption>ペンライト</figcaption></figure>
-          <figure><img src="../assets/uc/port_80.jpg?v=1012g" alt="" loading="lazy"><figcaption>最後のお辞儀</figcaption></figure>
-          <figure><img src="../assets/uc/port_66.jpg?v=1012g" alt="" loading="lazy"><figcaption>夜のコンビニ帰り</figcaption></figure>
-          <figure><img src="../assets/uc/port_81.jpg?v=1012g" alt="" loading="lazy"><figcaption>楽屋の鏡</figcaption></figure>
-          <figure><img src="../assets/uc/port_83.jpg?v=1012g" alt="" loading="lazy"><figcaption>楽屋の廊下を走る</figcaption></figure>
-          <figure><img src="../assets/uc/port_96.jpg?v=1012g" alt="" loading="lazy"><figcaption>夏祭り・りんご飴</figcaption></figure>
-          <figure><img src="../assets/uc/port_65.jpg?v=1012g" alt="" loading="lazy"><figcaption>海のシャツ</figcaption></figure>
-          <figure><img src="../assets/uc/port_78.jpg?v=1012g" alt="" loading="lazy"><figcaption>マイクスタンド</figcaption></figure>
-          <figure class="note"><span class="k">III — IDOL SESSION</span><p>アイドルのセッション — ステージの衣装と楽屋、ソフトクリーム、赤い車、丸眼鏡、麦わら帽子の逆光、夏祭り、教室。美少女を、たくさん。</p><span class="n">棚の様式から、ここに 34</span></figure>
-          <figure class="wide"><img src="../assets/uc/port_84.jpg?v=1012g" alt="" loading="lazy"><figcaption>楽屋のソファ</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/port_191.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・スポットライト</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_184.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・楽屋の椅子</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_185.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・幕の陰から</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_186.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・床に寝転ぶ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_187.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・ハートの手</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_188.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・膝を抱える</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_189.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・楽屋の鏡前</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_190.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・ピンクの衣装</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_192.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>アイドル衣装・ステージの縁</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_193.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ソフトクリーム・屋上の夕方</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_194.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ソフトクリーム・階段</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_195.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ソフトクリーム・両手に</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_196.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>赤い車・ボンネットの上</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_197.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>魚眼・赤い車</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_198.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>丸眼鏡・正面の寄り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_199.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>丸眼鏡・眼鏡を外す</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_200.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>麦わら帽子・つばを持つ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_201.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>麦わら帽子・頬に両手</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_202.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>麦わら帽子・帽子を背中に</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_203.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>麦わら帽子・ひまわり畑</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_77.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ステージの決めポーズ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_95.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>夏祭り・線香花火</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_63.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>教室の窓</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_67.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>屋上のフェンス</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_60.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>チェキ会・楽屋</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_79.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ペンライト</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_80.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>最後のお辞儀</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_66.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>夜のコンビニ帰り</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_81.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>楽屋の鏡</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_83.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>楽屋の廊下を走る</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_96.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>夏祭り・りんご飴</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_65.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>海のシャツ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_78.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>マイクスタンド</figcaption></figure>
+          <figure class="note reveal"><span class="k">III — IDOL SESSION</span><p>アイドルのセッション — ステージの衣装と楽屋、ソフトクリーム、赤い車、丸眼鏡、麦わら帽子の逆光、夏祭り、教室。美少女を、たくさん。</p><span class="n">棚の様式から、ここに 34</span></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_84.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>楽屋のソファ</figcaption></figure>
         </div>
         <h3><i></i>MOOD & FANTASY</h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/port_171.jpg?v=1012g" alt="" loading="lazy"><figcaption>光の小径・宙に浮く竹鞠</figcaption></figure>
-          <figure class="big"><img src="../assets/uc/port_170.jpg?v=1012g" alt="" loading="lazy"><figcaption>光の小径・アーチの真ん中</figcaption></figure>
-          <figure><img src="../assets/uc/port_172.jpg?v=1012g" alt="" loading="lazy"><figcaption>青い竹林・小さな木の橋</figcaption></figure>
-          <figure><img src="../assets/uc/port_173.jpg?v=1012g" alt="" loading="lazy"><figcaption>青い竹林・真上の竹の空</figcaption></figure>
-          <figure><img src="../assets/uc/port_174.jpg?v=1012g" alt="" loading="lazy"><figcaption>玉ボケ・光を掬う手</figcaption></figure>
-          <figure><img src="../assets/uc/port_175.jpg?v=1012g" alt="" loading="lazy"><figcaption>玉ボケ・光を見上げる</figcaption></figure>
-          <figure><img src="../assets/uc/port_176.jpg?v=1012g" alt="" loading="lazy"><figcaption>竹鞠の回廊・番傘</figcaption></figure>
-          <figure><img src="../assets/uc/port_178.jpg?v=1012g" alt="" loading="lazy"><figcaption>満月の裾・赤</figcaption></figure>
-          <figure><img src="../assets/uc/port_179.jpg?v=1012g" alt="" loading="lazy"><figcaption>満月の裾・夜空</figcaption></figure>
-          <figure><img src="../assets/uc/port_180.jpg?v=1012g" alt="" loading="lazy"><figcaption>月の仙女</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_168.jpg?v=1012g" alt="" loading="lazy"><figcaption>青い竹林・小径の赤い番傘</figcaption></figure>
-          <figure><img src="../assets/uc/port_181.jpg?v=1012g" alt="" loading="lazy"><figcaption>雪の梅</figcaption></figure>
-          <figure><img src="../assets/uc/port_182.jpg?v=1012g" alt="" loading="lazy"><figcaption>蓮の花</figcaption></figure>
-          <figure><img src="../assets/uc/port_183.jpg?v=1012g" alt="" loading="lazy"><figcaption>波の形</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_169.jpg?v=1012g" alt="" loading="lazy"><figcaption>竹あかり・灯りの道</figcaption></figure>
-          <figure><img src="../assets/uc/port_153.jpg?v=1012g" alt="" loading="lazy"><figcaption>巨大な月と丘</figcaption></figure>
-          <figure><img src="../assets/uc/port_154.jpg?v=1012g" alt="" loading="lazy"><figcaption>月のブランコ</figcaption></figure>
-          <figure class="note w2 m2"><span class="k">IV — MOOD & FANTASY</span><p>雰囲気と幻想 — 夜の竹林の灯り、漢服の満月の裾、巨大な月、鏡の湖、提灯の魚。光と空想で場所を作る。</p><span class="n">棚の様式から、ここに 25</span></figure>
-          <figure class="wide"><img src="../assets/uc/port_177.jpg?v=1012g" alt="" loading="lazy"><figcaption>竹鞠の回廊・引き</figcaption></figure>
-          <figure><img src="../assets/uc/port_155.jpg?v=1012g" alt="" loading="lazy"><figcaption>スノードームの中</figcaption></figure>
-          <figure><img src="../assets/uc/port_156.jpg?v=1012g" alt="" loading="lazy"><figcaption>鏡の湖を歩く</figcaption></figure>
-          <figure><img src="../assets/uc/port_157.jpg?v=1012g" alt="" loading="lazy"><figcaption>巨大な手のひら</figcaption></figure>
-          <figure><img src="../assets/uc/port_158.jpg?v=1013k" alt="" loading="lazy"><figcaption>巨大な時計の針</figcaption></figure>
-          <figure><img src="../assets/uc/port_159.jpg?v=1012g" alt="" loading="lazy"><figcaption>折り鶴に乗って</figcaption></figure>
-          <figure><img src="../assets/uc/port_160.jpg?v=1012g" alt="" loading="lazy"><figcaption>提灯の魚・夜の街</figcaption></figure>
-          <figure><img src="../assets/uc/port_161.jpg?v=1012g" alt="" loading="lazy"><figcaption>ネオンの雨・街</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_171.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>光の小径・宙に浮く竹鞠</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/port_170.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>光の小径・アーチの真ん中</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_172.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>青い竹林・小さな木の橋</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_173.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>青い竹林・真上の竹の空</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_174.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>玉ボケ・光を掬う手</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_175.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>玉ボケ・光を見上げる</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_176.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>竹鞠の回廊・番傘</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_178.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>満月の裾・赤</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_179.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>満月の裾・夜空</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_180.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>月の仙女</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_168.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>青い竹林・小径の赤い番傘</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_181.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>雪の梅</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_182.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>蓮の花</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_183.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>波の形</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_169.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>竹あかり・灯りの道</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_153.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>巨大な月と丘</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_154.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>月のブランコ</figcaption></figure>
+          <figure class="note w2 m2 reveal"><span class="k">IV — MOOD & FANTASY</span><p>雰囲気と幻想 — 夜の竹林の灯り、漢服の満月の裾、巨大な月、鏡の湖、提灯の魚。光と空想で場所を作る。</p><span class="n">棚の様式から、ここに 25</span></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_177.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>竹鞠の回廊・引き</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_155.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>スノードームの中</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_156.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>鏡の湖を歩く</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_157.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>巨大な手のひら</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_158.jpg?v=1013k" alt="" loading="lazy" decoding="async"><figcaption>巨大な時計の針</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_159.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>折り鶴に乗って</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_160.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>提灯の魚・夜の街</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_161.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ネオンの雨・街</figcaption></figure>
         </div>
         <h3><i></i>MAGAZINE & STUDIO</h3>
         <div class="uc-grid">
-          <figure class="big"><img src="../assets/uc/port_22.jpg?v=1012e" alt="" loading="lazy"><figcaption>笑顔の表紙</figcaption></figure>
-          <figure><img src="../assets/uc/port_20.jpg?v=1012e" alt="" loading="lazy"><figcaption>銀幕のグラマー・スタジオ</figcaption></figure>
-          <figure><img src="../assets/uc/port_21.jpg?v=1012e" alt="" loading="lazy"><figcaption>横顔と首</figcaption></figure>
-          <figure><img src="../assets/uc/port_23.jpg?v=1012e" alt="" loading="lazy"><figcaption>スタジオの椅子</figcaption></figure>
-          <figure><img src="../assets/uc/port_24.jpg?v=1012e" alt="" loading="lazy"><figcaption>日の丸 校門</figcaption></figure>
-          <figure><img src="../assets/uc/port_152.jpg?v=1012g" alt="" loading="lazy"><figcaption>階段のガウン・見開き</figcaption></figure>
-          <figure class="note"><span class="k">V — MAGAZINE & STUDIO</span><p>雑誌とスタジオ — 銀幕のグラマー、表紙の笑顔、日の丸構図。誌面のための光。</p><span class="n">棚の様式から、ここに 6</span></figure>
+          <figure class="big reveal"><img src="../assets/uc/port_22.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>笑顔の表紙</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_20.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>銀幕のグラマー・スタジオ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_21.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>横顔と首</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_23.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>スタジオの椅子</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_24.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>日の丸 校門</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_152.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>階段のガウン・見開き</figcaption></figure>
+          <figure class="note reveal"><span class="k">V — MAGAZINE & STUDIO</span><p>雑誌とスタジオ — 銀幕のグラマー、表紙の笑顔、日の丸構図。誌面のための光。</p><span class="n">棚の様式から、ここに 6</span></figure>
         </div>
         <h3><i></i>INDOOR SESSION</h3>
         <div class="uc-grid">
-          <figure class="big"><img src="../assets/uc/port_25.jpg?v=1012e" alt="" loading="lazy"><figcaption>鏡の通路</figcaption></figure>
-          <figure><img src="../assets/uc/port_26.jpg?v=1012e" alt="" loading="lazy"><figcaption>薄いカーテンに包まれて</figcaption></figure>
-          <figure><img src="../assets/uc/port_27.jpg?v=1012e" alt="" loading="lazy"><figcaption>ラベンダーのベビードール</figcaption></figure>
-          <figure><img src="../assets/uc/port_28.jpg?v=1012f" alt="" loading="lazy"><figcaption>控室のソファ</figcaption></figure>
-          <figure><img src="../assets/uc/port_30.jpg?v=1012e" alt="" loading="lazy"><figcaption>ネオン管のスタジオ</figcaption></figure>
-          <figure><img src="../assets/uc/port_162.jpg?v=1012g" alt="" loading="lazy"><figcaption>お姫様の部屋・推し活スタジオ</figcaption></figure>
-          <figure class="note"><span class="k">VI — INDOOR SESSION</span><p>室内の撮影会 — 鏡の通路、薄いカーテン、可愛い衣装、ネオン管。部屋ひとつで一日ぶん。</p><span class="n">棚の様式から、ここに 6</span></figure>
+          <figure class="big reveal"><img src="../assets/uc/port_25.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>鏡の通路</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_26.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>薄いカーテンに包まれて</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_27.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>ラベンダーのベビードール</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_28.jpg?v=1012f" alt="" loading="lazy" decoding="async"><figcaption>控室のソファ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_30.jpg?v=1012e" alt="" loading="lazy" decoding="async"><figcaption>ネオン管のスタジオ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_162.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>お姫様の部屋・推し活スタジオ</figcaption></figure>
+          <figure class="note reveal"><span class="k">VI — INDOOR SESSION</span><p>室内の撮影会 — 鏡の通路、薄いカーテン、可愛い衣装、ネオン管。部屋ひとつで一日ぶん。</p><span class="n">棚の様式から、ここに 6</span></figure>
         </div>
         <h3><i></i>MATERNITY</h3>
         <div class="uc-grid">
-          <figure class="note"><span class="k">VII — MATERNITY</span><p>マタニティ — 自宅、セルフ写真館、ドレス。お腹の形を、やわらかい光で。</p><span class="n">棚の様式から、ここに 9</span></figure>
-          <figure><img src="../assets/uc/port_68.jpg?v=1012g" alt="" loading="lazy"><figcaption>ベビーシューズを手のひらに</figcaption></figure>
-          <figure><img src="../assets/uc/port_69.jpg?v=1012g" alt="" loading="lazy"><figcaption>両手でお腹を包む</figcaption></figure>
-          <figure><img src="../assets/uc/port_70.jpg?v=1012g" alt="" loading="lazy"><figcaption>マタニティデニム</figcaption></figure>
-          <figure><img src="../assets/uc/port_71.jpg?v=1012g" alt="" loading="lazy"><figcaption>ガーランドの自宅</figcaption></figure>
-          <figure><img src="../assets/uc/port_72.jpg?v=1012g" alt="" loading="lazy"><figcaption>お腹の上でハート</figcaption></figure>
-          <figure><img src="../assets/uc/port_73.jpg?v=1012g" alt="" loading="lazy"><figcaption>セルフ写真館のモノクロ</figcaption></figure>
-          <figure><img src="../assets/uc/port_74.jpg?v=1012g" alt="" loading="lazy"><figcaption>ワンピースでソファ</figcaption></figure>
-          <figure><img src="../assets/uc/port_75.jpg?v=1012g" alt="" loading="lazy"><figcaption>エコー写真を持つ</figcaption></figure>
-          <figure><img src="../assets/uc/port_76.jpg?v=1012g" alt="" loading="lazy"><figcaption>ウェディングドレスのマタニティ</figcaption></figure>
+          <figure class="note reveal"><span class="k">VII — MATERNITY</span><p>マタニティ — 自宅、セルフ写真館、ドレス。お腹の形を、やわらかい光で。</p><span class="n">棚の様式から、ここに 9</span></figure>
+          <figure class="reveal"><img src="../assets/uc/port_68.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ベビーシューズを手のひらに</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_69.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>両手でお腹を包む</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_70.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>マタニティデニム</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_71.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ガーランドの自宅</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_72.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>お腹の上でハート</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_73.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>セルフ写真館のモノクロ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_74.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ワンピースでソファ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_75.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>エコー写真を持つ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_76.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ウェディングドレスのマタニティ</figcaption></figure>
         </div>
         <h3><i></i>SENSUAL</h3>
         <div class="uc-grid">
-          <figure class="big"><img src="../assets/uc/port_46.jpg?v=1012g" alt="" loading="lazy"><figcaption>日差しのベッド・縁に座る</figcaption></figure>
-          <figure><img src="../assets/uc/port_100.jpg?v=1012g" alt="" loading="lazy"><figcaption>暗いブドワール・大きなセーター</figcaption></figure>
-          <figure><img src="../assets/uc/port_47.jpg?v=1012g" alt="" loading="lazy"><figcaption>黒の中の体・しゃがむ</figcaption></figure>
-          <figure><img src="../assets/uc/port_49.jpg?v=1012g" alt="" loading="lazy"><figcaption>日差しのベッド・窓の光の帯</figcaption></figure>
-          <figure><img src="../assets/uc/port_50.jpg?v=1012g" alt="" loading="lazy"><figcaption>黒いランジェリー・上品に</figcaption></figure>
-          <figure><img src="../assets/uc/port_141.jpg?v=1012g" alt="" loading="lazy"><figcaption>ミルクバス・レースのローブ</figcaption></figure>
-          <figure><img src="../assets/uc/port_142.jpg?v=1012g" alt="" loading="lazy"><figcaption>暗いブドワール・細い光の窓</figcaption></figure>
-          <figure class="note sq"><span class="k">VIII — SENSUAL</span><p>セクシー — ランジェリー画報、暗いブドワール、黒の中の体、ミルクバス、夕日と磯。下着の線は越えない。雑誌のグラビアの作法で。</p><span class="n">棚の様式から、ここに 11</span></figure>
-          <figure><img src="../assets/uc/port_143.jpg?v=1012g" alt="" loading="lazy"><figcaption>黒の中の体・縁取りの光</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_32.jpg?v=1012g" alt="" loading="lazy"><figcaption>磯の潮だまり</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_139.jpg?v=1012g" alt="" loading="lazy"><figcaption>バカンス画報・夕日</figcaption></figure>
-          <figure class="wide"><img src="../assets/uc/port_144.jpg?v=1012g" alt="" loading="lazy"><figcaption>バカンス画報・浜を歩く</figcaption></figure>
+          <figure class="big reveal"><img src="../assets/uc/port_46.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>日差しのベッド・縁に座る</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_100.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>暗いブドワール・大きなセーター</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_47.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>黒の中の体・しゃがむ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_49.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>日差しのベッド・窓の光の帯</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_50.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>黒いランジェリー・上品に</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_141.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>ミルクバス・レースのローブ</figcaption></figure>
+          <figure class="reveal"><img src="../assets/uc/port_142.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>暗いブドワール・細い光の窓</figcaption></figure>
+          <figure class="note sq reveal"><span class="k">VIII — SENSUAL</span><p>セクシー — ランジェリー画報、暗いブドワール、黒の中の体、ミルクバス、夕日と磯。下着の線は越えない。雑誌のグラビアの作法で。</p><span class="n">棚の様式から、ここに 11</span></figure>
+          <figure class="reveal"><img src="../assets/uc/port_143.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>黒の中の体・縁取りの光</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_32.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>磯の潮だまり</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_139.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>バカンス画報・夕日</figcaption></figure>
+          <figure class="wide reveal"><img src="../assets/uc/port_144.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>バカンス画報・浜を歩く</figcaption></figure>
         </div>
       </div>
     </div>
@@ -303,9 +304,9 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 4 仕上がり -->
   <section class="panel cine" data-num="04" style="--bd:url(../assets/uc/uc_port_31.jpg);--bd-pos:center 40%">
     <div class="panel-inner">
-      <div class="ch-eyebrow">04 — 仕上がり</div>
-      <h2 class="ch-title">写真が、<span class="em">動き出す</span>。</h2>
-      <p class="ch-sub">写真から、数秒の動画へ。同じ顔のまま、桜の下でも、夕暮れの浜でも、夏祭りの夜でも。</p>
+      <div class="ch-eyebrow reveal">04 — 仕上がり</div>
+      <h2 class="ch-title reveal d1">写真が、<span class="em">動き出す</span>。</h2>
+      <p class="ch-sub reveal d2">写真から、数秒の動画へ。同じ顔のまま、桜の下でも、夕暮れの浜でも、夏祭りの夜でも。</p>
       <div class="uc-fin">
         <div class="uc-film"><video src="../assets/uc/uc_port_31.mp4?v=20261013p1" poster="../assets/uc/uc_port_31.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">SUNSET · SHORE</span></div>
         <div class="uc-film"><video src="../assets/uc/uc_port_03.mp4" poster="../assets/uc/uc_port_03.jpg?v=1012b" muted loop playsinline autoplay preload="metadata"></video><span class="cap">FESTIVAL · LANTERN</span></div>
@@ -327,8 +328,8 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
   <!-- 5 連絡 -->
   <section class="panel uc-contact" data-num="05">
     <div class="panel-inner">
-      <h2 class="ch-title">撮影会の相談は、<span class="em">好きな一枚</span>から。</h2>
-      <p class="ch-sub" style="margin-left:auto;margin-right:auto">撮りたい雰囲気の写真(他の人のでも)と、着たい衣装。それだけ送ってください。候補にしてお返しします。</p>
+      <h2 class="ch-title reveal d1">撮影会の相談は、<span class="em">好きな一枚</span>から。</h2>
+      <p class="ch-sub reveal d2" style="margin-left:auto;margin-right:auto">撮りたい雰囲気の写真(他の人のでも)と、着たい衣装。それだけ送ってください。候補にしてお返しします。</p>
       <div class="uc-cta" style="justify-content:center">
         <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
         <a class="btn ghost" href="./">ほかの用途を見る</a>
@@ -357,7 +358,7 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
 <script>/* 1 マスの札の説明文を群の見出しの下へ写す(表示はスマホだけ・CSS 側)。HTML に書かないのは shelf_edit.py の群の検出(見出しの直後が uc-grid)を壊さないため。辞書 uc_i18n.js より前に走らせて訳も当てる */
 document.querySelectorAll('.uc-grid figure.note.sq:not(.m2):not(.m3)').forEach(function(n){var p=n.querySelector('p'),g=n.closest('.uc-grid');if(!p||!g)return;var d=document.createElement('p');d.className='dm';d.textContent=p.textContent;g.parentNode.insertBefore(d,g);});
 </script>
-<script src="../js/sitemenu.js?v=20261013zh1"></script>
+<script src="../js/sitemenu.js?v=20261013vt1"></script>
 <script src="../js/uc_i18n.js?v=20261013ft1"></script>
 </body>
 </html>

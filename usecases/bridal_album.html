@@ -23,7 +23,7 @@
 var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base");if(lang==="zh")add("zh");window.__mvFonts=function(k){if(k==="zh")add("zh")}})();
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="../css/theater.css?v=20261013zh2">
+<link rel="stylesheet" href="../css/theater.css?v=20261013vt1">
 <style>
 /* 印刷アルバムの見本。theater.css はヘッダと部品の衣装だけ借り、本の中身はここで決める。
    本= 30cm 正方形のレイフラット製本(見開き 2:1)。紙= 生成り(--paper)・文字= 墨(--inkp)。章= 和装 / 洋装 / 韓国風 / 台湾の婚紗 */
@@ -278,7 +278,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="alb-top">
       <div>
         <nav class="crumbs" aria-label="現在地"><a href="../">ホーム</a><i>/</i><a href="./">用途</a><i>/</i><a href="bridal.html">ブライダル前撮り</a><i>/</i><span>アルバム</span></nav>
-        <div class="ch-eyebrow">USE CASE 01 — ブライダル前撮り / アルバムの見本</div>
+        <div class="ch-eyebrow reveal">USE CASE 01 — ブライダル前撮り / アルバムの見本</div>
         <h1>写真は、<span class="em">本になって</span>残る。</h1>
         <p>棚の様式で焼いた前撮りを、印刷のアルバムのレイアウトで。表紙、トレーシングペーパーの扉、裁ち落としの見開き、章扉、誓いの言葉——製本屋に渡す形そのままを、画面でめくれます。</p>
       </div>
@@ -307,7 +307,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         <section class="spread tp" data-l="扉">
           <div class="pg l"><div class="mono">∞</div></div>
           <div class="pg r">
-            <img class="ph" src="../assets/uc/album/w4.jpg" alt="" loading="lazy">
+            <img class="ph" src="../assets/uc/album/w4.jpg" alt="" loading="lazy" decoding="async">
             <div class="veil"></div>
             <div class="tt">
               <div class="k">PRE-WEDDING</div>
@@ -320,7 +320,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         <!-- 第1章 和装 -->
         <section class="spread chap" data-l="第1章 和装">
           <div class="pg l">
-            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/w1.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/w1.jpg" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:24%;bottom:5.5%">Shrine<span class="jp">参拝 · 社殿の前</span></div>
             <span class="no">01</span>
           </div>
@@ -332,18 +332,18 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         </section>
 
         <section class="spread bleed" data-l="和装 · 和傘">
-          <img class="ph" src="../assets/uc/album/w2.jpg" alt="" loading="lazy" style="object-position:50% 8%">
+          <img class="ph" src="../assets/uc/album/w2.jpg" alt="" loading="lazy" style="object-position:50% 8%" decoding="async">
           <div class="pg l"></div><div class="pg r"></div>
           <div class="cap onph" style="right:4%;bottom:5%;text-align:right">Red umbrella for two<span class="jp">和傘の相合傘 · 紅葉の庭</span></div>
         </section>
 
         <section class="spread" data-l="和装 · お散歩と石段">
           <div class="pg l">
-            <img class="ph" src="../assets/uc/album/w3.jpg" alt="" loading="lazy">
+            <img class="ph" src="../assets/uc/album/w3.jpg" alt="" loading="lazy" decoding="async">
             <div class="cap onph" style="left:6%;bottom:5.5%">A walk under the blossoms<span class="jp">お散歩 · 桜の庭</span></div>
           </div>
           <div class="pg r">
-            <div class="mat" style="left:16%;top:10%;width:68%;height:56%"><img class="ph" src="../assets/uc/album/w6.jpg" alt="" loading="lazy" style="object-position:50% 20%"></div>
+            <div class="mat" style="left:16%;top:10%;width:68%;height:56%"><img class="ph" src="../assets/uc/album/w6.jpg" alt="" loading="lazy" style="object-position:50% 20%" decoding="async"></div>
             <div class="cap" style="left:16%;top:70%">Escort<span class="jp">エスコート · 苔の石段</span></div>
             <span class="no">05</span>
           </div>
@@ -351,13 +351,13 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
 
         <section class="spread" data-l="和装 · 雪とご挨拶">
           <div class="pg l">
-            <div class="mat" style="left:10%;top:10%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/w7.jpg" alt="" loading="lazy"></div>
-            <div class="mat" style="left:52%;top:30%;width:38%;height:56%"><img class="ph" src="../assets/uc/album/w5.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:10%;top:10%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/w7.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="mat" style="left:52%;top:30%;width:38%;height:56%"><img class="ph" src="../assets/uc/album/w5.jpg" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:10%;top:66%">A formal greeting<span class="jp">正座でご挨拶 · 五重塔</span></div>
             <span class="no">06</span>
           </div>
           <div class="pg r">
-            <img class="ph" src="../assets/uc/album/w4.jpg" alt="" loading="lazy" style="object-position:50% 25%">
+            <img class="ph" src="../assets/uc/album/w4.jpg" alt="" loading="lazy" style="object-position:50% 25%" decoding="async">
             <div class="cap onph" style="right:5%;bottom:5.5%;text-align:right">The bride, in autumn<span class="jp">新婦ソロ · 紅葉の庭</span></div>
           </div>
         </section>
@@ -365,7 +365,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         <!-- 第2章 洋装 -->
         <section class="spread chap" data-l="第2章 洋装">
           <div class="pg l">
-            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/y5.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/y5.jpg" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:24%;bottom:5.5%">The grand staircase<span class="jp">階段 · 洋館のホール</span></div>
             <span class="no">08</span>
           </div>
@@ -377,7 +377,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         </section>
 
         <section class="spread bleed" data-l="洋装 · ベールアップ">
-          <img class="ph" src="../assets/uc/album/y1.jpg" alt="" loading="lazy" style="object-position:50% 8%">
+          <img class="ph" src="../assets/uc/album/y1.jpg" alt="" loading="lazy" style="object-position:50% 8%" decoding="async">
           <div class="pg l"></div><div class="pg r"></div>
           <div class="cap onph" style="left:4%;bottom:5%">The veil, lifted<span class="jp">挙式風 · ベールアップ · 白い砂浜</span></div>
         </section>
@@ -391,21 +391,21 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         </section>
         <section class="spread" data-l="洋装 · 三枚">
           <div class="pg l">
-            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y2.jpg" alt="" loading="lazy"></div>
-            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y7.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y2.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y7.jpg" alt="" loading="lazy" decoding="async"></div>
             <span class="no">12</span>
           </div>
           <div class="pg r">
-            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y3.jpg?v=1012d" alt="" loading="lazy"></div>
+            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/y3.jpg?v=1012d" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:54%;top:12%;width:38%">Lavender, brick, city lights<span class="jp">ラベンダー畑 · レンガの街 · 夜景</span></div>
-            <div class="mat" style="left:54%;top:50%;width:38%;height:40%"><img class="ph" src="../assets/uc/album/y6.jpg" alt="" loading="lazy" style="object-position:50% 40%"></div>
+            <div class="mat" style="left:54%;top:50%;width:38%;height:40%"><img class="ph" src="../assets/uc/album/y6.jpg" alt="" loading="lazy" style="object-position:50% 40%" decoding="async"></div>
             <span class="no">13</span>
           </div>
         </section>
 
         <section class="spread vow" data-l="誓いの言葉">
           <div class="pg l">
-            <img class="ph" src="../assets/uc/album/y4.jpg" alt="" loading="lazy" style="object-position:50% 30%">
+            <img class="ph" src="../assets/uc/album/y4.jpg" alt="" loading="lazy" style="object-position:50% 30%" decoding="async">
           </div>
           <div class="pg r">
             <div class="txt"><div class="q">晴れの日も、雨の日も。<br>同じ方を向いて歩くこと。<br>それだけを、約束します。</div>
@@ -417,7 +417,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         <!-- 第3章 韓国風 -->
         <section class="spread chap" data-l="第3章 韓国風">
           <div class="pg l">
-            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/k2.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/k2.jpg" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:24%;bottom:5.5%">Veil in the wind<span class="jp">干潟 · 風のベール</span></div>
             <span class="no">16</span>
           </div>
@@ -429,18 +429,18 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         </section>
 
         <section class="spread bleed" data-l="韓国風 · 霧の夜明け">
-          <img class="ph" src="../assets/uc/album/k1.jpg" alt="" loading="lazy" style="object-position:50% 45%">
+          <img class="ph" src="../assets/uc/album/k1.jpg" alt="" loading="lazy" style="object-position:50% 45%" decoding="async">
           <div class="pg l"></div><div class="pg r"></div>
           <div class="cap onph" style="right:4%;bottom:5%;text-align:right">Gothic romance, misty dawn<span class="jp">ゴシックロマン · 霧の夜明け</span></div>
         </section>
 
         <section class="spread" data-l="韓国風 · 二枚">
           <div class="pg l">
-            <img class="ph" src="../assets/uc/album/k4.jpg" alt="" loading="lazy" style="object-position:50% 20%">
+            <img class="ph" src="../assets/uc/album/k4.jpg" alt="" loading="lazy" style="object-position:50% 20%" decoding="async">
             <div class="cap onph" style="left:6%;bottom:5.5%">Black and white film<span class="jp">白黒フィルム · 踊る</span></div>
           </div>
           <div class="pg r">
-            <div class="mat" style="left:18%;top:12%;width:64%;height:58%"><img class="ph" src="../assets/uc/album/k3.jpg" alt="" loading="lazy" style="object-position:50% 25%"></div>
+            <div class="mat" style="left:18%;top:12%;width:64%;height:58%"><img class="ph" src="../assets/uc/album/k3.jpg" alt="" loading="lazy" style="object-position:50% 25%" decoding="async"></div>
             <div class="cap" style="left:18%;top:74%">Champagne tower<span class="jp">フルグラム · シャンパンタワー</span></div>
             <span class="no">21</span>
           </div>
@@ -448,12 +448,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
 
         <section class="spread" data-l="韓国風 · 火山島">
           <div class="pg l">
-            <div class="mat" style="left:12%;top:14%;width:76%;height:46%"><img class="ph" src="../assets/uc/album/k5.jpg" alt="" loading="lazy" style="object-position:50% 40%"></div>
+            <div class="mat" style="left:12%;top:14%;width:76%;height:46%"><img class="ph" src="../assets/uc/album/k5.jpg" alt="" loading="lazy" style="object-position:50% 40%" decoding="async"></div>
             <div class="cap" style="left:12%;top:64%">Phone snap, the aisle<span class="jp">スマホで撮る結婚式スナップ · バージンロード</span></div>
             <span class="no">22</span>
           </div>
           <div class="pg r">
-            <img class="ph" src="../assets/uc/album/k6.jpg" alt="" loading="lazy" style="object-position:50% 25%">
+            <img class="ph" src="../assets/uc/album/k6.jpg" alt="" loading="lazy" style="object-position:50% 25%" decoding="async">
             <div class="cap onph" style="right:5%;bottom:5.5%;text-align:right">Volcanic island<span class="jp">火山島 · 向かい合って小声で</span></div>
           </div>
         </section>
@@ -461,7 +461,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         <!-- 第4章 台湾の婚紗 -->
         <section class="spread chap" data-l="第4章 台湾の婚紗">
           <div class="pg l">
-            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/t2.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/t2.jpg" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:24%;bottom:5.5%">A look back<span class="jp">電影 · 風のベールの回眸</span></div>
             <span class="no">24</span>
           </div>
@@ -473,31 +473,31 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         </section>
 
         <section class="spread bleed" data-l="台湾 · 雲海">
-          <img class="ph" src="../assets/uc/album/t3.jpg?v=1013b" alt="" loading="lazy" style="object-position:50% 28%">
+          <img class="ph" src="../assets/uc/album/t3.jpg?v=1013b" alt="" loading="lazy" style="object-position:50% 28%" decoding="async">
           <div class="pg l"></div><div class="pg r"></div>
           <div class="cap onph" style="left:4%;bottom:5%">Above the clouds<span class="jp">雲海の山道 · 小さな二人</span></div>
         </section>
 
         <section class="spread" data-l="台湾 · 三枚">
           <div class="pg l">
-            <img class="ph" src="../assets/uc/album/t4.jpg" alt="" loading="lazy" style="object-position:50% 15%">
+            <img class="ph" src="../assets/uc/album/t4.jpg" alt="" loading="lazy" style="object-position:50% 15%" decoding="async">
             <div class="cap onph" style="left:6%;bottom:5.5%">Leading the horse<span class="jp">新郎 · 馬を引く</span></div>
           </div>
           <div class="pg r">
-            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/t5.jpg" alt="" loading="lazy"></div>
-            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/t6.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/t5.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/t6.jpg" alt="" loading="lazy" decoding="async"></div>
             <span class="no">29</span>
           </div>
         </section>
 
         <section class="spread" data-l="台湾 · 線香花火">
           <div class="pg l">
-            <div class="mat" style="left:14%;top:12%;width:72%;height:76%"><img class="ph" src="../assets/uc/album/t1.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:14%;top:12%;width:72%;height:76%"><img class="ph" src="../assets/uc/album/t1.jpg" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:24%;bottom:5.5%">Mountain road<span class="jp">極簡 · 雲海の上の山道</span></div>
             <span class="no">30</span>
           </div>
           <div class="pg r">
-            <img class="ph" src="../assets/uc/album/t7.jpg" alt="" loading="lazy" style="object-position:50% 30%">
+            <img class="ph" src="../assets/uc/album/t7.jpg" alt="" loading="lazy" style="object-position:50% 30%" decoding="async">
             <div class="cap onph" style="right:5%;bottom:5.5%;text-align:right">Sparklers, the last night<span class="jp">線香花火の光</span></div>
           </div>
         </section>
@@ -507,7 +507,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         <!-- 第5章 中華風 -->
         <section class="spread chap" data-l="第5章 中華風">
           <div class="pg l">
-            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/c1.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:24%;top:12%;width:52%;height:76%"><img class="ph" src="../assets/uc/album/c1.jpg" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:24%;bottom:5.5%">The phoenix crown<span class="jp">龍鳳褂と鳳冠 · 鳳冠の寄り</span></div>
             <span class="no">32</span>
           </div>
@@ -519,32 +519,32 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
         </section>
 
         <section class="spread bleed" data-l="中華風 · 水郷">
-          <img class="ph" src="../assets/uc/album/c7.jpg" alt="" loading="lazy" style="object-position:50% 50%">
+          <img class="ph" src="../assets/uc/album/c7.jpg" alt="" loading="lazy" style="object-position:50% 50%" decoding="async">
           <div class="pg l"></div><div class="pg r"></div>
           <div class="cap onph" style="left:4%;bottom:5%">The old town on the water<span class="jp">古鎮と水郷 · 水郷の引き</span></div>
         </section>
 
         <section class="spread" data-l="中華風 · 蓋頭と提灯">
           <div class="pg l">
-            <img class="ph" src="../assets/uc/album/c2.jpg" alt="" loading="lazy" style="object-position:50% 20%">
+            <img class="ph" src="../assets/uc/album/c2.jpg" alt="" loading="lazy" style="object-position:50% 20%" decoding="async">
             <div class="cap onph" style="left:6%;bottom:5.5%">The red veil<span class="jp">紅い蓋頭</span></div>
           </div>
           <div class="pg r">
-            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/c3.jpg" alt="" loading="lazy"></div>
-            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/c4.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:8%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/c3.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="mat" style="left:52%;top:10%;width:40%;height:80%"><img class="ph" src="../assets/uc/album/c4.jpg" alt="" loading="lazy" decoding="async"></div>
             <span class="no">37</span>
           </div>
         </section>
 
         <section class="spread" data-l="中華風 · 園林">
           <div class="pg l">
-            <div class="mat" style="left:12%;top:14%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/c5.jpg" alt="" loading="lazy"></div>
-            <div class="mat" style="left:52%;top:34%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/c6.jpg" alt="" loading="lazy"></div>
+            <div class="mat" style="left:12%;top:14%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/c5.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="mat" style="left:52%;top:34%;width:36%;height:52%"><img class="ph" src="../assets/uc/album/c6.jpg" alt="" loading="lazy" decoding="async"></div>
             <div class="cap" style="left:12%;top:70%">Garden, in pale tones<span class="jp">園林の新中式 · 花窓越し · 筆と硯</span></div>
             <span class="no">38</span>
           </div>
           <div class="pg r">
-            <img class="ph" src="../assets/uc/album/c8.jpg" alt="" loading="lazy" style="object-position:50% 25%">
+            <img class="ph" src="../assets/uc/album/c8.jpg" alt="" loading="lazy" style="object-position:50% 25%" decoding="async">
             <div class="cap onph" style="right:5%;bottom:5.5%;text-align:right">Lifting the veil<span class="jp">蓋頭を上げる二人</span></div>
           </div>
         </section>
@@ -647,7 +647,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   show(0);
 })();
 </script>
-<script src="../js/sitemenu.js?v=20261013zh1"></script>
+<script src="../js/sitemenu.js?v=20261013vt1"></script>
 <script>
 (function(){
   // 縦のスマホだけ幕を出す。横に回したら消す。「このまま見る」はそのタブの間だけ覚える(sessionStorage)
