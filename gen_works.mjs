@@ -25,10 +25,17 @@ function subHtml(sub) {
   return tail ? `${esc(head)} ・ <span class="nw">${esc(tail)}</span>` : esc(sub)
 }
 function workCard(w, { autoplay = false } = {}) {
+  const video = `<video src="assets/${w.asset}.mp4?v=${w.v}" poster="assets/${w.asset}.jpg?v=${w.v}" muted loop playsinline preload="none"${autoplay ? ' autoplay' : ''}></video>`
+  const cap = `<figcaption><strong>${esc(w.title)}</strong><span>${subHtml(w.sub)}</span></figcaption>`
+  // YouTube に上げていない作品(暁の誓剣)はリンク無しの札(2026-10-13: JSON 化の時に取りこぼして消していた)
+  if (!w.yt) return `        <figure class="workcard">
+          ${video}
+          ${cap}
+        </figure>`
   return `        <a class="worklink" href="${esc(w.yt)}" target="_blank" rel="noopener noreferrer"><figure class="workcard">
-          <video src="assets/${w.asset}.mp4?v=${w.v}" poster="assets/${w.asset}.jpg?v=${w.v}" muted loop playsinline preload="none"${autoplay ? ' autoplay' : ''}></video>
+          ${video}
           <span class="yt-badge">YouTube</span>
-          <figcaption><strong>${esc(w.title)}</strong><span>${subHtml(w.sub)}</span></figcaption>
+          ${cap}
         </figure></a>`
 }
 

@@ -192,6 +192,30 @@
     "title": "粉彩房間",
     "sub": "流行MV ・ 3分01秒"
    }
+  },
+  {
+   "id": "yakusoku",
+   "yt": "https://youtu.be/R0uR2UpWyK4",
+   "asset": "wk_yakusoku",
+   "v": "20261013a",
+   "title": "約束",
+   "sub": "夏祭りのショートフィルム ・ 3分04秒",
+   "zh": {
+    "title": "約定",
+    "sub": "夏日祭典的短片 ・ 3分04秒"
+   }
+  },
+  {
+   "id": "saber",
+   "yt": null,
+   "asset": "wk_saber",
+   "v": "20260816f",
+   "title": "暁の誓剣",
+   "sub": "アクション短編 ・ 42秒",
+   "zh": {
+    "title": "拂曉的誓劍",
+    "sub": "動作短片 ・ 42秒"
+   }
   }
  ],
  "shows": [
