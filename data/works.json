@@ -2,6 +2,18 @@
  "_note": "作品と番組の正本。index.html と works.html の該当部分と js/works_i18n.js は `node gen_works.mjs` がここから生成する(手で編集しない)。新しい作品は先頭に足す(新しい順)。",
  "works": [
   {
+   "id": "mizukagami",
+   "yt": "https://youtu.be/irahazHeiFY",
+   "asset": "wk_mizukagami",
+   "v": "20261013a",
+   "title": "水鏡",
+   "sub": "RINKA × KANADE 夜の温室のMV ・ 3分49秒",
+   "zh": {
+    "title": "水鏡",
+    "sub": "RINKA × KANADE 夜晚溫室的MV ・ 3分49秒"
+   }
+  },
+  {
    "id": "itsumo",
    "yt": "https://youtu.be/_uC-XiL0EuY",
    "asset": "wk_itsumo",
