@@ -51,6 +51,11 @@
 .uc-grid figure:hover img{transform:scale(1.04)}
 .uc-grid{grid-auto-flow:dense}
 .uc-grid figure{align-self:stretch}
+/* 棚の律動(2026-10-13 ユーザー「このレイアウトはつまらないね。全部同じ」): 各棚の 1 枚目と 8 枚目を 2×2 の大きな札に(world.html の .big と同じ作法)。
+   6 列なら 3 段・3 列なら 6 段がちょうど埋まる(10 小+2 大= 18 升)。大きな札は題を大きく */
+.uc-grid figure.big{grid-column:span 2;grid-row:span 2}
+.uc-grid figure.big figcaption{font-size:14px;letter-spacing:.08em;padding:40px 14px 13px}
+@media (max-width:900px){.uc-grid figure.big figcaption{font-size:12.5px;padding:30px 10px 10px}}
 .uc-grid figure.wide{grid-column:span 3;aspect-ratio:2048/1168}
 .uc-grid figure.wide img{object-position:50% 50%}
 
@@ -204,14 +209,14 @@
       <div class="uc-shelf">
         <h3><i></i>WASOU <span>和装 200 以上の様式から</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/bridal_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>参拝・社殿の前</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>参拝・社殿の前</figcaption></figure>
           <figure><img src="../assets/uc/bridal_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>和傘の相合傘・紅葉の庭</figcaption></figure>
           <figure><img src="../assets/uc/bridal_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>新婦ソロ・紅葉の庭</figcaption></figure>
           <figure><img src="../assets/uc/bridal_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>手水舎・桜の庭</figcaption></figure>
           <figure><img src="../assets/uc/bridal_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>シルエット・雪の庭</figcaption></figure>
           <figure><img src="../assets/uc/bridal_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>お散歩・桜の庭</figcaption></figure>
           <figure><img src="../assets/uc/bridal_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>正座でご挨拶・五重塔</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>石段に座る・社殿の前</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>石段に座る・社殿の前</figcaption></figure>
           <figure><img src="../assets/uc/bridal_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>エスコート・苔の石段</figcaption></figure>
           <figure><img src="../assets/uc/bridal_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>新婦ソロ全身・紅葉の庭</figcaption></figure>
           <figure><img src="../assets/uc/bridal_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>おみくじ・町家の通り</figcaption></figure>
@@ -219,14 +224,14 @@
         </div>
         <h3><i></i>YOUSOU <span>洋装 200 以上の様式から</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/bridal_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>挙式風・ベールアップ・白い砂浜</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_13.jpg?v=1012b" alt="" loading="lazy"><figcaption>挙式風・ベールアップ・白い砂浜</figcaption></figure>
           <figure><img src="../assets/uc/bridal_14.jpg?v=1012b" alt="" loading="lazy"><figcaption>バックショット・ラベンダー畑</figcaption></figure>
           <figure><img src="../assets/uc/bridal_15.jpg?v=1012b" alt="" loading="lazy"><figcaption>新婦ソロ・レンガ倉庫の街</figcaption></figure>
           <figure><img src="../assets/uc/bridal_16.jpg?v=1012e" alt="" loading="lazy"><figcaption>向かい合わせ・イルミネーション</figcaption></figure>
           <figure><img src="../assets/uc/bridal_17.jpg?v=1012b" alt="" loading="lazy"><figcaption>階段・洋館のホール</figcaption></figure>
           <figure><img src="../assets/uc/bridal_18.jpg?v=1012b" alt="" loading="lazy"><figcaption>おでこを寄せる・湖畔の草原</figcaption></figure>
           <figure><img src="../assets/uc/bridal_19.jpg?v=1012b" alt="" loading="lazy"><figcaption>シルエット・赤い壁のサロン</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_20.jpg?v=1012b" alt="" loading="lazy"><figcaption>小物・ブーケとヘッドドレス</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_20.jpg?v=1012b" alt="" loading="lazy"><figcaption>小物・ブーケとヘッドドレス</figcaption></figure>
           <figure><img src="../assets/uc/bridal_21.jpg?v=1012b" alt="" loading="lazy"><figcaption>ふたりで座る・洋館の大階段</figcaption></figure>
           <figure><img src="../assets/uc/bridal_22.jpg?v=1012b" alt="" loading="lazy"><figcaption>手をつないで・夜景</figcaption></figure>
           <figure><img src="../assets/uc/bridal_23.jpg?v=1012b" alt="" loading="lazy"><figcaption>新婦ソロ全身・イルミネーション</figcaption></figure>
@@ -235,14 +240,14 @@
         <h3><i></i>KOREA <span>韓国風 80 様式から — 白黒フィルム、無関心なシック、ゴシックロマン、火山島、セルフスタジオ</span></h3>
         <div class="uc-grid">
           <figure class="wide"><img src="../assets/uc/bridal_kr_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・霧の夜明け</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・燭台</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_kr_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>ゴシックロマンのウェディング・燭台</figcaption></figure>
           <figure><img src="../assets/uc/bridal_kr_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>干潟のリアリティウェディング・夕暮れの干潟</figcaption></figure>
           <figure><img src="../assets/uc/bridal_kr_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>干潟のリアリティウェディング・風のベール</figcaption></figure>
           <figure><img src="../assets/uc/bridal_kr_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>無関心なシックのウェディング・アバンギャルドなドレス</figcaption></figure>
           <figure><img src="../assets/uc/bridal_kr_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>フルグラムのウェディング・シャンパンタワー</figcaption></figure>
           <figure><img src="../assets/uc/bridal_kr_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>フルグラムのウェディング・紙吹雪</figcaption></figure>
           <figure><img src="../assets/uc/bridal_kr_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>白黒フィルムのウェディング・笑う瞬間</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_kr_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>白黒フィルムのウェディング・踊る</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_kr_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>白黒フィルムのウェディング・踊る</figcaption></figure>
           <figure class="wide"><img src="../assets/uc/bridal_kr_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>スマホで撮る結婚式スナップ・バージンロード</figcaption></figure>
           <figure><img src="../assets/uc/bridal_kr_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>火山島のウェディングスナップ・向かい合って小声で</figcaption></figure>
           <figure><img src="../assets/uc/bridal_kr_12.jpg?v=1012b" alt="" loading="lazy"><figcaption>セルフウェディングスタジオ・韓服の回</figcaption></figure>
@@ -251,14 +256,14 @@
         </div>
         <h3><i></i>TAIWAN <span>台湾の婚紗 100 様式から — 侘寂、極簡、電影、美式、Vogue、新郎入り</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/bridal_tw_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>侘寂・苔庭の飛び石</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_tw_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>侘寂・苔庭の飛び石</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>極簡・雲海の上の山道</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>電影・風のベールの回眸</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>美式・ヴィンテージカーにもたれる</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>Vogue・鏡の床に横たわる</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>新郎・階段で手を差し出す</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>新郎・ホールで回る</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_tw_08.jpg?v=1012e" alt="" loading="lazy"><figcaption>新郎・雲海の山道の小さな二人</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_tw_08.jpg?v=1012e" alt="" loading="lazy"><figcaption>新郎・雲海の山道の小さな二人</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>新郎・馬を引く</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>新郎・麦畑のディップ</figcaption></figure>
           <figure><img src="../assets/uc/bridal_tw_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>花嫁・霧の茶畑</figcaption></figure>
@@ -266,14 +271,14 @@
         </div>
         <h3><i></i>CHINA <span>中華風 40 様式から — 秀禾服と紅い壁、龍鳳褂と鳳冠、園林の新中式、古鎮と水郷</span></h3>
         <div class="uc-grid">
-          <figure><img src="../assets/uc/bridal_cn_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・紅い壁と団扇</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_cn_01.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・紅い壁と団扇</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_02.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・赤い提灯の列</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_03.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・紅い油紙傘</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_04.jpg?v=1012b" alt="" loading="lazy"><figcaption>秀禾服と紅い壁・敬茶の二人</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_05.jpg?v=1012b" alt="" loading="lazy"><figcaption>龍鳳褂と鳳冠・鳳冠の寄り</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_06.jpg?v=1012b" alt="" loading="lazy"><figcaption>龍鳳褂と鳳冠・紅い蓋頭</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_07.jpg?v=1012b" alt="" loading="lazy"><figcaption>龍鳳褂と鳳冠・蓋頭を上げる二人</figcaption></figure>
-          <figure><img src="../assets/uc/bridal_cn_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>園林の新中式・花窓越し</figcaption></figure>
+          <figure class="big"><img src="../assets/uc/bridal_cn_08.jpg?v=1012b" alt="" loading="lazy"><figcaption>園林の新中式・花窓越し</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_09.jpg?v=1012b" alt="" loading="lazy"><figcaption>園林の新中式・筆と硯</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_10.jpg?v=1012b" alt="" loading="lazy"><figcaption>古鎮と水郷の旅拍・提灯の小舟</figcaption></figure>
           <figure><img src="../assets/uc/bridal_cn_11.jpg?v=1012b" alt="" loading="lazy"><figcaption>古鎮と水郷の旅拍・茶楼の窓辺</figcaption></figure>
