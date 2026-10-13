@@ -157,6 +157,16 @@
       if(zh&&M[key]!=null)n.nodeValue=n.__ja.replace(key,M[key]);
       else n.nodeValue=n.__ja;
     });
+    // 繁中の見出し(h1/h2): 台湾の見出しは句読点を置かない(2026-10-13 ユーザー指摘)。末尾の「。」を外し、途中の「，」「、」は <br> の前なら外し、それ以外は全角空白に。日本語は触らない
+    if(lang==='zh')document.querySelectorAll('h1, h2').forEach(h=>{
+      if(h.closest('[data-noi18n]'))return;
+      const tn=[];const tw=document.createTreeWalker(h,NodeFilter.SHOW_TEXT);let t;while(t=tw.nextNode())if(t.nodeValue.trim())tn.push(t);
+      tn.forEach((n,i)=>{const last=i===tn.length-1;let v=n.nodeValue;
+        if(last)v=v.replace(/[。]\s*$/,'');
+        const nx=n.nextSibling;const br=(nx&&nx.nodeName==='BR')||(!nx&&n.parentNode!==h&&n.parentNode.nextSibling&&n.parentNode.nextSibling.nodeName==='BR');
+        v=v.replace(/[，、]\s*$/,(br||last)?'':'　');
+        if(v!==n.nodeValue)n.nodeValue=v;});
+    });
     if(document.__jatitle==null)document.__jatitle=document.title;
     document.title=zh&&M[document.__jatitle]?M[document.__jatitle]:document.__jatitle;
     document.querySelectorAll('[data-l]').forEach(el=>{

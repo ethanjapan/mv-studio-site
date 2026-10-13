@@ -1690,3 +1690,7 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
 .sm-a.sub{padding-top:9px;padding-bottom:9px}                   /* 地図の引き出しの小項目 40 → 44 */
 /* サイトの地図(フッター)は行間 4px で並ぶため、広げた押せる範囲が上下の行と重なった(実測: 中心から 20pt 上下で隣に当たる)。スマホだけ行間を 14px に */
 @media (max-width:640px){.foot-map{gap:14px 16px}}
+
+/* ---- 札の説明の改行(2026-10-13 繁中の全頁計測: 「手水舍・櫻花庭 / 園」のように 2 行目が 1〜2 字だけになる札が 78)。
+   2〜3 行の短い説明は行の長さをそろえて折る(text-wrap:balance・Safari 26.5 / Chrome 対応)。日本語の札にも効く ---- */
+.uc-grid figcaption,.dcol figcaption,.use .t > span{text-wrap:balance}
