@@ -1642,8 +1642,9 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
 @media (max-width:640px){ .use{aspect-ratio:1/1} }
 /*    NEW は明るい写真(花冠)の上で読めなかった。札の下に薄い夜の色を敷く */
 .use .tag-new{padding:4px 7px 4px 8px;background:rgba(4,6,15,.62)}
-/* 4) リード文の最終行に 1〜2 字だけ残る(「作 / 品。」「ディレクター / へ。」)。対応ブラウザでは段落全体で折り返しを整える */
-.ch-sub{text-wrap:pretty}
+/* 4) リード文の最終行に 1〜2 字だけ残る(「作 / 品。」「ディレクター / へ。」)。対応ブラウザでは段落全体で折り返しを整える
+      用途カードの説明も同じ(繁中 402pt で「…還有相 / 本」と 1 字落ちた) */
+.ch-sub,.use .t > span{text-wrap:pretty}
 /* 5) 右下の「相談」が本文と見出しを隠していた。下へ読み進めている間は隠し、上へ戻ると出す(js/sitemenu.js)。
       動きは opacity と transform だけ・200ms・強い ease-out。動きを減らす設定では移動なしで消えるだけ */
 @media (max-width:860px){
