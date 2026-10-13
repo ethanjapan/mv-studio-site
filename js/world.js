@@ -915,7 +915,7 @@ scene.add(dayMatte);
    Same horizon-aligned far-plane trick as the aurora matte (its horizon at
    uv.y=0.70 sits at eye height; everything below is occluded by our water). */
 const poolVideo=document.createElement('video');
-poolVideo.src='assets/bg_pool.mp4?v=20260704j';
+poolVideo.src='assets/bg_pool.mp4?v=20261013p1';
 poolVideo.muted=true;poolVideo.loop=true;poolVideo.playsInline=true;
 poolVideo.setAttribute('playsinline','');poolVideo.preload='auto';
 poolVideo.play().catch(()=>{});
@@ -947,7 +947,7 @@ const _pmDir=new THREE.Vector3();
    Two tilted panels along the dive route — the camera passes under them
    with true parallax; each fades with its chapters. */
 const uwVideo=document.createElement('video');
-uwVideo.src='assets/bg_underwater.mp4?v=20260704j';
+uwVideo.src='assets/bg_underwater.mp4?v=20261013p1';
 uwVideo.muted=true;uwVideo.loop=true;uwVideo.playsInline=true;
 uwVideo.setAttribute('playsinline','');uwVideo.preload='auto';
 const _kick0=kickVideo;

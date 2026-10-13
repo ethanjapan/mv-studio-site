@@ -520,3 +520,12 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     lead.after(btn);btn.after(body);
   });
 })();
+
+/* 章の背景板(2026-10-13・軽量化): 8 枚(約 700KB)を最初に全部読んでいた。1.5 画面手前に来てから読む(見える前に届くので演出は変わらない) */
+(function lazyPlates(){
+  if(!('IntersectionObserver' in window))return;
+  const secs=[...document.querySelectorAll('section[style*="--bd:"]')].filter(s=>!s.hasAttribute('data-zh-bd'));
+  if(secs.length<3)return;
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;const s=en.target;io.unobserve(s);if(s.dataset.bd){s.style.setProperty('--bd',s.dataset.bd);delete s.dataset.bd;}}),{rootMargin:'150% 0px'});
+  secs.forEach(s=>{const r=s.getBoundingClientRect();if(r.top>innerHeight*2){s.dataset.bd=s.style.getPropertyValue('--bd');s.style.removeProperty('--bd');}io.observe(s);});
+})();
