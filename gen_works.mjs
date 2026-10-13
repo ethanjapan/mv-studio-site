@@ -82,7 +82,8 @@ function flowItem(w) {
   const img = id
     ? `<img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='assets/${w.asset}.jpg?v=${w.v}'" alt="" loading="lazy" decoding="async">`
     : `<img src="assets/${w.asset}.jpg?v=${w.v}" alt="" loading="lazy" decoding="async">`
-  const video = id ? '' : `<video data-src="assets/${w.asset}.mp4?v=${w.v}" muted loop playsinline preload="none" aria-hidden="true"></video>`
+  // スマホは YouTube の埋め込みでなく手元の小さなループ(720p・0.3〜0.5MB)を中央だけ再生する(iPhone のメモリ: 埋め込みは +100MB 級)。PC は埋め込み
+  const video = `<video data-src="assets/${w.asset}.mp4?v=${w.v}" muted loop playsinline preload="none" aria-hidden="true"></video>`
   return `        <${tag} class="cf-item"${attrs}>
           <span class="cf-cover">${img}${video}${w.yt ? '<span class="yt-badge">YouTube</span>' : ''}</span>
           <span class="cf-cap"><strong>${esc(w.title)}</strong><span>${subHtml(w.sub)}</span></span>

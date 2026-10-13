@@ -411,7 +411,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     if(flat||!inView||cur<0)return;
     if(ytOn===cur&&(covers[cur].querySelector('iframe')||(vids[cur]&&vids[cur].getAttribute('src'))))return;   // 既に差してあれば何もしない(無ければ差し直す)
     ytOff();ytOn=cur;
-    const id=items[cur].dataset.yt;
+    const id=mobile?'':items[cur].dataset.yt;   // スマホ: 埋め込みを使わず手元のループ(iPhone のメモリ対策・実機で落ちた)
     if(id){
       const f=document.createElement('iframe');
       // enablejsapi で再生状態を受け取り、本当に動き出してから(playerState 1)表に出す= サムネ → 動画の切り替えに YouTube の題や再生ボタンが見えない
