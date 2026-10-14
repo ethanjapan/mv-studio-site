@@ -1892,3 +1892,14 @@ a:hover .go-ic path,button:hover .go-ic path{transform:translateX(1.5px)}
 .pillar .pd{grid-area:d;padding-right:22px;max-width:none}
 @media (max-width:860px){.pillars{grid-template-columns:1fr;gap:14px;margin-top:34px}.pillar{gap:2px 12px}.pillar .pn{padding-left:18px;font-size:18px}.pillar .pt,.pillar .pd{padding-right:18px}}
 @media (prefers-reduced-motion: reduce){.pillar:hover{transform:none}.pillar:hover .pv{transform:none}}
+
+/* 対応環境(2026-10-14 ユーザー「おすすめでやって」): 汎用の線画アイコンの列(Mac/Windows/iPhone…)をやめる= DESIGN_RULES の「ありがちな部品」。
+   章の頭は実画面入りの端末(閉じた時もこれが覗く)。対応機種は番号の行で 2 行 */
+.plat-rows{margin:26px auto 0;max-width:520px;display:flex;flex-direction:column}
+.plat-row{display:grid;grid-template-columns:2.2em 1fr auto;align-items:baseline;column-gap:14px;padding:12px 2px;border-bottom:1px solid rgba(226,230,242,.16)}
+.plat-row:first-child{border-top:1px solid rgba(226,230,242,.16)}
+.plat-row .k{font-family:var(--en-display);font-size:12px;letter-spacing:.2em;color:var(--gold)}
+.plat-row .t{font-family:var(--serif);font-size:15px;letter-spacing:.08em;color:var(--ink)}
+.plat-row .v{font-family:var(--en);font-size:12px;letter-spacing:.1em;color:var(--muted)}
+body.lang-zh .plat-row .t{font-family:"Noto Serif TC",serif}
+@media (max-width:640px){.plat-row .t{font-size:14px}.plat-row .v{font-size:11px;letter-spacing:.06em}}
