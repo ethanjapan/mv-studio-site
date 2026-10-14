@@ -1,12 +1,12 @@
 {
  "as_of": "2026-10-15",
  "since": "2026-08-21",
- "video_clips": 1044,
- "video_sec": 9902,
+ "video_clips": 1052,
+ "video_sec": 9973,
  "video_by_gate": {
   "h3": 4722,
   "h3lu": 1487,
-  "ltx25": 3693
+  "ltx25": 3763
  },
  "images": 30676,
  "images_by_gate": {
@@ -16,9 +16,9 @@
   "ming": 22
  },
  "image_gpu_hours": 265.1,
- "save_video_jpy": 650066,
+ "save_video_jpy": 654706,
  "save_image_jpy": 61057,
- "save_total_jpy": 711124,
+ "save_total_jpy": 715763,
  "prices": {
   "_note": "仕組みの頁「04 — 失敗の値段」の単価(下限の考え方= 外部はいちばん安い公式の単価・手元は電気代を差し引く)。値を変えたら日付と出典も変える。集計= mvdirector/scripts/site_cost_stats.py",
   "since": "2026-08-21",
