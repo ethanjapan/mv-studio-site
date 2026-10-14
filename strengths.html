@@ -272,13 +272,15 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
       <div class="ch-eyebrow reveal">04 — 失敗の値段</div>
       <h2 class="ch-title reveal d1">失敗しても、<span class="em">電気代だけ</span>。</h2>
       <p class="ch-sub reveal d2">外部の動画生成サービスは、失敗した生成にも秒数で課金される。手元の GPU なら、何度作り直しても払うのは電気代だけ——だから、納得するまで試せる。</p>
+      <!-- gen:cost:start (mvdirector/scripts/site_cost_stats.py が jobnet の記録から書く・手で編集しない) -->
       <div class="st-proof st-cost">
-        <div class="st-step"><div class="i">GENERATED</div><div class="b"><span data-noi18n>7,970</span><small>秒</small></div><div class="t">生成した動画</div><p class="p">755 クリップ・約 2.2 時間。</p></div>
-        <div class="st-step"><div class="i">USED</div><div class="b"><span data-noi18n>1,070</span><small>秒</small></div><div class="t">本編に使った秒数</div><p class="p">この間に公開した MV 5 本の本編（概算）。</p></div>
-        <div class="st-step"><div class="i">RETRIED</div><div class="b"><span data-noi18n>87</span><small>%</small></div><div class="t">失敗・不採用・試験</div><p class="p">約 6,900 秒。外部なら、ここにも課金される。</p></div>
-        <div class="st-step"><div class="i">SAVED</div><div class="b"><span data-noi18n>52.3</span><small>万円</small></div><div class="t">節約した金額（下限）</div><p class="p">うち失敗・不採用の分だけで 45.3 万円。</p></div>
+        <div class="st-step"><div class="i">VIDEO</div><div class="b"><span data-noi18n>9,902</span><small>秒</small></div><div class="t">生成した動画</div><p class="p"><span data-noi18n>1,044</span> クリップ。外部なら、失敗した分にも課金される。</p></div>
+        <div class="st-step"><div class="i">PHOTO</div><div class="b"><span data-noi18n>30,676</span><small>枚</small></div><div class="t">生成した写真</div><p class="p">棚の作例・キャラの候補・サイトの素材。</p></div>
+        <div class="st-step"><div class="i">PER SECOND</div><div class="b"><span data-noi18n>0.95</span><small>円</small></div><div class="t">手元の 1 秒の電気代</div><p class="p">外部の最安は <span data-noi18n>66.6</span> 円。</p></div>
+        <div class="st-step"><div class="i">SAVED</div><div class="b"><span data-noi18n>71.1</span><small>万円</small></div><div class="t">節約した金額（下限）</div><p class="p">うち動画の分 <span data-noi18n>65.0</span> 万円、写真の分 <span data-noi18n>6.1</span> 万円。</p></div>
       </div>
-      <p class="st-src">2026 年 8 月 21 日〜10 月 8 日の生成台帳の集計（動画モデル 2 種）。節約額 = 秒数 ×（外部の動画生成サービスの 10 月の最安の単価 66.6 円/秒 − 手元の電気代 0.95 円/秒）。画像・曲・8 月 20 日以前は含めないので、実際の節約はこれより大きい。</p>
+      <p class="st-src"><span data-noi18n>2026.8.21 – 2026.10.15</span> の生成台帳から自動で集計（<span data-noi18n>2026 年 10 月 15 日</span> 更新）。動画 = 秒数 ×（外部の動画生成サービスの最安の単価 − 手元の電気代）。写真 = 枚数 × 今の世代でいちばん安い公式の画像単価 − 手元の電気代。曲は含めないので、実際の節約はこれより大きい。</p>
+      <!-- gen:cost:end -->
     </div>
   </section>
 
@@ -352,6 +354,6 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 })();
 </script>
 <script src="js/sitemenu.js?v=20261015s753"></script>
-<script src="js/uc_i18n.js?v=20261015cost1"></script>
+<script src="js/uc_i18n.js?v=20261015cost2"></script>
 </body>
 </html>
