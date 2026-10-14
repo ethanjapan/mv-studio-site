@@ -20,7 +20,8 @@
     {k:'作品',h:base+'works.html',f:'works.html',n:'III'},
     {k:'裏番組',h:base+'works.html#shows',f:'',n:'IV'},
     {k:'スタジオの中',h:base+'studio.html',f:'studio.html',n:'V'},
-    {k:'仕組み',h:base+'strengths.html',f:'strengths.html',n:'VI'},
+    {k:'仕組み',h:base+'strengths.html',f:'strengths.html',n:'VI',sub:[
+      {k:'つくりかた',h:base+'engineering.html',f:'engineering.html'}]},
     {k:'相談',h:base+'#contact',f:'',n:'VII'}];
 
   // iOS Safari 対策(2026-10-13): サブページの autoplay video(撮影会 11 本など)は画面内だけ読み込む。トップは main.js が同じ門を持つ

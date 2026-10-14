@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>つくりかた — MV Studio の裏側</title>
+<meta name="description" content="一人で回す AI のスタジオの裏側。AI は準備と検査、人は選ぶことと許可。その境目を機械で守る仕組み——関所、止めた記録、自動検査と人の目。" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MV Studio" />
+<meta property="og:title" content="つくりかた — MV Studio" />
+<meta property="og:description" content="外に出ない。止まらない。24 時間、列が進む。外からも呼べる。上限は自分の GPU だけ。同じ顔のまま。棚は資産。" />
+<meta property="og:url" content="https://ethanjapan.github.io/mv-studio-site/engineering.html" />
+<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/st/plate_home.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#04060f" />
+<link rel="icon" type="image/svg+xml" href="assets/icon_mv.svg?v=20261012a" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=20261012a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+/* 表示言語の書体だけ読む(2026-10-13・links.html と同じ作法): 日本語の時は繁中の Noto TC を読まない。言語を切り替えた時は main.js / uc_i18n.js が __mvFonts(lang) で足す */
+(function(){var L=["family=Zen+Kaku+Gothic+New:wght@300;400;500;700", "family=Shippori+Mincho:wght@400;500;600", "family=Inter:wght@300;400;500", "family=Cormorant+Garamond:wght@400;500;600"],Z=["family=Noto+Sans+TC:wght@300;400;500;700", "family=Noto+Serif+TC:wght@500;600"],done={};function add(k){if(done[k]||!(k==="zh"?Z:L).length)return;done[k]=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?"+(k==="zh"?Z:L).join("&")+"&display=swap";document.head.appendChild(l)}
+var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base");if(lang==="zh")add("zh");window.__mvFonts=function(k){if(k==="zh")add("zh")}})();
+</script>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="image" fetchpriority="high" href="assets/st/plate_queue.jpg?v=1013b">
+<link rel="stylesheet" href="css/theater.css?v=20261014pl1">
+<style>
+.uc-hero{min-height:calc(var(--vhpx,100svh)*.9);padding-top:18vh}
+.uc-hero .panel-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.uc-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.uc-cta .note{font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.st-ph{position:relative;aspect-ratio:2048/1168;overflow:hidden;background:#000;border:1px solid var(--rule-soft)}
+.st-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.04)}
+.st-ph.tall{aspect-ratio:4/3}
+.st-ph .cap{position:absolute;left:14px;bottom:12px;font-family:var(--en-display);font-size:11px;letter-spacing:.3em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+/* 01 構成図 v2= 家の壁の内側に部屋の板(写真)。中心の機械へ光の線が走る(2026-10-13・v1 の線画は「しょぼい」で廃止) */
+.st-board{margin-top:40px}
+.st-house{position:relative;border:1px solid var(--rule);padding:clamp(14px,2.4vw,30px);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
+.st-house-k{display:flex;align-items:baseline;gap:14px;font-family:var(--en-display);font-size:12px;letter-spacing:.32em;color:var(--gold);margin:0 0 16px}
+.st-house-k i{display:inline-block;width:28px;height:1px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.5);transform:translateY(-4px)}
+.st-house-k em{font-style:normal;font-family:var(--serif);font-size:12.5px;letter-spacing:.06em;color:var(--text-3);margin-left:auto}
+.st-tiles{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.st-tile{position:relative;display:block;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--rule-soft);background:#000;color:var(--ink);text-decoration:none}
+.st-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.74) contrast(1.04);transition:filter .6s,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.st-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,15,.1) 35%,rgba(4,6,15,.86));pointer-events:none}
+.st-tile .k,.st-tile .t,.st-tile .s{position:relative;z-index:2;display:block}
+.st-tile .k{position:absolute;left:14px;top:12px;font-family:var(--en-display);font-size:11px;letter-spacing:.3em;color:var(--gold);text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.st-tile .t{position:absolute;left:14px;bottom:30px;font-family:var(--serif);font-weight:500;font-size:clamp(17px,1.5vw,22px);letter-spacing:.06em;color:var(--ink);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.st-tile .s{position:absolute;left:14px;right:14px;bottom:11px;font-size:11.5px;letter-spacing:.04em;color:var(--text-2);text-shadow:0 1px 6px rgba(0,0,0,.8)}
+a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
+.st-tile.core{grid-area:1/2/3/4;aspect-ratio:auto;border-color:rgba(255,157,219,.35);box-shadow:0 0 50px rgba(181,155,255,.12),inset 0 0 0 1px rgba(181,155,255,.1)}
+.st-tile.core img{filter:saturate(.9) brightness(.8)}
+.st-tile.core .ring{position:absolute;left:50%;top:46%;width:34%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(255,255,255,.35);box-shadow:0 0 24px rgba(255,157,219,.45),inset 0 0 24px rgba(143,227,255,.25);background:radial-gradient(circle,rgba(181,155,255,.18),rgba(181,155,255,0) 70%);animation:st-breathe 4s ease-in-out infinite}
+.st-tile.core .ring::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(255,157,219,.35);opacity:.6}
+@keyframes st-breathe{0%,100%{box-shadow:0 0 24px rgba(255,157,219,.45),inset 0 0 24px rgba(143,227,255,.25)}50%{box-shadow:0 0 44px rgba(255,157,219,.7),inset 0 0 34px rgba(143,227,255,.4)}}
+.st-tile.core .t{font-size:clamp(22px,2.4vw,34px);bottom:36px}
+.st-tile.core .s{font-size:12.5px}
+.st-tile[data-room="photo"]{grid-area:1/1}.st-tile[data-room="video"]{grid-area:1/4}.st-tile[data-room="music"]{grid-area:2/1}.st-tile[data-room="voice"]{grid-area:2/4}.st-tile[data-room="chat"]{grid-area:3/1}.st-tile[data-room="edit"]{grid-area:3/4}
+.st-tile.queue{grid-area:3/2/4/4;aspect-ratio:auto;min-height:0}
+.st-wires{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;overflow:visible}
+.st-wires path{fill:none;stroke:url(#stw);stroke-width:1.2;opacity:.55;filter:drop-shadow(0 0 4px rgba(255,157,219,.6))}
+.st-wires circle{fill:#fff;filter:drop-shadow(0 0 5px rgba(255,157,219,.95))}
+.st-outside{margin-top:14px;padding:0 clamp(14px,2.4vw,30px)}
+.st-house-k.out{margin:18px 0 12px;color:var(--text-3)}
+.st-out-tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.st-tile.out{aspect-ratio:16/6;border-style:dashed;border-color:rgba(143,227,255,.35)}
+.st-tile.out::before{content:"";position:absolute;left:50%;top:0;width:1px;height:18px;background:repeating-linear-gradient(180deg,#8fe3ff 0 3px,transparent 3px 7px);z-index:3}
+.st-tile.out .t{bottom:28px}
+/* 02 七つの理由= 数字の札。I は横長(写真つき)、II〜VII は 3 列 */
+.st-cards{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.st-card{position:relative;padding:28px 26px 26px;border:1px solid var(--rule-soft);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));min-height:300px;display:flex;flex-direction:column}
+.st-card.lead{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,4vw,60px);align-items:center;min-height:0;padding:clamp(28px,4vw,52px)}
+.st-card .n{font-family:var(--en-display);font-weight:400;font-size:clamp(44px,5vw,66px);line-height:.9;letter-spacing:.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.85}
+.st-card .k{margin-top:6px;font-family:var(--en-display);font-size:11.5px;letter-spacing:.34em;color:var(--gold)}
+.st-card .t{margin:18px 0 12px;font-family:var(--serif);font-weight:500;font-size:clamp(20px,1.7vw,24px);line-height:1.45;letter-spacing:.04em;color:var(--ink)}
+.st-card.lead .t{font-size:clamp(26px,2.6vw,36px)}
+.st-card .t .em{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.st-card .p{margin:0;font-size:14px;line-height:1.95;color:var(--text-2)}
+.st-card.lead .p{font-size:14.5px;max-width:46ch}
+.st-card .f{margin-top:auto;padding-top:18px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--serif);font-size:12px;letter-spacing:.08em;color:var(--text-3)}
+.st-card .f b{color:var(--gold);font-weight:500;font-family:var(--en-display);font-size:16px;letter-spacing:.06em;margin-right:5px}
+.st-card .f .src{flex-basis:100%;font-size:11px;letter-spacing:.06em;color:var(--text-3);opacity:.8}
+.st-card.lead .ph{position:relative;aspect-ratio:2048/1168;overflow:hidden;border:1px solid var(--rule-soft);background:#000}
+.st-card.lead .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.04)}
+.st-card.lead .ph .cap{position:absolute;left:14px;bottom:12px;font-family:var(--en-display);font-size:11px;letter-spacing:.3em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+/* 03 違い= 左右の札。左(クラウド)は沈め、右(手元)に灯 */
+.st-vs{margin-top:40px;display:grid;grid-template-columns:1fr 1.15fr;gap:16px}
+.st-vs .col{border:1px solid var(--rule-soft);padding:26px 26px 10px}
+.st-vs .col.me{border-color:rgba(255,157,219,.28);box-shadow:inset 0 0 0 1px rgba(181,155,255,.08),0 0 40px rgba(181,155,255,.06);background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0))}
+.st-vs .h{font-family:var(--en-display);font-size:12px;letter-spacing:.34em;color:var(--text-3);padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.st-vs .col.me .h{color:var(--gold)}
+.st-vs .r{display:grid;grid-template-columns:7.5em 1fr;gap:14px;padding:15px 0;border-bottom:1px solid var(--rule-soft);font-size:13.5px;line-height:1.8}
+.st-vs .r:last-child{border-bottom:0}
+.st-vs .r .l{font-family:var(--serif);letter-spacing:.06em;color:var(--text-3)}
+.st-vs .col.me .r .l{color:var(--ink)}
+.st-vs .col.cl .r .v{color:var(--text-3)}
+.st-vs .col.me .r .v{color:var(--ink);position:relative;padding-left:18px}
+.st-vs .col.me .r .v::before{content:"";position:absolute;left:0;top:11px;width:7px;height:7px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.7)}
+/* 04 実績= 一晩の流れ。数字を横に並べる */
+.st-proof{margin-top:40px;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule-soft)}
+.st-step{padding:26px 18px 24px;border-right:1px solid var(--rule-soft)}
+.st-step:last-child{border-right:0}
+.st-cost{grid-template-columns:repeat(4,1fr)}
+.st-cost .st-step:last-child .b{color:var(--gold)}
+@media (max-width:900px){.st-proof.st-cost{grid-template-columns:1fr 1fr}.st-cost .st-step{border-right:1px solid var(--rule-soft)}.st-cost .st-step:nth-child(2n){border-right:0}.st-cost .st-step:nth-child(-n+2){border-bottom:1px solid var(--rule-soft)}}
+.st-step .i{font-family:var(--en-display);font-size:12px;letter-spacing:.34em;color:var(--gold)}
+.st-step .b{margin-top:14px;font-family:var(--en-display);font-weight:400;font-size:clamp(28px,2.8vw,40px);line-height:1;letter-spacing:.02em;color:var(--ink)}
+.st-step .b small{font-family:var(--serif);font-size:14px;letter-spacing:.08em;color:var(--text-2);margin-left:6px}
+.st-step .t{margin-top:12px;font-family:var(--serif);font-size:15px;letter-spacing:.05em;color:var(--ink)}
+.st-step .p{margin:8px 0 0;font-size:12.5px;line-height:1.85;color:var(--text-3)}
+.st-films{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.st-film{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;border:1px solid var(--rule-soft)}
+.st-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.st-film .cap{position:absolute;left:12px;bottom:10px;font-family:var(--en-display);font-size:11.5px;letter-spacing:.14em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.st-src{margin-top:18px;font-size:12px;letter-spacing:.05em;color:var(--text-3);line-height:1.9}
+.st-src a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--rule)}
+.uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
+.uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
+@media (max-width:900px){.uc-hero .panel-inner{grid-template-columns:1fr}.st-cards{grid-template-columns:1fr}.st-card{min-height:0}.st-card.lead{grid-template-columns:1fr}.st-vs{grid-template-columns:1fr}.st-vs .r{grid-template-columns:6.5em 1fr;font-size:13px}.st-proof{grid-template-columns:1fr}.st-step{border-right:0;border-bottom:1px solid var(--rule-soft);padding:20px 4px}.st-step:last-child{border-bottom:0}.st-films{grid-template-columns:1fr}.st-tiles{grid-template-columns:1fr 1fr;grid-auto-flow:row dense}.st-tile{aspect-ratio:4/3}.st-tile[data-room]{grid-area:auto}.st-tile.core{grid-area:auto;grid-column:1/-1;order:-1;aspect-ratio:16/9}.st-tile.queue{grid-area:auto;grid-column:1/-1;aspect-ratio:16/6}.st-wires{display:none}.st-out-tiles{grid-template-columns:1fr}.st-tile.out{aspect-ratio:16/7}.st-house-k em{display:none}.st-tile .t{font-size:20px}}
+
+/* つくりかた(engineering.html・2026-10-15 ユーザー「技術者にも興味をもらえるページ」「人間がどの部分でチェック」「自動チェックどこまで」)
+   語彙は DESIGN_RULES.md のまま: 番号の行・細い線・金の見出し線。担い手(人/AI/機械)は小さな大文字の札(ピル型にしない) */
+.eng-flow{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule)}
+.eng-step{position:relative;padding:22px 18px 22px;border-right:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
+.eng-step:nth-child(4n){border-right:0}
+.eng-step .n{font-family:var(--en-display);font-size:30px;line-height:1;color:var(--ink)}
+.eng-step .who{display:inline-flex;align-items:center;gap:8px;margin-left:12px;font-family:var(--en-display);font-size:10.5px;letter-spacing:.3em;vertical-align:middle}
+.eng-step .who::before{content:"";width:14px;height:1px;background:currentColor}
+.who.h{color:var(--gold)}.who.a{color:#cdbaff}.who.m{color:#8fe3ff}
+.eng-step .t{margin-top:12px;font-family:var(--serif);font-size:16px;letter-spacing:.05em;color:var(--ink)}
+.eng-step .p{margin:6px 0 0;font-size:12.5px;line-height:1.85;color:var(--text-3)}
+.eng-step::after{content:"";position:absolute;left:18px;right:18px;top:0;height:1px;background:var(--inf);opacity:0;transition:opacity .4s}
+.eng-step:hover::after{opacity:.8}
+.eng-legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:16px;font-size:12px;color:var(--muted)}
+.eng-legend span{display:inline-flex;align-items:center;gap:8px;font-family:var(--en-display);letter-spacing:.24em;font-size:10.5px}
+.eng-legend span::before{content:"";width:14px;height:1px;background:currentColor}
+.eng-rows{margin-top:36px;border-top:1px solid var(--rule)}
+.eng-row{display:grid;grid-template-columns:2.4em minmax(0,1fr) minmax(0,1.6fr) auto;gap:6px 18px;align-items:baseline;padding:16px 2px;border-bottom:1px solid var(--rule-soft)}
+.eng-row .k{font-family:var(--en-display);font-size:12px;letter-spacing:.2em;color:var(--gold)}
+.eng-row .t{font-family:var(--serif);font-size:15.5px;letter-spacing:.05em;color:var(--ink)}
+.eng-row .d{font-size:13px;line-height:1.85;color:var(--text-2)}
+.eng-row .v{font-family:var(--en);font-size:12px;letter-spacing:.06em;color:var(--muted);text-align:right;white-space:nowrap}
+.eng-two{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.eng-col{border:1px solid var(--rule-soft);padding:22px 22px 10px}
+.eng-col .h{font-family:var(--en-display);font-size:12px;letter-spacing:.3em;margin-bottom:8px}
+.eng-col.m .h{color:#8fe3ff}.eng-col.h2 .h{color:var(--gold)}
+.eng-col li{list-style:none;padding:12px 0;border-top:1px solid var(--rule-soft);font-size:13.5px;line-height:1.85;color:var(--text-2)}
+.eng-col li strong{display:block;font-family:var(--serif);font-weight:500;font-size:15px;color:var(--ink);letter-spacing:.04em}
+.eng-col ul{margin:0;padding:0}
+.st-proof.eng-num{grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){
+  .eng-flow{grid-template-columns:1fr 1fr}.eng-step:nth-child(4n){border-right:1px solid var(--rule-soft)}.eng-step:nth-child(2n){border-right:0}
+  .eng-row{grid-template-columns:2.2em 1fr;}.eng-row .d,.eng-row .v{grid-column:2}.eng-row .v{text-align:left}
+  .eng-two{grid-template-columns:1fr}
+  .st-proof.eng-num{grid-template-columns:1fr 1fr}.eng-num .st-step{border-right:1px solid var(--rule-soft)}.eng-num .st-step:nth-child(2n){border-right:0}.eng-num .st-step:nth-child(-n+2){border-bottom:1px solid var(--rule-soft)}
+}
+</style>
+</head>
+<body class="uc">
+  <div class="grain"></div>
+  <header class="uc-head">
+    <a class="brand" href="./"><img class="brand-mark" src="assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
+    <div class="head-right"><nav class="top-nav" aria-label="主な入口">
+        <a href="usecases/">用途<i class="tag-new" data-new-until="2026-11-15">NEW</i></a><a href="./#works">作品</a><a href="strengths.html">仕組み</a><a href="engineering.html">つくりかた</a><a href="./#contact">相談</a>
+      </nav>
+      <nav class="lang-switch" id="langSwitch" aria-label="Language"><button class="ls-btn on" data-lang="ja">日本語</button><button class="ls-btn tc" data-lang="zh">繁中</button></nav></div>
+  </header>
+
+  <section class="panel cine uc-hero" data-num="00" style="--bd:url(assets/st/plate_queue.jpg?v=1013b);--bd-pos:center 45%">
+    <div class="panel-inner">
+      <div>
+        <nav class="crumbs" aria-label="現在地"><a href="./">ホーム</a><i>/</i><a href="strengths.html">仕組み</a><i>/</i><span>つくりかた</span></nav>
+        <div class="ch-eyebrow reveal">ENGINEERING — つくりかた</div>
+        <h2 class="ch-title reveal d1">任せて、<span class="em">関所</span>で止める。</h2>
+        <p class="ch-sub reveal d2">一人で回すスタジオの裏側。AI は準備と検査、人は選ぶことと許可。その境目を、約束ではなく機械で守っている。</p>
+        <div class="uc-cta">
+          <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">技術の相談をする</a>
+          <span class="note">Instagram · @made_linlin</span>
+        </div>
+      </div>
+      <div class="st-ph tall"><img src="assets/st/plate_core.jpg?v=1013c" alt=""><span class="cap" data-noi18n>THE MACHINE — ONE GPU, ONE QUEUE</span></div>
+    </div>
+  </section>
+
+  <section class="panel" data-num="01">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">01 — 全体の流れ</div>
+      <h2 class="ch-title reveal d1">相談から公開まで、<span class="em">八つ</span>の段。</h2>
+      <p class="ch-sub reveal d2">どの段を誰が受け持つかを、先に決めてある。AI が書き、機械が回して検査し、人が許可して選ぶ。</p>
+      <div class="eng-legend reveal"><span class="who h">HUMAN　人</span><span class="who a">AI</span><span class="who m">MACHINE　機械</span></div>
+      <div class="eng-flow">
+        <div class="eng-step reveal"><span class="n" data-noi18n>01</span><span class="who h">HUMAN</span><div class="t">声で相談する</div><p class="p">作りたい一本を話す。雰囲気・場所・曲の気分。</p></div>
+        <div class="eng-step reveal"><span class="n" data-noi18n>02</span><span class="who a">AI</span><div class="t">台本と一覧</div><p class="p">場面・台詞・尺・費用の一覧と、投入の台本を書く。</p></div>
+        <div class="eng-step reveal"><span class="n" data-noi18n>03</span><span class="who h">HUMAN</span><div class="t">許可の印</div><p class="p">一覧を見て、本番に進めてよいものに印を付ける。</p></div>
+        <div class="eng-step reveal"><span class="n" data-noi18n>04</span><span class="who m">MACHINE</span><div class="t">列に並ぶ</div><p class="p">印と設定の欠けを検査し、通ったものだけ列へ。</p></div>
+        <div class="eng-step reveal"><span class="n" data-noi18n>05</span><span class="who m">MACHINE</span><div class="t">生成</div><p class="p">写真・動画・曲・声。空いた GPU が順に埋める。夜も。</p></div>
+        <div class="eng-step reveal"><span class="n" data-noi18n>06</span><span class="who m">MACHINE</span><div class="t">自動検査</div><p class="p">話す動画の聞き取り、つなぎ目の音、肌のざらつき。</p></div>
+        <div class="eng-step reveal"><span class="n" data-noi18n>07</span><span class="who h">HUMAN</span><div class="t">採否を決める</div><p class="p">曲は耳で、カットは目で。手足や顔の崩れも最後は人。</p></div>
+        <div class="eng-step reveal"><span class="n" data-noi18n>08</span><span class="who h">HUMAN</span><div class="t">仕上げと公開</div><p class="p">4K の仕上げは列で。公開のボタンは毎回、人が押す。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" data-num="02">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">02 — 関所</div>
+      <h2 class="ch-title reveal d1">印がなければ、<span class="em">通さない</span>。</h2>
+      <p class="ch-sub reveal d2">AI に任せるほど、人が決める場所をはっきりさせる。許可は口約束ではなく、許可の印がないと機械が通さない形にした。</p>
+      <div class="eng-rows">
+        <div class="eng-row reveal"><span class="k" data-noi18n>I</span><span class="t">本番の動画生成</span><span class="d">人が見た一覧の名前を投入に添えた時だけ通す。無ければ確認を求める。</span><span class="v"><span data-noi18n>779</span> 件</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>II</span><span class="t">高解像度化</span><span class="d">選んだ画像の一覧を見て OK した印が無いと通さない。</span><span class="v"><span data-noi18n>55</span> 件</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>III</span><span class="t">開始画像の差し替え</span><span class="d">人が OK した画像の指紋と一致しないカットは、投入を拒否する。</span><span class="v">事故のあとに追加</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>IV</span><span class="t">クラウドへの送信</span><span class="d">アプリから外の AI へ送る時は、毎回確認の画面を出す。</span><span class="v">使う枠も勝手に使わない</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>V</span><span class="t">公開</span><span class="d">公開・差し替え・次の工程は、任されていても毎回確認する。</span><span class="v">人が実行</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" data-num="03">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">03 — 止めた記録</div>
+      <h2 class="ch-title reveal d1">決まりは、<span class="em">止めた回数</span>で示す。</h2>
+      <p class="ch-sub reveal d2">ルールを書いただけでは、制御とは言えない。AI が実際にやろうとした危ない操作を、その場で機械が止めた記録がある。</p>
+      <div class="st-proof eng-num">
+        <div class="st-step"><div class="i">BLOCKED</div><div class="b"><span data-noi18n>144</span><small>回</small></div><div class="t">AI の操作を止めた</div><p class="p">52 の会話・11 種類。</p></div>
+        <div class="st-step"><div class="i">TESTS</div><div class="b"><span data-noi18n>229</span><small>件</small></div><div class="t">自動チェックの試験</div><p class="p">全部通過してから使う。</p></div>
+        <div class="st-step"><div class="i">APPROVED</div><div class="b"><span data-noi18n>779</span><small>件</small></div><div class="t">承認つきの本番投入</div><p class="p">人が見た一覧 66 本の印。</p></div>
+        <div class="st-step"><div class="i">GPU JOBS</div><div class="b"><span data-noi18n>3,562</span><small>件</small></div><div class="t">GPU の仕事</div><p class="p">すべて一つの入口から。</p></div>
+      </div>
+      <div class="eng-rows">
+        <div class="eng-row reveal"><span class="k" data-noi18n>77</span><span class="t">走っている台本を書き換えようとした</span><span class="d">台本は一行ずつ読まれる。途中で書き換えると、後半が別物になる。</span><span class="v">止めた</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>20</span><span class="t">実機を見ずに設定値を書こうとした</span><span class="d">記事や記憶の値は、実装が違えば外れる。存在しない項目で生成が止まる。</span><span class="v">止めた</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>15</span><span class="t">書き方の正本を読まずに指示を書こうとした</span><span class="d">公式の書き方から外れると、何十本も焼き直しになる。</span><span class="v">止めた</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>9</span><span class="t">共有の GPU を順番待ちの外から使おうとした</span><span class="d">生成中の GPU を奪うと、ほかの仕事が止まる。</span><span class="v">止めた</span></div>
+      </div>
+      <p class="st-src">2026 年 10 月 8 日時点の集計。回数は AI との会話記録（2026 年 6〜10 月）のうち、自動チェックが止めた結果だけを数えた。</p>
+    </div>
+  </section>
+
+  <section class="panel" data-num="04">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">04 — 機械の目と、人の目</div>
+      <h2 class="ch-title reveal d1">数で測れるものは機械、<span class="em">感覚</span>は人。</h2>
+      <p class="ch-sub reveal d2">機械に任せるのは、数で測れること。採否が感覚に関わる所は、人が選ぶ。</p>
+      <div class="eng-two">
+        <div class="eng-col m reveal"><div class="h">MACHINE — 機械が見る</div><ul>
+          <li><strong>投入の直前の検査</strong>危ない操作と、書き方の誤りを 30 項目で調べ、止めるか確認を求める。</li>
+          <li><strong>話す動画の聞き取り</strong>話す場面は全文を書き起こして、台本と一文ずつ照らす。言い間違いはここで落とす。</li>
+          <li><strong>つなぎ目の音</strong>カットの境目の音の急な変化と、頭の無音を測る。</li>
+          <li><strong>肌のざらつき</strong>高解像度化のあと、肌に出る細かな点の率を測る。</li>
+          <li><strong>列が止まっていないか</strong>記録が止まった仕事は止めて、やり直す。夜も。</li>
+        </ul></div>
+        <div class="eng-col h2 reveal"><div class="h">HUMAN — 人が見る</div><ul>
+          <li><strong>顔と服の 1 枚</strong>キャラの顔と服は、人が 1 枚に決めてから使い回す。</li>
+          <li><strong>曲の採否</strong>候補の曲は、耳で聞いて選ぶ。</li>
+          <li><strong>本番の一括許可</strong>台詞・尺・費用の一覧を見て、印を付ける。</li>
+          <li><strong>手足と顔の最終確認</strong>機械が通しても、手が三本の一枚は人の目で見つける。</li>
+          <li><strong>公開</strong>出すかどうか、いつ出すかは、人が決める。</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" data-num="05">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">05 — この頁も</div>
+      <h2 class="ch-title reveal d1">このサイトも、<span class="em">同じ作り</span>。</h2>
+      <p class="ch-sub reveal d2">見た目の決まりも、数字も、確認も、同じ考え方で回している。</p>
+      <div class="eng-rows">
+        <div class="eng-row reveal"><span class="k" data-noi18n>I</span><span class="t">見た目の決まりを検査</span><span class="d">決まりから外れた部品があると、公開の前の組み立てが止まる。</span><span class="v">自動</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>II</span><span class="t">実機の画面で確認</span><span class="d">変更のたびに、iPhone の画面で表示と重さを測る。</span><span class="v">自動 + 人</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>III</span><span class="t">数字は記録から</span><span class="d">仕組みの頁の節約額は、生成の記録から自動で集計して書き換える。</span><span class="v">自動</span></div>
+        <div class="eng-row reveal"><span class="k" data-noi18n>IV</span><span class="t">公開は人が判断</span><span class="d">試作を見て、出すかどうかを決める。</span><span class="v">人</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel uc-contact" data-num="06">
+    <div class="panel-inner">
+      <h2 class="ch-title reveal d1">技術の相談も、<span class="em">一言</span>から。</h2>
+      <p class="ch-sub reveal d2" style="margin-left:auto;margin-right:auto">手元の GPU で何が回せるか、どこを人が見るべきか。いまの環境を送ってください。</p>
+      <div class="uc-cta" style="justify-content:center">
+        <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">技術の相談をする</a>
+        <a class="btn ghost" href="strengths.html">仕組みへ戻る</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="foot-map" aria-label="サイトマップ">
+    <span class="fm-k">用途</span>
+    <a href="usecases/bridal.html">ブライダル前撮り</a><a href="usecases/portrait.html">撮影会ポートレート</a><a href="usecases/world.html">世界の撮影</a><a href="usecases/kaisetsu.html">解説動画</a><a href="usecases/shichigosan.html">七五三・家族写真</a>
+    <span class="fm-sep"></span>
+    <a href="./#works">作品</a><a href="./#shows">裏番組</a><a href="./#contact">相談</a>
+  </nav>
+  <footer class="site-foot">
+    <span class="foot-brand">MV&nbsp;STUDIO</span>
+    <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
+    <span class="foot-copy">© 2026 made_linlin</span>
+  </footer>
+  <a class="fab-contact" href="./#contact" aria-label="相談"><span>相談</span></a>
+<script src="js/sitemenu.js?v=20261015eng1"></script>
+<script src="js/uc_i18n.js?v=20261015eng1"></script>
+</body>
+</html>

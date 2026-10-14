@@ -3,7 +3,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 const ROOT = dirname(fileURLToPath(import.meta.url))
-const pages = ['index.html', 'works.html', 'strengths.html', 'links.html', 'studio.html', ...readdirSync(join(ROOT, 'usecases')).filter(f => f.endsWith('.html')).map(f => 'usecases/' + f)]
+const pages = ['index.html', 'works.html', 'strengths.html', 'links.html', 'studio.html', 'engineering.html', ...readdirSync(join(ROOT, 'usecases')).filter(f => f.endsWith('.html')).map(f => 'usecases/' + f)]
   .filter(f => { try { return statSync(join(ROOT, f)).isFile() } catch { return false } })
 const bad = []
 // 1) 導線の文字の矢印(a / button / .ch-cta / .btn の中)。値の変化やキーの説明は許す
