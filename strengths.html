@@ -101,6 +101,9 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 .st-proof{margin-top:40px;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule-soft)}
 .st-step{padding:26px 18px 24px;border-right:1px solid var(--rule-soft)}
 .st-step:last-child{border-right:0}
+.st-cost{grid-template-columns:repeat(4,1fr)}
+.st-cost .st-step:last-child .b{color:var(--gold)}
+@media (max-width:900px){.st-proof.st-cost{grid-template-columns:1fr 1fr}.st-cost .st-step{border-right:1px solid var(--rule-soft)}.st-cost .st-step:nth-child(2n){border-right:0}.st-cost .st-step:nth-child(-n+2){border-bottom:1px solid var(--rule-soft)}}
 .st-step .i{font-family:var(--en-display);font-size:12px;letter-spacing:.34em;color:var(--gold)}
 .st-step .b{margin-top:14px;font-family:var(--en-display);font-weight:400;font-size:clamp(28px,2.8vw,40px);line-height:1;letter-spacing:.02em;color:var(--ink)}
 .st-step .b small{font-family:var(--serif);font-size:14px;letter-spacing:.08em;color:var(--text-2);margin-left:6px}
@@ -266,7 +269,22 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 
   <section class="panel" data-num="04">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">04 — 実績『いつもの顔』</div>
+      <div class="ch-eyebrow reveal">04 — 失敗の値段</div>
+      <h2 class="ch-title reveal d1">失敗しても、<span class="em">電気代だけ</span>。</h2>
+      <p class="ch-sub reveal d2">外部の動画生成サービスは、失敗した生成にも秒数で課金される。手元の GPU なら、何度作り直しても払うのは電気代だけ——だから、納得するまで試せる。</p>
+      <div class="st-proof st-cost">
+        <div class="st-step"><div class="i">GENERATED</div><div class="b"><span data-noi18n>7,970</span><small>秒</small></div><div class="t">生成した動画</div><p class="p">755 クリップ・約 2.2 時間。</p></div>
+        <div class="st-step"><div class="i">USED</div><div class="b"><span data-noi18n>1,070</span><small>秒</small></div><div class="t">本編に使った秒数</div><p class="p">この間に公開した MV 5 本の本編（概算）。</p></div>
+        <div class="st-step"><div class="i">RETRIED</div><div class="b"><span data-noi18n>87</span><small>%</small></div><div class="t">失敗・不採用・試験</div><p class="p">約 6,900 秒。外部なら、ここにも課金される。</p></div>
+        <div class="st-step"><div class="i">SAVED</div><div class="b"><span data-noi18n>52.3</span><small>万円</small></div><div class="t">節約した金額（下限）</div><p class="p">うち失敗・不採用の分だけで 45.3 万円。</p></div>
+      </div>
+      <p class="st-src">2026 年 8 月 21 日〜10 月 8 日の生成台帳の集計（動画モデル 2 種）。節約額 = 秒数 ×（外部の動画生成サービスの 10 月の最安の単価 66.6 円/秒 − 手元の電気代 0.95 円/秒）。画像・曲・8 月 20 日以前は含めないので、実際の節約はこれより大きい。</p>
+    </div>
+  </section>
+
+  <section class="panel" data-num="05">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">05 — 実績『いつもの顔』</div>
       <h2 class="ch-title reveal d1">棚の写真 56 枚が、<span class="em">一本の MV</span> に。</h2>
       <p class="ch-sub reveal d2">同じ列に、写真も動画も曲も 4K の仕上げも入れた。人がしたのは、選ぶことだけ。</p>
       <div class="st-proof">
@@ -285,7 +303,7 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
     </div>
   </section>
 
-  <section class="panel uc-contact" data-num="05">
+  <section class="panel uc-contact" data-num="06">
     <div class="panel-inner">
       <h2 class="ch-title reveal d1">導入の相談は、<span class="em">環境</span>から。</h2>
       <p class="ch-sub reveal d2" style="margin-left:auto;margin-right:auto">いまの PC と、作りたいもの。それだけ送ってください。必要な構成と手順にしてお返しします。</p>
@@ -334,6 +352,6 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 })();
 </script>
 <script src="js/sitemenu.js?v=20261015s753"></script>
-<script src="js/uc_i18n.js?v=20261015s753"></script>
+<script src="js/uc_i18n.js?v=20261015cost1"></script>
 </body>
 </html>
