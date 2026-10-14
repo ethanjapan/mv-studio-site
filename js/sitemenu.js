@@ -15,6 +15,7 @@
       {k:'撮影会ポートレート',h:base+'usecases/portrait.html',f:'usecases/portrait.html'},
       {k:'世界の撮影',h:base+'usecases/world.html',f:'usecases/world.html'},
       {k:'解説動画',h:base+'usecases/kaisetsu.html',f:'usecases/kaisetsu.html'},
+      {k:'七五三・家族写真',h:base+'usecases/shichigosan.html',f:'usecases/shichigosan.html'},
       {k:'美容',h:base+'usecases/',f:'',soon:true}]},
     {k:'作品',h:base+'works.html',f:'works.html',n:'III'},
     {k:'裏番組',h:base+'works.html#shows',f:'',n:'IV'},
