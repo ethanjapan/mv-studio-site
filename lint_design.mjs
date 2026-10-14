@@ -29,5 +29,16 @@ function scanCss(name, css) {
 }
 scanCss('css/theater.css', readFileSync(join(ROOT, 'css/theater.css'), 'utf8'))
 for (const f of pages) for (const st of readFileSync(join(ROOT, f), 'utf8').matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)) scanCss(f, st[1])
+
+// 3) 背景の板(--bd)を持つ章の直下に、写真や動画を置かない(2026-10-15: 閉幕の花火の板に RINKA の写真が重なった)。板の上に重ねる絵は札(figure 等)の中だけ
+for (const f of pages) {
+  const html = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
+  for (const m of html.matchAll(/<(section)\b([^>]*--bd:\s*url[^>]*)>([\s\S]*?)<\/section>/g)) {
+    // 直下の要素だけを見る(panel-inner などの入れ物の中は対象外)
+    const body = m[3].replace(/<(div|figure|a|nav|span|p|h[1-6])\b[\s\S]*?<\/\1>/g, '')
+    const direct = body.match(/<(img|video)\b[^>]*>/g) || []
+    for (const d of direct) bad.push(`${f}: 背景の板がある章の直下に写真/動画: ${d.slice(0, 70)}`)
+  }
+}
 if (bad.length) { console.error('★ DESIGN_RULES.md 違反(ビルドを止めた):\n  ' + bad.join('\n  ')); process.exit(1) }
 console.log(`lint_design: ok(${pages.length} 頁)`)
