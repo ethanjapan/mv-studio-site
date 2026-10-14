@@ -1879,3 +1879,16 @@ a:hover .go-ic path,button:hover .go-ic path{transform:translateX(1.5px)}
 .works.all .worklink.big,.works.all .workcard.big{grid-column:span 2}
 .works.all .big .workcard video,.works.all .workcard.big video{aspect-ratio:21/9}
 @media (max-width:860px){.works.all .big .workcard video,.works.all .workcard.big video{aspect-ratio:16/9}}   /* 一覧はスマホも 2 列= 大きい札は横いっぱい */
+/* 箇条書き(15/18/19/22 章の 4 項目)を情景写真つきの札に(2026-10-14 ユーザー「この辺りもデザイン性がない。図のところと同じ画像付きで」)
+   写真は Z-Image で焼いた人物なしの静物(mvdirector/scripts/gen_site_pillars_zimage.py・900x600 JPEG)。2026-10-14 に章を studio.html へ移した。PC は 2×2・スマホは 1 列。番号と題は写真の下 */
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
+.pillar,.pillar:first-child{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"v v" "n t" "n d";gap:4px 14px;align-items:start;
+  padding:0 0 22px;border:1px solid var(--line);border-top:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);transition:.4s}
+.pillar:hover{padding-left:0;background:var(--card);border-color:rgba(217,189,138,.4);transform:translateY(-3px)}
+.pillar .pv{grid-area:v;display:block;width:100%;aspect-ratio:3/2;object-fit:cover;margin-bottom:14px;filter:saturate(.92) contrast(1.03);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.pillar:hover .pv{transform:scale(1.04)}
+.pillar .pn{grid-area:n;padding-left:22px;font-size:19px;line-height:1.5}
+.pillar .pt{grid-area:t;padding-right:22px;padding-top:2px}
+.pillar .pd{grid-area:d;padding-right:22px;max-width:none}
+@media (max-width:860px){.pillars{grid-template-columns:1fr;gap:14px;margin-top:34px}.pillar{gap:2px 12px}.pillar .pn{padding-left:18px;font-size:18px}.pillar .pt,.pillar .pd{padding-right:18px}}
+@media (prefers-reduced-motion: reduce){.pillar:hover{transform:none}.pillar:hover .pv{transform:none}}
