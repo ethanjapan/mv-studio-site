@@ -104,11 +104,37 @@ def parse_pos(style, prop):
     return 0.5, 0.5
 
 
+HERO_RX = re.compile(r"\.uc-hero \.uc-film\{[^}]*aspect-ratio:\s*(\d+)\s*/\s*(\d+)")
+HERO_POS_RX = re.compile(r"\.uc-hero \.uc-film img\{[^}]*object-position:\s*([\d.]+)%\s+([\d.]+)%")
+
+
+def hero_frame(body):
+    """頁の style で冒頭の枠(.uc-hero .uc-film)の比を変えていればその比(PC・スマホ同じ)。無ければ None
+    (2026-10-15 ユーザー「なんでこれを勝手に変えたの? 前のがいい」= 環遊世界の冒頭は 4:5 の縦長の枠なのに 16:9 と決め打ちして縦長の写真を外した誤り)"""
+    m = HERO_RX.search(body)
+    if not m:
+        return None, None
+    a = int(m.group(1)) / int(m.group(2))
+    mp = HERO_POS_RX.search(body)
+    pos = (float(mp.group(1)) / 100, float(mp.group(2)) / 100) if mp else None
+    return ("冒頭の写真(この頁の比)", a, a), pos
+
+
+def in_hero(body, pos):
+    """img の位置 pos が class に uc-hero を持つ section の中か"""
+    i = body.rfind("<section", 0, pos)
+    if i < 0:
+        return False
+    tag = body[i:body.find(">", i) + 1]
+    return "uc-hero" in tag and body.find("</section>", i, pos) < 0
+
+
 def scan(fix=False):
     bad, unknown, fixed = [], [], 0
     for page in PAGES:
         src = page.read_text(encoding="utf-8")
         body = re.sub(r"<!--[\s\S]*?-->", "", src)
+        hero, hero_pos = hero_frame(body)
         edits = []
         # 1) 枠の中の <img>
         for m in re.finditer(r'<img\b[^>]*\ssrc="(\.\./)?(assets/[^"?]+\.(?:jpg|png))[^"]*"[^>]*>', body):
@@ -124,6 +150,9 @@ def scan(fix=False):
                     break
             if not frame:
                 continue
+            css_pos = None
+            if hero and frame[0] == FRAMES["uc-film"][0] and in_hero(body, m.start()):
+                frame, css_pos = hero, hero_pos   # この頁の冒頭の枠は比が違う
             img = ROOT / rel
             if not img.exists():
                 continue
@@ -140,6 +169,8 @@ def scan(fix=False):
                 unknown.append(f"{page.relative_to(ROOT)}: {rel} ({frame[0]}) 顔なし= 静物か検出不可"); continue
             st = STYLE_RX.search(tag); style = st.group(1) if st else ""
             px, py = parse_pos(style, "object-position")
+            if css_pos and "object-position" not in style:
+                px, py = css_pos   # 頁の style で決めた位置
             ok = all(fits(w, h, faces, a, px, py) for a in frame[1:] if a)
             if ok:
                 continue
@@ -164,7 +195,7 @@ def scan(fix=False):
                 continue
             w, h = size
             if w / h < 1.2:
-                bad.append(f"{page.relative_to(ROOT)}: 板 {rel} ({w}x{h}) 縦長の写真を板に敷いている= 横長の写真に替える"); continue
+                unknown.append(f"{page.relative_to(ROOT)}: 板 {rel} ({w}x{h}) 縦長の写真を板に敷いている(人が選んだ板は機械で外さない・表示だけ)"); continue
             if not faces:
                 continue
             px, py = parse_pos(style, "--bd-pos")
