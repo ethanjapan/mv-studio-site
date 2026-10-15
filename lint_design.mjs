@@ -117,5 +117,18 @@ for (const f of pages) {
     else console.log(out.split('\n').filter(l => l.startsWith('face_fit')).join(' '))
   } else console.warn('★ face_fit(写真の枠切れ)は cv2 の無い環境では飛ばす')
 }
+// 7) 使わない写真(2026-10-15 ユーザー「この写真、使いたくない。美しくないから別にして」): data/excluded.json に載せた写真はどの頁でも参照できない。
+//    一度「使わない」と決めた写真が、別の頁の差し替えで戻ってくるのを機械的に止める
+{
+  const { readFileSync, existsSync } = await import('node:fs')
+  const exPath = join(ROOT, 'data/excluded.json')
+  if (existsSync(exPath)) {
+    const ex = JSON.parse(readFileSync(exPath, 'utf8')).assets || []
+    for (const f of pages) {
+      const src = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
+      for (const a of ex) if (src.includes(a.file.replace(/^assets\//, 'assets/'))) bad.push(`使わない写真を参照: ${f} → ${a.file}(${a.why})`)
+    }
+  }
+}
 if (bad.length) { console.error('★ DESIGN_RULES.md 違反(ビルドを止めた):\n  ' + bad.join('\n  ')); process.exit(1) }
 console.log(`lint_design: ok(${pages.length} 頁)`)
