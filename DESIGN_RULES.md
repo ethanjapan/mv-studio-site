@@ -25,7 +25,7 @@
 3. 繁中でも見る(見出しに句読点を置かない規則は main.js / uc_i18n.js が自動で処理する)。
 
 ## 物と場所(人物なしの写真)の決まり(2026-10-15)
-- 正本は `data/stills.json`。頁の棚と繁中の辞書は `node gen_stills.mjs` が書く(手で `usecases/still.html` の棚を直さない)。1 枚足す= JSON に 1 行 + `python3 tools/still_assets.py`。
+- 正本は `data/stills.json`。頁の棚と繁中の辞書は `node gen_shelves.mjs` が書く(手で `usecases/still.html` の棚を直さない)。1 枚足す= JSON に 1 行 + `python3 tools/still_assets.py`。
 - 人は写さない(大人の手元・後ろ姿も、この棚には入れない。人物は撮影会・七五三の棚へ)。子どもは生成の仕組み全体で写さない。
 - 配信は `<picture>`(WebP 600/1200 幅 + JPEG の後退先)。各棚は最初の 6 枚だけ見せ、残りは「続きを見る」で開く(畳んだ中身は hidden= iPhone のメモリに載せない)。
 - 文言は「見本」として書く。実際の店・料理・会場の写真の代わりとして売らない(生成画像と実物の食い違いで信頼を落とした例がある)。

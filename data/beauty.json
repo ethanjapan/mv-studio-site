@@ -1,0 +1,10 @@
+{
+ "_note": "美容(化粧・髪型・アクセサリー)の見本帳の正本。usecases/beauty.html の棚と js/beauty_i18n.js は `node gen_shelves.mjs` がここから生成する(手で編集しない)。1 枚= items の 1 行。status が live の行だけ頁に出る。絵は APP の棚(chara_base/<cid>・RINKA LoRA・ph_beauty_ の様式)から tools/still_assets.py --data data/beauty.json で作る。",
+ "shelves": [
+  {"key": "hair", "en": "HAIR", "ja": "髪型", "zh": "髮型", "sub_ja": "同じ顔・同じ光で、髪型だけ", "sub_zh": "同一張臉、同樣的光，只換髮型"},
+  {"key": "makeup", "en": "MAKEUP", "ja": "口紅とメイク", "zh": "口紅與妝容", "sub_ja": "口紅と目元だけ", "sub_zh": "只換口紅和眼妝"},
+  {"key": "ear", "en": "EARRINGS", "ja": "耳元", "zh": "耳環", "sub_ja": "耳元だけ", "sub_zh": "只換耳環"}
+ ],
+ "show_first": 8,
+ "items": []
+}

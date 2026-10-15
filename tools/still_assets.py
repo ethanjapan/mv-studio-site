@@ -4,7 +4,7 @@ data/stills.json の各行の src.png(焼いた原寸の PNG・リポジトリ�
   assets/uc/<id>-600.webp / <id>-1200.webp(cwebp・<picture> の srcset 用)
   assets/uc/<id>.jpg(無い時だけ・<img> の後退先。縦 600 幅 / 横 900 幅)
 を書く。冪等= 既にあって src より新しければ飛ばす(--force で作り直す)。GPU は使わない。
-使い方: python3 tools/still_assets.py [--only 753_01,753_02] [--force]
+使い方: python3 tools/still_assets.py [--data data/beauty.json] [--only 753_01,753_02] [--force]  (既定= data/stills.json。美容の頁も同じ道具)
 前提= cwebp(brew の webp)。無ければ止める。
 """
 import argparse
@@ -17,7 +17,6 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data" / "stills.json"
 OUT = ROOT / "assets" / "uc"
 WEBP_W = (600, 1200)
 JPG_W = {"P": 600, "L": 900}
@@ -29,6 +28,7 @@ def newer(dst: Path, src: Path) -> bool:
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--data", default="data/stills.json")
     ap.add_argument("--only", default="")
     ap.add_argument("--force", action="store_true")
     a = ap.parse_args()
@@ -36,7 +36,7 @@ def main():
     if not cwebp:
         sys.exit("[ERR] cwebp が無い(brew install webp)")
     only = {x for x in a.only.split(",") if x}
-    d = json.loads(DATA.read_text(encoding="utf-8"))
+    d = json.loads((ROOT / a.data).read_text(encoding="utf-8"))
     made, skipped, missing = 0, 0, []
     for it in d["items"]:
         if only and it["id"] not in only:

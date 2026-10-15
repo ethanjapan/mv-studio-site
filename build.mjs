@@ -6,7 +6,7 @@ import { minify as minifyHtml } from 'html-minifier-terser'
 import * as esbuild from 'esbuild'
 await import('./lint_design.mjs')   // デザインの決まり(DESIGN_RULES.md)。違反があればここで止まる
 await import('./gen_works.mjs')   // 作品・番組を data/works.json から index.html / works.html へ(生成物が古いまま配信されないように)
-await import('./gen_stills.mjs')  // 物と場所(人物なしの写真)を data/stills.json から usecases/still.html へ(2026-10-15)
+await import('./gen_shelves.mjs') // 棚の頁(物と場所 data/stills.json・美容 data/beauty.json)を生成(2026-10-15)
 
 const ROOT = import.meta.dirname
 const DIST = join(ROOT, 'dist')
@@ -14,7 +14,7 @@ const DIST = join(ROOT, 'dist')
 // dist に入れないもの（ソース専用・開発用・公開不要）
 const EXCLUDE = new Set(['lint_design.mjs', 'DESIGN_RULES.md', 
   'dist', 'node_modules', '.git', '.github',
-  'build.mjs', 'gen_works.mjs', 'gen_stills.mjs', 'data', 'package.json', 'package-lock.json',
+  'build.mjs', 'gen_works.mjs', 'gen_shelves.mjs', 'data', 'package.json', 'package-lock.json',
   'README.md', '.gitignore',
   '.DS_Store', 'Thumbs.db',   // OS が撒くゴミ。配信するとファイル名が漏れる
   'js/world.js',              // どの HTML からも参照されていない死蔵ファイル

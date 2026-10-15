@@ -149,7 +149,7 @@
   "季節の飾り":"季節的布置","SNS の季節の投稿、店先の掲示、案内状の下地に。行事ごとに同じ空気で揃えられます。":"SNS 的季節貼文、店門口的公告、邀請卡的底圖。每個節慶都能用同一種氛圍湊齊。",
   "空間の雰囲気":"空間的氛圍","式場・旅館・料亭の「こんな場所」を、言葉で頼んで焼く。実物の写真の代わりではなく、雰囲気を伝える一枚として。":"婚宴場地、旅館、料亭的「這樣的地方」，用一句話就能生成。不是用來取代實景照片，而是傳達氛圍的一張。",
   "物と場所の相談は、":"關於物與場所的洽詢，","季節と、置きたい小物。それだけ送ってください。見本帳の形にしてお返しします。":"季節，還有想放的小物。只要傳這些就好。我會整理成樣本集的形式回給你。",
-  },window.MV_WORKS_I18N||{},window.MV_STILLS_I18N||{});
+  },window.MV_WORKS_I18N||{},window.MV_STILL_I18N||{},window.MV_BEAUTY_I18N||{});
   function walk(){
     const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
       if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
