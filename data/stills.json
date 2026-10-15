@@ -2667,6 +2667,27 @@
     "note": "2026-10-16 ユーザー「どれもいいので、おすすめで選んで」= 1 場面 1 枚・文字の無い案"
    },
    "shelf_key": "site_still_base/an_s16"
+  },
+  {
+   "id": "753_08b",
+   "shelf": "place",
+   "orient": "L",
+   "ja": "手水舎・紅葉の水面",
+   "zh": "手水舍・紅葉的水面",
+   "en": "Purification basin, maple leaves on the water",
+   "v": "1016b",
+   "status": "live",
+   "src": {
+    "png": "../_site_bg/still_st_753_r2/st_753_s05_r2_s0.png",
+    "script": "gen_site_still_zimage.py --prefix st_753_ --only st_753_s05 --run r2",
+    "style_id": "st_753_s05",
+    "seed": 20271015,
+    "job": 4646,
+    "model": "Z-Image Base",
+    "size": "2272x1296",
+    "note": "2026-10-16 753_08 の焼き直し(柄杓の器を柄の先端に)= 4 案の案1(ユーザー「おすすめでやって」)"
+   },
+   "shelf_key": "site_still_base/753_08b"
   }
  ]
 }
