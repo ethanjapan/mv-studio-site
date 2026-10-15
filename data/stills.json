@@ -229,6 +229,146 @@
    },
    "shelf_key": "site_still_base/753_s11",
    "en": "The celebration table: sea bream and red rice"
+  },
+  {
+   "id": "ny_s01",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "鏡餅と橙・床の間",
+   "zh": "鏡餅與橙・壁龕",
+   "en": "Kagami-mochi and daidai in the alcove",
+   "v": "1015c",
+   "status": "live",
+   "src": {
+    "png": "../_site_bg/still_st_ny_r1/st_ny_s01_r1_s1.png",
+    "script": "gen_site_still_zimage.py --prefix st_ny_ --run r1",
+    "style_id": "st_ny_s01",
+    "seed": 20266022,
+    "job": 4610,
+    "model": "Z-Image Base",
+    "size": "1408x2048"
+   },
+   "shelf_key": "site_still_base/ny_s01"
+  },
+  {
+   "id": "ny_s02",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "門松と玄関",
+   "zh": "門松與玄關",
+   "en": "Kadomatsu at the entrance",
+   "v": "1015c",
+   "status": "live",
+   "src": {
+    "png": "../_site_bg/still_st_ny_r1/st_ny_s02_r1_s0.png",
+    "script": "gen_site_still_zimage.py --prefix st_ny_ --run r1",
+    "style_id": "st_ny_s02",
+    "seed": 20266115,
+    "job": 4610,
+    "model": "Z-Image Base",
+    "size": "1408x2048"
+   },
+   "shelf_key": "site_still_base/ny_s02"
+  },
+  {
+   "id": "ny_s02b",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "門松・雪の朝",
+   "zh": "門松・雪的早晨",
+   "en": "Kadomatsu on a snowy morning",
+   "v": "1015c",
+   "status": "live",
+   "src": {
+    "png": "../_site_bg/still_st_ny_r1/st_ny_s02_r1_s1.png",
+    "script": "gen_site_still_zimage.py --prefix st_ny_ --run r1",
+    "style_id": "st_ny_s02",
+    "seed": 20266122,
+    "job": 4610,
+    "model": "Z-Image Base",
+    "size": "1408x2048"
+   },
+   "shelf_key": "site_still_base/ny_s02b"
+  },
+  {
+   "id": "ny_s03",
+   "shelf": "season",
+   "orient": "L",
+   "ja": "おせちの重箱",
+   "zh": "年菜的重箱",
+   "en": "Osechi in a lacquer box",
+   "v": "1015c",
+   "status": "live",
+   "src": {
+    "png": "../_site_bg/still_st_ny_r1/st_ny_s03_r1_s0.png",
+    "script": "gen_site_still_zimage.py --prefix st_ny_ --run r1",
+    "style_id": "st_ny_s03",
+    "seed": 20266215,
+    "job": 4610,
+    "model": "Z-Image Base",
+    "size": "2272x1296"
+   },
+   "shelf_key": "site_still_base/ny_s03"
+  },
+  {
+   "id": "ny_s04",
+   "shelf": "season",
+   "orient": "L",
+   "ja": "羽子板と独楽",
+   "zh": "羽子板與陀螺",
+   "en": "Hagoita paddle and spinning top",
+   "v": "1015c",
+   "status": "live",
+   "src": {
+    "png": "../_site_bg/still_st_ny_r1/st_ny_s04_r1_s1.png",
+    "script": "gen_site_still_zimage.py --prefix st_ny_ --run r1",
+    "style_id": "st_ny_s04",
+    "seed": 20266322,
+    "job": 4610,
+    "model": "Z-Image Base",
+    "size": "2272x1296"
+   },
+   "shelf_key": "site_still_base/ny_s04"
+  },
+  {
+   "id": "ny_s05",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "雛人形の段飾り",
+   "zh": "雛人形的階梯擺飾",
+   "en": "Hina doll display",
+   "v": "1015c",
+   "status": "live",
+   "src": {
+    "png": "../_site_bg/still_st_ny_r1/st_ny_s05_r1_s0.png",
+    "script": "gen_site_still_zimage.py --prefix st_ny_ --run r1",
+    "style_id": "st_ny_s05",
+    "seed": 20266415,
+    "job": 4610,
+    "model": "Z-Image Base",
+    "size": "1408x2048"
+   },
+   "shelf_key": "site_still_base/ny_s05"
+  },
+  {
+   "id": "ny_s06",
+   "shelf": "season",
+   "orient": "L",
+   "ja": "兜飾りと菖蒲",
+   "zh": "頭盔擺飾與菖蒲",
+   "en": "Kabuto helmet and irises",
+   "v": "1015c",
+   "status": "live",
+   "src": {
+    "png": "../_site_bg/still_st_ny_r1/st_ny_s06_r1_s1.png",
+    "script": "gen_site_still_zimage.py --prefix st_ny_ --run r1",
+    "style_id": "st_ny_s06",
+    "seed": 20266522,
+    "job": 4610,
+    "model": "Z-Image Base",
+    "size": "2272x1296"
+   },
+   "shelf_key": "site_still_base/ny_s06"
   }
  ]
 }
