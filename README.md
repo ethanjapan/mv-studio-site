@@ -26,3 +26,10 @@ python3 -m http.server 8000
 6. `node gen_works.mjs` の ★ が出なくなったことを確かめる(links.html に最新作が無いと ★ で知らせる)→ プレビューで 日/繁/英 → commit・push
 
 Created by [@made_linlin](https://www.instagram.com/made_linlin/)
+
+## 物と場所(人物なしの写真)を足す(2026-10-15)
+1. 焼いた原寸の PNG(`_site_bg/<テーマ>_<日付>/`)から採用する 1 枚を決める(候補は 4 案・あなたが選ぶ)
+2. `data/stills.json` の items に 1 行(id / shelf / orient P|L / ja / zh / v / status live / src= 台本・場面・seed・job / shelf_key= APP の棚の鍵)
+3. `python3 tools/still_assets.py` → `assets/uc/<id>-600.webp` `<id>-1200.webp`(と無ければ `<id>.jpg`)
+4. `node gen_stills.mjs`(build でも走る)→ `usecases/still.html` の棚と `js/stills_i18n.js`。絵や題が欠けていれば止まる
+5. APP の棚(photo-browser)側は mvdirector の `scripts/add_st_*_styles.py`(様式の行)と `gravure_variety_lab/site_still_base/`(見本)で同じ鍵を持つ

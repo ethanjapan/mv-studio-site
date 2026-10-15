@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>物と場所 — MV Studio ユースケース</title>
+<meta name="description" content="人のいない写真の見本帳。千歳飴、衣桁の被布、銀杏の参道、写真館の金屏風——季節の小物と空間だけを、手元のスタジオで撮る。見本帳の背景、SNS の素材、式場や写真館の雰囲気づくりに。" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MV Studio" />
+<meta property="og:title" content="物と場所 — MV Studio" />
+<meta property="og:description" content="人のいない写真の見本帳。季節の小物と空間だけを、手元のスタジオで撮る。" />
+<meta property="og:url" content="https://ethanjapan.github.io/mv-studio-site/usecases/still.html" />
+<meta property="og:image" content="https://ethanjapan.github.io/mv-studio-site/assets/uc/753_10.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#04060f" />
+<link rel="icon" type="image/svg+xml" href="../assets/icon_mv.svg?v=20261012a" />
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261012a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+/* 表示言語の書体だけ読む(2026-10-13・links.html と同じ作法): 日本語の時は繁中の Noto TC を読まない。言語を切り替えた時は main.js / uc_i18n.js が __mvFonts(lang) で足す */
+(function(){var L=["family=Zen+Kaku+Gothic+New:wght@300;400;500;700", "family=Shippori+Mincho:wght@400;500;600", "family=Inter:wght@300;400;500", "family=Cormorant+Garamond:wght@400;500;600"],Z=[],done={};function add(k){if(done[k]||!(k==="zh"?Z:L).length)return;done[k]=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?"+(k==="zh"?Z:L).join("&")+"&display=swap";document.head.appendChild(l)}
+var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base");if(lang==="zh")add("zh");window.__mvFonts=function(k){if(k==="zh")add("zh")}})();
+</script>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="image" fetchpriority="high" href="../assets/uc/753_08.jpg?v=1015a">
+<link rel="stylesheet" href="../css/theater.css?v=20261015rv1">
+<style>
+/* ユースケースのページだけの小さな決まり(七五三の頁と同じ)。部品の衣装は theater.css の「役割の衣装」をそのまま使う */
+.uc-head .brand{text-decoration:none}
+.uc-hero{min-height:calc(var(--vhpx,100svh)*.96);padding-top:18vh}
+.uc-hero .panel-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.uc-film{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:16/9;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(226,230,242,.08)}
+.uc-film video,.uc-film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-film .cap{position:absolute;left:14px;bottom:12px;z-index:2;font-family:var(--en-display);font-size:13px;letter-spacing:.12em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.uc-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+@media (max-width:760px){.uc-cta .note{flex-basis:100%}}
+.uc-cta .note{font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.uc-steps{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.uc-step{position:relative;padding:22px 22px 24px;border-radius:18px;border:1px solid var(--line);background:var(--card)}
+.uc-step .n{font-family:var(--en-display);font-size:30px;line-height:1;color:var(--gold);letter-spacing:.06em}
+.uc-step h4{margin:12px 0 8px;font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.03em;color:var(--ink)}
+.uc-step p{margin:0;font-size:13.5px;line-height:1.95;color:var(--muted)}
+.uc-step .pic{margin-top:16px;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/10;position:relative}
+.uc-step .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-shelf{margin-top:40px}
+.uc-shelf h3{font-family:var(--en-display);font-weight:500;font-size:15px;letter-spacing:.3em;color:var(--gold);margin:30px 0 14px;display:flex;align-items:center;gap:12px}
+.uc-shelf h3 i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6)}
+.uc-shelf h3 span{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;color:var(--muted)}
+.uc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;grid-auto-flow:dense}
+.uc-grid figure{margin:0;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1040/1520;background:#000;align-self:stretch}
+.uc-grid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.04);transition:.5s}
+.uc-grid figure:hover img{transform:scale(1.04)}
+.uc-grid figure.big{grid-column:span 2;grid-row:span 2}
+.uc-grid figure.big figcaption{font-size:14px;letter-spacing:.08em;padding:40px 14px 13px}
+@media (max-width:900px){.uc-grid figure.big figcaption{font-size:12.5px;padding:30px 10px 10px}}
+.uc-grid figure.wide{grid-column:span 3;aspect-ratio:2048/1168}
+.uc-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;font-size:11px;letter-spacing:.05em;color:rgba(241,242,247,.9);
+  background:linear-gradient(transparent,rgba(4,6,15,.85))}
+/* 畳んだ続き(main.js の mobileFold と同じ衣装= theater.css の .fold-body / .fold-btn)。この頁は PC でも畳む(棚が長くなるため) */
+.uc-shelf .fold-body{margin-top:10px}
+.uc-shelf .fold-btn{margin:16px auto 0;display:flex;align-items:center;justify-content:center}
+.uc-note{margin-top:26px;font-size:12.5px;color:var(--muted);letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.uc-note::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6);flex:none}
+.uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
+.uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
+@media (max-width:900px){
+  .uc-hero .panel-inner{grid-template-columns:1fr}
+  .uc-steps{grid-template-columns:1fr}
+  .uc-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body class="uc">
+  <div class="grain"></div>
+
+  <header class="uc-head">
+    <a class="brand" href="../"><img class="brand-mark" src="../assets/mark_inf.png?v=20261012a" width="47" height="18" alt="" aria-hidden="true">MV&nbsp;Studio</a>
+    <div class="head-right">
+      <nav class="top-nav" aria-label="主な入口">
+        <a href="./">用途<i class="tag-new" data-new-until="2026-11-15">NEW</i></a><a href="../#works">作品</a><a href="../strengths.html">仕組み</a><a href="../engineering.html">つくりかた</a><a href="../#contact">相談</a>
+      </nav>
+      <nav class="lang-switch" id="langSwitch" aria-label="Language"><button class="ls-btn on" data-lang="ja">日本語</button><button class="ls-btn tc" data-lang="zh">繁中</button></nav>
+    </div>
+  </header>
+
+  <!-- 1 冒頭 -->
+  <section class="panel cine uc-hero" data-num="01" style="--bd:url(../assets/uc/753_08.jpg?v=1015a);--bd-pos:center 50%">
+    <div class="panel-inner">
+      <div>
+        <nav class="crumbs" aria-label="現在地"><a href="../">ホーム</a><i>/</i><a href="./">用途</a><i>/</i><span>物と場所</span></nav>
+        <div class="ch-eyebrow reveal">USE CASE 07 — 物と場所</div>
+        <h2 class="ch-title reveal d1">人のいない写真が、<br><span class="em">場の空気</span>を語る。</h2>
+        <p class="ch-sub reveal d2">千歳飴の袋、衣桁に掛けた被布、銀杏の参道、写真館の金屏風。人物の写真と同じ手元のスタジオで、季節の小物と空間だけを撮った見本帳です。SNS の背景や季節の飾り、式場・写真館の雰囲気づくりに。</p>
+        <div class="uc-cta">
+          <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
+          <a class="btn ghost" href="#shelf">棚を見る<svg class="go-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10.5 8l4 4-4 4"/></svg></a>
+          <span class="note">Instagram · @made_linlin</span>
+        </div>
+      </div>
+      <div class="uc-film">
+        <img src="../assets/uc/753_10.jpg?v=1015a" alt="">
+        <span class="cap" data-noi18n>STILL &amp; PLACE — PHOTO STUDIO</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 棚 -->
+  <section class="panel wall" id="shelf" data-num="02">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">02 — 棚から選べる</div>
+      <h2 class="ch-title reveal d1">小物と、<span class="em">空間</span>と、光。</h2>
+      <p class="ch-sub reveal d2">いまは七五三の <span data-still-count>9</span> 枚から。正月と節句、式場と旅館の空間、祝いの膳と、季節ごとに増やしていきます。</p>
+      <div class="uc-shelf">
+      <!-- gen:still:shelves:start(node gen_stills.mjs が data/stills.json から書く・手で編集しない) -->
+        <h3><i></i>SEASON &amp; EVENTS <span>季節と行事</span></h3>
+        <div class="uc-grid">
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/753_01-600.webp?v=1015a 600w, ../assets/uc/753_01-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/753_01.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>千歳飴・神社の床几</figcaption></figure>
+        </div>
+        <h3><i></i>WAMONO <span>和の小物</span></h3>
+        <div class="uc-grid">
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/753_02-600.webp?v=1015a 600w, ../assets/uc/753_02-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/753_02.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>被布・衣桁に掛けて</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_07-600.webp?v=1015a 600w, ../assets/uc/753_07-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_07.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>羽織袴・扇子と守り刀</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_09-600.webp?v=1015a 600w, ../assets/uc/753_09-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_09.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>つまみ細工の髪飾り・草履</figcaption></figure>
+        </div>
+        <h3><i></i>PLACES <span>空間</span></h3>
+        <div class="uc-grid">
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/753_03-600.webp?v=1015a 600w, ../assets/uc/753_03-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/753_03.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>鳥居の参道・銀杏</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/753_04-600.webp?v=1015a 600w, ../assets/uc/753_04-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/753_04.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>石畳の参道・銀杏の朝</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_08-600.webp?v=1015a 600w, ../assets/uc/753_08-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_08.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>手水舎・紅葉の水面</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_10-600.webp?v=1015a 600w, ../assets/uc/753_10-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_10.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>写真館・金屏風と緋毛氈</figcaption></figure>
+        </div>
+        <h3><i></i>FEAST <span>祝いの膳</span></h3>
+        <div class="uc-grid">
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_12-600.webp?v=1015a 600w, ../assets/uc/753_12-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_12.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>お祝いの席・鯛と赤飯</figcaption></figure>
+        </div>
+      <!-- gen:still:shelves:end -->
+      </div>
+      <p class="uc-note">写真はすべて見本です。実際の店や料理、会場の写真ではありません。</p>
+    </div>
+  </section>
+
+  <!-- 3 使いどころ -->
+  <section class="panel" data-num="03">
+    <div class="panel-inner">
+      <div class="ch-eyebrow reveal">03 — 使いどころ</div>
+      <h2 class="ch-title reveal d1">写真の間に、<span class="em">呼吸</span>を。</h2>
+      <div class="uc-steps">
+        <div class="uc-step reveal">
+          <div class="n">01</div>
+          <h4>見本帳の背景</h4>
+          <p>写真館や式場の見本帳の扉と背景に。人物の写真の間に挟むと、頁に呼吸ができます。</p>
+          <div class="pic"><img src="../assets/uc/753_10.jpg?v=1015a" alt="" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="uc-step reveal d1">
+          <div class="n">02</div>
+          <h4>季節の飾り</h4>
+          <p>SNS の季節の投稿、店先の掲示、案内状の下地に。行事ごとに同じ空気で揃えられます。</p>
+          <div class="pic"><img src="../assets/uc/753_01.jpg?v=1015a" alt="" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="uc-step reveal d2">
+          <div class="n">03</div>
+          <h4>空間の雰囲気</h4>
+          <p>式場・旅館・料亭の「こんな場所」を、言葉で頼んで焼く。実物の写真の代わりではなく、雰囲気を伝える一枚として。</p>
+          <div class="pic"><img src="../assets/uc/753_08.jpg?v=1015a" alt="" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 連絡 -->
+  <section class="panel uc-contact" data-num="04">
+    <div class="panel-inner">
+      <h2 class="ch-title reveal d1">物と場所の相談は、<span class="em">一言</span>から。</h2>
+      <p class="ch-sub reveal d2" style="margin-left:auto;margin-right:auto">季節と、置きたい小物。それだけ送ってください。見本帳の形にしてお返しします。</p>
+      <div class="uc-cta" style="justify-content:center">
+        <a class="btn primary" href="https://ig.me/m/made_linlin" target="_blank" rel="noopener noreferrer">この用途で相談する</a>
+        <a class="btn ghost" href="./">ほかの用途を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="uc-next">
+    <div class="panel-inner">
+      <div><span class="k">NEXT USE CASE</span><a class="nx" href="shichigosan.html">次の用途へ — 七五三・家族写真<svg class="go-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10.5 8l4 4-4 4"/></svg></a></div>
+      <a class="all" href="./">すべての用途</a>
+    </div>
+  </section>
+  <nav class="foot-map" aria-label="サイトマップ">
+    <span class="fm-k">用途</span>
+    <a href="bridal.html">ブライダル前撮り</a><a href="portrait.html">撮影会ポートレート</a><a href="world.html">世界の撮影</a><a href="kaisetsu.html">解説動画</a><a href="shichigosan.html">七五三・家族写真</a><a href="still.html">物と場所</a>
+    <span class="fm-sep"></span>
+    <a href="../#works">作品</a><a href="../#shows">裏番組</a><a href="../#contact">相談</a>
+  </nav>
+  <footer class="site-foot">
+    <span class="foot-brand">MV&nbsp;STUDIO</span>
+    <a class="foot-cred" href="https://www.instagram.com/made_linlin/" target="_blank" rel="noopener noreferrer">Created by&nbsp;<strong>@made_linlin</strong></a>
+    <span class="foot-copy">© 2026 made_linlin</span>
+  </footer>
+  <a class="fab-contact" href="../#contact" aria-label="相談"><span>相談</span></a>
+<script src="../js/sitemenu.js?v=20261015st1"></script>
+<script src="../js/stills_i18n.js?v=20261015st1"></script>
+<script src="../js/uc_i18n.js?v=20261015st1"></script>
+<script>
+/* 棚の続きを開く・閉じる(main.js の mobileFold と同じ札と動き。中身は hidden のまま= iPhone のメモリに載せない) */
+(function(){
+  document.querySelectorAll('.uc-shelf .fold-btn').forEach(function(btn){
+    var body=btn.previousElementSibling;if(!body||!body.classList.contains('fold-body'))return;
+    var ja=btn.querySelector('.ja'),zh=btn.querySelector('.zh'),ja0=ja.textContent,zh0=zh.textContent;
+    btn.addEventListener('click',function(){
+      var open=body.hidden;
+      if(open){body.hidden=false;body.classList.remove('in');requestAnimationFrame(function(){requestAnimationFrame(function(){body.classList.add('in');});});}
+      else{body.hidden=true;body.classList.remove('in');}
+      btn.setAttribute('aria-expanded',String(open));btn.classList.toggle('open',open);
+      ja.textContent=open?'閉じる':ja0;zh.textContent=open?'收起':zh0;
+    });
+  });
+})();
+</script>
+</body>
+</html>
