@@ -1,0 +1,222 @@
+# アルバムの見本(bridal_album.html)と 仕組み(strengths.html)
+アルバムの見本 — ブライダル前撮り — MV Studio	Sample album — Bridal pre-wedding — MV Studio
+USE CASE 01 — ブライダル前撮り / アルバムの見本	USE CASE 01 — Bridal pre-wedding / Sample album
+写真は、	The photos
+本になって	become a book
+残る。	that stays.
+棚の様式で焼いた前撮りを、印刷のアルバムのレイアウトで。表紙、トレーシングペーパーの扉、裁ち落としの見開き、章扉、誓いの言葉——製本屋に渡す形そのままを、画面でめくれます。	Pre-wedding photos generated from the shelf, laid out as a printed album. Cover, tracing-paper title page, full-bleed spreads, chapter pages, the vows—exactly what goes to the bindery, turned on screen.
+和装 / 洋装 / 韓国風 / 台湾の婚紗 / 中華風	Japanese / Western / Korean / Taiwanese bridal / Chinese
+ふたりの、前の日	The two of us, the day before
+和装 · 洋装 · 韓国風 · 台湾の婚紗 · 中華風	Japanese · Western · Korean · Taiwanese bridal · Chinese
+参拝 · 社殿の前	Prayer · before the main hall
+和　装	JAPANESE DRESS
+白無垢と色打掛。	Shiromuku and colored uchikake.
+鳥居の参道、手水舎、紅葉の庭。	A torii path, a purification basin, a maple garden.
+静かな所作を、静かな光で。	Quiet gestures, in quiet light.
+和傘の相合傘 · 紅葉の庭	Sharing a paper umbrella · maple garden
+お散歩 · 桜の庭	A stroll · cherry garden
+エスコート · 苔の石段	Escorted · mossy stone steps
+正座でご挨拶 · 五重塔	A kneeling bow · five-story pagoda
+新婦ソロ · 紅葉の庭	Bride solo · maple garden
+階段 · 洋館のホール	Staircase · mansion hall
+洋　装	WESTERN DRESS
+礼拝堂のバージンロード、洋館の大階段、	The chapel aisle, the grand staircase,
+湖畔の草原、夜景のテラス。	a lakeside meadow, a terrace over the city lights.
+ドレスのラインを、光で描く。	The line of the dress, drawn in light.
+挙式風 · ベールアップ · 白い砂浜	Ceremony style · veil lift · white sand beach
+動く見開き · 画面で見るアルバムは、写真が動く	Moving spread · on screen, the photos move
+ラベンダー畑 · レンガの街 · 夜景	Lavender field · brick town · city lights
+晴れの日も、雨の日も。	Sunny days and rainy days.
+同じ方を向いて歩くこと。	Walking in the same direction.
+それだけを、約束します。	That is the only thing I promise.
+干潟 · 風のベール	Tidal flats · veil in the wind
+韓　国　風	KOREAN STYLE
+白黒フィルム、無関心なシック、	Black-and-white film, effortless chic,
+ゴシックロマン、火山島のスナップ。	gothic romance, volcanic-island snaps.
+ソウルの写真館の文法で。	In the grammar of a Seoul photo studio.
+ゴシックロマン · 霧の夜明け	Gothic romance · misty dawn
+白黒フィルム · 踊る	Black-and-white film · dancing
+フルグラム · シャンパンタワー	Full glam · champagne tower
+スマホで撮る結婚式スナップ · バージンロード	Phone-shot wedding snap · the aisle
+火山島 · 向かい合って小声で	Volcanic island · whispering face to face
+電影 · 風のベールの回眸	Cinematic · a glance back, veil in the wind
+台　湾　の　婚　紗	TAIWANESE BRIDAL
+侘寂、極簡、電影、美式。	Wabi-sabi, minimal, cinematic, American.
+雲海の山道、霧の茶畑、麦畑。	A mountain road above the clouds, a misty tea field, a wheat field.
+旅をしながら撮る、ふたり。	Two people, photographed as they travel.
+雲海の山道 · 小さな二人	Cloud-sea road · two small figures
+新郎 · 馬を引く	Groom · leading a horse
+極簡 · 雲海の上の山道	Minimal · mountain road above the clouds
+線香花火の光	The glow of a sparkler
+龍鳳褂と鳳冠 · 鳳冠の寄り	Dragon-phoenix gown · phoenix crown close-up
+中　華　風	CHINESE STYLE
+秀禾服と龍鳳褂、鳳冠と紅い蓋頭。	Xiuhe dress and dragon-phoenix gown, phoenix crown and red veil.
+紅い壁、祖堂、園林、古鎮の水郷。	Red walls, the ancestral hall, gardens, an old water village.
+金の刺繍を、紅の中で。	Gold embroidery, in a world of red.
+古鎮と水郷 · 水郷の引き	Old town and water village · wide shot
+紅い蓋頭	Red bridal veil
+園林の新中式 · 花窓越し · 筆と硯	New-Chinese garden · through a lattice window · brush and inkstone
+蓋頭を上げる二人	Lifting the veil
+甲板の風 · 5 秒の動画を紙面に	Wind on the deck · a 5-second video on the page
+動　く　写　真	MOVING PHOTOS
+紙のアルバムと同じレイアウトのまま、画面で見る版では写真が動きます。	Same layout as the paper album—but in the on-screen version, the photos move.
+前撮りの 1 枚から 5 秒の動画を起こし、見開きに埋め込む。	A 5-second video is made from one pre-wedding photo and placed into the spread.
+スマホで開いて、ゆっくりめくるための本。	A book to open on your phone and turn slowly.
+棚の様式 580 · 同じ顔のまま · 手元の PC で	580 looks on the shelf · the same face throughout · on your own PC
+写真も動画も曲も声も、家の中の 1 台の PC で生まれる。外に送らない。止まらない。夜のあいだも列が進む。上限は自分の GPU だけ。そして、どのカットでも同じ顔。	Photos, video, music and voice are all made on one PC at home. Nothing is sent out. It never stops. The queue runs through the night. The only limit is your own GPU. And every shot has the same face.
+01 — 構成	01 — Layout
+一台の中に、	Inside one machine,
+スタジオ	a whole studio	uc
+がある。	.
+家の壁の内側で、写真・動画・曲・声・会話・編集が回る。外に出るのは、見せたい完成品だけ。入口には鍵がかかり、列は夜も止まらない。	Inside the walls of the house, photos, video, music, voice, conversation and editing all run. The only thing that goes out is the finished work you want to show. The door is locked, and the queue never stops, even at night.
+HOME — 家の中	HOME — inside the house
+OUTSIDE — 外	OUTSIDE — the world
+GPU 1 台	1 GPU
+生成サーバー	Generation server
+写真	Photos
+棚の作風 20,002	20,002 looks on the shelf
+写真が動き出す	Photos come alive
+曲	Music
+歌詞から一曲	A song from lyrics
+声	Voice
+キャラの声	Character voices
+会話	Conversation
+頭脳は切替	Switchable brains
+編集・4K	Editing · 4K
+つなぎと仕上げ	Cuts and finish
+列	Queue
+24 時間	24 hours
+順に進む	In order
+API — 鍵つきの入口	API — a locked door
+自作の道具・他のアプリ	Your own tools, other apps
+見せたい完成品だけ	Only the finished work you want to show
+YouTube / Instagram / 納品	YouTube / Instagram / delivery
+素材・相談の中身・学習した顔	Material, conversations, learned faces
+— 壁の内側から出ない	— never leave the walls
+家の壁	The walls of the house
+列から GPU へ	From the queue to the GPU
+壁を越えるのは、入口の鍵と完成品だけ	Only the door key and the finished work cross the wall
+02 — 七つの柱	02 — Seven pillars
+七つの理由	Seven reasons
+写真も動画も曲も声も、家の中の PC で生まれる。会話の頭脳をローカルにすれば、相談の中身も外に出ない。外に送るのは、見せたい完成品だけ。	Photos, video, music and voice are all made on a PC at home. Run the conversation brain locally, and even what you discuss never leaves. The only thing sent out is the finished work you want to show.
+止まらない。	It doesn't stop.
+終わらない	It doesn't end
+クラウドの生成サービスは、ある日モデルが引退する。値段が変わる。規約が変わる。手元のスタジオは、止めるのも入れ替えるのも自分。去年の作風を、来年も同じ手で焼ける。	With a cloud service, one day the model retires. Prices change. Terms change. A studio at home stops or changes only when you decide. Last year's look can be made the same way next year.
+引退の予告・値上げの通知	retirement notices and price hikes
+が決める更新	decide when things change
+頼んだ生成は列に並び、空いた GPU を順に埋めていく。夜に入れて、朝に選ぶ。待つのは人ではなく、機械。	Jobs line up in the queue and fill the GPU as it frees up. Queue at night, choose in the morning. The machine waits, not you.
+秒 — 写真 1 枚	seconds — one photo
+分 — 動画 1 カット	minutes — one video shot
+実測 — 2026-10 の生成台帳	Measured — generation log, October 2026
+だけ。	.
+撮影の様式 20,002、衣装 11,137。すべて作例つき。選ぶだけで、その一本の装いと光が決まる。棚は毎週、増える。	20,002 photo looks, 11,137 garments. Every one with a sample. Just choose, and the outfit and light for your piece are set. The shelf grows every week.
+03 — クラウドの生成サービスと	03 — Versus cloud generation services
+七つ	seven
+止まる日	The day it stops
+モデルの引退・値上げ・規約の変更は、相手が決める	Model retirements, price hikes and terms changes are decided by the other side
+自分が止めない限り、止まらない	It doesn't stop unless you stop it
+枚数と尺	Count and length
+月の上限で止まる	Stops at the monthly cap
+上限は GPU の時間だけ	The only cap is GPU time
+04 — 実績『いつもの顔』	04 — Case study: The Usual Face
+棚の写真 56 枚が、	56 photos from the shelf
+一本の MV	became one MV
+に。	.
+同じ列に、写真も動画も曲も 4K の仕上げも入れた。人がしたのは、選ぶことだけ。	Photos, video, music and the 4K finish all went through the same queue. All a human did was choose.
+枚	photos
+棚から選ぶ	Chosen from the shelf
+作風を選んで焼いた写真。同じ顔のまま、四季と場所を変える。	Photos generated from chosen looks. The same face, through four seasons and many places.
+分	min
+動画 1 カット	one video shot
+7 秒と 12 秒のカットを列に入れる。空いた GPU が順に埋める。	7-second and 12-second shots go into the queue. The GPU picks them up as it frees.
+時間あまり	hours and change
+55 カットが揃う	55 shots complete
+朝の列で 48 本。前夜の分と合わせて本編ぶん。	48 from the morning queue. With the night before, enough for the full piece.
+曲も同じ列	Music in the same queue
+歌詞から一曲。歌詞の時刻合わせ、つなぎ、4K の仕上げも列で。	A song from lyrics. Lyric timing, cuts and the 4K finish, all in the queue.
+本編の尺	Running time
+55 カットを曲の拍でつないで、YouTube へ。	55 shots cut to the beat of the song, then to YouTube.
+数字は 2026 年 10 月の生成台帳の実測。本編=	Figures measured from the October 2026 generation log. Full piece =
+『いつもの顔』4 分 09 秒	The Usual Face, 4:09
+20,000 を超える様式から、一人のモデルを一日ぶん。	Over 20,000 looks—a full day's shoot with one model.
+地域ごとの様式 3,000 以上から。同じ顔で、世界を一周。	Over 3,000 regional looks. The same face, around the world.
+620 以上	Over 620
+20,000 以上	Over 20,000
+3,000 以上	Over 3,000
+棚の様式 620 以上 · 同じ顔のまま · 手元の PC で	Over 620 looks · the same face throughout · on your own PC
+棚の作風 20,000 以上	Over 20,000 looks on the shelf
+撮影の様式 20,000 以上、衣装 11,000 以上。すべて作例つき。選ぶだけで、その一本の装いと光が決まる。棚は毎週、増える。	Over 20,000 photo looks, over 11,000 garments. Every one with a sample. Just choose, and the outfit and light for your piece are set. The shelf grows every week.
+500 以上	Over 500
+印刷アルバムの見本	Sample printed album
+和装も洋装も 200 以上。参拝、手水舎、相合傘、挙式風、バックショット——それぞれ 10 の場所で。ここに並ぶのは、その中の 24。	Over 200 looks each in Japanese and Western dress. Prayer, the purification basin, a shared umbrella, ceremony style, from behind—each in 10 locations. Here are 24 of them.
+和装 200 以上の様式から	From over 200 Japanese-dress looks
+洋装 200 以上の様式から	From over 200 Western-dress looks
+和装 200・洋装 200・韓国風 80・台湾の婚紗 100・中華風 40——合わせて 620 以上。礼拝堂、港、神社、紅い壁——写真と短い動画と、アルバム。	Japanese 200, Western 200, Korean 80, Taiwanese bridal 100, Chinese 40—over 620 in all. Chapels, harbors, shrines, red walls—photos, short videos and an album.
+芸術 — 水中のドレス、聖堂の光柱、金箔の肩、水墨、京劇、1950 年代のバレエ。写真を絵として組む。	Art — a dress underwater, pillars of light in a cathedral, gold-leaf shoulders, ink wash, Peking opera, 1950s ballet. Photos composed as paintings.
+雰囲気と幻想 — 夜の竹林の灯り、漢服の満月の裾、巨大な月、鏡の湖、提灯の魚。光と空想で場所を作る。	Mood and fantasy — a lit bamboo grove at night, a hanfu hem like a full moon, a giant moon, a mirror lake, lantern fish. Places built from light and imagination.
+ラベンダーのベビードール	Lavender babydoll
+ネオン管のスタジオ	Neon-tube studio
+スマホを横に	Turn your phone sideways
+横にスワイプ	Swipe sideways
+11 の系統	11 families
+見開きのアルバムは、横向きで本の形になります。縦のままでも、上下に並べて読めます。	The spread album takes its book form in landscape. In portrait, the pages stack vertically and still read fine.
+このまま見る	Keep viewing as is
+STRENGTHS — 仕組みの強み	STRENGTHS — why the engine works
+手元で、	Everything,
+全部	at home
+写真も動画も声も、家の中の 1 台の PC で生まれる。外に送らない。夜のあいだも列が進む。鍵つきの入口から外からも呼べる。上限は自分の GPU だけ。そして、どのカットでも同じ顔。	Photos, video and voice are all made on one PC at home. Nothing is sent out. The queue runs through the night. A locked door lets you call in from outside. The only limit is your own GPU. And every shot has the same face.
+導入の相談をする	Ask about bringing it in
+01 — 六つの柱	01 — Six pillars
+クラウドに送らない、	Six reasons
+六つの理由	not to send it to the cloud
+全部、	All of it,
+手元で	at home
+写真も動画も声も、家の中の PC で生まれる。会話の頭脳をローカルにすれば、相談の中身も外に出ない。送るのは、見せたい完成品だけ。	Photos, video and voice are all made on a PC at home. Run the conversation brain locally, and even what you discuss never leaves. The only thing sent out is the finished work you want to show.
+台の生成サーバー、家の中に	generation server, inside the house
+外に送る素材	pieces of material sent out
+24 時間、	24 hours a day,
+列が進む	the queue moves
+頼んだ生成は列に並び、空いた GPU を 10 分ごとに埋めていく。夜に 200 枚、朝に選ぶ。待つのは人ではなく、機械。	Jobs line up in the queue and fill the GPU every ten minutes as it frees. 200 photos overnight, chosen in the morning. The machine waits, not you.
+分ごとに空きを埋める	minutes between refills
+枚を一晩で	photos in one night
+自分のスタジオを、	Call your studio
+外から呼ぶ	from outside
+生成の入口は鍵つきの HTTP。自作の道具や他のアプリから、同じスタジオを呼べる。家の中の 1 台が、あなたの生成サーバーになる。	The entrance to generation is a keyed HTTP endpoint. Your own tools and other apps can call the same studio. The one machine at home becomes your generation server.
+鍵つきの入口	A locked door
+本の列に直列で安全	queue, run in series—safe
+上限は、	The only limit
+自分の GPU	is your own GPU
+ だけ。	.
+枚数にも、尺にも、やり直しにも、課金の上限はない。作風も題材も、棚と会話で決める。頭脳はローカル / Claude / ChatGPT を、相談の中身で切り替える。	No billing caps on count, length or retries. Looks and subjects are decided from the shelf and in conversation. The brain switches between local, Claude and ChatGPT depending on what you're discussing.
+枚数・尺・やり直し	Count, length, retries
+つの頭脳を切替	brains to switch between
+どのカットでも、	Every shot,
+同じ顔	the same face
+キャラの顔を学習して固定する。写真でも動画でも、場所が変わっても衣装が変わっても、同じ“その人”で出てくる。	The character's face is learned and locked. Photo or video, new place or new outfit, it's always the same person.
+枚の原器から全画角	master photo to every framing
+で顔を固定	locks the face
+棚は、	The shelf
+資産	is an asset
+撮影の様式 18,582、衣装 11,137。すべて作例つき。選ぶだけで、その一本の装いと光が決まる。棚は毎週、増える。	18,582 photo looks, 11,137 garments. Every one with a sample. Just choose, and the outfit and light for your piece are set. The shelf grows every week.
+撮影の様式	photo looks
+衣装	garments	uc
+02 — クラウドの生成サービスと	02 — Versus cloud generation services
+違いは、	The differences,
+五つ	five of them
+お金	Cost
+枚数と尺に従って課金が増える	Billing grows with count and length
+自分の GPU の電気代だけ	Just the electricity for your own GPU
+素材の行き先	Where the material goes
+相手のサーバーに置かれる	Stored on their servers
+家の中から出ない	Never leaves the house
+内容の制限	Content limits
+サービスの規約が決める	Set by the service's terms
+自分の判断と、法律だけ	Only your judgment, and the law
+待ち時間	Waiting
+混雑の列に並ぶ	You wait in a crowded queue
+自分の列。夜も進む	Your own queue, running through the night
+生成のたびにゆらぐ	Drifts with every generation
+学習して固定。どのカットでも同じ	Learned and locked. The same in every shot
+導入の相談は、	Ask about bringing it in
+環境	with your setup	uc
+いまの PC と、作りたいもの。それだけ送ってください。必要な構成と手順にしてお返しします。	Your current PC and what you want to make. That's all. I'll come back with the configuration and steps you need.

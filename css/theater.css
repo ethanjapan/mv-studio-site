@@ -186,9 +186,9 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   font-family:var(--serif);font-weight:400;line-height:.8;
   font-size:clamp(200px,30vw,430px);
   color:transparent;-webkit-text-stroke:1px rgba(217,189,138,.13);
-  right:clamp(-30px,-1vw,0px);top:6vh;pointer-events:none;user-select:none}
+  right:clamp(-30px,-1vw,0px);top:calc(4vh + .2em);pointer-events:none;user-select:none}   /* 2026-10-15 ユーザー「切れている」: 字が行の箱より上に .2em ほどはみ出す(line-height .8)ので、その分を上の余白に足す */
 .panel[data-num]:nth-of-type(even)::before{right:auto;left:clamp(-30px,-1vw,0px)}
-.panel.wall[data-num]::before{top:2vh}
+.panel.wall[data-num]::before{top:calc(1vh + .2em)}
 
 /* シネマ背景章 — 4Kマスターのプレート */
 .panel.cine::after{content:"";position:absolute;inset:0;z-index:0;
@@ -723,7 +723,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 /* ---- mobile ---- */
 @media (max-width:860px){
   .panel{padding:12vh 22px;min-height:auto}
-  .panel[data-num]::before{font-size:clamp(140px,44vw,220px);top:2vh}
+  .panel[data-num]::before{font-size:clamp(140px,44vw,220px);top:calc(1vh + .2em)}
   .cards3{grid-template-columns:1fr;gap:14px}
   .voice-row{grid-template-columns:1fr;gap:32px}
   .voice-row::before{display:none}
@@ -895,7 +895,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   42%{transform:scale(1);filter:brightness(1)}
   58%{transform:scale(1);filter:brightness(1)}
   100%{transform:scale(.93);filter:brightness(.68)}}
-@keyframes ghostDrift{from{transform:translateY(6vh)}to{transform:translateY(-6vh)}}
+@keyframes ghostDrift{from{transform:translateY(8vh)}to{transform:translateY(-2vh)}}   /* 上へは 2vh まで(章の上端で切れない)。下へ流れる量で奥行きは保つ */
 
 @media (prefers-reduced-motion: reduce){
   .wallseq,.rackseq,.orb-core,.orb-ring,.orb-scale,.mote,.mind-glow{animation:none!important}
@@ -1747,7 +1747,8 @@ body.uc .fold-btn svg.fold-ic,.fold-ic{display:block;width:22px;height:22px;fill
 .fold-btn.open .fold-ring{animation:none}
 @keyframes foldPulse{0%{opacity:.8;transform:scale(.85)}60%{opacity:0;transform:scale(2.1)}100%{opacity:0;transform:scale(2.1)}}
 @media (prefers-reduced-motion: reduce){.fold-ring{animation:none}.fold-body{transition:none}.fold-ic{transition:none}.fold-peek{transition:none}.fold-body{transition:none}}
-.fold-btn .zh,html[lang^="zh"] .fold-btn .ja{display:none}
+.fold-btn .zh,.fold-btn .en,html[lang^="zh"] .fold-btn .ja,html[lang="en"] .fold-btn .ja{display:none}
+html[lang="en"] .fold-btn .en{display:inline}
 html[lang^="zh"] .fold-btn .zh{display:inline}
 
 /* ============================================================
@@ -1899,3 +1900,10 @@ a:hover .go-ic path,button:hover .go-ic path{transform:translateX(1.5px)}
 .plat-row .v{font-family:var(--en);font-size:12px;letter-spacing:.1em;color:var(--muted)}
 body.lang-zh .plat-row .t{font-family:"Noto Serif TC",serif}
 @media (max-width:640px){.plat-row .t{font-size:14px}.plat-row .v{font-size:11px;letter-spacing:.06em}}
+
+/* ===== 英語(2026-10-15・ユーザー「英語版も用意して」): 本文は Inter・見出しは Cormorant Garamond(どちらも既に読んでいる書体)。
+   CJK 向けの広い字間は英語では間延びするので、本文と見出しは詰める。辞書= data/i18n_en.tsv → gen_i18n.mjs ===== */
+body.lang-en{--sans:"Inter",sans-serif;--serif:"Cormorant Garamond",serif}
+body.lang-en h1,body.lang-en h2,body.lang-en h3,body.lang-en .ch-title,body.lang-en .workcard strong,body.lang-en .door strong,body.lang-en .use .t strong{letter-spacing:.01em}
+body.lang-en .ch-sub,body.lang-en p,body.lang-en .btn,body.lang-en .ch-cta,body.lang-en figcaption,body.lang-en .uc-step p{letter-spacing:0}
+body.lang-en .ch-title,body.lang-en h1{font-weight:500}

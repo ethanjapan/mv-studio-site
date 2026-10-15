@@ -1,0 +1,174 @@
+# つくりかた(engineering.html)と 七五三(shichigosan.html)
+ENGINEERING — つくりかた	ENGINEERING — how it's built
+任せて、	Delegate,
+関所	with checkpoints
+で止める。	that stop it.
+一人で回すスタジオの裏側。AI は準備と検査、人は選ぶことと許可。その境目を、約束ではなく機械で守っている。	Behind a studio run by one person. The AI prepares and checks; the human chooses and approves. That line is held by machinery, not by promises.
+技術の相談をする	Ask a technical question
+01 — 全体の流れ	01 — The whole flow
+相談から公開まで、	From conversation to release,
+八つ	eight
+の段。	stages.
+どの段を誰が受け持つかを、先に決めてある。AI が書き、機械が回して検査し、人が許可して選ぶ。	Who handles each stage is decided in advance. The AI writes, the machine runs and checks, the human approves and chooses.
+HUMAN　人	HUMAN
+MACHINE　機械	MACHINE
+声で相談する	Talk it through by voice
+作りたい一本を話す。雰囲気・場所・曲の気分。	Describe the piece you want: mood, place, the feel of the song.
+台本と一覧	Script and list
+場面・台詞・尺・費用の一覧と、投入の台本を書く。	Writes the list of scenes, lines, lengths and costs, plus the job script.
+許可の印	The approval mark
+一覧を見て、本番に進めてよいものに印を付ける。	Review the list and mark what may proceed to production.
+列に並ぶ	Into the queue
+印と設定の欠けを検査し、通ったものだけ列へ。	Checks for missing marks and settings; only what passes enters the queue.
+生成	Generate
+写真・動画・曲・声。空いた GPU が順に埋める。夜も。	Photos, video, music, voice. The GPU picks up jobs as it frees. At night too.
+自動検査	Automated checks
+話す動画の聞き取り、つなぎ目の音、肌のざらつき。	Transcribing talking videos, audio at the cuts, skin grain.
+採否を決める	Accept or reject
+曲は耳で、カットは目で。手足や顔の崩れも最後は人。	Music by ear, shots by eye. Broken hands or faces are caught by a human in the end.
+仕上げと公開	Finish and release
+4K の仕上げは列で。公開のボタンは毎回、人が押す。	The 4K finish goes through the queue. The publish button is pressed by a human, every time.
+02 — 関所	02 — Checkpoints
+印がなければ、	No mark,
+通さない	no passage
+AI に任せるほど、人が決める場所をはっきりさせる。許可は口約束ではなく、許可の印がないと機械が通さない形にした。	The more you delegate to AI, the clearer the human decision points need to be. Approval isn't a verbal promise—without the mark, the machine won't let it through.
+本番の動画生成	Production video generation
+人が見た一覧の名前を投入に添えた時だけ通す。無ければ確認を求める。	Passes only when the job names a list a human has reviewed. Otherwise it asks for confirmation.
+件	cases
+高解像度化	Upscaling
+選んだ画像の一覧を見て OK した印が無いと通さない。	Won't pass without the OK mark on the reviewed list of selected images.
+開始画像の差し替え	Swapping the start image
+人が OK した画像の指紋と一致しないカットは、投入を拒否する。	Any shot whose image fingerprint doesn't match the human-approved one is refused.
+事故のあとに追加	Added after an incident
+クラウドへの送信	Sending to the cloud
+アプリから外の AI へ送る時は、毎回確認の画面を出す。	Every time the app sends something to an external AI, a confirmation screen appears.
+使う枠も勝手に使わない	Never spends your quota on its own
+公開	Publishing
+公開・差し替え・次の工程は、任されていても毎回確認する。	Publishing, replacing, the next step—even when delegated, it confirms every time.
+人が実行	Run by a human
+03 — 止めた記録	03 — The record of what was stopped
+決まりは、	Rules are proven
+止めた回数	by the number of times
+で示す。	they stopped something.
+ルールを書いただけでは、制御とは言えない。AI が実際にやろうとした危ない操作を、その場で機械が止めた記録がある。	Writing rules down isn't control. There is a record of risky actions the AI actually tried, and the machine stopping them on the spot.
+回	times
+AI の操作を止めた	AI actions stopped
+52 の会話・11 種類。	52 conversations, 11 kinds.
+自動チェックの試験	Automated-check tests
+全部通過してから使う。	Used only after all of them pass.
+承認つきの本番投入	Production jobs with approval
+人が見た一覧 66 本の印。	Marks on 66 lists reviewed by a human.
+GPU の仕事	GPU jobs
+すべて一つの入口から。	All through a single entrance.
+走っている台本を書き換えようとした	Tried to rewrite a script while it was running
+台本は一行ずつ読まれる。途中で書き換えると、後半が別物になる。	Scripts are read line by line. Change one midway and the second half becomes something else.
+止めた	Stopped
+実機を見ずに設定値を書こうとした	Tried to write a setting without checking the real machine
+記事や記憶の値は、実装が違えば外れる。存在しない項目で生成が止まる。	Values from articles or memory are wrong when the implementation differs. A nonexistent parameter halts generation.
+書き方の正本を読まずに指示を書こうとした	Tried to write a prompt without reading the official guide
+公式の書き方から外れると、何十本も焼き直しになる。	Stray from the official format and dozens of pieces have to be redone.
+共有の GPU を順番待ちの外から使おうとした	Tried to use the shared GPU outside the queue
+生成中の GPU を奪うと、ほかの仕事が止まる。	Grab a GPU mid-generation and other jobs stop.
+2026 年 10 月 8 日時点の集計。回数は AI との会話記録（2026 年 6〜10 月）のうち、自動チェックが止めた結果だけを数えた。	Tallied as of October 8, 2026. Counts only automated-check stops in the AI conversation logs (June–October 2026).
+04 — 機械の目と、人の目	04 — The machine's eye and the human's
+数で測れるものは機械、	What can be measured goes to the machine;
+感覚	judgment
+は人。	goes to the human.
+機械に任せるのは、数で測れること。採否が感覚に関わる所は、人が選ぶ。	The machine handles what can be measured. Where accepting or rejecting is a matter of judgment, a human decides.
+MACHINE — 機械が見る	MACHINE — what the machine checks
+投入の直前の検査	Pre-submission check
+危ない操作と、書き方の誤りを 30 項目で調べ、止めるか確認を求める。	Screens 30 items for risky actions and format errors, then stops or asks for confirmation.
+話す動画の聞き取り	Transcribing talking videos
+話す場面は全文を書き起こして、台本と一文ずつ照らす。言い間違いはここで落とす。	Speaking scenes are fully transcribed and compared line by line with the script. Misreads are dropped here.
+つなぎ目の音	Audio at the cuts
+カットの境目の音の急な変化と、頭の無音を測る。	Measures abrupt audio changes at cut boundaries and silence at the start.
+肌のざらつき	Skin grain
+高解像度化のあと、肌に出る細かな点の率を測る。	After upscaling, measures the rate of fine speckles on skin.
+列が止まっていないか	Is the queue stalled?
+記録が止まった仕事は止めて、やり直す。夜も。	Jobs whose logs go quiet are stopped and rerun. At night too.
+HUMAN — 人が見る	HUMAN — what a human checks
+顔と服の 1 枚	The one photo of face and outfit
+キャラの顔と服は、人が 1 枚に決めてから使い回す。	A character's face and outfit are fixed in one photo by a human, then reused.
+曲の採否	Accepting a song
+候補の曲は、耳で聞いて選ぶ。	Candidate songs are chosen by ear.
+本番の一括許可	Batch approval for production
+台詞・尺・費用の一覧を見て、印を付ける。	Review the list of lines, lengths and costs, then mark it.
+手足と顔の最終確認	Final check of hands and faces
+機械が通しても、手が三本の一枚は人の目で見つける。	Even if the machine lets it through, a photo with three hands gets caught by a human eye.
+出すかどうか、いつ出すかは、人が決める。	Whether to publish, and when, is a human decision.
+05 — この頁も	05 — This page too
+このサイトも、	This site
+同じ作り	is built the same way
+見た目の決まりも、数字も、確認も、同じ考え方で回している。	Design rules, numbers and checks all run on the same thinking.
+見た目の決まりを検査	Design rules checked
+決まりから外れた部品があると、公開の前の組み立てが止まる。	If a component breaks the rules, the build stops before publishing.
+自動	Automated
+実機の画面で確認	Checked on a real device
+変更のたびに、iPhone の画面で表示と重さを測る。	Every change is measured on an iPhone screen for layout and weight.
+自動 + 人	Automated + human
+数字は記録から	Numbers from the logs
+仕組みの頁の節約額は、生成の記録から自動で集計して書き換える。	The savings figure on the "how it works" page is tallied automatically from the generation logs.
+公開は人が判断	Publishing is a human call
+試作を見て、出すかどうかを決める。	Look at the draft, then decide whether to publish.
+人	Human
+技術の相談も、	Technical questions, too,
+手元の GPU で何が回せるか、どこを人が見るべきか。いまの環境を送ってください。	What your GPU can run and where a human should look. Just send your current setup.
+仕組みへ戻る	Back to how it works
+つくりかたを見る	See how it's built
+うち動画の分	of which video
+万円、写真の分	×10,000 yen; photos
+生成した写真	Photos generated
+棚の様式の作例・キャラの候補・サイトの素材。	Shelf samples, character candidates, site material.
+棚の作例・キャラの候補・サイトの素材。	Shelf samples, character candidates, site material.
+手元の 1 秒の電気代	Electricity per second at home
+外部の最安は	The cheapest external rate is
+円。	yen.
+円	yen
+クリップ。外部なら、失敗した分にも課金される。	clips. An external service would charge for the failures too.
+万円・写真	×10,000 yen; photos
+万円。	×10,000 yen.
+の生成台帳から自動で集計（	tallied automatically from the generation log (
+更新）。動画 = 秒数 ×（外部の動画生成サービスの最安の単価 − 手元の電気代）。写真 = 枚数 × 今の世代でいちばん安い公式の画像単価 − 手元の電気代。曲は含めないので、実際の節約はこれより大きい。	updated). Video = seconds × (cheapest external video rate − electricity at home). Photos = count × the cheapest official image rate of the current generation − electricity at home. Music isn't counted, so the real savings are larger.
+04 — 失敗の値段	04 — The price of failure
+失敗しても、	Even when it fails,
+電気代だけ	it only costs electricity
+外部の動画生成サービスは、失敗した生成にも秒数で課金される。手元の GPU なら、何度作り直しても払うのは電気代だけ——だから、納得するまで試せる。	External video services bill by the second, failures included. On your own GPU, remaking it ten times costs only electricity—so you can keep trying until you're satisfied.
+生成した動画	Video generated
+755 クリップ・約 2.2 時間。	755 clips, about 2.2 hours.
+本編に使った秒数	Seconds used in finished pieces
+この間に公開した MV 5 本の本編（概算）。	The 5 MVs released in this period (approximate).
+失敗・不採用・試験	Failed, rejected, test
+約 6,900 秒。外部なら、ここにも課金される。	About 6,900 seconds. An external service would bill for this too.
+節約した金額（下限）	Amount saved (lower bound)
+うち失敗・不採用の分だけで 45.3 万円。	Of which failures and rejects alone: ¥453,000.
+2026 年 8 月 21 日〜10 月 8 日の生成台帳の集計（動画モデル 2 種）。節約額 = 秒数 ×（外部の動画生成サービスの 10 月の最安の単価 66.6 円/秒 − 手元の電気代 0.95 円/秒）。画像・曲・8 月 20 日以前は含めないので、実際の節約はこれより大きい。	Tallied from the generation log, August 21–October 8, 2026 (two video models). Savings = seconds × (cheapest external video rate in October, ¥66.6/s − electricity at home, ¥0.95/s). Images, music and anything before August 20 aren't counted, so the real savings are larger.
+秒	s
+万円	×10,000 yen
+05 — 実績『いつもの顔』	05 — Case study: The Usual Face
+七五三・家族写真	Shichigosan family photos
+USE CASE 06 — 七五三・家族写真	USE CASE 06 — Shichigosan family photos
+晴れの日を、	The big day,
+家族の一冊	as one family book
+千歳飴、被布と羽織袴、紅葉の参道、写真館の金屏風。七五三の一日の空気と小物を、写真館の見本帳のように——手元のスタジオで仕立てます。	Chitose-ame candy, a hifu vest and haori-hakama, a maple-lined shrine path, the gold screen of a photo studio. The air and the small things of a Shichigosan day, like a studio's sample book—made in your own studio.
+一日の流れを見る	See the day
+02 — 一日の流れ	02 — The day
+参道から、	From the shrine path
+お祝いの席	to the celebration table
+支度の小物、神社の参道と手水舎、写真館の金屏風、帰り道、お祝いの膳。一日の場面を、ひと続きの見本に。	Getting-ready details, the shrine path and purification basin, the studio's gold screen, the way home, the celebration meal. The scenes of one day, as a single sample set.
+参道と支度	Shrine path and getting ready
+小物と、写真館と、お祝いの席	Details, the studio, the celebration table
+千歳飴・神社の床几	Chitose-ame candy on a shrine bench
+被布・衣桁に掛けて	A hifu vest on a kimono stand
+鳥居の参道・銀杏	Torii path under ginkgo
+石畳の参道・銀杏の朝	Stone path, a ginkgo morning
+訪問着・紅葉の参道	Houmongi kimono on a maple path
+お参りの帰り道	The way home from the shrine
+羽織袴・扇子と守り刀	Haori and hakama, fan and ceremonial sword
+手水舎・紅葉の水面	Purification basin, maple leaves on the water
+つまみ細工の髪飾り・草履	Tsumami-zaiku hair ornaments and zori
+写真館・金屏風と緋毛氈	Photo studio: gold screen and red carpet
+父と母の手・千歳飴	Mother's and father's hands, chitose-ame candy
+お祝いの席・鯛と赤飯	The celebration table: sea bream and red rice
+七五三の相談は、	Ask about Shichigosan
+神社の雰囲気と、着せたい衣装の色。それだけ送ってください。見本帳の形にしてお返しします。	The feel of the shrine and the color of the outfit you'd like. That's all. I'll come back with a sample set.
+千歳飴、被布と羽織袴、紅葉の参道、写真館の金屏風——晴れの日の空気と小物を、見本帳のように。	Chitose-ame candy, a hifu vest and haori-hakama, a maple-lined path, a studio's gold screen—the air and small things of the big day, as a sample set.

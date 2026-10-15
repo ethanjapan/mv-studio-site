@@ -53,7 +53,7 @@ for (const SET of SETS) {
     const src = `../assets/uc/${it.id}`
     return `          <figure class="${cls}"><picture><source type="image/webp" srcset="${src}-600.webp${v} 600w, ${src}-1200.webp${v} 1200w" sizes="${SIZES[big ? 'big' : it.orient]}"><img src="${src}.jpg${v}" alt="" loading="lazy" decoding="async"></picture><figcaption>${esc(it.ja)}</figcaption></figure>`
   }
-  const FOLD_BTN = `        <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る</span><span class="zh">看更多</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>`
+  const FOLD_BTN = `        <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る</span><span class="zh">看更多</span><span class="en">Read more</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>`
 
   // ---- 棚
   let out = '\n', nShelf = 0
@@ -75,7 +75,7 @@ for (const SET of SETS) {
   ${grid(rest, false)}
             </div>
           </div>
-  ${FOLD_BTN.replace('続きを見る', `続きを見る（${rest.length} 枚）`).replace('看更多', `看更多（${rest.length} 張）`)}
+  ${FOLD_BTN.replace('続きを見る', `続きを見る（${rest.length} 枚）`).replace('看更多', `看更多（${rest.length} 張）`).replace('Read more', `Read more (${rest.length})`)}
   `
     }
   }
@@ -90,10 +90,13 @@ for (const SET of SETS) {
   }
 
   // ---- 辞書(日本語→繁中)。棚の見出し・説明・題。畳む札の文字は札の中に ja/zh を両方持つ
-  const dict = {}
-  for (const sh of DATA.shelves) { dict[sh.ja] = sh.zh; if (sh.sub_ja && sh.sub_zh) dict[sh.sub_ja] = sh.sub_zh }
-  for (const it of live) dict[it.ja] = it.zh
-  const js = `/* 生成物: node gen_shelves.mjs が ${SET.data} から書く(手で編集しない)。${SET.jp}の棚の見出しと題の 日本語→繁中。uc_i18n.js の辞書に合流する */\nwindow.MV_${SET.name.toUpperCase()}_I18N=${JSON.stringify(dict)};\n`
+  const dict = {}, dictEn = {}
+  // 英語: 棚の見出しは「EN <span>日本語</span>」の形なので、英語では span を説明(sub_en)に替える(英題の重複を避ける)。題は it.en
+  for (const sh of DATA.shelves) { dict[sh.ja] = sh.zh; if (sh.sub_ja && sh.sub_zh) dict[sh.sub_ja] = sh.sub_zh; dictEn[sh.ja] = sh.sub_en || sh.en }
+  for (const it of live) { dict[it.ja] = it.zh; if (it.en) dictEn[it.ja] = it.en }
+  const noEn = live.filter(it => !it.en).map(it => it.id)
+  if (noEn.length) console.warn(`★${SET.jp}: 英語の題が無い ${noEn.length} 枚(日本語のまま出る): ${noEn.join(' ')}`)
+  const js = `/* 生成物: node gen_shelves.mjs が ${SET.data} から書く(手で編集しない)。${SET.jp}の棚の見出しと題の 日本語→繁中(_I18N)と英語(_I18N_EN)。uc_i18n.js の辞書に合流する */\nwindow.MV_${SET.name.toUpperCase()}_I18N=${JSON.stringify(dict)};\nwindow.MV_${SET.name.toUpperCase()}_I18N_EN=${JSON.stringify(dictEn)};\n`
   const jp = join(ROOT, `js/${SET.name}_i18n.js`)
   let old = ''; try { old = readFileSync(jp, 'utf8') } catch {}
   if (old !== js) { writeFileSync(jp, js); console.log(`js/${SET.name}_i18n.js を書き換え`) }

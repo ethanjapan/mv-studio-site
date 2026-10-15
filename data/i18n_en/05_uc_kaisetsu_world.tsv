@@ -1,0 +1,176 @@
+# 解説動画 / 世界の撮影
+解説動画 — MV Studio ユースケース	Explainer videos — MV Studio use case
+USE CASE 04 — 解説動画	USE CASE 04 — Explainer videos
+作り方そのものを、	The making-of,
+番組	as a show	uc
+にする。	.
+完成した一本の裏には、山ほどの失敗と、やり直しの夜がある。それを隠さずに、AI 本人が話す——工場見学、解説、ラジオ、技術デモ。台本・声・進行まで、同じ仕組みで。	Behind every finished piece are a mountain of failures and nights of starting over. The AI tells it herself, nothing hidden—factory tours, commentary, radio, tech demos. Script, voice and pacing, all from the same engine.
+社内向けの説明動画・製品の解説にも	Also for internal explainer videos and product walkthroughs
+02 — 番組表	02 — Program guide
+すでに放送した、	Already aired:
+7本	7 episodes
+日本語と繁體中文の二か国語で。案内役は、作られた本人の RINKA と KANADE。	In two languages, Japanese and Traditional Chinese. Your hosts are RINKA and KANADE—the ones who were made.
+工場見学	Factory tour
+この家から、データは出ない	Nothing leaves this house
+MVを生む“工場”の中身。素材も、失敗も、完成した一本も——なぜ外に出ないのかを、案内役のRINKAが歩きながら説明する。	Inside the "factory" that makes the MVs. Footage, failures, finished pieces—RINKA walks you through why none of it ever leaves.
+日本語	Japanese
+スタジオの中	Inside the studio
+繁體中文	Traditional Chinese
+解説	Commentary
+AIが自分の作られ方を話す	An AI explains how it was made
+6本のMVの舞台裏を、AI本人がまとめて解説する。	The making of six MVs, explained by the AI herself in one sitting.
+『約束』制作全記録	The Making of The Promise
+697枚から選ばれた彼女が、ボツになった50本ぶんの失敗を自分で話す。	Picked from 697 candidates, she tells the story of the 50 takes that got thrown out—herself.
+ラジオ	Radio
+RINKAのオフレコ #04	RINKA Off the Record #04
+重いものだけが、残った——『重力』の制作を、KANADEと順位をつけて振り返る。	Only the heavy things stayed—RINKA and KANADE rank their way back through the making of GRAVITY.
+RINKAのオフレコ #03	RINKA Off the Record #03
+跳ねていなかったのは、わたしじゃなかった——初ゲストのKANADEと、犯人捜しをする制作裏話。	The one who wasn't bouncing wasn't me—a whodunit with first guest KANADE, from behind the scenes.
+RINKAのオフレコ #02	RINKA Off the Record #02
+データは出ないのに、わたしの失敗は出ていく——監督のいないところで話す、制作裏話。	The data never leaves, but my mistakes do—behind-the-scenes talk while the director is away.
+技術デモ	Tech demo
+AIキャラが、自然に話す	An AI character that talks naturally
+口の動きも、間の取り方も。喋る映像がどこまで自然になるかを、手元のGPUだけで試した記録。	Lip movement, pauses, timing. A record of how natural a talking image can get on a single home GPU.
+03 — あなたの番組なら	03 — If it were your show
+話す人が、	No presenter
+いなくても	required
+製品の使い方、社内の手順、作品の舞台裏。原稿と資料を渡せば、案内役が話す動画になる。同じ案内役で、何本でも。	How to use a product, internal procedures, the making of a piece. Hand over a script and materials, and a host presents it on video. The same host, for as many episodes as you like.
+原稿を渡す	Hand over the script
+箇条書きでも、会話の口調でも。台本の形に整え、間の取り方まで決める。	Bullet points or conversational—either works. It's shaped into a script, right down to the pauses.
+案内役を決める	Choose the host
+RINKA・KANADE、または専用の案内役。声も、顔も、同じ人として何本でも出せる。	RINKA, KANADE, or a host made just for you. Same voice, same face, for as many episodes as you need.
+二か国語で出す	Release in two languages
+日本語と繁體中文。訳は直訳ではなく、それぞれの言葉で自然に。字幕も同時に。	Japanese and Traditional Chinese. Not literal translations—natural in each language. Subtitles come with it.
+解説動画の相談は、	Ask about an explainer video
+原稿	with a script
+説明したい内容と、尺の目安。それだけ送ってください。台本案にしてお返しします。	What you want to explain and a rough length. That's all. I'll come back with a draft script.
+世界の撮影 — MV Studio ユースケース	Shooting the world — MV Studio use case
+USE CASE 05 — 世界の撮影	USE CASE 05 — Shooting the world
+同じ顔で、	The same face,
+世界を一周	around the world
+アメリカの宣材、韓国の写真館と K-POP、台湾の写真館、中国の旅拍、日本の祭りと絶景——地域ごとに集めた撮影の様式 3,000 以上。同じ顔のまま、国の数だけ撮り分ける。すべて高画素で、手元の PC で。	American headshots, Korean photo studios and K-pop, Taiwanese studios, Chinese travel shoots, Japanese festivals and landscapes—over 3,000 looks gathered by region. The same face, shot as many ways as there are countries. All high resolution, on your own PC.
+「韓国の写真館みたいに」「台湾の旅拍で」——国と雰囲気を言うだけ。ディレクターが、その土地の光と衣装を当てる。	"Like a Korean photo studio." "A Taiwanese travel shoot."—Just name the country and the mood. The director matches the local light and clothing.
+行きたい国、撮りたい雰囲気。言葉にできる所だけでいい。棚の地域の段から指すのが一番早い。	The country you want to go to, the mood you want. Only what you can put into words. Pointing at the shelf's regional rows is fastest.
+「韓国の写真館みたいに」	"Like a Korean photo studio"
+地域の様式、	Regional looks,
+US 800・韓国 800・台湾 200・中国 280・日本 600・日本の絶景 300。それぞれの国の「撮られ方」を集めた棚から、ここに並ぶのは 106。すべて 1408×2048 の高画素。	US 800, Korea 800, Taiwan 200, China 280, Japan 600, Japan's landscapes 300. From a shelf of how each country gets photographed, here are 106. All at 1408×2048.
+アメリカ — 俳優の宣材、オーラ・ビューティー、レトロダイナー、オールドマネー、ヴァンプ、モダンウエスタン——色と役割で撮る	America — actor headshots, aura beauty, retro diners, old money, vamp, modern western—shot by color and role
+俳優の宣材写真・コマーシャル(スタジオ正面・	Actor headshot, commercial (studio, straight on,
+オーラ・ビューティー・1色に揃えた顔	Aura beauty, the face in a single color
+フォトブースの1コマ・フラッシュの1コマ	One photo-booth frame, one flash frame
+エクストラ・セレスチャル・未来的なトラック	Extra-celestial, futuristic tracksuit
+コテージコア・野菜を育てる	Cottagecore, growing vegetables
+フィッシャーマン・レインコートの着こなし	Fisherman style, how to wear a raincoat
+モブワイフ・黒に毛皮のコート	Mob wife, black with a fur coat
+オペラ美学・劇的なシルエット	Opera aesthetic, a dramatic silhouette
+社交界のプールサイド・山を望むテラス	High-society poolside, a terrace facing the mountains
+ロココ・リバイバル・扇の寄り	Rococo revival, fan close-up
+トマトガール・サマー・ゼラニウムのバルコニー	Tomato-girl summer, a geranium balcony
+モダンウエスタン・牧場の家の戸口	Modern western, a ranch-house doorway
+韓国 — モノクロ写真館、桜スナップ、韓服、4コマ写真ブース、MZ のポーズ、色背景の肖像——澄んだ光と白	Korea — monochrome studios, cherry-blossom snaps, hanbok, four-cut booths, MZ poses, solid-color portraits—clear light and white
+モノクロ写真館・振り向き	Monochrome studio, glancing back
+桜スナップ・小川の桜	Cherry-blossom snap, blossoms by a stream
+作り込みセットのセルフスタジオ・電話ボックス	Elaborate-set self-studio, phone booth
+目の超接写・指で囲む	Extreme eye close-up, framed by fingers
+フュージョン韓服・舞台衣装の韓服	Fusion hanbok, stage-costume hanbok
+宮殿の韓服スナップ・インスタント写真のおまけ	Palace hanbok snap, with a bonus instant photo
+4コマ写真ブースの1コマ・カチューシャの小物	One four-cut booth frame, headband props
+MZ世代のポーズミーム・腕のハート 横	MZ-generation pose meme, arm heart, landscape
+人外のファンタジーコンセプト・森 横	Otherworldly fantasy concept, forest, landscape
+色背景の肖像証明・黒背景	Solid-color ID portrait, black backdrop
+ゴシックロマンのウェディング・シダの寄り	Gothic-romance wedding, fern close-up
+火山島のウェディングスナップ・黒い砂浜と白い	Volcanic-island wedding snap, black sand and white
+韓国 — アイドルの写真文法。ファンサイトの望遠、シーズングリーティング、コンセプトフォト(ガールクラッシュ、フューチャリスティック、キュート、Y2K)	Korea — the grammar of idol photos. Fansite telephoto, season's greetings, concept photos (girl crush, futuristic, cute, Y2K)
+ファンサイトの望遠写真・授賞式	Fansite telephoto, awards show
+ファンサイトの望遠写真・音楽番組の出勤路	Fansite telephoto, arriving at the music show
+シーズングリーティングの画報・バレーボール	Season's greetings pictorial, volleyball
+ガールクラッシュのコンセプト・ボールガウン×エッジ	Girl-crush concept, ball gown with an edge
+フューチャリスティックのコンセプト・厚底スニーカー	Futuristic concept, platform sneakers
+キュート・パステルのコンセプト・夏の明るい版	Cute pastel concept, bright summer version
+ファン&実験のコンセプト・ゼリーシューズ	Fun & experimental concept, jelly shoes
+プールのある家のY2Kコンセプト・トラックスーツ	Pool-house Y2K concept, tracksuit
+シーズングリーティングの画報・テニス	Season's greetings pictorial, tennis
+ガールクラッシュのコンセプト・コンバットブーツ	Girl-crush concept, combat boots
+フューチャリスティックのコンセプト・極端なネイル	Futuristic concept, extreme nails
+プールのある家のY2Kコンセプト・チューブドレス	Pool-house Y2K concept, tube dress
+台湾 — 写真館の文化と外拍。レトロ白黒4連写、Y2K ブース、民国の写真館、眷村、花季の山、島の端のロケ、武侠、都市のランドマーク	Taiwan — studio culture and location shoots. Retro black-and-white four-shot strips, Y2K booths, Republican-era studios, military villages, flower-season mountains, the island's far ends, wuxia, city landmarks
+レトロ白黒4連写(ビストロ併設)・笑い崩れる	Retro black-and-white four-shot strip (bistro), collapsing in laughter
+島の端のロケ(灯台・塩山・緑のトンネル)・緑	The island's far ends (lighthouse, salt mountain, green tunnel), green
+Y2K・90年代レトロ撮影ブース(魚眼)・フィルム枠風の縁	Y2K / 90s retro booth (fisheye), film-frame border
+民国初期写真館・チャイナドレス復古・黄灯の室内	Early-Republican studio, retro qipao, a room in yellow lamplight
+山のアジサイ畑の花季写真・ピンクのアジサイ	Mountain hydrangea fields in bloom, pink hydrangeas
+島の端のロケ(灯台・塩山・緑のトンネル)・日の出	The island's far ends (lighthouse, salt mountain, green tunnel), sunrise
+眷村(軍人村)レトロ撮影・理髪店の椅子	Military-village retro shoot, barbershop chair
+中判フィルム写真館(12コマ限定)・ふと笑う	Medium-format film studio (12 frames only), an unguarded smile
+博物館級レトロ写真館(日治時代・古欧州)・窓辺の横顔	Museum-grade retro studio (Japanese era, old Europe), profile at the window
+真上から撮る韓国式ブース(俯拍)・横向きに丸まる	Overhead Korean-style booth, curled up on one side
+韓式プロフィール・全身記念写真・季節限定の一枚	Korean-style profile, full-length keepsake, seasonal edition
+映画のワンシーン再現・車の窓	Recreating a movie scene, car window
+韓国式セルフ撮影スタジオ・跳ぶ	Korean-style self-studio, jumping
+武侠風写真・顔寄り	Wuxia-style photo, face close-up
+古典漢服写真(台湾)・祭事の場	Classical hanfu photo (Taiwan), at a festival
+築百年の旧写真館で撮る・光の筋	Shot in a century-old studio, a streak of light
+アイドル風プロフィール(音楽番組風)・ステージの引き	Idol-style profile (music-show look), wide stage shot
+都市のランドマーク・ファッション・屋上の夕景	City landmark fashion, rooftop at dusk
+欧州古典レースドレス写真・装飾の部屋の引き	European classical lace-dress photo, ornate room, wide
+レトロ白黒4連写(ビストロ併設)・目を閉じる寄り	Retro black-and-white four-shot strip (bistro), eyes closed, close
+ひとりウェディングフォト・モダンドレス	Solo wedding photo, modern dress
+島の端のロケ(灯台・塩山・緑のトンネル)・白黒の八角灯台	The island's far ends (lighthouse, salt mountain, green tunnel), black-and-white octagonal lighthouse
+韓式プロフィール・全身記念写真・半身の形象照	Korean-style profile, full-length keepsake, half-length image photo
+映画のワンシーン再現・電話ボックス	Recreating a movie scene, phone booth
+中国 — 旅拍と国風。飛天の旅拍、ドーパミンカラー、港式レトロ食堂、撕拉片、盛唐衣装、新中式	China — travel shoots and guofeng. Flying-apsara shoots, dopamine colors, Hong Kong-style retro diners, peel-apart film, Tang-dynasty dress, new Chinese style
+砂漠の天女(飛天)旅拍・宝飾の寄り	Desert apsara travel shoot, jewelry close-up
+ドーパミンカラー(撞色)写真・水面に映る色	Dopamine-color (color-clash) photo, colors on the water
+頭の花冠と牡蠣殻の家(簪花囲)・花冠の後頭部	Flower crown and oyster-shell houses, the crown from behind
+朝鮮族衣装の旅拍(公主)・ぶらんこ	Korean-Chinese princess travel shoot, on a swing
+港式レトロ食堂での撮影・レトロ電話を持つ	Shoot in a Hong Kong-style retro diner, holding a vintage phone
+メイラード(ブラウン系)・赤茶のジャケット	Maillard browns, a rust-red jacket
+宮殿の赤壁×宮廷衣装の旅拍・頭飾りの寄り	Palace red walls and court dress, headdress close-up
+ピールアパート(撕拉片)インスタント肖像・額	Peel-apart instant portrait, framed
+盛唐衣装の古都旅拍・寺の桜	Tang-dynasty dress in an ancient capital, temple cherry blossoms
+新中式(モダン中華)ポートレート・春節の中国	New-Chinese portrait, Lunar New Year red
+正統漢服×宋韻の園林写真・円洞門	Classical hanfu, Song-style garden photo, moon gate
+銀飾りの民族衣装旅拍(苗族の装い)・盃	Silver-ornament ethnic dress travel shoot (Miao style), wine cup
+盛唐衣装の古都旅拍・灯籠の街区	Tang-dynasty dress in an ancient capital, lantern quarter
+港風スタジオ写真(90年代香港)・サングラス	Hong Kong-style studio photo (90s), sunglasses
+松弛感(力の抜けた自然体)・芝生に寝転ぶ	Relaxed and natural, lying on the grass
+オールドマネー/静かな贅沢・厩舎	Old money / quiet luxury, stables
+日本 — アートアクアリウム、阿波踊り、十二単、ねぶた、花魁、歌劇団、球場——祭りと舞台の衣装で	Japan — art aquarium, Awa dance, twelve-layered kimono, Nebuta, oiran, revue, ballpark—in festival and stage costume
+アートアクアリウム×浴衣・低い水槽の前にしゃ	Art aquarium in yukata, crouching before a low tank
+阿波踊りの女踊り・夕暮れの路地で待つ	Awa dance, women's style, waiting in an alley at dusk
+フィギュアスケートの衣装と技・レイバックスピ	Figure-skating costume and moves, layback spin
+女子プロレスのリングコスチューム・入場の衣装	Women's pro-wrestling ring gear, entrance costume
+女優ポートレートと花・桜の枝	Actress portrait with flowers, a cherry branch
+十二単の着装・檜扇で顔を隠す	Wearing the twelve-layered kimono, face hidden behind a cypress fan
+ねぶた祭の跳人・跳躍のブレ	Nebuta dancer, motion blur mid-leap
+花魁道中の装い・赤い傘の下の横顔	Oiran procession dress, profile under a red umbrella
+歌劇団の男役・羽根扇を広げる	Revue male role, feather fan spread
+よさこいの踊り子・鳴子を構えて前進	Yosakoi dancer, advancing with clappers
+球場の赤いユニフォーム応援・赤ユニで応援する	Ballpark cheering in a red uniform
+量産型・自撮りで上目づかい	Mass-produced style, upward-glance selfie
+聖地巡礼とぬい撮り・神社の石段とぬいぐるみ	Pilgrimage and plushie photo, shrine steps with a plush toy
+推し活スタジオ(生誕祭)・推し色バルーンの祭壇	Fan-celebration studio (birthday), an altar of balloons in the idol's color
+歌劇団の男役・舞台化粧の寄り	Revue male role, stage makeup close-up
+地雷系・夜の歩道橋の手すり	Jirai-kei, footbridge railing at night
+推し活スタジオ(生誕祭)・特大ケーキのオブジェ	Fan-celebration studio (birthday), a giant cake prop
+アートアクアリウム×浴衣・柱の水槽を見上げる	Art aquarium in yukata, looking up at a column tank
+日本の絶景×人物 — 青い池、浅間公園、長谷寺、ジュエリーアイス、河津桜、華厳の滝、只見線——名所の光の中に立つ	Japan's great landscapes with a person — the Blue Pond, Asama Park, Hasedera, jewelry ice, Kawazu cherry blossoms, Kegon Falls, the Tadami Line—standing in the light of famous places
+美瑛 白金青い池・秋・紅葉の映り込み	Biei, Shirogane Blue Pond, autumn, maple reflections
+新倉山浅間公園 忠霊塔・振袖で巡る	Arakurayama Sengen Park, Chureito Pagoda, touring in furisode
+鎌倉 長谷寺 あじさい路・眺望散策路・池と紅	Kamakura, Hasedera hydrangea path, viewpoint trail, pond and red
+豊頃 大津海岸のジュエリーアイス・昼・透き通	Toyokoro, jewelry ice at Otsu Beach, daytime, crystal clear
+河津桜並木 河津川沿い・川沿いの桜並木と菜の	Kawazu cherry trees along the river, blossoms and rapeseed
+華厳の滝・観瀑台から見上げる	Kegon Falls, looking up from the viewing deck
+鎌倉 明月院・悟りの窓越しのあじさいと苔	Kamakura, Meigetsuin, hydrangeas and moss through the round window
+三十槌の氷柱・氷柱の寄り	Misotsuchi icicles, close-up
+奥入瀬渓流・新緑の朝霧	Oirase Gorge, morning mist in fresh green
+美瑛 白ひげの滝・橋の上の寄り	Biei, Shirahige Falls, close-up on the bridge
+只見線 第一只見川橋梁・渓谷の寄り	Tadami Line, First Tadami River Bridge, gorge close-up
+小樽運河・冬の夜・キャンドルの中の着物	Otaru Canal, winter night, kimono among the candles
+写真から、	From photos
+動画	to video
+へ。	.
+どの国の一枚も、同じ仕組みで数秒の動画になる。下は日本の棚の実例——写真 56 枚がそのまま動いた「いつもの顔」のカット。	A photo from any country becomes a few seconds of video with the same engine. Below, an example from the Japan shelf—shots from The Usual Face, where 56 photos were brought to life as they were.
+世界の撮影の相談は、	Ask about shooting the world
+国の名前	with a country's name
+撮りたい国と雰囲気、着たい衣装。それだけ送ってください。その土地の様式で候補にしてお返しします。	The country and mood you want, and the outfit you'd like to wear. That's all. I'll come back with candidates in that region's style.

@@ -64,7 +64,7 @@
   MAP.forEach(function(it){nav.appendChild(li(it,false));if(it.sub){var g=document.createElement('div');g.className='sm-sub';it.sub.forEach(function(x){g.appendChild(li(x,true));});nav.appendChild(g);}});
   dr.appendChild(nav);
   var foot=document.createElement('div');foot.className='sm-foot';
-  foot.innerHTML='<span class="sm-k">LANGUAGE</span><div class="sm-lang"><button type="button" data-lang="ja">日本語</button><button type="button" data-lang="zh">繁中</button></div>';
+  foot.innerHTML='<span class="sm-k">LANGUAGE</span><div class="sm-lang" data-noi18n><button type="button" data-lang="ja">日本語</button><button type="button" data-lang="zh">繁中</button><button type="button" data-lang="en">EN</button></div>';
   dr.appendChild(foot);
   function open(){document.body.classList.add('sm-open');btn.setAttribute('aria-expanded','true');}
   function close(){document.body.classList.remove('sm-open');btn.setAttribute('aria-expanded','false');}

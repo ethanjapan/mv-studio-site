@@ -283,6 +283,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 "夕暮れの部室で、青春バンドMVに":"在黃昏的社辦，做一支青春樂團MV","金色の光と舞う埃——雰囲気を3案から選ぶ。":"金色的光跟飛舞的灰塵——氛圍從3個方向裡挑。","まっすぐな目の、あどけなさの残る子":"眼神很直、還帶點稚氣的女生","白シャツに、紺のプリーツスカートで":"白襯衫，配上深藍色的百褶裙","ラスサビは、想いを解き放つように":"最後的副歌，把情緒整個放出來",
 "STORYBOARD — 実際の絵コンテから":"STORYBOARD — 來自實際的分鏡","引き・雰囲気":"遠景・氛圍","寄り・表情":"特寫・表情","バストアップ":"半身特寫","動きのカット":"動態鏡頭","ひざ上":"膝上景","絵コンテそのままに、一コマずつ演出する。気になるカットだけ、納得いくまで何度でも——他のカットはそのまま。":"照著分鏡，一格一格導戲。只挑在意的那一格，重做到滿意為止——其他鏡頭原封不動。"
   },window.MV_WORKS_I18N||{});
+  // 英語(2026-10-15・ユーザー「英語版も用意して。直訳ではなくネイティブな英語で」): 辞書は data/i18n_en.tsv → gen_i18n.mjs が js/en_main.js に書く
+  const E=Object.assign({},window.MV_WORKS_I18N_EN||{},window.MV_EN_MAIN||{});   // 手で書いた英語が生成物(作品の札の文字)に勝つ
   function walk(){
     const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
       if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
@@ -294,15 +296,28 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const a=[];let n;while(n=w.nextNode())a.push(n);return a;
   }
   function setLang(lang){
-    document.documentElement.lang=lang==='zh'?'zh-Hant':'ja';
+    document.documentElement.lang=lang==='zh'?'zh-Hant':lang==='en'?'en':'ja';
     if(window.__mvFonts)window.__mvFonts(lang);   // 繁中に切り替えたら Noto TC を読む(初回だけ)
     document.body.classList.toggle('lang-zh',lang==='zh');
+    document.body.classList.toggle('lang-en',lang==='en');
+    const D=lang==='zh'?M:lang==='en'?E:null;   // 使う辞書(日本語は元に戻す)
     walk().forEach(n=>{
       if(n.__ja==null)n.__ja=n.nodeValue;
       const key=n.__ja.trim();
-      if(lang==='zh'&&M[key]!=null)n.nodeValue=n.__ja.replace(key,M[key]);
+      if(D&&D[key]!=null)n.nodeValue=n.__ja.replace(key,D[key]);
       else n.nodeValue=n.__ja;
     });
+    // 英語(2026-10-15): 日本語は要素の境目に空白が無いので、訳した断片どうし(「That one video」+「that keeps playing」)がくっつく。英字どうしの境目に空白を 1 つ足す(日本語・繁中は触らない)
+    if(lang==='en')walk().forEach(n=>{let nx=n.nextSibling;let nt=null;const IN=/^(SPAN|EM|STRONG|I|B|A)$/;
+      if(nx&&nx.nodeName==='BR')nx=nx.nextSibling;   // <br> はスマホで消える(display:none)ので、その先とも空白で区切る
+      if(nx&&nx.nodeType===3){nt=nx;}else
+      if(nx&&nx.nodeType===1&&IN.test(nx.nodeName)&&nx.firstChild&&nx.firstChild.nodeType===3)nt=nx.firstChild;
+      else if(!nx&&n.parentNode&&IN.test(n.parentNode.nodeName)&&n.parentNode.nextSibling&&n.parentNode.nextSibling.nodeType===3)nt=n.parentNode.nextSibling;
+      if(nt&&/[A-Za-z0-9"\u201d\u2019),.:;!?]\s*$/.test(n.nodeValue)&&/^\s*[A-Za-z0-9"\u201c(]/.test(nt.nodeValue)&&!/\s$/.test(n.nodeValue)&&!/^\s/.test(nt.nodeValue))n.nodeValue+=' ';});
+    // 英語の見出し: 日本語の句読点だけが残った文字ノード(「。」「、」)は英語の記号に(辞書は文の断片を訳すので、記号だけの断片が残る)
+    if(lang==='en')document.querySelectorAll('h1, h2, h3, h4, .ch-title').forEach(h=>{if(h.closest('[data-noi18n]'))return;const tw=document.createTreeWalker(h,NodeFilter.SHOW_TEXT);let t,prev='';while(t=tw.nextNode()){const v=t.nodeValue;if(!v.trim())continue;if(/^[\s。、，.,]+$/.test(v))t.nodeValue=/[.!?]$/.test(prev)?'':v.replace(/。/g,'.').replace(/[、，]/g,', ');else if(/。\s*$/.test(v))t.nodeValue=v.replace(/。\s*$/,'.');prev=t.nodeValue.trim();}});
+    if(document.__jatitle==null)document.__jatitle=document.title;
+    document.title=D&&D[document.__jatitle]?D[document.__jatitle]:document.__jatitle;
     // 繁中の見出し(h1/h2): 台湾の見出しは句読点を置かない(2026-10-13 ユーザー指摘)。末尾の「。」を外し、途中の「，」「、」は <br> の前なら外し、それ以外は全角空白に。日本語は触らない
     if(lang==='zh')document.querySelectorAll('h1, h2, h3, h4, .ch-eyebrow, .cf-cap strong, .workcard figcaption strong, .showcard figcaption strong').forEach(h=>{
       if(h.closest('[data-noi18n]'))return;
@@ -539,7 +554,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const peek=document.createElement('div');peek.className='fold-peek closed';peek.inert=true;peek.appendChild(rest[0]);
     const body=document.createElement('div');body.className='fold-body';body.hidden=true;rest.slice(1).forEach(x=>body.appendChild(x));
     const btn=document.createElement('button');btn.type='button';btn.className='ch-cta fold-btn';btn.setAttribute('aria-expanded','false');
-    btn.innerHTML='<span class="fold-l"><span class="ja">続きを見る</span><span class="zh">看更多</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span>';
+    btn.innerHTML='<span class="fold-l"><span class="ja">続きを見る</span><span class="zh">看更多</span><span class="en">Read more</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span>';
     btn.addEventListener('click',()=>{const open=peek.classList.contains('closed');
       if(open){peek.style.maxHeight=peek.scrollHeight+'px';peek.classList.remove('closed');peek.inert=false;
         peek.addEventListener('transitionend',function te(e){if(e.target!==peek)return;peek.style.maxHeight='none';peek.removeEventListener('transitionend',te);});
@@ -547,7 +562,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       else{body.hidden=true;body.classList.remove('in');peek.style.maxHeight=peek.scrollHeight+'px';peek.getBoundingClientRect();peek.classList.add('closed');peek.style.maxHeight='';peek.inert=true;
         sec.scrollIntoView({block:'start',behavior:'smooth'});}
       btn.setAttribute('aria-expanded',String(open));btn.classList.toggle('open',open);
-      btn.querySelector('.ja').textContent=open?'閉じる':'続きを見る';btn.querySelector('.zh').textContent=open?'收起':'看更多';});
+      btn.querySelector('.ja').textContent=open?'閉じる':'続きを見る';btn.querySelector('.zh').textContent=open?'收起':'看更多';btn.querySelector('.en').textContent=open?'Close':'Read more';});
     lead.after(peek);peek.after(body);body.after(btn);
   });
 })();

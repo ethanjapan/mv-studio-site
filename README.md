@@ -33,3 +33,9 @@ Created by [@made_linlin](https://www.instagram.com/made_linlin/)
 3. `python3 tools/still_assets.py` → `assets/uc/<id>-600.webp` `<id>-1200.webp`(と無ければ `<id>.jpg`)
 4. `node gen_shelves.mjs`(build でも走る)→ `usecases/still.html` の棚と `js/stills_i18n.js`。絵や題が欠けていれば止まる
 5. APP の棚(photo-browser)側は mvdirector の `scripts/add_st_*_styles.py`(様式の行)と `gravure_variety_lab/site_still_base/`(見本)で同じ鍵を持つ
+
+## 英語(2026-10-15)
+- 言語は 日本語 / 繁中 / EN の 3 つ。繁中は `js/main.js` と `js/uc_i18n.js` の辞書 M(日本語の文→繁中)、英語は `data/i18n_en/*.tsv`(日本語の文 <TAB> 英語 [<TAB> main|uc])が正本で、`node gen_i18n.mjs`(build が呼ぶ)が `js/en_main.js` / `js/en_uc.js` を書く。繁中の辞書に鍵があって英語が無いとビルドが止まる
+- 同じ日本語が頁で意味が違う時(「衣装」= Outfit / garments)は 3 列目で main か uc に限定する。頁の `<title>` のように繁中の辞書に無い鍵も、3 列目を付ければ入る
+- 見出しは要素で分かれている(「話すだけで、」+「MVができる。」)。英語は断片をつなげて読んで文になるように書く。英字の断片の境目の空白と、残った「。」「、」は切替の時に機械で直す
+- 作品・番組の英語は `data/works.json` の `en`、物と場所は `data/stills.json` の `en` / `sub_en`(生成器が `*_I18N_EN` に書く)

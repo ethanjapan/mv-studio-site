@@ -61,18 +61,18 @@ const nW = DATA.works.length, nS = DATA.shows.length
 const GO = '<svg class="go-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10.5 8l4 4-4 4"/></svg>'
 // 文言(日本語→繁中)。作品・番組の本文と、ここで作る見出し・導線
 const L = {
-  flow: ['作品', '作品'],
-  prev: ['前の作品', '上一支作品'],
-  next: ['次の作品', '下一支作品'],
-  allWorks: [`すべての作品を見る（${nW}本）`, `看全部作品（${nW} 支）`],
-  doorCount: [`すでに生まれた ${nW} 本`, `已經誕生的 ${nW} 支`],
-  flowS: ['番組', '節目'],
-  prevS: ['前の番組', '上一集節目'],
-  nextS: ['次の番組', '下一集節目'],
-  allShows: [`番組をすべて見る（${nS}回）`, `看全部節目（${nS} 集）`],
-  pageTitle: ['作品一覧 — MV Studio', '全部作品 — MV Studio'],
-  eyebrowW: [`WORKS — 作品（${nW}本）`, `WORKS — 作品（${nW} 支）`],
-  eyebrowS: [`SHOWS — 裏番組（${nS}回）`, `SHOWS — 幕後節目（${nS} 集）`],
+  flow: ['作品', '作品', 'Works'],
+  prev: ['前の作品', '上一支作品', 'Previous work'],
+  next: ['次の作品', '下一支作品', 'Next work'],
+  allWorks: [`すべての作品を見る（${nW}本）`, `看全部作品（${nW} 支）`, `See all ${nW} works`],
+  doorCount: [`すでに生まれた ${nW} 本`, `已經誕生的 ${nW} 支`, `${nW} already made`],
+  flowS: ['番組', '節目', 'Shows'],
+  prevS: ['前の番組', '上一集節目', 'Previous episode'],
+  nextS: ['次の番組', '下一集節目', 'Next episode'],
+  allShows: [`番組をすべて見る（${nS}回）`, `看全部節目（${nS} 集）`, `See all ${nS} episodes`],
+  pageTitle: ['作品一覧 — MV Studio', '全部作品 — MV Studio', 'All works — MV Studio'],
+  eyebrowW: [`WORKS — 作品（${nW}本）`, `WORKS — 作品（${nW} 支）`, `WORKS — ${nW} pieces`],
+  eyebrowS: [`SHOWS — 裏番組（${nS}回）`, `SHOWS — 幕後節目（${nS} 集）`, `SHOWS — behind the scenes, ${nS} episodes`],
 }
 
 // ---- トップ(index.html)
@@ -171,15 +171,22 @@ fill('works.html', 'shows', allShows)
   if (out !== src) { writeFileSync(p, out); console.log('index.html: 完成した作品の数を更新') }
 }
 
-// 辞書
-const dict = {}
-for (const [ja, zh] of Object.values(L)) dict[ja] = zh
+// 辞書(繁中 dict / 英語 dictEn・2026-10-15)
+const dict = {}, dictEn = {}
+for (const [ja, zh, en] of Object.values(L)) { dict[ja] = zh; if (en) dictEn[ja] = en }
+// 尺「3分49秒」は英語では 3:49(文字ノードは尺だけの span なので、尺そのものを鍵にする)
+const durEn = (t) => t.replace(/^(\d+)分(\d+)秒$/, (_, m, s) => `${m}:${s.padStart(2, '0')}`).replace(/^(\d+)秒$/, '$1 s')
 for (const w of DATA.works) {
   if (w.zh?.title) dict[w.title] = w.zh.title
   if (w.zh?.sub) {
     const [hj, tj] = splitSub(w.sub), [hz, tz] = splitSub(w.zh.sub)
     if (tj && tj === tz) dict[hj + ' ・'] = hz + ' ・'   // 文字ノードは「頭 ・ 」で終わる(trim されるので末尾の空白は無し)
     else dict[w.sub] = w.zh.sub
+  }
+  if (w.en?.title) dictEn[w.title] = w.en.title
+  if (w.en?.sub) {
+    const [hj, tj] = splitSub(w.sub), [he] = splitSub(w.en.sub)
+    if (tj) { dictEn[hj + ' ・'] = he + ' ・'; dictEn[tj] = durEn(tj) } else dictEn[w.sub] = w.en.sub
   }
 }
 // 一覧ページ(works.html)の固定文(見出し・リード文・注記)は main.js の辞書から写す(トップと同じ訳にする)
@@ -198,11 +205,19 @@ for (const w of DATA.works) {
   const unknown = [...texts].filter(t => dict[t] == null && /[ぁ-んァ-ン]/.test(t))
   if (unknown.length) console.warn('works.html の訳が無い文(日本語のまま出る):', unknown.join(' / '))
   console.log(`works.html の固定文 ${n} 件を main.js の辞書から写した`)
+  // 英語も同じ文を js/en_main.js(gen_i18n.mjs の生成物)から写す
+  let E = {}
+  try { const src = readFileSync(join(ROOT, 'js/en_main.js'), 'utf8'); E = (0, eval)('(' + src.slice(src.indexOf('{'), src.lastIndexOf('}') + 1) + ')') } catch {}
+  for (const t of texts) if (E[t] != null && dictEn[t] == null) dictEn[t] = E[t]
 }
-for (const s of DATA.shows) { if (s.zh?.genre) dict[s.genre] = s.zh.genre; if (s.zh?.title) dict[s.title] = s.zh.title; if (s.zh?.desc) dict[s.desc] = s.zh.desc }
+for (const s of DATA.shows) { if (s.zh?.genre) dict[s.genre] = s.zh.genre; if (s.zh?.title) dict[s.title] = s.zh.title; if (s.zh?.desc) dict[s.desc] = s.zh.desc
+  if (s.en?.genre) dictEn[s.genre] = s.en.genre; if (s.en?.title) dictEn[s.title] = s.en.title; if (s.en?.desc) dictEn[s.desc] = s.en.desc
+  for (const l of s.langs) { dictEn[l.l] = { '日本語': 'Japanese', '繁體中文': 'Traditional Chinese' }[l.l] || l.l } }
+const missingEn = [...DATA.works.filter(w => !w.en?.title || !w.en?.sub).map(w => w.title), ...DATA.shows.filter(s => !s.en?.title || !s.en?.desc).map(s => s.title)]
+if (missingEn.length) console.warn('英語が無い(日本語のまま出る):', missingEn.join(' / '))
 const missing = [...DATA.works.filter(w => !w.zh?.title || !w.zh?.sub).map(w => w.title), ...DATA.shows.filter(s => !s.zh?.title || !s.zh?.desc).map(s => s.title)]
 if (missing.length) console.warn('繁中が無い(日本語のまま出る):', missing.join(' / '))
-const js = `/* 生成物: node gen_works.mjs が data/works.json から書く(手で編集しない)。作品・番組の日本語→繁中。main.js / uc_i18n.js の辞書に合流する */\nwindow.MV_WORKS_I18N=${JSON.stringify(dict)};\n`
+const js = `/* 生成物: node gen_works.mjs が data/works.json から書く(手で編集しない)。作品・番組の日本語→繁中(MV_WORKS_I18N)と英語(MV_WORKS_I18N_EN)。main.js / uc_i18n.js の辞書に合流する */\nwindow.MV_WORKS_I18N=${JSON.stringify(dict)};\nwindow.MV_WORKS_I18N_EN=${JSON.stringify(dictEn)};\n`
 const jp = join(ROOT, 'js/works_i18n.js')
 let old = ''; try { old = readFileSync(jp, 'utf8') } catch {}
 if (old !== js) { writeFileSync(jp, js); console.log('js/works_i18n.js を書き換え') }

@@ -150,6 +150,8 @@
   "空間の雰囲気":"空間的氛圍","式場・旅館・料亭の「こんな場所」を、言葉で頼んで焼く。実物の写真の代わりではなく、雰囲気を伝える一枚として。":"婚宴場地、旅館、料亭的「這樣的地方」，用一句話就能生成。不是用來取代實景照片，而是傳達氛圍的一張。",
   "物と場所の相談は、":"想聊物與場所，","季節と、置きたい小物。それだけ送ってください。見本帳の形にしてお返しします。":"季節，還有想放的小物。只要傳這些就好。我會整理成樣本集的形式回給你。",
   },window.MV_WORKS_I18N||{},window.MV_STILL_I18N||{},window.MV_BEAUTY_I18N||{});
+  // 英語(2026-10-15): 辞書は data/i18n_en.tsv → gen_i18n.mjs が js/en_uc.js に書く。生成物(作品・棚)の英語も合流
+  const E=Object.assign({},window.MV_WORKS_I18N_EN||{},window.MV_STILL_I18N_EN||{},window.MV_BEAUTY_I18N_EN||{},window.MV_EN_UC||{});   // 手で書いた英語が生成物に勝つ
   function walk(){
     const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
       if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
@@ -162,15 +164,26 @@
   }
   function setLang(lang){
     const zh=lang==='zh';
-    document.documentElement.lang=zh?'zh-Hant':'ja';
+    const D=zh?M:lang==='en'?E:null;   // 使う辞書(日本語は元に戻す)
+    document.documentElement.lang=zh?'zh-Hant':lang==='en'?'en':'ja';
     if(window.__mvFonts)window.__mvFonts(lang);   // 繁中に切り替えたら Noto TC を読む(初回だけ)
     document.body.classList.toggle('lang-zh',zh);
+    document.body.classList.toggle('lang-en',lang==='en');
     walk().forEach(n=>{
       if(n.__ja==null)n.__ja=n.nodeValue;
       const key=n.__ja.trim();
-      if(zh&&M[key]!=null)n.nodeValue=n.__ja.replace(key,M[key]);
+      if(D&&D[key]!=null)n.nodeValue=n.__ja.replace(key,D[key]);
       else n.nodeValue=n.__ja;
     });
+    // 英語(2026-10-15): 日本語は要素の境目に空白が無いので、訳した断片どうし(「That one video」+「that keeps playing」)がくっつく。英字どうしの境目に空白を 1 つ足す(日本語・繁中は触らない)
+    if(lang==='en')walk().forEach(n=>{let nx=n.nextSibling;let nt=null;const IN=/^(SPAN|EM|STRONG|I|B|A)$/;
+      if(nx&&nx.nodeName==='BR')nx=nx.nextSibling;   // <br> はスマホで消える(display:none)ので、その先とも空白で区切る
+      if(nx&&nx.nodeType===3){nt=nx;}else
+      if(nx&&nx.nodeType===1&&IN.test(nx.nodeName)&&nx.firstChild&&nx.firstChild.nodeType===3)nt=nx.firstChild;
+      else if(!nx&&n.parentNode&&IN.test(n.parentNode.nodeName)&&n.parentNode.nextSibling&&n.parentNode.nextSibling.nodeType===3)nt=n.parentNode.nextSibling;
+      if(nt&&/[A-Za-z0-9"\u201d\u2019),.:;!?]\s*$/.test(n.nodeValue)&&/^\s*[A-Za-z0-9"\u201c(]/.test(nt.nodeValue)&&!/\s$/.test(n.nodeValue)&&!/^\s/.test(nt.nodeValue))n.nodeValue+=' ';});
+    // 英語の見出し: 日本語の句読点だけが残った文字ノード(「。」「、」)は英語の記号に(辞書は文の断片を訳すので、記号だけの断片が残る)
+    if(lang==='en')document.querySelectorAll('h1, h2, h3, h4, .ch-title').forEach(h=>{if(h.closest('[data-noi18n]'))return;const tw=document.createTreeWalker(h,NodeFilter.SHOW_TEXT);let t,prev='';while(t=tw.nextNode()){const v=t.nodeValue;if(!v.trim())continue;if(/^[\s。、，.,]+$/.test(v))t.nodeValue=/[.!?]$/.test(prev)?'':v.replace(/。/g,'.').replace(/[、，]/g,', ');else if(/。\s*$/.test(v))t.nodeValue=v.replace(/。\s*$/,'.');prev=t.nodeValue.trim();}});
     // 繁中の見出し(h1/h2): 台湾の見出しは句読点を置かない(2026-10-13 ユーザー指摘)。末尾の「。」を外し、途中の「，」「、」は <br> の前なら外し、それ以外は全角空白に。日本語は触らない
     if(lang==='zh')document.querySelectorAll('h1, h2, h3, h4, .ch-eyebrow, .cf-cap strong, .workcard figcaption strong, .showcard figcaption strong').forEach(h=>{
       if(h.closest('[data-noi18n]'))return;
@@ -188,10 +201,10 @@
         if(v!==n.nodeValue)n.nodeValue=v;});
     });
     if(document.__jatitle==null)document.__jatitle=document.title;
-    document.title=zh&&M[document.__jatitle]?M[document.__jatitle]:document.__jatitle;
+    document.title=D&&D[document.__jatitle]?D[document.__jatitle]:document.__jatitle;
     document.querySelectorAll('[data-l]').forEach(el=>{
       if(el.__jal==null)el.__jal=el.getAttribute('data-l');
-      el.setAttribute('data-l',zh&&M[el.__jal]?M[el.__jal]:el.__jal);
+      el.setAttribute('data-l',D&&D[el.__jal]?D[el.__jal]:el.__jal);
     });
     document.querySelectorAll('#langSwitch .ls-btn').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lang')===lang));
     // 言語別のリンク・映像・背景(解説動画= 台湾華語版は別撮り。2026-10-13 ユーザー「台湾語を選んでも日本語の背景やサムネイル」)

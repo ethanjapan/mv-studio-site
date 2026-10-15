@@ -5,6 +5,7 @@ import { join, extname } from 'node:path'
 import { minify as minifyHtml } from 'html-minifier-terser'
 import * as esbuild from 'esbuild'
 await import('./lint_design.mjs')   // デザインの決まり(DESIGN_RULES.md)。違反があればここで止まる
+await import('./gen_i18n.mjs')    // 英語の辞書 data/i18n_en.tsv → js/en_main.js / js/en_uc.js(欠けがあれば止まる・2026-10-15)
 await import('./gen_works.mjs')   // 作品・番組を data/works.json から index.html / works.html へ(生成物が古いまま配信されないように)
 await import('./gen_shelves.mjs') // 棚の頁(物と場所 data/stills.json・美容 data/beauty.json)を生成(2026-10-15)
 
@@ -14,7 +15,7 @@ const DIST = join(ROOT, 'dist')
 // dist に入れないもの（ソース専用・開発用・公開不要）
 const EXCLUDE = new Set(['lint_design.mjs', 'DESIGN_RULES.md', 
   'dist', 'node_modules', '.git', '.github',
-  'build.mjs', 'gen_works.mjs', 'gen_shelves.mjs', 'data', 'package.json', 'package-lock.json',
+  'build.mjs', 'gen_works.mjs', 'gen_shelves.mjs', 'gen_i18n.mjs', 'data', 'package.json', 'package-lock.json',
   'README.md', '.gitignore',
   '.DS_Store', 'Thumbs.db',   // OS が撒くゴミ。配信するとファイル名が漏れる
   'js/world.js',              // どの HTML からも参照されていない死蔵ファイル
