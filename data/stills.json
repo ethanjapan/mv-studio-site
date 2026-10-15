@@ -205,7 +205,7 @@
    "ja": "手水舎・紅葉の水面",
    "zh": "手水舍・紅葉的水面",
    "v": "1015a",
-   "status": "live",
+   "status": "rejected",
    "src": {
     "png": "../_site_bg/shichigosan_20261015/s753_s05_s0.png",
     "script": "gen_site_753_zimage.py",
@@ -213,7 +213,8 @@
     "seed": 20261415,
     "job": 4572,
     "model": "Z-Image Base",
-    "size": "2272x1296"
+    "size": "2272x1296",
+    "note": "2026-10-16 ユーザー「頭の部分が破綻してるね。つく場所は先端のはず」= 柄杓の器が柄の途中"
    },
    "shelf_key": "site_still_base/753_s05",
    "en": "Purification basin, maple leaves on the water"
