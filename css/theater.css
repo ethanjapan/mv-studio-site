@@ -1907,3 +1907,15 @@ body.lang-en{--sans:"Inter",sans-serif;--serif:"Cormorant Garamond",serif}
 body.lang-en h1,body.lang-en h2,body.lang-en h3,body.lang-en .ch-title,body.lang-en .workcard strong,body.lang-en .door strong,body.lang-en .use .t strong{letter-spacing:.01em}
 body.lang-en .ch-sub,body.lang-en p,body.lang-en .btn,body.lang-en .ch-cta,body.lang-en figcaption,body.lang-en .uc-step p{letter-spacing:0}
 body.lang-en .ch-title,body.lang-en h1{font-weight:500}
+
+/* ===== 日本語の折り返し(2026-10-15 ユーザー「日本語の変な改行も見直しして、全部」・iPhone 17 Pro 402pt の計測 43 件) =====
+   ① 行頭の「ー」「。」「、」を禁じる(line-break:strict・全言語) ② 段落・札の題・箇条書きは最終行に 1〜2 字を残さない(text-wrap:pretty)
+   ③ 見出し・見出し線・棚の説明は行の長さをそろえる(text-wrap:balance) ④ 見出しの強調(.em)は途中で折らない ⑤ 狭い幅の見出しは一回り小さく(9〜10 字が 1 行に入る) */
+body{line-break:strict}
+p,figcaption,li,dd,dt,.st-src,.as-d,.uc-shelf h3 span,.dcol h4,.uc-step p,.pillar p{text-wrap:pretty}
+.ch-eyebrow,.ch-title,h1,h2,h3.t,.uc-grid figcaption strong{text-wrap:balance}
+.ch-title .em,h1 .em,h2 .em,h3 .em{white-space:nowrap}
+@media (max-width:640px){
+  .ch-title{font-size:clamp(26px,7.4vw,40px)}
+  .ch-eyebrow{letter-spacing:.18em}
+}
