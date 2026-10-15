@@ -104,5 +104,18 @@ for (const f of pages) {
   const cssV = new Map(); for (const f of shared) if (info[f].css) cssV.set(info[f].css, [...(cssV.get(info[f].css) || []), f])
   if (cssV.size > 1) bad.push('theater.css の ?v= が頁で違う: ' + [...cssV].map(([v, fs]) => `${v}(${fs.join(' ')})`).join(' / '))
 }
+// 6) 写真の枠切れ(2026-10-15 ユーザー「写真が切れてる。何回も指摘してるので、これルール化して」): 枠(札・扉・冒頭・使いどころ・板)の写真で顔が枠の外に出ていないかを
+//    顔検出で見る(tools/face_fit.py・PC とスマホの両方の比)。mvdirector の venv(cv2)がある Mac でだけ走る。GitHub Actions では飛ばす(手元で build を通してから push する規律)
+{
+  const { existsSync } = await import('node:fs')
+  const { spawnSync } = await import('node:child_process')
+  const py = '/Users/linsuyi/mvdirector/venv/bin/python'
+  if (existsSync(py)) {
+    const r = spawnSync(py, [join(ROOT, 'tools/face_fit.py'), '--check'], { encoding: 'utf8' })
+    const out = (r.stdout || '') + (r.stderr || '')
+    if (r.status !== 0) bad.push(...out.split('\n').filter(l => /顔が枠から出る/.test(l)).map(l => '写真の枠切れ: ' + l.trim()))
+    else console.log(out.split('\n').filter(l => l.startsWith('face_fit')).join(' '))
+  } else console.warn('★ face_fit(写真の枠切れ)は cv2 の無い環境では飛ばす')
+}
 if (bad.length) { console.error('★ DESIGN_RULES.md 違反(ビルドを止めた):\n  ' + bad.join('\n  ')); process.exit(1) }
 console.log(`lint_design: ok(${pages.length} 頁)`)
