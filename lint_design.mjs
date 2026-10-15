@@ -61,5 +61,48 @@ for (const f of pages) {
     }
   }
 }
+// 5) 横展開の整合性(2026-10-15 ユーザー「横展開、整合性ちゃんと見るようにルール化して」。トップとスタジオの中だけ EN の札が抜けた実害)
+//    全頁に共通の部品が揃っているかを機械で見る: 言語の札(ja/zh/en)・上の案内の項目・下の案内(用途の一覧)・辞書の読み込み・共通の台本と CSS の ?v=
+//    基準は多数決ではなく「最初の頁」でもなく、全頁の和集合= どこか 1 頁にあって他に無いものは全部出す
+{
+  const shared = pages.filter(f => f !== 'links.html')   // links.html(made_linlin のリンク集)は別の作り
+  const info = {}
+  for (const f of shared) {
+    const html = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
+    const sw = html.match(/<nav class="lang-switch"[\s\S]*?<\/nav>/)
+    const langs = sw ? [...sw[0].matchAll(/data-lang="(\w+)"/g)].map(m => m[1]).sort() : []
+    const nav = html.match(/<nav class="top-nav"[\s\S]*?<\/nav>/)
+    const navItems = nav ? [...nav[0].matchAll(/<a [^>]*>([\s\S]*?)<\/a>/g)].map(m => m[1].replace(/<[^>]+>/g, '').trim()) : []
+    const fm = html.match(/<nav class="foot-map"[\s\S]*?<\/nav>/)
+    // 下の案内は「用途の一覧」(usecases/ の頁への link)だけ比べる。works.html のように用途の一覧を持たない頁は対象外
+    const fmItems = fm ? [...fm[0].matchAll(/href="([^"]+)"/g)].map(m => m[1]).filter(h => /(^|\/)(?!index)[a-z_]+\.html$/.test(h) && (h.includes('usecases/') || f.startsWith('usecases/')) && !/^(\.\.\/|\.\/)?(works|strengths|engineering)\.html/.test(h)).map(h => h.split('/').pop()).sort() : []
+    const scripts = [...html.matchAll(/<script src="([^"?]+)\?v=([^"]+)"/g)].map(m => [m[1].split('/').pop(), m[2]])
+    const css = [...html.matchAll(/css\/theater\.css\?v=([^"]+)/g)].map(m => m[1])
+    info[f] = { langs, navItems, fmItems, scripts: Object.fromEntries(scripts), css: css[0] || '' }
+  }
+  const union = (k) => [...new Set(shared.flatMap(f => info[f][k]))].sort()
+  for (const k of ['langs', 'navItems', 'fmItems']) {
+    const all = union(k)
+    for (const f of shared) {
+      const miss = all.filter(x => !info[f][k].includes(x))
+      if (info[f][k].length && miss.length) bad.push(`${f}: 横展開の漏れ(${{ langs: '言語の札', navItems: '上の案内', fmItems: '下の案内' }[k]}): ${miss.join(' ')} が無い`)
+    }
+  }
+  // 辞書の読み込み: main.js の頁は en_main.js、uc_i18n.js の頁は en_uc.js を先に読む
+  for (const f of shared) {
+    const sc = info[f].scripts
+    if (sc['main.js'] && !sc['en_main.js']) bad.push(`${f}: main.js の頁なのに js/en_main.js を読んでいない(英語が出ない)`)
+    if (sc['uc_i18n.js'] && !sc['en_uc.js']) bad.push(`${f}: uc_i18n.js の頁なのに js/en_uc.js を読んでいない(英語が出ない)`)
+    if (!sc['sitemenu.js']) bad.push(`${f}: js/sitemenu.js を読んでいない(地図と言語の同期が無い)`)
+  }
+  // 共通の台本と CSS の ?v= は全頁で同じ(一部だけ古い印= 直した版が届かない)
+  for (const name of ['sitemenu.js', 'uc_i18n.js', 'main.js', 'en_main.js', 'en_uc.js']) {
+    const vs = new Map()
+    for (const f of shared) if (info[f].scripts[name]) vs.set(info[f].scripts[name], [...(vs.get(info[f].scripts[name]) || []), f])
+    if (vs.size > 1) bad.push(`${name} の ?v= が頁で違う: ` + [...vs].map(([v, fs]) => `${v}(${fs.join(' ')})`).join(' / '))
+  }
+  const cssV = new Map(); for (const f of shared) if (info[f].css) cssV.set(info[f].css, [...(cssV.get(info[f].css) || []), f])
+  if (cssV.size > 1) bad.push('theater.css の ?v= が頁で違う: ' + [...cssV].map(([v, fs]) => `${v}(${fs.join(' ')})`).join(' / '))
+}
 if (bad.length) { console.error('★ DESIGN_RULES.md 違反(ビルドを止めた):\n  ' + bad.join('\n  ')); process.exit(1) }
 console.log(`lint_design: ok(${pages.length} 頁)`)
