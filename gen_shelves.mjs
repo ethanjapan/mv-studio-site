@@ -43,6 +43,10 @@ for (const SET of SETS) {
   }
   const ids = live.map(it => it.id)
   if (new Set(ids).size !== ids.length) bad.push('id が重複している')
+  // 1 場面 1 枚(2026-10-15 ユーザー「被っているね。一つだけにして」): 同じ様式(src.style_id)の別案を 2 枚とも載せない。候補は status を candidate/rejected に
+  const bySid = {}
+  for (const it of live) { const k = it.src?.style_id; if (k) (bySid[k] = bySid[k] || []).push(it.id) }
+  for (const [k, v] of Object.entries(bySid)) if (v.length > 1) bad.push(`同じ場面 ${k} が ${v.length} 枚 live(${v.join(' ')})= 1 枚にする`)
   if (bad.length) throw new Error(`${SET.data}: ` + bad.join(' / '))
 
   // ---- 1 枚の札。<picture>= WebP を幅 2 つ・<img> は JPEG。sizes は格子の列数(PC 6 列 / スマホ 3 列・横は 3 升・大は 2x2)から

@@ -157,7 +157,7 @@
    "ja": "石畳の参道・銀杏の朝",
    "zh": "石板參道・銀杏的早晨",
    "v": "1015a",
-   "status": "live",
+   "status": "rejected",
    "src": {
     "png": "../_site_bg/shichigosan_20261015/s753_s04_s0.png",
     "script": "gen_site_753_zimage.py",
@@ -165,7 +165,8 @@
     "seed": 20261315,
     "job": 4572,
     "model": "Z-Image Base",
-    "size": "1408x2048"
+    "size": "1408x2048",
+    "note": "2026-10-15 ユーザー「被っているね。一つだけにして」= 1 場面 1 枚: 石畳の参道(鳥居の参道と同じ場面の別案)"
    },
    "shelf_key": "site_still_base/753_s04",
    "en": "Stone path, a ginkgo morning"
@@ -258,7 +259,7 @@
    "zh": "門松與玄關",
    "en": "Kadomatsu at the entrance",
    "v": "1015c",
-   "status": "live",
+   "status": "rejected",
    "src": {
     "png": "../_site_bg/still_st_ny_r1/st_ny_s02_r1_s0.png",
     "script": "gen_site_still_zimage.py --prefix st_ny_ --run r1",
@@ -266,7 +267,8 @@
     "seed": 20266115,
     "job": 4610,
     "model": "Z-Image Base",
-    "size": "1408x2048"
+    "size": "1408x2048",
+    "note": "2026-10-15 ユーザー「被っているね。一つだけにして」= 1 場面 1 枚: 門松 案1(案2 と被り)"
    },
    "shelf_key": "site_still_base/ny_s02"
   },
@@ -618,7 +620,7 @@
    "zh": "皮革相本・翻開",
    "en": "A leather album, open",
    "v": "1015d",
-   "status": "live",
+   "status": "rejected",
    "src": {
     "png": "../_site_bg/still_st_light_r1/st_light_s04_r1_s0.png",
     "script": "gen_site_still_zimage.py --prefix st_light_ --run r1",
@@ -626,7 +628,8 @@
     "seed": 20266315,
     "job": 4613,
     "model": "Z-Image Base",
-    "size": "2272x1296"
+    "size": "2272x1296",
+    "note": "2026-10-15 ユーザー「被っているね。一つだけにして」= 1 場面 1 枚: 革のアルバム 開き(閉じた案と被り)"
    },
    "shelf_key": "site_still_base/lt_s04"
   },
@@ -658,7 +661,7 @@
    "zh": "窗邊的玻璃與雨",
    "en": "Rain on the window",
    "v": "1015d",
-   "status": "live",
+   "status": "rejected",
    "src": {
     "png": "../_site_bg/still_st_light_r1/st_light_s05_r1_s0.png",
     "script": "gen_site_still_zimage.py --prefix st_light_ --run r1",
@@ -666,7 +669,8 @@
     "seed": 20266415,
     "job": 4613,
     "model": "Z-Image Base",
-    "size": "1408x2048"
+    "size": "1408x2048",
+    "note": "2026-10-15 ユーザー「被っているね。一つだけにして」= 1 場面 1 枚: 窓辺の硝子 案1(案2 と被り・左下に文字)"
    },
    "shelf_key": "site_still_base/lt_s05"
   },
@@ -698,7 +702,7 @@
    "zh": "蠟燭與漆器",
    "en": "A candle and lacquer",
    "v": "1015d",
-   "status": "live",
+   "status": "rejected",
    "src": {
     "png": "../_site_bg/still_st_light_r1/st_light_s06_r1_s0.png",
     "script": "gen_site_still_zimage.py --prefix st_light_ --run r1",
@@ -706,7 +710,8 @@
     "seed": 20266515,
     "job": 4613,
     "model": "Z-Image Base",
-    "size": "1408x2048"
+    "size": "1408x2048",
+    "note": "2026-10-15 ユーザー「被っているね。一つだけにして」= 1 場面 1 枚: 蝋燭 案1(案2 と被り・左下に文字)"
    },
    "shelf_key": "site_still_base/lt_s06"
   },
@@ -858,7 +863,7 @@
    "zh": "組紐・藍與綠",
    "en": "Kumihimo cords, indigo and green",
    "v": "1015d",
-   "status": "live",
+   "status": "rejected",
    "src": {
     "png": "../_site_bg/still_st_wamono_r1/st_wamono_s06_r1_s1.png",
     "script": "gen_site_still_zimage.py --prefix st_wamono_ --run r1",
@@ -866,7 +871,8 @@
     "seed": 20266522,
     "job": 4614,
     "model": "Z-Image Base",
-    "size": "2272x1296"
+    "size": "2272x1296",
+    "note": "2026-10-15 ユーザー「被っているね。一つだけにして」= 1 場面 1 枚: 組紐 案2(案1 と被り)"
    },
    "shelf_key": "site_still_base/wm_s06b"
   }
