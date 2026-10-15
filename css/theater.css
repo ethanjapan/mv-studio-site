@@ -1768,11 +1768,11 @@ html[lang^="zh"] .fold-btn .zh{display:inline}
 body.uc .uc-grid figure.reveal,body.uc .dcol figure.reveal{transform:translateY(22px);transition-duration:.9s}
 body.uc .uc-grid figure.reveal.in,body.uc .dcol figure.reveal.in{transform:none}
 @keyframes srRevealS{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-@supports (animation-timeline: scroll()){
-  @media (prefers-reduced-motion: no-preference){
-    body.uc .uc-grid figure.reveal,body.uc .dcol figure.reveal{animation-name:srRevealS;animation-range:entry 0% entry 42%}
-  }
-}
+/* 2026-10-15: 棚の写真と、サブページの見出しは、スクロール量に連動させない(ユーザー実機「これは見えなくなっているね」= ART の棚の 1 列が薄いまま止まった)。
+   スクロール連動(animation-timeline: view())はブラウザごとに計算が違い、列の途中の濃さで止まることがある → 画面に入ったら .in(sitemenu.js)で最後まで出す */
+body.uc .reveal{animation:none!important;transition-property:opacity,transform;transition-duration:1.1s;transition-timing-function:cubic-bezier(.2,.7,.2,1)}
+body.uc .uc-grid figure.reveal,body.uc .dcol figure.reveal{transition-duration:.9s}
+@media (prefers-reduced-motion: reduce){body.uc .reveal{transition:none!important;opacity:1!important;transform:none!important}}
 
 /* 番組の Cover Flow(2026-10-14 ユーザー「この部分もスクロールがながいから、作品の表示仕方と同様な演出はできる？」)
    トップの番組欄 3 枚の縦積み(スマホ 3.8 画面)→ 作品と同じ横送り(全 7 回・高さ一定)。中央の札の下に 種別・題・説明・言語と尺 */

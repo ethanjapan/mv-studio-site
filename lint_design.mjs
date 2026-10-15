@@ -40,5 +40,26 @@ for (const f of pages) {
     for (const d of direct) bad.push(`${f}: 背景の板がある章の直下に写真/動画: ${d.slice(0, 70)}`)
   }
 }
+
+// 4) 内部リンクの行き先(頁と位置の印 #id)が実在するか(2026-10-15: トップを組み替えた後、#worlds・#works・#shows・#fin が行き先を失っていた)
+{
+  const { existsSync } = await import('node:fs')
+  const { posix } = await import('node:path')
+  const idsOf = new Map()
+  const ids = (f) => { if (!idsOf.has(f)) idsOf.set(f, new Set([...readFileSync(join(ROOT, f), 'utf8').matchAll(/\bid="([^"]+)"/g)].map(m => m[1]))); return idsOf.get(f) }
+  for (const f of pages) {
+    const html = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
+    for (const m of html.matchAll(/<a\b[^>]*\shref="([^"]+)"/g)) {
+      const href = m[1]
+      if (/^(https?:|mailto:|tel:|javascript:|\/\/)/.test(href) || href === '#') continue
+      const [path, frag] = href.split('#')
+      let tgt = path ? posix.normalize(posix.join(posix.dirname(f), path)) : f
+      if (!path) tgt = f
+      else if (path.endsWith('/') || tgt === '.' || tgt === 'usecases') tgt = posix.join(tgt === '.' ? '' : tgt, 'index.html')
+      if (!existsSync(join(ROOT, tgt))) { bad.push(`${f}: リンクの頁が無い: ${href}`); continue }
+      if (frag && tgt.endsWith('.html') && !ids(tgt).has(frag)) bad.push(`${f}: リンクの位置の印が無い: ${href}(${tgt} に #${frag} が無い)`)
+    }
+  }
+}
 if (bad.length) { console.error('★ DESIGN_RULES.md 違反(ビルドを止めた):\n  ' + bad.join('\n  ')); process.exit(1) }
 console.log(`lint_design: ok(${pages.length} 頁)`)
