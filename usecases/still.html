@@ -24,7 +24,7 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" as="image" fetchpriority="high" href="../assets/uc/753_13_plate.jpg?v=1015c">
-<link rel="stylesheet" href="../css/theater.css?v=20261015jw1">
+<link rel="stylesheet" href="../css/theater.css?v=20261015st3">
 <style>
 /* ユースケースのページだけの小さな決まり(七五三の頁と同じ)。部品の衣装は theater.css の「役割の衣装」をそのまま使う */
 .uc-head .brand{text-decoration:none}
@@ -111,7 +111,7 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">02 — 棚から選べる</div>
       <h2 class="ch-title reveal d1">小物と、<span class="em">空間</span>と、光。</h2>
-      <p class="ch-sub reveal d2">いまは七五三の <span data-still-count>16</span> 枚から。正月と節句、式場と旅館の空間、祝いの膳と、季節ごとに増やしていきます。</p>
+      <p class="ch-sub reveal d2">いま棚にあるのは <span data-still-count>41</span> 枚。正月と節句、料亭や旅館の空間、祝いの膳、光と質感、和の小物。季節ごとに増やしていきます。</p>
       <div class="uc-shelf">
       <!-- gen:still:shelves:start(node gen_stills.mjs が data/stills.json から書く・手で編集しない) -->
         <h3><i></i>SEASON &amp; EVENTS <span>季節と行事</span></h3>
@@ -132,21 +132,64 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
           <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る（2 枚）</span><span class="zh">看更多（2 張）</span><span class="en">Read more (2)</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>
           <h3><i></i>WAMONO <span>和の小物</span></h3>
           <div class="uc-grid">
-            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/753_02-600.webp?v=1015a 600w, ../assets/uc/753_02-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/753_02.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>被布・衣桁に掛けて</figcaption></figure>
+            <figure class="reveal big"><picture><source type="image/webp" srcset="../assets/uc/753_02-600.webp?v=1015a 600w, ../assets/uc/753_02-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 66vw, 34vw"><img src="../assets/uc/753_02.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>被布・衣桁に掛けて</figcaption></figure>
           <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_07-600.webp?v=1015a 600w, ../assets/uc/753_07-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_07.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>羽織袴・扇子と守り刀</figcaption></figure>
           <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_09-600.webp?v=1015b 600w, ../assets/uc/753_09-1200.webp?v=1015b 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_09.jpg?v=1015b" alt="" loading="lazy" decoding="async"></picture><figcaption>つまみ細工の髪飾り・草履</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/wm_s01-600.webp?v=1015d 600w, ../assets/uc/wm_s01-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/wm_s01.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>扇子と風呂敷</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/wm_s02-600.webp?v=1015d 600w, ../assets/uc/wm_s02-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/wm_s02.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>水引と祝儀袋</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/wm_s03-600.webp?v=1015d 600w, ../assets/uc/wm_s03-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/wm_s03.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>簪と鏡台</figcaption></figure>
           </div>
+          <div class="fold-body" hidden>
+            <div class="uc-grid">
+            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/wm_s04-600.webp?v=1015d 600w, ../assets/uc/wm_s04-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/wm_s04.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>風鈴と窓</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/wm_s05-600.webp?v=1015d 600w, ../assets/uc/wm_s05-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/wm_s05.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>番傘と石畳</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/wm_s06-600.webp?v=1015d 600w, ../assets/uc/wm_s06-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/wm_s06.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>組紐と桐箱</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/wm_s06b-600.webp?v=1015d 600w, ../assets/uc/wm_s06b-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/wm_s06b.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>組紐・藍と緑</figcaption></figure>
+            </div>
+          </div>
+          <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る（4 枚）</span><span class="zh">看更多（4 張）</span><span class="en">Read more (4)</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>
           <h3><i></i>PLACES <span>場所</span></h3>
           <div class="uc-grid">
-            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/753_03-600.webp?v=1015a 600w, ../assets/uc/753_03-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/753_03.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>鳥居の参道・銀杏</figcaption></figure>
+            <figure class="reveal big"><picture><source type="image/webp" srcset="../assets/uc/753_03-600.webp?v=1015a 600w, ../assets/uc/753_03-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 66vw, 34vw"><img src="../assets/uc/753_03.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>鳥居の参道・銀杏</figcaption></figure>
           <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/753_04-600.webp?v=1015a 600w, ../assets/uc/753_04-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/753_04.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>石畳の参道・銀杏の朝</figcaption></figure>
           <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_08-600.webp?v=1015a 600w, ../assets/uc/753_08-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_08.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>手水舎・紅葉の水面</figcaption></figure>
           <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_10-600.webp?v=1015a 600w, ../assets/uc/753_10-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_10.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>写真館・金屏風と緋毛氈</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/pl_s01-600.webp?v=1015d 600w, ../assets/uc/pl_s01-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/pl_s01.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>料亭の座敷と庭</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/pl_s02-600.webp?v=1015d 600w, ../assets/uc/pl_s02-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/pl_s02.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>旅館の廊下と灯り</figcaption></figure>
           </div>
+          <div class="fold-body" hidden>
+            <div class="uc-grid">
+            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/pl_s05-600.webp?v=1015d 600w, ../assets/uc/pl_s05-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/pl_s05.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>神社の回廊と提灯</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/pl_s06-600.webp?v=1015d 600w, ../assets/uc/pl_s06-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/pl_s06.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>雪の露天風呂</figcaption></figure>
+            </div>
+          </div>
+          <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る（2 枚）</span><span class="zh">看更多（2 張）</span><span class="en">Read more (2)</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>
           <h3><i></i>FEAST <span>祝いの膳</span></h3>
           <div class="uc-grid">
             <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/753_12-600.webp?v=1015a 600w, ../assets/uc/753_12-1200.webp?v=1015a 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/753_12.jpg?v=1015a" alt="" loading="lazy" decoding="async"></picture><figcaption>お祝いの席・鯛と赤飯</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/tb_s01-600.webp?v=1015d 600w, ../assets/uc/tb_s01-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/tb_s01.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>鯛の尾頭付き</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/tb_s03-600.webp?v=1015d 600w, ../assets/uc/tb_s03-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/tb_s03.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>和菓子と抹茶</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/tb_s04-600.webp?v=1015d 600w, ../assets/uc/tb_s04-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/tb_s04.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>祝い酒の枡</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/tb_s05-600.webp?v=1015d 600w, ../assets/uc/tb_s05-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/tb_s05.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>懐石の一皿</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/tb_s06-600.webp?v=1015d 600w, ../assets/uc/tb_s06-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/tb_s06.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>紅白まんじゅう</figcaption></figure>
           </div>
+          <h3><i></i>LIGHT &amp; TEXTURE <span>光と質感</span></h3>
+          <div class="uc-grid">
+            <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/lt_s01-600.webp?v=1015d 600w, ../assets/uc/lt_s01-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/lt_s01.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>障子越しの光と畳</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/lt_s02-600.webp?v=1015d 600w, ../assets/uc/lt_s02-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/lt_s02.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>和紙と硯</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/lt_s03-600.webp?v=1015d 600w, ../assets/uc/lt_s03-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/lt_s03.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>絹の帯と金糸</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/lt_s04-600.webp?v=1015d 600w, ../assets/uc/lt_s04-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/lt_s04.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>革のアルバム・開いて</figcaption></figure>
+          <figure class="reveal wide"><picture><source type="image/webp" srcset="../assets/uc/lt_s04b-600.webp?v=1015d 600w, ../assets/uc/lt_s04b-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 100vw, 50vw"><img src="../assets/uc/lt_s04b.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>革のアルバムと麻布</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/lt_s05-600.webp?v=1015d 600w, ../assets/uc/lt_s05-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/lt_s05.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>窓辺の硝子と雨</figcaption></figure>
+          </div>
+          <div class="fold-body" hidden>
+            <div class="uc-grid">
+            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/lt_s05b-600.webp?v=1015d 600w, ../assets/uc/lt_s05b-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/lt_s05b.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>窓辺の硝子・緑</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/lt_s06-600.webp?v=1015d 600w, ../assets/uc/lt_s06-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/lt_s06.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>蝋燭と漆</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/lt_s06b-600.webp?v=1015d 600w, ../assets/uc/lt_s06b-1200.webp?v=1015d 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/lt_s06b.jpg?v=1015d" alt="" loading="lazy" decoding="async"></picture><figcaption>蝋燭と漆・真鍮の燭台</figcaption></figure>
+            </div>
+          </div>
+          <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る（3 枚）</span><span class="zh">看更多（3 張）</span><span class="en">Read more (3)</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>
         <!-- gen:still:shelves:end -->
       </div>
       <p class="uc-note">写真はすべて見本です。実際の店や料理、会場の写真ではありません。</p>
@@ -211,10 +254,10 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
     <span class="foot-copy">© 2026 made_linlin</span>
   </footer>
   <a class="fab-contact" href="../#contact" aria-label="相談"><span>相談</span></a>
-<script src="../js/sitemenu.js?v=20261015jw1"></script>
-<script src="../js/still_i18n.js?v=20261015jw1"></script>
-<script src="../js/en_uc.js?v=20261015jw1"></script>
-<script src="../js/uc_i18n.js?v=20261015jw1"></script>
+<script src="../js/sitemenu.js?v=20261015st3"></script>
+<script src="../js/still_i18n.js?v=20261015st3"></script>
+<script src="../js/en_uc.js?v=20261015st3"></script>
+<script src="../js/uc_i18n.js?v=20261015st3"></script>
 <script>
 /* 棚の続きを開く・閉じる(main.js の mobileFold と同じ札と動き。中身は hidden のまま= iPhone のメモリに載せない) */
 (function(){
