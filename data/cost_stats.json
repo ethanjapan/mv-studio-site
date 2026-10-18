@@ -1,24 +1,24 @@
 {
- "as_of": "2026-10-15",
+ "as_of": "2026-10-19",
  "since": "2026-08-21",
- "video_clips": 1052,
- "video_sec": 9973,
+ "video_clips": 1004,
+ "video_sec": 9140,
  "video_by_gate": {
-  "h3": 4722,
-  "h3lu": 1487,
+  "h3": 3858,
+  "h3lu": 1518,
   "ltx25": 3763
  },
- "images": 30710,
+ "images": 32696,
  "images_by_gate": {
-  "krea2": 2921,
-  "zimage": 27095,
-  "qwen21": 672,
+  "zimage": 29336,
+  "krea2": 2654,
+  "qwen21": 684,
   "ming": 22
  },
- "image_gpu_hours": 265.4,
- "save_video_jpy": 654706,
- "save_image_jpy": 61125,
- "save_total_jpy": 715831,
+ "image_gpu_hours": 292.1,
+ "save_video_jpy": 600060,
+ "save_image_jpy": 64849,
+ "save_total_jpy": 664909,
  "prices": {
   "_note": "仕組みの頁「04 — 失敗の値段」の単価(下限の考え方= 外部はいちばん安い公式の単価・手元は電気代を差し引く)。値を変えたら日付と出典も変える。集計= mvdirector/scripts/site_cost_stats.py",
   "since": "2026-08-21",
