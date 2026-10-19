@@ -149,7 +149,23 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 .eng-col li strong{display:block;font-family:var(--serif);font-weight:500;font-size:15px;color:var(--ink);letter-spacing:.04em}
 .eng-col ul{margin:0;padding:0}
 .st-proof.eng-num{grid-template-columns:repeat(4,1fr)}
+.eng-step{overflow:hidden}
+.eng-step .pv{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:10px;margin-bottom:16px;filter:saturate(.92) contrast(1.03);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.eng-step:hover .pv{transform:scale(1.03)}
+.eng-step .src{display:block;margin-top:8px;font-size:11px;line-height:1.7;letter-spacing:.04em;color:var(--muted)}
+.eng-proof{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.eng-pair{margin:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}
+.eng-pair .ph{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line)}
+.eng-pair .ph img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;filter:saturate(.92) contrast(1.03)}
+.eng-pair .ph img.a{object-position:center 50%}.eng-pair .ph img.b{object-position:center 18%}
+.eng-pair .lb{display:grid;grid-template-columns:1fr 1fr;padding:12px 18px 0;font-family:var(--en-display);font-size:10.5px;letter-spacing:.3em}
+.eng-pair .lb span{display:inline-flex;align-items:center;gap:8px}.eng-pair .lb span::before{content:"";width:14px;height:1px;background:currentColor}
+.eng-pair .lb .no{color:var(--muted)}.eng-pair .lb .ok{color:var(--gold)}
+.eng-pair figcaption{padding:10px 18px 18px}
+.eng-pair figcaption strong{display:block;font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.7;letter-spacing:.04em;color:var(--ink)}
+.eng-pair figcaption p{margin:6px 0 0;font-size:12.5px;line-height:1.85;color:var(--text-3)}
 @media (max-width:900px){
+  .eng-proof{grid-template-columns:1fr}
   .eng-flow{grid-template-columns:1fr 1fr}.eng-step:nth-child(4n){border-right:1px solid var(--rule-soft)}.eng-step:nth-child(2n){border-right:0}
   .eng-row{grid-template-columns:2.2em 1fr;}.eng-row .d,.eng-row .v{grid-column:2}.eng-row .v{text-align:left}
   .eng-two{grid-template-columns:1fr}
@@ -190,14 +206,14 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
       <p class="ch-sub reveal d2">どの段を誰が受け持つかを、先に決めてある。AI が書き、機械が回して検査し、人が許可して選ぶ。</p>
       <div class="eng-legend reveal"><span class="who h">HUMAN　人</span><span class="who a">AI</span><span class="who m">MACHINE　機械</span></div>
       <div class="eng-flow">
-        <div class="eng-step reveal"><span class="n" data-noi18n>01</span><span class="who h">HUMAN</span><div class="t">声で相談する</div><p class="p">作りたい一本を話す。雰囲気・場所・曲の気分。</p></div>
-        <div class="eng-step reveal"><span class="n" data-noi18n>02</span><span class="who a">AI</span><div class="t">台本と一覧</div><p class="p">場面・台詞・尺・費用の一覧と、投入の台本を書く。</p></div>
-        <div class="eng-step reveal"><span class="n" data-noi18n>03</span><span class="who h">HUMAN</span><div class="t">許可の印</div><p class="p">一覧を見て、本番に進めてよいものに印を付ける。</p></div>
-        <div class="eng-step reveal"><span class="n" data-noi18n>04</span><span class="who m">MACHINE</span><div class="t">列に並ぶ</div><p class="p">印と設定の欠けを検査し、通ったものだけ列へ。</p></div>
-        <div class="eng-step reveal"><span class="n" data-noi18n>05</span><span class="who m">MACHINE</span><div class="t">生成</div><p class="p">写真・動画・曲・声。空いた GPU が順に埋める。夜も。</p></div>
-        <div class="eng-step reveal"><span class="n" data-noi18n>06</span><span class="who m">MACHINE</span><div class="t">自動検査</div><p class="p">話す動画の聞き取り、つなぎ目の音、肌のざらつき。</p></div>
-        <div class="eng-step reveal"><span class="n" data-noi18n>07</span><span class="who h">HUMAN</span><div class="t">採否を決める</div><p class="p">曲は耳で、カットは目で。手足や顔の崩れも最後は人。</p></div>
-        <div class="eng-step reveal"><span class="n" data-noi18n>08</span><span class="who h">HUMAN</span><div class="t">仕上げと公開</div><p class="p">4K の仕上げは列で。公開のボタンは毎回、人が押す。</p></div>
+        <div class="eng-step reveal"><img class="pv" src="assets/eng/s01_voice.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><span class="n" data-noi18n>01</span><span class="who h">HUMAN</span><div class="t">声で相談する<span class="src">アプリの音声通話の画面</span></div><p class="p">作りたい一本を話す。雰囲気・場所・曲の気分。</p></div>
+        <div class="eng-step reveal"><img class="pv" src="assets/eng/s02_plan.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><span class="n" data-noi18n>02</span><span class="who a">AI</span><div class="t">台本と一覧<span class="src">MV テンプレの棚。カット数と尺つき</span></div><p class="p">場面・台詞・尺・費用の一覧と、投入の台本を書く。</p></div>
+        <div class="eng-step reveal"><img class="pv" src="assets/eng/s03_mark.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><span class="n" data-noi18n>03</span><span class="who h">HUMAN</span><div class="t">許可の印<span class="src">jobnet の列。左端の印で選ぶ</span></div><p class="p">一覧を見て、本番に進めてよいものに印を付ける。</p></div>
+        <div class="eng-step reveal"><img class="pv" src="assets/eng/s04_queue.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><span class="n" data-noi18n>04</span><span class="who m">MACHINE</span><div class="t">列に並ぶ<span class="src">待ち行列。予約の時刻つき</span></div><p class="p">印と設定の欠けを検査し、通ったものだけ列へ。</p></div>
+        <div class="eng-step reveal"><img class="pv" src="assets/eng/s05_gpu.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><span class="n" data-noi18n>05</span><span class="who m">MACHINE</span><div class="t">生成<span class="src">GPU の表示。VRAM・温度・24 時間の稼働</span></div><p class="p">写真・動画・曲・声。空いた GPU が順に埋める。夜も。</p></div>
+        <div class="eng-step reveal"><img class="pv" src="assets/eng/s06_check.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><span class="n" data-noi18n>06</span><span class="who m">MACHINE</span><div class="t">自動検査<span class="src">顔検出の枠と、スマホの枠</span></div><p class="p">話す動画の聞き取り、つなぎ目の音、肌のざらつき。</p></div>
+        <div class="eng-step reveal"><img class="pv" src="assets/eng/s07_choose.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><span class="n" data-noi18n>07</span><span class="who h">HUMAN</span><div class="t">採否を決める<span class="src">草履の 4 案の見比べ。採ったのは右上</span></div><p class="p">曲は耳で、カットは目で。手足や顔の崩れも最後は人。</p></div>
+        <div class="eng-step reveal"><img class="pv" src="assets/eng/s08_publish.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><span class="n" data-noi18n>08</span><span class="who h">HUMAN</span><div class="t">仕上げと公開<span class="src">YouTube のチャンネル</span></div><p class="p">4K の仕上げは列で。公開のボタンは毎回、人が押す。</p></div>
       </div>
     </div>
   </section>
@@ -227,6 +243,19 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
         <div class="st-step"><div class="i">TESTS</div><div class="b"><span data-noi18n>229</span><small>件</small></div><div class="t">自動チェックの試験</div><p class="p">全部通過してから使う。</p></div>
         <div class="st-step"><div class="i">APPROVED</div><div class="b"><span data-noi18n>779</span><small>件</small></div><div class="t">承認つきの本番投入</div><p class="p">人が見た一覧 66 本の印。</p></div>
         <div class="st-step"><div class="i">GPU JOBS</div><div class="b"><span data-noi18n>3,562</span><small>件</small></div><div class="t">GPU の仕事</div><p class="p">すべて一つの入口から。</p></div>
+      </div>
+      <div class="eng-legend reveal"><span>止めた一枚と、通した一枚</span></div>
+      <div class="eng-proof">
+        <figure class="eng-pair reveal" data-rejected-example>
+          <div class="ph"><img src="assets/uc/753_08.jpg" alt="" loading="lazy" decoding="async"><img src="assets/uc/753_08b.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="lb" data-noi18n><span class="no">STOPPED</span><span class="ok">PASSED</span></div>
+          <figcaption><strong>柄杓の器が、柄の途中に付いていた。</strong><p>人の目が止め、場面の文を直して焼き直した。seed を変えるだけの再生成はしない。</p></figcaption>
+        </figure>
+        <figure class="eng-pair reveal" data-rejected-example>
+          <div class="ph"><img class="a" src="assets/uc/bridal_23.jpg" alt="" loading="lazy" decoding="async"><img class="b" src="assets/uc/bridal_23.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="lb" data-noi18n><span class="no">STOPPED</span><span class="ok">PASSED</span></div>
+          <figcaption><strong>横長の枠で、頭が切れていた。</strong><p>顔検出の検査がビルドを止め、顔が入る位置に直した。写真は同じ一枚。</p></figcaption>
+        </figure>
       </div>
       <div class="eng-rows">
         <div class="eng-row reveal"><span class="k" data-noi18n>77</span><span class="t">走っている台本を書き換えようとした</span><span class="d">台本は一行ずつ読まれる。途中で書き換えると、後半が別物になる。</span><span class="v">止めた</span></div>
@@ -300,7 +329,7 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
   </footer>
   <a class="fab-contact" href="./#contact" aria-label="相談"><span>相談</span></a>
 <script src="js/sitemenu.js?v=20261015st3"></script>
-<script src="js/en_uc.js?v=20261016s4"></script>
-<script src="js/uc_i18n.js?v=20261016s4"></script>
+<script src="js/en_uc.js?v=20261020a"></script>
+<script src="js/uc_i18n.js?v=20261020a"></script>
 </body>
 </html>

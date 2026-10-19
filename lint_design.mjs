@@ -125,7 +125,8 @@ for (const f of pages) {
   if (existsSync(exPath)) {
     const ex = JSON.parse(readFileSync(exPath, 'utf8')).assets || []
     for (const f of pages) {
-      const src = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
+      // 「止めた記録」の見本(engineering 03・<figure data-rejected-example>)だけは、没にした写真を前後の比較として見せてよい(2026-10-20)
+      const src = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '').replace(/<figure\b[^>]*data-rejected-example[\s\S]*?<\/figure>/g, '')
       for (const a of ex) if (src.includes(a.file.replace(/^assets\//, 'assets/'))) bad.push(`使わない写真を参照: ${f} → ${a.file}(${a.why})`)
     }
   }
