@@ -174,15 +174,15 @@ USE CASE 06 — 七五三・家族写真	USE CASE 06 — Shichigosan family phot
 千歳飴、被布と羽織袴、紅葉の参道、写真館の金屏風——晴れの日の空気と小物を、見本帳のように。	Chitose-ame candy, a hifu vest and haori-hakama, a maple-lined path, a studio's gold screen—the air and small things of the big day, as a sample set.
 # 2026-10-20 八つの段の実物の画面と、止めた記録の前後
 アプリの音声通話の画面	The app's voice-call screen
-MV テンプレの棚。カット数と尺つき	The MV template shelf, with cut counts and running times
-jobnet の列。左端の印で選ぶ	The jobnet queue. The mark on the left is how you choose
-待ち行列。予約の時刻つき	The waiting line, with reserved start times
-GPU の表示。VRAM・温度・24 時間の稼働	The GPU readout. VRAM, temperature, 24 hours of work
-顔検出の枠と、スマホの枠	The face-detection box, and the phone frame
-草履の 4 案の見比べ。採ったのは右上	Four takes of the sandals, side by side. Top right is the keeper
+MV テンプレの棚。カット数と尺つき	The MV template shelf, each one labeled with its shot count and running time
+jobnet の列。左端の印で選ぶ	The jobnet queue. Tick the box on the left to choose what goes ahead
+待ち行列。予約の時刻つき	Jobs waiting their turn, with scheduled start times
+GPU の表示。VRAM・温度・24 時間の稼働	GPU status: VRAM, temperature, and the last 24 hours of work
+顔検出の枠と、スマホの枠	The face-detection box, plus the crop a phone screen would show
+草履の 4 案の見比べ。採ったのは右上	Four versions of the sandals side by side. Top right made the cut
 YouTube のチャンネル	The YouTube channel
-止めた一枚と、通した一枚	The one it stopped, and the one that passed
-柄杓の器が、柄の途中に付いていた。	The ladle's cup was attached halfway along the handle.
-人の目が止め、場面の文を直して焼き直した。seed を変えるだけの再生成はしない。	A human eye caught it. We rewrote the scene and re-rendered, rather than simply rolling a new seed.
-横長の枠で、頭が切れていた。	In a landscape frame, the head was cut off.
-顔検出の検査がビルドを止め、顔が入る位置に直した。写真は同じ一枚。	The face-detection check stopped the build, and the crop was moved so the face fits. Same photograph.
+止めた一枚と、通した一枚	One that was stopped, one that passed
+柄杓の器が、柄の途中に付いていた。	The ladle's cup sat halfway up the handle.
+人の目が止め、場面の文を直して焼き直した。seed を変えるだけの再生成はしない。	A human eye caught it. We rewrote the scene description and generated it again, instead of just rolling a new seed.
+横長の枠で、頭が切れていた。	In a landscape frame, the top of her head was cropped off.
+顔検出の検査がビルドを止め、顔が入る位置に直した。写真は同じ一枚。	The face-detection check failed the build, so the crop was shifted until her face fit. Same photo.
