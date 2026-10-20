@@ -1,0 +1,42 @@
+{
+  "_note": "文字だけの章・3 頁以上の流用・OG 重複の「いま許している分」。直したら消す(増やさない)。lint_design 8)",
+  "textonly": [
+    "strengths.html#03",
+    "studio.html#00",
+    "studio.html#10",
+    "engineering.html#02",
+    "engineering.html#04",
+    "engineering.html#05",
+    "usecases/bridal.html#?",
+    "usecases/kaisetsu.html#08",
+    "usecases/kaisetsu.html#?",
+    "usecases/portrait.html#?",
+    "usecases/shichigosan.html#?",
+    "usecases/still.html#?",
+    "usecases/world.html#?"
+  ],
+  "reuse3": [
+    "assets/app_chat",
+    "assets/app_photo",
+    "assets/app_rinka4",
+    "assets/bb_k02",
+    "assets/bb_k02_zh",
+    "assets/bb_k03",
+    "assets/bb_k03_zh",
+    "assets/bb_r03",
+    "assets/bb_r04",
+    "assets/bb_radio",
+    "assets/bb_radio_zh",
+    "assets/st/plate_core",
+    "assets/uc/753_08b",
+    "assets/uc/753_10",
+    "assets/uc/uc_bridal_B27",
+    "assets/uc/uc_port_31",
+    "assets/wk_itsumo",
+    "assets/wk_kaisetsu",
+    "assets/wk_kugatsu",
+    "assets/wk_mizukagami",
+    "assets/wk_rinka"
+  ],
+  "og": []
+}

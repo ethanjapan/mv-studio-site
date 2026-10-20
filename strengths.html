@@ -24,7 +24,7 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" as="image" fetchpriority="high" href="assets/st/plate_home.jpg?v=1013b">
-<link rel="stylesheet" href="css/theater.css?v=20261015st3">
+<link rel="stylesheet" href="css/theater.css?v=20261020a">
 <style>
 .uc-hero{min-height:calc(var(--vhpx,100svh)*.9);padding-top:18vh}
 .uc-hero .panel-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
@@ -85,6 +85,7 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 .st-card.lead .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.04)}
 .st-card.lead .ph .cap{position:absolute;left:14px;bottom:12px;font-family:var(--en-display);font-size:11px;letter-spacing:.3em;color:rgba(241,242,247,.85);text-shadow:0 1px 8px rgba(0,0,0,.7)}
 /* 03 違い= 左右の札。左(クラウド)は沈め、右(手元)に灯 */
+.st-h3{margin-top:56px;font-size:clamp(20px,2.2vw,26px)}
 .st-vs{margin-top:40px;display:grid;grid-template-columns:1fr 1.15fr;gap:16px}
 .st-vs .col{border:1px solid var(--rule-soft);padding:26px 26px 10px}
 .st-vs .col.me{border-color:rgba(255,157,219,.28);box-shadow:inset 0 0 0 1px rgba(181,155,255,.08),0 0 40px rgba(181,155,255,.06);background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0))}
@@ -264,13 +265,7 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
           <div class="r"><span class="l">内容の制限</span><span class="v">自分の判断と、法律だけ</span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="panel" data-num="04">
-    <div class="panel-inner">
-      <div class="ch-eyebrow reveal">04 — 失敗の値段</div>
-      <h2 class="ch-title reveal d1">失敗しても、<span class="em">電気代だけ</span>。</h2>
+      <h3 class="ch-title st-h3 reveal">失敗しても、<span class="em">電気代だけ</span>。</h3>
       <p class="ch-sub reveal d2">外部の動画生成サービスは、失敗した生成にも秒数で課金される。手元の GPU なら、何度作り直しても払うのは電気代だけ——だから、納得するまで試せる。</p>
       <!-- gen:cost:start (mvdirector/scripts/site_cost_stats.py が jobnet の記録から書く・手で編集しない) -->
       <div class="st-proof st-cost">
@@ -284,9 +279,9 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
     </div>
   </section>
 
-  <section class="panel" data-num="05">
+  <section class="panel" data-num="04">
     <div class="panel-inner">
-      <div class="ch-eyebrow reveal">05 — 実績『いつもの顔』</div>
+      <div class="ch-eyebrow reveal">04 — 実績『いつもの顔』</div>
       <h2 class="ch-title reveal d1">棚の写真 56 枚が、<span class="em">一本の MV</span> に。</h2>
       <p class="ch-sub reveal d2">同じ列に、写真も動画も曲も 4K の仕上げも入れた。人がしたのは、選ぶことだけ。</p>
       <div class="st-proof">
@@ -305,7 +300,7 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
     </div>
   </section>
 
-  <section class="panel uc-contact" data-num="06">
+  <section class="panel uc-contact" data-num="05">
     <div class="panel-inner">
       <h2 class="ch-title reveal d1">導入の相談は、<span class="em">環境</span>から。</h2>
       <p class="ch-sub reveal d2" style="margin-left:auto;margin-right:auto">いまの PC と、作りたいもの。それだけ送ってください。必要な構成と手順にしてお返しします。</p>
@@ -314,6 +309,15 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
         <a class="btn ghost" href="usecases/">用途から見る</a>
         <a class="btn ghost" href="engineering.html">つくりかたを見る<svg class="go-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10.5 8l4 4-4 4"/></svg></a>
       </div>
+      <!-- gen:latest3:start (gen_works.mjs が data/works.json の最新 3 本から書く・手で編集しない) -->
+      <div class="ct-latest reveal d2">
+        <div class="ch-eyebrow" data-noi18n>LATEST ON YOUTUBE</div>
+        <a class="ct-l" href="https://youtu.be/irahazHeiFY" target="_blank" rel="noopener noreferrer" data-noi18n><img src="https://i.ytimg.com/vi/irahazHeiFY/hqdefault.jpg" onerror="this.onerror=null;this.src='assets/wk_mizukagami.jpg'" alt="" loading="lazy" decoding="async"><span class="t">水鏡</span><span class="s">3分49秒</span></a>
+        <a class="ct-l" href="https://youtu.be/_uC-XiL0EuY" target="_blank" rel="noopener noreferrer" data-noi18n><img src="https://i.ytimg.com/vi/_uC-XiL0EuY/hqdefault.jpg" onerror="this.onerror=null;this.src='assets/wk_itsumo.jpg'" alt="" loading="lazy" decoding="async"><span class="t">いつもの顔</span><span class="s">4分09秒</span></a>
+        <a class="ct-l" href="https://youtu.be/JjVQNUwyofo" target="_blank" rel="noopener noreferrer" data-noi18n><img src="https://i.ytimg.com/vi/JjVQNUwyofo/hqdefault.jpg" onerror="this.onerror=null;this.src='assets/wk_kugatsu.jpg'" alt="" loading="lazy" decoding="async"><span class="t">九月のピアノ</span><span class="s">3分47秒</span></a>
+      </div>
+      <!-- gen:latest3:end -->
+
     </div>
   </section>
 

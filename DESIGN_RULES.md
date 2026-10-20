@@ -58,3 +58,9 @@
 - 「つくりかた」の八つの段は、各段に**実物の画面**(アプリ・jobnet・顔検出の出力・見比べ・YouTube)を添える(`.eng-step .pv`・3:2・`assets/eng/`)。合成や想像の画面は置かない。画面を撮り直したら同じ名前で差し替え、`?v=` を上げる
 - 「止めた記録」(engineering 03)の `<figure data-rejected-example>` だけは、`data/excluded.json` の没写真を**前後の比較**として参照してよい(lint 7) がこの figure の中だけ見逃す)。顔検出の検査(face_fit)もこの枠は見ない= 枠切れの前後そのものを見せる場所だから。ほかの頁・ほかの部品では従来どおり止まる
 - 画面の切り出しに**内部の名前を写さない**(2026-10-20 ユーザー「こんなに細かくやり方を公開していいの?」): モデルのファイル名・エンジン名・会話 LLM の名前・IP・投入元の識別子は、切り出す前にぼかす(assets/eng/s03〜s05 は jobnet の該当部分をモザイク)。サイトの本文は道具の固有名を出していないので、画面でも出さない
+
+## 文字だけの章・流用・OG の検査(2026-10-20・lint 8)
+- `data/design_baseline.json` が「いま許している分」(文字だけの章 / 3 頁以上で使う素材 / OG の重複)。**新しく増えたらビルドが止まる**。直したら表から消す(`DESIGN_BASELINE_WRITE=1 node lint_design.mjs` で今の状態に書き直せるが、増やす方向には使わない)
+- 章の「画像あり」= img / video / picture / 背景の板(--bd)のどれか 1 つ以上
+- contact 章の「最新の 3 本」(`gen:latest3`・gen_works.mjs が data/works.json の先頭 3 本から書く)は全頁共通の部品。YouTube のサムネ(hqdefault を 16:9 に切る)・無ければ手元の wk_*.jpg。works.html / usecases/index.html / bridal_album.html は contact 章が無いので持たない
+- OG 画像は頁ごとに固有(その頁の扉か板)。同じ絵を 2 頁で使わない

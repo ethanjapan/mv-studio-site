@@ -1919,3 +1919,13 @@ p,figcaption,li,dd,dt,.st-src,.as-d,.uc-shelf h3 span,.dcol h4,.uc-step p,.pilla
   .ch-title{font-size:clamp(26px,7.4vw,40px)}
   .ch-eyebrow{letter-spacing:.18em}
 }
+
+/* 最新の 3 本(contact 章・2026-10-20): 文字だけの締めに本物の素材を 1 列。gen_works.mjs が書く */
+.ct-latest{margin:40px auto 0;max-width:760px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;text-align:left}
+.ct-latest .ch-eyebrow{grid-column:1/-1;justify-content:center;margin-bottom:2px}
+.ct-l{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);text-decoration:none;color:var(--ink);transition:.4s}
+.ct-l:hover{border-color:rgba(217,189,138,.4);transform:translateY(-3px)}
+.ct-l img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;filter:saturate(.92) contrast(1.03)}
+.ct-l .t{display:block;padding:10px 12px 0;font-family:var(--serif);font-weight:600;font-size:13.5px;line-height:1.5;letter-spacing:.04em}
+.ct-l .s{display:block;padding:2px 12px 11px;font-family:var(--en);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+@media (max-width:900px){.ct-latest{gap:8px}.ct-l .t{font-size:12px;padding:8px 9px 0}.ct-l .s{padding:2px 9px 9px;font-size:10px}}

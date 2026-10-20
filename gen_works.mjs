@@ -4,7 +4,7 @@
 //   js/works_i18n.js(作品・番組の日本語→繁中の辞書。main.js / uc_i18n.js が先に読む)
 // を書く。使い方: node gen_works.mjs  (build.mjs も最初に呼ぶ)
 // 2026-10-13: 作品が増えるたびにスマホのトップが伸びていた(作品集 4.8 画面・番組 3.8 画面)。トップは最新だけ・全部は一覧ページへ。
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
@@ -150,6 +150,19 @@ function fill(file, name, body) {
 fill('index.html', 'works', topWorks)
 fill('index.html', 'shows', topShows)
 fill('works.html', 'works', allWorks)
+
+// ---- 最新の 3 本(全頁の contact 章・2026-10-20 ユーザー「文字だけの箱に本物の素材を」): YouTube のサムネ(無ければ手元の jpg)
+function latest3(rel) {
+  const dur = (sub) => (sub.match(/(\d+分\d+秒)\s*$/) || [,''])[1]
+  return `
+      <div class="ct-latest reveal d2">
+        <div class="ch-eyebrow" data-noi18n>LATEST ON YOUTUBE</div>
+${DATA.works.slice(0, 3).map(w => { const id = w.yt.split('/').pop(); return `        <a class="ct-l" href="${w.yt}" target="_blank" rel="noopener noreferrer" data-noi18n><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" onerror="this.onerror=null;this.src='${rel}assets/${w.asset}.jpg'" alt="" loading="lazy" decoding="async"><span class="t">${w.title}</span><span class="s">${dur(w.sub)}</span></a>` }).join('\n')}
+      </div>
+`
+}
+for (const f of readdirSync(ROOT).filter(x => x.endsWith('.html') && x !== 'links.html')) { if (readFileSync(join(ROOT, f), 'utf8').includes('gen:latest3')) fill(f, 'latest3', latest3('')) }
+for (const f of readdirSync(join(ROOT, 'usecases')).filter(x => x.endsWith('.html'))) { if (readFileSync(join(ROOT, 'usecases', f), 'utf8').includes('gen:latest3')) fill('usecases/' + f, 'latest3', latest3('../')) }
 fill('works.html', 'shows', allShows)
 
 // 一覧ページの見出しの数

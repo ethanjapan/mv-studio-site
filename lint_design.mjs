@@ -131,5 +131,45 @@ for (const f of pages) {
     }
   }
 }
+// 8) 文字だけの章・3 頁以上の流用・OG 画像の重複(2026-10-20 ユーザー「文字の説明だけのボックス、画像の重複・流用ばかりを直したい」)
+//    基準は data/design_baseline.json(いま許している分)。そこに無い新しい文字だけの章・新しい 3 頁以上の流用・OG の重複はビルドを止める。
+//    直したら baseline から消す(減る方向だけ・ラチェット)。
+{
+  const { readFileSync, existsSync } = await import('node:fs')
+  const bp = join(ROOT, 'data/design_baseline.json')
+  const base = existsSync(bp) ? JSON.parse(readFileSync(bp, 'utf8')) : { textonly: [], reuse3: [], og: [] }
+  const shared = pages.filter(f => f !== 'links.html')
+  const textonly = [], use = {}, og = {}
+  for (const f of shared) {
+    const html = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
+    // 章ごとの画像の数(img / video / picture / 背景の板 --bd)
+    for (const m of html.matchAll(/<section\b([^>]*)>([\s\S]*?)<\/section>/g)) {
+      const attrs = m[1], body = m[2]
+      const num = (attrs.match(/data-num="([^"]+)"/) || [])[1]; const id = (attrs.match(/\bid="([^"]+)"/) || [])[1]
+      const key = `${f}#${num || id || '?'}`
+      const n = (body.match(/<(img|video|picture)\b/g) || []).length + (attrs.includes('--bd:') ? 1 : 0)
+      if (n === 0) textonly.push(key)
+    }
+    for (const m of html.matchAll(/assets\/[A-Za-z0-9_./-]+\.(?:jpg|png|mp4|webp)/g)) {
+      const a = m[0].replace(/-\d+\.webp$|\.(jpg|png|mp4|webp)$/, '')
+      if (/mark_inf|apple-touch|favicon|\/og(_links)?$|tex_/.test(a)) continue
+      ;(use[a] ||= new Set()).add(f)
+    }
+    const o = (html.match(/property="og:image" content="([^"]+)"/) || [])[1]
+    if (o) (og[o.replace(/\?.*$/, '')] ||= []).push(f)
+  }
+  const reuse3 = Object.entries(use).filter(([, v]) => v.size >= 3).map(([a]) => a).sort()
+  const ogdup = Object.entries(og).filter(([, v]) => v.length >= 2).map(([a, v]) => `${a.split('/').slice(-2).join('/')} ← ${v.join(', ')}`)
+  const newText = textonly.filter(k => !base.textonly.includes(k))
+  const newReuse = reuse3.filter(a => !base.reuse3.includes(a))
+  const newOg = ogdup.filter(a => !base.og.includes(a))
+  if (newText.length) bad.push(`文字だけの章(画像・動画・背景の板が 0): ${newText.join(', ')} → 写真つきの札か図を添える(許すなら data/design_baseline.json の textonly へ)`)
+  if (newReuse.length) bad.push(`同じ素材を 3 頁以上で流用: ${newReuse.join(', ')} → 頁ごとの素材に(許すなら baseline の reuse3 へ)`)
+  if (newOg.length) bad.push(`OG 画像の重複: ${newOg.join(' / ')} → 頁ごとに固有の og:image に`)
+  const gone = { textonly: base.textonly.filter(k => !textonly.includes(k)), reuse3: base.reuse3.filter(a => !reuse3.includes(a)), og: base.og.filter(a => !ogdup.includes(a)) }
+  for (const [k, v] of Object.entries(gone)) if (v.length) console.warn(`★ baseline の ${k} に、もう無い項目 ${v.length} 件(消してよい): ${v.slice(0, 6).join(', ')}`)
+  console.log(`design_baseline: 文字だけの章 ${textonly.length}(許容 ${base.textonly.length}) / 3 頁以上の流用 ${reuse3.length}(許容 ${base.reuse3.length}) / OG 重複 ${ogdup.length}`)
+  if (process.env.DESIGN_BASELINE_WRITE === '1') { const { writeFileSync } = await import('node:fs'); writeFileSync(bp, JSON.stringify({ _note: '文字だけの章・3 頁以上の流用・OG 重複の「いま許している分」。直したら消す(増やさない)。lint_design 8)', textonly, reuse3, og: ogdup }, null, 2) + '\n'); console.log('data/design_baseline.json を書いた') }
+}
 if (bad.length) { console.error('★ DESIGN_RULES.md 違反(ビルドを止めた):\n  ' + bad.join('\n  ')); process.exit(1) }
 console.log(`lint_design: ok(${pages.length} 頁)`)
