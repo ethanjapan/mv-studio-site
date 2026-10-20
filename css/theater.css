@@ -1929,3 +1929,12 @@ p,figcaption,li,dd,dt,.st-src,.as-d,.uc-shelf h3 span,.dcol h4,.uc-step p,.pilla
 .ct-l .t{display:block;padding:10px 12px 0;font-family:var(--serif);font-weight:600;font-size:13.5px;line-height:1.5;letter-spacing:.04em}
 .ct-l .s{display:block;padding:2px 12px 11px;font-family:var(--en);font-size:11px;letter-spacing:.06em;color:var(--muted)}
 @media (max-width:900px){.ct-latest{gap:8px}.ct-l .t{font-size:12px;padding:8px 9px 0}.ct-l .s{padding:2px 9px 9px;font-size:10px}}
+
+/* 次の用途へ(用途 6 頁の末尾・2026-10-20 横展開): 文字だけの帯に、行き先の写真の札を添える */
+.uc-next .panel-inner{align-items:center;justify-content:flex-start;gap:clamp(20px,3vw,40px)}
+.uc-next .panel-inner > div{flex:1 1 auto}
+.uc-next .all{margin-left:auto}
+.nx-pic{display:block;flex:0 0 clamp(200px,24vw,300px);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.4s}
+.nx-pic:hover{border-color:rgba(217,189,138,.4);transform:translateY(-3px)}
+.nx-pic img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;filter:saturate(.92) contrast(1.03)}
+@media (max-width:900px){.nx-pic{flex:1 1 100%}.nx-pic img{aspect-ratio:16/9}.uc-next .all{margin-left:0}}

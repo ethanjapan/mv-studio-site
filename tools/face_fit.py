@@ -34,6 +34,8 @@ FRAMES = {
     "b-skin": ("トップ 07 の肌の札", 2 / 1, 16 / 9),
     "b-eyes": ("トップ 07 の目の札", 3 / 1, 16 / 9),
     "b-mouth": ("トップ 07 の口元の札", 3 / 1, 16 / 9),
+    "nx-pic": ("用途の末尾の次の用途の札", 3 / 2, 16 / 9),
+    "cg3": None,   # トップ 07 の顔の一貫性(縦長 3 枚を並べる枠・人が選んだ写真)
     "eng-pair": None,   # 止めた記録の見本(engineering 03)は「枠切れの前後」そのものなので検査しない
 }
 PLATE = ("背景の板", 1440 / 900, None)   # 板はスマホでは文字に覆われ、幅 402 では顔が入り切らないので PC の比だけ見る
@@ -146,12 +148,12 @@ def scan(fix=False):
             tag = m.group(0); rel = m.group(2)
             back = body[max(0, m.start() - 500):m.start()]
             cls = re.findall(r'class="([^"]*)"', back)
-            frame = None
-            for c in reversed(cls):   # いちばん近い枠
+            frame, hit = None, False
+            for c in reversed(cls):   # いちばん近い枠(None の枠= 検査しない枠も「近い枠」として止める・2026-10-20 cg3 が b-mouth と誤判定された)
                 for tok in c.split():
-                    if tok in FRAMES and FRAMES[tok]:
-                        frame = FRAMES[tok]; break
-                if frame:
+                    if tok in FRAMES:
+                        frame, hit = FRAMES[tok], True; break
+                if hit:
                     break
             if not frame:
                 continue

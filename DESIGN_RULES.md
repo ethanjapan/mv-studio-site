@@ -64,3 +64,5 @@
 - 章の「画像あり」= img / video / picture / 背景の板(--bd)のどれか 1 つ以上
 - contact 章の「最新の 3 本」(`gen:latest3`・gen_works.mjs が data/works.json の先頭 3 本から書く)は全頁共通の部品。YouTube のサムネ(hqdefault を 16:9 に切る)・無ければ手元の wk_*.jpg。works.html / usecases/index.html / bridal_album.html は contact 章が無いので持たない
 - OG 画像は頁ごとに固有(その頁の扉か板)。同じ絵を 2 頁で使わない
+- 用途 6 頁の末尾「次の用途へ」(`.uc-next`)は、行き先の頁にだけある横長の写真を `.nx-pic` の札で添える(3:2・スマホ 16:9)。行き先の札の写真は、その頁でしか使っていないものを選ぶ(3 頁以上の流用を作らない)。胸元を強く見せる写真は締めの札に使わない(2026-10-20)
+- face_fit の枠の表で `None` の枠(検査しない)も「いちばん近い枠」として探索を止める(cg3 が手前の b-mouth の枠と誤判定された)
