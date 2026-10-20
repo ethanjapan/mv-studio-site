@@ -50,7 +50,8 @@ function jsonLd(rel, lang) {
     data = [
       { '@context': 'https://schema.org', '@type': 'WebSite', name: 'MV Studio', url: urlOf(rel, lang), inLanguage: HTML_LANG[lang] },
       { '@context': 'https://schema.org', '@type': 'Organization', name: 'MV STUDIO', url: SITE, logo: SITE + 'assets/apple-touch-icon.png',
-        sameAs: ['https://www.youtube.com/@mvstudio_by_linlin', 'https://www.instagram.com/made_linlin/'] },
+        sameAs: ['https://www.youtube.com/@mvstudio_by_linlin', 'https://www.instagram.com/made_linlin/'],
+        founder: { '@type': 'Person', name: 'made_linlin', url: SITE + 'links.html', sameAs: ['https://www.instagram.com/made_linlin/', 'https://note.com/made_linlin', 'https://zenn.dev/made_linlin'] } },   // 作り手のプロフィール(links.html の ProfilePage と同じ人・2026-10-21)
     ]
   } else {
     const items = [{ name: nm('index.html'), item: urlOf('index.html', lang) }]

@@ -174,5 +174,42 @@ for (const f of pages) {
   console.log(`design_baseline: 文字だけの章 ${textonly.length}(許容 ${base.textonly.length}) / 3 頁以上の流用 ${reuse3.length}(許容 ${base.reuse3.length}) / OG 重複 ${ogdup.length}`)
   if (process.env.DESIGN_BASELINE_WRITE === '1') { const { writeFileSync } = await import('node:fs'); writeFileSync(bp, JSON.stringify({ _note: '文字だけの章・3 頁以上の流用・OG 重複の「いま許している分」。直したら消す(増やさない)。lint_design 8)', textonly, reuse3, og: ogdup }, null, 2) + '\n'); console.log('data/design_baseline.json を書いた') }
 }
+// 9) 繁中の訳の漏れ(2026-10-21 ユーザー「言語別でHTMLを分けたが、修正するときは一つを修正だけで、全部反映できる?」)
+//    言語別の頁は日本語の頁から作るので、日本語の文を足したら辞書に訳が要る。英語の欠けは gen_i18n が止めるが、繁中の欠けは黙って日本語のまま出ていた
+//    → 頁に見える日本語の文(仮名を含む文字ノード)が、その頁の繁中の辞書(main.js か uc_i18n.js + works_i18n / still_i18n)に無ければ止める
+//    数えない所= script / style / svg・data-noi18n の中・CSS で言語を出し分ける要素(class に ja / lj)
+// 10) 言語別の頁の登録漏れ: 頁を足したら data/seo_meta.json に 1 行(無いと /zh/ /en/ の版が作られない)
+{
+  const { readFileSync } = await import('node:fs')
+  const dictZh = (file) => { const s = readFileSync(join(ROOT, file), 'utf8'); const h = 'const M=Object.assign({},{'; const a = s.indexOf(h), b = s.indexOf('\n  },window.MV_WORKS_I18N', a); return (0, eval)('(' + s.slice(a + h.length - 1, b).trim() + '})') }
+  const winDict = (file) => { try { const w = {}; (new Function('window', readFileSync(join(ROOT, file), 'utf8')))(w); return Object.assign({}, ...Object.entries(w).filter(([k]) => !/_EN$/.test(k)).map(([, v]) => v)) } catch { return {} } }
+  const MAIN = dictZh('js/main.js'), UC = dictZh('js/uc_i18n.js'), WK = winDict('js/works_i18n.js'), ST = winDict('js/still_i18n.js')
+  const VOID = new Set(['img', 'br', 'meta', 'link', 'input', 'source', 'hr', 'wbr', 'area', 'base', 'col', 'embed', 'track', 'param'])
+  const seo = Object.keys(JSON.parse(readFileSync(join(ROOT, 'data/seo_meta.json'), 'utf8')).pages)
+  const unent = (t) => t.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  const missZh = []
+  for (const f of pages.filter(f => f !== 'links.html')) {
+    if (!seo.includes(f)) bad.push(`言語別の頁の登録漏れ: ${f} が data/seo_meta.json に無い(繁中・英語の版が作られない)`)
+    const html = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
+    const body = html.slice(html.indexOf('<body'))
+    const D = Object.assign({}, /js\/main\.js/.test(html) ? MAIN : UC, /works_i18n/.test(html) ? WK : {}, /still_i18n/.test(html) ? ST : {})
+    const stack = [], miss = new Set()
+    for (const m of body.matchAll(/<(\/?)([a-zA-Z0-9-]+)([^>]*)>|([^<]+)/g)) {
+      if (m[4] != null) {
+        if (stack.some(x => x.skip)) continue
+        const t = unent(m[4]).trim()
+        if (t && /[ぁ-んァ-ヶ]/.test(t) && D[t] == null) miss.add(t)
+        continue
+      }
+      const close = m[1] === '/', tag = m[2].toLowerCase(), attrs = m[3]
+      if (close) { const i = stack.map(x => x.tag).lastIndexOf(tag); if (i >= 0) stack.length = i; continue }
+      if (VOID.has(tag) || /\/\s*$/.test(attrs)) continue
+      const cls = (attrs.match(/\sclass="([^"]*)"/) || [, ''])[1].split(/\s+/)
+      stack.push({ tag, skip: tag === 'script' || tag === 'style' || tag === 'svg' || /\sdata-noi18n\b/.test(attrs) || cls.includes('ja') || cls.includes('lj') })
+    }
+    for (const t of miss) missZh.push(`${f}: ${t.slice(0, 40)}`)
+  }
+  if (missZh.length) bad.push(`繁中の訳が無い日本語の文 ${missZh.length} 件(繁中の頁で日本語のまま出る・main.js か uc_i18n.js の M に足す):\n    ` + missZh.slice(0, 30).join('\n    '))
+}
 if (bad.length) { console.error('★ DESIGN_RULES.md 違反(ビルドを止めた):\n  ' + bad.join('\n  ')); process.exit(1) }
 console.log(`lint_design: ok(${pages.length} 頁)`)

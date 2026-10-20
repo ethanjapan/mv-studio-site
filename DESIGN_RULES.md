@@ -76,3 +76,5 @@
 - 新しい頁を足したら `data/seo_meta.json` に 1 行(name と zh/en の description・og)。題の繁中・英語が辞書に無いとビルドが止まる
 - 素材のパスを JS で組む時は `(window.__mvRoot||'')+'assets/...'`(言語の頁は 1 段深い)。`--bd:url()` は CSS の場所(css/)から解決されるので常に `../assets/`(つくりかたの扉の板が `assets/` と書かれていて読めていなかった)
 - robots.txt は置かない(プロジェクトサイトの下に置いても読まれない)。sitemap は Search Console から送る
+- ビルドが止める漏れ(2026-10-21): 頁に見える日本語の文に繁中の訳が無い(lint 9)・頁が data/seo_meta.json に無い(lint 10)。英語の欠けは従来どおり gen_i18n が止める。CSS で言語を出し分ける要素(class に ja / lj)と data-noi18n は数えない
+- リンク集(links.html)は作り手のプロフィールの頁= canonical と ProfilePage の構造化データ(mainEntity= Person made_linlin・sameAs に Instagram / YouTube / note / Zenn / 写真作品集 / 公式サイト)。SNS を足したら sameAs にも足し、dateModified を上げる。用途の札と公式サイトへのリンクは data-href-zh / data-href-en で言語の頁へ
