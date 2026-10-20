@@ -1,13 +1,6 @@
 {
   "_note": "文字だけの章・3 頁以上の流用・OG 重複の「いま許している分」。直したら消す(増やさない)。lint_design 8)",
-  "textonly": [
-    "strengths.html#03",
-    "studio.html#00",
-    "studio.html#10",
-    "engineering.html#02",
-    "engineering.html#04",
-    "engineering.html#05"
-  ],
+  "textonly": [],
   "reuse3": [
     "assets/app_chat",
     "assets/app_photo",

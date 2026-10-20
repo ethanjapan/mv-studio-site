@@ -186,3 +186,13 @@ YouTube のチャンネル	The YouTube channel
 人の目が止め、場面の文を直して焼き直した。seed を変えるだけの再生成はしない。	A human eye caught it. We rewrote the scene description and generated it again, instead of just rolling a new seed.
 横長の枠で、頭が切れていた。	In a landscape frame, the top of her head was cropped off.
 顔検出の検査がビルドを止め、顔が入る位置に直した。写真は同じ一枚。	The face-detection check failed the build, so the crop was shifted until her face fit. Same photo.
+# 2026-10-20 つくりかた 02/04/05 の実物の札・強み 03 の費用の棒
+印の無い投入は止まり、印のある投入だけが列に入る。今日の実際の記録。	Unmarked submissions are stopped; only marked ones get into the queue. A real log from today.
+話す場面の聞き取り突合。台本と書き起こしを一文ずつ照らす。	Transcript check for speaking scenes: the script and the transcription, compared line by line.
+写真の差し替え候補 24 枚。どれを使うかは、人が番号で選ぶ。	24 candidate photos for a swap. A person picks the one to use, by number.
+今日の組み立ての記録。	Today's build log.
+変更のたびに撮る、iPhone の画面。	The iPhone screen, captured after every change.
+1 秒の動画を作る費用	What one second of video costs
+外部の動画生成サービス(最安)	External video generation (cheapest plan)
+手元の GPU の電気代	Electricity for your own GPU
+1 秒の動画を作る費用の比較	Cost of one second of video, compared

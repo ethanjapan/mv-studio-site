@@ -1938,3 +1938,11 @@ p,figcaption,li,dd,dt,.st-src,.as-d,.uc-shelf h3 span,.dcol h4,.uc-step p,.pilla
 .nx-pic:hover{border-color:rgba(217,189,138,.4);transform:translateY(-3px)}
 .nx-pic img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;filter:saturate(.92) contrast(1.03)}
 @media (max-width:900px){.nx-pic{flex:1 1 100%}.nx-pic img{aspect-ratio:16/9}.uc-next .all{margin-left:0}}
+
+/* スタジオの目次(章 00・2026-10-20): 番号の行に、各章の板の写真を 3 枚添える */
+.sc-thumbs{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:760px}
+.sc-thumbs a{position:relative;display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.4s}
+.sc-thumbs a:hover{border-color:rgba(217,189,138,.4);transform:translateY(-3px)}
+.sc-thumbs img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;filter:saturate(.9) brightness(.82)}
+.sc-thumbs .cap{position:absolute;left:12px;bottom:10px;font-family:var(--en-display);font-size:10px;letter-spacing:.28em;color:rgba(241,242,247,.9);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+@media (max-width:900px){.sc-thumbs{gap:8px}.sc-thumbs .cap{font-size:8.5px;letter-spacing:.18em;left:8px;bottom:7px}}

@@ -139,6 +139,8 @@ for (const f of pages) {
   const bp = join(ROOT, 'data/design_baseline.json')
   const base = existsSync(bp) ? JSON.parse(readFileSync(bp, 'utf8')) : { textonly: [], reuse3: [], og: [] }
   const shared = pages.filter(f => f !== 'links.html')
+  // CSS で写真を背景に敷く class(例 .st-frame の background:url)も「画像あり」に数える(2026-10-20 スタジオ 10 の誤検出)
+  const bgClasses = new Set([...readFileSync(join(ROOT, 'css/theater.css'), 'utf8').matchAll(/\.([a-z][a-z0-9-]*)\s*\{[^}]*url\(/g)].map(m => m[1]))
   const textonly = [], use = {}, og = {}
   for (const f of shared) {
     const html = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
@@ -147,7 +149,8 @@ for (const f of pages) {
       const attrs = m[1], body = m[2]
       const num = (attrs.match(/data-num="([^"]+)"/) || [])[1]; const id = (attrs.match(/\bid="([^"]+)"/) || [])[1]
       const key = `${f}#${num || id || '?'}`
-      const n = (body.match(/<(img|video|picture)\b/g) || []).length + (attrs.includes('--bd:') ? 1 : 0)
+      const n = (body.match(/<(img|video|picture)\b/g) || []).length + (attrs.includes('--bd:') ? 1 : 0) + (body.match(/role="img"/g) || []).length
+        + [...body.matchAll(/class="([^"]+)"/g)].filter(m => m[1].split(/\s+/).some(c => bgClasses.has(c))).length
       if (n === 0) textonly.push(key)
     }
     for (const m of html.matchAll(/assets\/[A-Za-z0-9_./-]+\.(?:jpg|png|mp4|webp)/g)) {

@@ -24,7 +24,7 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" as="image" fetchpriority="high" href="assets/st/plate_queue.jpg?v=1013b">
-<link rel="stylesheet" href="css/theater.css?v=20261020b">
+<link rel="stylesheet" href="css/theater.css?v=20261020c">
 <style>
 .uc-hero{min-height:calc(var(--vhpx,100svh)*.9);padding-top:18vh}
 .uc-hero .panel-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
@@ -164,7 +164,14 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 .eng-pair figcaption{padding:10px 18px 18px}
 .eng-pair figcaption strong{display:block;font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.7;letter-spacing:.04em;color:var(--ink)}
 .eng-pair figcaption p{margin:6px 0 0;font-size:12.5px;line-height:1.85;color:var(--text-3)}
+.eng-shot{margin:36px 0 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.eng-shot img{display:block;width:100%;height:auto}
+.eng-shot figcaption{padding:12px 18px 14px;font-size:12.5px;line-height:1.8;color:var(--text-3)}
+.eng-col .eng-shot{margin:0 0 14px}
+.eng-pair2{margin-top:36px;display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.eng-pair2 .eng-shot{margin:0}
 @media (max-width:900px){
+  .eng-pair2{grid-template-columns:1fr}
   .eng-proof{grid-template-columns:1fr}
   .eng-flow{grid-template-columns:1fr 1fr}.eng-step:nth-child(4n){border-right:1px solid var(--rule-soft)}.eng-step:nth-child(2n){border-right:0}
   .eng-row{grid-template-columns:2.2em 1fr;}.eng-row .d,.eng-row .v{grid-column:2}.eng-row .v{text-align:left}
@@ -223,6 +230,7 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
       <div class="ch-eyebrow reveal">02 — 関所</div>
       <h2 class="ch-title reveal d1">印がなければ、<span class="em">通さない</span>。</h2>
       <p class="ch-sub reveal d2">AI に任せるほど、人が決める場所をはっきりさせる。許可は口約束ではなく、許可の印がないと機械が通さない形にした。</p>
+      <figure class="eng-shot reveal"><img src="assets/eng/e02_gate.jpg?v=20261020a" alt="" loading="lazy" decoding="async"><figcaption>印の無い投入は止まり、印のある投入だけが列に入る。今日の実際の記録。</figcaption></figure>
       <div class="eng-rows">
         <div class="eng-row reveal"><span class="k" data-noi18n>I</span><span class="t">本番の動画生成</span><span class="d">人が見た一覧の名前を投入に添えた時だけ通す。無ければ確認を求める。</span><span class="v"><span data-noi18n>779</span> 件</span></div>
         <div class="eng-row reveal"><span class="k" data-noi18n>II</span><span class="t">高解像度化</span><span class="d">選んだ画像の一覧を見て OK した印が無いと通さない。</span><span class="v"><span data-noi18n>55</span> 件</span></div>
@@ -273,14 +281,14 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
       <h2 class="ch-title reveal d1">数で測れるものは機械、<span class="em">感覚</span>は人。</h2>
       <p class="ch-sub reveal d2">機械に任せるのは、数で測れること。採否が感覚に関わる所は、人が選ぶ。</p>
       <div class="eng-two">
-        <div class="eng-col m reveal"><div class="h">MACHINE — 機械が見る</div><ul>
+        <div class="eng-col m reveal"><div class="h">MACHINE — 機械が見る</div><figure class="eng-shot reveal"><img src="assets/eng/e04_machine.jpg?v=20261020a" alt="" loading="lazy" decoding="async"><figcaption>話す場面の聞き取り突合。台本と書き起こしを一文ずつ照らす。</figcaption></figure><ul>
           <li><strong>投入の直前の検査</strong>危ない操作と、書き方の誤りを 30 項目で調べ、止めるか確認を求める。</li>
           <li><strong>話す動画の聞き取り</strong>話す場面は全文を書き起こして、台本と一文ずつ照らす。言い間違いはここで落とす。</li>
           <li><strong>つなぎ目の音</strong>カットの境目の音の急な変化と、頭の無音を測る。</li>
           <li><strong>肌のざらつき</strong>高解像度化のあと、肌に出る細かな点の率を測る。</li>
           <li><strong>列が止まっていないか</strong>記録が止まった仕事は止めて、やり直す。夜も。</li>
         </ul></div>
-        <div class="eng-col h2 reveal"><div class="h">HUMAN — 人が見る</div><ul>
+        <div class="eng-col h2 reveal"><div class="h">HUMAN — 人が見る</div><figure class="eng-shot reveal"><img src="assets/eng/e04_human.jpg?v=20261020a" alt="" loading="lazy" decoding="async"><figcaption>写真の差し替え候補 24 枚。どれを使うかは、人が番号で選ぶ。</figcaption></figure><ul>
           <li><strong>顔と服の 1 枚</strong>キャラの顔と服は、人が 1 枚に決めてから使い回す。</li>
           <li><strong>曲の採否</strong>候補の曲は、耳で聞いて選ぶ。</li>
           <li><strong>本番の一括許可</strong>台詞・尺・費用の一覧を見て、印を付ける。</li>
@@ -296,6 +304,7 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
       <div class="ch-eyebrow reveal">05 — この頁も</div>
       <h2 class="ch-title reveal d1">このサイトも、<span class="em">同じ作り</span>。</h2>
       <p class="ch-sub reveal d2">見た目の決まりも、数字も、確認も、同じ考え方で回している。</p>
+      <div class="eng-pair2"><figure class="eng-shot reveal"><img src="assets/eng/e05_build.jpg?v=20261020a" alt="" loading="lazy" decoding="async"><figcaption>今日の組み立ての記録。</figcaption></figure><figure class="eng-shot reveal"><img src="assets/eng/e05_iphone.jpg?v=20261020a" alt="" loading="lazy" decoding="async"><figcaption>変更のたびに撮る、iPhone の画面。</figcaption></figure></div>
       <div class="eng-rows">
         <div class="eng-row reveal"><span class="k" data-noi18n>I</span><span class="t">見た目の決まりを検査</span><span class="d">決まりから外れた部品があると、公開の前の組み立てが止まる。</span><span class="v">自動</span></div>
         <div class="eng-row reveal"><span class="k" data-noi18n>II</span><span class="t">実機の画面で確認</span><span class="d">変更のたびに、iPhone の画面で表示と重さを測る。</span><span class="v">自動 + 人</span></div>
@@ -338,7 +347,7 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
   </footer>
   <a class="fab-contact" href="./#contact" aria-label="相談"><span>相談</span></a>
 <script src="js/sitemenu.js?v=20261015st3"></script>
-<script src="js/en_uc.js?v=20261020a"></script>
-<script src="js/uc_i18n.js?v=20261020a"></script>
+<script src="js/en_uc.js?v=20261020b"></script>
+<script src="js/uc_i18n.js?v=20261020b"></script>
 </body>
 </html>
