@@ -44,7 +44,9 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
 .uc-prog p{margin:0 0 12px;font-size:13.5px;line-height:1.9;color:var(--muted)}
 .uc-prog .langs{display:flex;flex-wrap:wrap;gap:8px}
 .uc-take{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.uc-take div{padding:22px;border-radius:18px;border:1px solid var(--line);background:var(--card)}
+.uc-take > div{padding:0 22px 22px;border-radius:18px;border:1px solid var(--line);background:var(--card);overflow:hidden;transition:.4s}
+.uc-take > div:hover{border-color:rgba(217,189,138,.4);transform:translateY(-3px)}
+.uc-take .pv{display:block;width:calc(100% + 44px);margin:0 -22px 18px;height:auto;aspect-ratio:3/2;object-fit:cover;filter:saturate(.92) contrast(1.03)}
 .uc-take .n{font-family:var(--en-display);font-size:30px;line-height:1;color:var(--gold)}
 .uc-take h4{margin:12px 0 8px;font-family:var(--serif);font-weight:500;font-size:19px;color:var(--ink)}
 .uc-take p{margin:0;font-size:13.5px;line-height:1.95;color:var(--muted)}
@@ -132,9 +134,9 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
       <h2 class="ch-title reveal d1">話す人が、<span class="em">いなくても</span>。</h2>
       <p class="ch-sub reveal d2">製品の使い方、社内の手順、作品の舞台裏。原稿と資料を渡せば、案内役が話す動画になる。同じ案内役で、何本でも。</p>
       <div class="uc-take">
-        <div><div class="n">01</div><h4>原稿を渡す</h4><p>箇条書きでも、会話の口調でも。台本の形に整え、間の取り方まで決める。</p></div>
-        <div><div class="n">02</div><h4>案内役を決める</h4><p>RINKA・KANADE、または専用の案内役。声も、顔も、同じ人として何本でも出せる。</p></div>
-        <div><div class="n">03</div><h4>二か国語で出す</h4><p>日本語と繁體中文。訳は直訳ではなく、それぞれの言葉で自然に。字幕も同時に。</p></div>
+        <div><img class="pv" src="../assets/uc/ks_script.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><div class="n">01</div><h4>原稿を渡す</h4><p>箇条書きでも、会話の口調でも。台本の形に整え、間の取り方まで決める。</p></div>
+        <div><img class="pv" src="../assets/uc/ks_guide.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><div class="n">02</div><h4>案内役を決める</h4><p>RINKA・KANADE、または専用の案内役。声も、顔も、同じ人として何本でも出せる。</p></div>
+        <div><img class="pv" src="../assets/uc/ks_bilingual.jpg?v=20261020a" alt="" loading="lazy" decoding="async" width="1200" height="800"><div class="n">03</div><h4>二か国語で出す</h4><p>日本語と繁體中文。訳は直訳ではなく、それぞれの言葉で自然に。字幕も同時に。</p></div>
       </div>
     </div>
   </section>
