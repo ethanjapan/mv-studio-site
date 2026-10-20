@@ -1946,3 +1946,6 @@ p,figcaption,li,dd,dt,.st-src,.as-d,.uc-shelf h3 span,.dcol h4,.uc-step p,.pilla
 .sc-thumbs img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;filter:saturate(.9) brightness(.82)}
 .sc-thumbs .cap{position:absolute;left:12px;bottom:10px;font-family:var(--en-display);font-size:10px;letter-spacing:.28em;color:rgba(241,242,247,.9);text-shadow:0 1px 8px rgba(0,0,0,.8)}
 @media (max-width:900px){.sc-thumbs{gap:8px}.sc-thumbs .cap{font-size:8.5px;letter-spacing:.18em;left:8px;bottom:7px}}
+.ct-l .lz,.ct-l .le{display:none}
+body.lang-zh .ct-l .lj,body.lang-en .ct-l .lj{display:none}
+body.lang-zh .ct-l .lz,body.lang-en .ct-l .le{display:inline}

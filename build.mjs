@@ -8,6 +8,7 @@ await import('./lint_design.mjs')   // デザインの決まり(DESIGN_RULES.md)
 await import('./gen_i18n.mjs')    // 英語の辞書 data/i18n_en.tsv → js/en_main.js / js/en_uc.js(欠けがあれば止まる・2026-10-15)
 await import('./gen_works.mjs')   // 作品・番組を data/works.json から index.html / works.html へ(生成物が古いまま配信されないように)
 await import('./gen_shelves.mjs') // 棚の頁(物と場所 data/stills.json・美容 data/beauty.json)を生成(2026-10-15)
+import { localize, sitemap, PAGES, LANGS } from './gen_lang_pages.mjs'   // 言語別の頁 /zh/ /en/ と canonical・hreflang・構造化データ・sitemap(2026-10-20)
 
 const ROOT = import.meta.dirname
 const DIST = join(ROOT, 'dist')
@@ -15,7 +16,7 @@ const DIST = join(ROOT, 'dist')
 // dist に入れないもの（ソース専用・開発用・公開不要）
 const EXCLUDE = new Set(['lint_design.mjs', 'DESIGN_RULES.md', 
   'dist', 'node_modules', '.git', '.github',
-  'build.mjs', 'gen_works.mjs', 'gen_shelves.mjs', 'gen_i18n.mjs', 'data', 'package.json', 'package-lock.json',
+  'build.mjs', 'gen_works.mjs', 'gen_shelves.mjs', 'gen_i18n.mjs', 'gen_lang_pages.mjs', 'data', 'package.json', 'package-lock.json',
   'README.md', '.gitignore',
   '.DS_Store', 'Thumbs.db',   // OS が撒くゴミ。配信するとファイル名が漏れる
   'js/world.js',              // どの HTML からも参照されていない死蔵ファイル
@@ -66,9 +67,14 @@ for (const rel of await walk(ROOT)) {
 
   if (ext === '.html') {
     const raw = await readFile(src, 'utf8')
-    const out = await minifyHtml(raw, HTML_OPTS)
+    const out = await minifyHtml(localize(raw, rel, 'ja'), HTML_OPTS)
     await writeFile(dst, out)
     report(rel, raw, out)
+    if (PAGES.includes(rel)) for (const lang of LANGS) {   // 同じ頁の繁中・英語の版を /zh/ /en/ へ
+      const ldst = join(DIST, lang, rel)
+      await mkdir(join(ldst, '..'), { recursive: true })
+      await writeFile(ldst, await minifyHtml(localize(raw, rel, lang), HTML_OPTS))
+    }
   } else if (ext === '.js') {
     const raw = await readFile(src, 'utf8')
     // target を下げると ?. や ?? が展開されて逆に肥大化する。
@@ -90,6 +96,9 @@ for (const rel of await walk(ROOT)) {
     await cp(src, dst)   // 画像・動画・音声はそのまま
   }
 }
+
+await writeFile(join(DIST, 'sitemap.xml'), sitemap())
+console.log(`言語別の頁: ${PAGES.length} 頁 x ${LANGS.join('/')} = ${PAGES.length * LANGS.length} 枚・sitemap.xml ${PAGES.length * 3} URL`)
 
 const b = saved.reduce((s, x) => s + x.before, 0)
 const a = saved.reduce((s, x) => s + x.after, 0)

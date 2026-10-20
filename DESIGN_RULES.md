@@ -68,3 +68,11 @@
 - face_fit の枠の表で `None` の枠(検査しない)も「いちばん近い枠」として探索を止める(cg3 が手前の b-mouth の枠と誤判定された)
 - 文字だけの章は 0(2026-10-20)。`data/design_baseline.json` の textonly は空= 新しく文字だけの章を作るとビルドが止まる。章の「画像あり」は img / video / picture / 背景の板(--bd)/ `role="img"` の図 / theater.css で背景に写真を敷く class(例 .st-frame)
 - 数字の図(強み 03 の費用の棒)は、自動集計(gen:cost)の数字を頁の中で読んで描く= 集計が更新されると図も変わる。図に数字を手で書き写さない
+
+## 言語別の頁と検索(2026-10-20・ユーザー「繁中・英語の頁を検索に載せる」「sitemap・canonical・構造化データ」)
+- 日本語の頁の URL は変えない。ビルド(`gen_lang_pages.mjs`)が同じ HTML を `dist/zh/<頁>`・`dist/en/<頁>` に書き出す= ソースの頁は増やさない。本文の訳は今までどおり setLang(`window.__mvForceLang` で頁の言語に固定)。題は辞書、説明文と OG は `data/seo_meta.json`(直訳しない)
+- 全 39 頁に canonical(自分)・hreflang(ja / zh-Hant / en / x-default= ja)・構造化データ(トップ= WebSite + Organization、ほか= BreadcrumbList)。`dist/sitemap.xml` に 39 URL と相互の hreflang
+- 言語の札は hreflang があれば「同じ頁の別言語の URL」へ移る(ソースの直接の確認では従来どおりその場で切り替わる)
+- 新しい頁を足したら `data/seo_meta.json` に 1 行(name と zh/en の description・og)。題の繁中・英語が辞書に無いとビルドが止まる
+- 素材のパスを JS で組む時は `(window.__mvRoot||'')+'assets/...'`(言語の頁は 1 段深い)。`--bd:url()` は CSS の場所(css/)から解決されるので常に `../assets/`(つくりかたの扉の板が `assets/` と書かれていて読めていなかった)
+- robots.txt は置かない(プロジェクトサイトの下に置いても読まれない)。sitemap は Search Console から送る

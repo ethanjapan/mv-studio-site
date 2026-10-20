@@ -157,7 +157,9 @@ function latest3(rel) {
   return `
       <div class="ct-latest reveal d2">
         <div class="ch-eyebrow" data-noi18n>LATEST ON YOUTUBE</div>
-${DATA.works.slice(0, 3).map(w => { const id = w.yt.split('/').pop(); return `        <a class="ct-l" href="${w.yt}" target="_blank" rel="noopener noreferrer" data-noi18n><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" onerror="this.onerror=null;this.src='${rel}assets/${w.asset}.jpg'" alt="" loading="lazy" decoding="async"><span class="t">${w.title}</span><span class="s">${dur(w.sub)}</span></a>` }).join('\n')}
+${DATA.works.slice(0, 3).map(w => { const id = w.yt.split('/').pop(); const d = dur(w.sub); const de = d.replace(/^(\d+)分(\d+)秒$/, (_, m, x) => `${m}:${x.padStart(2, '0')}`)
+        // 題と尺は 3 言語ぶんを並べ、body の lang-zh / lang-en で出し分ける(この部品は辞書を読まない頁にも載るので・2026-10-20)
+        return `        <a class="ct-l" href="${w.yt}" target="_blank" rel="noopener noreferrer" data-noi18n><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" onerror="this.onerror=null;this.src='${rel}assets/${w.asset}.jpg'" alt="${w.title}" loading="lazy" decoding="async"><span class="t"><span class="lj">${w.title}</span><span class="lz">${w.zh?.title || w.title}</span><span class="le">${w.en?.title || w.title}</span></span><span class="s"><span class="lj lz">${d}</span><span class="le">${de}</span></span></a>` }).join('\n')}
       </div>
 `
 }
