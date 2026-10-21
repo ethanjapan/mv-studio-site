@@ -129,6 +129,28 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 .uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
 .uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
 @media (max-width:900px){.uc-hero .panel-inner{grid-template-columns:1fr}.st-cards{grid-template-columns:1fr}.st-card{min-height:0}.st-card.lead{grid-template-columns:1fr}.st-vs{grid-template-columns:1fr}.st-vs .r{grid-template-columns:6.5em 1fr;font-size:13px}.st-proof{grid-template-columns:1fr}.st-step{border-right:0;border-bottom:1px solid var(--rule-soft);padding:20px 4px}.st-step:last-child{border-bottom:0}.st-films{grid-template-columns:1fr}.st-tiles{grid-template-columns:1fr 1fr;grid-auto-flow:row dense}.st-tile{aspect-ratio:4/3}.st-tile[data-room]{grid-area:auto}.st-tile.core{grid-area:auto;grid-column:1/-1;order:-1;aspect-ratio:16/9}.st-tile.queue{grid-area:auto;grid-column:1/-1;aspect-ratio:16/6}.st-wires{display:none}.st-out-tiles{grid-template-columns:1fr}.st-tile.out{aspect-ratio:16/7}.st-house-k em{display:none}.st-tile .t{font-size:20px}}
+/* スマホの七つの柱(2026-10-21 横展開): 写真のある I は全幅のまま、文字の札 II〜VII(縦に 2.3 画面)を横スワイプの 1 列にする。
+   合図・進み具合の線・一度だけ少し動かすのは花嫁の頁のドレスの棚(.dress-swipe)と同じ作り。PC は .st-more を display:contents にして 3 列の格子のまま */
+.st-more{display:contents}
+.st-swipe,.st-track{display:none}
+@media (max-width:900px){
+.st-cards{gap:12px}
+.st-more{display:flex;min-width:0;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 4px;scroll-padding:0 16px;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent)}
+.st-more::-webkit-scrollbar{display:none}
+.st-more.at-end{-webkit-mask-image:none;mask-image:none}
+.st-more .st-card{flex:0 0 min(80vw,340px);scroll-snap-align:start;padding:24px 22px 22px}
+.st-swipe{display:flex;align-items:center;gap:10px;margin:18px 0 0;font-size:12px;letter-spacing:.14em;color:var(--text-2);transition:opacity .5s}
+.st-swipe::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.6);flex:none}
+.st-swipe .n{color:var(--gold);font-family:var(--en-display)}
+.st-swipe i{position:relative;display:inline-block;width:34px;height:1px;background:rgba(226,230,242,.25);overflow:hidden}
+.st-swipe i::after{content:"";position:absolute;inset:0;background:var(--inf);transform:translateX(-100%);animation:stSwipe 2.2s ease-in-out infinite}
+.st-swipe.done{opacity:0}
+.st-track{display:block;position:relative;height:2px;border-radius:2px;background:rgba(226,230,242,.14);overflow:hidden}
+.st-track b{position:absolute;top:0;bottom:0;left:0;width:30%;border-radius:2px;background:var(--inf);box-shadow:0 0 6px rgba(255,157,219,.5)}
+}
+@keyframes stSwipe{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.st-swipe i::after{animation:none;transform:none}}
 /* スマホの比較表(2026-10-21 ユーザー「スマホ版だと上下の表記で、分かりにくい」): 7 行 + 7 行の縦積みをやめ、項目ごとに「クラウド | MV STUDIO」を横に並べる。
    列の箱(.col)と行(.r)を display:contents で解き、表全体を 2 列の格子に置き直す(HTML と訳は変えない) */
 @media (max-width:900px){
@@ -220,6 +242,8 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
           <div class="ph"><img src="assets/st/plate_dawn.jpg?v=1013b" alt=""><span class="cap">THE SHELF ON SCREEN — DAWN</span></div>
         </div>
 
+        <p class="st-swipe" aria-hidden="true"><span>横にスワイプ</span><i></i><span class="n">II — VII</span></p>
+        <div class="st-more">
         <div class="st-card">
           <div class="n">II</div><div class="k">NEVER STOPS</div>
           <h3 class="t">止まらない。<span class="em">終わらない</span>。</h3>
@@ -261,6 +285,8 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
           <p class="p">撮影の様式 20,000 以上、衣装 11,000 以上。すべて作例つき。選ぶだけで、その一本の装いと光が決まる。棚は毎週、増える。</p>
           <div class="f"><span><b>20,000+</b>撮影の様式</span><span><b>11,000+</b>衣装</span></div>
         </div>
+        </div>
+        <div class="st-track" aria-hidden="true"><b></b></div>
       </div>
     </div>
   </section>
@@ -389,6 +415,25 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
   let t; window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(draw,120)});
   if(document.readyState==='complete') draw(); else window.addEventListener('load',draw);
   setTimeout(draw,600);
+})();
+</script>
+<script>
+/* 七つの柱(スマホ)= 進み具合の線・端の判定・合図を消す・一度だけ少し横へ動かす(花嫁の頁のドレスの棚と同じ) */
+(function(){
+  var wall=document.querySelector('.st-more'),hint=document.querySelector('.st-swipe'),bar=document.querySelector('.st-track b');
+  if(!wall||!window.matchMedia('(max-width:900px)').matches)return;
+  function upd(){var max=wall.scrollWidth-wall.clientWidth;if(max<=0)return;
+    var f=wall.clientWidth/wall.scrollWidth,p=wall.scrollLeft/max;
+    if(bar){bar.style.width=(f*100)+'%';bar.style.left=(p*(100-f*100))+'%';}
+    wall.classList.toggle('at-end',wall.scrollLeft>=max-4);}
+  var moved=false,auto=false;
+  wall.addEventListener('scroll',function(){upd();if(!auto&&!moved&&wall.scrollLeft>24){moved=true;hint&&hint.classList.add('done');}},{passive:true});
+  window.addEventListener('resize',upd);upd();
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.disconnect();
+    if(moved)return;setTimeout(function(){if(moved)return;auto=true;wall.scrollTo({left:72,behavior:'smooth'});
+      setTimeout(function(){wall.scrollTo({left:0,behavior:'smooth'});setTimeout(function(){auto=false;},700);},700);},500);});},{threshold:.6});
+  io.observe(wall);
 })();
 </script>
 <script src="js/sitemenu.js?v=20261015st3"></script>
