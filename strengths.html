@@ -129,6 +129,22 @@ a.st-tile:hover img{filter:saturate(.95) brightness(.9);transform:scale(1.03)}
 .uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
 .uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
 @media (max-width:900px){.uc-hero .panel-inner{grid-template-columns:1fr}.st-cards{grid-template-columns:1fr}.st-card{min-height:0}.st-card.lead{grid-template-columns:1fr}.st-vs{grid-template-columns:1fr}.st-vs .r{grid-template-columns:6.5em 1fr;font-size:13px}.st-proof{grid-template-columns:1fr}.st-step{border-right:0;border-bottom:1px solid var(--rule-soft);padding:20px 4px}.st-step:last-child{border-bottom:0}.st-films{grid-template-columns:1fr}.st-tiles{grid-template-columns:1fr 1fr;grid-auto-flow:row dense}.st-tile{aspect-ratio:4/3}.st-tile[data-room]{grid-area:auto}.st-tile.core{grid-area:auto;grid-column:1/-1;order:-1;aspect-ratio:16/9}.st-tile.queue{grid-area:auto;grid-column:1/-1;aspect-ratio:16/6}.st-wires{display:none}.st-out-tiles{grid-template-columns:1fr}.st-tile.out{aspect-ratio:16/7}.st-house-k em{display:none}.st-tile .t{font-size:20px}}
+/* スマホの比較表(2026-10-21 ユーザー「スマホ版だと上下の表記で、分かりにくい」): 7 行 + 7 行の縦積みをやめ、項目ごとに「クラウド | MV STUDIO」を横に並べる。
+   列の箱(.col)と行(.r)を display:contents で解き、表全体を 2 列の格子に置き直す(HTML と訳は変えない) */
+@media (max-width:900px){
+.st-vs{grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule-soft)}
+.st-vs .col,.st-vs .col .r{display:contents}
+.st-vs .h{grid-row:1;padding:14px 12px 12px;font-size:10px;letter-spacing:.22em}
+.st-vs .col.cl .h{grid-column:1}
+.st-vs .col.me .h{grid-column:2;background:rgba(181,155,255,.07);border-left:1px solid rgba(255,157,219,.22)}
+.st-vs .col.cl .r .l{grid-column:1/-1;padding:13px 12px 3px;font-size:12px;color:var(--gold);border-top:1px solid var(--rule-soft)}
+.st-vs .col.me .r .l{display:none}
+.st-vs .col .r .v{padding:2px 12px 13px;font-size:13px;line-height:1.7}
+.st-vs .col.cl .r .v{grid-column:1}
+.st-vs .col.me .r .v{grid-column:2;padding-left:28px;background:rgba(181,155,255,.07);border-left:1px solid rgba(255,157,219,.22)}
+.st-vs .col.me .r .v::before{left:13px;top:10px}
+.st-vs .col.cl .r:nth-child(2) .l{grid-row:2}.st-vs .col .r:nth-child(2) .v{grid-row:3}.st-vs .col.cl .r:nth-child(3) .l{grid-row:4}.st-vs .col .r:nth-child(3) .v{grid-row:5}.st-vs .col.cl .r:nth-child(4) .l{grid-row:6}.st-vs .col .r:nth-child(4) .v{grid-row:7}.st-vs .col.cl .r:nth-child(5) .l{grid-row:8}.st-vs .col .r:nth-child(5) .v{grid-row:9}.st-vs .col.cl .r:nth-child(6) .l{grid-row:10}.st-vs .col .r:nth-child(6) .v{grid-row:11}.st-vs .col.cl .r:nth-child(7) .l{grid-row:12}.st-vs .col .r:nth-child(7) .v{grid-row:13}.st-vs .col.cl .r:nth-child(8) .l{grid-row:14}.st-vs .col .r:nth-child(8) .v{grid-row:15}
+}
 </style>
 </head>
 <body class="uc">
