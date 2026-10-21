@@ -372,7 +372,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
   const sw=document.getElementById('langSwitch');
   if(sw)sw.addEventListener('click',e=>{const b=e.target.closest('.ls-btn');if(!b)return;const l=b.getAttribute('data-lang'),u=window.__mvLangUrl&&window.__mvLangUrl(l);if(u&&l!==window.__lang){try{localStorage.setItem('mvlang',l)}catch(x){}location.href=u;}else setLang(l);});
-  let saved=window.__mvForceLang||'ja';if(!window.__mvForceLang)try{saved=localStorage.getItem('mvlang')||'ja'}catch(e){}   // 言語別の頁(/zh/・/en/)は頁の言語で開く
+  const urlLang=document.querySelector('link[rel="alternate"][hreflang]')?'ja':null;   // 本番(言語別の頁がある)は URL の言語で開く= 日本語の URL は日本語(2026-10-21 実機: 前に繁中を選んだ端末で日本語の URL が繁中で開き、URL と言語が食い違った)
+  let saved=window.__mvForceLang||urlLang||'ja';if(!window.__mvForceLang&&!urlLang)try{saved=localStorage.getItem('mvlang')||'ja'}catch(e){}   // 言語別の頁(/zh/・/en/)は頁の言語で開く
   setLang(saved);
 })();
 

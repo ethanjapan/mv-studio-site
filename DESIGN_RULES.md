@@ -78,3 +78,5 @@
 - robots.txt は置かない(プロジェクトサイトの下に置いても読まれない)。sitemap は Search Console から送る
 - ビルドが止める漏れ(2026-10-21): 頁に見える日本語の文に繁中の訳が無い(lint 9)・頁が data/seo_meta.json に無い(lint 10)。英語の欠けは従来どおり gen_i18n が止める。CSS で言語を出し分ける要素(class に ja / lj)と data-noi18n は数えない
 - リンク集(links.html)は作り手のプロフィールの頁= canonical と ProfilePage の構造化データ(mainEntity= Person made_linlin・sameAs に Instagram / YouTube / note / Zenn / 写真作品集 / 公式サイト)。SNS を足したら sameAs にも足し、dateModified を上げる。用途の札と公式サイトへのリンクは data-href-zh / data-href-en で言語の頁へ
+- 本番(言語別の頁がある= hreflang のある頁)では、頁の言語は URL に従う。日本語の URL は前に選んだ言語の記録があっても日本語で開く(2026-10-21 iPhone で、繁中を選んだ端末の日本語の URL が繁中で開いて食い違った)。ソースの直接の確認(hreflang 無し)は従来どおり記録の言語でその場で切り替える
+- 繁中の見出しの決まりは、札の題(figcaption の strong)にも当てる= 句読点を置かず全角空白で区切る

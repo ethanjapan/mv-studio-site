@@ -1949,3 +1949,8 @@ p,figcaption,li,dd,dt,.st-src,.as-d,.uc-shelf h3 span,.dcol h4,.uc-step p,.pilla
 .ct-l .lz,.ct-l .le{display:none}
 body.lang-zh .ct-l .lj,body.lang-en .ct-l .lj{display:none}
 body.lang-zh .ct-l .lz,body.lang-en .ct-l .le{display:inline}
+
+/* 折れ方(2026-10-21 iPhone の計測): 作品の札の副題は語の途中で折らない(「ダ / ンス」)= 空白と記号の所で折る・入らない時だけどこでも
+   写真の説明は最終行が 1〜2 字にならないように(世界の撮影の「種菜」) */
+.workcard figcaption > span{word-break:keep-all;overflow-wrap:anywhere}
+figcaption{text-wrap:pretty}
