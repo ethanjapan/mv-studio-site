@@ -1,0 +1,1525 @@
+{
+ "_note": "撮影会ポートレートの棚の上段(2026-10-23)= IG @ethan_ai_photo の毎朝の投稿に選んだ写真(肌の正本 v2nomole・日本人の顔・普通でない構図の 3 条件)。正本は IG の posts_plan.json の slides.key(棚の鍵)。頁の棚と辞書は node gen_shelves.mjs が書く。1 枚足す= ここに 1 行 + python3 tools/still_assets.py --data data/portrait_ig.json。ig_post= どの投稿の組か(P00〜P06 は posts_plan・S10xx は week/next_2026-10-xx.json・N1023 は week/N1023) / show_first=9= 大きな札 1 枚(2x2)+ 8 枚で PC 6 列もスマホ 3 列も段が埋まる(6 だと 2 段目に 4 升の穴)",
+ "shelves": [
+  {
+   "key": "light",
+   "en": "LIGHT",
+   "ja": "光の教科書",
+   "zh": "光的教科書",
+   "sub_en": "Reading the light"
+  },
+  {
+   "key": "season",
+   "en": "SEASON & PLACE",
+   "ja": "季節と場所",
+   "zh": "季節與場所",
+   "sub_en": "Season and place"
+  },
+  {
+   "key": "face",
+   "en": "EXPRESSION & GAZE",
+   "ja": "表情と目線",
+   "zh": "表情與視線",
+   "sub_en": "Expression and gaze"
+  },
+  {
+   "key": "color",
+   "en": "OUTFIT & COLOR",
+   "ja": "衣装と色・白とクリーム",
+   "zh": "服裝與顏色・白與米白",
+   "sub_en": "Outfit and color: white and cream"
+  },
+  {
+   "key": "location",
+   "en": "ONE LOCATION",
+   "ja": "1 か所で 8 カット",
+   "zh": "一個地點・八個畫面",
+   "sub_en": "One location, eight frames"
+  }
+ ],
+ "show_first": 9,
+ "items": [
+  {
+   "id": "ig_clyd2_colorwall_green_lookback",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "葉影の日差し・緑の壁で振り返る",
+   "zh": "葉影的陽光・綠牆前回頭",
+   "en": "Leaf-shadow sun, looking back at a green wall",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_colorwall_green_lookback__random.png",
+    "shelf_key": "high_base_nd/clyd2_colorwall_green_lookback__random",
+    "ig_post": "P00",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_deac_rose_window_seat",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "窓の逆光・バラの窓辺に座る",
+   "zh": "窗邊逆光・坐在玫瑰窗邊",
+   "en": "Window backlight, seated by the roses",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/deac_rose_window_seat__random.png",
+    "shelf_key": "high_base_nd/deac_rose_window_seat__random",
+    "ig_post": "P00",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_deac_box_rail_gaze",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "暖かい灯り・桟敷の手すり",
+   "zh": "溫暖的燈光・包廂的欄杆",
+   "en": "Warm practicals at the box rail",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/deac_box_rail_gaze__random.png",
+    "shelf_key": "high_base_nd/deac_box_rail_gaze__random",
+    "ig_post": "P00",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_msk2_ring_bare_shoulder",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "リングライト・肩を出して",
+   "zh": "環形燈・露出肩膀",
+   "en": "Ring light, bare shoulder",
+   "v": "1023a",
+   "status": "candidate",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/msk2_ring_bare_shoulder__random.png",
+    "shelf_key": "high_base_nd/msk2_ring_bare_shoulder__random",
+    "ig_post": "P00",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   },
+   "_why": "肌の正本(v2nomole)の文が無い= IG の選定の条件 2 を満たさない"
+  },
+  {
+   "id": "ig_deac_palace_corset_gown",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "アーチの昼光・宮殿のドレス",
+   "zh": "拱廊的日光・宮殿的禮服",
+   "en": "Arched daylight, palace gown",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/deac_palace_corset_gown__random.png",
+    "shelf_key": "high_base_nd/deac_palace_corset_gown__random",
+    "ig_post": "P00",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_l9ye_teal_stairs",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "木陰の日差し・青緑の階段",
+   "zh": "樹蔭的陽光・藍綠色的樓梯",
+   "en": "Canopy sun on teal stairs",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/l9ye_teal_stairs__random.png",
+    "shelf_key": "high_base_nd/l9ye_teal_stairs__random",
+    "ig_post": "P00",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_ppxm_sun_close",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "窓の硬い光・顔の寄り",
+   "zh": "窗邊的硬光・臉的特寫",
+   "en": "A hard slice of window light, close",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/ppxm_sun_close__random.png",
+    "shelf_key": "high_base_nd/ppxm_sun_close__random",
+    "ig_post": "P00",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_or9o_hill_telescope",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "ランタンと星空・丘の望遠鏡",
+   "zh": "提燈與星空・山丘上的望遠鏡",
+   "en": "Lantern and starlight, a telescope on the hill",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/or9o_hill_telescope__random.png",
+    "shelf_key": "high_base_nd/or9o_hill_telescope__random",
+    "ig_post": "P00",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_mnp_flash_lean_back",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "直射フラッシュ・夜に背もたれへ",
+   "zh": "直打閃光・夜裡靠著椅背",
+   "en": "Direct flash, leaning back at night",
+   "v": "1023a",
+   "status": "candidate",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnp_flash_lean_back__random.png",
+    "shelf_key": "high_base_nd/mnp_flash_lean_back__random",
+    "ig_post": "P05",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   },
+   "_why": "肌の正本(v2nomole)の文が無い= IG の選定の条件 2 を満たさない"
+  },
+  {
+   "id": "ig_deac_rose_rose_stand",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "窓の光・白バラの壁に触れる",
+   "zh": "窗光・觸碰白玫瑰的牆",
+   "en": "Window light, touching the white roses",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/deac_rose_rose_stand__random.png",
+    "shelf_key": "high_base_nd/deac_rose_rose_stand__random",
+    "ig_post": "P05",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_dmn_lace_curtain_peek",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "逆光・レースのカーテン越し",
+   "zh": "逆光・隔著蕾絲窗簾",
+   "en": "Backlight through a lace curtain",
+   "v": "1023a",
+   "status": "candidate",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/dmn_lace_curtain_peek__random.png",
+    "shelf_key": "high_base_nd/dmn_lace_curtain_peek__random",
+    "ig_post": "P05",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   },
+   "_why": "肌の正本(v2nomole)の文が無い= IG の選定の条件 2 を満たさない"
+  },
+  {
+   "id": "ig_wa_bamboo_backlit_walk",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "夕方の低い光・竹林を歩く",
+   "zh": "傍晚的低光・走過竹林",
+   "en": "Golden hour in the bamboo grove",
+   "v": "1023a",
+   "status": "candidate",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/wa_bamboo_backlit_walk__random.png",
+    "shelf_key": "high_base_nd/wa_bamboo_backlit_walk__random",
+    "ig_post": "P05",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   },
+   "_why": "肌の正本(v2nomole)の文が無い= IG の選定の条件 2 を満たさない"
+  },
+  {
+   "id": "ig_msk_flower_swing",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "曇りのやわらかい光・花のブランコ",
+   "zh": "陰天的柔光・花的鞦韆",
+   "en": "Soft overcast, a swing of flowers",
+   "v": "1023a",
+   "status": "candidate",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/msk_flower_swing__random.png",
+    "shelf_key": "high_base_nd/msk_flower_swing__random",
+    "ig_post": "P05",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   },
+   "_why": "肌の正本(v2nomole)の文が無い= IG の選定の条件 2 を満たさない"
+  },
+  {
+   "id": "ig_kr_girl_crush_boots",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "硬い日差し・コンバットブーツ",
+   "zh": "硬質的陽光・軍靴",
+   "en": "Hard sun, combat boots",
+   "v": "1023a",
+   "status": "candidate",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/kr_girl_crush_boots__random.png",
+    "shelf_key": "high_turbo/kr_girl_crush_boots__random",
+    "ig_post": "P05",
+    "model": "Z-Image Turbo",
+    "size": "1408x2048"
+   },
+   "_why": "肌の正本(v2nomole)の文が無い= IG の選定の条件 2 を満たさない"
+  },
+  {
+   "id": "ig_kgy_bokeh_look_up_bokeh",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "夜の街の灯り・玉ボケを見上げる",
+   "zh": "夜晚的街燈・仰望光點",
+   "en": "Night practicals, looking up into bokeh",
+   "v": "1023a",
+   "status": "candidate",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/kgy_bokeh_look_up_bokeh__random.png",
+    "shelf_key": "high_base_nd/kgy_bokeh_look_up_bokeh__random",
+    "ig_post": "P05",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   },
+   "_why": "肌の正本(v2nomole)の文が無い= IG の選定の条件 2 を満たさない"
+  },
+  {
+   "id": "ig_yhf_lightup_aquarium_round",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "水族館の青・丸い窓",
+   "zh": "水族館的藍・圓窗",
+   "en": "Aquarium blue, the round window",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_lightup_aquarium_round__random.png",
+    "shelf_key": "high_base_nd/yhf_lightup_aquarium_round__random",
+    "ig_post": "N1023",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_lightup_glow_sphere",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "光の球・イルミネーション",
+   "zh": "發光的球・燈飾",
+   "en": "Glowing spheres in the illumination",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_lightup_glow_sphere__random.png",
+    "shelf_key": "high_base_nd/yhf_lightup_glow_sphere__random",
+    "ig_post": "N1023",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_lightup_light_tunnel",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "光のトンネル・和傘",
+   "zh": "光的隧道・和傘",
+   "en": "A tunnel of lights, paper parasol",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_lightup_light_tunnel__random.png",
+    "shelf_key": "high_base_nd/yhf_lightup_light_tunnel__random",
+    "ig_post": "N1023",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_lightup_xmas_bokeh",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "クリスマスの玉ボケ・金色",
+   "zh": "聖誕的光點・金色",
+   "en": "Christmas bokeh in gold",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_lightup_xmas_bokeh__random.png",
+    "shelf_key": "high_base_nd/yhf_lightup_xmas_bokeh__random",
+    "ig_post": "N1023",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_lightup_xmas_camera",
+   "shelf": "light",
+   "orient": "P",
+   "ja": "電飾の前でカメラを構える",
+   "zh": "在燈飾前舉起相機",
+   "en": "Raising a camera before the lights",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_lightup_xmas_camera__random.png",
+    "shelf_key": "high_base_nd/yhf_lightup_xmas_camera__random",
+    "ig_post": "N1023",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_momiji_ginkgo_pond",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "着物と紅葉・銀杏の水鏡",
+   "zh": "和服與紅葉・銀杏的水鏡",
+   "en": "Kimono and maples, ginkgo mirrored in the pond",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_momiji_ginkgo_pond__random.png",
+    "shelf_key": "high_base_nd/yhf_momiji_ginkgo_pond__random",
+    "ig_post": "P01",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_momiji_cloth_charms",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "くくり猿の前で振り返る",
+   "zh": "在布猴吊飾前回頭",
+   "en": "Looking back at the hanging charms",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_momiji_cloth_charms__random.png",
+    "shelf_key": "high_base_nd/yhf_momiji_cloth_charms__random",
+    "ig_post": "P01",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_bloom_spider_lily_kneel",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "彼岸花の中に膝をつく",
+   "zh": "跪在彼岸花之間",
+   "en": "Kneeling among the spider lilies",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_bloom_spider_lily_kneel__random.png",
+    "shelf_key": "high_base_nd/yhf_bloom_spider_lily_kneel__random",
+    "ig_post": "P01",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_momiji_teahouse_bench",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "茶屋の赤い床几・横顔",
+   "zh": "茶屋的紅長凳・側臉",
+   "en": "A teahouse bench in red, in profile",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_momiji_teahouse_bench__random.png",
+    "shelf_key": "high_base_nd/yhf_momiji_teahouse_bench__random",
+    "ig_post": "P01",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_bloom_spider_lily",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "彼岸花の前ボケ・手元",
+   "zh": "彼岸花的前景虛化・手",
+   "en": "Spider lilies in the foreground, hands",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_bloom_spider_lily__random.png",
+    "shelf_key": "high_base_nd/yhf_bloom_spider_lily__random",
+    "ig_post": "P01",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_momiji_leaf_carpet",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "落ち葉の上を真上から",
+   "zh": "從正上方看落葉",
+   "en": "A leaf carpet, seen from above",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_momiji_leaf_carpet__random.png",
+    "shelf_key": "high_base_nd/yhf_momiji_leaf_carpet__random",
+    "ig_post": "P01",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_momiji_temple_steps",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "寺の石段と紅葉",
+   "zh": "寺院的石階與紅葉",
+   "en": "Temple steps under the maples",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_momiji_temple_steps__random.png",
+    "shelf_key": "high_base_nd/yhf_momiji_temple_steps__random",
+    "ig_post": "P01",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_yhf_momiji_kimono_fan",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "紅葉と扇子",
+   "zh": "紅葉與扇子",
+   "en": "Maples and a folding fan",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_momiji_kimono_fan__random.png",
+    "shelf_key": "high_base_nd/yhf_momiji_kimono_fan__random",
+    "ig_post": "P01",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_akm_backlit_look_up",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "紅葉を見上げる逆光",
+   "zh": "仰望紅葉的逆光",
+   "en": "Backlit, looking up at the maples",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/akm_backlit_look_up__random.png",
+    "shelf_key": "high_base_nd/akm_backlit_look_up__random",
+    "ig_post": "S1030",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_akm_backlit_walk_glow",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "木漏れ日の参道を歩く",
+   "zh": "走在樹影斑駁的參道",
+   "en": "Walking the approach through dappled sun",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/akm_backlit_walk_glow__random.png",
+    "shelf_key": "high_base_nd/akm_backlit_walk_glow__random",
+    "ig_post": "S1030",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_akm_bokeh_bokeh_profile",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "前ボケの横顔",
+   "zh": "前景虛化的側臉",
+   "en": "A profile through foreground bokeh",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/akm_bokeh_bokeh_profile__random.png",
+    "shelf_key": "high_base_nd/akm_bokeh_bokeh_profile__random",
+    "ig_post": "S1030",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_akm_bokeh_through_leaves",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "葉越しの目線",
+   "zh": "隔著葉子的視線",
+   "en": "A gaze through the leaves",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/akm_bokeh_through_leaves__random.png",
+    "shelf_key": "high_base_nd/akm_bokeh_through_leaves__random",
+    "ig_post": "S1030",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_akm_gate_gate_pillar",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "山門の柱にもたれる",
+   "zh": "倚著山門的柱子",
+   "en": "Leaning on the gate pillar",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/akm_gate_gate_pillar__random.png",
+    "shelf_key": "high_base_nd/akm_gate_gate_pillar__random",
+    "ig_post": "S1030",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_akm_gate_steps_sit",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "落ち葉の石段に座る",
+   "zh": "坐在落葉的石階上",
+   "en": "Seated on leaf-strewn stone steps",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/akm_gate_steps_sit__random.png",
+    "shelf_key": "high_base_nd/akm_gate_steps_sit__random",
+    "ig_post": "S1030",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_akm_props_leaves_hands",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "落ち葉をすくう",
+   "zh": "捧起落葉",
+   "en": "Scooping up fallen leaves",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/akm_props_leaves_hands__random.png",
+    "shelf_key": "high_base_nd/akm_props_leaves_hands__random",
+    "ig_post": "S1030",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_akm_props_parasol_shoulder",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "赤い和傘を肩に",
+   "zh": "紅色和傘靠在肩上",
+   "en": "A red parasol on the shoulder",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/akm_props_parasol_shoulder__random.png",
+    "shelf_key": "high_base_nd/akm_props_parasol_shoulder__random",
+    "ig_post": "S1030",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_sus_glow_back_rim",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "すすき野原・縁の光の後ろ姿",
+   "zh": "芒草原・輪廓光的背影",
+   "en": "Pampas field, rim-lit from behind",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/sus_glow_back_rim__random.png",
+    "shelf_key": "high_base_nd/sus_glow_back_rim__random",
+    "ig_post": "S1024",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_sus_glow_walk_grass",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "穂の中を歩く全身",
+   "zh": "走在芒穗間的全身",
+   "en": "Walking through the plumes",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/sus_glow_walk_grass__random.png",
+    "shelf_key": "high_base_nd/sus_glow_walk_grass__random",
+    "ig_post": "S1024",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_sus_sit_knees_hug",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "膝を抱えて座る・引き",
+   "zh": "抱膝而坐・遠景",
+   "en": "Knees hugged, a wide shot",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/sus_sit_knees_hug__random.png",
+    "shelf_key": "high_base_nd/sus_sit_knees_hug__random",
+    "ig_post": "S1024",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_sus_glow_sun_flare",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "太陽と光のにじみ・横顔",
+   "zh": "太陽與光暈・側臉",
+   "en": "Sun flare, in profile",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/sus_glow_sun_flare__random.png",
+    "shelf_key": "high_base_nd/sus_glow_sun_flare__random",
+    "ig_post": "S1024",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_sus_glow_hand_sun",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "顔に手をかざす",
+   "zh": "用手遮擋陽光",
+   "en": "Shading the sun with a hand",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/sus_glow_hand_sun__random.png",
+    "shelf_key": "high_base_nd/sus_glow_hand_sun__random",
+    "ig_post": "S1024",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_sus_sit_side_sit",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "穂の中に座って横を向く",
+   "zh": "坐在芒穗間側望",
+   "en": "Seated in the grass, looking aside",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/sus_sit_side_sit__random.png",
+    "shelf_key": "high_base_nd/sus_sit_side_sit__random",
+    "ig_post": "S1024",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_sus_sit_plume_hold",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "穂を一本持つ寄り",
+   "zh": "拿著一支芒穗的特寫",
+   "en": "Holding a single plume, close",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/sus_sit_plume_hold__random.png",
+    "shelf_key": "high_base_nd/sus_sit_plume_hold__random",
+    "ig_post": "S1024",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_sus_sit_sleeve_mouth",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "袖で口元を隠す寄り",
+   "zh": "用袖子遮住嘴的特寫",
+   "en": "A sleeve over the mouth, close",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/sus_sit_sleeve_mouth__random.png",
+    "shelf_key": "high_base_nd/sus_sit_sleeve_mouth__random",
+    "ig_post": "S1024",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_jmii_beige_ref_close",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "蔦の白壁・顔と肩の寄りで笑う",
+   "zh": "藤蔓白牆・臉與肩的特寫微笑",
+   "en": "Ivy wall, a close smile",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jmii_beige_ref_close__random.png",
+    "shelf_key": "high_base_nd/jmii_beige_ref_close__random",
+    "ig_post": "P02",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_lowkey_half_face",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "ローキー・顔の半分の光",
+   "zh": "低調光・半邊臉的光",
+   "en": "Low key, light on half the face",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_lowkey_half_face__random.png",
+    "shelf_key": "high_base_nd/clyd2_lowkey_half_face__random",
+    "ig_post": "P02",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_deac_rose_veil_close",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "ヴェールが顔を横切る・目を閉じて",
+   "zh": "面紗掠過臉・閉上眼",
+   "en": "A veil across the face, eyes closed",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/deac_rose_veil_close__random.png",
+    "shelf_key": "high_base_nd/deac_rose_veil_close__random",
+    "ig_post": "P02",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_colorwall_blue_tilt",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "青の壁と青の服・首をかしげる",
+   "zh": "藍牆與藍衣・歪著頭",
+   "en": "Blue on blue, head tilted",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_colorwall_blue_tilt__random.png",
+    "shelf_key": "high_base_nd/clyd2_colorwall_blue_tilt__random",
+    "ig_post": "P02",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_cake_blue_tilt",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "ケーキを頬張る・上から",
+   "zh": "大口吃蛋糕・從上方",
+   "en": "A mouthful of cake, from above",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_cake_blue_tilt__random.png",
+    "shelf_key": "high_base_nd/clyd2_cake_blue_tilt__random",
+    "ig_post": "P02",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_lowkey_head_back",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "ローキー・顔を上げる",
+   "zh": "低調光・抬起臉",
+   "en": "Low key, chin up",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_lowkey_head_back__random.png",
+    "shelf_key": "high_base_nd/clyd2_lowkey_head_back__random",
+    "ig_post": "P02",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_lowkey_dark_laugh",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "暗がりの笑い",
+   "zh": "暗處的笑",
+   "en": "Laughing in the dark",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_lowkey_dark_laugh__random.png",
+    "shelf_key": "high_base_nd/clyd2_lowkey_dark_laugh__random",
+    "ig_post": "P02",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_cake_cream_lip",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "唇のクリーム",
+   "zh": "唇上的奶油",
+   "en": "Cream on the lip",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_cake_cream_lip__random.png",
+    "shelf_key": "high_base_nd/clyd2_cake_cream_lip__random",
+    "ig_post": "P02",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_furi_face_close",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "障子の光で微笑む・振袖",
+   "zh": "紙門的光下微笑・振袖",
+   "en": "Smiling in shoji light, furisode",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/furi_face_close__random.png",
+    "shelf_key": "high_base_nd/furi_face_close__random",
+    "ig_post": "S1028",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_ppds_hair_tuck",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "髪を耳にかける・まっすぐな目線",
+   "zh": "把頭髮撥到耳後・直視",
+   "en": "Tucking hair back, a straight gaze",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/ppds_hair_tuck__random.png",
+    "shelf_key": "high_base_nd/ppds_hair_tuck__random",
+    "ig_post": "S1028",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_jjo_sun_shirt_sun",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "日差しの帯で目を閉じる",
+   "zh": "在光帶中閉上眼",
+   "en": "Eyes closed in a band of sun",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jjo_sun_shirt_sun__random.png",
+    "shelf_key": "high_base_nd/jjo_sun_shirt_sun__random",
+    "ig_post": "S1028",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_mnc_p004",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "カフェでウインク",
+   "zh": "在咖啡店眨眼",
+   "en": "A wink at the café",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p004__random.png",
+    "shelf_key": "high_base_nd/mnc_p004__random",
+    "ig_post": "S1028",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_fsl_pink_side_profile",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "くすみピンクの振袖・伏し目の横顔",
+   "zh": "灰粉色振袖・垂眼的側臉",
+   "en": "Dusty pink furisode, a downcast profile",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/fsl_pink_side_profile__random.png",
+    "shelf_key": "high_base_nd/fsl_pink_side_profile__random",
+    "ig_post": "S1028",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_bpf_pond_maple_close",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "池の縁で座って目線",
+   "zh": "坐在池邊的視線",
+   "en": "Seated by the pond, meeting the eye",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/bpf_pond_maple_close__random.png",
+    "shelf_key": "high_base_nd/bpf_pond_maple_close__random",
+    "ig_post": "S1028",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_aoj_n03",
+   "shelf": "face",
+   "orient": "P",
+   "ja": "犬を見る伏し目",
+   "zh": "望著狗的垂眼",
+   "en": "Looking down at the dog",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n03__random.png",
+    "shelf_key": "high_base_nd/aoj_n03__random",
+    "ig_post": "S1028",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_smf_window_turn_back",
+   "shelf": "color",
+   "orient": "P",
+   "ja": "窓辺で振り返る・白いシャツ",
+   "zh": "窗邊回頭・白襯衫",
+   "en": "Turning back at the window, white shirt",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/smf_window_turn_back__random.png",
+    "shelf_key": "high_base_nd/smf_window_turn_back__random",
+    "ig_post": "P03",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_saf6_rail_ref_sit",
+   "shelf": "color",
+   "orient": "P",
+   "ja": "廃線のレールに座ってカメラ",
+   "zh": "坐在廢棄鐵軌上拿相機",
+   "en": "Seated on the old rails with a camera",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/saf6_rail_ref_sit__random.png",
+    "shelf_key": "high_base_nd/saf6_rail_ref_sit__random",
+    "ig_post": "P03",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_dgs_sun_glasses",
+   "shelf": "color",
+   "orient": "P",
+   "ja": "畳の日差し・眼鏡に手",
+   "zh": "榻榻米的陽光・手扶眼鏡",
+   "en": "Sun on tatami, a hand to the glasses",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/dgs_sun_glasses__random.png",
+    "shelf_key": "high_base_nd/dgs_sun_glasses__random",
+    "ig_post": "P03",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_gvxi_hair_ref_back",
+   "shelf": "color",
+   "orient": "P",
+   "ja": "白いタイルの壁で振り向く",
+   "zh": "在白磁磚牆前回頭",
+   "en": "Turning at a white tiled wall",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/gvxi_hair_ref_back__random.png",
+    "shelf_key": "high_base_nd/gvxi_hair_ref_back__random",
+    "ig_post": "P03",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_ylf_house_doorway",
+   "shelf": "color",
+   "orient": "P",
+   "ja": "古い家の戸口で花を手に",
+   "zh": "老房子門口手持花",
+   "en": "Flowers at an old doorway",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/ylf_house_doorway__random.png",
+    "shelf_key": "high_base_nd/ylf_house_doorway__random",
+    "ig_post": "P03",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_frn_tea_alley_walk",
+   "shelf": "color",
+   "orient": "P",
+   "ja": "石塀の路地・木漏れ日",
+   "zh": "石牆小巷・樹影",
+   "en": "A stone-walled lane in dappled shade",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/frn_tea_alley_walk__random.png",
+    "shelf_key": "high_base_nd/frn_tea_alley_walk__random",
+    "ig_post": "P03",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_nfl_hall_door_lean",
+   "shelf": "color",
+   "orient": "P",
+   "ja": "扉にもたれて夕日を顔に",
+   "zh": "倚著門讓夕陽照臉",
+   "en": "Leaning on a door, evening sun on the face",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/nfl_hall_door_lean__random.png",
+    "shelf_key": "high_base_nd/nfl_hall_door_lean__random",
+    "ig_post": "P03",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_bcg_chair_slip_chair",
+   "shelf": "color",
+   "orient": "P",
+   "ja": "白黒のスタジオ・高い椅子",
+   "zh": "黑白攝影棚・高腳椅",
+   "en": "Monochrome studio, a tall chair",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/bcg_chair_slip_chair__random.png",
+    "shelf_key": "high_base_nd/bcg_chair_slip_chair__random",
+    "ig_post": "P03",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_moto_wheel_crouch",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "廃ビルとバイク・前輪の横でしゃがむ",
+   "zh": "廢棄大樓與機車・蹲在前輪旁",
+   "en": "Ruined building and a bike, crouched by the wheel",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_moto_wheel_crouch__random.png",
+    "shelf_key": "high_base_nd/clyd2_moto_wheel_crouch__random",
+    "ig_post": "P06",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_moto_astride",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "跨って前傾・引き",
+   "zh": "跨坐前傾・遠景",
+   "en": "Astride and leaning in, wide",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_moto_astride__random.png",
+    "shelf_key": "high_base_nd/clyd2_moto_astride__random",
+    "ig_post": "P06",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_moto_stand_beside",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "バイクの横に立つ・全身",
+   "zh": "站在機車旁・全身",
+   "en": "Standing beside the bike, full length",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_moto_stand_beside__random.png",
+    "shelf_key": "high_base_nd/clyd2_moto_stand_beside__random",
+    "ig_post": "P06",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_moto_night_flash",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "夜のバイクとフラッシュ",
+   "zh": "夜晚的機車與閃光",
+   "en": "Night, the bike, on-camera flash",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_moto_night_flash__random.png",
+    "shelf_key": "high_base_nd/clyd2_moto_night_flash__random",
+    "ig_post": "P06",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_moto_tank_lean",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "タンクにもたれる",
+   "zh": "倚著油箱",
+   "en": "Leaning on the tank",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_moto_tank_lean__random.png",
+    "shelf_key": "high_base_nd/clyd2_moto_tank_lean__random",
+    "ig_post": "P06",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_moto_shoulder_slip",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "肩を出したジャケット",
+   "zh": "滑落肩頭的外套",
+   "en": "A jacket slipping off the shoulder",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_moto_shoulder_slip__random.png",
+    "shelf_key": "high_base_nd/clyd2_moto_shoulder_slip__random",
+    "ig_post": "P06",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_clyd2_moto_chrome_city",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "ミラーの寄り・銀のジャケット",
+   "zh": "後照鏡的特寫・銀色外套",
+   "en": "Mirror close-up, silver jacket",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_moto_chrome_city__random.png",
+    "shelf_key": "high_base_nd/clyd2_moto_chrome_city__random",
+    "ig_post": "P06",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_tkb_alley_shop_turn",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "下町の路地・店の暖簾の前で振り返る",
+   "zh": "老街小巷・在店家布簾前回頭",
+   "en": "Old-town lane, turning back at the shop curtain",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_alley_shop_turn__random.png",
+    "shelf_key": "high_base_nd/tkb_alley_shop_turn__random",
+    "ig_post": "S1026",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_tkb_alley_fence_lean",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "緑の金網にもたれる",
+   "zh": "倚著綠色鐵絲網",
+   "en": "Leaning on the green fence",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_alley_fence_lean__random.png",
+    "shelf_key": "high_base_nd/tkb_alley_fence_lean__random",
+    "ig_post": "S1026",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_tkb_alley_flower_back",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "白い壁の路地で花を肩に",
+   "zh": "白牆小巷・花靠在肩上",
+   "en": "A white-walled lane, flowers at the shoulder",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_alley_flower_back__random.png",
+    "shelf_key": "high_base_nd/tkb_alley_flower_back__random",
+    "ig_post": "S1026",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_tkb_alley_step_sit",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "店先の段に座る",
+   "zh": "坐在店門口的台階",
+   "en": "Seated on the shop step",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_alley_step_sit__random.png",
+    "shelf_key": "high_base_nd/tkb_alley_step_sit__random",
+    "ig_post": "S1026",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_tkb_street_sky_profile",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "空を見上げる横顔",
+   "zh": "仰望天空的側臉",
+   "en": "A profile, looking up at the sky",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_street_sky_profile__random.png",
+    "shelf_key": "high_base_nd/tkb_street_sky_profile__random",
+    "ig_post": "S1026",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_tkb_street_rail_hand",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "ガラスの手すりで髪に手",
+   "zh": "玻璃欄杆旁手撫頭髮",
+   "en": "A glass railing, a hand in the hair",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_street_rail_hand__random.png",
+    "shelf_key": "high_base_nd/tkb_street_rail_hand__random",
+    "ig_post": "S1026",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_tkb_street_vending_wait",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "街角で待つ",
+   "zh": "在街角等待",
+   "en": "Waiting on the corner",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_street_vending_wait__random.png",
+    "shelf_key": "high_base_nd/tkb_street_vending_wait__random",
+    "ig_post": "S1026",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  },
+  {
+   "id": "ig_tkb_street_flower_eye",
+   "shelf": "location",
+   "orient": "P",
+   "ja": "花で片目を隠す",
+   "zh": "用花遮住一隻眼",
+   "en": "A flower over one eye",
+   "v": "1023a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_street_flower_eye__random.png",
+    "shelf_key": "high_base_nd/tkb_street_flower_eye__random",
+    "ig_post": "S1026",
+    "model": "Z-Image Base",
+    "realism": "v2nomole",
+    "size": "1408x2048"
+   }
+  }
+ ]
+}

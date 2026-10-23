@@ -183,7 +183,7 @@ for (const f of pages) {
   const { readFileSync } = await import('node:fs')
   const dictZh = (file) => { const s = readFileSync(join(ROOT, file), 'utf8'); const h = 'const M=Object.assign({},{'; const a = s.indexOf(h), b = s.indexOf('\n  },window.MV_WORKS_I18N', a); return (0, eval)('(' + s.slice(a + h.length - 1, b).trim() + '})') }
   const winDict = (file) => { try { const w = {}; (new Function('window', readFileSync(join(ROOT, file), 'utf8')))(w); return Object.assign({}, ...Object.entries(w).filter(([k]) => !/_EN$/.test(k)).map(([, v]) => v)) } catch { return {} } }
-  const MAIN = dictZh('js/main.js'), UC = dictZh('js/uc_i18n.js'), WK = winDict('js/works_i18n.js'), ST = winDict('js/still_i18n.js')
+  const MAIN = dictZh('js/main.js'), UC = dictZh('js/uc_i18n.js'), WK = winDict('js/works_i18n.js'), ST = winDict('js/still_i18n.js'), PG = winDict('js/pig_i18n.js')
   const VOID = new Set(['img', 'br', 'meta', 'link', 'input', 'source', 'hr', 'wbr', 'area', 'base', 'col', 'embed', 'track', 'param'])
   const seo = Object.keys(JSON.parse(readFileSync(join(ROOT, 'data/seo_meta.json'), 'utf8')).pages)
   const unent = (t) => t.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
@@ -192,7 +192,7 @@ for (const f of pages) {
     if (!seo.includes(f)) bad.push(`言語別の頁の登録漏れ: ${f} が data/seo_meta.json に無い(繁中・英語の版が作られない)`)
     const html = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
     const body = html.slice(html.indexOf('<body'))
-    const D = Object.assign({}, /js\/main\.js/.test(html) ? MAIN : UC, /works_i18n/.test(html) ? WK : {}, /still_i18n/.test(html) ? ST : {})
+    const D = Object.assign({}, /js\/main\.js/.test(html) ? MAIN : UC, /works_i18n/.test(html) ? WK : {}, /still_i18n/.test(html) ? ST : {}, /pig_i18n/.test(html) ? PG : {})
     const stack = [], miss = new Set()
     for (const m of body.matchAll(/<(\/?)([a-zA-Z0-9-]+)([^>]*)>|([^<]+)/g)) {
       if (m[4] != null) {

@@ -12,6 +12,8 @@ const ROOT = dirname(fileURLToPath(import.meta.url))
 const SETS = [
   { name: 'still', data: 'data/stills.json', page: 'usecases/still.html', jp: '物と場所' },
   { name: 'beauty', data: 'data/beauty.json', page: 'usecases/beauty.html', jp: '美容' },
+  // 撮影会ポートレートの棚の上段(2026-10-23)= IG @ethan_ai_photo の毎朝の投稿に選んだ写真。印は portrait.html の gen:pig:shelves
+  { name: 'pig', data: 'data/portrait_ig.json', page: 'usecases/portrait.html', jp: '毎朝の作例' },
 ]
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 

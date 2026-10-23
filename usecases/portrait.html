@@ -69,12 +69,24 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
 .uc-fin{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .uc-fin .uc-film{aspect-ratio:16/9}
 .uc-proof{margin-top:28px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;font-size:13.5px;color:var(--muted)}
+.pig-sub{font-size:13.5px;line-height:1.9;letter-spacing:.04em;color:var(--muted);margin:10px 0 0;max-width:46em}
+.pig-k2{margin-top:56px}
+.uc-reels{margin-top:64px}
+.uc-reel-row{margin-top:22px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.uc-reel{margin:0;position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:9/16;border:1px solid var(--line)}
+.uc-reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-reel::after{content:'';position:absolute;left:0;right:0;bottom:0;height:28%;background:linear-gradient(transparent,rgba(0,0,0,.55));z-index:1;pointer-events:none}
+.uc-reel figcaption{position:absolute;left:12px;bottom:10px;z-index:2;font-family:var(--en-display);font-size:12px;letter-spacing:.12em;color:rgba(241,242,247,.88);text-shadow:0 1px 8px rgba(0,0,0,.8)}
 .uc-contact{text-align:center;padding-top:10vh;padding-bottom:12vh}
 .uc-contact .ch-title{font-size:clamp(26px,3.6vw,44px)}
 @media (max-width:900px){
   .uc-hero .panel-inner{grid-template-columns:1fr}
   .uc-steps,.uc-fin{grid-template-columns:1fr}
   .uc-grid{grid-template-columns:repeat(3,1fr)}
+  /* 縦のリールはスマホで横スワイプの 1 列(強み 02 の七つの柱と同じ作法・558d2d8) */
+  .uc-reel-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:22px -16px 0;padding:0 16px 4px;scroll-padding:0 16px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .uc-reel-row::-webkit-scrollbar{display:none}
+  .uc-reel{flex:0 0 min(58vw,260px);scroll-snap-align:start}
 }
 </style>
 </head>
@@ -146,8 +158,123 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
     <div class="panel-inner">
       <div class="ch-eyebrow reveal">03 — 棚から選べる</div>
       <h2 class="ch-title reveal d1">作風は、<span class="em nw">20,000 以上</span>。</h2>
-      <p class="ch-sub reveal d2">写真の様式の棚は 20,000 を超えて、毎週増える。写真家の作風、芸術、雰囲気と幻想、雑誌、室内の撮影会、セクシー——ここに並ぶのは、その中の 102。</p>
+      <p class="ch-sub reveal d2">写真の様式の棚は 20,000 を超えて、毎週増える。写真家の作風、芸術、雰囲気と幻想、雑誌、室内の撮影会、セクシー——ここに並ぶのは、その中の 177。</p>
       <div class="uc-shelf">
+        <div class="ch-eyebrow reveal" data-noi18n>LATEST — @ETHAN_AI_PHOTO</div>
+        <p class="pig-sub reveal">毎朝 Instagram に載せている作例から、いちばん新しい写真。</p>
+      <!-- gen:pig:shelves:start(node gen_shelves.mjs が data/portrait_ig.json から書く・手で編集しない) -->
+        <h3><i></i>LIGHT <span>光の教科書</span></h3>
+          <div class="uc-grid">
+            <figure class="reveal big"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_colorwall_green_lookback-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_colorwall_green_lookback-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 66vw, 34vw"><img src="../assets/uc/ig_clyd2_colorwall_green_lookback.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>葉影の日差し・緑の壁で振り返る</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_deac_rose_window_seat-600.webp?v=1023a 600w, ../assets/uc/ig_deac_rose_window_seat-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_deac_rose_window_seat.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>窓の逆光・バラの窓辺に座る</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_deac_box_rail_gaze-600.webp?v=1023a 600w, ../assets/uc/ig_deac_box_rail_gaze-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_deac_box_rail_gaze.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>暖かい灯り・桟敷の手すり</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_deac_palace_corset_gown-600.webp?v=1023a 600w, ../assets/uc/ig_deac_palace_corset_gown-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_deac_palace_corset_gown.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>アーチの昼光・宮殿のドレス</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_l9ye_teal_stairs-600.webp?v=1023a 600w, ../assets/uc/ig_l9ye_teal_stairs-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_l9ye_teal_stairs.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>木陰の日差し・青緑の階段</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_ppxm_sun_close-600.webp?v=1023a 600w, ../assets/uc/ig_ppxm_sun_close-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_ppxm_sun_close.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>窓の硬い光・顔の寄り</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_or9o_hill_telescope-600.webp?v=1023a 600w, ../assets/uc/ig_or9o_hill_telescope-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_or9o_hill_telescope.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>ランタンと星空・丘の望遠鏡</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_deac_rose_rose_stand-600.webp?v=1023a 600w, ../assets/uc/ig_deac_rose_rose_stand-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_deac_rose_rose_stand.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>窓の光・白バラの壁に触れる</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_lightup_aquarium_round-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_lightup_aquarium_round-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_lightup_aquarium_round.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>水族館の青・丸い窓</figcaption></figure>
+          </div>
+          <div class="fold-body" hidden>
+            <div class="uc-grid">
+            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_lightup_glow_sphere-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_lightup_glow_sphere-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_lightup_glow_sphere.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>光の球・イルミネーション</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_lightup_light_tunnel-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_lightup_light_tunnel-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_lightup_light_tunnel.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>光のトンネル・和傘</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_lightup_xmas_bokeh-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_lightup_xmas_bokeh-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_lightup_xmas_bokeh.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>クリスマスの玉ボケ・金色</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_lightup_xmas_camera-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_lightup_xmas_camera-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_lightup_xmas_camera.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>電飾の前でカメラを構える</figcaption></figure>
+            </div>
+          </div>
+          <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る（4 枚）</span><span class="zh">看更多（4 張）</span><span class="en">Read more (4)</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>
+          <h3><i></i>SEASON &amp; PLACE <span>季節と場所</span></h3>
+          <div class="uc-grid">
+            <figure class="reveal big"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_momiji_ginkgo_pond-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_momiji_ginkgo_pond-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 66vw, 34vw"><img src="../assets/uc/ig_yhf_momiji_ginkgo_pond.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>着物と紅葉・銀杏の水鏡</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_momiji_cloth_charms-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_momiji_cloth_charms-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_momiji_cloth_charms.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>くくり猿の前で振り返る</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_bloom_spider_lily_kneel-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_bloom_spider_lily_kneel-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_bloom_spider_lily_kneel.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>彼岸花の中に膝をつく</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_momiji_teahouse_bench-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_momiji_teahouse_bench-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_momiji_teahouse_bench.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>茶屋の赤い床几・横顔</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_bloom_spider_lily-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_bloom_spider_lily-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_bloom_spider_lily.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>彼岸花の前ボケ・手元</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_momiji_leaf_carpet-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_momiji_leaf_carpet-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_momiji_leaf_carpet.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>落ち葉の上を真上から</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_momiji_temple_steps-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_momiji_temple_steps-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_momiji_temple_steps.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>寺の石段と紅葉</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_yhf_momiji_kimono_fan-600.webp?v=1023a 600w, ../assets/uc/ig_yhf_momiji_kimono_fan-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_yhf_momiji_kimono_fan.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>紅葉と扇子</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_akm_backlit_look_up-600.webp?v=1023a 600w, ../assets/uc/ig_akm_backlit_look_up-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_akm_backlit_look_up.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>紅葉を見上げる逆光</figcaption></figure>
+          </div>
+          <div class="fold-body" hidden>
+            <div class="uc-grid">
+            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_akm_backlit_walk_glow-600.webp?v=1023a 600w, ../assets/uc/ig_akm_backlit_walk_glow-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_akm_backlit_walk_glow.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>木漏れ日の参道を歩く</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_akm_bokeh_bokeh_profile-600.webp?v=1023a 600w, ../assets/uc/ig_akm_bokeh_bokeh_profile-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_akm_bokeh_bokeh_profile.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>前ボケの横顔</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_akm_bokeh_through_leaves-600.webp?v=1023a 600w, ../assets/uc/ig_akm_bokeh_through_leaves-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_akm_bokeh_through_leaves.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>葉越しの目線</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_akm_gate_gate_pillar-600.webp?v=1023a 600w, ../assets/uc/ig_akm_gate_gate_pillar-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_akm_gate_gate_pillar.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>山門の柱にもたれる</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_akm_gate_steps_sit-600.webp?v=1023a 600w, ../assets/uc/ig_akm_gate_steps_sit-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_akm_gate_steps_sit.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>落ち葉の石段に座る</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_akm_props_leaves_hands-600.webp?v=1023a 600w, ../assets/uc/ig_akm_props_leaves_hands-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_akm_props_leaves_hands.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>落ち葉をすくう</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_akm_props_parasol_shoulder-600.webp?v=1023a 600w, ../assets/uc/ig_akm_props_parasol_shoulder-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_akm_props_parasol_shoulder.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>赤い和傘を肩に</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_sus_glow_back_rim-600.webp?v=1023a 600w, ../assets/uc/ig_sus_glow_back_rim-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_sus_glow_back_rim.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>すすき野原・縁の光の後ろ姿</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_sus_glow_walk_grass-600.webp?v=1023a 600w, ../assets/uc/ig_sus_glow_walk_grass-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_sus_glow_walk_grass.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>穂の中を歩く全身</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_sus_sit_knees_hug-600.webp?v=1023a 600w, ../assets/uc/ig_sus_sit_knees_hug-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_sus_sit_knees_hug.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>膝を抱えて座る・引き</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_sus_glow_sun_flare-600.webp?v=1023a 600w, ../assets/uc/ig_sus_glow_sun_flare-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_sus_glow_sun_flare.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>太陽と光のにじみ・横顔</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_sus_glow_hand_sun-600.webp?v=1023a 600w, ../assets/uc/ig_sus_glow_hand_sun-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_sus_glow_hand_sun.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>顔に手をかざす</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_sus_sit_side_sit-600.webp?v=1023a 600w, ../assets/uc/ig_sus_sit_side_sit-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_sus_sit_side_sit.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>穂の中に座って横を向く</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_sus_sit_plume_hold-600.webp?v=1023a 600w, ../assets/uc/ig_sus_sit_plume_hold-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_sus_sit_plume_hold.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>穂を一本持つ寄り</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_sus_sit_sleeve_mouth-600.webp?v=1023a 600w, ../assets/uc/ig_sus_sit_sleeve_mouth-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_sus_sit_sleeve_mouth.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>袖で口元を隠す寄り</figcaption></figure>
+            </div>
+          </div>
+          <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る（15 枚）</span><span class="zh">看更多（15 張）</span><span class="en">Read more (15)</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>
+          <h3><i></i>EXPRESSION &amp; GAZE <span>表情と目線</span></h3>
+          <div class="uc-grid">
+            <figure class="reveal big"><picture><source type="image/webp" srcset="../assets/uc/ig_jmii_beige_ref_close-600.webp?v=1023a 600w, ../assets/uc/ig_jmii_beige_ref_close-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 66vw, 34vw"><img src="../assets/uc/ig_jmii_beige_ref_close.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>蔦の白壁・顔と肩の寄りで笑う</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_lowkey_half_face-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_lowkey_half_face-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_lowkey_half_face.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>ローキー・顔の半分の光</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_deac_rose_veil_close-600.webp?v=1023a 600w, ../assets/uc/ig_deac_rose_veil_close-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_deac_rose_veil_close.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>ヴェールが顔を横切る・目を閉じて</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_colorwall_blue_tilt-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_colorwall_blue_tilt-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_colorwall_blue_tilt.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>青の壁と青の服・首をかしげる</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_cake_blue_tilt-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_cake_blue_tilt-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_cake_blue_tilt.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>ケーキを頬張る・上から</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_lowkey_head_back-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_lowkey_head_back-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_lowkey_head_back.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>ローキー・顔を上げる</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_lowkey_dark_laugh-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_lowkey_dark_laugh-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_lowkey_dark_laugh.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>暗がりの笑い</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_cake_cream_lip-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_cake_cream_lip-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_cake_cream_lip.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>唇のクリーム</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_furi_face_close-600.webp?v=1023a 600w, ../assets/uc/ig_furi_face_close-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_furi_face_close.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>障子の光で微笑む・振袖</figcaption></figure>
+          </div>
+          <div class="fold-body" hidden>
+            <div class="uc-grid">
+            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_ppds_hair_tuck-600.webp?v=1023a 600w, ../assets/uc/ig_ppds_hair_tuck-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_ppds_hair_tuck.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>髪を耳にかける・まっすぐな目線</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_jjo_sun_shirt_sun-600.webp?v=1023a 600w, ../assets/uc/ig_jjo_sun_shirt_sun-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_jjo_sun_shirt_sun.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>日差しの帯で目を閉じる</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_mnc_p004-600.webp?v=1023a 600w, ../assets/uc/ig_mnc_p004-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_mnc_p004.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>カフェでウインク</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_fsl_pink_side_profile-600.webp?v=1023a 600w, ../assets/uc/ig_fsl_pink_side_profile-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_fsl_pink_side_profile.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>くすみピンクの振袖・伏し目の横顔</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_bpf_pond_maple_close-600.webp?v=1023a 600w, ../assets/uc/ig_bpf_pond_maple_close-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_bpf_pond_maple_close.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>池の縁で座って目線</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_aoj_n03-600.webp?v=1023a 600w, ../assets/uc/ig_aoj_n03-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_aoj_n03.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>犬を見る伏し目</figcaption></figure>
+            </div>
+          </div>
+          <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る（6 枚）</span><span class="zh">看更多（6 張）</span><span class="en">Read more (6)</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>
+          <h3><i></i>OUTFIT &amp; COLOR <span>衣装と色・白とクリーム</span></h3>
+          <div class="uc-grid">
+            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_smf_window_turn_back-600.webp?v=1023a 600w, ../assets/uc/ig_smf_window_turn_back-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_smf_window_turn_back.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>窓辺で振り返る・白いシャツ</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_saf6_rail_ref_sit-600.webp?v=1023a 600w, ../assets/uc/ig_saf6_rail_ref_sit-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_saf6_rail_ref_sit.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>廃線のレールに座ってカメラ</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_dgs_sun_glasses-600.webp?v=1023a 600w, ../assets/uc/ig_dgs_sun_glasses-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_dgs_sun_glasses.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>畳の日差し・眼鏡に手</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_gvxi_hair_ref_back-600.webp?v=1023a 600w, ../assets/uc/ig_gvxi_hair_ref_back-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_gvxi_hair_ref_back.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>白いタイルの壁で振り向く</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_ylf_house_doorway-600.webp?v=1023a 600w, ../assets/uc/ig_ylf_house_doorway-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_ylf_house_doorway.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>古い家の戸口で花を手に</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_frn_tea_alley_walk-600.webp?v=1023a 600w, ../assets/uc/ig_frn_tea_alley_walk-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_frn_tea_alley_walk.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>石塀の路地・木漏れ日</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_nfl_hall_door_lean-600.webp?v=1023a 600w, ../assets/uc/ig_nfl_hall_door_lean-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_nfl_hall_door_lean.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>扉にもたれて夕日を顔に</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_bcg_chair_slip_chair-600.webp?v=1023a 600w, ../assets/uc/ig_bcg_chair_slip_chair-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_bcg_chair_slip_chair.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>白黒のスタジオ・高い椅子</figcaption></figure>
+          </div>
+          <h3><i></i>ONE LOCATION <span>1 か所で 8 カット</span></h3>
+          <div class="uc-grid">
+            <figure class="reveal big"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_moto_wheel_crouch-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_moto_wheel_crouch-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 66vw, 34vw"><img src="../assets/uc/ig_clyd2_moto_wheel_crouch.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>廃ビルとバイク・前輪の横でしゃがむ</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_moto_astride-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_moto_astride-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_moto_astride.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>跨って前傾・引き</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_moto_stand_beside-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_moto_stand_beside-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_moto_stand_beside.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>バイクの横に立つ・全身</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_moto_night_flash-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_moto_night_flash-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_moto_night_flash.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>夜のバイクとフラッシュ</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_moto_tank_lean-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_moto_tank_lean-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_moto_tank_lean.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>タンクにもたれる</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_moto_shoulder_slip-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_moto_shoulder_slip-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_moto_shoulder_slip.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>肩を出したジャケット</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_clyd2_moto_chrome_city-600.webp?v=1023a 600w, ../assets/uc/ig_clyd2_moto_chrome_city-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_clyd2_moto_chrome_city.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>ミラーの寄り・銀のジャケット</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_tkb_alley_shop_turn-600.webp?v=1023a 600w, ../assets/uc/ig_tkb_alley_shop_turn-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_tkb_alley_shop_turn.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>下町の路地・店の暖簾の前で振り返る</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_tkb_alley_fence_lean-600.webp?v=1023a 600w, ../assets/uc/ig_tkb_alley_fence_lean-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_tkb_alley_fence_lean.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>緑の金網にもたれる</figcaption></figure>
+          </div>
+          <div class="fold-body" hidden>
+            <div class="uc-grid">
+            <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_tkb_alley_flower_back-600.webp?v=1023a 600w, ../assets/uc/ig_tkb_alley_flower_back-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_tkb_alley_flower_back.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>白い壁の路地で花を肩に</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_tkb_alley_step_sit-600.webp?v=1023a 600w, ../assets/uc/ig_tkb_alley_step_sit-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_tkb_alley_step_sit.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>店先の段に座る</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_tkb_street_sky_profile-600.webp?v=1023a 600w, ../assets/uc/ig_tkb_street_sky_profile-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_tkb_street_sky_profile.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>空を見上げる横顔</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_tkb_street_rail_hand-600.webp?v=1023a 600w, ../assets/uc/ig_tkb_street_rail_hand-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_tkb_street_rail_hand.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>ガラスの手すりで髪に手</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_tkb_street_vending_wait-600.webp?v=1023a 600w, ../assets/uc/ig_tkb_street_vending_wait-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_tkb_street_vending_wait.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>街角で待つ</figcaption></figure>
+          <figure class="reveal"><picture><source type="image/webp" srcset="../assets/uc/ig_tkb_street_flower_eye-600.webp?v=1023a 600w, ../assets/uc/ig_tkb_street_flower_eye-1200.webp?v=1023a 1200w" sizes="(max-width:900px) 33vw, 17vw"><img src="../assets/uc/ig_tkb_street_flower_eye.jpg?v=1023a" alt="" loading="lazy" decoding="async"></picture><figcaption>花で片目を隠す</figcaption></figure>
+            </div>
+          </div>
+          <button type="button" class="ch-cta fold-btn" aria-expanded="false"><span class="fold-l"><span class="ja">続きを見る（6 枚）</span><span class="zh">看更多（6 張）</span><span class="en">Read more (6)</span></span><span class="fold-ic-w" aria-hidden="true"><i class="fold-ring"></i><svg class="fold-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="M8 10.5l4 4 4-4"/></svg></span></button>
+        <!-- gen:pig:shelves:end -->
+        <div class="ch-eyebrow pig-k2 reveal" data-noi18n>THE SHELF — STYLES</div>
         <h3><i></i>ART</h3>
         <div class="uc-grid">
           <figure class="reveal"><img src="../assets/uc/port_08.jpg?v=1012g" alt="" loading="lazy" decoding="async"><figcaption>反復する形・全身</figcaption></figure>
@@ -307,6 +434,17 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
         <a class="ch-cta" href="https://youtu.be/_uC-XiL0EuY" target="_blank" rel="noopener noreferrer">実績の一本を観る —『いつもの顔』棚の写真が動き出す四季のMV 4分09秒<svg class="go-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10.5 8l4 4-4 4"/></svg></a>
         <span>上の動画は、その本編のカット。写真 56 枚が、そのまま動いた。</span>
       </div>
+      <div class="uc-reels">
+        <div class="ch-eyebrow reveal" data-noi18n>REELS — 9:16</div>
+        <p class="pig-sub reveal">写真の一組を、そのまま縦の動画に。Instagram のリールと同じもの。</p>
+        <div class="uc-reel-row">
+          <figure class="uc-reel reveal"><video src="../assets/uc/reel_night.mp4?v=1023a" poster="../assets/uc/reel_night.jpg?v=1023a" muted loop playsinline autoplay preload="metadata"></video><figcaption>NIGHT · LIGHTS</figcaption></figure>
+          <figure class="uc-reel reveal"><video src="../assets/uc/reel_autumn.mp4?v=1023a" poster="../assets/uc/reel_autumn.jpg?v=1023a" muted loop playsinline autoplay preload="metadata"></video><figcaption>AUTUMN · KIMONO</figcaption></figure>
+          <figure class="uc-reel reveal"><video src="../assets/uc/reel_white.mp4?v=1023a" poster="../assets/uc/reel_white.jpg?v=1023a" muted loop playsinline autoplay preload="metadata"></video><figcaption>WHITE · CREAM</figcaption></figure>
+          <figure class="uc-reel reveal"><video src="../assets/uc/reel_place.mp4?v=1023a" poster="../assets/uc/reel_place.jpg?v=1023a" muted loop playsinline autoplay preload="metadata"></video><figcaption>RUIN · MOTORCYCLE</figcaption></figure>
+          <figure class="uc-reel reveal"><video src="../assets/uc/reel_pampas.mp4?v=1023a" poster="../assets/uc/reel_pampas.jpg?v=1023a" muted loop playsinline autoplay preload="metadata"></video><figcaption>PAMPAS · SUNSET</figcaption></figure>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -354,7 +492,24 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
 document.querySelectorAll('.uc-grid figure.note.sq:not(.m2):not(.m3)').forEach(function(n){var p=n.querySelector('p'),g=n.closest('.uc-grid');if(!p||!g)return;var d=document.createElement('p');d.className='dm';d.textContent=p.textContent;g.parentNode.insertBefore(d,g);});
 </script>
 <script src="../js/sitemenu.js?v=20261015st3"></script>
-<script src="../js/en_uc.js?v=20261021a"></script>
-<script src="../js/uc_i18n.js?v=20261021c"></script>
+<script src="../js/pig_i18n.js?v=1023a"></script>
+<script src="../js/en_uc.js?v=20261023a"></script>
+<script src="../js/uc_i18n.js?v=20261023a"></script>
+<script>
+/* 棚の続きを開く・閉じる(main.js の mobileFold と同じ札と動き。中身は hidden のまま= iPhone のメモリに載せない) */
+(function(){
+  document.querySelectorAll('.uc-shelf .fold-btn').forEach(function(btn){
+    var body=btn.previousElementSibling;if(!body||!body.classList.contains('fold-body'))return;
+    var ja=btn.querySelector('.ja'),zh=btn.querySelector('.zh'),ja0=ja.textContent,zh0=zh.textContent;
+    btn.addEventListener('click',function(){
+      var open=body.hidden;
+      if(open){body.hidden=false;body.classList.remove('in');requestAnimationFrame(function(){requestAnimationFrame(function(){body.classList.add('in');});});}
+      else{body.hidden=true;body.classList.remove('in');}
+      btn.setAttribute('aria-expanded',String(open));btn.classList.toggle('open',open);
+      ja.textContent=open?'閉じる':ja0;zh.textContent=open?'收起':zh0;
+    });
+  });
+})();
+</script>
 </body>
 </html>
