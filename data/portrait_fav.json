@@ -1,0 +1,978 @@
+{
+ "_note": "撮影会ポートレート 03 の「NEW IN THE SHELF」(2026-10-24)= 棚のお気に入り(photo_template_favorites.json・10/15 以降)から公開向きを Claude が選んだもの。肌の正本(v2nomole)の文がある画だけ・1 様式 1 枚。頁と辞書は gen_shelves.mjs(SET pfav)",
+ "shelves": [
+  {
+   "key": "fantasy",
+   "en": "FANTASY & STORY",
+   "ja": "幻想と物語",
+   "zh": "奇幻與故事",
+   "sub_en": "Torches, masks and mirrored skies"
+  },
+  {
+   "key": "stage",
+   "en": "STAGE & GOWN",
+   "ja": "劇場とドレス",
+   "zh": "劇院與禮服",
+   "sub_en": "Opera boxes and tulle"
+  },
+  {
+   "key": "season",
+   "en": "SEASONS & FLOWERS",
+   "ja": "季節と花",
+   "zh": "季節與花",
+   "sub_en": "Ginkgo, cosmos, maples and fireworks"
+  },
+  {
+   "key": "daily",
+   "en": "EVERYDAY",
+   "ja": "暮らしの一枚",
+   "zh": "日常的一張",
+   "sub_en": "Showa rooms, shop fronts and quiet windows"
+  },
+  {
+   "key": "wasou",
+   "en": "KIMONO",
+   "ja": "和装",
+   "zh": "和服",
+   "sub_en": "Furisode, parasols and gardens"
+  }
+ ],
+ "show_first": 9,
+ "items": [
+  {
+   "id": "pf_hsd_fable_candle_stairs",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "廃墟の石段・松明と白いレース",
+   "zh": "廢墟石階・火炬與白蕾絲",
+   "en": "Ruined steps, torches and white lace",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/hsd_fable_candle_stairs__random.png",
+    "shelf_key": "high_base_nd/hsd_fable_candle_stairs__random",
+    "fav": "2026-10-20T06:38:40",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_hsd_fable_feather",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "黒い羽のドレス・苔の階段",
+   "zh": "黑羽禮服・青苔階梯",
+   "en": "Black feathers on a mossy stair",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/hsd_fable_feather__random.png",
+    "shelf_key": "high_turbo/hsd_fable_feather__random",
+    "fav": "2026-10-20T06:40:35",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_hsd_fable_masquerade",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "仮面舞踏会・金の仮面",
+   "zh": "假面舞會・金色面具",
+   "en": "A masquerade, the golden mask",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/hsd_fable_masquerade__random.png",
+    "shelf_key": "high_base_nd/hsd_fable_masquerade__random",
+    "fav": "2026-10-20T06:38:32",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_yhf_mirror_dancer",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "空を映す干潟で踊る",
+   "zh": "在倒映天空的潮灘起舞",
+   "en": "Dancing on a mirror of sky",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_mirror_dancer__random.png",
+    "shelf_key": "high_base_nd/yhf_mirror_dancer__random",
+    "fav": "2026-10-19T23:56:59",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_yhf_mirror_deer_hill",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "夕暮れの丘・鹿と影絵",
+   "zh": "黃昏山丘・鹿與剪影",
+   "en": "Dusk on the hill, a deer in silhouette",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/yhf_mirror_deer_hill__random.png",
+    "shelf_key": "high_turbo/yhf_mirror_deer_hill__random",
+    "fav": "2026-10-20T06:41:49",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_aoj_n39",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "星空の海辺・ランタン",
+   "zh": "星空下的海邊・提燈",
+   "en": "A lantern on a starlit shore",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n39__random.png",
+    "shelf_key": "high_base_nd/aoj_n39__random",
+    "fav": "2026-10-22T22:21:19",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_aoj_n59",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "和傘の壁と鏡の床",
+   "zh": "和傘牆與鏡面地板",
+   "en": "Paper parasols and a mirror floor",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/aoj_n59__random.png",
+    "shelf_key": "high_turbo/aoj_n59__random",
+    "fav": "2026-10-22T22:21:32",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_aoj_n19",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "夜の摩天楼・水鏡",
+   "zh": "夜晚的摩天樓・水鏡",
+   "en": "Night towers in a water mirror",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n19__random.png",
+    "shelf_key": "high_base_nd/aoj_n19__random",
+    "fav": "2026-10-22T22:22:11",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_hsd_fable_dune_back",
+   "shelf": "fantasy",
+   "orient": "P",
+   "ja": "砂丘を歩く後ろ姿",
+   "zh": "走在沙丘上的背影",
+   "en": "Walking away across the dunes",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/hsd_fable_dune_back__random.png",
+    "shelf_key": "high_turbo/hsd_fable_dune_back__random",
+    "fav": "2026-10-20T06:40:32",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_deac_box_rail_fall",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "劇場のボックス席・羽のドレス",
+   "zh": "劇院包廂・羽毛禮服",
+   "en": "A box seat at the opera, feathered gown",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/deac_box_rail_fall__random.png",
+    "shelf_key": "high_base_nd/deac_box_rail_fall__random",
+    "fav": "2026-10-21T05:14:47",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_deac_spot_ref_profile",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "客席を背に・横顔",
+   "zh": "背對觀眾席・側臉",
+   "en": "A profile against the auditorium",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/deac_spot_ref_profile__random.png",
+    "shelf_key": "high_turbo/deac_spot_ref_profile__random",
+    "fav": "2026-10-21T05:13:49",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_vn6y_tulle_glove_close",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "舞台の灯と白い手袋",
+   "zh": "舞台燈光與白手套",
+   "en": "Stage lights and white gloves",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/vn6y_tulle_glove_close__random.png",
+    "shelf_key": "high_base_nd/vn6y_tulle_glove_close__random",
+    "fav": "2026-10-21T05:09:23",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_vn6y_tulle_spill_laugh",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "グラスを手に笑う",
+   "zh": "舉杯而笑",
+   "en": "Laughing, glass in hand",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/vn6y_tulle_spill_laugh__random.png",
+    "shelf_key": "high_turbo/vn6y_tulle_spill_laugh__random",
+    "fav": "2026-10-21T08:10:43",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_vn6y_tulle_stage_edge",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "舞台の縁に腰かける",
+   "zh": "坐在舞台邊緣",
+   "en": "Seated on the edge of the stage",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/vn6y_tulle_stage_edge__random.png",
+    "shelf_key": "high_turbo/vn6y_tulle_stage_edge__random",
+    "fav": "2026-10-21T08:10:46",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_vn6y_tulle_ref_seat",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "客席に広がるドレス",
+   "zh": "在觀眾席鋪開的禮服",
+   "en": "A gown spilling across the seats",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/vn6y_tulle_ref_seat__random.png",
+    "shelf_key": "high_base_nd/vn6y_tulle_ref_seat__random",
+    "fav": "2026-10-21T05:08:46",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jusl_halter_back_kneel",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "白バラの窓・背中のレース",
+   "zh": "白玫瑰窗・背後的蕾絲",
+   "en": "White-rose window, lace at the back",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jusl_halter_back_kneel__random.png",
+    "shelf_key": "high_base_nd/jusl_halter_back_kneel__random",
+    "fav": "2026-10-21T05:21:49",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jusl_halter_panel_lean",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "白い壁にもたれる・目を閉じて",
+   "zh": "倚著白牆・閉上眼",
+   "en": "Against the white wall, eyes closed",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/jusl_halter_panel_lean__random.png",
+    "shelf_key": "high_turbo/jusl_halter_panel_lean__random",
+    "fav": "2026-10-21T05:21:37",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jusl_halter_ref_wind_close",
+   "shelf": "stage",
+   "orient": "P",
+   "ja": "白バラと黒レースのホルター",
+   "zh": "白玫瑰與黑蕾絲繞頸",
+   "en": "White roses, black lace halter",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/try_turbo/jusl_halter_ref_wind_close__random.png",
+    "shelf_key": "try_turbo/jusl_halter_ref_wind_close__random",
+    "fav": "2026-10-20T22:39:22",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jpp_ginkgo_bouquet_back",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "銀杏並木で振り返る",
+   "zh": "在銀杏大道回頭",
+   "en": "Looking back under the ginkgo",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_ginkgo_bouquet_back__random.png",
+    "shelf_key": "high_base_nd/jpp_ginkgo_bouquet_back__random",
+    "fav": "2026-10-24T05:54:07",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jpp_ginkgo_bouquet_close",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "銀杏の葉の下・寄り",
+   "zh": "銀杏葉下・特寫",
+   "en": "Under ginkgo leaves, close",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_ginkgo_bouquet_close__random.png",
+    "shelf_key": "high_base_nd/jpp_ginkgo_bouquet_close__random",
+    "fav": "2026-10-24T05:54:06",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jpp_ginkgo_bouquet_lean",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "銀杏の幹にもたれる",
+   "zh": "倚著銀杏樹幹",
+   "en": "Leaning on a ginkgo trunk",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_ginkgo_bouquet_lean__random.png",
+    "shelf_key": "high_base_nd/jpp_ginkgo_bouquet_lean__random",
+    "fav": "2026-10-24T05:54:38",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jpp_kibana_motion_close",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "キバナコスモスをくわえて",
+   "zh": "嘴裡叼著黃波斯菊",
+   "en": "A cosmos held in the lips",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_kibana_motion_close__random.png",
+    "shelf_key": "high_base_nd/jpp_kibana_motion_close__random",
+    "fav": "2026-10-24T05:55:38",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jpp_kibana_motion_high",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "キバナコスモスの中で笑う",
+   "zh": "在黃波斯菊中微笑",
+   "en": "Smiling among yellow cosmos",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_kibana_motion_high__random.png",
+    "shelf_key": "high_base_nd/jpp_kibana_motion_high__random",
+    "fav": "2026-10-24T05:55:25",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jpp_momiji_shadow_close",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "紅葉の葉影・寄り",
+   "zh": "紅葉的葉影・特寫",
+   "en": "Maple-leaf shadows, close",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_momiji_shadow_close__random.png",
+    "shelf_key": "high_base_nd/jpp_momiji_shadow_close__random",
+    "fav": "2026-10-24T05:54:38",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jpp_momiji_shadow_low",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "紅葉の枝に手をかける",
+   "zh": "手扶紅葉枝",
+   "en": "A hand on a maple branch",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_momiji_shadow_low__random.png",
+    "shelf_key": "high_base_nd/jpp_momiji_shadow_low__random",
+    "fav": "2026-10-24T05:54:26",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_jpp_momiji_furisode_fg",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "紅葉と振袖・前ボケ",
+   "zh": "紅葉與振袖・前景虛化",
+   "en": "Maples and furisode, foreground blur",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_momiji_furisode_fg__random.png",
+    "shelf_key": "high_base_nd/jpp_momiji_furisode_fg__random",
+    "fav": "2026-10-24T05:54:47",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_yhf_hanabi_close_bokeh",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "花火と浴衣・寄り",
+   "zh": "煙火與浴衣・特寫",
+   "en": "Fireworks and yukata, close",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_hanabi_close_bokeh__random.png",
+    "shelf_key": "high_base_nd/yhf_hanabi_close_bokeh__random",
+    "fav": "2026-10-19T23:33:38",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_yhf_hanabi_lookback",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "花火を背に振り返る",
+   "zh": "背對煙火回頭",
+   "en": "Looking back under the fireworks",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_hanabi_lookback__random.png",
+    "shelf_key": "high_base_nd/yhf_hanabi_lookback__random",
+    "fav": "2026-10-19T23:33:46",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_yhf_sakura_grass_sit",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "桜の下に座る・麦わら帽子",
+   "zh": "坐在櫻花樹下・草帽",
+   "en": "Under the cherry blossoms, straw hat",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/yhf_sakura_grass_sit__random.png",
+    "shelf_key": "high_turbo/yhf_sakura_grass_sit__random",
+    "fav": "2026-10-20T06:41:12",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_yhf_bloom_hydrangea_umbrella",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "紫陽花と透明な傘",
+   "zh": "繡球花與透明傘",
+   "en": "Hydrangeas and a clear umbrella",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_bloom_hydrangea_umbrella__random.png",
+    "shelf_key": "high_base_nd/yhf_bloom_hydrangea_umbrella__random",
+    "fav": "2026-10-19T23:33:19",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_yhf_bloom_hydrangea_cheek",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "紫陽花に頬を寄せる",
+   "zh": "臉頰貼近繡球花",
+   "en": "A cheek against the hydrangeas",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_bloom_hydrangea_cheek__random.png",
+    "shelf_key": "high_base_nd/yhf_bloom_hydrangea_cheek__random",
+    "fav": "2026-10-19T23:33:12",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_ylf_flower_lie_mouth",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "黄色い花をくわえて寝そべる",
+   "zh": "叼著黃花躺著",
+   "en": "Lying down, a yellow flower in the lips",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/ylf_flower_lie_mouth__random.png",
+    "shelf_key": "high_turbo/ylf_flower_lie_mouth__random",
+    "fav": "2026-10-21T21:59:11",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_ylf_flower_glass",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "窓辺の鉢植えと黄色い花",
+   "zh": "窗邊盆栽與黃花",
+   "en": "Window pots and a yellow flower",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/ylf_flower_glass__random.png",
+    "shelf_key": "high_turbo/ylf_flower_glass__random",
+    "fav": "2026-10-21T21:59:14",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_crm_frame_eyes_closed",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "深紅の花に埋もれる",
+   "zh": "埋在深紅花海裡",
+   "en": "Buried in crimson flowers",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/crm_frame_eyes_closed__random.png",
+    "shelf_key": "high_base_nd/crm_frame_eyes_closed__random",
+    "fav": "2026-10-22T22:21:55",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_crm_half_peony_hair",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "牡丹と赤い唇",
+   "zh": "牡丹與紅唇",
+   "en": "Peonies and red lips",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/crm_half_peony_hair__random.png",
+    "shelf_key": "high_base_nd/crm_half_peony_hair__random",
+    "fav": "2026-10-22T22:54:14",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_crm_half_peony_profile",
+   "shelf": "season",
+   "orient": "P",
+   "ja": "牡丹を抱いた横顔",
+   "zh": "抱著牡丹的側臉",
+   "en": "A profile holding peonies",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/crm_half_peony_profile__random.png",
+    "shelf_key": "high_base_nd/crm_half_peony_profile__random",
+    "fav": "2026-10-22T22:54:11",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_dgs_chanoma_chabudai",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "昭和の茶の間",
+   "zh": "昭和的客廳",
+   "en": "A Showa-era living room",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/dgs_chanoma_chabudai__random.png",
+    "shelf_key": "high_base_nd/dgs_chanoma_chabudai__random",
+    "fav": "2026-10-21T22:04:46",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_dgs_shop_gacha",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "駄菓子屋のガチャガチャ",
+   "zh": "柑仔店的扭蛋機",
+   "en": "Capsule toys at the corner shop",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/dgs_shop_gacha__random.png",
+    "shelf_key": "high_turbo/dgs_shop_gacha__random",
+    "fav": "2026-10-21T22:03:18",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_dgs_sun_window_sit",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "日の差す窓辺に座る",
+   "zh": "坐在陽光灑落的窗邊",
+   "en": "Seated by a sunlit window",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/dgs_sun_window_sit__random.png",
+    "shelf_key": "high_base_nd/dgs_sun_window_sit__random",
+    "fav": "2026-10-21T22:04:38",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_j77c_ref_book",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "路地で本を読む",
+   "zh": "在小巷讀書",
+   "en": "Reading in the lane",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/j77c_ref_book__random.png",
+    "shelf_key": "high_base_nd/j77c_ref_book__random",
+    "fav": "2026-10-21T05:17:34",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_frn_furin_bench_reach",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "風鈴の縁側",
+   "zh": "風鈴下的簷廊",
+   "en": "Wind chimes over the veranda",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/frn_furin_bench_reach__random.png",
+    "shelf_key": "high_base_nd/frn_furin_bench_reach__random",
+    "fav": "2026-10-22T11:01:31",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_frn_tea_wall_lean",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "石塀にもたれる",
+   "zh": "倚著石牆",
+   "en": "Leaning on a stone wall",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/frn_tea_wall_lean__random.png",
+    "shelf_key": "high_base_nd/frn_tea_wall_lean__random",
+    "fav": "2026-10-22T10:32:54",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_smf_window_sill_sit",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "窓枠に座る",
+   "zh": "坐在窗框上",
+   "en": "Sitting in the window frame",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/smf_window_sill_sit__random.png",
+    "shelf_key": "high_base_nd/smf_window_sill_sit__random",
+    "fav": "2026-10-22T12:53:47",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_ygg_sofa_read",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "ソファで雑誌を読む",
+   "zh": "在沙發上看雜誌",
+   "en": "A magazine on the sofa",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/ygg_sofa_read__random.png",
+    "shelf_key": "high_base_nd/ygg_sofa_read__random",
+    "fav": "2026-10-20T07:16:36",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_tnz_kissa_bookshelf",
+   "shelf": "daily",
+   "orient": "P",
+   "ja": "古書の喫茶店",
+   "zh": "舊書咖啡店",
+   "en": "A café of old books",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tnz_kissa_bookshelf__random.png",
+    "shelf_key": "high_base_nd/tnz_kissa_bookshelf__random",
+    "fav": "2026-10-19T23:30:05",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_ra6t_flare_rail_sunset",
+   "shelf": "daily",
+   "orient": "L",
+   "ja": "冬の夕日の路地",
+   "zh": "冬日夕陽的小巷",
+   "en": "A winter lane at sunset",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/try_turbo/ra6t_flare_rail_sunset__random.png",
+    "shelf_key": "try_turbo/ra6t_flare_rail_sunset__random",
+    "fav": "2026-10-21T08:55:27",
+    "size": "2048x1168",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_bpf_engawa_gravel_look",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "枯山水の縁側に座る・黒の振袖",
+   "zh": "坐在枯山水的簷廊・黑振袖",
+   "en": "Seated by a dry garden, black furisode",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/bpf_engawa_gravel_look__random.png",
+    "shelf_key": "high_base_nd/bpf_engawa_gravel_look__random",
+    "fav": "2026-10-22T12:51:25",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_bpf_engawa_pillar_stand",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "縁側の柱のそばに立つ",
+   "zh": "站在簷廊柱旁",
+   "en": "Standing by a veranda pillar",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/bpf_engawa_pillar_stand__random.png",
+    "shelf_key": "high_turbo/bpf_engawa_pillar_stand__random",
+    "fav": "2026-10-22T12:51:34",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_bpf_pond_bridge_stand",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "池の石橋・百合を手に",
+   "zh": "池上石橋・手持百合",
+   "en": "A stone bridge over the pond, lilies",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/bpf_pond_bridge_stand__random.png",
+    "shelf_key": "high_base_nd/bpf_pond_bridge_stand__random",
+    "fav": "2026-10-22T12:51:16",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_furi_kneel_tatami",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "和室に座る・赤い振袖",
+   "zh": "坐在和室・紅振袖",
+   "en": "A tatami room, red furisode",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/furi_kneel_tatami__random.png",
+    "shelf_key": "high_base_nd/furi_kneel_tatami__random",
+    "fav": "2026-10-22T12:13:53",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_hni_path_parasol_up",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "参道で和傘を差す",
+   "zh": "在參道撐和傘",
+   "en": "A parasol on the shrine path",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/hni_path_parasol_up__random.png",
+    "shelf_key": "high_base_nd/hni_path_parasol_up__random",
+    "fav": "2026-10-22T12:42:32",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_hni_path_profile_close",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "和傘と横顔",
+   "zh": "和傘與側臉",
+   "en": "Parasol and profile",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/hni_path_profile_close__random.png",
+    "shelf_key": "high_base_nd/hni_path_profile_close__random",
+    "fav": "2026-10-22T12:54:06",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_pfad_feed_deer",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "紅葉の下で鹿に",
+   "zh": "紅葉下餵鹿",
+   "en": "Feeding a deer under the maples",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/try_turbo/pfad_feed_deer__random.png",
+    "shelf_key": "try_turbo/pfad_feed_deer__random",
+    "fav": "2026-10-21T08:58:17",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_yhf_lightup_bamboo_path",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "竹林の灯りの小径",
+   "zh": "竹林燈光小徑",
+   "en": "A lantern path through bamboo",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/yhf_lightup_bamboo_path__random.png",
+    "shelf_key": "high_turbo/yhf_lightup_bamboo_path__random",
+    "fav": "2026-10-20T06:42:17",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_ysi_n97",
+   "shelf": "wasou",
+   "orient": "P",
+   "ja": "川床で緑のソーダを注ぐ",
+   "zh": "在河邊座敷倒綠色汽水",
+   "en": "Pouring green soda by the river",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/ysi_n97__random.png",
+    "shelf_key": "high_turbo/ysi_n97__random",
+    "fav": "2026-10-24T05:54:17",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  }
+ ]
+}

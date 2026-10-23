@@ -44,3 +44,4 @@ Created by [@made_linlin](https://www.instagram.com/made_linlin/)
 - 正本= `data/portrait_ig.json`(IG @ethan_ai_photo に選んだ写真。`src.png` は gravure_variety_lab の原寸)。1 枚足す= 1 行 + `python3 tools/still_assets.py --data data/portrait_ig.json` → `node gen_shelves.mjs`(build も呼ぶ)
 - 載せるのは肌の正本(PNG の文に「real person photographed on location」があり「tiny moles」が無い)だけ。満たさない行は `status: candidate`
 - 縦のリール= `assets/uc/reel_<名>.mp4`(IG の noBGM 版を 720x1280・無音・crf24・faststart)+ 先頭コマの `.jpg`。枠は `usecases/portrait.html` の `.uc-reel-row` に手で 1 行
+- 棚のお気に入りから選んだ新作(2026-10-24)= `data/portrait_fav.json`(撮影会 03・SET pfav)/ `data/bridal_fav.json`(ブライダル 03・bfav)/ `data/world_fav.json`(世界 03・wfav)。足し方は上と同じ(still_assets.py --data → gen_shelves.mjs)。1 様式 1 枚・肌の正本だけ・各棚 9 枚目までに横長を入れない(段に穴が空く)。頁の「ここに並ぶのは N」の数も合わせる

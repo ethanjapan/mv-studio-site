@@ -14,6 +14,10 @@ const SETS = [
   { name: 'beauty', data: 'data/beauty.json', page: 'usecases/beauty.html', jp: '美容' },
   // 撮影会ポートレートの棚の上段(2026-10-23)= IG @ethan_ai_photo の毎朝の投稿に選んだ写真。印は portrait.html の gen:pig:shelves
   { name: 'pig', data: 'data/portrait_ig.json', page: 'usecases/portrait.html', jp: '毎朝の作例' },
+  // 棚のお気に入りから選んだ新作(2026-10-24)。印は各頁の gen:<name>:shelves
+  { name: 'pfav', data: 'data/portrait_fav.json', page: 'usecases/portrait.html', jp: '撮影会の新作' },
+  { name: 'bfav', data: 'data/bridal_fav.json', page: 'usecases/bridal.html', jp: 'ブライダルの新作' },
+  { name: 'wfav', data: 'data/world_fav.json', page: 'usecases/world.html', jp: '日本の景色の新作' },
 ]
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 

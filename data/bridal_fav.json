@@ -1,0 +1,185 @@
+{
+ "_note": "ブライダル 03 の新しい棚(2026-10-24)= 棚のお気に入りから。星空の丘と洋館・礼拝堂。gen_shelves.mjs(SET bfav)",
+ "shelves": [
+  {
+   "key": "night",
+   "en": "STARRY NIGHT",
+   "ja": "星空と礼拝堂・新作",
+   "zh": "星空與禮拜堂・新作",
+   "sub_en": "The Milky Way and a chapel, new work"
+  }
+ ],
+ "show_first": 9,
+ "items": [
+  {
+   "id": "bf_or9o_hill_bouquet",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "星空の丘・白い花束",
+   "zh": "星空山丘・白色花束",
+   "en": "A starlit hill, white bouquet",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/or9o_hill_bouquet__random.png",
+    "shelf_key": "high_turbo/or9o_hill_bouquet__random",
+    "fav": "2026-10-21T08:31:05",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_or9o_hill_forehead",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "星空の下で額を寄せる",
+   "zh": "星空下額頭相貼",
+   "en": "Foreheads together under the stars",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/or9o_hill_forehead__random.png",
+    "shelf_key": "high_turbo/or9o_hill_forehead__random",
+    "fav": "2026-10-21T08:31:11",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_or9o_hill_lace_back",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "星空と背中のレース",
+   "zh": "星空與背後蕾絲",
+   "en": "Stars and lace down the back",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/or9o_hill_lace_back__random.png",
+    "shelf_key": "high_turbo/or9o_hill_lace_back__random",
+    "fav": "2026-10-21T08:31:28",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_or9o_hill_sparklers",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "線香花火を二人で",
+   "zh": "兩人一起放仙女棒",
+   "en": "Sparklers for two",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/or9o_hill_sparklers__random.png",
+    "shelf_key": "high_turbo/or9o_hill_sparklers__random",
+    "fav": "2026-10-21T08:31:37",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_or9o_steps_ref_violin",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "星空の階段でバイオリン",
+   "zh": "星空階梯上的小提琴",
+   "en": "A violin on the starlit steps",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/try_turbo/or9o_steps_ref_violin__random.png",
+    "shelf_key": "try_turbo/or9o_steps_ref_violin__random",
+    "fav": "2026-10-20T22:38:09",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_or9o_steps_sit_side",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "階段に背中合わせで座る",
+   "zh": "在階梯上背對背坐著",
+   "en": "Back to back on the steps",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/or9o_steps_sit_side__random.png",
+    "shelf_key": "high_turbo/or9o_steps_sit_side__random",
+    "fav": "2026-10-21T05:22:58",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_or9o_steps_violin_solo",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "星空の下のバイオリン",
+   "zh": "星空下的小提琴",
+   "en": "A violin under the Milky Way",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/try_turbo/or9o_steps_violin_solo__random.png",
+    "shelf_key": "try_turbo/or9o_steps_violin_solo__random",
+    "fav": "2026-10-20T22:38:14",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_kss_classic_chapel",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "礼拝堂の花嫁",
+   "zh": "禮拜堂的新娘",
+   "en": "A bride in the chapel",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/kss_classic_chapel__random.png",
+    "shelf_key": "high_base_nd/kss_classic_chapel__random",
+    "fav": "2026-10-22T12:43:17",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_kss_mood_floral_paper",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "花柄の壁紙と二人",
+   "zh": "花紋壁紙與兩人",
+   "en": "Floral wallpaper, the two of them",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/kss_mood_floral_paper__random.png",
+    "shelf_key": "high_base_nd/kss_mood_floral_paper__random",
+    "fav": "2026-10-22T12:43:10",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "bf_kss_classic_arch_window_veil",
+   "shelf": "night",
+   "orient": "L",
+   "ja": "洋館のアーチ窓とヴェール",
+   "zh": "洋館拱窗與頭紗",
+   "en": "Arched windows and a flying veil",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/kss_classic_arch_window_veil__random.png",
+    "shelf_key": "high_turbo/kss_classic_arch_window_veil__random",
+    "fav": "2026-10-22T12:14:48",
+    "size": "2048x1168",
+    "realism": "v2nomole"
+   }
+  }
+ ]
+}

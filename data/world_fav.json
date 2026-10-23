@@ -1,0 +1,168 @@
+{
+ "_note": "世界の撮影 03 の新しい棚(2026-10-24)= 棚のお気に入りから日本の景色。gen_shelves.mjs(SET wfav)",
+ "shelves": [
+  {
+   "key": "scenic",
+   "en": "JAPAN SCENIC",
+   "ja": "日本の景色・新作",
+   "zh": "日本風景・新作",
+   "sub_en": "Fuji, kochia and sunflowers, new work"
+  }
+ ],
+ "show_first": 9,
+ "items": [
+  {
+   "id": "wf_aoj_n26",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "富士と彼岸花の小径",
+   "zh": "富士山與彼岸花小徑",
+   "en": "Fuji and a path of spider lilies",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n26__random.png",
+    "shelf_key": "high_base_nd/aoj_n26__random",
+    "fav": "2026-10-22T22:22:19",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "wf_aoj_n43",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "コキアの丘",
+   "zh": "掃帚草的山丘",
+   "en": "A hill of kochia",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n43__random.png",
+    "shelf_key": "high_base_nd/aoj_n43__random",
+    "fav": "2026-10-22T22:21:21",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "wf_aoj_n63",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "向日葵畑と麦わら帽子",
+   "zh": "向日葵花田與草帽",
+   "en": "Sunflowers and a straw hat",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n63__random.png",
+    "shelf_key": "high_base_nd/aoj_n63__random",
+    "fav": "2026-10-22T22:21:09",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "wf_aoj_n89",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "紫陽花にしゃがむ",
+   "zh": "蹲在繡球花旁",
+   "en": "Crouched by the hydrangeas",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/aoj_n89__random.png",
+    "shelf_key": "high_turbo/aoj_n89__random",
+    "fav": "2026-10-22T22:21:23",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "wf_aoj_n28",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "すすきの丘で踊る",
+   "zh": "在芒草山丘起舞",
+   "en": "Dancing on a hill of pampas grass",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/aoj_n28__random.png",
+    "shelf_key": "high_turbo/aoj_n28__random",
+    "fav": "2026-10-23T22:01:02",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "wf_aoj_n29",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "街を見下ろす螺旋の歩道",
+   "zh": "俯瞰城市的螺旋步道",
+   "en": "A spiral walkway above the city",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n29__random.png",
+    "shelf_key": "high_base_nd/aoj_n29__random",
+    "fav": "2026-10-22T22:22:27",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "wf_aoj_n54",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "海へ下りる白い路地",
+   "zh": "通往大海的白色小巷",
+   "en": "A white lane down to the sea",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n54__random.png",
+    "shelf_key": "high_base_nd/aoj_n54__random",
+    "fav": "2026-10-22T22:21:12",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "wf_aoj_n13",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "コスモスの丘・花束を空へ",
+   "zh": "波斯菊山丘・把花束舉向天空",
+   "en": "A cosmos hill, a bouquet to the sky",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n13__random.png",
+    "shelf_key": "high_base_nd/aoj_n13__random",
+    "fav": "2026-10-22T22:22:08",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "wf_aoj_n21",
+   "shelf": "scenic",
+   "orient": "P",
+   "ja": "彼岸花の中にしゃがむ",
+   "zh": "蹲在彼岸花中",
+   "en": "Crouched among spider lilies",
+   "v": "1024a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/aoj_n21__random.png",
+    "shelf_key": "high_base_nd/aoj_n21__random",
+    "fav": "2026-10-22T22:22:18",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  }
+ ]
+}
