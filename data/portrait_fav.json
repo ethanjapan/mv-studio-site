@@ -1,6 +1,20 @@
 {
- "_note": "撮影会ポートレート 03 の「NEW IN THE SHELF」(2026-10-24)= 棚のお気に入り(photo_template_favorites.json・10/15 以降)から公開向きを Claude が選んだもの。肌の正本(v2nomole)の文がある画だけ・1 様式 1 枚。頁と辞書は gen_shelves.mjs(SET pfav)",
+ "_note": "撮影会ポートレート 03 の「NEW IN THE SHELF」(2026-10-24)= 棚のお気に入り(photo_template_favorites.json・10/15 以降)から公開向きを Claude が選んだもの。肌の正本(v2nomole)の文がある画だけ・1 様式 1 枚。頁と辞書は gen_shelves.mjs(SET pfav) / 2026-10-25 アイドルの段(photo_facets の idol)のお気に入りから 2 棚 22 枚を先頭に",
  "shelves": [
+  {
+   "key": "idol",
+   "en": "IDOL",
+   "ja": "アイドル・ステージと衣装",
+   "zh": "偶像・舞台與服裝",
+   "sub_en": "Stage, backstage and costume"
+  },
+  {
+   "key": "idol_off",
+   "en": "IDOL — OFF STAGE",
+   "ja": "アイドルの日常",
+   "zh": "偶像的日常",
+   "sub_en": "Off stage: pools, horses and sunflowers"
+  },
   {
    "key": "fantasy",
    "en": "FANTASY & STORY",
@@ -39,6 +53,380 @@
  ],
  "show_first": 9,
  "items": [
+  {
+   "id": "pf_clyd2_backstage_blossom_set",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "桜のセットでアー写",
+   "zh": "在櫻花布景拍宣傳照",
+   "en": "Promo shot in a cherry-blossom set",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_backstage_blossom_set__random.png",
+    "shelf_key": "high_base_nd/clyd2_backstage_blossom_set__random",
+    "fav": "2026-10-19T23:42:02",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_clyd2_backstage_cable_crouch",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "楽屋の機材ケースの前で",
+   "zh": "在後台器材箱前",
+   "en": "By the gear cases backstage",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/clyd2_backstage_cable_crouch__random.png",
+    "shelf_key": "high_turbo/clyd2_backstage_cable_crouch__random",
+    "fav": "2026-10-22T22:20:42",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_clyd2_backstage_selfie_arm",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "楽屋で自撮り・ウインク",
+   "zh": "在後台自拍・眨眼",
+   "en": "A backstage selfie, a wink",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/clyd2_backstage_selfie_arm__random.png",
+    "shelf_key": "high_turbo/clyd2_backstage_selfie_arm__random",
+    "fav": "2026-10-22T22:20:46",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_rte_day_point_lunge",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "昼の野外ステージで指さす",
+   "zh": "白天戶外舞台上指向觀眾",
+   "en": "Pointing out from an open-air stage",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/rte_day_point_lunge__random.png",
+    "shelf_key": "high_base_nd/rte_day_point_lunge__random",
+    "fav": "2026-10-22T11:02:09",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_rte_day_wave",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "ステージから手を振る",
+   "zh": "在舞台上揮手",
+   "en": "Waving from the stage",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/rte_day_wave__random.png",
+    "shelf_key": "high_base_nd/rte_day_wave__random",
+    "fav": "2026-10-22T12:53:56",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_hwd_p046",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "メイド衣装で頬づえ",
+   "zh": "女僕裝托腮",
+   "en": "Maid costume, chin in hands",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/hwd_p046__random.png",
+    "shelf_key": "high_turbo/hwd_p046__random",
+    "fav": "2026-10-23T22:41:49",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_hwd_p184",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "チャイナドレスで窓辺に",
+   "zh": "旗袍坐在窗邊",
+   "en": "A qipao by the window",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/hwd_p184__random.png",
+    "shelf_key": "high_turbo/hwd_p184__random",
+    "fav": "2026-10-24T05:52:28",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p010",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "球場の前で推しうちわ",
+   "zh": "在球場前拿應援扇",
+   "en": "A fan at the stadium gate",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p010__random.png",
+    "shelf_key": "high_base_nd/mnc_p010__random",
+    "fav": "2026-10-23T21:55:09",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p048",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "苺のロリータと田んぼ",
+   "zh": "草莓蘿莉塔與稻田",
+   "en": "Strawberry lolita by the rice fields",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p048__random.png",
+    "shelf_key": "high_base_nd/mnc_p048__random",
+    "fav": "2026-10-23T21:54:19",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p050",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "特典会のメイド衣装",
+   "zh": "見面會的女僕裝",
+   "en": "Maid costume at the fan meet",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p050__random.png",
+    "shelf_key": "high_base_nd/mnc_p050__random",
+    "fav": "2026-10-23T21:57:53",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p073",
+   "shelf": "idol",
+   "orient": "P",
+   "ja": "生誕祭のフラワースタンド",
+   "zh": "生日祭的花籃",
+   "en": "Birthday-event flower stands",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p073__random.png",
+    "shelf_key": "high_base_nd/mnc_p073__random",
+    "fav": "2026-10-23T21:54:26",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p017",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "ホテルのロビー・ロングブーツ",
+   "zh": "飯店大廳・長靴",
+   "en": "Hotel lobby, thigh-high boots",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p017__random.png",
+    "shelf_key": "high_base_nd/mnc_p017__random",
+    "fav": "2026-10-23T21:55:16",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p037",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "プールサイドの黄色いワンピース",
+   "zh": "泳池畔的黃色洋裝",
+   "en": "A yellow dress by the pool",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p037__random.png",
+    "shelf_key": "high_base_nd/mnc_p037__random",
+    "fav": "2026-10-23T21:53:17",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p038",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "さくらんぼの水着で笑う",
+   "zh": "穿櫻桃泳衣大笑",
+   "en": "Laughing in a cherry bikini",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p038__random.png",
+    "shelf_key": "high_base_nd/mnc_p038__random",
+    "fav": "2026-10-23T21:58:27",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p041",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "乗馬の日",
+   "zh": "騎馬的一天",
+   "en": "A day of horse riding",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p041__random.png",
+    "shelf_key": "high_base_nd/mnc_p041__random",
+    "fav": "2026-10-23T21:53:20",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p076",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "美術館で眼鏡に手",
+   "zh": "在美術館扶眼鏡",
+   "en": "Glasses at the gallery",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p076__random.png",
+    "shelf_key": "high_base_nd/mnc_p076__random",
+    "fav": "2026-10-23T21:54:44",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p085",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "向日葵畑の白いニット",
+   "zh": "向日葵花田的白色針織",
+   "en": "White knit in the sunflowers",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p085__random.png",
+    "shelf_key": "high_base_nd/mnc_p085__random",
+    "fav": "2026-10-23T21:53:01",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p022",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "白い砂浜とレースのカーディガン",
+   "zh": "白沙灘與蕾絲外套",
+   "en": "White sand, a lace cardigan",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p022__random.png",
+    "shelf_key": "high_base_nd/mnc_p022__random",
+    "fav": "2026-10-23T21:58:07",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_mnc_p032",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "海辺の白い家とピンクのドレス",
+   "zh": "海邊白屋與粉紅洋裝",
+   "en": "A pink dress by the white seaside house",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/mnc_p032__random.png",
+    "shelf_key": "high_base_nd/mnc_p032__random",
+    "fav": "2026-10-23T21:58:17",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_nsy_selfie_glasses",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "部屋着で自撮り",
+   "zh": "穿家居服自拍",
+   "en": "A selfie in loungewear",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/nsy_selfie_glasses__random.png",
+    "shelf_key": "high_turbo/nsy_selfie_glasses__random",
+    "fav": "2026-10-20T06:43:51",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_clyd2_boat_lean_lens",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "船の上・白いニットの水着",
+   "zh": "船上・白色針織泳衣",
+   "en": "On the boat, a white knit bikini",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/clyd2_boat_lean_lens__random.png",
+    "shelf_key": "high_turbo/clyd2_boat_lean_lens__random",
+    "fav": "2026-10-19T12:51:41",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
+  {
+   "id": "pf_clyd2_boat_deck_kneel",
+   "shelf": "idol_off",
+   "orient": "P",
+   "ja": "船の上・ギンガムの水着",
+   "zh": "船上・格紋泳衣",
+   "en": "On the boat, gingham bikini",
+   "v": "1025a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/clyd2_boat_deck_kneel__random.png",
+    "shelf_key": "high_base_nd/clyd2_boat_deck_kneel__random",
+    "fav": "2026-10-19T23:42:17",
+    "size": "1408x2048",
+    "realism": "v2nomole"
+   }
+  },
   {
    "id": "pf_hsd_fable_candle_stairs",
    "shelf": "fantasy",
