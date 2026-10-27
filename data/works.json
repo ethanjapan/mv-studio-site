@@ -308,6 +308,35 @@
  ],
  "shows": [
   {
+   "id": "ai140",
+   "yt": "https://youtu.be/OZcO895S7ys",
+   "zh_yt": null,
+   "asset": "bb_ai140",
+   "v": "20261027a",
+   "zh_asset": null,
+   "zh_v": null,
+   "genre": "勉強会",
+   "title": "AIと140日",
+   "desc": "ひとりの監督が、AIと一緒にシステムを作った140日の記録。案内役のRINKAに、KANADEが聞き手として質問していく。繁中・英語の字幕つき。",
+   "langs": [
+    {
+     "l": "日本語",
+     "yt": "https://youtu.be/OZcO895S7ys",
+     "d": "15:47"
+    }
+   ],
+   "zh": {
+    "genre": "分享會",
+    "title": "和AI一起的140天",
+    "desc": "一個導演和AI一起，從零做出一套系統的140天紀錄。由主持人RINKA說明，KANADE負責發問。附中文、英文字幕。"
+   },
+   "en": {
+    "genre": "Study session",
+    "title": "140 Days with AI",
+    "desc": "One director and an AI spend 140 days building a system together. RINKA guides, KANADE asks the questions. Subtitles in Chinese and English."
+   }
+  },
+  {
    "id": "k03",
    "yt": "https://youtu.be/ge2S7PQAxZI",
    "zh_yt": "https://youtu.be/Etnjj5HnuWg",
