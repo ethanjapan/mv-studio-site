@@ -15,13 +15,13 @@
     },
     "studio.html": {
       "name": { "ja": "スタジオの中", "zh": "工作室的內部", "en": "Inside the studio" },
-      "ja_og": "できること、環境と導入、届く人。MV Studio のスタジオの中。",
+      "ja_og": "できること、スタジオと環境、届く人。MV Studio のスタジオの中。",
       "zh": {
-        "description": "MV Studio 工作室的內部。能做到的事（丟素材就懂、世界觀、造型、專業級的精準度）、環境與導入（本機生成、支援的環境），以及適合哪些人。",
-        "og": "能做到的事、環境與導入、適合的人。MV Studio 工作室的內部。"
+        "description": "MV Studio 工作室的內部。能做到的事（丟素材就懂、世界觀、造型、專業級的精準度）、工作室與環境（本機生成、支援的環境），以及適合哪些人。",
+        "og": "能做到的事、工作室與環境、適合的人。MV Studio 工作室的內部。"
       },
       "en": {
-        "description": "Inside the MV Studio workspace: what it can do (hand it material and it gets it, whole worlds, styling, professional precision), setup and requirements (local generation, supported hardware), and who it is for.",
+        "description": "Inside the MV Studio workspace: what it can do (hand it material and it gets it, whole worlds, styling, professional precision), the studio and its requirements (local generation, supported hardware), and who it is for.",
         "og": "What it can do, how to set it up, and who it is for. Inside MV Studio."
       }
     },
