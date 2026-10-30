@@ -298,8 +298,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const a=[];let n;while(n=w.nextNode())a.push(n);return a;
   }
   function setLang(lang){
-    document.documentElement.lang=lang==='zh'?'zh-Hant':lang==='en'?'en':'ja';
-    if(window.__mvFonts)window.__mvFonts(lang);   // 繁中に切り替えたら Noto TC を読む(初回だけ)
+    document.documentElement.lang=lang==='zh'?'zh-Hant-TW':lang==='en'?'en':'ja';
+    if(window.__mvFonts)window.__mvFonts(lang);   // 繁中に切り替えたら Noto TC を読む(初回だけ・2026-10-31 から用途の頁も)
     document.body.classList.toggle('lang-zh',lang==='zh');
     document.body.classList.toggle('lang-en',lang==='en');
     const D=lang==='zh'?M:lang==='en'?E:null;   // 使う辞書(日本語は元に戻す)

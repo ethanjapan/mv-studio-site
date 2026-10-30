@@ -16,11 +16,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>
 /* 表示言語の書体だけ読む(2026-10-13・links.html と同じ作法): 日本語の時は繁中の Noto TC を読まない。言語を切り替えた時は main.js / uc_i18n.js が __mvFonts(lang) で足す */
-(function(){var L=["family=Zen+Kaku+Gothic+New:wght@300;400;500;700", "family=Shippori+Mincho:wght@400;500;600", "family=Inter:wght@300;400;500", "family=Cormorant+Garamond:wght@400;500;600"],Z=["family=Noto+Sans+TC:wght@300;400;500;700", "family=Noto+Serif+TC:wght@500;600"],done={};function add(k){if(done[k]||!(k==="zh"?Z:L).length)return;done[k]=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?"+(k==="zh"?Z:L).join("&")+"&display=swap";document.head.appendChild(l)}
+(function(){var L=["family=Zen+Kaku+Gothic+New:wght@300;400;500;700", "family=Shippori+Mincho:wght@400;500;600", "family=Inter:wght@300;400;500", "family=Cormorant+Garamond:wght@400;500;600"],Z=["family=Noto+Sans+TC:wght@300;400;500;700", "family=Noto+Serif+TC:wght@400;500;600"],done={};function add(k){if(done[k]||!(k==="zh"?Z:L).length)return;done[k]=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?"+(k==="zh"?Z:L).join("&")+"&display=swap";document.head.appendChild(l)}
 var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base");if(lang==="zh")add("zh");window.__mvFonts=function(k){if(k==="zh")add("zh")}})();
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="css/theater.css?v=20261021b">
+<link rel="stylesheet" href="css/theater.css?v=20261031f">
 <style>
 .uc-head .brand{text-decoration:none}
 /* 一覧: 作品は PC 2 列・スマホ 2 列(小さめ)。番組はトップと同じ縦の列 */
@@ -270,6 +270,6 @@ var lang="ja";try{lang=localStorage.getItem("mvlang")||"ja"}catch(e){}add("base"
 <script src="js/sitemenu.js?v=20261015st3"></script>
 <script src="js/works_i18n.js?v=20261015st3"></script>
 <script src="js/en_uc.js?v=20261031a"></script>
-<script src="js/uc_i18n.js?v=20261031a"></script>
+<script src="js/uc_i18n.js?v=20261031f"></script>
 </body>
 </html>

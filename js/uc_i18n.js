@@ -171,8 +171,8 @@ window.__mvLangUrl=window.__mvLangUrl||function(l){var h={ja:'ja',zh:'zh-Hant',e
   function setLang(lang){
     const zh=lang==='zh';
     const D=zh?M:lang==='en'?E:null;   // 使う辞書(日本語は元に戻す)
-    document.documentElement.lang=zh?'zh-Hant':lang==='en'?'en':'ja';
-    if(window.__mvFonts)window.__mvFonts(lang);   // 繁中に切り替えたら Noto TC を読む(初回だけ)
+    document.documentElement.lang=zh?'zh-Hant-TW':lang==='en'?'en':'ja';
+    if(window.__mvFonts)window.__mvFonts(lang);   // 繁中に切り替えたら Noto TC を読む(初回だけ・2026-10-31 から用途の頁も)
     document.body.classList.toggle('lang-zh',zh);
     document.body.classList.toggle('lang-en',lang==='en');
     walk().forEach(n=>{

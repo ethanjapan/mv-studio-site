@@ -61,10 +61,10 @@ body.lang-zh .say,body.lang-zh .act,body.lang-zh .voice-sample,
 body.lang-zh .thought,body.lang-zh .orb-cap,body.lang-zh .ref figcaption,body.lang-zh .vp-caps,body.lang-zh .clone-desc,body.lang-zh .lt-btn,
 body.lang-zh .st-label,body.lang-zh .clone-title,body.lang-zh .prop-lead,body.lang-zh .prop-opt,
 body.lang-zh .vd-opt,body.lang-zh .vc-h,body.lang-zh .pc-note,body.lang-zh .pillar{
-  font-family:"Noto Sans TC","Zen Kaku Gothic New",sans-serif}
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
 body.lang-zh h1,body.lang-zh .ch-title,body.lang-zh .reel-title,
 body.lang-zh .closing h2,body.lang-zh .exstrip .say,body.lang-zh .workcard strong,
-body.lang-zh .freedom-main{font-family:"Noto Serif TC",serif !important}
+body.lang-zh .freedom-main{font-family:"Noto Serif TC","Songti TC",serif !important}
 
 /* ---- chapter dots nav ---- */
 .dots-nav{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:19;
@@ -502,7 +502,7 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
 .voice-sample{font-family:var(--serif);font-size:clamp(16px,1.9vw,21px);line-height:1.9;
   color:var(--ink);transition:opacity .2s}
 .voice-sample .q{color:var(--gold-dim)}
-.voice-sample.tc{font-family:"Noto Serif TC",serif}
+.voice-sample.tc{font-family:"Noto Serif TC","Songti TC",serif}
 /* 2欄: 罫と余白だけ。角丸カード・塗り・バッジを持たない */
 .voice-row{display:grid;grid-template-columns:320px 1fr;gap:0 64px;position:relative;
   margin-top:18px;border-top:1px solid var(--line);padding-top:28px}
@@ -1200,7 +1200,7 @@ body.uc .alb-card{border-radius:0}
 .top-nav a{font-family:var(--serif);font-size:12.5px;letter-spacing:.3em;color:rgba(226,230,242,.78);text-decoration:none;position:relative;padding:4px 0}
 .top-nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--hair2);transition:width .4s}
 .top-nav a:hover{color:#fff}.top-nav a:hover::after{width:100%}
-body.lang-zh .top-nav a{font-family:"Noto Serif TC",serif;letter-spacing:.22em}
+body.lang-zh .top-nav a{font-family:"Noto Serif TC","Songti TC",serif;letter-spacing:.22em}
 @media (max-width:1020px){.top-nav{gap:18px}.top-nav a{font-size:12px;letter-spacing:.2em}}
 @media (max-width:860px){.top-nav{display:none}}
 
@@ -1226,7 +1226,7 @@ body.lang-zh .top-nav a{font-family:"Noto Serif TC",serif;letter-spacing:.22em}
 .door{background-image:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(4,6,15,.85))}
 .door img{mix-blend-mode:normal}
 .door:hover{border-color:var(--hair2)}
-body.lang-zh .door strong{font-family:"Noto Serif TC",serif}
+body.lang-zh .door strong{font-family:"Noto Serif TC","Songti TC",serif}
 @media (max-width:860px){.doors{margin-top:0;padding-top:28px}.doors-grid{grid-template-columns:1fr 1fr}.door:first-child{grid-column:1/-1;aspect-ratio:16/8}}
 @media (max-width:640px){.doors{padding-left:16px;padding-right:16px}.doors-grid{gap:10px}.door{aspect-ratio:16/11}.door strong{font-size:16px;bottom:36px}.door em{font-size:10.5px;bottom:14px}}
 
@@ -1245,7 +1245,7 @@ body.lang-zh .door strong{font-family:"Noto Serif TC",serif}
 .use:hover::before,.use:hover::after{width:18px;height:18px;border-color:#fff}
 .use.soon img{filter:saturate(.35) contrast(.9) brightness(.55)}
 .use.soon .k::after{content:"  ·  COMING";color:var(--muted)}
-body.lang-zh .use .t strong{font-family:"Noto Serif TC",serif}
+body.lang-zh .use .t strong{font-family:"Noto Serif TC","Songti TC",serif}
 @media (max-width:860px){.uses{grid-template-columns:1fr 1fr;gap:10px}.use,.use:nth-child(4),.use:nth-child(5){grid-column:auto}.use:nth-child(5){grid-column:1/-1;aspect-ratio:16/7}}
 @media (max-width:640px){.use .t{padding:40px 12px 12px}.use .t strong{font-size:15px}.use .t span{font-size:10.5px}}
 
@@ -1264,7 +1264,7 @@ body.lang-zh .use .t strong{font-family:"Noto Serif TC",serif}
 .uc-next .nx .ar{font-family:var(--en-display);margin-left:.4em;opacity:.8}
 .uc-next .all{font-family:var(--serif);font-size:12.5px;letter-spacing:.3em;color:var(--muted);text-decoration:none;padding-bottom:3px;border-bottom:1px solid var(--hair)}
 .uc-next .all:hover{color:var(--ink);border-color:var(--hair2)}
-body.lang-zh .uc-next .nx,body.lang-zh .crumbs span{font-family:"Noto Serif TC",serif}
+body.lang-zh .uc-next .nx,body.lang-zh .crumbs span{font-family:"Noto Serif TC","Songti TC",serif}
 
 /* フッターのサイトマップ */
 .foot-map{position:relative;z-index:5;display:flex;align-items:center;flex-wrap:wrap;gap:6px 22px;padding:26px clamp(22px,5vw,64px) 6px;border-top:1px solid var(--line)}
@@ -1274,7 +1274,7 @@ body.lang-zh .uc-next .nx,body.lang-zh .crumbs span{font-family:"Noto Serif TC",
 .foot-map a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--hair2);transition:width .4s}
 .foot-map a:hover{color:var(--ink)}.foot-map a:hover::after{width:100%}
 .foot-map+.site-foot{border-top:0;padding-top:14px}
-body.lang-zh .foot-map a{font-family:"Noto Serif TC",serif;letter-spacing:.12em}
+body.lang-zh .foot-map a{font-family:"Noto Serif TC","Songti TC",serif;letter-spacing:.12em}
 @media (max-width:640px){.foot-map{gap:4px 16px;padding-left:16px;padding-right:16px}.foot-map .fm-sep{display:none}}
 
 /* スマホの「相談」= 右下に浮かせる(固定ナビが隠れる幅だけ) */
@@ -1286,7 +1286,7 @@ body.lang-zh .foot-map a{font-family:"Noto Serif TC",serif;letter-spacing:.12em}
   .fab-contact::before,.fab-contact::after{content:"";position:absolute;width:8px;height:8px;border:1px solid var(--hair2)}
   .fab-contact::before{left:3px;top:3px;border-right:0;border-bottom:0}.fab-contact::after{right:3px;bottom:3px;border-left:0;border-top:0}
   .fab-contact span{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.08em}
-  body.lang-zh .fab-contact{font-family:"Noto Serif TC",serif}
+  body.lang-zh .fab-contact{font-family:"Noto Serif TC","Songti TC",serif}
 }
 
 
@@ -1483,7 +1483,7 @@ body.uc .uc-grid figure.note .k::before{content:"";position:absolute;left:0;top:
 body.uc .uc-grid figure.note p{margin:0;font-family:var(--serif);font-size:12.5px;line-height:1.9;letter-spacing:.04em;color:var(--text-2)}
 body.uc .uc-grid figure.note.sq p{font-size:13.5px;line-height:2}
 body.uc .uc-grid figure.note .n{font-family:var(--en-display);font-size:11px;letter-spacing:.14em;color:var(--text-3)}
-body.lang-zh .uc-grid figure.note p{font-family:"Noto Serif TC",serif}
+body.lang-zh .uc-grid figure.note p{font-family:"Noto Serif TC","Songti TC",serif}
 @media (max-width:900px){body.uc .uc-grid figure.note{padding:14px 14px 12px}body.uc .uc-grid figure.note p{font-size:12px;line-height:1.8}}
 
 /* ============================================================
@@ -1517,7 +1517,7 @@ body.uc .ls-btn.on::after{content:"";position:absolute;left:50%;right:auto;botto
 .chip em,.chip .dots{grid-column:4;margin:0;border:0;padding:0;font-family:var(--en-display);font-style:italic;font-size:12.5px;letter-spacing:.12em;color:var(--gold)}
 .chip .dots{display:inline-flex;gap:6px;align-self:center}
 .chip .dots i{width:6px;height:6px}
-body.lang-zh .chip{font-family:"Noto Serif TC",serif}
+body.lang-zh .chip{font-family:"Noto Serif TC","Songti TC",serif}
 @media (max-width:640px){.caps{margin-top:18px}.chip{font-size:12.5px;column-gap:10px;padding:8px 0}.chip>span:not(.dots){white-space:normal}}
 @media (min-width:641px) and (max-width:900px){.caps{padding:0;max-width:440px}}
 
@@ -1529,7 +1529,7 @@ body.lang-zh .chip{font-family:"Noto Serif TC",serif}
 .crumbs{font-family:var(--serif);font-size:12.5px;letter-spacing:.2em;color:var(--text-3)}
 .crumbs a{font-family:var(--serif)}
 .crumbs span{letter-spacing:.14em}
-body.lang-zh .crumbs,body.lang-zh .crumbs a{font-family:"Noto Serif TC",serif}
+body.lang-zh .crumbs,body.lang-zh .crumbs a{font-family:"Noto Serif TC","Songti TC",serif}
 
 /* ============================================================
    棚の段の高さを明示(2026-10-12 夜・iPhone 実機で発見した不具合= WebKit は align-self:stretch の格子で aspect-ratio の高さを段の高さに数えず、
@@ -1590,7 +1590,7 @@ body.sm-open .sm-veil{opacity:1;pointer-events:auto}body.sm-open .sm-drawer{tran
 .sm-lang button{border:0;background:transparent;cursor:pointer;font-family:var(--serif);font-size:13px;letter-spacing:.16em;color:var(--text-3);padding:4px 14px 4px 0;position:relative}
 .sm-lang button.on{color:var(--ink)}
 .sm-lang button.on::after{content:"";position:absolute;left:calc(50% - 7px);bottom:-11px;width:7px;height:7px;border-radius:50%;background:var(--inf);box-shadow:0 0 8px rgba(255,157,219,.85)}
-body.lang-zh .sm-a,body.lang-zh .sm-x,body.lang-zh .sm-lang button{font-family:"Noto Serif TC",serif}
+body.lang-zh .sm-a,body.lang-zh .sm-x,body.lang-zh .sm-lang button{font-family:"Noto Serif TC","Songti TC",serif}
 @media (max-width:640px){.sm-btn span{display:none}.sm-btn{padding-left:2px}.sm-drawer{padding:22px 22px 24px}.sm-a{font-size:16px}}
 
 /* 繁体字の折り返し(2026-10-12 夜・ユーザー「繁体字中国語のレイアウトもチェックしてね。改行とかも」)
@@ -1693,7 +1693,7 @@ header.solid{background:rgba(4,6,15,.82);-webkit-backdrop-filter:blur(12px) satu
 .cf-item.on .cf-cap{opacity:1;transform:none}
 .cf-cap strong{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(17px,1.7vw,22px);letter-spacing:.06em;color:#fff}
 .cf-cap > span{display:block;margin-top:6px;font-family:var(--en);font-size:11px;letter-spacing:.14em;color:rgba(240,235,222,.72)}
-body.lang-zh .cf-cap strong{font-family:"Noto Serif TC",serif}
+body.lang-zh .cf-cap strong{font-family:"Noto Serif TC","Songti TC",serif}
 /* 平らな列(JS 無し・動きを減らす): 題は常に見せる */
 .cflow:not(.cf-on) .cf-cap{opacity:1;transform:none;position:static;width:auto;margin:calc(var(--H) + 14px) 0 0;text-align:left}
 .cflow:not(.cf-on) .cf-refl{display:none}
@@ -1898,7 +1898,7 @@ a:hover .go-ic path,button:hover .go-ic path{transform:translateX(1.5px)}
 .plat-row .k{font-family:var(--en-display);font-size:12px;letter-spacing:.2em;color:var(--gold)}
 .plat-row .t{font-family:var(--serif);font-size:15px;letter-spacing:.08em;color:var(--ink)}
 .plat-row .v{font-family:var(--en);font-size:12px;letter-spacing:.1em;color:var(--muted)}
-body.lang-zh .plat-row .t{font-family:"Noto Serif TC",serif}
+body.lang-zh .plat-row .t{font-family:"Noto Serif TC","Songti TC",serif}
 @media (max-width:640px){.plat-row .t{font-size:14px}.plat-row .v{font-size:11px;letter-spacing:.06em}}
 
 /* ===== 英語(2026-10-15・ユーザー「英語版も用意して」): 本文は Inter・見出しは Cormorant Garamond(どちらも既に読んでいる書体)。
@@ -1954,3 +1954,11 @@ body.lang-zh .ct-l .lz,body.lang-en .ct-l .le{display:inline}
    写真の説明は最終行が 1〜2 字にならないように(世界の撮影の「種菜」) */
 .workcard figcaption > span{word-break:keep-all;overflow-wrap:anywhere}
 figcaption{text-wrap:pretty}
+
+/* ===== 書体の決まり(2026-10-31・ユーザー「フォントもこだわってね」) =====
+   - 英字の見出し書体 Cormorant Garamond は数字が古風な形(0 が o、1 が I に見える)= 章番号「01」が英語の頁で「OI」と読めた。
+     数字は全体で揃いの高さ(lining-nums)にする。日本語と繁中の書体には影響しない(もともと揃いの高さ)。実測: Cormorant の字幅 140.5 → 153.5 で効いている
+   - 繁中の本文と見出しは台湾の書体(Noto Sans TC / Noto Serif TC= 台湾の教育部の字形と、真ん中に置く約物)。読み込み中の代わりも台湾の書体
+     (PingFang TC / 微軟正黑體 / Songti TC)にして、日本の書体の字形と約物の位置が一瞬でも出ないように
+   - 日本語の詰め(palt)は入れない: Google Fonts の Shippori Mincho と Zen Kaku Gothic New では効かない(実測で字幅が同じ) */
+body{font-variant-numeric:lining-nums}

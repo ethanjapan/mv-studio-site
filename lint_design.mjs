@@ -211,6 +211,13 @@ for (const f of pages) {
   }
   if (missZh.length) bad.push(`繁中の訳が無い日本語の文 ${missZh.length} 件(繁中の頁で日本語のまま出る・main.js か uc_i18n.js の M に足す):\n    ` + missZh.slice(0, 30).join('\n    '))
 }
+// 12) 書体の読み込み(2026-10-31 ユーザー「フォントもこだわってね」): 用途の頁 9 枚が繁中の書体を一度も読まず、見出しが端末の角ゴシック・本文が日本の書体の字形と約物で出ていた。
+//     言語の札がある頁は全部、繁中の書体(Noto Sans TC と Noto Serif TC)を読み込みの台本に持つ
+for (const f of pages.filter(f => f !== 'links.html')) {
+  const html = readFileSync(join(ROOT, f), 'utf8')
+  if (!/lang-switch/.test(html)) continue
+  for (const fam of ['family=Noto+Sans+TC', 'family=Noto+Serif+TC']) if (!html.includes(fam)) bad.push(`${f}: 繁中の書体 ${fam.slice(7)} を読み込んでいない(繁中で日本の書体の字形・約物の位置になる)`)
+}
 // 11) 直訳の検査(2026-10-31 ユーザー「日本語の直訳は禁止で、ネイティブの言葉で台湾語、英語にしてね」「ルール化にしてね」)= lint_translation.mjs
 {
   const { lintTranslation } = await import('./lint_translation.mjs')

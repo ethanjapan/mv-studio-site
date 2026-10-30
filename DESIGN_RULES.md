@@ -95,3 +95,15 @@
 - **検査**= `lint_translation.mjs`(lint_design の 11)。辞書(main.js / uc_i18n.js の M・生成した js/*_i18n.js)・data/i18n_en/*.tsv・data/seo_meta.json の繁中と英語を全部見て、直訳の印(仮名の残り・台湾の正体字でない字・中国の言い回し・日本語のままの語・英語の直訳と和製英語の語)が出たら止める。GitHub Actions のビルドでも走る(push しても公開されない)
 - 当たったら**その言語で書き直す**。語表を削って通さない。台湾でも普通に使う語(寫真館・寫真集・現場演出・檢查項目)や技術の文脈の語(production)が当たった時だけ、語表を直すか `data/translation_baseline.json` の allow に入れる(増やす方向は理由を書いてから)
 - 検査は「印」であって「正解」ではない。印が 0 でも直訳の文はありうる= 新しく書いた繁中と英語は、出す前に一度だけ声に出して読むつもりで読み直す
+
+## 書体(2026-10-31・ユーザー「フォントもこだわってね」)
+| 言語 | 見出し | 本文 | 英字 |
+|---|---|---|---|
+| 日本語 | Shippori Mincho | Zen Kaku Gothic New | Cormorant Garamond(見出し)/ Inter(小さな UI) |
+| 繁中 | Noto Serif TC | Noto Sans TC | 同上 |
+| 英語 | Cormorant Garamond | Inter | — |
+- **繁中は台湾の書体で出す**。Noto Sans TC / Noto Serif TC は台湾の教育部の字形で、読点と句点を字の真ん中に置く(台湾式)。日本の書体のままだと字形と約物の位置が日本式になり、台湾の人にはすぐ分かる。読み込み中の代わりも台湾の書体(PingFang TC / 微軟正黑體 / Songti TC)
+  - 2026-10-31 まで用途の頁 9 枚は繁中の書体を読んでいなかった= iPhone で見出しが角ゴシック、本文が日本の字形だった。検査= lint_design の 12(言語の札がある頁は全部、両方の書体を読む)
+- **数字は揃いの高さ(lining-nums)**。Cormorant Garamond の既定は古風な数字で、英語の頁の章番号「01」が「OI」に読めた
+- 日本語の詰め(palt)は使わない: Google Fonts の Shippori Mincho と Zen Kaku Gothic New では効かない(実測)
+- 書体を足す・替える時は、iPhone シミュレータで直す前と後を同じ位置で撮って並べる(Mac は内蔵の明朝が代わりに出て差が見えにくい)
