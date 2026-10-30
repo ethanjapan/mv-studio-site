@@ -14,7 +14,7 @@ const SETS = [
   { name: 'beauty', data: 'data/beauty.json', page: 'usecases/beauty.html', jp: '美容' },
   // 撮影会ポートレートの棚の上段(2026-10-23)= IG @ethan_ai_photo の毎朝の投稿に選んだ写真。印は portrait.html の gen:pig:shelves
   // 2026-10-31: 全部は usecases/daily.html(gen_daily.mjs)へ移し、ここは posts(新しい順)の 9 枚だけ + 全部へのリンク(latest)
-  { name: 'pig', data: 'data/portrait_ig.json', page: 'usecases/portrait.html', jp: '毎朝の作例', latest: 9, link: { href: 'daily.html', ja: 'すべての作例を見る — 10 月の全部と、11 月の予告', zh: '看全部的作品 — 10 月的全部，和 11 月的預告', en: 'See every set — all of October, and what is coming in November' } },
+  { name: 'pig', data: 'data/portrait_ig.json', page: 'usecases/portrait.html', jp: '毎朝の作例', latest: 9, link: { href: 'daily.html', ja: 'すべての作例を見る — 10 月の全部と、11 月の予告', zh: '看全部 — 十月每一組，加上十一月預告', en: 'See them all — every set from October, plus a look at November' } },
   // 棚のお気に入りから選んだ新作(2026-10-24)。印は各頁の gen:<name>:shelves
   { name: 'pfav', data: 'data/portrait_fav.json', page: 'usecases/portrait.html', jp: '撮影会の新作' },
   { name: 'bfav', data: 'data/bridal_fav.json', page: 'usecases/bridal.html', jp: 'ブライダルの新作' },

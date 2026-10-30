@@ -5,7 +5,7 @@
    "key": "nov",
    "en": "NOVEMBER",
    "ja": "11 月の予告",
-   "zh": "11 月預告",
+   "zh": "十一月預告",
    "sub_en": "Coming in November"
   }
  ],
@@ -16,8 +16,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "大きな木は、背景になる。",
-   "zh": "大樹，就是背景。",
-   "en": "A big tree becomes the backdrop.",
+   "zh": "一棵大樹，就是最好的背景。",
+   "en": "A big tree is all the backdrop you need.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -39,8 +39,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "コスモス畑で、カメラを持つ。",
-   "zh": "在波斯菊田裡，拿著相機。",
-   "en": "Holding a camera in the cosmos field.",
+   "zh": "在波斯菊花田裡，手上拿著相機。",
+   "en": "A camera in hand, out in the cosmos field.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -62,7 +62,7 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "銀杏の交差点、足を止める。",
-   "zh": "銀杏的十字路口，停下腳步。",
+   "zh": "銀杏路口，停下腳步。",
    "en": "Stopping at the ginkgo crossing.",
    "v": "1031a",
    "status": "live",
@@ -85,8 +85,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "すだれ越しの光を、着物に落とす。",
-   "zh": "讓竹簾的光落在和服上。",
-   "en": "Light through the reed blind, onto the kimono.",
+   "zh": "讓竹簾篩過的光，落在和服上。",
+   "en": "Light through a reed blind, falling on kimono.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -108,8 +108,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "紅葉の影を、顔に落とす。",
-   "zh": "讓紅葉的影子落在臉上。",
-   "en": "Maple shadows across the face.",
+   "zh": "讓楓葉的影子落在臉上。",
+   "en": "Maple shadows on her face.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -132,7 +132,7 @@
    "orient": "P",
    "ja": "黄色い壁は、光を足してくれる。",
    "zh": "黃色的牆，會幫你補光。",
-   "en": "A yellow wall adds its own light.",
+   "en": "A yellow wall is a free reflector.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -154,8 +154,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "銀杏の黄色を、花束に重ねる。",
-   "zh": "把銀杏的黃，疊進花束。",
-   "en": "Ginkgo yellow, layered onto a bouquet.",
+   "zh": "把銀杏的黃，疊上一束花。",
+   "en": "Ginkgo yellow, doubled with a bouquet.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -177,7 +177,7 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "柳の池で、小紋を着る。",
-   "zh": "在柳樹池畔，穿上小紋。",
+   "zh": "柳樹池畔，一身小紋。",
    "en": "A komon kimono by the willow pond.",
    "v": "1031a",
    "status": "live",
@@ -200,8 +200,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "紅葉の下で、振袖を広げる。",
-   "zh": "在紅葉下，展開振袖。",
-   "en": "Spreading furisode sleeves under the maples.",
+   "zh": "楓紅底下，展開振袖的袖子。",
+   "en": "Furisode sleeves spread under the maples.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -223,8 +223,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "洋館の廊下で、白い振袖を。",
-   "zh": "洋館的走廊，白色振袖。",
-   "en": "A white furisode in a Western-style hall.",
+   "zh": "老洋房的走廊，一襲白振袖。",
+   "en": "A white furisode down a mansion corridor.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -246,8 +246,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "山門の石段は、縦の構図になる。",
-   "zh": "山門的石階，是直幅的構圖。",
-   "en": "Temple-gate steps make a vertical frame.",
+   "zh": "山門的石階，天生就是直幅。",
+   "en": "Temple steps were made for vertical frames.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -269,8 +269,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "ビルの谷間の、夕日を待つ。",
-   "zh": "在大樓的縫隙間，等夕陽。",
-   "en": "Waiting for sunset between the buildings.",
+   "zh": "在大樓的縫隙裡，等一場夕陽。",
+   "en": "Waiting for sunset between the towers.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -292,8 +292,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "丸い格子窓は、額縁になる。",
-   "zh": "圓形的格子窗，就是畫框。",
-   "en": "A round lattice window becomes the frame.",
+   "zh": "圓形的格子窗，就是現成的畫框。",
+   "en": "A round lattice window makes its own frame.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -315,7 +315,7 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "錆びた壁と、赤いニット。",
-   "zh": "鏽蝕的牆，紅色的針織。",
+   "zh": "鏽紅的牆，配紅色針織。",
    "en": "A rusted wall and a red knit.",
    "v": "1031a",
    "status": "live",
@@ -338,8 +338,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "竹の葉を、前ボケにする。",
-   "zh": "讓竹葉成為前景的散景。",
-   "en": "Bamboo leaves as foreground bokeh.",
+   "zh": "讓竹葉在前景化成散景。",
+   "en": "Bamboo leaves as foreground blur.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -361,8 +361,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "展望台の窓に、街の光を写す。",
-   "zh": "讓城市的光映在觀景台的窗上。",
-   "en": "City lights in the observation-deck window.",
+   "zh": "觀景台的玻璃，映著整座城市的光。",
+   "en": "City lights, reflected in the observation-deck glass.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -384,8 +384,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "白い電飾は、顔を明るくする。",
-   "zh": "白色的燈飾，會照亮臉。",
-   "en": "White fairy lights brighten the face.",
+   "zh": "白色的燈飾，會把臉照亮。",
+   "en": "White fairy lights do the lighting for you.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -407,8 +407,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "夜の商店街を、ひとり歩く。",
-   "zh": "一個人走在夜晚的商店街。",
-   "en": "Walking the shopping street alone at night.",
+   "zh": "一個人逛夜裡的商店街。",
+   "en": "Walking the arcade alone at night.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -430,8 +430,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "ツリーの光を、背中に回す。",
-   "zh": "讓聖誕樹的光繞到背後。",
-   "en": "Tree lights wrapped behind her.",
+   "zh": "把聖誕樹的光，留在背後。",
+   "en": "Tree lights at her back.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -451,116 +451,80 @@
  ],
  "strings": {
   "毎朝の作例 — 撮影会ポートレート — MV Studio": [
-   "每天早上的作品 — 外拍人像 — MV Studio",
-   "Every morning's photos — Portrait sessions — MV Studio"
+   "每天早上一組 — 外拍人像 — MV Studio",
+   "Every Morning — Portrait Sessions — MV Studio"
+  ],
+  "USE CASE 02 — 毎朝の作例": [
+   "USE CASE 02 — 每天早上一組",
+   "USE CASE 02 — Every morning"
   ],
   "毎朝 6 時、": [
    "每天早上六點，",
-   "Every morning at six,"
+   "Six every morning,"
   ],
   "一組ずつ": [
-   "一組一組",
-   "one set at a time"
-  ],
-  "ホーム": [
-   "首頁",
-   "Home"
-  ],
-  "用途": [
-   "用途",
-   "Uses"
-  ],
-  "撮影会ポートレート": [
-   "外拍人像",
-   "Portrait sessions"
+   "一組新照片",
+   "a new set"
   ],
   "毎朝の作例": [
-   "每天早上的作品",
+   "每天早上一組",
    "Every morning"
   ],
   "同じ顔のモデルを、光の違う場所へ連れて行く。写真を 8 枚と、縦の動画を 1 本。Instagram の @ethan_ai_photo に、毎朝 6 時に 1 組ずつ載せている。ここは、その全部。": [
-   "把同一張臉的模特兒，帶到光線不同的地方。八張照片，加一支直式影片。每天早上六點，在 Instagram 的 @ethan_ai_photo 發一組。這裡是全部。",
-   "The same model, taken to places with different light. Eight photos and one vertical video. One set goes up on Instagram at @ethan_ai_photo every morning at six. This is all of them."
+   "同一位模特兒、同一張臉，帶到不同的光線裡拍。八張照片加一支直式影片，每天早上六點準時發在 Instagram @ethan_ai_photo。這一頁，收齊了全部。",
+   "One model, one face, taken into different kinds of light. Eight photos and a vertical video, posted to Instagram at @ethan_ai_photo at six every morning. This page has all of them."
   ],
   "Instagram で毎朝見る": [
-   "每天早上在 Instagram 看",
+   "到 Instagram 追蹤",
    "Follow on Instagram"
   ],
-  "この用途で相談する": [
-   "洽詢這個用途",
-   "Ask about this use"
-  ],
   "作例は @ethan_ai_photo・相談は DM(@made_linlin)": [
-   "作品在 @ethan_ai_photo・洽詢請私訊 @made_linlin",
-   "Photos at @ethan_ai_photo, enquiries by DM to @made_linlin"
+   "作品在 @ethan_ai_photo，想拍請私訊 @made_linlin",
+   "Photos at @ethan_ai_photo. To book, DM @made_linlin."
   ],
   "02 — 10 月の投稿": [
-   "02 — 10 月的貼文",
-   "02 — October posts"
+   "02 — 十月的貼文",
+   "02 — October"
   ],
   "ひと組が、": [
-   "一組，",
+   "一組照片，",
    "One set,"
   ],
   "一行。": [
-   "就是一行。",
+   "一排看完。",
    "one row."
   ],
   "光の教科書、季節と場所、表情と目線、衣装と色、1 か所で 8 カット。五つの型を順に回して、毎朝 1 組。横に流して、8 枚をそのまま見てください。": [
-   "光的教科書、季節與場所、表情與視線、服裝與顏色、一個地點八個畫面。五種型輪著來，每天早上一組。橫著滑，把八張照片直接看完。",
-   "Reading the light, season and place, expression and gaze, outfit and color, one location in eight frames. Five formats in rotation, one set each morning. Swipe sideways and see all eight."
+   "光的教科書、季節與地點、表情與視線、服裝與色彩、一個地點拍八張。五種主題輪流，每天早上一組。往旁邊滑，八張照片一次看完。",
+   "Reading the light. Season and place. Expression and gaze. Outfit and color. Eight frames from one spot. Five themes in rotation, one set each morning. Swipe sideways to see all eight."
   ],
   "03 — 11 月の予告": [
-   "03 — 11 月預告",
+   "03 — 十一月預告",
    "03 — Coming in November"
   ],
   "11 月は、": [
-   "11 月，",
+   "十一月，",
    "In November,"
   ],
   "毎日リール": [
-   "每天一支 Reels",
-   "a reel every day"
+   "天天有 Reels",
+   "a reel a day"
   ],
   "銀杏、紅葉、振袖、すだれ、夜の電飾。11 月の 30 日は、毎朝 1 本の縦の動画と、強い回だけ翌日に写真 8 枚。表紙の一枚を先に。": [
-   "銀杏、紅葉、振袖、竹簾、夜晚的燈飾。11 月的 30 天，每天早上一支直式影片，強的那幾組隔天再發八張照片。先看每組的封面。",
-   "Ginkgo, maples, furisode, reed blinds, night illuminations. Thirty days in November: a vertical video every morning, and for the strongest sets, eight photos the next day. Here is each cover first."
+   "銀杏、楓紅、振袖、竹簾、夜裡的燈飾。十一月的三十天，每天早上一支直式影片；特別好的那幾組，隔天再補八張照片。先讓你看每一組的封面。",
+   "Ginkgo, maples, furisode, reed blinds, city lights at night. Thirty days of November: a vertical video every morning, and for the strongest sets, eight photos the day after. Here is the cover of each one."
   ],
   "11 月の予告": [
-   "11 月預告",
+   "十一月預告",
    "Coming in November"
   ],
-  "撮影会の相談は、": [
-   "外拍的洽詢，",
-   "For a portrait session,"
-  ],
-  "好きな一枚": [
-   "從喜歡的一張",
-   "start from a photo you like"
-  ],
-  "から。": [
-   "開始。",
-   ""
-  ],
   "撮りたい雰囲気の写真(ここの一枚でも)と、着たい衣装。それだけ送ってください。候補にしてお返しします。": [
-   "想拍的氛圍的照片（這裡的一張也可以）和想穿的衣服。只要傳這些就好。我們會做成候選回給您。",
-   "Send a photo with the mood you want (one from this page is fine) and the outfit you'd like to wear. That's all. We'll send back candidates."
+   "把想拍的感覺的照片（這一頁的也可以）和想穿的衣服傳過來就好。我們會做成幾個候選回給你。",
+   "Send a photo with the mood you are after (one from this page works) and what you would like to wear. That is all. We will send back a few options."
   ],
   "撮影会ポートレートへ戻る": [
    "回到外拍人像",
    "Back to portrait sessions"
-  ],
-  "次の用途へ — 世界の撮影": [
-   "下一個用途 — 環遊世界",
-   "Next use case — Around the world"
-  ],
-  "すべての用途": [
-   "所有用途",
-   "All use cases"
-  ],
-  "USE CASE 02 — 毎朝の作例": [
-   "USE CASE 02 — 每天早上的作品",
-   "USE CASE 02 — Every morning"
   ]
  }
 }

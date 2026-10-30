@@ -145,16 +145,16 @@
   "usecases/daily.html": {
    "name": {
     "ja": "毎朝の作例",
-    "zh": "每天早上的作品",
+    "zh": "每天早上一組",
     "en": "Every morning"
    },
    "zh": {
-    "description": "把同一張臉的模特兒帶到光線不同的地方：八張照片加一支直式影片，每天早上六點在 Instagram @ethan_ai_photo 發一組。10 月的全部，和 11 月的預告。",
-    "og": "八張照片加一支直式影片，每天早上六點一組。10 月的全部，和 11 月的預告。"
+    "description": "同一位模特兒、同一張臉，帶到不同的光線裡拍：八張照片加一支直式影片，每天早上六點準時發在 Instagram @ethan_ai_photo。十月的每一組，加上十一月預告。",
+    "og": "八張照片加一支直式影片，每天早上六點一組。十月的每一組，加上十一月預告。"
    },
    "en": {
-    "description": "The same model taken to places with different light: eight photos and one vertical video, posted as a set every morning at six on Instagram @ethan_ai_photo. All of October, and what is coming in November.",
-    "og": "Eight photos and one vertical video, one set every morning at six. All of October, and what is coming in November."
+    "description": "One model, one face, taken into different kinds of light: eight photos and a vertical video, posted to Instagram at @ethan_ai_photo at six every morning. Every set from October, plus a look at November.",
+    "og": "Eight photos and a vertical video, one set at six every morning. Every set from October, plus a look at November."
    }
   },
   "usecases/world.html": {
