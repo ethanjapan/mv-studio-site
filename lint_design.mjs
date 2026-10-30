@@ -211,5 +211,10 @@ for (const f of pages) {
   }
   if (missZh.length) bad.push(`繁中の訳が無い日本語の文 ${missZh.length} 件(繁中の頁で日本語のまま出る・main.js か uc_i18n.js の M に足す):\n    ` + missZh.slice(0, 30).join('\n    '))
 }
+// 11) 直訳の検査(2026-10-31 ユーザー「日本語の直訳は禁止で、ネイティブの言葉で台湾語、英語にしてね」「ルール化にしてね」)= lint_translation.mjs
+{
+  const { lintTranslation } = await import('./lint_translation.mjs')
+  lintTranslation(ROOT, bad)
+}
 if (bad.length) { console.error('★ DESIGN_RULES.md 違反(ビルドを止めた):\n  ' + bad.join('\n  ')); process.exit(1) }
 console.log(`lint_design: ok(${pages.length} 頁)`)

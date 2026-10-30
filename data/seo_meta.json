@@ -89,8 +89,8 @@
    "ja_description": "MV Studio でできること。ブライダル前撮り、撮影会ポートレート、世界の撮影、解説動画、七五三・家族写真、物と場所。",
    "ja_og": "MV Studio でできること。ブライダル前撮り、撮影会ポートレート、世界の撮影、解説動画、七五三・家族写真、物と場所。",
    "zh": {
-    "description": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及物與場所。",
-    "og": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及物與場所。"
+    "description": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及靜物與空間。",
+    "og": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及靜物與空間。"
    },
    "en": {
     "description": "What MV Studio can do: pre-wedding shoots, portrait sessions, shoots around the world, explainer videos, Shichi-Go-San and family photos, and objects and places.",
@@ -161,15 +161,15 @@
    "name": {
     "ja": "世界の撮影",
     "zh": "環遊世界的拍攝",
-    "en": "Shooting the world"
+    "en": "Around the world"
    },
    "zh": {
     "description": "美國、韓國、台灣、中國、日本、日本絕景——從各地超過 3,000 種的拍攝風格中挑選。同一張臉，環遊世界一圈。",
     "og": "從各地超過 3,000 種的拍攝風格中挑選。同一張臉，環遊世界一圈。"
    },
    "en": {
-    "description": "America, Korea, Taiwan, China, Japan and Japan's great landscapes: over 3,000 regional shooting styles to choose from. The same face, all the way around the world.",
-    "og": "Over 3,000 regional shooting styles. The same face, all the way around the world."
+    "description": "America, Korea, Taiwan, China, Japan and its great landscapes: over 3,000 regional photo styles to pick from. The same face, all the way around the world.",
+    "og": "Over 3,000 regional photo styles. The same face, all the way around the world."
    }
   },
   "usecases/kaisetsu.html": {
@@ -206,7 +206,7 @@
   "usecases/still.html": {
    "name": {
     "ja": "物と場所",
-    "zh": "物與場所",
+    "zh": "靜物與空間",
     "en": "Things and places"
    },
    "zh": {

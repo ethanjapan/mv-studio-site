@@ -15,7 +15,7 @@ const ROOT = import.meta.dirname
 const DIST = join(ROOT, 'dist')
 
 // dist に入れないもの（ソース専用・開発用・公開不要）
-const EXCLUDE = new Set(['lint_design.mjs', 'DESIGN_RULES.md', 
+const EXCLUDE = new Set(['lint_design.mjs', 'lint_translation.mjs', 'DESIGN_RULES.md', 
   'dist', 'node_modules', '.git', '.github', '.claude',   // 手元のスキル(gitignore 済)を dist に写さない(2026-10-31)
   'build.mjs', 'gen_works.mjs', 'gen_shelves.mjs', 'gen_daily.mjs', 'gen_i18n.mjs', 'gen_lang_pages.mjs', 'data', 'package.json', 'package-lock.json',
   'README.md', '.gitignore',
