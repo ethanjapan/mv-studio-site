@@ -23,7 +23,13 @@ JPG_W = {"P": 600, "L": 900}
 
 
 def newer(dst: Path, src: Path) -> bool:
-    return dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime and dst.stat().st_size > 0
+    # 2026-10-31: 元の PNG が新しくても作り直さない(棚の自動の焼き直しが元を置き換えると、人が選んだ写真が黙って別の絵に替わった= 16 枚が差分 35〜87 で発覚)。
+    # 作り直すのは --force の時だけ。元が替わっている行は main が「元が替わっている」と知らせる
+    return dst.exists() and dst.stat().st_size > 0
+
+
+def src_changed(dst: Path, src: Path) -> bool:
+    return dst.exists() and dst.stat().st_size > 0 and src.stat().st_mtime > dst.stat().st_mtime
 
 
 def main():
@@ -37,7 +43,7 @@ def main():
         sys.exit("[ERR] cwebp が無い(brew install webp)")
     only = {x for x in a.only.split(",") if x}
     d = json.loads((ROOT / a.data).read_text(encoding="utf-8"))
-    made, skipped, missing = 0, 0, []
+    made, skipped, missing, changed = 0, 0, [], []
     for it in d["items"]:
         if only and it["id"] not in only:
             continue
@@ -45,6 +51,8 @@ def main():
         if not src.exists():
             missing.append(f"{it['id']}: {src}")
             continue
+        if not a.force and src_changed(OUT / f"{it['id']}-600.webp", src):
+            changed.append(it["id"])
         for w in WEBP_W:
             dst = OUT / f"{it['id']}-{w}.webp"
             if not a.force and newer(dst, src):
@@ -66,6 +74,8 @@ def main():
             made += 1
             print(f"[jpg]  {jpg.name} {im.width}x{im.height} {jpg.stat().st_size // 1024}KB")
     print(f"作った {made} / 飛ばした {skipped}" + (f" / 原寸が無い {len(missing)}: " + " ; ".join(missing) if missing else ""))
+    if changed:
+        print(f"★ 元の PNG が配信用より新しい(棚で焼き直された可能性) {len(changed)} 枚= 公開中の絵はそのまま。替えるなら見比べてから --force --only で: " + " ".join(changed))
     if missing:
         sys.exit(1)
 

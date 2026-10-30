@@ -13,6 +13,7 @@
       {k:'ブライダル前撮り',h:base+'usecases/bridal.html',f:'usecases/bridal.html'},
       {k:'アルバム',h:base+'usecases/bridal_album.html',f:'usecases/bridal_album.html',in:true},
       {k:'撮影会ポートレート',h:base+'usecases/portrait.html',f:'usecases/portrait.html'},
+      {k:'毎朝の作例',h:base+'usecases/daily.html',f:'usecases/daily.html',in:true,nw:'2026-11-30'},
       {k:'世界の撮影',h:base+'usecases/world.html',f:'usecases/world.html'},
       {k:'解説動画',h:base+'usecases/kaisetsu.html',f:'usecases/kaisetsu.html'},
       {k:'七五三・家族写真',h:base+'usecases/shichigosan.html',f:'usecases/shichigosan.html'},

@@ -1,0 +1,566 @@
+{
+ "_note": "毎朝の作例の頁(usecases/daily.html)の 11 月の予告= nov_plan.json の 20 組の表紙 1 枚ずつ(date= リールの公開日・photo_date= 写真の回の日・無ければリールだけ)。本番の写真は公開後に portrait_ig.json へ移す(2026-10-31)",
+ "shelves": [
+  {
+   "key": "nov",
+   "en": "NOVEMBER",
+   "ja": "11 月の予告",
+   "zh": "11 月預告",
+   "sub_en": "Coming in November"
+  }
+ ],
+ "show_first": 20,
+ "items": [
+  {
+   "id": "nv_jpp_big_tree_wide",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "大きな木は、背景になる。",
+   "zh": "大樹，就是背景。",
+   "en": "A big tree becomes the backdrop.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_big_tree_wide__random.png",
+    "shelf_key": "high_base_nd/jpp_big_tree_wide__random",
+    "fav": "",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp_big_tree_wide",
+    "ig_set": "M1101",
+    "reel_date": "2026-11-01",
+    "photo_date": null
+   },
+   "date": "2026-11-01"
+  },
+  {
+   "id": "nv_jpp_cosmos_film_wide",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "コスモス畑で、カメラを持つ。",
+   "zh": "在波斯菊田裡，拿著相機。",
+   "en": "Holding a camera in the cosmos field.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_cosmos_film_wide__random.png",
+    "shelf_key": "high_base_nd/jpp_cosmos_film_wide__random",
+    "fav": "",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp_cosmos_film_wide",
+    "ig_set": "M1103",
+    "reel_date": "2026-11-02",
+    "photo_date": null
+   },
+   "date": "2026-11-02"
+  },
+  {
+   "id": "nv_jpp6_tokyo_crosswalk_film_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "銀杏の交差点、足を止める。",
+   "zh": "銀杏的十字路口，停下腳步。",
+   "en": "Stopping at the ginkgo crossing.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp6_tokyo_crosswalk_film_ref__random.png",
+    "shelf_key": "high_base_nd/jpp6_tokyo_crosswalk_film_ref__random",
+    "fav": "2026-10-25T05:52:28",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp6_tokyo_crosswalk_film_ref",
+    "ig_set": "M1104",
+    "reel_date": "2026-11-03",
+    "photo_date": "2026-11-04"
+   },
+   "date": "2026-11-03"
+  },
+  {
+   "id": "nv_jpp9_sudare_kimono_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "すだれ越しの光を、着物に落とす。",
+   "zh": "讓竹簾的光落在和服上。",
+   "en": "Light through the reed blind, onto the kimono.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp9_sudare_kimono_ref__random.png",
+    "shelf_key": "high_base_nd/jpp9_sudare_kimono_ref__random",
+    "fav": "2026-10-25T05:50:50",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp9_sudare_kimono_ref",
+    "ig_set": "M1106",
+    "reel_date": "2026-11-05",
+    "photo_date": "2026-11-06"
+   },
+   "date": "2026-11-05"
+  },
+  {
+   "id": "nv_jpp_momiji_shadow_back",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "紅葉の影を、顔に落とす。",
+   "zh": "讓紅葉的影子落在臉上。",
+   "en": "Maple shadows across the face.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_momiji_shadow_back__random.png",
+    "shelf_key": "high_base_nd/jpp_momiji_shadow_back__random",
+    "fav": "2026-10-24T05:54:38",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp_momiji_shadow_back",
+    "ig_set": "M1107",
+    "reel_date": "2026-11-07",
+    "photo_date": "2026-11-08"
+   },
+   "date": "2026-11-07"
+  },
+  {
+   "id": "nv_jpp6_yellow_wall_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "黄色い壁は、光を足してくれる。",
+   "zh": "黃色的牆，會幫你補光。",
+   "en": "A yellow wall adds its own light.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp6_yellow_wall_ref__random.png",
+    "shelf_key": "high_base_nd/jpp6_yellow_wall_ref__random",
+    "fav": "2026-10-25T05:52:16",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp6_yellow_wall_ref",
+    "ig_set": "M1109",
+    "reel_date": "2026-11-09",
+    "photo_date": null
+   },
+   "date": "2026-11-09"
+  },
+  {
+   "id": "nv_jpp_ginkgo_bouquet_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "銀杏の黄色を、花束に重ねる。",
+   "zh": "把銀杏的黃，疊進花束。",
+   "en": "Ginkgo yellow, layered onto a bouquet.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_ginkgo_bouquet_ref__random.png",
+    "shelf_key": "high_base_nd/jpp_ginkgo_bouquet_ref__random",
+    "fav": "",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp_ginkgo_bouquet_ref",
+    "ig_set": "M1110",
+    "reel_date": "2026-11-10",
+    "photo_date": null
+   },
+   "date": "2026-11-10"
+  },
+  {
+   "id": "nv_jpp9_willow_rail_kimono_high",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "柳の池で、小紋を着る。",
+   "zh": "在柳樹池畔，穿上小紋。",
+   "en": "A komon kimono by the willow pond.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp9_willow_rail_kimono_high__random.png",
+    "shelf_key": "high_base_nd/jpp9_willow_rail_kimono_high__random",
+    "fav": "2026-10-25T05:48:37",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp9_willow_rail_kimono_high",
+    "ig_set": "M1112",
+    "reel_date": "2026-11-11",
+    "photo_date": "2026-11-12"
+   },
+   "date": "2026-11-11"
+  },
+  {
+   "id": "nv_jpp_momiji_furisode_wide",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "紅葉の下で、振袖を広げる。",
+   "zh": "在紅葉下，展開振袖。",
+   "en": "Spreading furisode sleeves under the maples.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_momiji_furisode_wide__random.png",
+    "shelf_key": "high_base_nd/jpp_momiji_furisode_wide__random",
+    "fav": "",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp_momiji_furisode_wide",
+    "ig_set": "M1113",
+    "reel_date": "2026-11-13",
+    "photo_date": "2026-11-14"
+   },
+   "date": "2026-11-13"
+  },
+  {
+   "id": "nv_jpp9_western_hall_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "洋館の廊下で、白い振袖を。",
+   "zh": "洋館的走廊，白色振袖。",
+   "en": "A white furisode in a Western-style hall.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp9_western_hall_ref__random.png",
+    "shelf_key": "high_base_nd/jpp9_western_hall_ref__random",
+    "fav": "2026-10-25T05:49:02",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp9_western_hall_ref",
+    "ig_set": "M1115",
+    "reel_date": "2026-11-15",
+    "photo_date": "2026-11-16"
+   },
+   "date": "2026-11-15"
+  },
+  {
+   "id": "nv_jpp9_gate_steps_back_back",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "山門の石段は、縦の構図になる。",
+   "zh": "山門的石階，是直幅的構圖。",
+   "en": "Temple-gate steps make a vertical frame.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp9_gate_steps_back_back__random.png",
+    "shelf_key": "high_base_nd/jpp9_gate_steps_back_back__random",
+    "fav": "2026-10-25T05:49:45",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp9_gate_steps_back_back",
+    "ig_set": "M1116",
+    "reel_date": "2026-11-17",
+    "photo_date": "2026-11-18"
+   },
+   "date": "2026-11-17"
+  },
+  {
+   "id": "nv_jpp6_city_sunset_deck_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "ビルの谷間の、夕日を待つ。",
+   "zh": "在大樓的縫隙間，等夕陽。",
+   "en": "Waiting for sunset between the buildings.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp6_city_sunset_deck_ref__random.png",
+    "shelf_key": "high_base_nd/jpp6_city_sunset_deck_ref__random",
+    "fav": "2026-10-25T05:53:02",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp6_city_sunset_deck_ref",
+    "ig_set": "M1118",
+    "reel_date": "2026-11-19",
+    "photo_date": null
+   },
+   "date": "2026-11-19"
+  },
+  {
+   "id": "nv_jpp9_round_lattice_wide",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "丸い格子窓は、額縁になる。",
+   "zh": "圓形的格子窗，就是畫框。",
+   "en": "A round lattice window becomes the frame.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp9_round_lattice_wide__random.png",
+    "shelf_key": "high_base_nd/jpp9_round_lattice_wide__random",
+    "fav": "2026-10-25T05:50:27",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp9_round_lattice_wide",
+    "ig_set": "M1119",
+    "reel_date": "2026-11-20",
+    "photo_date": "2026-11-21"
+   },
+   "date": "2026-11-20"
+  },
+  {
+   "id": "nv_jpp6_rusty_wall_snood_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "錆びた壁と、赤いニット。",
+   "zh": "鏽蝕的牆，紅色的針織。",
+   "en": "A rusted wall and a red knit.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp6_rusty_wall_snood_ref__random.png",
+    "shelf_key": "high_base_nd/jpp6_rusty_wall_snood_ref__random",
+    "fav": "2026-10-25T05:52:10",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp6_rusty_wall_snood_ref",
+    "ig_set": "M1121",
+    "reel_date": "2026-11-22",
+    "photo_date": null
+   },
+   "date": "2026-11-22"
+  },
+  {
+   "id": "nv_jpp6_bridge_bamboo_bokeh_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "竹の葉を、前ボケにする。",
+   "zh": "讓竹葉成為前景的散景。",
+   "en": "Bamboo leaves as foreground bokeh.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp6_bridge_bamboo_bokeh_ref__random.png",
+    "shelf_key": "high_base_nd/jpp6_bridge_bamboo_bokeh_ref__random",
+    "fav": "2026-10-25T05:51:56",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp6_bridge_bamboo_bokeh_ref",
+    "ig_set": "M1122",
+    "reel_date": "2026-11-23",
+    "photo_date": null
+   },
+   "date": "2026-11-23"
+  },
+  {
+   "id": "nv_jpp4_skyline_bokeh_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "展望台の窓に、街の光を写す。",
+   "zh": "讓城市的光映在觀景台的窗上。",
+   "en": "City lights in the observation-deck window.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp4_skyline_bokeh_ref__random.png",
+    "shelf_key": "high_base_nd/jpp4_skyline_bokeh_ref__random",
+    "fav": "2026-10-25T05:53:13",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp4_skyline_bokeh_ref",
+    "ig_set": "M1124",
+    "reel_date": "2026-11-24",
+    "photo_date": "2026-11-25"
+   },
+   "date": "2026-11-24"
+  },
+  {
+   "id": "nv_jpp4_white_illum_low",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "白い電飾は、顔を明るくする。",
+   "zh": "白色的燈飾，會照亮臉。",
+   "en": "White fairy lights brighten the face.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp4_white_illum_low__random.png",
+    "shelf_key": "high_base_nd/jpp4_white_illum_low__random",
+    "fav": "",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp4_white_illum_low",
+    "ig_set": "M1125",
+    "reel_date": "2026-11-26",
+    "photo_date": null
+   },
+   "date": "2026-11-26"
+  },
+  {
+   "id": "nv_jpp4_arcade_night_ref",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "夜の商店街を、ひとり歩く。",
+   "zh": "一個人走在夜晚的商店街。",
+   "en": "Walking the shopping street alone at night.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp4_arcade_night_ref__random.png",
+    "shelf_key": "high_base_nd/jpp4_arcade_night_ref__random",
+    "fav": "2026-10-25T05:53:33",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp4_arcade_night_ref",
+    "ig_set": "M1127",
+    "reel_date": "2026-11-27",
+    "photo_date": null
+   },
+   "date": "2026-11-27"
+  },
+  {
+   "id": "nv_jpp4_xmas_tree_close",
+   "shelf": "nov",
+   "orient": "P",
+   "ja": "ツリーの光を、背中に回す。",
+   "zh": "讓聖誕樹的光繞到背後。",
+   "en": "Tree lights wrapped behind her.",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp4_xmas_tree_close__random.png",
+    "shelf_key": "high_base_nd/jpp4_xmas_tree_close__random",
+    "fav": "2026-10-25T05:53:26",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_jpp4_xmas_tree_close",
+    "ig_set": "M1128",
+    "reel_date": "2026-11-28",
+    "photo_date": "2026-11-29"
+   },
+   "date": "2026-11-28"
+  }
+ ],
+ "strings": {
+  "毎朝の作例 — 撮影会ポートレート — MV Studio": [
+   "每天早上的作品 — 外拍人像 — MV Studio",
+   "Every morning's photos — Portrait sessions — MV Studio"
+  ],
+  "毎朝 6 時、": [
+   "每天早上六點，",
+   "Every morning at six,"
+  ],
+  "一組ずつ": [
+   "一組一組",
+   "one set at a time"
+  ],
+  "ホーム": [
+   "首頁",
+   "Home"
+  ],
+  "用途": [
+   "用途",
+   "Uses"
+  ],
+  "撮影会ポートレート": [
+   "外拍人像",
+   "Portrait sessions"
+  ],
+  "毎朝の作例": [
+   "每天早上的作品",
+   "Every morning"
+  ],
+  "同じ顔のモデルを、光の違う場所へ連れて行く。写真を 8 枚と、縦の動画を 1 本。Instagram の @ethan_ai_photo に、毎朝 6 時に 1 組ずつ載せている。ここは、その全部。": [
+   "把同一張臉的模特兒，帶到光線不同的地方。八張照片，加一支直式影片。每天早上六點，在 Instagram 的 @ethan_ai_photo 發一組。這裡是全部。",
+   "The same model, taken to places with different light. Eight photos and one vertical video. One set goes up on Instagram at @ethan_ai_photo every morning at six. This is all of them."
+  ],
+  "Instagram で毎朝見る": [
+   "每天早上在 Instagram 看",
+   "Follow on Instagram"
+  ],
+  "この用途で相談する": [
+   "洽詢這個用途",
+   "Ask about this use"
+  ],
+  "作例は @ethan_ai_photo・相談は DM(@made_linlin)": [
+   "作品在 @ethan_ai_photo・洽詢請私訊 @made_linlin",
+   "Photos at @ethan_ai_photo, enquiries by DM to @made_linlin"
+  ],
+  "02 — 10 月の投稿": [
+   "02 — 10 月的貼文",
+   "02 — October posts"
+  ],
+  "ひと組が、": [
+   "一組，",
+   "One set,"
+  ],
+  "一行。": [
+   "就是一行。",
+   "one row."
+  ],
+  "光の教科書、季節と場所、表情と目線、衣装と色、1 か所で 8 カット。五つの型を順に回して、毎朝 1 組。横に流して、8 枚をそのまま見てください。": [
+   "光的教科書、季節與場所、表情與視線、服裝與顏色、一個地點八個畫面。五種型輪著來，每天早上一組。橫著滑，把八張照片直接看完。",
+   "Reading the light, season and place, expression and gaze, outfit and color, one location in eight frames. Five formats in rotation, one set each morning. Swipe sideways and see all eight."
+  ],
+  "03 — 11 月の予告": [
+   "03 — 11 月預告",
+   "03 — Coming in November"
+  ],
+  "11 月は、": [
+   "11 月，",
+   "In November,"
+  ],
+  "毎日リール": [
+   "每天一支 Reels",
+   "a reel every day"
+  ],
+  "銀杏、紅葉、振袖、すだれ、夜の電飾。11 月の 30 日は、毎朝 1 本の縦の動画と、強い回だけ翌日に写真 8 枚。表紙の一枚を先に。": [
+   "銀杏、紅葉、振袖、竹簾、夜晚的燈飾。11 月的 30 天，每天早上一支直式影片，強的那幾組隔天再發八張照片。先看每組的封面。",
+   "Ginkgo, maples, furisode, reed blinds, night illuminations. Thirty days in November: a vertical video every morning, and for the strongest sets, eight photos the next day. Here is each cover first."
+  ],
+  "11 月の予告": [
+   "11 月預告",
+   "Coming in November"
+  ],
+  "撮影会の相談は、": [
+   "外拍的洽詢，",
+   "For a portrait session,"
+  ],
+  "好きな一枚": [
+   "從喜歡的一張",
+   "start from a photo you like"
+  ],
+  "から。": [
+   "開始。",
+   ""
+  ],
+  "撮りたい雰囲気の写真(ここの一枚でも)と、着たい衣装。それだけ送ってください。候補にしてお返しします。": [
+   "想拍的氛圍的照片（這裡的一張也可以）和想穿的衣服。只要傳這些就好。我們會做成候選回給您。",
+   "Send a photo with the mood you want (one from this page is fine) and the outfit you'd like to wear. That's all. We'll send back candidates."
+  ],
+  "撮影会ポートレートへ戻る": [
+   "回到外拍人像",
+   "Back to portrait sessions"
+  ],
+  "次の用途へ — 世界の撮影": [
+   "下一個用途 — 環遊世界",
+   "Next use case — Around the world"
+  ],
+  "すべての用途": [
+   "所有用途",
+   "All use cases"
+  ],
+  "USE CASE 02 — 毎朝の作例": [
+   "USE CASE 02 — 每天早上的作品",
+   "USE CASE 02 — Every morning"
+  ]
+ }
+}

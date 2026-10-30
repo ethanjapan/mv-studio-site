@@ -1,155 +1,222 @@
 {
-  "_note": "言語別の頁(/zh/・/en/)の検索用の説明文と、構造化データ(JSON-LD)の短い名前の正本(2026-10-20)。題(title)は辞書(main.js / uc_i18n.js の M・data/i18n_en)が正本= ここには書かない。直訳しない(繁中は台湾の言い回し・英語はネイティブの文)。gen_lang_pages.mjs が読む",
-  "site": "https://ethanjapan.github.io/mv-studio-site/",
-  "pages": {
-    "index.html": {
-      "name": { "ja": "ホーム", "zh": "首頁", "en": "Home" },
-      "zh": {
-        "description": "用聲音邊聊邊做，從氛圍到完成片一路到底。全部在自己的電腦上本機生成——把你腦中的畫面變成一支 MV 的 AI 導演。支援日文與繁體中文（台灣）。",
-        "og": "用聲音邊聊邊做，從氛圍到完成片。全部在自己的電腦上本機生成的 AI 導演。"
-      },
-      "en": {
-        "description": "Talk it through by voice, from the first mood to the finished cut. Everything is generated locally on your own PC: an AI director that turns the picture in your head into a music video. Japanese and Traditional Chinese (Taiwan) supported.",
-        "og": "Talk it through by voice, from mood to finished cut. An AI director that runs entirely on your own PC."
-      }
-    },
-    "studio.html": {
-      "name": { "ja": "スタジオの中", "zh": "工作室的內部", "en": "Inside the studio" },
-      "ja_og": "できること、スタジオと環境、届く人。MV Studio のスタジオの中。",
-      "zh": {
-        "description": "MV Studio 工作室的內部。能做到的事（丟素材就懂、世界觀、造型、專業級的精準度）、工作室與環境（本機生成、支援的環境），以及適合哪些人。",
-        "og": "能做到的事、工作室與環境、適合的人。MV Studio 工作室的內部。"
-      },
-      "en": {
-        "description": "Inside the MV Studio workspace: what it can do (hand it material and it gets it, whole worlds, styling, professional precision), the studio and its requirements (local generation, supported hardware), and who it is for.",
-        "og": "What it can do, how to set it up, and who it is for. Inside MV Studio."
-      }
-    },
-    "works.html": {
-      "name": { "ja": "作品", "zh": "作品", "en": "Works" },
-      "ja_og": "MV Studio の対話から生まれた作品と、制作の裏側を話す番組の一覧。",
-      "zh": {
-        "description": "從與 MV Studio 的對話中誕生的作品，以及聊製作幕後的節目一覽。",
-        "og": "從與 MV Studio 的對話中誕生的作品，以及聊製作幕後的節目一覽。"
-      },
-      "en": {
-        "description": "Every piece born from conversations with MV Studio, plus the shows that go behind the scenes of making them.",
-        "og": "Every piece born from conversations with MV Studio, plus the shows that go behind the scenes."
-      }
-    },
-    "strengths.html": {
-      "name": { "ja": "仕組み", "zh": "運作方式", "en": "How it works" },
-      "zh": {
-        "description": "照片、影片、歌曲、聲音，全都在家裡的電腦上誕生。不會停擺，佇列 24 小時持續前進；透過上鎖的入口也能從外部呼叫，上限只有自己的 GPU。臉永遠是同一張，從 29,000 種的風格庫中挑選。",
-        "og": "不外流。不停擺。佇列 24 小時前進，外部也能呼叫。上限只有自己的 GPU。臉永遠是同一張。風格庫就是資產。"
-      },
-      "en": {
-        "description": "Photos, video, music and voice, all made on a PC at home. It never stops: the queue runs around the clock, you can reach it from outside through a locked entrance, and the only limit is your own GPU. The same face every time, picked from a library of 29,000 styles.",
-        "og": "Nothing leaves the house, and nothing stops. The queue runs around the clock and your GPU is the only limit. The same face every time."
-      }
-    },
-    "engineering.html": {
-      "name": { "ja": "つくりかた", "zh": "製作方式", "en": "How it's built" },
-      "ja_og": "AI は準備と検査、人は選ぶことと許可。関所、止めた記録、自動検査と人の目。",
-      "zh": {
-        "description": "一個人運轉的 AI 工作室幕後。AI 負責準備與檢查，人負責挑選與許可。用機器守住這條界線的機制——關卡、擋下的紀錄、自動檢查與人的眼睛。",
-        "og": "AI 負責準備與檢查，人負責挑選與許可。關卡、擋下的紀錄、自動檢查與人的眼睛。"
-      },
-      "en": {
-        "description": "Behind the scenes of a one-person AI studio. AI prepares and checks; people choose and approve. How machines guard that line: checkpoints, a record of what was stopped, automated checks and human eyes.",
-        "og": "AI prepares and checks; people choose and approve. Checkpoints, a record of what was stopped, automated checks and human eyes."
-      }
-    },
-    "usecases/index.html": {
-      "name": { "ja": "用途", "zh": "使用情境", "en": "Use cases" },
-      "ja_description": "MV Studio でできること。ブライダル前撮り、撮影会ポートレート、世界の撮影、解説動画、七五三・家族写真、物と場所。",
-      "ja_og": "MV Studio でできること。ブライダル前撮り、撮影会ポートレート、世界の撮影、解説動画、七五三・家族写真、物と場所。",
-      "zh": {
-        "description": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及物與場所。",
-        "og": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及物與場所。"
-      },
-      "en": {
-        "description": "What MV Studio can do: pre-wedding shoots, portrait sessions, shoots around the world, explainer videos, Shichi-Go-San and family photos, and objects and places.",
-        "og": "What MV Studio can do: pre-wedding shoots, portrait sessions, shoots around the world, explainer videos, family photos, and objects and places."
-      }
-    },
-    "usecases/bridal.html": {
-      "name": { "ja": "ブライダル前撮り", "zh": "婚紗照", "en": "Bridal pre-wedding" },
-      "zh": {
-        "description": "從風格庫超過 620 種的婚紗風格（和服、白紗、韓系、台灣婚紗、中式）中挑選，用說的討論就好。教堂、港口、神社——照片和短影片，都在自己的電腦上完成。",
-        "og": "從風格庫超過 620 種的婚紗風格中挑選，用說的討論就好。教堂、港口、神社。"
-      },
-      "en": {
-        "description": "Choose from over 620 pre-wedding looks (Japanese, Western, Korean, Taiwanese and Chinese bridal) and just talk it through. Chapels, harbors, shrines: photos and short videos, made on your own PC.",
-        "og": "Choose from over 620 pre-wedding looks and just talk it through. Chapels, harbors, shrines."
-      }
-    },
-    "usecases/bridal_album.html": {
-      "name": { "ja": "アルバムの見本", "zh": "相本樣本", "en": "Sample album" },
-      "zh": {
-        "description": "把婚紗照排成印刷相本的版面。封面、扉頁、跨頁、章節頁——在畫面上翻閱 30cm 正方形平攤裝訂的樣本。",
-        "og": "把婚紗照排成印刷相本的版面。在畫面上翻閱封面、跨頁與章節頁的樣本。"
-      },
-      "en": {
-        "description": "Pre-wedding photos laid out as a printed album: cover, title page, spreads and chapter openers. Flip through a 30 cm square lay-flat sample on screen.",
-        "og": "Pre-wedding photos laid out as a printed album. Flip through the cover, spreads and chapter openers on screen."
-      }
-    },
-    "usecases/portrait.html": {
-      "name": { "ja": "撮影会ポートレート", "zh": "外拍人像", "en": "Portrait sessions" },
-      "zh": {
-        "description": "攝影師的風格、藝術、氛圍與奇幻、雜誌與棚拍、室內外拍——從風格庫挑出不同的風格，讓同一位模特兒拍滿一整天。",
-        "og": "從風格庫挑出不同的風格，讓同一位模特兒拍滿一整天。"
-      },
-      "en": {
-        "description": "Photographer styles, fine art, mood and fantasy, magazine and studio, indoor sessions: pick contrasting styles from the library and give one model a full day of shoots.",
-        "og": "Pick contrasting styles from the library and give one model a full day of shoots."
-      }
-    },
-    "usecases/world.html": {
-      "name": { "ja": "世界の撮影", "zh": "環遊世界的拍攝", "en": "Shooting the world" },
-      "zh": {
-        "description": "美國、韓國、台灣、中國、日本、日本絕景——從各地超過 3,000 種的拍攝風格中挑選。同一張臉，環遊世界一圈。",
-        "og": "從各地超過 3,000 種的拍攝風格中挑選。同一張臉，環遊世界一圈。"
-      },
-      "en": {
-        "description": "America, Korea, Taiwan, China, Japan and Japan's great landscapes: over 3,000 regional shooting styles to choose from. The same face, all the way around the world.",
-        "og": "Over 3,000 regional shooting styles. The same face, all the way around the world."
-      }
-    },
-    "usecases/kaisetsu.html": {
-      "name": { "ja": "解説動画", "zh": "解說影片", "en": "Explainer videos" },
-      "zh": {
-        "description": "把製作過程本身做成節目。工廠參觀、解說、廣播（幕後悄悄話）、技術示範——由 AI 本人親自說明的 7 支影片。",
-        "og": "把製作過程本身做成節目。由 AI 本人親自說明的 7 支影片。"
-      },
-      "en": {
-        "description": "The making-of, turned into a show. Factory tours, explainers, an off-the-record radio show and tech demos: seven episodes presented by the AI herself.",
-        "og": "The making-of, turned into a show. Seven episodes presented by the AI herself."
-      }
-    },
-    "usecases/shichigosan.html": {
-      "name": { "ja": "七五三・家族写真", "zh": "七五三・家庭照", "en": "Shichi-Go-San and family photos" },
-      "ja_og": "七五三の一日を、写真館の見本帳のように。場の空気と小物を、手元のスタジオで仕立てる。",
-      "zh": {
-        "description": "把七五三的一天，做成像照相館樣本冊一樣。千歲飴、被布與羽織袴、紅葉參道、照相館的金屏風——在自己的工作室裡打造現場的氛圍與小物。",
-        "og": "把七五三的一天做成照相館的樣本冊。在自己的工作室裡打造現場的氛圍與小物。"
-      },
-      "en": {
-        "description": "A Shichi-Go-San day, styled like a photo studio's sample book. Chitose candy, hifu coats and hakama, a maple-lined shrine path, a studio's gold folding screen: the mood and the props, made in your own studio.",
-        "og": "A Shichi-Go-San day, styled like a photo studio's sample book. The mood and the props, made in your own studio."
-      }
-    },
-    "usecases/still.html": {
-      "name": { "ja": "物と場所", "zh": "物與場所", "en": "Things and places" },
-      "zh": {
-        "description": "沒有人物的照片樣本冊。千歲飴、衣架上的被布、銀杏參道、照相館的金屏風——只拍季節的小物與空間。可用於樣本冊的背景、社群素材，以及婚禮會場或照相館的氛圍營造。",
-        "og": "沒有人物的照片樣本冊。只拍季節的小物與空間。"
-      },
-      "en": {
-        "description": "A sample book of photos without people. Chitose candy, a hifu coat on a kimono rack, a ginkgo-lined path, a studio's gold screen: only seasonal props and spaces. For sample-book backdrops, social media posts, and setting the mood for wedding venues and photo studios.",
-        "og": "A sample book of photos without people. Only seasonal props and spaces."
-      }
-    }
+ "_note": "言語別の頁(/zh/・/en/)の検索用の説明文と、構造化データ(JSON-LD)の短い名前の正本(2026-10-20)。題(title)は辞書(main.js / uc_i18n.js の M・data/i18n_en)が正本= ここには書かない。直訳しない(繁中は台湾の言い回し・英語はネイティブの文)。gen_lang_pages.mjs が読む",
+ "site": "https://ethanjapan.github.io/mv-studio-site/",
+ "pages": {
+  "index.html": {
+   "name": {
+    "ja": "ホーム",
+    "zh": "首頁",
+    "en": "Home"
+   },
+   "zh": {
+    "description": "用聲音邊聊邊做，從氛圍到完成片一路到底。全部在自己的電腦上本機生成——把你腦中的畫面變成一支 MV 的 AI 導演。支援日文與繁體中文（台灣）。",
+    "og": "用聲音邊聊邊做，從氛圍到完成片。全部在自己的電腦上本機生成的 AI 導演。"
+   },
+   "en": {
+    "description": "Talk it through by voice, from the first mood to the finished cut. Everything is generated locally on your own PC: an AI director that turns the picture in your head into a music video. Japanese and Traditional Chinese (Taiwan) supported.",
+    "og": "Talk it through by voice, from mood to finished cut. An AI director that runs entirely on your own PC."
+   }
+  },
+  "studio.html": {
+   "name": {
+    "ja": "スタジオの中",
+    "zh": "工作室的內部",
+    "en": "Inside the studio"
+   },
+   "ja_og": "できること、スタジオと環境、届く人。MV Studio のスタジオの中。",
+   "zh": {
+    "description": "MV Studio 工作室的內部。能做到的事（丟素材就懂、世界觀、造型、專業級的精準度）、工作室與環境（本機生成、支援的環境），以及適合哪些人。",
+    "og": "能做到的事、工作室與環境、適合的人。MV Studio 工作室的內部。"
+   },
+   "en": {
+    "description": "Inside the MV Studio workspace: what it can do (hand it material and it gets it, whole worlds, styling, professional precision), the studio and its requirements (local generation, supported hardware), and who it is for.",
+    "og": "What it can do, how to set it up, and who it is for. Inside MV Studio."
+   }
+  },
+  "works.html": {
+   "name": {
+    "ja": "作品",
+    "zh": "作品",
+    "en": "Works"
+   },
+   "ja_og": "MV Studio の対話から生まれた作品と、制作の裏側を話す番組の一覧。",
+   "zh": {
+    "description": "從與 MV Studio 的對話中誕生的作品，以及聊製作幕後的節目一覽。",
+    "og": "從與 MV Studio 的對話中誕生的作品，以及聊製作幕後的節目一覽。"
+   },
+   "en": {
+    "description": "Every piece born from conversations with MV Studio, plus the shows that go behind the scenes of making them.",
+    "og": "Every piece born from conversations with MV Studio, plus the shows that go behind the scenes."
+   }
+  },
+  "strengths.html": {
+   "name": {
+    "ja": "仕組み",
+    "zh": "運作方式",
+    "en": "How it works"
+   },
+   "zh": {
+    "description": "照片、影片、歌曲、聲音，全都在家裡的電腦上誕生。不會停擺，佇列 24 小時持續前進；透過上鎖的入口也能從外部呼叫，上限只有自己的 GPU。臉永遠是同一張，從 29,000 種的風格庫中挑選。",
+    "og": "不外流。不停擺。佇列 24 小時前進，外部也能呼叫。上限只有自己的 GPU。臉永遠是同一張。風格庫就是資產。"
+   },
+   "en": {
+    "description": "Photos, video, music and voice, all made on a PC at home. It never stops: the queue runs around the clock, you can reach it from outside through a locked entrance, and the only limit is your own GPU. The same face every time, picked from a library of 29,000 styles.",
+    "og": "Nothing leaves the house, and nothing stops. The queue runs around the clock and your GPU is the only limit. The same face every time."
+   }
+  },
+  "engineering.html": {
+   "name": {
+    "ja": "つくりかた",
+    "zh": "製作方式",
+    "en": "How it's built"
+   },
+   "ja_og": "AI は準備と検査、人は選ぶことと許可。関所、止めた記録、自動検査と人の目。",
+   "zh": {
+    "description": "一個人運轉的 AI 工作室幕後。AI 負責準備與檢查，人負責挑選與許可。用機器守住這條界線的機制——關卡、擋下的紀錄、自動檢查與人的眼睛。",
+    "og": "AI 負責準備與檢查，人負責挑選與許可。關卡、擋下的紀錄、自動檢查與人的眼睛。"
+   },
+   "en": {
+    "description": "Behind the scenes of a one-person AI studio. AI prepares and checks; people choose and approve. How machines guard that line: checkpoints, a record of what was stopped, automated checks and human eyes.",
+    "og": "AI prepares and checks; people choose and approve. Checkpoints, a record of what was stopped, automated checks and human eyes."
+   }
+  },
+  "usecases/index.html": {
+   "name": {
+    "ja": "用途",
+    "zh": "使用情境",
+    "en": "Use cases"
+   },
+   "ja_description": "MV Studio でできること。ブライダル前撮り、撮影会ポートレート、世界の撮影、解説動画、七五三・家族写真、物と場所。",
+   "ja_og": "MV Studio でできること。ブライダル前撮り、撮影会ポートレート、世界の撮影、解説動画、七五三・家族写真、物と場所。",
+   "zh": {
+    "description": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及物與場所。",
+    "og": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及物與場所。"
+   },
+   "en": {
+    "description": "What MV Studio can do: pre-wedding shoots, portrait sessions, shoots around the world, explainer videos, Shichi-Go-San and family photos, and objects and places.",
+    "og": "What MV Studio can do: pre-wedding shoots, portrait sessions, shoots around the world, explainer videos, family photos, and objects and places."
+   }
+  },
+  "usecases/bridal.html": {
+   "name": {
+    "ja": "ブライダル前撮り",
+    "zh": "婚紗照",
+    "en": "Bridal pre-wedding"
+   },
+   "zh": {
+    "description": "從風格庫超過 620 種的婚紗風格（和服、白紗、韓系、台灣婚紗、中式）中挑選，用說的討論就好。教堂、港口、神社——照片和短影片，都在自己的電腦上完成。",
+    "og": "從風格庫超過 620 種的婚紗風格中挑選，用說的討論就好。教堂、港口、神社。"
+   },
+   "en": {
+    "description": "Choose from over 620 pre-wedding looks (Japanese, Western, Korean, Taiwanese and Chinese bridal) and just talk it through. Chapels, harbors, shrines: photos and short videos, made on your own PC.",
+    "og": "Choose from over 620 pre-wedding looks and just talk it through. Chapels, harbors, shrines."
+   }
+  },
+  "usecases/bridal_album.html": {
+   "name": {
+    "ja": "アルバムの見本",
+    "zh": "相本樣本",
+    "en": "Sample album"
+   },
+   "zh": {
+    "description": "把婚紗照排成印刷相本的版面。封面、扉頁、跨頁、章節頁——在畫面上翻閱 30cm 正方形平攤裝訂的樣本。",
+    "og": "把婚紗照排成印刷相本的版面。在畫面上翻閱封面、跨頁與章節頁的樣本。"
+   },
+   "en": {
+    "description": "Pre-wedding photos laid out as a printed album: cover, title page, spreads and chapter openers. Flip through a 30 cm square lay-flat sample on screen.",
+    "og": "Pre-wedding photos laid out as a printed album. Flip through the cover, spreads and chapter openers on screen."
+   }
+  },
+  "usecases/portrait.html": {
+   "name": {
+    "ja": "撮影会ポートレート",
+    "zh": "外拍人像",
+    "en": "Portrait sessions"
+   },
+   "zh": {
+    "description": "攝影師的風格、藝術、氛圍與奇幻、雜誌與棚拍、室內外拍——從風格庫挑出不同的風格，讓同一位模特兒拍滿一整天。",
+    "og": "從風格庫挑出不同的風格，讓同一位模特兒拍滿一整天。"
+   },
+   "en": {
+    "description": "Photographer styles, fine art, mood and fantasy, magazine and studio, indoor sessions: pick contrasting styles from the library and give one model a full day of shoots.",
+    "og": "Pick contrasting styles from the library and give one model a full day of shoots."
+   }
+  },
+  "usecases/daily.html": {
+   "name": {
+    "ja": "毎朝の作例",
+    "zh": "每天早上的作品",
+    "en": "Every morning"
+   },
+   "zh": {
+    "description": "把同一張臉的模特兒帶到光線不同的地方：八張照片加一支直式影片，每天早上六點在 Instagram @ethan_ai_photo 發一組。10 月的全部，和 11 月的預告。",
+    "og": "八張照片加一支直式影片，每天早上六點一組。10 月的全部，和 11 月的預告。"
+   },
+   "en": {
+    "description": "The same model taken to places with different light: eight photos and one vertical video, posted as a set every morning at six on Instagram @ethan_ai_photo. All of October, and what is coming in November.",
+    "og": "Eight photos and one vertical video, one set every morning at six. All of October, and what is coming in November."
+   }
+  },
+  "usecases/world.html": {
+   "name": {
+    "ja": "世界の撮影",
+    "zh": "環遊世界的拍攝",
+    "en": "Shooting the world"
+   },
+   "zh": {
+    "description": "美國、韓國、台灣、中國、日本、日本絕景——從各地超過 3,000 種的拍攝風格中挑選。同一張臉，環遊世界一圈。",
+    "og": "從各地超過 3,000 種的拍攝風格中挑選。同一張臉，環遊世界一圈。"
+   },
+   "en": {
+    "description": "America, Korea, Taiwan, China, Japan and Japan's great landscapes: over 3,000 regional shooting styles to choose from. The same face, all the way around the world.",
+    "og": "Over 3,000 regional shooting styles. The same face, all the way around the world."
+   }
+  },
+  "usecases/kaisetsu.html": {
+   "name": {
+    "ja": "解説動画",
+    "zh": "解說影片",
+    "en": "Explainer videos"
+   },
+   "zh": {
+    "description": "把製作過程本身做成節目。工廠參觀、解說、廣播（幕後悄悄話）、技術示範——由 AI 本人親自說明的 7 支影片。",
+    "og": "把製作過程本身做成節目。由 AI 本人親自說明的 7 支影片。"
+   },
+   "en": {
+    "description": "The making-of, turned into a show. Factory tours, explainers, an off-the-record radio show and tech demos: seven episodes presented by the AI herself.",
+    "og": "The making-of, turned into a show. Seven episodes presented by the AI herself."
+   }
+  },
+  "usecases/shichigosan.html": {
+   "name": {
+    "ja": "七五三・家族写真",
+    "zh": "七五三・家庭照",
+    "en": "Shichi-Go-San and family photos"
+   },
+   "ja_og": "七五三の一日を、写真館の見本帳のように。場の空気と小物を、手元のスタジオで仕立てる。",
+   "zh": {
+    "description": "把七五三的一天，做成像照相館樣本冊一樣。千歲飴、被布與羽織袴、紅葉參道、照相館的金屏風——在自己的工作室裡打造現場的氛圍與小物。",
+    "og": "把七五三的一天做成照相館的樣本冊。在自己的工作室裡打造現場的氛圍與小物。"
+   },
+   "en": {
+    "description": "A Shichi-Go-San day, styled like a photo studio's sample book. Chitose candy, hifu coats and hakama, a maple-lined shrine path, a studio's gold folding screen: the mood and the props, made in your own studio.",
+    "og": "A Shichi-Go-San day, styled like a photo studio's sample book. The mood and the props, made in your own studio."
+   }
+  },
+  "usecases/still.html": {
+   "name": {
+    "ja": "物と場所",
+    "zh": "物與場所",
+    "en": "Things and places"
+   },
+   "zh": {
+    "description": "沒有人物的照片樣本冊。千歲飴、衣架上的被布、銀杏參道、照相館的金屏風——只拍季節的小物與空間。可用於樣本冊的背景、社群素材，以及婚禮會場或照相館的氛圍營造。",
+    "og": "沒有人物的照片樣本冊。只拍季節的小物與空間。"
+   },
+   "en": {
+    "description": "A sample book of photos without people. Chitose candy, a hifu coat on a kimono rack, a ginkgo-lined path, a studio's gold screen: only seasonal props and spaces. For sample-book backdrops, social media posts, and setting the mood for wedding venues and photo studios.",
+    "og": "A sample book of photos without people. Only seasonal props and spaces."
+   }
   }
+ }
 }

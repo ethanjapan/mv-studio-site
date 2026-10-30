@@ -192,7 +192,7 @@ for (const f of pages) {
     if (!seo.includes(f)) bad.push(`言語別の頁の登録漏れ: ${f} が data/seo_meta.json に無い(繁中・英語の版が作られない)`)
     const html = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '')
     const body = html.slice(html.indexOf('<body'))
-    const D = Object.assign({}, /js\/main\.js/.test(html) ? MAIN : UC, /works_i18n/.test(html) ? WK : {}, /still_i18n/.test(html) ? ST : {}, ...[...html.matchAll(/js\/(pig|pfav|bfav|wfav)_i18n\.js/g)].map(m => winDict(`js/${m[1]}_i18n.js`)))
+    const D = Object.assign({}, /js\/main\.js/.test(html) ? MAIN : UC, /works_i18n/.test(html) ? WK : {}, /still_i18n/.test(html) ? ST : {}, ...[...html.matchAll(/js\/(pig|pfav|bfav|wfav|daily)_i18n\.js/g)].map(m => winDict(`js/${m[1]}_i18n.js`)))
     const stack = [], miss = new Set()
     for (const m of body.matchAll(/<(\/?)([a-zA-Z0-9-]+)([^>]*)>|([^<]+)/g)) {
       if (m[4] != null) {

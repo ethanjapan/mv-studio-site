@@ -2,6 +2,13 @@
  "_note": "ブライダル 03 の新しい棚(2026-10-24)= 棚のお気に入りから。星空の丘と洋館・礼拝堂。gen_shelves.mjs(SET bfav)",
  "shelves": [
   {
+   "key": "garden",
+   "en": "GARDEN & HALL",
+   "ja": "庭園と洋館・和装と洋装",
+   "zh": "庭園與洋館・和服與禮服",
+   "sub_en": "Japanese gardens, Western halls, kimono and gowns"
+  },
+  {
    "key": "night",
    "en": "STARRY NIGHT",
    "ja": "星空と礼拝堂・新作",
@@ -11,6 +18,614 @@
  ],
  "show_first": 9,
  "items": [
+  {
+   "id": "bf_skw_p003",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "鏡に映る横顔・ピンクの花束",
+   "zh": "鏡中的側臉・粉色花束",
+   "en": "A profile in the mirror, pink bouquet",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p003__random.png",
+    "shelf_key": "high_base_nd/skw_p003__random",
+    "fav": "2026-10-27T11:24:14",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p003"
+   }
+  },
+  {
+   "id": "bf_skw_p012",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "芝生で笑って振り返る",
+   "zh": "在草坪上笑著回頭",
+   "en": "Laughing and turning on the lawn",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p012__random.png",
+    "shelf_key": "high_base_nd/skw_p012__random",
+    "fav": "2026-10-27T11:08:18",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p012"
+   }
+  },
+  {
+   "id": "bf_skw_p025",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "古民家の縁側で、ふたり",
+   "zh": "老宅的緣廊，兩個人",
+   "en": "Two of them on the old veranda",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p025__random.png",
+    "shelf_key": "high_base_nd/skw_p025__random",
+    "fav": "2026-10-27T11:07:43",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p025"
+   }
+  },
+  {
+   "id": "bf_skw_p026",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "後ろから抱きついて",
+   "zh": "從背後抱住",
+   "en": "Hugging him from behind",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p026__random.png",
+    "shelf_key": "high_turbo/skw_p026__random",
+    "fav": "2026-10-27T11:13:59",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p026"
+   }
+  },
+  {
+   "id": "bf_skw_p033",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "公園のベンチ・野の花の花束",
+   "zh": "公園長椅・野花花束",
+   "en": "Park bench, a wild bouquet",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p033__random.png",
+    "shelf_key": "high_base_nd/skw_p033__random",
+    "fav": "2026-10-27T11:07:19",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p033"
+   }
+  },
+  {
+   "id": "bf_skw_p037",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "金の扇で口元を隠す",
+   "zh": "用金扇遮住嘴角",
+   "en": "A gold fan over her lips",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p037__random.png",
+    "shelf_key": "high_base_nd/skw_p037__random",
+    "fav": "2026-10-27T11:07:15",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p037"
+   }
+  },
+  {
+   "id": "bf_skw_p039",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "茶室の窓越し・正座と扇",
+   "zh": "隔著茶室的窗・正坐與扇",
+   "en": "Through the tea-house window",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p039__random.png",
+    "shelf_key": "high_base_nd/skw_p039__random",
+    "fav": "2026-10-27T11:06:39",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p039"
+   }
+  },
+  {
+   "id": "bf_skw_p041",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "嵐の空の防波堤を歩く",
+   "zh": "走在暴風雨天空下的堤防",
+   "en": "Walking the seawall under a storm sky",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p041__random.png",
+    "shelf_key": "high_turbo/skw_p041__random",
+    "fav": "2026-10-27T11:14:13",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p041"
+   }
+  },
+  {
+   "id": "bf_skw_p045",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "白い野の花と、閉じた目",
+   "zh": "白色野花與閉上的眼",
+   "en": "Wildflowers and closed eyes",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p045__random.png",
+    "shelf_key": "high_turbo/skw_p045__random",
+    "fav": "2026-10-27T11:14:40",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p045"
+   }
+  },
+  {
+   "id": "bf_skw_p058",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "洋館のアーチで、彼が撮る",
+   "zh": "洋館拱門下，他替她拍",
+   "en": "He photographs her in the archway",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p058__random.png",
+    "shelf_key": "high_turbo/skw_p058__random",
+    "fav": "2026-10-27T11:14:19",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p058"
+   }
+  },
+  {
+   "id": "bf_skw_p062",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "桜の公園・横顔",
+   "zh": "櫻花公園・側臉",
+   "en": "Cherry-blossom park, in profile",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p062__random.png",
+    "shelf_key": "high_base_nd/skw_p062__random",
+    "fav": "2026-10-27T18:58:13",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p062"
+   }
+  },
+  {
+   "id": "bf_skw_p069",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "大木の根元・落ち葉の上に座る",
+   "zh": "大樹根旁・坐在落葉上",
+   "en": "At the foot of a big tree, on fallen leaves",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p069__random.png",
+    "shelf_key": "high_base_nd/skw_p069__random",
+    "fav": "2026-10-27T18:58:07",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p069"
+   }
+  },
+  {
+   "id": "bf_skw_p070",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "橙と金の扇・満面の笑み",
+   "zh": "橙金色的扇・滿臉笑容",
+   "en": "An orange-and-gold fan, beaming",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p070__random.png",
+    "shelf_key": "high_base_nd/skw_p070__random",
+    "fav": "2026-10-27T18:58:00",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p070"
+   }
+  },
+  {
+   "id": "bf_skw_p072",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "路地で背中合わせ",
+   "zh": "在巷子裡背對背",
+   "en": "Back to back in the alley",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p072__random.png",
+    "shelf_key": "high_base_nd/skw_p072__random",
+    "fav": "2026-10-27T18:58:02",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p072"
+   }
+  },
+  {
+   "id": "bf_skw_p074",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "朱塗りの盃・肩越し",
+   "zh": "朱紅酒杯・肩膀後方",
+   "en": "A red lacquer cup, over the shoulder",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p074__random.png",
+    "shelf_key": "high_turbo/skw_p074__random",
+    "fav": "2026-10-27T11:15:00",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p074"
+   }
+  },
+  {
+   "id": "bf_skw_p076",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "洋館の大窓の前で、正装",
+   "zh": "洋館大窗前，正式的兩人",
+   "en": "Formal, before the tall hall window",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p076__random.png",
+    "shelf_key": "high_base_nd/skw_p076__random",
+    "fav": "2026-10-27T18:57:51",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p076"
+   }
+  },
+  {
+   "id": "bf_skw_p082",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "ジャケットの下から顔を出す",
+   "zh": "從外套下探出臉",
+   "en": "Peeking out from under the jacket",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p082__random.png",
+    "shelf_key": "high_base_nd/skw_p082__random",
+    "fav": "2026-10-27T18:57:40",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p082"
+   }
+  },
+  {
+   "id": "bf_skw_p091",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "梅林の光・ふたりは前ボケ",
+   "zh": "梅林的光・兩人在前景虛化",
+   "en": "Plum orchard light, the two out of focus",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p091__random.png",
+    "shelf_key": "high_turbo/skw_p091__random",
+    "fav": "2026-10-27T11:11:10",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p091"
+   }
+  },
+  {
+   "id": "bf_skw_p097",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "桜の運河・小舟で",
+   "zh": "櫻花運河・小船上",
+   "en": "A small boat on the cherry canal",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p097__random.png",
+    "shelf_key": "high_base_nd/skw_p097__random",
+    "fav": "2026-10-28T13:24:07",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p097"
+   }
+  },
+  {
+   "id": "bf_skw_p101",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "紅葉の庭・肩に日差し",
+   "zh": "紅葉庭園・肩上的陽光",
+   "en": "A maple garden, sun on her shoulder",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p101__random.png",
+    "shelf_key": "high_base_nd/skw_p101__random",
+    "fav": "2026-10-28T15:35:45",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p101"
+   }
+  },
+  {
+   "id": "bf_skw_p107",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "紅葉を見上げる",
+   "zh": "抬頭看紅葉",
+   "en": "Looking up at the maples",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p107__random.png",
+    "shelf_key": "high_base_nd/skw_p107__random",
+    "fav": "2026-10-28T15:35:53",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p107"
+   }
+  },
+  {
+   "id": "bf_skw_p135",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "扇を持つ手を、胸に",
+   "zh": "拿扇的手，貼在他胸前",
+   "en": "Her fan hand on his chest",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p135__random.png",
+    "shelf_key": "high_turbo/skw_p135__random",
+    "fav": "2026-10-27T11:29:02",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p135"
+   }
+  },
+  {
+   "id": "bf_skw_p171",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "綿帽子の下・伏し目",
+   "zh": "綿帽之下・低垂的眼",
+   "en": "Under the wataboshi, eyes lowered",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p171__random.png",
+    "shelf_key": "high_turbo/skw_p171__random",
+    "fav": "2026-10-27T11:22:27",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p171"
+   }
+  },
+  {
+   "id": "bf_skw_p180",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "ポピーの花束を差し出す",
+   "zh": "遞出罌粟花束",
+   "en": "Offering a bunch of poppies",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p180__random.png",
+    "shelf_key": "high_base_nd/skw_p180__random",
+    "fav": "2026-10-27T18:09:56",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p180"
+   }
+  },
+  {
+   "id": "bf_skw_p186",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "湖畔で、手をつないで山を見る",
+   "zh": "湖畔牽手看山",
+   "en": "Hand in hand by the lake, facing the mountain",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p186__random.png",
+    "shelf_key": "high_base_nd/skw_p186__random",
+    "fav": "2026-10-27T18:10:04",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p186"
+   }
+  },
+  {
+   "id": "bf_skw_p187",
+   "shelf": "garden",
+   "orient": "L",
+   "ja": "桜並木の運河・遠くの小舟",
+   "zh": "櫻花運河・遠處的小船",
+   "en": "A distant boat on the cherry canal",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p187__random.png",
+    "shelf_key": "high_base_nd/skw_p187__random",
+    "fav": "2026-10-27T18:09:45",
+    "size": "2048x1408",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p187"
+   }
+  },
+  {
+   "id": "bf_skw_p192",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "綿帽子・唇と顎だけ",
+   "zh": "綿帽・只露出唇與下巴",
+   "en": "Wataboshi, only lips and chin",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p192__random.png",
+    "shelf_key": "high_base_nd/skw_p192__random",
+    "fav": "2026-10-27T18:09:58",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p192"
+   }
+  },
+  {
+   "id": "bf_skw_p200",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "木漏れ日の公園・前後に並ぶ",
+   "zh": "樹影公園・前後並立",
+   "en": "Dappled park, one before the other",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p200__random.png",
+    "shelf_key": "high_turbo/skw_p200__random",
+    "fav": "2026-10-27T11:10:18",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p200"
+   }
+  },
+  {
+   "id": "bf_skw_p216",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "黄色い扇・庭の光",
+   "zh": "黃色的扇・庭園的光",
+   "en": "A yellow fan in garden light",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p216__random.png",
+    "shelf_key": "high_turbo/skw_p216__random",
+    "fav": "2026-10-27T11:10:10",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p216"
+   }
+  },
+  {
+   "id": "bf_skw_p234",
+   "shelf": "garden",
+   "orient": "P",
+   "ja": "スタジオの白壁・ふたりの笑顔",
+   "zh": "攝影棚白牆・兩人的笑容",
+   "en": "Studio wall, two smiles",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_turbo/skw_p234__random.png",
+    "shelf_key": "high_turbo/skw_p234__random",
+    "fav": "2026-10-27T11:09:36",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Turbo",
+    "style_id": "ph_skw_p234"
+   }
+  },
+  {
+   "id": "bf_skw_p014",
+   "shelf": "garden",
+   "orient": "L",
+   "ja": "障子の間から、ふたりで",
+   "zh": "從紙門之間，兩個人",
+   "en": "Peeking out between the shoji",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/skw_p014__random.png",
+    "shelf_key": "high_base_nd/skw_p014__random",
+    "fav": "2026-10-27T11:07:46",
+    "size": "2048x1408",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_skw_p014"
+   }
+  },
+  {
+   "id": "bf_or9o_hill_veil_wind",
+   "shelf": "night",
+   "orient": "P",
+   "ja": "星空の丘・風に舞うヴェール",
+   "zh": "星空山丘・風中的頭紗",
+   "en": "Starlit hill, a veil in the wind",
+   "v": "1031a",
+   "status": "live",
+   "src": {
+    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/or9o_hill_veil_wind__random.png",
+    "shelf_key": "high_base_nd/or9o_hill_veil_wind__random",
+    "fav": "2026-10-25T13:49:55",
+    "size": "1408x2048",
+    "realism": "v2nomole",
+    "model": "Z-Image Base",
+    "style_id": "ph_or9o_hill_veil_wind"
+   }
+  },
   {
    "id": "bf_or9o_hill_bouquet",
    "shelf": "night",

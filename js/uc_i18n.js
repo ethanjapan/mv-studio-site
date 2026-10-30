@@ -45,6 +45,7 @@ window.__mvLangUrl=window.__mvLangUrl||function(l){var h={ja:'ja',zh:'zh-Hant',e
   "30cm 正方形のレイフラット製本のレイアウト。5 章・25 見開き・動く見開きつき。章の順も写真の数も、ふたりの前撮りに合わせて組み直します。":"30cm 正方形蝴蝶裝（攤平式）的版面。5 章・25 個跨頁・還有會動的跨頁。章節順序和照片張數，都會依照兩位的婚紗照重新編排。",
   "アルバムをめくる":"翻開相本","前撮りの相談は、":"想聊婚紗照，","一言":"一句話","場所の雰囲気と、着たい衣装。それだけ送ってください。絵コンテにしてお返しします。":"地點的氣氛，加上想穿的服裝。只要傳這些就好，我會做成分鏡回給你。",
   // ---- 撮影会
+  "毎朝の作例 — 撮影会ポートレート — MV Studio":"每天早上的作品 — 外拍人像 — MV Studio",
   "撮影会ポートレート — MV Studio ユースケース":"外拍人像 — MV Studio 使用情境","USE CASE 02 — 撮影会ポートレート":"USE CASE 02 — 外拍人像","一人のモデルを、":"同一位模特兒，","一日ぶん":"拍出一整天的量",
   "写真家の作風、芸術、雰囲気と幻想、雑誌の光、室内の撮影会——作風の違う様式を棚から選ぶだけで、同じ顔のまま一日ぶんの写真になる。スタジオも屋外も、衣装も髪も、声で相談しながら。":"攝影師的風格、藝術、氛圍與奇幻、雜誌的光、棚拍——只要從風格庫挑出不同風格，同一張臉就能變成一整天份的照片。棚內或外景、服裝或髮型，都能邊聊邊決定。",
   "「黄金の逆光で、白いワンピース」「雑誌の表紙みたいに」——言葉と、気に入った様式を指すだけ。ディレクターが光と構図を当てる。":"「金色逆光，穿白色洋裝」「像雜誌封面那樣」——只要用說的，再指一下喜歡的風格。導演會把光線和構圖配好。",
@@ -152,11 +153,11 @@ window.__mvLangUrl=window.__mvLangUrl||function(l){var h={ja:'ja',zh:'zh-Hant',e
   "季節の飾り":"季節的布置","SNS の季節の投稿、店先の掲示、案内状の下地に。行事ごとに同じ空気で揃えられます。":"SNS 的季節貼文、店門口的公告、邀請卡的底圖。每個節慶都能用同一種氛圍湊齊。",
   "空間の雰囲気":"空間的氛圍","式場・旅館・料亭の「こんな場所」を、言葉で頼んで焼く。実物の写真の代わりではなく、雰囲気を伝える一枚として。":"婚宴場地、旅館、料亭的「這樣的地方」，用一句話就能生成。不是用來取代實景照片，而是傳達氛圍的一張。",
   "物と場所の相談は、":"想聊物與場所，","季節と、置きたい小物。それだけ送ってください。見本帳の形にしてお返しします。":"季節，還有想放的小物。只要傳這些就好。我會整理成樣本集的形式回給你。",
-  "毎朝 Instagram に載せている作例から、いちばん新しい写真。":"從每天早上發在 Instagram 的作品中，挑出最新的照片。","写真の一組を、そのまま縦の動画に。Instagram のリールと同じもの。":"把一組照片，直接變成直式影片。和 Instagram 的 Reels 是同一支。",
+  "毎朝 Instagram に載せている作例から、いちばん新しい写真。":"從每天早上發在 Instagram 的作品中，挑出最新的照片。","毎朝 6 時に Instagram に載せている作例から、いちばん新しい 9 枚。":"每天早上六點發在 Instagram 的作品中，最新的九張。","写真の一組を、そのまま縦の動画に。Instagram のリールと同じもの。":"把一組照片，直接變成直式影片。和 Instagram 的 Reels 是同一支。",
   "棚に新しく入った様式から、気に入った一枚を。":"從風格庫新加入的風格中，挑出喜歡的一張。"
-  },window.MV_WORKS_I18N||{},window.MV_STILL_I18N||{},window.MV_BEAUTY_I18N||{},window.MV_PIG_I18N||{},window.MV_PFAV_I18N||{},window.MV_BFAV_I18N||{},window.MV_WFAV_I18N||{});
+  },window.MV_WORKS_I18N||{},window.MV_STILL_I18N||{},window.MV_BEAUTY_I18N||{},window.MV_PIG_I18N||{},window.MV_PFAV_I18N||{},window.MV_BFAV_I18N||{},window.MV_WFAV_I18N||{},window.MV_DAILY_I18N||{});
   // 英語(2026-10-15): 辞書は data/i18n_en.tsv → gen_i18n.mjs が js/en_uc.js に書く。生成物(作品・棚)の英語も合流
-  const E=Object.assign({},window.MV_WORKS_I18N_EN||{},window.MV_STILL_I18N_EN||{},window.MV_BEAUTY_I18N_EN||{},window.MV_PIG_I18N_EN||{},window.MV_PFAV_I18N_EN||{},window.MV_BFAV_I18N_EN||{},window.MV_WFAV_I18N_EN||{},window.MV_EN_UC||{});   // 手で書いた英語が生成物に勝つ
+  const E=Object.assign({},window.MV_WORKS_I18N_EN||{},window.MV_STILL_I18N_EN||{},window.MV_BEAUTY_I18N_EN||{},window.MV_PIG_I18N_EN||{},window.MV_PFAV_I18N_EN||{},window.MV_BFAV_I18N_EN||{},window.MV_WFAV_I18N_EN||{},window.MV_DAILY_I18N_EN||{},window.MV_EN_UC||{});   // 手で書いた英語が生成物に勝つ
   function walk(){
     const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
       if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;

@@ -34,6 +34,13 @@ Created by [@made_linlin](https://www.instagram.com/made_linlin/)
 4. `node gen_shelves.mjs`(build でも走る)→ `usecases/still.html` の棚と `js/stills_i18n.js`。絵や題が欠けていれば止まる
 5. APP の棚(photo-browser)側は mvdirector の `scripts/add_st_*_styles.py`(様式の行)と `gravure_variety_lab/site_still_base/`(見本)で同じ鍵を持つ
 
+## 毎朝の作例の頁(usecases/daily.html・2026-10-31)
+- 10 月の投稿= `data/portrait_ig.json` の `posts`(組・新しい順・date / ja / zh / en / reel)と `items`(`src.ig_post` で組に属する)。1 組足す= posts に 1 行 + items に写真の行(ig_post を揃える)+ `python3 tools/still_assets.py --data data/portrait_ig.json` → `node gen_daily.mjs`(build も呼ぶ)。帯の先頭の縦のリールは `assets/uc/reel_<reel>.mp4`(IG の noBGM 版を 720x1280・無音・crf24・faststart)+ 先頭コマの `.jpg`
+- 撮影会の頁(portrait.html)の LATEST は同じ JSON から「新しい順の 9 枚 + 全部へのリンク」だけ(gen_shelves.mjs の pig の latest)。全部はこの頁
+- 11 月の予告= `data/daily.json` の items(組の表紙 1 枚ずつ・`src.reel_date` / `photo_date`)。公開が済んだ組は portrait_ig.json の posts/items へ移し、daily.json から消す(予告の格子には M1031 のように posts 側の表紙が先頭に入る)
+- 頁の固定の文の繁中と英語は `data/daily.json` の `strings`(gen_daily.mjs が js/daily_i18n.js に書き、uc_i18n.js の辞書に合流する)。`<title>` だけは uc_i18n.js の M と data/i18n_en/00_titles.tsv
+- ★build の検査(lint 9)は gen_daily より先に走るので、文を足したら `node gen_daily.mjs` を先に回してから `npm run build`
+
 ## 英語(2026-10-15)
 - 言語は 日本語 / 繁中 / EN の 3 つ。繁中は `js/main.js` と `js/uc_i18n.js` の辞書 M(日本語の文→繁中)、英語は `data/i18n_en/*.tsv`(日本語の文 <TAB> 英語 [<TAB> main|uc])が正本で、`node gen_i18n.mjs`(build が呼ぶ)が `js/en_main.js` / `js/en_uc.js` を書く。繁中の辞書に鍵があって英語が無いとビルドが止まる
 - 同じ日本語が頁で意味が違う時(「衣装」= Outfit / garments)は 3 列目で main か uc に限定する。頁の `<title>` のように繁中の辞書に無い鍵も、3 列目を付ければ入る

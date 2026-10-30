@@ -13,7 +13,8 @@ const SETS = [
   { name: 'still', data: 'data/stills.json', page: 'usecases/still.html', jp: '物と場所' },
   { name: 'beauty', data: 'data/beauty.json', page: 'usecases/beauty.html', jp: '美容' },
   // 撮影会ポートレートの棚の上段(2026-10-23)= IG @ethan_ai_photo の毎朝の投稿に選んだ写真。印は portrait.html の gen:pig:shelves
-  { name: 'pig', data: 'data/portrait_ig.json', page: 'usecases/portrait.html', jp: '毎朝の作例' },
+  // 2026-10-31: 全部は usecases/daily.html(gen_daily.mjs)へ移し、ここは posts(新しい順)の 9 枚だけ + 全部へのリンク(latest)
+  { name: 'pig', data: 'data/portrait_ig.json', page: 'usecases/portrait.html', jp: '毎朝の作例', latest: 9, link: { href: 'daily.html', ja: 'すべての作例を見る — 10 月の全部と、11 月の予告', zh: '看全部的作品 — 10 月的全部，和 11 月的預告', en: 'See every set — all of October, and what is coming in November' } },
   // 棚のお気に入りから選んだ新作(2026-10-24)。印は各頁の gen:<name>:shelves
   { name: 'pfav', data: 'data/portrait_fav.json', page: 'usecases/portrait.html', jp: '撮影会の新作' },
   { name: 'bfav', data: 'data/bridal_fav.json', page: 'usecases/bridal.html', jp: 'ブライダルの新作' },
@@ -67,6 +68,18 @@ for (const SET of SETS) {
 
   // ---- 棚
   let out = '\n', nShelf = 0
+  if (SET.latest) {
+    // 新しい順= posts の順(組)→ 組の中は JSON の順。先頭の縦は 2x2 の大きな札
+    const order = new Map((DATA.posts || []).map((p, i) => [p.key, i]))
+    const sorted = [...live].sort((a, b) => (order.get(a.src?.ig_post) ?? 999) - (order.get(b.src?.ig_post) ?? 999))
+    const head = sorted.slice(0, SET.latest)
+    out += `        <div class="uc-grid">
+  ${head.map((it, i) => fig(it, { big: i === 0 && it.orient === 'P' })).join('\n')}
+          </div>
+          <a class="ch-cta dl-all" href="${SET.link.href}">${esc(SET.link.ja)}<svg class="go-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M10.5 8l4 4-4 4"/></svg></a>
+  `
+    nShelf = 1
+  } else
   for (const sh of DATA.shelves) {
     const items = live.filter(it => it.shelf === sh.key)
     if (!items.length) continue
@@ -104,6 +117,7 @@ for (const SET of SETS) {
   // 英語: 棚の見出しは「EN <span>日本語</span>」の形なので、英語では span を説明(sub_en)に替える(英題の重複を避ける)。題は it.en
   for (const sh of DATA.shelves) { dict[sh.ja] = sh.zh; if (sh.sub_ja && sh.sub_zh) dict[sh.sub_ja] = sh.sub_zh; dictEn[sh.ja] = sh.sub_en || sh.en }
   for (const it of live) { dict[it.ja] = it.zh; if (it.en) dictEn[it.ja] = it.en }
+  if (SET.link) { dict[SET.link.ja] = SET.link.zh; dictEn[SET.link.ja] = SET.link.en }
   const noEn = live.filter(it => !it.en).map(it => it.id)
   if (noEn.length) console.warn(`★${SET.jp}: 英語の題が無い ${noEn.length} 枚(日本語のまま出る): ${noEn.join(' ')}`)
   const js = `/* 生成物: node gen_shelves.mjs が ${SET.data} から書く(手で編集しない)。${SET.jp}の棚の見出しと題の 日本語→繁中(_I18N)と英語(_I18N_EN)。uc_i18n.js の辞書に合流する */\nwindow.MV_${SET.name.toUpperCase()}_I18N=${JSON.stringify(dict)};\nwindow.MV_${SET.name.toUpperCase()}_I18N_EN=${JSON.stringify(dictEn)};\n`
