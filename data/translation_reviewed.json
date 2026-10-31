@@ -6428,6 +6428,812 @@
    "verdict": "rewrite",
    "was": "Photographers' styles, art, magazines, studio sessions—over 30,000 looks, a full day's shoot with one model.",
    "note": "名詞句をカンマでつないだだけで関係が曖昧。雑誌の作風は editorial"
+  },
+  "97e97fdbeaa4598ed41fd9bfdebaef5bb17b81b3": {
+   "lang": "zh",
+   "text": "紅絲絨茶室裡托著腮",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "紅絲絨的喫茶室・托腮",
+   "note": "「・」で名詞を並べた形が訳文的。一つの句に"
+  },
+  "e4b45bf00f648221705af0a9fa059f8b75e6c712": {
+   "lang": "zh",
+   "text": "彩虹光影與蕾絲軟帽",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "彩虹投影・蕾絲帽",
+   "note": "「・」並べが訳文的。写真は bonnet なので英語と揃えて軟帽に"
+  },
+  "58ab1c4f8a4ac8ab2f041be70d064ba2fdfde2bd": {
+   "lang": "zh",
+   "text": "雨中繡球花，遮住一隻眼",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "雨中繡球花・遮住一隻眼",
+   "note": "「・」は中文の題では不自然。読点でつなぐ"
+  },
+  "95388af900c1f522cde0cd0c515c848aa26f81ac": {
+   "lang": "zh",
+   "text": "跪坐在斑斕光影裡",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "光之房・跪坐",
+   "note": "「光之房」が直訳で硬い"
+  },
+  "2d576d6bc19babead4ff5f4d9cc01d3292390c6c": {
+   "lang": "zh",
+   "text": "繡球花園，雙手框住眼睛",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "繡球花庭園・用手框住眼睛",
+   "note": "「繡球花庭園」は冗長・「・」並べ"
+  },
+  "acc773c8b6199fd1a54ecbd771bd4af40dc5f2ba": {
+   "lang": "zh",
+   "text": "水母光影的房間",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "c39c9f91c853877c4343225613816aa02a4c7411": {
+   "lang": "zh",
+   "text": "躺在禮物堆裡，倒過來的臉",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "禮物堆上・倒著的睡臉",
+   "note": "「倒著的睡臉」が直訳で不自然(写真は目を開けている)"
+  },
+  "ab92daed30a0afe8a326e609d29cbc2a407b39ec": {
+   "lang": "zh",
+   "text": "冬日原野的野餐",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "42cb3e8d80ddee711d48e43ac9f5a45c8f22ca3d": {
+   "lang": "zh",
+   "text": "把吊飾掛上聖誕樹",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "5ccf5c639dddad9fa31c1c6fd3155f93d621f846": {
+   "lang": "zh",
+   "text": "傍晚的灰泥牆",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "1868d28a014ee25e30d1295b1547b3b4ac1c43ed": {
+   "lang": "zh",
+   "text": "隔著水晶垂飾",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "e8b114f6b6b7a5c1ceda025ac66200e6b5eecbb2": {
+   "lang": "zh",
+   "text": "老扶手椅與西洋棋",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "fb1a1f0526ef4741637f07e0288e0992001d512b": {
+   "lang": "zh",
+   "text": "黑蕾絲旗袍與窗光",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "黑蕾絲旗袍・窗邊光",
+   "note": "「窗邊光」が不自然・「・」並べ"
+  },
+  "c2cc17a20f834f8ad76cd654ba09409a4e88eb97": {
+   "lang": "zh",
+   "text": "老書房的窗邊",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "a0267f18418156c5c952bf29fbf7ae447a32a95c": {
+   "lang": "zh",
+   "text": "午後的地毯，從正上方俯拍",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "午後的地毯・從正上方拍",
+   "note": "「從正上方拍」が説明的で口語的すぎる"
+  },
+  "8b0b30a586b736fee489aaeac47956feb7b98d86": {
+   "lang": "zh",
+   "text": "窗邊的畫架",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "a5a7dc1c5f9366c70394980971a9586e7d9bb5f8": {
+   "lang": "zh",
+   "text": "清晨逆光與緞帶",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "早晨的逆光・緞帶",
+   "note": "「早晨的逆光・緞帶」が直訳的"
+  },
+  "14c746b272041bad6f2fee6aab41e27e39e8e305": {
+   "lang": "zh",
+   "text": "昏暗房間裡的鋼琴",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "暗房裡的鋼琴",
+   "note": "「暗房」は写真の暗室の意味になり誤解を招く"
+  },
+  "c2aad03b601ea7428dd3849f79facdf62ccab1eb": {
+   "lang": "zh",
+   "text": "鋪滿白玫瑰的地板上托腮",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "白玫瑰的地板・托腮",
+   "note": "「白玫瑰的地板」が直訳で意味が曖昧"
+  },
+  "9fcd1f359772ff7c74fdeb36d4810a45d2305f36": {
+   "lang": "zh",
+   "text": "咬著一顆小番茄",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "e21c06efc2bd56f0df498030c0ee0b58d0f40683": {
+   "lang": "zh",
+   "text": "坐在層層薄紗之中",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "坐在一片薄紗裡",
+   "note": "「一片薄紗裡」は量感が出ず不自然"
+  },
+  "c81052f59cf0d4516c5184274e437d220708427d": {
+   "lang": "zh",
+   "text": "淡粉色的牆邊",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "94dd32f53a35bf04673f25ca08c2a3dbae2dc83a": {
+   "lang": "zh",
+   "text": "開演前的包廂",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "b41f91750234a8220223aa4a414e3eda4e21ead8": {
+   "lang": "zh",
+   "text": "滿室白玫瑰與窗光",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "白玫瑰的房間・窗光",
+   "note": "「白玫瑰的房間・窗光」が直訳的"
+  },
+  "3c8ff3723d763ba6dc26e91f8ff33bce998e7bea": {
+   "lang": "zh",
+   "text": "倚著老窗框",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "7bf3ef8d3804c83bf16bb34767ba99b323b65de1": {
+   "lang": "zh",
+   "text": "斑駁牆前，抱起裙襬",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "剝落的牆・抱著裙襬",
+   "note": "「剝落的牆」が直訳的・「・」並べ"
+  },
+  "d81209664fc405e4b3185cdbae440cd086189d4b": {
+   "lang": "zh",
+   "text": "躺在弧形扶手上",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "89e44bf4ee1ba80a4ad121ca89fae323244b9a04": {
+   "lang": "zh",
+   "text": "白灰泥牆前，環抱雙臂",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "白灰泥牆・抱著手臂",
+   "note": "「抱著手臂」が直訳的で不自然"
+  },
+  "653197d2b4f3125caf15e08e660e71bfa7476cb3": {
+   "lang": "zh",
+   "text": "水藍薄紗與側臉",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "水藍色薄紗・側臉",
+   "note": "「・」並べが訳文的"
+  },
+  "83c6eddd462b2141706a4f94e6d9c57bb2cc614e": {
+   "lang": "zh",
+   "text": "白紗簾的窗邊",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "白色窗簾的窗邊",
+   "note": "「白色窗簾的窗邊」が冗長。英語の sheer に合わせ紗簾に"
+  },
+  "dc692ebec789336627adb85e6b7a3df13216acc3": {
+   "lang": "zh",
+   "text": "黃昏時漫步沙丘",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "走在黃昏的沙丘",
+   "note": "「走在黃昏的沙丘」は語順が日本語的"
+  },
+  "2132b3f65f38b48d2def33230646112be30c1f8a": {
+   "lang": "zh",
+   "text": "黑暗中的笑容",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "44fb1d0b6b090d5277e8990ce577f353990137c4": {
+   "lang": "zh",
+   "text": "兔耳連帽",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "c1add1c78c0a1d8f9f46bdb1a1c800926bc6c0e5": {
+   "lang": "zh",
+   "text": "開演前五分鐘，比個愛心",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "開演前五分鐘・比愛心",
+   "note": "「・」並べが訳文的"
+  },
+  "a89816181c8a3cd6e504a61678bdedef8053c84d": {
+   "lang": "zh",
+   "text": "綠牆與葉影",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "41621680a802c8bdb6969dbe3de42f13ec650fcc": {
+   "lang": "zh",
+   "text": "灰色房間的鋼琴",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "3220d93866cd8a143a55118c4e59ee6b31f61edd": {
+   "lang": "zh",
+   "text": "和室裡，穿著浴衣托腮",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "和室・穿浴衣托腮",
+   "note": "「和室・穿浴衣托腮」が詰め込みで硬い"
+  },
+  "66eb3d2e3e7c3ba39db022e1114a8e84a4085a8a": {
+   "lang": "zh",
+   "text": "棒球場的看台",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "59a21017b060f1f47efd24f33ac5026e3ee5f7b9": {
+   "lang": "zh",
+   "text": "白馬與海灘",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "2dda2d7945d5c1eeaecbf7b4da26159c486588f6": {
+   "lang": "zh",
+   "text": "楓紅與白色陽傘",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "4f0e168f458b2971b0662aa59a6937991db18b15": {
+   "lang": "zh",
+   "text": "輕觸楓枝",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "8b08a907060d6afc053e3a832d9ab3f8f3e89581": {
+   "lang": "zh",
+   "text": "坐在如鏡的海灘上",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "坐在鏡面海灘",
+   "note": "「鏡面海灘」が直訳的"
+  },
+  "93c562b07340845c04dc4a2ac5bbc080d78df24d": {
+   "lang": "zh",
+   "text": "白雛菊的原野",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "白色雛菊的原野",
+   "note": "「白色雛菊」が冗長"
+  },
+  "62d1013c3f36049a0e89a114ee0ce3664c87bc4d": {
+   "lang": "zh",
+   "text": "兩人在雲海上的波斯菊花田",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "雲海上的波斯菊花田・兩個人",
+   "note": "「・兩個人」の後置が日本語の並べ方のまま"
+  },
+  "ff16f2a2d8c72723d0d7cd12a1119745f5e6481c": {
+   "lang": "zh",
+   "text": "花田裡拉小提琴",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "在花田拉小提琴",
+   "note": "「在花田拉小提琴」は語順が硬い"
+  },
+  "68407da7fe02ebe7bebb38007d5515e465a4264b": {
+   "lang": "zh",
+   "text": "波斯菊與白色三角框",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "022619c490c01182efc9325d979667271fc29f03": {
+   "lang": "en",
+   "text": "Chin in hand in a red-velvet tearoom",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "5938bef44759cc0d15627962bfbc5d13440006e9": {
+   "lang": "en",
+   "text": "Rainbow projection, a lace bonnet",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "26dfc75e66bda6bf47ef9a12d3b62b0f07f23f8a": {
+   "lang": "en",
+   "text": "Rainy hydrangeas, one eye hidden",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "ea505906ff3aac415b302d18f00974901333763e": {
+   "lang": "en",
+   "text": "Kneeling in a room of light",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "2e6d6a7a89d51195356c784168e73ff5a090a6f5": {
+   "lang": "en",
+   "text": "Hydrangea garden, hands framing an eye",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "7aa57323a531df28a3b8395b0cf432185b69f774": {
+   "lang": "en",
+   "text": "A room of jellyfish light",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "a73b3c313c2057a6fccfe932dda19bfaf8fe1da0": {
+   "lang": "en",
+   "text": "Upside down on a bed of gifts",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "01dde2ccb07a03603f659772b8be17d560f72090": {
+   "lang": "en",
+   "text": "A picnic in a winter field",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "94f3860aebc0c81d06327b4e55447a5516115688": {
+   "lang": "en",
+   "text": "Hanging a bauble on the tree",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "e7f0560fc6e5b3b1a29f233c78034eed653b8275": {
+   "lang": "en",
+   "text": "A plaster wall at dusk",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "c60f93a088b024c4c5f9bbad0a9b05dcb98d30a1": {
+   "lang": "en",
+   "text": "Through hanging crystal drops",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "8cf8c0a8bffcdf8c0234ccb7df05b7a8ffda52a3": {
+   "lang": "en",
+   "text": "An antique armchair and a chessboard",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "An antique armchair and a chess table",
+   "note": "繁中の「西洋棋」と揃え chess table より盤に"
+  },
+  "34278e541dd751fde8b84f15f31a8d24acf71caf": {
+   "lang": "en",
+   "text": "A black lace qipao in window light",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "61b6b5c34ca04f00f6f06f6bf8a6b9554bfd3437": {
+   "lang": "en",
+   "text": "By the window of an old study",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "36b3fba48de5b108d3f7f71b769fbce9c33a5880": {
+   "lang": "en",
+   "text": "An afternoon on the rug, from above",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "20b716bdfa796a0325c7583031831c59d602b9a9": {
+   "lang": "en",
+   "text": "At the easel by the window",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "2b30048ca74cc66e0a0cd401118b1f0e68bbc241": {
+   "lang": "en",
+   "text": "A ribbon in the morning backlight",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "Morning backlight, a ribbon",
+   "note": "名詞をカンマで並べただけで題として弱い"
+  },
+  "8abcc60832b5f3798c915eb5162916bf43648e2e": {
+   "lang": "en",
+   "text": "A piano in a dark room",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "ba9bdbf70735f612e44c205c51b9f389f62eb48e": {
+   "lang": "en",
+   "text": "Chin in hand on a floor of white roses",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "c2160109b91adb5b7911b25b60abe522748ebc25": {
+   "lang": "en",
+   "text": "A cherry tomato between her lips",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "5bf9933afab16cbd0376fb13adef451753353a77": {
+   "lang": "en",
+   "text": "Sitting in a sea of tulle",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "08f407b014b216d7abe766d9061b3e2158e04d78": {
+   "lang": "en",
+   "text": "Against a pale pink wall",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "21aa993fc40f42b91ecccffffa0236ddc8f8bff3": {
+   "lang": "en",
+   "text": "A box seat before the curtain",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "f2ebd89ade1c04dbbb84decad6e710eb81fd96af": {
+   "lang": "en",
+   "text": "A room of white roses, window light",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "86030b162483ec0daf6f38401e63f6838170f021": {
+   "lang": "en",
+   "text": "Leaning on an old window frame",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "e30f64a7b21b7b79058ca03ba424a6b9336e1946": {
+   "lang": "en",
+   "text": "A peeling wall, skirt gathered in her arms",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "7e891c0f58bf5364ea306adea9df0320928af717": {
+   "lang": "en",
+   "text": "Lying along a curved rail",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "fecf03c9409fd5f0b29427089e1e9ad7f99a728e": {
+   "lang": "en",
+   "text": "A white plaster wall, arms held close",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "e36c178a416e69624814956c042f4a4163342f9e": {
+   "lang": "en",
+   "text": "Pale blue tulle, in profile",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "36f755dc685369b2ec8bf4b868412c9d3385f371": {
+   "lang": "en",
+   "text": "By sheer white curtains",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "30f72fcbb6d78032a35be560018bab10eb748b4b": {
+   "lang": "en",
+   "text": "Walking the dunes at dusk",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "bb25e370c5bb2f62cf484752b02a2916bcc3334e": {
+   "lang": "en",
+   "text": "A smile out of the dark",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "030559f145ce0239d9c5c0703a411aa05c18aa90": {
+   "lang": "en",
+   "text": "A bunny-ear hood",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "294430c04c4803081523ecb22a31d858bc9e0ac2": {
+   "lang": "en",
+   "text": "Five minutes to showtime, heart hands",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "e6308c65bcd32f2c7aa755b484a5f9c68e65fd38": {
+   "lang": "en",
+   "text": "A green wall and leaf shadows",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "515f77b8ce015dcaaed425d1f5ee22bedeb9d65e": {
+   "lang": "en",
+   "text": "A piano in a grey room",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "79cd8d332defd192b5305a2fd552523463cf9c4d": {
+   "lang": "en",
+   "text": "Chin on her arms, in a yukata on tatami",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "A yukata in a tatami room, cheek on her arm",
+   "note": "A yukata が主語のように読め、語順がぎこちない"
+  },
+  "a0255a47ded7d8f1ca5db45f44d506b168b2f21c": {
+   "lang": "en",
+   "text": "In the ballpark stands",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "f9dc1c6bccc9818e052186b2aa397bcb22621519": {
+   "lang": "en",
+   "text": "A white horse on the beach",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "edcaa4d2a0b9b8b0b2cc36708aa6dc8493707f22": {
+   "lang": "en",
+   "text": "Autumn maples and a white parasol",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "21f27785d20d0b4ef54d122611f5433ef9ae684f": {
+   "lang": "en",
+   "text": "Touching a maple branch",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "c9270028d61dd291fbd875496bc5906d1e278020": {
+   "lang": "en",
+   "text": "Sitting on a mirror-still shore",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "rewrite",
+   "was": "Sitting on a mirror beach",
+   "note": "\"a mirror beach\" は英語として意味が通りにくい"
+  },
+  "5049d257ff7b705148a0f9e43977dea0a33abe44": {
+   "lang": "en",
+   "text": "A field of white daisies",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "227742ca6e7fb1669d9158cc462f63c970886b96": {
+   "lang": "en",
+   "text": "Two in a cosmos field above the clouds",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "4729299274ae6d0a2bae4acdfcc1f22a0182da5e": {
+   "lang": "en",
+   "text": "A violin in a flower field",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "23ed8b6de9812f0d7664f4a69dfbb18b96a289b0": {
+   "lang": "en",
+   "text": "Cosmos and a white triangle frame",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-3",
+   "verdict": "ok"
+  },
+  "5e4fe2211f28d40909993605b0eac050e91063d5": {
+   "lang": "zh",
+   "text": "藝術 — 斑駁的灰泥牆與淡色雪紡、水藍薄紗、黃昏沙丘、水墨、京劇、1950 年代的芭蕾。把照片當成畫來構圖。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "藝術 — 斑駁灰泥牆與淡色雪紡、水藍色薄紗、黃昏的沙丘、水墨、京劇、1950 年代的芭蕾。把照片當成一幅畫來構圖。",
+   "note": "「的」の連続で列挙が重い。語を締めて「一幅」を削った"
+  },
+  "1f976b911cbae0eb69d46464ee23fb3e34518949": {
+   "lang": "zh",
+   "text": "攝影師風格 — 雨中的繡球花、映著光影的房間、冬日原野上的野餐。日本攝影師那種如夢似幻的色調，但不點名任何人。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "攝影師的風格 — 雨中的繡球花、投影光的房間、冬日原野的野餐。日本攝影師那種夢幻的色調，不點名任何人。",
+   "note": "「投影光的房間」が直訳で不自然。題の「的」も不要"
+  },
+  "f273e5decd1833f5da59d1dbaf71716753251c44": {
+   "lang": "zh",
+   "text": "偶像的一天 — 演出前的後台、錄製現場、街頭、四季節慶，還有休假日的居家穿搭。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "偶像的一天 — 開演前的後台、錄音、街頭、季節活動。休假日的居家服也有。",
+   "note": "「開演前」は日本語の語、「居家服也有」は語順をなぞった訳文調"
+  },
+  "aae2c5f3c6d511679749a15d62766ecffedf276e": {
+   "lang": "zh",
+   "text": "雜誌與攝影棚 — 老公寓的傍晚光線、隔著水晶垂飾望見的扶手椅、黑蕾絲旗袍。專為雜誌內頁打的光。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "雜誌與攝影棚 — 老公寓的傍晚光線、隔著水晶垂飾的扶手椅、黑蕾絲旗袍。為版面打的光。",
+   "note": "「為版面打的光」が硬く、何の版面か伝わりにくい"
+  },
+  "b5f508e891837cfe83fa60ed5bc35e5aa8fd8201": {
+   "lang": "zh",
+   "text": "室內拍攝 — 窗邊的畫架、清晨的逆光、鋪滿白玫瑰的地板、昏暗房間裡的鋼琴。一個房間，就能拍滿一整天。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "室內拍攝 — 窗邊的畫架、早晨的逆光、白玫瑰的地板、昏暗房間裡的鋼琴。一個房間就能拍滿一整天。",
+   "note": "「白玫瑰的地板」が直訳で意味が曖昧"
+  },
+  "04d2e2d9a783a91a7af92b38aa4a4b1430015c82": {
+   "lang": "zh",
+   "text": "性感 — 內衣畫報、昏暗的閨房、黑色背景裡的身體、牛奶浴、綴滿白玫瑰的房間。尺度止於內衣，依循雜誌寫真的分寸。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "性感 — 內衣畫報、昏暗的閨房、黑暗中的身體、牛奶浴、白玫瑰的房間。不越過內衣的界線，照雜誌寫真的規矩。",
+   "note": "「不越過內衣的界線，照…的規矩」が日本語をなぞった硬い言い回し。「昏暗/黑暗」も重複"
+  },
+  "8fea17528ead7bac917bb44529fd885ecabbe09a": {
+   "lang": "en",
+   "text": "Art: peeling plaster and pale chiffon, powder-blue tulle, dunes at dusk, ink wash, Peking opera, 1950s ballet. Photographs composed like paintings.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "Art: peeling plaster and pale chiffon, pale-blue tulle, dunes at dusk, ink wash, Peking opera, 1950s ballet. Photographs composed like paintings.",
+   "note": "pale が続けて二度出る"
+  },
+  "6a9d5f5052e2e7623da369ac3c0b8988ee13e93c": {
+   "lang": "en",
+   "text": "Photographer styles: hydrangeas in the rain, rooms washed in projected light, a picnic in a winter field. The dreamy palettes of Japanese photographers, no names attached.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "Photographer styles: hydrangeas in the rain, rooms washed in projected light, a picnic in a winter field. The dreamy colour of Japanese photographers, with no names attached.",
+   "note": "\"The dreamy colour of Japanese photographers\" が直訳調(人の色に読める)"
+  },
+  "0f869e113aa51a165af2aa73cc1f75d8d5b900dc": {
+   "lang": "en",
+   "text": "An idol's day: backstage before the show, studio sessions, out on the street, seasonal events. And lazy days off at home.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "An idol's day: backstage before the show, recording, the street, seasonal events. Lazy days at home too.",
+   "note": "\"recording, the street\" が名詞の羅列で硬い。末尾の too が付け足しに読める"
+  },
+  "098a75ba8a3fb09e8acc7e46c14e831956c83364": {
+   "lang": "en",
+   "text": "Magazine and studio: evening light in an old apartment, an armchair seen through hanging crystals, a black lace qipao. Light made for the page.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "Magazine and studio: evening light in an old apartment, an armchair through hanging crystal, a black lace qipao. Light made for the page.",
+   "note": "\"an armchair through hanging crystal\" は seen が抜けて意味が取りにくい"
+  },
+  "ea4e32db6620946918518f05134783666f95f37d": {
+   "lang": "en",
+   "text": "Indoor sessions: an easel by the window, morning backlight, a floor of white roses, a piano in a dim room. One room, a full day's shoot.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "ok"
+  },
+  "aaea44d337ed23935954f15423c7230af909743a": {
+   "lang": "en",
+   "text": "Sensual: lingerie spreads, a dark boudoir, the body against black, milk baths, a room of white roses. It stops at lingerie, shot with a magazine's eye.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-4",
+   "verdict": "rewrite",
+   "was": "Sensual: lingerie spreads, a dark boudoir, the body against black, milk baths, a room of white roses. Never past the lingerie line, shot the way a magazine would.",
+   "note": "\"Never past the lingerie line, shot the way...\" が日本語の二文を一文に繋いだ形で、主語がなく据わりが悪い"
   }
  }
 }
