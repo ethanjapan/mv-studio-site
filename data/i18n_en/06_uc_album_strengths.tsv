@@ -180,7 +180,7 @@ STRENGTHS — 仕組みの強み	STRENGTHS — why the engine works
 分ごとに空きを埋める	minutes between refills
 枚を一晩で	photos in one night
 自分のスタジオを、	Call your studio
-外から呼ぶ	from outside
+道具から呼ぶ	from your own tools
 生成の入口は鍵つきの HTTP。自作の道具や他のアプリから、同じスタジオを呼べる。家の中の 1 台が、あなたの生成サーバーになる。	The entrance to generation is a keyed HTTP endpoint. Your own tools and other apps can call the same studio. The one machine at home becomes your generation server.
 鍵つきの入口	A locked door
 本の列に直列で安全	queue, run in series—safe
@@ -211,7 +211,7 @@ STRENGTHS — 仕組みの強み	STRENGTHS — why the engine works
 家の中から出ない	Never leaves the house
 内容の制限	Content limits
 サービスの規約が決める	Set by the service's terms
-自分の判断と、法律だけ	Only your judgment, and the law
+何を作るかは、自分の基準で決める	Set by your own standards
 待ち時間	Waiting
 混雑の列に並ぶ	You wait in a crowded queue
 自分の列。夜も進む	Your own queue, running through the night
@@ -220,3 +220,13 @@ STRENGTHS — 仕組みの強み	STRENGTHS — why the engine works
 導入の相談は、	Ask about bringing it in
 環境	with your setup	uc
 いまの PC と、作りたいもの。それだけ送ってください。必要な構成と手順にしてお返しします。	Your current PC and what you want to make. That's all. I'll come back with the configuration and steps you need.
+# 仕組みの頁「機材の元は、作る量で決まる」(2026-10-31 改・導入の目安)
+機材の元は、	How fast the hardware pays off depends on	uc
+作る量	how much you make	uc
+で決まる。	.	uc
+月に作る動画の長さごとに、外部の動画生成サービスとの差と、機材の元が取れるまでの月数を出した。	By monthly video output: what you save over outside video services, and how many months the hardware takes to pay for itself.	uc
+1 か月の外注費との差	Monthly savings vs. outsourcing	uc
+月に動画	At	uc
+分を作る場合。機材 100 万円なら、約	minutes of video a month, 1M yen of hardware pays off in about	uc
+か月で元が取れる。	months.	uc
+単価は上の集計と同じ、外部の動画生成サービスの最安と手元の電気代の差。機材 100 万円は計算の例で、写真と曲は含めない。	Same rates as above: the cheapest outside video service, minus the power bill at home. The 1M-yen hardware is only an example. Photos and music aren't included.	uc

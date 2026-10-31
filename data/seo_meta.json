@@ -56,11 +56,11 @@
     "en": "How it works"
    },
    "zh": {
-    "description": "照片、影片、歌曲、聲音，全都在家裡的電腦上誕生。不會停擺，佇列 24 小時持續前進；透過上鎖的入口也能從外部呼叫，上限只有自己的 GPU。臉永遠是同一張，從 29,000 種的風格庫中挑選。",
-    "og": "不外流。不停擺。佇列 24 小時前進，外部也能呼叫。上限只有自己的 GPU。臉永遠是同一張。風格庫就是資產。"
+    "description": "照片、影片、歌曲和聲音，全在家裡的電腦上完成。不停機，佇列 24 小時運轉；自己寫的工具也能直接呼叫，上限只看自己的 GPU。角色的臉始終如一，從 29,000 種風格庫裡挑。",
+    "og": "資料不外流。不停機。佇列 24 小時運轉，自己的工具也能呼叫。上限只看你的 GPU。臉始終如一。風格庫就是資產。"
    },
    "en": {
-    "description": "Photos, video, music and voice, all made on a PC at home. It never stops: the queue runs around the clock, you can reach it from outside through a locked entrance, and the only limit is your own GPU. The same face every time, picked from a library of 29,000 styles.",
+    "description": "Photos, video, music and voice, all made on a PC at home. It never stops: the queue runs around the clock, your own tools can call it, and the only limit is your own GPU. Keep the same face, and pick from a library of 29,000 styles.",
     "og": "Nothing leaves the house, and nothing stops. The queue runs around the clock and your GPU is the only limit. The same face every time."
    }
   },

@@ -77,6 +77,7 @@ function vidIn(v){if(!v.getAttribute('src')&&v.__src){v.setAttribute('src',v.__s
 /* 13 作品 / 14 裏番組 / 08 orb: each film decodes only while on screen */
 (function worksObs(){
   document.querySelectorAll('.works video,.shows video,.orb-core video').forEach(v=>{
+    if(!v.getAttribute('src')&&v.dataset.src&&!v.__src)v.__src=v.dataset.src;   // 2026-10-31 軽量化: 作品一覧の動画は data-src で書く(画面に入った時に vidIn が src を入れる)
     new IntersectionObserver(es=>es.forEach(en=>{
       v.dataset.inview=en.isIntersecting?'1':'0';   // 言語切替時に再生を継ぐため
       if(en.isIntersecting){vidIn(v);}else{vidOut(v);}
@@ -381,7 +382,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 (function vtFilm(){
   const v=document.querySelector('.vt-film');if(!v)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  v.src=(window.__mvRoot||'')+'assets/hero_hanabi.mp4?v=20260815a';try{v.load();}catch(e){}
+  // 2026-10-31 軽量化: スマホは見出しの文字が小さいので 960x544 の版(元 1920x1088・3.7MB)。演出は同じ
+  v.src=(window.__mvRoot||'')+(matchMedia('(max-width:860px)').matches?'assets/hero_hanabi_m.mp4?v=20261031a':'assets/hero_hanabi.mp4?v=20260815a');try{v.load();}catch(e){}
   new IntersectionObserver(es=>es.forEach(en=>{
     if(en.isIntersecting){safePlay(v);}else{v.pause();}
   }),{threshold:0.05}).observe(v);

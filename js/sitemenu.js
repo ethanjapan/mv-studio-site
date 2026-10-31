@@ -28,13 +28,13 @@
 
   // iOS Safari 対策(2026-10-13): サブページの autoplay video(撮影会 11 本など)は画面内だけ読み込む。トップは main.js が同じ門を持つ
   if(!document.querySelector('script[src*="js/main.js"]')){   // トップは main.js が同じ門を持つ(一覧 works.html も .works を持つので script で見る)
-    var vids=document.querySelectorAll('video[autoplay]');
+    var vids=document.querySelectorAll('video[autoplay],video[data-src]:not([src])');   // data-src= 作品一覧(gen_works)の動画は src を書かない(2026-10-31 軽量化)
     if(vids.length&&'IntersectionObserver' in window){
       var io=new IntersectionObserver(function(es){es.forEach(function(en){var v=en.target;
         if(en.isIntersecting){if(!v.getAttribute('src')&&v.__src){v.setAttribute('src',v.__src);try{v.load();}catch(e){}}var p=v.play();if(p&&p.catch)p.catch(function(){});}
         else{v.pause();var s=v.getAttribute('src');if(s){v.__src=s;v.removeAttribute('src');try{v.load();}catch(e){}}}
-      });},{threshold:0.05,rootMargin:'200px 0px'});
-      vids.forEach(function(v){v.removeAttribute('autoplay');v.setAttribute('preload','none');v.__gated=true;io.observe(v);});
+      });},{threshold:0.05,rootMargin:'50px 0px'});   // 2026-10-31 軽量化: 200px→50px(作品一覧のスマホで画面外の 4 本 3.8MB を最初に読んでいた・画質と動きは同じ)
+      vids.forEach(function(v){if(!v.getAttribute('src')&&v.dataset.src)v.__src=v.dataset.src;v.removeAttribute('autoplay');v.setAttribute('preload','none');v.__gated=true;io.observe(v);});
     }
   }
 

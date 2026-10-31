@@ -154,7 +154,7 @@ for (const f of pages) {
       if (n === 0) textonly.push(key)
     }
     for (const m of html.matchAll(/assets\/[A-Za-z0-9_./-]+\.(?:jpg|png|mp4|webp)/g)) {
-      const a = m[0].replace(/-\d+\.webp$|\.(jpg|png|mp4|webp)$/, '')
+      const a = m[0].replace(/(-|\.w)\d+\.webp$|\.(jpg|png|mp4|webp)$/, '')   // .w600.webp= img_srcset.py の srcset(元の写真と同じ素材)
       if (/mark_inf|apple-touch|favicon|\/og(_links)?$|tex_/.test(a)) continue
       ;(use[a] ||= new Set()).add(f)
     }

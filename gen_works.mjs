@@ -25,7 +25,7 @@ function subHtml(sub) {
   return tail ? `${esc(head)} ・ <span class="nw">${esc(tail)}</span>` : esc(sub)
 }
 function workCard(w, { autoplay = false, big = false } = {}) {   // big= 一覧の韻律(2026-10-14・ブライダルの棚と同じ 2 列ぶん)
-  const video = `<video src="assets/${w.asset}.mp4?v=${w.v}" poster="assets/${w.asset}.jpg?v=${w.v}" muted loop playsinline preload="none"${autoplay ? ' autoplay' : ''}></video>`
+  const video = `<video data-src="assets/${w.asset}.mp4?v=${w.v}" poster="assets/${w.asset}.jpg?v=${w.v}" muted loop playsinline preload="none"></video>`   // 2026-10-31 軽量化: src と autoplay を書かない= 画面に入った時だけ main.js の worksObs が読む(autoplay があると画面外の 27 本も最初に読まれていた・作品一覧で 22MB)
   const cap = `<figcaption><strong>${esc(w.title)}</strong><span>${subHtml(w.sub)}</span></figcaption>`
   // YouTube に上げていない作品(暁の誓剣)はリンク無しの札(2026-10-13: JSON 化の時に取りこぼして消していた)
   if (!w.yt) return `        <figure class="workcard reveal${big ? ' big' : ''}">
@@ -44,7 +44,7 @@ function showCard(s, { autoplay = false } = {}) {
   const zhSrc = s.zh_asset ? ` data-zh-src="assets/${s.zh_asset}.mp4?v=${s.zh_v}" data-zh-poster="assets/${s.zh_asset}.jpg?v=${s.zh_v}"` : ''
   const langs = s.langs.map(l => `              <a class="lang-pill" href="${esc(l.yt)}" target="_blank" rel="noopener noreferrer"><span class="lp-l">${esc(l.l)}</span><span class="lp-d">${esc(l.d)}</span></a>`).join('\n')
   return `        <figure class="showcard">
-          <a class="show-thumb" href="${esc(s.yt)}"${zhHref} target="_blank" rel="noopener noreferrer"><video src="assets/${s.asset}.mp4?v=${s.v}" poster="assets/${s.asset}.jpg?v=${s.v}"${zhSrc} muted loop playsinline preload="none"${autoplay ? ' autoplay' : ''}></video><span class="yt-badge">YouTube</span></a>
+          <a class="show-thumb" href="${esc(s.yt)}"${zhHref} target="_blank" rel="noopener noreferrer"><video data-src="assets/${s.asset}.mp4?v=${s.v}" poster="assets/${s.asset}.jpg?v=${s.v}"${zhSrc} muted loop playsinline preload="none"></video><span class="yt-badge">YouTube</span></a>
           <figcaption>
             <span class="show-genre">${esc(s.genre)}</span>
             <strong>${esc(s.title)}</strong>

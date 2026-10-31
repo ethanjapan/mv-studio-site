@@ -7234,6 +7234,478 @@
    "verdict": "rewrite",
    "was": "Sensual: lingerie spreads, a dark boudoir, the body against black, milk baths, a room of white roses. Never past the lingerie line, shot the way a magazine would.",
    "note": "\"Never past the lingerie line, shot the way...\" が日本語の二文を一文に繋いだ形で、主語がなく据わりが悪い"
+  },
+  "704c7e9de70ea654b9e21ad2ab97a7d9eb014bce": {
+   "lang": "zh",
+   "text": "連設備的本錢，",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "機器的錢，",
+   "note": "「機器的錢」は平板で「も」が落ちている。台湾では電腦類は「設備」、元手は「本錢」が自然"
+  },
+  "8ef4c01c9597e076fd59d043e2312db4c345a641": {
+   "lang": "zh",
+   "text": "也賺得回來",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "216fd2c7ff90ce9cac41a74acd42d9878f746f3d": {
+   "lang": "zh",
+   "text": "累計省下的錢，超過設備與每月開銷的那一天。依最近 60 天的速度推算，每週更新。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "節省的累計，追過機器和每月費用的那一天。依最近 60 天的速度，每週重新計算。",
+   "note": "「節省的累計」は日本語の名詞句をなぞった形。「機器」も「設備」に"
+  },
+  "3eb59bbb4e75e7d3059c618c843f37c8458626bb": {
+   "lang": "zh",
+   "text": "設備與月費累計",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "機器與月費的累計",
+   "note": "札の見出しなので「的」を落として短く・用語を設備に統一"
+  },
+  "f2dcb5f0ea7283a7d8b91f84f78f9f7ff876b3b9": {
+   "lang": "zh",
+   "text": "萬日圓，加上每月",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "ab05fff4384c6ef0545fb80829492fb34dd2f3a4": {
+   "lang": "zh",
+   "text": "萬日圓的訂閱與電費。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "1499c9355b11f459f747c8f0402d18502c918694": {
+   "lang": "zh",
+   "text": "每月節省",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "cd2ab25b80fb4a0a8e47ffb10718a93ac5674852": {
+   "lang": "zh",
+   "text": "最近 60 天的平均。扣掉月費後是",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "444203c67f28fea7d1fec93f3232ee83e34e4b13": {
+   "lang": "zh",
+   "text": "已回收的比例",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "dcb40e98b40d260dd2c99b393e8ee7beccdffd40": {
+   "lang": "zh",
+   "text": "累計節省金額，除以設備與月費的累計。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "節省的累計除以機器與月費的累計。",
+   "note": "「節省的累計」が訳調。用語を設備に統一"
+  },
+  "0c0df903cebfdd5f0a73077ee609cd9e1dee2842": {
+   "lang": "zh",
+   "text": "預計回本日",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "801e383f7e8e34937e6e6becd147d6d5edd0923b": {
+   "lang": "zh",
+   "text": "以目前的速度推算。停止製作的話，就只剩月費持續支出。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "前提是維持這個速度。一旦停止製作，就只剩下月費。",
+   "note": "「前提是」が硬い。「只剩下月費」は何が残るのか曖昧なので支出と明示"
+  },
+  "8bb183473cce6ab565eb1d7bbe5741b409fec0ec": {
+   "lang": "zh",
+   "text": "累計節省已超過設備與月費的累計。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "節省的累計已經超過機器與月費的累計。",
+   "note": "「節省的累計」が訳調。用語を設備に統一"
+  },
+  "b722c480ff0ac35e3831ccbd720417b24ba11d55": {
+   "lang": "zh",
+   "text": "以目前的速度，省下的錢還抵不過月費。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "以目前的速度，節省的金額還不到月費。",
+   "note": "「上回る」の言い方として「抵不過」が自然"
+  },
+  "48eafca3ceba4bcc4f3ccc91751de033d23e6ee5": {
+   "lang": "zh",
+   "text": "統計。節省金額是與「用外部生成服務產出同樣的量」相比的差額，不代表手上的錢變多了。設備只計主機 3 台，不含周邊。每週一重新計算。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "為止。節省金額指的是「用外部生成服務做出同樣數量時」的差額，並不代表手上的錢變多了。機器只算本體 3 件，不含周邊設備。每週一重新計算。",
+   "note": "日付の後に「為止」だけでは「截至」が無く不自然→「2026.10.31 統計。」。「本體 3 件」は訳語で、台湾では「主機 3 台」"
+  },
+  "035ed8ac9b14612922a05f2fcf57174ea5d58766": {
+   "lang": "en",
+   "text": "The hardware",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "9e7145e1f8a943d1a1027c53f30ec89622c482d8": {
+   "lang": "en",
+   "text": "pays for itself, too",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "1dbb384f43b248287c7757fb4bf7a12839ab6b5f": {
+   "lang": "en",
+   "text": "The day cumulative savings overtake what the hardware and monthly bills have cost. Projected from the last 60 days and updated weekly.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "The day cumulative savings overtake the hardware and the monthly bills, recalculated every week from the last 60 days' pace.",
+   "note": "後半の分詞句が「日」に掛かって読める。2 文に切った"
+  },
+  "da4180472b66a14213d333a80fc0ace683378774": {
+   "lang": "en",
+   "text": "Hardware and monthly costs so far",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "81747445ba8a1eae29693360ee403f3e79c26822": {
+   "lang": "en",
+   "text": "×10,000 yen, plus",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "×10,000 yen, plus a monthly",
+   "note": "「a monthly 4.4 ×10,000 yen in…」が英語として崩れる。月額は次の断片の後ろへ回した"
+  },
+  "4eb0ec4e90374f84850815032671b74a1d6e7167": {
+   "lang": "en",
+   "text": "×10,000 yen a month for subscriptions and power.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "×10,000 yen in subscriptions and power.",
+   "note": "前の断片と合わせて「plus 4.4 ×10,000 yen a month for subscriptions and power.」と読めるように"
+  },
+  "2b4960c18097e91339e45c6650bbb0553ec4fb23": {
+   "lang": "en",
+   "text": "Saved per month",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "ea5d12f67bb4b16b653a7c18492efab1d05f0deb": {
+   "lang": "en",
+   "text": "Average over the last 60 days. After monthly costs:",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "7c5564cc6b31eedaa1991685bb97dc8ced474eab": {
+   "lang": "en",
+   "text": "Recovered so far",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "567b99a12b6651834e688b7c8615a90af8defa35": {
+   "lang": "en",
+   "text": "Cumulative savings divided by hardware and monthly costs to date.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "0f2959ab10cbf1c721a9a8cd96becba9c77b5182": {
+   "lang": "en",
+   "text": "Projected break-even",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "Expected break-even",
+   "note": "見込みの日付には Projected が定番"
+  },
+  "e8871c1c278462fedc250ea0593e81112afc82b5": {
+   "lang": "en",
+   "text": "If this pace holds. Stop producing, and only the monthly costs remain.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "04375ea8e9beaa65e49ec7771013a271932a9a68": {
+   "lang": "en",
+   "text": "Cumulative savings now exceed hardware and monthly costs combined.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "Cumulative savings have passed hardware and monthly costs.",
+   "note": "「passed」は金額の比較に弱い。exceed と combined で明確に"
+  },
+  "e71ce29ec32e1eca84ee7f9a040539bd75809fee": {
+   "lang": "en",
+   "text": "At the current pace, savings don't yet cover the monthly costs.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "ok"
+  },
+  "6dfa0719172ad3205168d9641c660653c07c74f3": {
+   "lang": "en",
+   "text": "figures. Savings are the gap between this and making the same output with outside generation services. It is not extra money in the bank. Hardware means the three main machines, not peripherals. Updated every Monday.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-5",
+   "verdict": "rewrite",
+   "was": "As of this date. Savings are the difference from making the same amount with outside generation services, not money in the bank. Hardware covers the three main machines, not peripherals. Recalculated every Monday.",
+   "note": "日付の直後に「As of this date.」が来ると「2026.10.31 As of this date.」と重複して崩れる→「2026.10.31 figures.」。長い文を切った"
+  },
+  "83cf61c8d23f75afadd71a04c0c11c5c0a827c5b": {
+   "lang": "zh",
+   "text": "設備",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-6",
+   "verdict": "ok"
+  },
+  "7b50d60b9b617156017df806070300a7d6ec586a": {
+   "lang": "en",
+   "text": "Hardware:",
+   "date": "2026-10-31",
+   "by": "subagent:native-review-site-6",
+   "verdict": "rewrite",
+   "was": "Hardware",
+   "note": "「Hardware 127.7 ×10,000 yen, plus …」は動詞も区切りもなく日本語の語順をなぞって読める。英語の数字の札では「Hardware: 127.7 …」とコロンで区切るのが自然"
+  },
+  "6e3f445cc64e578fd9c8ceb08d9e353a0a1804f5": {
+   "lang": "zh",
+   "text": "生成的佇列，勾選左邊的方格來挑",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "86cd4e20da9dfc0eca3e238745f7f39b9a806579": {
+   "lang": "zh",
+   "text": "用你的工具直接呼叫",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "從自己的工具呼叫",
+   "note": "前のかけら「自己的工作室，」とつなぐと「自己的」が二度続き、日本語の「自分の…道具から」をなぞって重い"
+  },
+  "eebf4f15d9132bac3b735964884def0f9e8552f8": {
+   "lang": "zh",
+   "text": "做什麼，由自己的標準決定",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "要做什麼，照自己的標準決定",
+   "note": "表の向かいの「由服務條款決定」と対にならず、「照…決定」が日本語の「基準で決める」の直訳に読める"
+  },
+  "9f2b9b02106e9128724d36099248bcd20d48c59f": {
+   "lang": "zh",
+   "text": "設備多久回本，",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "34ea1becc485cbc87a9212893b2376d4b1dac678": {
+   "lang": "zh",
+   "text": "看你做多少",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "b5437ba2476d4feeca19d6c589df5a585d6eafeb": {
+   "lang": "zh",
+   "text": "而定。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "就知道。",
+   "note": "「看你做多少就知道」は「量を見れば分かる」になり「量で決まる」とずれる。台湾の口語「看…而定」で結ぶ"
+  },
+  "7bdc864f4c4b4b1fd8c988da3b82a71adf04e3e6": {
+   "lang": "zh",
+   "text": "依每月產出的影片長度，分別算出和外部影片生成服務的價差，以及設備要幾個月回本。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "依照每個月做的影片長度，算出跟外面影片生成服務的價差，還有設備幾個月能回本。",
+   "note": "「外面影片生成服務」が口語すぎて公式サイトの調子に合わない。「還有」の並べ方が日本語の「〜と、〜を」をなぞっている"
+  },
+  "a7b6ef780d17dfb47581ab4b99f49a510563cf66": {
+   "lang": "zh",
+   "text": "每月省下的外包費",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "每月比外包省下",
+   "note": "大きな数字の下の札なので名詞句がよい。「比外包省下」は動詞で切れて札として据わりが悪い"
+  },
+  "2b2a918b32e1f7a08ca842bc885cc46e96537b1d": {
+   "lang": "zh",
+   "text": "每月做",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "cabd4fb717301bcac0e0d4dc2fb019dcdc9d3212": {
+   "lang": "zh",
+   "text": "分鐘影片的話，100 萬日圓的設備大約",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "分鐘的影片。設備如果是 100 萬日圓，大約",
+   "note": "「…分鐘的影片。」で文を切ると条件(場合)が落ちて言い切りになる。「設備如果是」は日本語の「機材 100 万円なら」の直訳"
+  },
+  "2dd55481d53316057549ebd809def1d6418dc098": {
+   "lang": "zh",
+   "text": "個月回本。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "個月就回本。",
+   "note": "25 か月の札で「就回本」(すぐ元が取れる)は合わない。4 枚共通の文なので「就」を外す"
+  },
+  "4b118274baa5cf4a81322489ad662f6c1ae87fff": {
+   "lang": "zh",
+   "text": "單價沿用上方的統計：外部影片生成服務的最低價，扣掉自家的電費。100 萬日圓的設備只是試算用的例子；照片和音樂不計入。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "單價跟上面的統計一樣，是外面影片生成服務的最低價扣掉自家電費。設備 100 萬日圓只是試算的例子，不含照片和音樂。",
+   "note": "「跟…一樣，是…」が日本語の文の並びをなぞっている。「只是試算的例子，不含照片和音樂」は例の設備が写真と曲を含まないように読める"
+  },
+  "28a7bd60c2d3da5bf33f5ab6057d4f8a9fd32290": {
+   "lang": "zh",
+   "text": "照片、影片、歌曲和聲音，全在家裡的電腦上完成。不停機，佇列 24 小時運轉；自己寫的工具也能直接呼叫，上限只看自己的 GPU。角色的臉始終如一，從 29,000 種風格庫裡挑。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "照片、影片、歌曲、聲音，全都在家裡的電腦上誕生。不會停擺，佇列 24 小時持續前進；自己寫的工具也能直接呼叫，上限只有自己的 GPU。臉永遠是同一張，從 29,000 種的風格庫中挑選。",
+   "note": "「臉永遠是同一張」は顔が一枚の絵のように読めて不自然。「誕生」「持續前進」は日本語の「生まれる」「列が進む」の直訳"
+  },
+  "8e915200dfbbe726e210a928d423b31b14750a98": {
+   "lang": "zh",
+   "text": "資料不外流。不停機。佇列 24 小時運轉，自己的工具也能呼叫。上限只看你的 GPU。臉始終如一。風格庫就是資產。",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "不外流。不停擺。佇列 24 小時前進，自己的工具也能呼叫。上限只有自己的 GPU。臉永遠是同一張。風格庫就是資產。",
+   "note": "「不外流」だけでは何が出ないのか分からない。「佇列前進」「臉永遠是同一張」が直訳調"
+  },
+  "f97137dec7b85ab1332f926751927c28f250c559": {
+   "lang": "en",
+   "text": "from your own tools",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "ea09977041e180710d9e75cbae9ca98f5ecd4577": {
+   "lang": "en",
+   "text": "Set by your own standards",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "You decide what to make, by your own standards",
+   "note": "Table cell opposite \"Set by the service's terms\"; 'You decide what to make, by your own standards' mirrors the Japanese clause order and breaks the parallel"
+  },
+  "e919610d693a56c9581792de0ae070d6766dbfb5": {
+   "lang": "en",
+   "text": "How fast the hardware pays off depends on",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "How fast the hardware pays off",
+   "note": "強調のかけらは「作る量」= how much you make だけにしたい。depends on を前のかけらへ移す(後ろの「.」と合わせて1文になる)"
+  },
+  "c0f03bf6e155054c364697fb575c255e988669d8": {
+   "lang": "en",
+   "text": "how much you make",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "depends on how much you make",
+   "note": "強調が depends on まで掛かっていた。前のかけらと組で直す"
+  },
+  "831c80a300e4a11c52d47a071e6093ec914ffa8b": {
+   "lang": "en",
+   "text": "By monthly video output: what you save over outside video services, and how many months the hardware takes to pay for itself.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "For each amount of video a month: what you save over outside video generators, and how many months until the hardware pays for itself.",
+   "note": "'For each amount of video a month' is clunky and reads as a word-for-word rendering of 長さごとに"
+  },
+  "2acb8fa7c2b47aaf6d46a8f943e592b067dc0f04": {
+   "lang": "en",
+   "text": "Monthly savings vs. outsourcing",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "Saved vs. outsourcing, per month",
+   "note": "Label under a big number; a noun phrase reads better than 'Saved vs. outsourcing, per month'"
+  },
+  "1ea341a195443afd4a971d02904a7cfdf4a27452": {
+   "lang": "en",
+   "text": "At",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "7b8119835d1a93705afb1f2a1368731634b4a68a": {
+   "lang": "en",
+   "text": "minutes of video a month, 1M yen of hardware pays off in about",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "b4f4c5e2b9912fabc0cf4b04542d3a681f6ab123": {
+   "lang": "en",
+   "text": "months.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "0266afb89d3d2be6962da6d4dabace8a0f1b955c": {
+   "lang": "en",
+   "text": "Same rates as above: the cheapest outside video service, minus the power bill at home. The 1M-yen hardware is only an example. Photos and music aren't included.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "Same rates as above: the cheapest outside video service minus local power. The 1M-yen hardware is just an example. Photos and music aren't counted.",
+   "note": "'local power' is vague (sounds like a power source). 手元の電気代 is the home electricity bill"
+  },
+  "03feee6744bb161fcf02b12795be609c9ccf44e3": {
+   "lang": "en",
+   "text": "The generation queue. Tick the far-left box to select",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "The generation queue. Tick the box on the left to choose what goes ahead",
+   "note": "'to choose what goes ahead' adds a meaning not in the Japanese (左端の印で選ぶ = select by the mark on the left)"
+  },
+  "117a1dd07baaa9f78b29dece1c7c67709145dbec": {
+   "lang": "en",
+   "text": "Photos, video, music and voice, all made on a PC at home. It never stops: the queue runs around the clock, your own tools can call it, and the only limit is your own GPU. Keep the same face, and pick from a library of 29,000 styles.",
+   "date": "2026-10-31",
+   "by": "subagent:native-review",
+   "verdict": "rewrite",
+   "was": "Photos, video, music and voice, all made on a PC at home. It never stops: the queue runs around the clock, your own tools can call it, and the only limit is your own GPU. The same face every time, picked from a library of 29,000 styles.",
+   "note": "'The same face every time, picked from a library' says the face is picked from the library. The Japanese keeps the face and picks from the assets"
   }
  }
 }

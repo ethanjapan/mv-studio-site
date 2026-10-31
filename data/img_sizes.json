@@ -1,0 +1,3800 @@
+{
+ "assets/mark_inf.png": {
+  "m": 54,
+  "d": 86,
+  "pages": [
+   "index.html",
+   "works.html",
+   "strengths.html",
+   "studio.html",
+   "engineering.html",
+   "usecases/index.html",
+   "usecases/bridal.html",
+   "usecases/bridal_album.html",
+   "usecases/portrait.html",
+   "usecases/world.html",
+   "usecases/kaisetsu.html",
+   "usecases/shichigosan.html",
+   "usecases/still.html",
+   "usecases/daily.html"
+  ]
+ },
+ "assets/wk_itsumo.jpg": {
+  "m": 368,
+  "d": 362,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/uc/uc_bridal_B27.jpg": {
+  "m": 178,
+  "d": 362,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/app_chat.jpg": {
+  "m": 356,
+  "d": 659,
+  "pages": [
+   "index.html",
+   "studio.html",
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/hero_yakusoku.jpg": {
+  "m": 281,
+  "d": 342,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/uc/uc_bridal_B43.jpg": {
+  "m": 172,
+  "d": 362,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/uc/port_105.jpg": {
+  "m": 172,
+  "d": 362,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/uc/world_tw_15.jpg": {
+  "m": 172,
+  "d": 362,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/bb_k03.jpg": {
+  "m": 358,
+  "d": 551,
+  "pages": [
+   "index.html",
+   "usecases/index.html"
+  ]
+ },
+ "assets/uc/door_beauty.jpg": {
+  "m": 358,
+  "d": 551,
+  "pages": [
+   "index.html",
+   "usecases/index.html"
+  ]
+ },
+ "assets/wk_saber.jpg": {
+  "m": 249,
+  "d": 342,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/yt_banner.jpg": {
+  "m": 356,
+  "d": 1118,
+  "pages": [
+   "index.html",
+   "works.html"
+  ]
+ },
+ "assets/yt_avatar.jpg": {
+  "m": 56,
+  "d": 64,
+  "pages": [
+   "index.html",
+   "works.html"
+  ]
+ },
+ "assets/ex_moodm.jpg": {
+  "m": 258,
+  "d": 328,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/ex_facem.jpg": {
+  "m": 246,
+  "d": 338,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/ex_dressm.jpg": {
+  "m": 240,
+  "d": 330,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/ex_face.jpg": {
+  "m": 240,
+  "d": 316,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/fc_profile.jpg": {
+  "m": 83,
+  "d": 87,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/fc_wish.jpg": {
+  "m": 83,
+  "d": 87,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/fc_candy.jpg": {
+  "m": 83,
+  "d": 87,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/lv5_skin.jpg": {
+  "m": 356,
+  "d": 644,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/lv5_eyes.jpg": {
+  "m": 168,
+  "d": 454,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/lv5_mouth.jpg": {
+  "m": 168,
+  "d": 454,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/cg3_kanade_cu.jpg": {
+  "m": 119,
+  "d": 373,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/cg3_kanade_front.jpg": {
+  "m": 119,
+  "d": 373,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/cg3_kanade_stage.jpg": {
+  "m": 119,
+  "d": 373,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/sb_full.jpg": {
+  "m": 356,
+  "d": 359,
+  "pages": [
+   "index.html",
+   "studio.html"
+  ]
+ },
+ "assets/st/plate_core.jpg": {
+  "m": 356,
+  "d": 520,
+  "pages": [
+   "index.html",
+   "strengths.html",
+   "engineering.html"
+  ]
+ },
+ "assets/wk_kugatsu.jpg": {
+  "m": 356,
+  "d": 359,
+  "pages": [
+   "index.html"
+  ]
+ },
+ "assets/st/plate_window.jpg": {
+  "m": 356,
+  "d": 509,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_dawn.jpg": {
+  "m": 298,
+  "d": 499,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_home.jpg": {
+  "m": 155,
+  "d": 252,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_music.jpg": {
+  "m": 155,
+  "d": 252,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_queue.jpg": {
+  "m": 326,
+  "d": 520,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_voice.jpg": {
+  "m": 155,
+  "d": 252,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_chat.jpg": {
+  "m": 155,
+  "d": 252,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_edit.jpg": {
+  "m": 155,
+  "d": 252,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_cable.jpg": {
+  "m": 328,
+  "d": 521,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/st/plate_deliver.jpg": {
+  "m": 328,
+  "d": 521,
+  "pages": [
+   "strengths.html"
+  ]
+ },
+ "assets/bd_goldfish.jpg": {
+  "m": 112,
+  "d": 243,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/bd_theater.jpg": {
+  "m": 112,
+  "d": 243,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/bd_club.jpg": {
+  "m": 112,
+  "d": 243,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/ref_face2.jpg": {
+  "m": 306,
+  "d": 308,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/ref_dress2.jpg": {
+  "m": 306,
+  "d": 308,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/reel_0.jpg": {
+  "m": 249,
+  "d": 320,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/reel_1.jpg": {
+  "m": 238,
+  "d": 330,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/reel_2.jpg": {
+  "m": 232,
+  "d": 323,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/reel_3.jpg": {
+  "m": 232,
+  "d": 310,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/reel_4.jpg": {
+  "m": 232,
+  "d": 307,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/reel_5.jpg": {
+  "m": 306,
+  "d": 308,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/reel_6.jpg": {
+  "m": 232,
+  "d": 307,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/reel_7.jpg": {
+  "m": 232,
+  "d": 307,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_jiufen.jpg": {
+  "m": 216,
+  "d": 334,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_city_night.jpg": {
+  "m": 218,
+  "d": 338,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_lotus.jpg": {
+  "m": 219,
+  "d": 341,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_moon_window.jpg": {
+  "m": 220,
+  "d": 344,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_02.jpg": {
+  "m": 222,
+  "d": 347,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_05.jpg": {
+  "m": 223,
+  "d": 350,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_00.jpg": {
+  "m": 225,
+  "d": 354,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_01.jpg": {
+  "m": 226,
+  "d": 357,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_hall_light.jpg": {
+  "m": 227,
+  "d": 360,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_22.jpg": {
+  "m": 229,
+  "d": 363,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_city_roof.jpg": {
+  "m": 230,
+  "d": 366,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_06.jpg": {
+  "m": 231,
+  "d": 370,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_alishan_forest.jpg": {
+  "m": 219,
+  "d": 350,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_alishan_avenue.jpg": {
+  "m": 218,
+  "d": 347,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_amis_ocean.jpg": {
+  "m": 216,
+  "d": 344,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_beigang.jpg": {
+  "m": 215,
+  "d": 341,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_14.jpg": {
+  "m": 214,
+  "d": 337,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_15.jpg": {
+  "m": 212,
+  "d": 334,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_16.jpg": {
+  "m": 211,
+  "d": 331,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_17.jpg": {
+  "m": 212,
+  "d": 328,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_18.jpg": {
+  "m": 213,
+  "d": 327,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_23.jpg": {
+  "m": 214,
+  "d": 331,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_19.jpg": {
+  "m": 216,
+  "d": 334,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_03.jpg": {
+  "m": 217,
+  "d": 337,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_04.jpg": {
+  "m": 220,
+  "d": 343,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_07.jpg": {
+  "m": 221,
+  "d": 346,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_08.jpg": {
+  "m": 223,
+  "d": 350,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_09.jpg": {
+  "m": 224,
+  "d": 353,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_10.jpg": {
+  "m": 225,
+  "d": 356,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_11.jpg": {
+  "m": 227,
+  "d": 360,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_12.jpg": {
+  "m": 228,
+  "d": 363,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_13.jpg": {
+  "m": 230,
+  "d": 366,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_airline.jpg": {
+  "m": 231,
+  "d": 370,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/lib_skate.jpg": {
+  "m": 233,
+  "d": 373,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_20.jpg": {
+  "m": 234,
+  "d": 376,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/tw_21.jpg": {
+  "m": 236,
+  "d": 380,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_00.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_01.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_02.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_03.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_04.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_05.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_06.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_07.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_08.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_09.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_10.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_11.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_12.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_13.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_14.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_15.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_16.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_17.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_18.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_19.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_20.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_21.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_22.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_23.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_24.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_25.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_26.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_27.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_28.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_29.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_30.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_31.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_32.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_33.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_34.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_35.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_36.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_37.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_38.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_39.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_40.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_41.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_42.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_43.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_44.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_45.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/wd_46.jpg": {
+  "m": 106,
+  "d": 164,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/ref_sekaikan.png": {
+  "m": 66,
+  "d": 92,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/ref_mv.png": {
+  "m": 68,
+  "d": 94,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/ref_mood.png": {
+  "m": 48,
+  "d": 64,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/ref_color.png": {
+  "m": 52,
+  "d": 70,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/ref_tempo.png": {
+  "m": 70,
+  "d": 96,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/voice_print.png": {
+  "m": 270,
+  "d": 456,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/sb_bust.jpg": {
+  "m": 148,
+  "d": 203,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/sb_knee.jpg": {
+  "m": 148,
+  "d": 203,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pc_bokeh.jpg": {
+  "m": 306,
+  "d": 308,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/app_voice.jpg": {
+  "m": 356,
+  "d": 659,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/app_voice_phone.jpg": {
+  "m": 88,
+  "d": 140,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/app_brain.jpg": {
+  "m": 298,
+  "d": 428,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/app_music.jpg": {
+  "m": 356,
+  "d": 659,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/app_photo.jpg": {
+  "m": 356,
+  "d": 659,
+  "pages": [
+   "studio.html",
+   "usecases/portrait.html",
+   "usecases/world.html"
+  ]
+ },
+ "assets/app_char.jpg": {
+  "m": 356,
+  "d": 659,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/app_rinka4.jpg": {
+  "m": 356,
+  "d": 659,
+  "pages": [
+   "studio.html",
+   "usecases/bridal.html",
+   "usecases/portrait.html",
+   "usecases/world.html"
+  ]
+ },
+ "assets/app_seam.jpg": {
+  "m": 356,
+  "d": 659,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/app_fashion.jpg": {
+  "m": 356,
+  "d": 547,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/app_mvtpl.jpg": {
+  "m": 356,
+  "d": 547,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_mv1.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_mv2.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_mv3.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_ph1.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_ph2.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_ph3.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_mu1.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_mu2.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pd_mu3.jpg": {
+  "m": 98,
+  "d": 99,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c15_1.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c15_2.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c15_3.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c15_4.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/dev_mac.jpg": {
+  "m": 339,
+  "d": 573,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/dev_ipad.jpg": {
+  "m": 216,
+  "d": 305,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/dev_iphone.jpg": {
+  "m": 82,
+  "d": 118,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c18_1.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c18_2.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c18_3.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c18_4.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c19_1.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c19_2.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c19_3.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/pil_c19_4.jpg": {
+  "m": 356,
+  "d": 549,
+  "pages": [
+   "studio.html"
+  ]
+ },
+ "assets/eng/s01_voice.jpg": {
+  "m": 142,
+  "d": 243,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/s02_plan.jpg": {
+  "m": 143,
+  "d": 243,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/s03_mark.jpg": {
+  "m": 142,
+  "d": 243,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/s04_queue.jpg": {
+  "m": 143,
+  "d": 244,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/s05_gpu.jpg": {
+  "m": 142,
+  "d": 243,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/s06_check.jpg": {
+  "m": 143,
+  "d": 243,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/s07_choose.jpg": {
+  "m": 142,
+  "d": 243,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/s08_publish.jpg": {
+  "m": 143,
+  "d": 244,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/e02_gate.jpg": {
+  "m": 356,
+  "d": 1118,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/uc/753_08.jpg": {
+  "m": 177,
+  "d": 274,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/uc/753_08b.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "engineering.html",
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/bridal_23.jpg": {
+  "m": 177,
+  "d": 274,
+  "pages": [
+   "engineering.html",
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/eng/e04_machine.jpg": {
+  "m": 310,
+  "d": 504,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/e04_human.jpg": {
+  "m": 310,
+  "d": 504,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/e05_build.jpg": {
+  "m": 356,
+  "d": 610,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/eng/e05_iphone.jpg": {
+  "m": 356,
+  "d": 488,
+  "pages": [
+   "engineering.html"
+  ]
+ },
+ "assets/uc/uc_bridal_B07.jpg": {
+  "m": 358,
+  "d": 550,
+  "pages": [
+   "usecases/index.html"
+  ]
+ },
+ "assets/uc/port_2.jpg": {
+  "m": 358,
+  "d": 550,
+  "pages": [
+   "usecases/index.html"
+  ]
+ },
+ "assets/uc/world_08.jpg": {
+  "m": 358,
+  "d": 550,
+  "pages": [
+   "usecases/index.html"
+  ]
+ },
+ "assets/uc/sn2_s04.jpg": {
+  "m": 358,
+  "d": 550,
+  "pages": [
+   "usecases/index.html"
+  ]
+ },
+ "assets/uc/753_10.jpg": {
+  "m": 358,
+  "d": 550,
+  "pages": [
+   "usecases/index.html",
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/album/w2.jpg": {
+  "m": 378,
+  "d": 1200,
+  "pages": [
+   "usecases/bridal.html",
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/t2.jpg": {
+  "m": 197,
+  "d": 312,
+  "pages": [
+   "usecases/bridal.html",
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/bridal_01.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_02.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_05.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_06.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_07.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_08.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_09.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_10.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_11.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_12.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_13.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_14.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_15.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_16.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_17.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_18.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_19.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_20.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_21.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_22.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_24.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_01.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_02.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_05.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_06.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_07.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_08.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_09.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_10.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_11.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_12.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_13.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_kr_14.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_01.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_02.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_05.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_06.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_07.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_08.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_09.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_10.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_11.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_tw_12.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_01.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_02.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_05.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_06.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_07.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_08.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_09.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_10.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_11.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_12.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_13.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_14.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_15.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/bridal_cn_16.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_016.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_020.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_007.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_047.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_086.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_091.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_070.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_066.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_115.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_112.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_136.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_146.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_179.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_164.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_175.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_194.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_325.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_314.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_308.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_302.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_212.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_222.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_219.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_207.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_267.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_268.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_263.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_261.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_345.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_344.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_366.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_372.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_399.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_381.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_414.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_397.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_485.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_493.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_476.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_472.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_431.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_446.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_433.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/dress/dress_421.jpg": {
+  "m": 153,
+  "d": 93,
+  "pages": [
+   "usecases/bridal.html"
+  ]
+ },
+ "assets/uc/port_150.jpg": {
+  "m": 356,
+  "d": 469,
+  "pages": [
+   "usecases/bridal.html",
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/album/w4.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/w1.jpg": {
+  "m": 197,
+  "d": 312,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/w3.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/w6.jpg": {
+  "m": 257,
+  "d": 408,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/w7.jpg": {
+  "m": 136,
+  "d": 216,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/w5.jpg": {
+  "m": 144,
+  "d": 228,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/y5.jpg": {
+  "m": 197,
+  "d": 312,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/y1.jpg": {
+  "m": 378,
+  "d": 1200,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/y2.jpg": {
+  "m": 151,
+  "d": 240,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/y7.jpg": {
+  "m": 151,
+  "d": 240,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/y3.jpg": {
+  "m": 151,
+  "d": 240,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/y6.jpg": {
+  "m": 144,
+  "d": 228,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/y4.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/k2.jpg": {
+  "m": 197,
+  "d": 312,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/k1.jpg": {
+  "m": 378,
+  "d": 1200,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/k4.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/k3.jpg": {
+  "m": 242,
+  "d": 384,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/k5.jpg": {
+  "m": 287,
+  "d": 456,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/k6.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/t3.jpg": {
+  "m": 378,
+  "d": 1200,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/t4.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/t5.jpg": {
+  "m": 151,
+  "d": 240,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/t6.jpg": {
+  "m": 151,
+  "d": 240,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/t1.jpg": {
+  "m": 272,
+  "d": 432,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/t7.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/c1.jpg": {
+  "m": 197,
+  "d": 312,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/c7.jpg": {
+  "m": 378,
+  "d": 1200,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/c2.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/c3.jpg": {
+  "m": 151,
+  "d": 240,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/c4.jpg": {
+  "m": 151,
+  "d": 240,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/c5.jpg": {
+  "m": 136,
+  "d": 216,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/c6.jpg": {
+  "m": 136,
+  "d": 216,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/album/c8.jpg": {
+  "m": 378,
+  "d": 600,
+  "pages": [
+   "usecases/bridal_album.html"
+  ]
+ },
+ "assets/uc/port_42.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_43.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_44.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_146.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_134.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_135.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_149.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_138.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_45.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_147.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_148.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_212.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_213.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_214.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_216.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_218.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_220.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_222.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_224.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_226.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_227.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_178.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_179.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_180.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_168.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_181.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_182.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_183.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_169.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_153.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_154.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_177.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_155.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_156.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_157.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_158.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_159.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_160.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_161.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_68.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_69.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_70.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_71.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_72.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_73.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_74.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_75.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_76.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_47.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_49.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_50.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_141.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_142.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_143.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/port_144.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html"
+  ]
+ },
+ "assets/uc/world_06.jpg": {
+  "m": 356,
+  "d": 469,
+  "pages": [
+   "usecases/portrait.html",
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_hero.jpg": {
+  "m": 358,
+  "d": 440,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_49.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_50.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_51.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_52.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_53.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_54.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_55.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_56.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_58.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_59.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_60.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_12.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_13.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_14.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_15.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_16.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_17.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_18.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_19.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_20.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_21.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_22.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_23.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_zk_24.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_04.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_05.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_11.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_12.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_us2_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_us2_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_09.jpg": {
+  "m": 356,
+  "d": 469,
+  "pages": [
+   "usecases/world.html",
+   "usecases/daily.html"
+  ]
+ },
+ "assets/uc/world_us2_01.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_us2_02.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_us2_05.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_14.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_18.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_23.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kr2_01.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kr2_02.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kr2_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_20.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_21.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_24.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kr2_03.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kr2_05.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_01.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_02.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_16.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_05.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_06.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_07.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_08.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_13.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_17.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_09.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_10.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_11.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_12.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_14.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_15.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_kp_18.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_36.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw_13.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw_10.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw_16.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw_22.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_01.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_02.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_05.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_06.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_07.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_08.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_09.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_10.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_11.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_12.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_13.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_14.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw2_15.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw_19.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_tw_23.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_28.jpg": {
+  "m": 233,
+  "d": 309,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_33.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_34.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_cn_11.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_cn_12.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_cn_13.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_cn_15.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_cn_16.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_cn2_02.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_25.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_26.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_27.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_31.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_cn2_01.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_cn2_03.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_38.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_41.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_42.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_44.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_47.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp_13.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp_16.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_07.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_43.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_46.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_01.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_02.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_04.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_05.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_06.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_08.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/world_jp2_09.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/world.html"
+  ]
+ },
+ "assets/uc/ks_bilingual.jpg": {
+  "m": 356,
+  "d": 358,
+  "pages": [
+   "usecases/world.html",
+   "usecases/kaisetsu.html"
+  ]
+ },
+ "assets/uc/ks_script.jpg": {
+  "m": 356,
+  "d": 358,
+  "pages": [
+   "usecases/kaisetsu.html"
+  ]
+ },
+ "assets/uc/ks_guide.jpg": {
+  "m": 356,
+  "d": 358,
+  "pages": [
+   "usecases/kaisetsu.html"
+  ]
+ },
+ "assets/uc/753_11.jpg": {
+  "m": 358,
+  "d": 511,
+  "pages": [
+   "usecases/kaisetsu.html",
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/753_01.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/753_02.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/753_03.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/753_04.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/753_05.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/753_06.jpg": {
+  "m": 111,
+  "d": 150,
+  "pages": [
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/753_07.jpg": {
+  "m": 358,
+  "d": 511,
+  "pages": [
+   "usecases/shichigosan.html",
+   "usecases/still.html"
+  ]
+ },
+ "assets/uc/753_09.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/shichigosan.html",
+   "usecases/still.html"
+  ]
+ },
+ "assets/uc/753_12.jpg": {
+  "m": 354,
+  "d": 469,
+  "pages": [
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/uc_bridal_B09.jpg": {
+  "m": 356,
+  "d": 298,
+  "pages": [
+   "usecases/shichigosan.html"
+  ]
+ },
+ "assets/uc/ny_s04.jpg": {
+  "m": 312,
+  "d": 314,
+  "pages": [
+   "usecases/still.html"
+  ]
+ },
+ "assets/uc/pl2_s03.jpg": {
+  "m": 312,
+  "d": 314,
+  "pages": [
+   "usecases/still.html"
+  ]
+ },
+ "assets/uc/753_plate.jpg": {
+  "m": 356,
+  "d": 298,
+  "pages": [
+   "usecases/still.html"
+  ]
+ }
+}

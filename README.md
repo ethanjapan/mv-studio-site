@@ -56,3 +56,10 @@ Created by [@made_linlin](https://www.instagram.com/made_linlin/)
 ## 繁中と英語を足したら(2026-10-31)
 - 文を足す・変えると、ビルドが「ネイティブの見直しを通していない」で止まる。`node review_translation.mjs pending --out /tmp/p.json` → 別の担当(サブエージェント)に `docs/translation-review-brief.md` の頼み方で見直させる → `node review_translation.mjs apply <結果>` → `npm run build`
 - 数字だけを直した文も見直しに回す(文の指紋が変わるため)
+
+## 写真の srcset と動画の遅延読み込み(2026-10-31・サイトの軽量化)
+- **写真を足したら** `python3 tools/img_srcset.py` を回す。`<img src="assets/x.jpg">` に WebP の `x.w600.webp` / `x.w1200.webp` と `sizes` を足す(HTML の入れ子は変えない= CSS はそのまま)。冪等。
+- `sizes` の元は `data/img_sizes.json`(写真ごとの画面での幅・スマホ 402 と PC 1440)。新しい写真が JSON に無ければ飛ばすので、頁を足した時は幅を測り直す(puppeteer で `[hidden]` を一時的に開いて `getBoundingClientRect().width` を取る)。
+- 名前は `.wNNN.webp`。昔からある `x-600.webp` は `<picture>` 用で、元の切り抜きが違うものがある(753_08 など)ので流用しない。
+- 作品と裏番組の動画は `gen_works.mjs` が `data-src` で書く(src と autoplay を書かない)。トップは main.js の worksObs、作品一覧などは sitemenu.js が画面に入った時だけ読む。autoplay を書き戻すと画面外の動画が全部最初に読まれる。
+- トップの花火(hero_hanabi)は幅 860px 以下で `hero_hanabi_m.mp4`(960x544)を読む。

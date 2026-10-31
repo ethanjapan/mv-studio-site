@@ -23,7 +23,10 @@ const EXCLUDE = new Set(['lint_design.mjs', 'lint_translation.mjs', 'DESIGN_RULE
   'js/world.js',              // どの HTML からも参照されていない死蔵ファイル
   '_review',                  // 画像の目視チェック用(公開しない)
   'tools',                    // 作品の素材を作る台本(tools/new_work_assets.py・公開しない)
+  'review_translation.mjs', 'docs',   // 翻訳の見直しの台本と手引き(手元の絶対パスを含む・2026-10-31 に dist へ紛れていたのを止めた)
 ])
+// 写したあとに dist を見て、台本・文書・設定が紛れていたらビルドを止める(除外の書き忘れの保険・2026-10-31)
+const LEAK_EXT = /\.(mjs|cjs|py|sh|md|tsv|jsonl|bak|log)$/i
 
 const HTML_OPTS = {
   collapseWhitespace: true,
@@ -99,6 +102,8 @@ for (const rel of await walk(ROOT)) {
 }
 
 await writeFile(join(DIST, 'sitemap.xml'), sitemap())
+{ const leak = (await walk(DIST)).filter(r => LEAK_EXT.test(r))
+  if (leak.length) { console.error(`★ dist に公開しないファイルが紛れた(build.mjs の EXCLUDE に足す): ${leak.join(', ')}`); process.exit(1) } }
 console.log(`言語別の頁: ${PAGES.length} 頁 x ${LANGS.join('/')} = ${PAGES.length * LANGS.length} 枚・sitemap.xml ${PAGES.length * 3} URL`)
 
 const b = saved.reduce((s, x) => s + x.before, 0)

@@ -175,7 +175,7 @@ USE CASE 06 — 七五三・家族写真	USE CASE 06 — Shichigosan family phot
 # 2026-10-20 八つの段の実物の画面と、止めた記録の前後
 アプリの音声通話の画面	The app's voice-call screen
 MV テンプレの棚。カット数と尺つき	The MV template shelf, each one labeled with its shot count and running time
-jobnet の列。左端の印で選ぶ	The jobnet queue. Tick the box on the left to choose what goes ahead
+生成の列。左端の印で選ぶ	The generation queue. Tick the far-left box to select
 待ち行列。予約の時刻つき	Jobs waiting their turn, with scheduled start times
 GPU の表示。VRAM・温度・24 時間の稼働	GPU status: VRAM, temperature, and the last 24 hours of work
 顔検出の枠と、スマホの枠	The face-detection box, plus the crop a phone screen would show

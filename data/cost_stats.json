@@ -8,17 +8,17 @@
   "ltx25": 7814,
   "h3lu": 224
  },
- "images": 42770,
+ "images": 42812,
  "images_by_gate": {
-  "zimage": 39949,
+  "zimage": 39991,
   "krea2": 2164,
   "qwen21": 635,
   "ming": 22
  },
- "image_gpu_hours": 429.1,
+ "image_gpu_hours": 429.7,
  "save_video_jpy": 731779,
- "save_image_jpy": 83700,
- "save_total_jpy": 815479,
+ "save_image_jpy": 83777,
+ "save_total_jpy": 815556,
  "prices": {
   "_note": "仕組みの頁「04 — 失敗の値段」の単価(下限の考え方= 外部はいちばん安い公式の単価・手元は電気代を差し引く)。値を変えたら日付と出典も変える。集計= mvdirector/scripts/site_cost_stats.py",
   "since": "2026-08-21",
