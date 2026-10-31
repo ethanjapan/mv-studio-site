@@ -1546,7 +1546,7 @@
    "shelf": "season",
    "orient": "P",
    "ja": "肩越しに振り返る",
-   "zh": "回頭看過來",
+   "zh": "從肩後回眸",
    "en": "Looking back over her shoulder",
    "v": "1031a",
    "status": "live",
@@ -1606,8 +1606,8 @@
    "shelf": "season",
    "orient": "P",
    "ja": "実のなる枝越し",
-   "zh": "隔著結滿果子的枝",
-   "en": "Through the fruit-laden branch",
+   "zh": "隔著結實纍纍的枝頭",
+   "en": "Through a fruit-laden branch",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -1687,7 +1687,7 @@
    "key": "M1031",
    "date": "2026-10-31",
    "ja": "柿の木の下、雨の日を撮る。",
-   "zh": "柿子樹下，雨天也能拍。",
+   "zh": "柿子樹下，拍一個雨天。",
    "en": "A rainy day under the persimmon tree.",
    "reel": "kaki"
   },
@@ -1727,14 +1727,14 @@
    "date": "2026-10-23",
    "ja": "夜の光。",
    "zh": "夜晚的光。",
-   "en": "Night light.",
+   "en": "Light after dark.",
    "reel": "night"
   },
   {
    "key": "P03",
    "date": "2026-10-23",
    "ja": "白は、光を映す。",
-   "zh": "白色，會把光留住。",
+   "zh": "白色，會映出光。",
    "en": "White holds the light.",
    "reel": "white"
   },
@@ -1743,7 +1743,7 @@
    "date": "2026-10-22",
    "ja": "1 か所で 8 カット: 廃ビルとバイク",
    "zh": "一個地點八張：廢墟與機車",
-   "en": "Eight frames, one spot: a ruin and a motorcycle",
+   "en": "Eight frames, one spot: an abandoned building and a motorcycle",
    "reel": "place"
   },
   {
@@ -1758,7 +1758,7 @@
    "key": "P05",
    "date": "2026-10-21",
    "ja": "光の教科書 二冊目",
-   "zh": "光的教科書，第二本",
+   "zh": "光的教科書（二）",
    "en": "Reading the light, volume two"
   },
   {

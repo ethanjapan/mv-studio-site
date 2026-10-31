@@ -7,6 +7,7 @@
 //   基準= data/translation_baseline.json(いま許している分)。無い印が出たら止める。直したら減る(ラチェット)。TRANSLATION_BASELINE_WRITE=1 で今の状態を書き直す(増やす方向には使わない)
 //   ★検査は「印」であって「正解」ではない。当たった行は、その言語で一から書き直す(辞書の置換で逃げない)。例外にしたい行だけ baseline に残す
 import { readFileSync, readdirSync, existsSync, writeFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { join } from 'node:path'
 
 // 日本の新字体・簡体字で、台湾の正体字には無い字(当たったら正体字に直す。並びは意味なし)
@@ -25,22 +26,55 @@ const EN_WORDS = { 'consult': 'ask / talk to us / DM', 'consultation': 'a chat /
 // 当たりやすすぎる語・技術の文脈では普通の語は知らせだけ(止めない)。2026-10-31 初回: 寫真館・寫真集・現場演出・檢查項目(繁中)と production / confirmation / implementation(英・つくりかたの頁)は誤検出だったので語表から外すか、ここへ
 const EN_SKIP = new Set(['live', 'image', 'production', 'confirmation', 'implementation', 'introduce'])
 
-export function lintTranslation(ROOT, bad) {
+// 文の指紋(見直しの記録の鍵)。言語 + 改行 + 文(前後の空白を除く)の sha1
+export function hashText(lang, text) { return createHash('sha1').update(`${lang}\n${String(text).trim()}`).digest('hex') }
+
+// サイトに出る繁中と英語の文を全部集める。1 件= [どこ, 文, 日本語の元]
+export function inventory(ROOT) {
   const dictM = (file) => { const s = readFileSync(join(ROOT, file), 'utf8'); const h = 'const M=Object.assign({},{'; const a = s.indexOf(h), b = s.indexOf('\n  },window.MV_WORKS_I18N', a); if (a < 0 || b < 0) return {}; return (0, eval)('(' + s.slice(a + h.length - 1, b).trim() + '})') }
   const winDicts = (file) => { try { const w = {}; (new Function('window', readFileSync(join(ROOT, file), 'utf8')))(w); return w } catch { return {} } }
-  const zh = [], en = []   // [where, text]
-  for (const f of ['js/main.js', 'js/uc_i18n.js']) for (const [k, v] of Object.entries(dictM(f))) zh.push([`${f}: ${k.slice(0, 24)}`, String(v)])
+  const zh = [], en = []
+  for (const f of ['js/main.js', 'js/uc_i18n.js']) for (const [k, v] of Object.entries(dictM(f))) zh.push([`${f}: ${k.slice(0, 24)}`, String(v), k])
   for (const f of readdirSync(join(ROOT, 'js')).filter(f => /_i18n\.js$/.test(f))) {
     for (const [name, d] of Object.entries(winDicts(`js/${f}`))) {
       if (!d || typeof d !== 'object') continue
-      for (const [k, v] of Object.entries(d)) (/_EN$/.test(name) ? en : zh).push([`js/${f}: ${k.slice(0, 24)}`, String(v)])
+      for (const [k, v] of Object.entries(d)) (/_EN$/.test(name) ? en : zh).push([`js/${f}: ${k.slice(0, 24)}`, String(v), k])
     }
   }
   for (const f of readdirSync(join(ROOT, 'data/i18n_en')).filter(f => f.endsWith('.tsv'))) {
-    readFileSync(join(ROOT, 'data/i18n_en', f), 'utf8').split('\n').forEach((l, i) => { if (!l.trim() || l.startsWith('#')) return; const c = l.split('\t'); if (c[1]) en.push([`i18n_en/${f}:${i + 1}`, c[1]]) })
+    readFileSync(join(ROOT, 'data/i18n_en', f), 'utf8').split('\n').forEach((l, i) => { if (!l.trim() || l.startsWith('#')) return; const c = l.split('\t'); if (c[1]) en.push([`i18n_en/${f}:${i + 1}`, c[1], c[0]]) })
   }
+  // 検索用の説明文: 日本語の元は頁の meta(description / og:description)
+  const metaJa = (page, k) => { try { const h = readFileSync(join(ROOT, page), 'utf8'); const re = k === 'og' ? /property="og:description" content="([^"]*)"/ : /name="description" content="([^"]*)"/; return (h.match(re) || [])[1] || '' } catch { return '' } }
   const seo = JSON.parse(readFileSync(join(ROOT, 'data/seo_meta.json'), 'utf8')).pages
-  for (const [p, v] of Object.entries(seo)) { for (const k of ['description', 'og']) { if (v.zh?.[k]) zh.push([`seo ${p} zh.${k}`, v.zh[k]]); if (v.en?.[k]) en.push([`seo ${p} en.${k}`, v.en[k]]) } if (v.name?.zh) zh.push([`seo ${p} name`, v.name.zh]); if (v.name?.en) en.push([`seo ${p} name`, v.name.en]) }
+  for (const [p, v] of Object.entries(seo)) {
+    for (const k of ['description', 'og']) { if (v.zh?.[k]) zh.push([`seo ${p} zh.${k}`, v.zh[k], metaJa(p, k)]); if (v.en?.[k]) en.push([`seo ${p} en.${k}`, v.en[k], metaJa(p, k)]) }
+    if (v.name?.zh) zh.push([`seo ${p} name`, v.name.zh, v.name.ja || '']); if (v.name?.en) en.push([`seo ${p} name`, v.name.en, v.name.ja || ''])
+  }
+  return { zh, en }
+}
+
+// ネイティブの見直しを通していない文(2026-10-31 ユーザー「私の指摘に対する再発防止は？」→「作って」)。
+// 記録= data/translation_reviewed.json(legacy= 2026-10-31 より前に公開済みの文の指紋 / reviewed= 見直し役が通した文)
+// 漢字の無い繁中・英字の無い英語(固有名だけ・記号だけ)は数えない
+export function unreviewed(ROOT, inv = inventory(ROOT)) {
+  const rp = join(ROOT, 'data/translation_reviewed.json')
+  const rev = existsSync(rp) ? JSON.parse(readFileSync(rp, 'utf8')) : { legacy: [], reviewed: {} }
+  const ok = new Set([...(rev.legacy || []), ...Object.keys(rev.reviewed || {})])
+  const out = new Map()
+  for (const [lang, arr] of [['zh', inv.zh], ['en', inv.en]]) for (const [where, text, ja] of arr) {
+    if (lang === 'zh' ? !/[一-鿿]/.test(text) : !/[A-Za-z]/.test(text)) continue
+    const id = hashText(lang, text)
+    if (ok.has(id)) continue
+    if (!out.has(id)) out.set(id, { id, lang, ja: ja || '', text, where: [where] }); else out.get(id).where.push(where)
+  }
+  return [...out.values()]
+}
+
+export function lintTranslation(ROOT, bad) {
+  const inv = inventory(ROOT), zh = inv.zh, en = inv.en
+  const pend = unreviewed(ROOT, inv)
+  if (pend.length) bad.push(`ネイティブの見直しを通していない繁中・英語 ${pend.length} 件(書いた本人の確認では通らない)。\n    手順= node review_translation.mjs pending --out <file> → 別の担当(サブエージェント)に docs/translation-review-brief.md の頼み方で見直させる → node review_translation.mjs apply <結果の file>\n    ` + pend.slice(0, 12).map(p => `${p.lang} … ${p.where[0]} … ${p.text.slice(0, 40)}`).join('\n    '))
 
   const hits = []   // {key, where, text, why, stop}
   const add = (where, text, why, stop = true) => hits.push({ key: `${why}|${text.slice(0, 60)}`, where, text, why, stop })

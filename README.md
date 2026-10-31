@@ -52,3 +52,7 @@ Created by [@made_linlin](https://www.instagram.com/made_linlin/)
 - 載せるのは肌の正本(PNG の文に「real person photographed on location」があり「tiny moles」が無い)だけ。満たさない行は `status: candidate`
 - 縦のリール= `assets/uc/reel_<名>.mp4`(IG の noBGM 版を 720x1280・無音・crf24・faststart)+ 先頭コマの `.jpg`。枠は `usecases/portrait.html` の `.uc-reel-row` に手で 1 行
 - 棚のお気に入りから選んだ新作(2026-10-24)= `data/portrait_fav.json`(撮影会 03・SET pfav)/ `data/bridal_fav.json`(ブライダル 03・bfav)/ `data/world_fav.json`(世界 03・wfav)。足し方は上と同じ(still_assets.py --data → gen_shelves.mjs)。1 様式 1 枚・肌の正本だけ・各棚 9 枚目までに横長を入れない(段に穴が空く)。頁の「ここに並ぶのは N」の数も合わせる
+
+## 繁中と英語を足したら(2026-10-31)
+- 文を足す・変えると、ビルドが「ネイティブの見直しを通していない」で止まる。`node review_translation.mjs pending --out /tmp/p.json` → 別の担当(サブエージェント)に `docs/translation-review-brief.md` の頼み方で見直させる → `node review_translation.mjs apply <結果>` → `npm run build`
+- 数字だけを直した文も見直しに回す(文の指紋が変わるため)

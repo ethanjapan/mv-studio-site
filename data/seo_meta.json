@@ -89,8 +89,8 @@
    "ja_description": "MV Studio でできること。ブライダル前撮り、撮影会ポートレート、世界の撮影、解説動画、七五三・家族写真、物と場所。",
    "ja_og": "MV Studio でできること。ブライダル前撮り、撮影会ポートレート、世界の撮影、解説動画、七五三・家族写真、物と場所。",
    "zh": {
-    "description": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及靜物與空間。",
-    "og": "MV Studio 能做到的事。婚紗照、外拍人像、環遊世界的拍攝、解說影片、七五三與家庭照，以及靜物與空間。"
+    "description": "MV Studio 能做的事：婚紗照、外拍人像、世界各地取景、解說影片、七五三與全家福，以及靜物與空間。",
+    "og": "MV Studio 能做的事：婚紗照、外拍人像、世界各地取景、解說影片、七五三與全家福，以及靜物與空間。"
    },
    "en": {
     "description": "What MV Studio can do: pre-wedding shoots, portrait sessions, shoots around the world, explainer videos, Shichi-Go-San and family photos, and objects and places.",
@@ -149,12 +149,12 @@
     "en": "Every morning"
    },
    "zh": {
-    "description": "同一位模特兒、同一張臉，帶到不同的光線裡拍：八張照片加一支直式影片，每天早上六點準時發在 Instagram @ethan_ai_photo。十月的每一組，加上十一月預告。",
+    "description": "同一張臉的模特兒，帶到光線各不相同的地方。八張照片加一支直式影片，每天早上六點在 Instagram @ethan_ai_photo 發布一組。十月的每一組，加上十一月預告。",
     "og": "八張照片加一支直式影片，每天早上六點一組。十月的每一組，加上十一月預告。"
    },
    "en": {
-    "description": "One model, one face, taken into different kinds of light: eight photos and a vertical video, posted to Instagram at @ethan_ai_photo at six every morning. Every set from October, plus a look at November.",
-    "og": "Eight photos and a vertical video, one set at six every morning. Every set from October, plus a look at November."
+    "description": "The same model, taken to places with different light: eight photos and one vertical video, posted to @ethan_ai_photo on Instagram every morning at six. Every set from October, plus a look at November.",
+    "og": "Eight photos and a vertical video, every morning at six. Every set from October, plus a look at November."
    }
   },
   "usecases/world.html": {

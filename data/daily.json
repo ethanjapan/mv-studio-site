@@ -16,7 +16,7 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "大きな木は、背景になる。",
-   "zh": "一棵大樹，就是最好的背景。",
+   "zh": "一棵大樹，就是現成的背景。",
    "en": "A big tree is all the backdrop you need.",
    "v": "1031a",
    "status": "live",
@@ -39,8 +39,8 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "コスモス畑で、カメラを持つ。",
-   "zh": "在波斯菊花田裡，手上拿著相機。",
-   "en": "A camera in hand, out in the cosmos field.",
+   "zh": "波斯菊花田裡，拿起相機。",
+   "en": "Camera in hand, in a field of cosmos.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -86,7 +86,7 @@
    "orient": "P",
    "ja": "すだれ越しの光を、着物に落とす。",
    "zh": "讓竹簾篩過的光，落在和服上。",
-   "en": "Light through a reed blind, falling on kimono.",
+   "en": "Light through a reed blind falls across the kimono.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -155,7 +155,7 @@
    "orient": "P",
    "ja": "銀杏の黄色を、花束に重ねる。",
    "zh": "把銀杏的黃，疊上一束花。",
-   "en": "Ginkgo yellow, doubled with a bouquet.",
+   "en": "Ginkgo yellow, echoed in the bouquet.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -200,7 +200,7 @@
    "shelf": "nov",
    "orient": "P",
    "ja": "紅葉の下で、振袖を広げる。",
-   "zh": "楓紅底下，展開振袖的袖子。",
+   "zh": "楓紅之下，展開振袖。",
    "en": "Furisode sleeves spread under the maples.",
    "v": "1031a",
    "status": "live",
@@ -316,7 +316,7 @@
    "orient": "P",
    "ja": "錆びた壁と、赤いニット。",
    "zh": "鏽紅的牆，配紅色針織。",
-   "en": "A rusted wall and a red knit.",
+   "en": "A rusted wall, a red sweater.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -362,7 +362,7 @@
    "orient": "P",
    "ja": "展望台の窓に、街の光を写す。",
    "zh": "觀景台的玻璃，映著整座城市的光。",
-   "en": "City lights, reflected in the observation-deck glass.",
+   "en": "City lights reflected in the observation-deck glass.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -385,7 +385,7 @@
    "orient": "P",
    "ja": "白い電飾は、顔を明るくする。",
    "zh": "白色的燈飾，會把臉照亮。",
-   "en": "White fairy lights do the lighting for you.",
+   "en": "White fairy lights light up her face.",
    "v": "1031a",
    "status": "live",
    "src": {
@@ -460,7 +460,7 @@
   ],
   "毎朝 6 時、": [
    "每天早上六點，",
-   "Six every morning,"
+   "Every morning at six,"
   ],
   "一組ずつ": [
    "一組新照片",
@@ -471,16 +471,16 @@
    "Every morning"
   ],
   "同じ顔のモデルを、光の違う場所へ連れて行く。写真を 8 枚と、縦の動画を 1 本。Instagram の @ethan_ai_photo に、毎朝 6 時に 1 組ずつ載せている。ここは、その全部。": [
-   "同一位模特兒、同一張臉，帶到不同的光線裡拍。八張照片加一支直式影片，每天早上六點準時發在 Instagram @ethan_ai_photo。這一頁，收齊了全部。",
-   "One model, one face, taken into different kinds of light. Eight photos and a vertical video, posted to Instagram at @ethan_ai_photo at six every morning. This page has all of them."
+   "同一張臉的模特兒，帶到光線各不相同的地方拍攝。八張照片加一支直式影片，每天早上六點在 Instagram @ethan_ai_photo 發布一組。這一頁收齊了全部。",
+   "The same model, taken to places with different light. Eight photos and one vertical video, posted to @ethan_ai_photo on Instagram every morning at six. They're all here."
   ],
   "Instagram で毎朝見る": [
-   "到 Instagram 追蹤",
+   "每天早上在 Instagram 看",
    "Follow on Instagram"
   ],
   "作例は @ethan_ai_photo・相談は DM(@made_linlin)": [
    "作品在 @ethan_ai_photo，想拍請私訊 @made_linlin",
-   "Photos at @ethan_ai_photo. To book, DM @made_linlin."
+   "See the work at @ethan_ai_photo. For inquiries, DM @made_linlin."
   ],
   "02 — 10 月の投稿": [
    "02 — 十月的貼文",
@@ -495,7 +495,7 @@
    "one row."
   ],
   "光の教科書、季節と場所、表情と目線、衣装と色、1 か所で 8 カット。五つの型を順に回して、毎朝 1 組。横に流して、8 枚をそのまま見てください。": [
-   "光的教科書、季節與地點、表情與視線、服裝與色彩、一個地點拍八張。五種主題輪流，每天早上一組。往旁邊滑，八張照片一次看完。",
+   "光的教科書、季節與地點、表情與視線、服裝與色彩、一個地點八張。五種主題輪流上場，每天早上一組。左右滑動，八張原樣看完。",
    "Reading the light. Season and place. Expression and gaze. Outfit and color. Eight frames from one spot. Five themes in rotation, one set each morning. Swipe sideways to see all eight."
   ],
   "03 — 11 月の予告": [
@@ -512,15 +512,15 @@
   ],
   "銀杏、紅葉、振袖、すだれ、夜の電飾。11 月の 30 日は、毎朝 1 本の縦の動画と、強い回だけ翌日に写真 8 枚。表紙の一枚を先に。": [
    "銀杏、楓紅、振袖、竹簾、夜裡的燈飾。十一月的三十天，每天早上一支直式影片；特別好的那幾組，隔天再補八張照片。先讓你看每一組的封面。",
-   "Ginkgo, maples, furisode, reed blinds, city lights at night. Thirty days of November: a vertical video every morning, and for the strongest sets, eight photos the day after. Here is the cover of each one."
+   "Ginkgo, maples, furisode, reed blinds, city lights at night. All thirty days of November: a vertical video every morning, and for the strongest sets, eight photos the next day. A first look at the covers."
   ],
   "11 月の予告": [
    "十一月預告",
    "Coming in November"
   ],
   "撮りたい雰囲気の写真(ここの一枚でも)と、着たい衣装。それだけ送ってください。候補にしてお返しします。": [
-   "把想拍的感覺的照片（這一頁的也可以）和想穿的衣服傳過來就好。我們會做成幾個候選回給你。",
-   "Send a photo with the mood you are after (one from this page works) and what you would like to wear. That is all. We will send back a few options."
+   "傳一張你想要的氛圍照片（這一頁裡的也行），再加上想穿的衣服，就夠了。我們會整理成幾個方案回覆你。",
+   "Send us a photo with the mood you want (one from this page is fine) and the outfit you'd like to wear. That's all. We'll come back with a few options."
   ],
   "撮影会ポートレートへ戻る": [
    "回到外拍人像",
