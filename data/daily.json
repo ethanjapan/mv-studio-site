@@ -179,10 +179,10 @@
    "ja": "柳の池で、小紋を着る。",
    "zh": "柳樹池畔，一身小紋。",
    "en": "A komon kimono by the willow pond.",
-   "v": "1031a",
-   "status": "withdrawn",
+   "v": "1031b",
+   "status": "live",
    "src": {
-    "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp9_willow_rail_kimono_high__random.png",
+    "png": "/Users/linsuyi/Documents/IG新アカウント_初投稿_20261021/week/M1112/_fix_high_20261031/high_seed152952.png",
     "shelf_key": "high_base_nd/jpp9_willow_rail_kimono_high__random",
     "fav": "2026-10-25T05:48:37",
     "size": "1408x2048",
@@ -191,13 +191,16 @@
     "style_id": "ph_jpp9_willow_rail_kimono_high",
     "ig_set": "M1112",
     "reel_date": "2026-11-11",
-    "photo_date": "2026-11-12"
+    "photo_date": "2026-11-12",
+    "note": "2026-10-31 手 3 本で取り下げ → 種 152952 で焼き直して差し替え(ユーザー「おすすめでやって」・job 7191)"
    },
    "date": "2026-11-11",
-   "withdrawn": {
-    "date": "2026-10-31",
-    "reason": "手が 3 本(ユーザー指摘)。焼き直して差し替える"
-   }
+   "withdrawn_history": [
+    {
+     "date": "2026-10-31",
+     "reason": "手が 3 本(ユーザー指摘)。焼き直して差し替える"
+    }
+   ]
   },
   {
    "id": "nv_jpp_momiji_furisode_wide",
