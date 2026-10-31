@@ -180,7 +180,7 @@
    "zh": "柳樹池畔，一身小紋。",
    "en": "A komon kimono by the willow pond.",
    "v": "1031a",
-   "status": "live",
+   "status": "withdrawn",
    "src": {
     "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp9_willow_rail_kimono_high__random.png",
     "shelf_key": "high_base_nd/jpp9_willow_rail_kimono_high__random",
@@ -193,7 +193,11 @@
     "reel_date": "2026-11-11",
     "photo_date": "2026-11-12"
    },
-   "date": "2026-11-11"
+   "date": "2026-11-11",
+   "withdrawn": {
+    "date": "2026-10-31",
+    "reason": "手が 3 本(ユーザー指摘)。焼き直して差し替える"
+   }
   },
   {
    "id": "nv_jpp_momiji_furisode_wide",
