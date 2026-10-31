@@ -539,7 +539,7 @@
    "zh": "紅葉與扇子",
    "en": "Maples and a folding fan",
    "v": "1023a",
-   "status": "live",
+   "status": "withdrawn",
    "src": {
     "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/yhf_momiji_kimono_fan__random.png",
     "shelf_key": "high_base_nd/yhf_momiji_kimono_fan__random",
@@ -547,6 +547,10 @@
     "model": "Z-Image Base",
     "realism": "v2nomole",
     "size": "1408x2048"
+   },
+   "withdrawn": {
+    "date": "2026-10-31",
+    "reason": "扇子の右側だけ白い別の紙に切り替わる(投稿前の QC・ユーザー「QCをかけてね」)"
    }
   },
   {
@@ -1421,7 +1425,7 @@
    "zh": "白牆小巷・花靠在肩上",
    "en": "A white-walled lane, flowers at the shoulder",
    "v": "1023a",
-   "status": "live",
+   "status": "withdrawn",
    "src": {
     "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/tkb_alley_flower_back__random.png",
     "shelf_key": "high_base_nd/tkb_alley_flower_back__random",
@@ -1429,6 +1433,10 @@
     "model": "Z-Image Base",
     "realism": "v2nomole",
     "size": "1408x2048"
+   },
+   "withdrawn": {
+    "date": "2026-10-31",
+    "reason": "スカートの裾の下に白い靴底= 足が 3 本に見える(投稿前の QC・ユーザー「QCをかけてね」)"
    }
   },
   {
@@ -1529,7 +1537,7 @@
    "zh": "蹲在濕漉漉的路上",
    "en": "Crouching on the wet path",
    "v": "1031a",
-   "status": "live",
+   "status": "withdrawn",
    "src": {
     "png": "/Users/linsuyi/Documents/gravure_variety_lab/high_base_nd/jpp_kaki_rain_high__random.png",
     "shelf_key": "high_base_nd/jpp_kaki_rain_high__random",
@@ -1539,6 +1547,10 @@
     "model": "Z-Image Base",
     "style_id": "ph_jpp_kaki_rain_high",
     "ig_post": "M1031"
+   },
+   "withdrawn": {
+    "date": "2026-10-31",
+    "reason": "傘の軸が頭を突き抜ける(投稿前の QC・ユーザー「QCをかけてね」)"
    }
   },
   {
