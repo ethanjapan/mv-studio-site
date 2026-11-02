@@ -85,6 +85,13 @@ W, H = 288, 478
 INK = (243, 239, 230)
 
 
+# 縦書きの字形(2026-11-03 ノーカット・ユーザー「ー は縦か横?」)。フォントの vert を使う道(libraqm)はこの PIL に無いので手で直す:
+#   VROT= 横書きの形のままだと縦に並べた時に向きがおかしい字 → 90 度回す(長音「ー」が横棒のまま並んでいた)
+#   VSMALL= 小さい仮名と句読点 → マスの右上へ寄せる(横書きの左下のまま中央に置かない)
+VROT = set("ー－—―‐〜～…‥（）「」『』【】〈〉《》［］｛｝")
+VSMALL = set("ぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶ、。")
+
+
 def plate(cols, font_path, out):
     S = 4
     cw, ch = W*S, H*S
@@ -100,7 +107,15 @@ def plate(cols, font_path, out):
         x = cw - (ci+0.5)*cell_w
         for ri, chx in enumerate(col):
             y = (ri+0.5)*cell_h
-            d.text((x, y), chx, font=f, fill=255, anchor="mm")
+            if chx in VROT:
+                g = Image.new("L", (size*2, size*2), 0)
+                ImageDraw.Draw(g).text((size, size), chx, font=f, fill=255, anchor="mm")
+                g = g.rotate(-90)
+                layer.paste(255, (int(x - size), int(y - size)), g)
+            elif chx in VSMALL:
+                d.text((x + size*0.14, y - size*0.14), chx, font=f, fill=255, anchor="mm")
+            else:
+                d.text((x, y), chx, font=f, fill=255, anchor="mm")
     shadow = layer.filter(ImageFilter.GaussianBlur(22*S/4))
     img = Image.new("RGBA", (cw, ch), (0,0,0,0))
     sh = Image.new("RGBA", (cw, ch), (0,0,0,0))
