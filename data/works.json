@@ -2,6 +2,22 @@
  "_note": "作品と番組の正本。index.html と works.html の該当部分と js/works_i18n.js は `node gen_works.mjs` がここから生成する(手で編集しない)。新しい作品は先頭に足す(新しい順)。",
  "works": [
   {
+   "id": "nocut",
+   "yt": "https://youtu.be/AvvyWvbHAJE",
+   "asset": "wk_nocut",
+   "v": "20261103a",
+   "title": "ノーカット",
+   "sub": "RINKA ライブの大舞台で歌って踊るMV ・ 3分13秒",
+   "zh": {
+    "title": "一鏡到底",
+    "sub": "RINKA 演唱會大舞台上的唱跳MV ・ 3分13秒"
+   },
+   "en": {
+    "title": "No Cut",
+    "sub": "RINKA, a song-and-dance MV on a big concert stage ・ 3分13秒"
+   }
+  },
+  {
    "id": "onaji",
    "yt": "https://youtu.be/IEwHy1jzhKo",
    "asset": "wk_onaji",

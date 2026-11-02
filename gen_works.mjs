@@ -65,7 +65,7 @@ const L = {
   prev: ['前の作品', '上一支作品', 'Previous work'],
   next: ['次の作品', '下一支作品', 'Next work'],
   allWorks: [`すべての作品を見る（${nW}本）`, `看全部作品（${nW} 支）`, `See all ${nW} works`],
-  doorCount: [`すでに生まれた ${nW} 本`, `已經誕生的 ${nW} 支`, `${nW} already made`],
+  doorCount: [`すでに生まれた ${nW} 本`, `已經誕生的 ${nW} 支`, `${nW} made so far`],
   flowS: ['番組', '節目', 'Shows'],
   prevS: ['前の番組', '上一集節目', 'Previous episode'],
   nextS: ['次の番組', '下一集節目', 'Next episode'],

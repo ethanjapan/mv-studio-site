@@ -7706,6 +7706,90 @@
    "verdict": "rewrite",
    "was": "Photos, video, music and voice, all made on a PC at home. It never stops: the queue runs around the clock, your own tools can call it, and the only limit is your own GPU. The same face every time, picked from a library of 29,000 styles.",
    "note": "'The same face every time, picked from a library' says the face is picked from the library. The Japanese keeps the face and picks from the assets"
+  },
+  "c4a4572235043725a427413cdefac43b7a670451": {
+   "lang": "zh",
+   "text": "226分鐘",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "8c66313ae2f39546e929a60318b2bba99d5dbb6c": {
+   "lang": "zh",
+   "text": "看全部作品（20 支）",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "9425dc0f40d647caff950e9edb1a66387398592d": {
+   "lang": "zh",
+   "text": "已經誕生的 20 支",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "cf946af7823601cf62c01d3421f142ee4dd2169a": {
+   "lang": "zh",
+   "text": "WORKS — 作品（20 支）",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "76438d3e5a25acede1db1f71f87860f21efbe268": {
+   "lang": "zh",
+   "text": "一鏡到底",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "5b3ef92801d709eab178af88103821c745623145": {
+   "lang": "en",
+   "text": "See all 20 works",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "d59f63b175f0ff859e12513eb7b393db83e60cf5": {
+   "lang": "en",
+   "text": "WORKS — 20 pieces",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "f2429efab596bf519d723b96d7cd057cc904c57e": {
+   "lang": "en",
+   "text": "No Cut",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "e5813d6ef5460a3928bc0cc43bb9ffea87b473ad": {
+   "lang": "en",
+   "text": "226 min",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "3e5be92445ee3876482a6e8a5dc2569c7f5741d0": {
+   "lang": "zh",
+   "text": "RINKA 演唱會大舞台上的唱跳MV ・",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "5ac317c136185a5cea8c1be4bd8ad391a96172af": {
+   "lang": "en",
+   "text": "20 made so far",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
+  },
+  "18889a6d2daba2f46bc07e67aa4ae8f8bb6157ec": {
+   "lang": "en",
+   "text": "RINKA, a song-and-dance MV on a big concert stage ・",
+   "date": "2026-11-02",
+   "by": "subagent:native-review",
+   "verdict": "ok"
   }
  }
 }
