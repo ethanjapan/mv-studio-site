@@ -18,7 +18,7 @@ python3 -m http.server 8000
 1. `data/works.json` の先頭に1件(id・yt・asset・v・title・sub「〜MV ・ 3分49秒」・zh)→ `node gen_works.mjs`(トップの Cover Flow と works.html と繁中の辞書)
 2. 素材: `python3 tools/new_work_assets.py --src <題字・歌詞の焼き込みが無い 4K 本編> --slug <id> --abbr <3字> --hero <コマ> --og <コマ> --title-ja <題> --title-zh <題> --out <作業フォルダ> [--card <コマ>]`
    - ループは 96 コマ。中にカットの継ぎ目があれば止まる(ディゾルブは拾えないので mp4 を目で見る)
-   - 縦題(lk_ja/lk_tw)は縦書き= 長音「ー」・波線・括弧は 90 度回し、小さい仮名と句読点は右上へ寄せる(plate() の VROT / VSMALL・2026-11-03 ノーカットで「ー」が横棒のまま並んだ)。字を足す時はこの 2 つの集合に入れる
+   - 縦題(lk_ja/lk_tw)は縦書き= 長音「ー」・波線・括弧は 90 度回し、小さい仮名と句読点は右上へ寄せる(plate() の VROT / VSMALL・2026-11-03 ノーカットで「ー」が横棒のまま並んだ)。字を足す時はこの 2 つの集合に入れる。小さい仮名は字面の箱の中央(anchor="mm")でなく墨の箱(getbbox)の中央を置いてから右上へ寄せる(2026-11-03・試験= mvdirector/tests/test_title_vertical_glyphs.py)
    - 本編が G: へ退避済みなら `~/mnt/win5090/archive/mac-offload/<退避名>/` から読む(戻さなくてよい)
 3. `assets/` へ置く: `lk_loop_<id>.mp4` `lk_poster_<id>.jpg` `lk_ja_<abbr>.png` `lk_tw_<abbr>.png` `og_links.jpg`(と作っていれば `wk_<id>.*`)
 4. `links.html`(made_linlin のリンク集・手書き): og:image の ?v / ヒーロー `a.film`(href・aria-label・poster・loop・`<b>題</b>`・縦題・`dur.<abbr>`)/

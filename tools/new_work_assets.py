@@ -113,7 +113,10 @@ def plate(cols, font_path, out):
                 g = g.rotate(-90)
                 layer.paste(255, (int(x - size), int(y - size)), g)
             elif chx in VSMALL:
-                d.text((x + size*0.14, y - size*0.14), chx, font=f, fill=255, anchor="mm")
+                # 2026-11-03: 小さい仮名は字形がマスの下寄りにあるので anchor="mm"(字面の箱の中央)だと上に寄らない
+                #   → 墨の箱(getbbox)の中央をマスの中央に置いてから右上へ寄せる(水鏡 build_title_credits と同じ測り方)
+                b = f.getbbox(chx)
+                d.text((x - (b[0] + b[2]) / 2 + size*0.14, y - (b[1] + b[3]) / 2 - size*0.14), chx, font=f, fill=255)
             else:
                 d.text((x, y), chx, font=f, fill=255, anchor="mm")
     shadow = layer.filter(ImageFilter.GaussianBlur(22*S/4))
