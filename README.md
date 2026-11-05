@@ -3,6 +3,10 @@
 声で相談してつくる、AI映像ディレクター「MV Studio」のプロモーションサイト。
 夜のオーロラから夏のプールへと移ろう 3D スクロール。日本語／繁體中文（台灣）対応。
 
+## 公開の関所
+`.githooks/pre-push` が、確認なしの公開先への push を止める(通す時だけ `SITE_PUBLISH_OK=1 git push origin main`)。
+`npm install` で `core.hooksPath` が入る。入っているかの確認= `npm run test:hooks`。
+
 ## 構成
 - `index.html` — マークアップ
 - `css/styles.css` — スタイル

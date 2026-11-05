@@ -1,0 +1,23 @@
+#!/bin/sh
+# 公式サイトの公開(main への push = GitHub Actions で自動公開)はユーザーの確認を取ってから(2026-10-16 ユーザー「サイトの自動公開はしないでね。私の確認を取ってから公開する事」)。
+# 確認が取れた時だけ、その 1 回に限り SITE_PUBLISH_OK=1 を付けて push する: SITE_PUBLISH_OK=1 git push origin main
+# 止めるのは公開先(GitHub 等)への push だけ。Mac 内・外付けディスクのローカルの場所への push(日次バックアップの M2 退避)は通す。
+# 2026-10-17 実害: このフックが backup-to-m2.sh の `git push "/Volumes/M2 SSD/.../mv-studio-site.git" --all` まで止め、日次バックアップが失敗していた。
+# $2 = push 先の場所(名前の無い remote なら $1 と同じ)。ローカルの場所と分かる時だけ通し、それ以外は止める側に倒す
+case "$2" in
+  /*|file://*) exit 0 ;;
+esac
+if [ "$SITE_PUBLISH_OK" != "1" ]; then
+  echo "★ 公開を止めた: サイトの公開はユーザーの確認を取ってから(SITE_PUBLISH_OK=1 を付けた push だけ通す)" >&2
+  echo "  未公開のコミット:" >&2
+  git log --oneline origin/main..HEAD >&2 2>/dev/null
+  exit 1
+fi
+# 2026-10-16 実害: 新しい写真(753_08b)の画像をコミットし忘れて公開した= 公開先で写真が欠ける。assets にコミットしていないファイルがあれば止める
+LEFT=$(git status --porcelain -- assets data js css usecases *.html 2>/dev/null)
+if [ -n "$LEFT" ]; then
+  echo "★ 公開を止めた: コミットしていない変更がある(頁が参照する画像の入れ忘れを防ぐ)" >&2
+  echo "$LEFT" >&2
+  exit 1
+fi
+exit 0

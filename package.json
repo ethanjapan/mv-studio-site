@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "prepare": "git config core.hooksPath .githooks",
+    "test:hooks": "sh tools/test_pre_push.sh"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",
