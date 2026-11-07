@@ -111,3 +111,13 @@
 - **数字は揃いの高さ(lining-nums)**。Cormorant Garamond の既定は古風な数字で、英語の頁の章番号「01」が「OI」に読めた
 - 日本語の詰め(palt)は使わない: Google Fonts の Shippori Mincho と Zen Kaku Gothic New では効かない(実測)
 - 書体を足す・替える時は、iPhone シミュレータで直す前と後を同じ位置で撮って並べる(Mac は内蔵の明朝が代わりに出て差が見えにくい)
+
+## 章の板を Blender と H3 で作る(2026-11-07・ユーザー「公式サイトをブレンダーで強化」→「H3 版を当てる」)
+- 1 枚目= スタジオ 11「ローカル生成」の板。Blender(Mac 5.2.2・Cycles Metal)で「ガラスの家= この家からデータは出ない」を組み、
+  その静止画を <Picture 1>・ループを <Video 1> にして H3 Ref2VA(job 7863・29 分)で写実化した。構図・金の線・∞・絵の昇りは保たれ、床の映りと雨が本物になった
+- 台本= `tools/blender/bd_scene_v3.py`(v1= bd_scene.py・v2= bd_scene_v2.py)。描き方の要点= 三分割(家は右・左は文字の余白)・三点照明・分割トーン・
+  コンポジタ(Blender 5.2 は scene.compositing_node_group / 出力は Group Output / Glare の型は入力ソケット)。H3 の箱= `_review/blender_20261107/h3/`(cut_plan.json・prompts/house.txt)
+- 当て方= 板の静止画(`--bd`・H3 の 1 コマ)は今までどおり。その上に `.cine-film` の `<video data-src>`(muted loop playsinline preload=none)を敷き、
+  **PC だけ** main.js `cineFilm` が画面に入った時に src を入れて再生、出たら外す。**スマホは CSS で出さない**(畳んだ章の中身を iPhone に載せない決まりと同じ向き)。reduced-motion も板のまま
+- H3 の出力はループしないので、末尾 1 秒を先頭にクロスフェード(ffmpeg xfade)して 4.9 秒のループにした。継ぎ目の差は隣り合うコマと同じ(2.66)
+- 板の語彙は守る: 人は写さない(中の写真は作品の絵)・文字は ∞ の印だけ・色は夜の紺・金・桃→水色

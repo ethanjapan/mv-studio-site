@@ -389,6 +389,20 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }),{threshold:0.05}).observe(v);
 })();
 
+/* ===== 章の板の動画 (2026-11-07 ユーザー「H3 版を当てる」: スタジオ 11 ローカル生成= Blender→H3 Ref2VA のループ) =====
+   板(--bd の静止画)はそのまま。PC だけ、章が画面に入ったら data-src を入れて再生し、出たら src を外す(作品一覧の動画と同じ vidIn/vidOut)。
+   スマホは CSS で .cine-film を出さない(畳んだ章の中身を iPhone に載せない決まりと同じ向き)。reduced-motion は板のまま */
+(function cineFilm(){
+  const vs=[...document.querySelectorAll('.cine-film video[data-src]')];if(!vs.length)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||matchMedia('(max-width:860px)').matches)return;
+  vs.forEach(v=>{
+    v.__src=(window.__mvRoot||'')+v.dataset.src;
+    new IntersectionObserver(es=>es.forEach(en=>{
+      if(en.isIntersecting){vidIn(v);}else{vidOut(v);}
+    }),{rootMargin:'40% 0px',threshold:0}).observe(v.closest('section')||v);
+  });
+})();
+
 /* ===== 物量カウンタ (11 ローカル生成 / 13 作品。画面に入ったら1.4sで立ち上がる) ===== */
 (function statCount(){
   const fmt=n=>n.toLocaleString('ja-JP');

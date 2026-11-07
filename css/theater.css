@@ -196,6 +196,14 @@ h1 .l:nth-child(2) span{animation-delay:.62s}
   opacity:.52;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 82%,transparent 100%);
   mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 82%,transparent 100%)}
+/* 章の板の動画(2026-11-07 ユーザー「H3 版を当てる」): 板(::after・z 0)の上・文字(.panel-inner・z 2)の下に、同じ絵のループを敷く。
+   静止画の板はそのまま残す(poster と同じ絵= 動画が読めない端末・reduced-motion・スマホの読み込み前は板だけ見える)。
+   PC だけ再生(main.js cineFilm・画面に入った時に data-src を入れる)。スマホは板のまま= 畳んだ章の中身を iPhone に載せない決まりと同じ向き */
+.panel.cine .cine-film{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;opacity:.52;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 82%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 82%,transparent 100%)}
+.panel.cine .cine-film video{width:100%;height:100%;object-fit:cover;object-position:var(--bd-pos,center 30%);display:block}
+@media (max-width:860px){.panel.cine .cine-film{display:none}}
 .closing.cine::after{content:"";position:absolute;inset:0;z-index:0;
   background-image:var(--bd);background-size:cover;background-position:center 24%;
   opacity:.4;
